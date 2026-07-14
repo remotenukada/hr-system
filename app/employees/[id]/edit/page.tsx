@@ -1,4 +1,5 @@
 import { notFound, redirect } from "next/navigation";
+import { revalidatePath } from "next/cache"; // ← 追加
 import { prisma } from "../../../../lib/prisma";
 
 type Props = {
@@ -42,6 +43,10 @@ export default async function EmployeeEditPage({
       },
     });
 
+    // 💡 変更があったページのキャッシュをクリアする
+    revalidatePath(`/employees/${id}`);
+    revalidatePath("/employees"); // 一覧画面もあればこちらもクリアしておくと確実です
+
     redirect(`/employees/${id}`);
   }
 
@@ -52,42 +57,54 @@ export default async function EmployeeEditPage({
       </h1>
 
       <form action={updateEmployee} className="space-y-4">
-        <input
-          name="employeeNo"
-          defaultValue={employee.employeeNo}
-          className="border p-2 w-full"
-          placeholder="社員番号"
-          required
-        />
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">社員番号</label>
+          <input
+            name="employeeNo"
+            defaultValue={employee.employeeNo}
+            className="border p-2 w-full rounded"
+            placeholder="社員番号"
+            required
+          />
+        </div>
 
-        <input
-          name="lastName"
-          defaultValue={employee.lastName}
-          className="border p-2 w-full"
-          placeholder="姓"
-          required
-        />
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">姓</label>
+          <input
+            name="lastName"
+            defaultValue={employee.lastName}
+            className="border p-2 w-full rounded"
+            placeholder="姓"
+            required
+          />
+        </div>
 
-        <input
-          name="firstName"
-          defaultValue={employee.firstName}
-          className="border p-2 w-full"
-          placeholder="名"
-          required
-        />
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">名</label>
+          <input
+            name="firstName"
+            defaultValue={employee.firstName}
+            className="border p-2 w-full rounded"
+            placeholder="名"
+            required
+          />
+        </div>
 
-        <input
-          name="email"
-          type="email"
-          defaultValue={employee.email}
-          className="border p-2 w-full"
-          placeholder="メールアドレス"
-          required
-        />
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">メールアドレス</label>
+          <input
+            name="email"
+            type="email"
+            defaultValue={employee.email}
+            className="border p-2 w-full rounded"
+            placeholder="メールアドレス"
+            required
+          />
+        </div>
 
         <button
           type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded"
+          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors"
         >
           更新
         </button>
