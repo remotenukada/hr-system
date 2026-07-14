@@ -8,10 +8,22 @@ datasource db {
 }
 
 model Employee {
-  id         String   @id @default(uuid())
-  employeeNo String   @unique
-  firstName  String
-  lastName   String
-  email      String   @unique
-  createdAt  DateTime @default(now())
+  id           String   @id @default(uuid())
+  employeeNo   String   @unique
+  firstName    String
+  lastName     String
+  email        String   @unique
+
+  departmentId String?
+  department   Department? @relation(fields: [departmentId], references: [id])
+
+  createdAt    DateTime @default(now())
+}
+
+model Department {
+  id        String   @id @default(uuid())
+  name      String
+  createdAt DateTime @default(now())
+
+  employees Employee[]
 }
