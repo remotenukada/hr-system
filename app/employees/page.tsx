@@ -1,7 +1,9 @@
+// 💡 2. 先頭に Link をインポート
+import Link from "next/link";
 import { prisma } from "../../lib/prisma";
 
 export default async function EmployeesPage() {
-  // 💡 Prismaで社員データと一緒にリレーション先の department データも取得する
+  // Prismaで社員データと一緒にリレーション先の department データも取得する
   const employees = await prisma.employee.findMany({
     include: {
       department: true,
@@ -20,7 +22,6 @@ export default async function EmployeesPage() {
             <th className="border p-2 text-left">社員番号</th>
             <th className="border p-2 text-left">氏名</th>
             <th className="border p-2 text-left">メール</th>
-            {/* 💡 テーブルヘッダーに「部署」列を追加 */}
             <th className="border p-2 text-left">部署</th>
           </tr>
         </thead>
@@ -32,15 +33,20 @@ export default async function EmployeesPage() {
                 {employee.employeeNo}
               </td>
 
+              {/* 💡 3. 氏名列を詳細画面への Link に変更 */}
               <td className="border p-2">
-                {employee.lastName} {employee.firstName}
+                <Link
+                  href={`/employees/${employee.id}`}
+                  className="text-blue-600 hover:text-blue-800 hover:underline font-medium"
+                >
+                  {employee.lastName} {employee.firstName}
+                </Link>
               </td>
 
               <td className="border p-2">
                 {employee.email}
               </td>
 
-              {/* 💡 テーブルデータに「部署名」を追加（未設定なら "-" を表示） */}
               <td className="border p-2">
                 {employee.department?.name ?? "-"}
               </td>
