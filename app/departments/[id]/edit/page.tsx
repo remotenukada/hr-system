@@ -6,12 +6,17 @@ type Props = {
   params: Promise<{
     id: string;
   }>;
+  searchParams: Promise<{
+    error?: string;
+  }>;
 };
 
 export default async function DepartmentEditPage({
   params,
+  searchParams,
 }: Props) {
   const { id } = await params;
+  const { error } = await searchParams;
 
   const department = await prisma.department.findUnique({
     where: {
@@ -46,6 +51,17 @@ export default async function DepartmentEditPage({
   async function deleteDepartment() {
     "use server";
 
+    const employeeCount = await prisma.employee.count({
+      where: {
+        departmentId: id,
+      },
+    });
+
+    // 💡 所属社員がいる場合は、クエリパラメータを付与して編集画面にリダイレクト
+    if (employeeCount > 0) {
+      redirect(`/departments/${id}/edit?error=hasEmployees`);
+    }
+
     await prisma.department.delete({
       where: {
         id,
@@ -64,12 +80,20 @@ export default async function DepartmentEditPage({
         部署編集
       </h1>
 
+      {/* 💡 ユーザー体験を高めるエラーアラート表示 */}
+      {error === "hasEmployees" && (
+        <div className="mb-4 rounded border border-red-300 bg-red-50 p-3 text-red-700 max-w-md">
+          所属社員がいるため、この部署は削除できません。
+        </div>
+      )}
+
       {/* 💡 開始タグを <form action={updateDepartment} ...> に修正 */}
       <form action={updateDepartment} className="space-y-4 max-w-md">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             部署名
           </label>
+
           <input
             name="name"
             defaultValue={department.name}
