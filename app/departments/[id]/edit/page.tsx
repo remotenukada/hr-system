@@ -13,25 +13,21 @@ export default async function DepartmentEditPage({
 }: Props) {
   const { id } = await params;
 
-  // 1. 編集対象の部署データをデータベースから取得
   const department = await prisma.department.findUnique({
     where: {
       id,
     },
   });
 
-  // データが存在しない場合は404エラー画面を表示
   if (!department) {
     notFound();
   }
 
-  // 2. Server Action: 部署情報の更新処理
   async function updateDepartment(formData: FormData) {
     "use server";
 
     const name = formData.get("name") as string;
 
-    // PrismaでDBのデータを更新
     await prisma.department.update({
       where: {
         id,
@@ -41,11 +37,9 @@ export default async function DepartmentEditPage({
       },
     });
 
-    // 関連するページのキャッシュをクリアして最新情報にする
     revalidatePath("/departments");
-    revalidatePath("/employees"); // 社員一覧側の表示（部署名）にも影響するためクリア
+    revalidatePath("/employees");
 
-    // 部署一覧画面へリダイレクト
     redirect("/departments");
   }
 
@@ -55,14 +49,16 @@ export default async function DepartmentEditPage({
         部署編集
       </h1>
 
+      {/* 💡 開始タグを <form action={updateDepartment} ...> に修正しました */}
       <form action={updateDepartment} className="space-y-4 max-w-md">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             部署名
           </label>
+
           <input
             name="name"
-            defaultValue={department.name} // 💡 既存の部署名を初期値としてセット
+            defaultValue={department.name}
             className="border p-2 w-full rounded"
             placeholder="部署名"
             required
