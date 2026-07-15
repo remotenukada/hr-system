@@ -8,94 +8,145 @@ type Props = {
   }>;
 };
 
-export default async function DepartmentEditPage({
+export default async function EmployeeEditPage({
   params,
 }: Props) {
   const { id } = await params;
 
-  // 1. 編集対象の部署データをデータベースから取得
-  const department = await prisma.department.findUnique({
+  const employee = await prisma.employee.findUnique({
     where: {
       id,
     },
   });
 
-  if (!department) {
+  if (!employee) {
     notFound();
   }
 
-  // 2. Server Action: 部署情報の更新処理
-  async function updateDepartment(formData: FormData) {
+  const departments = await prisma.department.findMany({
+    orderBy: {
+      name: "asc",
+    },
+  });
+
+  async function updateEmployee(formData: FormData) {
     "use server";
 
-    const name = formData.get("name") as string;
+    const employeeNo = formData.get("employeeNo") as string;
+    const lastName = formData.get("lastName") as string;
+    const firstName = formData.get("firstName") as string;
+    const email = formData.get("email") as string;
+    const departmentId = formData.get("departmentId") as string;
 
-    await prisma.department.update({
+    await prisma.employee.update({
       where: {
         id,
       },
       data: {
-        name,
+        employeeNo,
+        lastName,
+        firstName,
+        email,
+        departmentId: departmentId || null,
       },
     });
 
-    revalidatePath("/departments");
-    revalidatePath("/employees");
-    redirect("/departments");
-  }
-
-  // 💡 必要条件：削除処理（deleteDepartment）をここに配置
-  async function deleteDepartment() {
-    "use server";
-
-    await prisma.department.delete({
-      where: {
-        id,
-      },
-    });
-
-    revalidatePath("/departments");
+    revalidatePath(`/employees/${id}`);
     revalidatePath("/employees");
 
-    redirect("/departments");
+    redirect(`/employees/${id}`);
   }
 
   return (
     <main className="p-8">
       <h1 className="text-3xl font-bold mb-6">
-        部署編集
+        社員編集
       </h1>
 
-      {/* 更新用フォーム */}
-      <form action={updateDepartment} className="space-y-4 max-w-md">
+      {/* 💡 開始タグを <form action={updateEmployee} ...> に修正、ラベルを追加してレイアウトを整備 */}
+      <form action={updateEmployee} className="space-y-4 max-w-md">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            部署名
+            社員番号
           </label>
           <input
-            name="name"
-            defaultValue={department.name}
+            name="employeeNo"
+            defaultValue={employee.employeeNo}
             className="border p-2 w-full rounded"
-            placeholder="部署名"
             required
           />
         </div>
 
-        <button
-          type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors block mt-6"
-        >
-          更新
-        </button>
-      </form>
-      {/* 💡 欠落していた削除用フォームを正しいタグ形式で追加 */}
-      <form action={deleteDepartment} className="max-w-md">
-        <button
-          type="submit"
-          className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors mt-4"
-        >
-          削除
-        </button>
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              姓
+            </label>
+            <input
+              name="lastName"
+              defaultValue={employee.lastName}
+              className="border p-2 w-full rounded"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              名
+            </label>
+            <input
+              name="firstName"
+              defaultValue={employee.firstName}
+              className="border p-2 w-full rounded"
+              required
+            />
+          </div>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            メールアドレス
+          </label>
+          <input
+            name="email"
+            type="email"
+            defaultValue={employee.email}
+            className="border p-2 w-full rounded"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            所属部署
+          </label>
+          <select
+            name="departmentId"
+            defaultValue={employee.departmentId ?? ""}
+            className="border p-2 w-full rounded"
+          >
+            <option value="">
+              部署を選択（未所属）
+            </option>
+
+            {departments.map((department) => (
+              <option
+                key={department.id}
+                value={department.id}
+              >
+                {department.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="pt-2">
+          <button
+            type="submit"
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors w-full md:w-auto"
+          >
+            更新
+          </button>
+        </div>
       </form>
     </main>
   );
