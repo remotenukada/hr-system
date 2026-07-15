@@ -13,13 +13,16 @@ export default async function DepartmentDetailPage({
 }: Props) {
   const { id } = await params;
 
-  // Prismaで部署データと一緒に所属する社員一覧も取得
   const department = await prisma.department.findUnique({
     where: {
       id,
     },
     include: {
-      employees: true,
+      employees: {
+        orderBy: {
+          employeeNo: "asc",
+        },
+      },
     },
   });
 
@@ -35,7 +38,10 @@ export default async function DepartmentDetailPage({
 
       <div className="mb-6 bg-gray-50 p-4 rounded border max-w-md">
         <p className="text-lg">
-          <span className="font-medium text-gray-500">部署名:</span> {department.name}
+          <span className="font-medium text-gray-500">
+            部署名:
+          </span>{" "}
+          {department.name}
         </p>
       </div>
 
@@ -44,12 +50,14 @@ export default async function DepartmentDetailPage({
       </h2>
 
       {department.employees.length === 0 ? (
-        <p className="text-gray-500 mb-6">- 所属している社員はいません -</p>
+        <p className="text-gray-500 mb-6">
+          所属している社員はいません
+        </p>
       ) : (
         <ul className="list-disc pl-6 space-y-1 mb-6 text-gray-700">
           {department.employees.map((employee) => (
             <li key={employee.id}>
-              {/* 💡 リンク化：社員名をクリックすると社員詳細へジャンプ */}
+              {/* 💡 社員名をクリックすると社員詳細へ移動できるLinkに修正 */}
               <Link
                 href={`/employees/${employee.id}`}
                 className="text-blue-600 hover:text-blue-800 hover:underline font-medium"
@@ -61,14 +69,16 @@ export default async function DepartmentDetailPage({
         </ul>
       )}
 
-      {/* 導線コントロールエリア */}
       <div className="flex gap-4 items-center pt-4 border-t max-w-md">
+        {/* 💡 部署一覧へ戻るLinkに修正 */}
         <Link
           href="/departments"
           className="text-sm text-gray-600 hover:underline"
         >
           ← 部署一覧へ戻る
         </Link>
+
+        {/* 💡 この部署を編集するLinkに修正 */}
         <Link
           href={`/departments/${department.id}/edit`}
           className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 transition-colors ml-auto"
