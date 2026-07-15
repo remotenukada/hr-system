@@ -20,7 +20,6 @@ export default async function DepartmentEditPage({
     },
   });
 
-  // データが存在しない場合は404エラー画面を表示
   if (!department) {
     notFound();
   }
@@ -31,7 +30,6 @@ export default async function DepartmentEditPage({
 
     const name = formData.get("name") as string;
 
-    // PrismaでDBのデータを更新
     await prisma.department.update({
       where: {
         id,
@@ -41,11 +39,24 @@ export default async function DepartmentEditPage({
       },
     });
 
-    // 関連するページのキャッシュをクリアして最新情報にする
     revalidatePath("/departments");
-    revalidatePath("/employees"); // 社員一覧側の表示（部署名）にも影響するためクリア
+    revalidatePath("/employees");
+    redirect("/departments");
+  }
 
-    // 部署一覧画面へリダイレクト
+  // 💡 必要条件：削除処理（deleteDepartment）をここに配置
+  async function deleteDepartment() {
+    "use server";
+
+    await prisma.department.delete({
+      where: {
+        id,
+      },
+    });
+
+    revalidatePath("/departments");
+    revalidatePath("/employees");
+
     redirect("/departments");
   }
 
@@ -55,6 +66,7 @@ export default async function DepartmentEditPage({
         部署編集
       </h1>
 
+      {/* 更新用フォーム */}
       <form action={updateDepartment} className="space-y-4 max-w-md">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -62,7 +74,7 @@ export default async function DepartmentEditPage({
           </label>
           <input
             name="name"
-            defaultValue={department.name} // 💡 既存の部署名を初期値としてセット
+            defaultValue={department.name}
             className="border p-2 w-full rounded"
             placeholder="部署名"
             required
@@ -74,6 +86,15 @@ export default async function DepartmentEditPage({
           className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors block mt-6"
         >
           更新
+        </button>
+      </form>
+      {/* 💡 欠落していた削除用フォームを正しいタグ形式で追加 */}
+      <form action={deleteDepartment} className="max-w-md">
+        <button
+          type="submit"
+          className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition-colors mt-4"
+        >
+          削除
         </button>
       </form>
     </main>
