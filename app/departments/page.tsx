@@ -1,4 +1,3 @@
-// 💡 1. 先頭に Link をインポート
 import Link from "next/link";
 import { prisma } from "../../lib/prisma";
 
@@ -25,10 +24,10 @@ export default async function DepartmentsPage() {
         <tbody>
           {departments.map((department) => (
             <tr key={department.id} className="hover:bg-gray-50 transition-colors">
-              {/* 💡 2. 部署名を編集画面（/departments/[id]/edit）への Link に変更 */}
               <td className="border p-2">
+                {/* 💡 リンク先を詳細画面（/[id]）へと正しく修正 */}
                 <Link
-                  href={`/departments/${department.id}/edit`}
+                  href={`/departments/${department.id}`}
                   className="text-blue-600 hover:text-blue-800 hover:underline font-medium"
                 >
                   {department.name}
