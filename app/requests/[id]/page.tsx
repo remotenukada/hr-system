@@ -89,6 +89,20 @@ export default async function RequestDetailPage({
     redirect(`/requests/${id}`);
   }
 
+  async function deleteRequest() {
+    "use server";
+
+    await prisma.employeeRequest.delete({
+      where: {
+        id,
+      },
+    });
+
+    revalidatePath("/requests");
+
+    redirect("/requests");
+  }
+
   return (
     <main className="p-8 max-w-3xl mx-auto">
       <h1 className="text-3xl font-bold mb-6 text-gray-800">
@@ -121,37 +135,50 @@ export default async function RequestDetailPage({
         </p>
       </div>
 
-      {/* 💡 formタグの開始部分を正しく修正しました */}
-      {request.status === "PENDING" && (
-        <div className="flex gap-4 mb-6">
-          <form action={approveRequest}>
-            <button
-              type="submit"
-              className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors font-medium shadow-sm"
-            >
-              承認
-            </button>
-          </form>
+      {/* アクションエリア */}
+      <div className="flex justify-between items-center mb-6">
+        {/* 左側：未対応の場合のみ承認・却下ボタンを表示 */}
+        <div className="flex gap-4">
+          {request.status === "PENDING" ? (
+            <>
+              <form action={approveRequest}>
+                <button
+                  type="submit"
+                  className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors font-medium shadow-sm"
+                >
+                  承認
+                </button>
+              </form>
 
-          <form action={rejectRequest}>
-            <button
-              type="submit"
-              className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors font-medium shadow-sm"
-            >
-              却下
-            </button>
-          </form>
+              <form action={rejectRequest}>
+                <button
+                  type="submit"
+                  className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors font-medium shadow-sm"
+                >
+                  却下
+                </button>
+              </form>
+            </>
+          ) : (
+            <p className="text-sm text-gray-500 bg-gray-50 p-2 px-3 rounded-lg border border-gray-100">
+              この申請は処理済みです。
+            </p>
+          )}
         </div>
-      )}
 
-      {request.status !== "PENDING" && (
-        <p className="mb-6 text-sm text-gray-500 bg-gray-50 p-3 rounded-lg border border-gray-100 inline-block">
-          この申請は処理済みです。
-        </p>
-      )}
+        {/* 右側：常に表示される削除ボタン */}
+        <form action={deleteRequest}>
+          <button
+            type="submit"
+            className="border border-red-200 text-red-600 px-4 py-2 rounded-lg hover:bg-red-50 transition-colors font-medium text-sm"
+          >
+            申請を削除
+          </button>
+        </form>
+      </div>
 
-      {/* 💡 戻るリンクのタグを綺麗に修復しました */}
-      <div className="mt-6">
+      {/* 戻るリンク */}
+      <div className="mt-6 border-t pt-4">
         <Link href="/requests" className="text-sm text-blue-600 hover:underline">
           ← 申請一覧へ戻る
         </Link>
