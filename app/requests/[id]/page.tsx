@@ -57,17 +57,12 @@ export default async function RequestDetailPage({
     "use server";
 
     await prisma.employeeRequest.update({
-      where: {
-        id,
-      },
-      data: {
-        status: "APPROVED",
-      },
+      where: { id },
+      data: { status: "APPROVED" },
     });
 
     revalidatePath("/requests");
     revalidatePath(`/requests/${id}`);
-
     redirect(`/requests/${id}`);
   }
 
@@ -75,17 +70,12 @@ export default async function RequestDetailPage({
     "use server";
 
     await prisma.employeeRequest.update({
-      where: {
-        id,
-      },
-      data: {
-        status: "REJECTED",
-      },
+      where: { id },
+      data: { status: "REJECTED" },
     });
 
     revalidatePath("/requests");
     revalidatePath(`/requests/${id}`);
-
     redirect(`/requests/${id}`);
   }
 
@@ -93,21 +83,27 @@ export default async function RequestDetailPage({
     "use server";
 
     await prisma.employeeRequest.delete({
-      where: {
-        id,
-      },
+      where: { id },
     });
 
     revalidatePath("/requests");
-
     redirect("/requests");
   }
 
   return (
     <main className="p-8 max-w-3xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6 text-gray-800">
-        申請詳細
-      </h1>
+      {/* ヘッダーエリアに編集ボタンを設置 */}
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-3xl font-bold text-gray-800">
+          申請詳細
+        </h1>
+        <Link
+          href={`/requests/${request.id}/edit`}
+          className="border border-gray-300 bg-white hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg transition-colors text-sm font-medium shadow-sm"
+        >
+          編集する
+        </Link>
+      </div>
 
       <div className="bg-white border rounded-xl p-6 space-y-4 mb-6 shadow-sm text-gray-700">
         <p>
@@ -137,7 +133,6 @@ export default async function RequestDetailPage({
 
       {/* アクションエリア */}
       <div className="flex justify-between items-center mb-6">
-        {/* 左側：未対応の場合のみ承認・却下ボタンを表示 */}
         <div className="flex gap-4">
           {request.status === "PENDING" ? (
             <>
@@ -166,7 +161,6 @@ export default async function RequestDetailPage({
           )}
         </div>
 
-        {/* 右側：常に表示される削除ボタン */}
         <form action={deleteRequest}>
           <button
             type="submit"
