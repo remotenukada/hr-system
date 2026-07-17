@@ -12,7 +12,7 @@ export default async function EmployeesPage({
 }: Props) {
   const { q } = await searchParams;
 
-  // 💡 Prismaで「姓」または「名」に部分一致する社員を検索
+  // 💡 姓・名・社員番号・メール・部署名のいずれかに部分一致する社員を検索
   const employees = await prisma.employee.findMany({
     where: q
       ? {
@@ -20,13 +20,33 @@ export default async function EmployeesPage({
             {
               lastName: {
                 contains: q,
-                mode: "insensitive", // 大文字小文字を区別しない
+                mode: "insensitive",
               },
             },
             {
               firstName: {
                 contains: q,
-                mode: "insensitive", // 大文字小文字を区別しない
+                mode: "insensitive",
+              },
+            },
+            {
+              employeeNo: {
+                contains: q,
+                mode: "insensitive",
+              },
+            },
+            {
+              email: {
+                contains: q,
+                mode: "insensitive",
+              },
+            },
+            {
+              department: {
+                name: {
+                  contains: q,
+                  mode: "insensitive",
+                },
               },
             },
           ],
@@ -36,7 +56,7 @@ export default async function EmployeesPage({
       department: true,
     },
     orderBy: {
-      employeeNo: "asc", // 社員番号順に並べ替え
+      employeeNo: "asc",
     },
   });
 
@@ -46,7 +66,6 @@ export default async function EmployeesPage({
         <h1 className="text-3xl font-bold">
           社員一覧
         </h1>
-        {/* 新規追加ボタンもあると便利なので配置 */}
         <Link
           href="/employees/new"
           className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition-colors"
@@ -60,7 +79,7 @@ export default async function EmployeesPage({
         <input
           name="q"
           defaultValue={q}
-          placeholder="氏名で検索..."
+          placeholder="氏名、番号、メール、部署名で検索..."
           className="border p-2 rounded w-80"
         />
 
@@ -71,7 +90,6 @@ export default async function EmployeesPage({
           検索
         </button>
 
-        {/* 💡 検索中の場合はクリアボタンを表示 */}
         {q && (
           <Link
             href="/employees"
@@ -81,6 +99,11 @@ export default async function EmployeesPage({
           </Link>
         )}
       </form>
+
+      {/* 💡 フォームの直後、テーブルの手前に検索結果の件数を追加 */}
+      <p className="mb-4 text-gray-600 font-medium">
+        検索結果: {employees.length}件
+      </p>
 
       <table className="border-collapse border w-full">
         <thead>
@@ -110,7 +133,6 @@ export default async function EmployeesPage({
                 </td>
 
                 <td className="border p-2">
-                  {/* 💡 壊れていた Link タグを綺麗に修復 */}
                   <Link
                     href={`/employees/${employee.id}`}
                     className="text-blue-600 hover:text-blue-800 hover:underline font-medium"
