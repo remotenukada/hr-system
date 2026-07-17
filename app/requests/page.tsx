@@ -1,5 +1,12 @@
 import Link from "next/link";
 import { prisma } from "../../lib/prisma";
+import { Prisma } from "@prisma/client";
+
+type Props = {
+  searchParams: Promise<{
+    q?: string;
+  }>;
+};
 
 // 申請種別の日本語ラベルとスタイルのマッピング
 function getRequestTypeDetails(type: string) {
@@ -29,8 +36,53 @@ function getRequestStatusDetails(status: string) {
   }
 }
 
-export default async function RequestsPage() {
+export default async function RequestsPage({ searchParams }: Props) {
+  const { q } = await searchParams;
+
+  // 日本語の検索ワードからEnumのキーワードを推測して検索条件を生成
+  const getSearchConditions = (query: string): Prisma.EmployeeRequestWhereInput[] => {
+    // 💡 any[] から Prismaの厳密な型に変更しました
+    const conditions: Prisma.EmployeeRequestWhereInput[] = [
+      // 1. タイトル検索
+      { title: { contains: query, mode: "insensitive" } },
+      // 2. 対象社員の姓名検索
+      {
+        employee: {
+          OR: [
+            { lastName: { contains: query, mode: "insensitive" } },
+            { firstName: { contains: query, mode: "insensitive" } },
+          ],
+        },
+      },
+    ];
+
+    // 3. 申請種別の日本語対応
+    if ("入社申請".includes(query) || "入社".includes(query)) {
+      conditions.push({ type: "ONBOARDING" });
+    }
+    if ("部署変更申請".includes(query) || "部署".includes(query) || "組織変更".includes(query)) {
+      conditions.push({ type: "DEPARTMENT_CHANGE" });
+    }
+    if ("その他".includes(query)) {
+      conditions.push({ type: "OTHER" });
+    }
+
+    // 4. ステータスの日本語対応
+    if ("未対応".includes(query) || "保留".includes(query)) {
+      conditions.push({ status: "PENDING" });
+    }
+    if ("承認済み".includes(query) || "承認".includes(query)) {
+      conditions.push({ status: "APPROVED" });
+    }
+    if ("却下".includes(query)) {
+      conditions.push({ status: "REJECTED" });
+    }
+
+    return conditions;
+  };
+
   const requests = await prisma.employeeRequest.findMany({
+    where: q ? { OR: getSearchConditions(q) } : undefined,
     include: {
       employee: true,
     },
@@ -42,25 +94,54 @@ export default async function RequestsPage() {
   return (
     <main className="p-8 max-w-5xl mx-auto">
       {/* ヘッダーエリア */}
-      <div className="flex justify-between items-center mb-8">
+      <div className="flex justify-between items-center mb-6">
         <div>
           <h1 className="text-3xl font-bold text-gray-800">申請一覧</h1>
-          <p className="text-sm text-gray-500 mt-1">社員の入社や組織変更の申請を管理します。</p>
+          <p className="text-sm text-gray-500 mt-1">社員の入社や組織変更の申請を管理・検索します。</p>
         </div>
 
         <Link
           href="/requests/new"
-          className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg transition-colors shadow-sm"
+          className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-lg transition-colors shadow-sm text-sm"
         >
           新規申請
         </Link>
       </div>
 
+      {/* 検索フォーム */}
+      <form className="mb-6 flex gap-2">
+        <input
+          name="q"
+          defaultValue={q || ""}
+          placeholder="タイトル、社員名、種別、ステータスで検索..."
+          className="border border-gray-300 px-4 py-2 rounded-lg w-96 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
+        />
+        <button
+          type="submit"
+          className="bg-gray-800 hover:bg-gray-900 text-white font-medium px-4 py-2 rounded-lg transition-colors text-sm shadow-sm"
+        >
+          検索
+        </button>
+        {q && (
+          <Link
+            href="/requests"
+            className="border border-gray-300 bg-white hover:bg-gray-50 text-gray-600 px-4 py-2 rounded-lg transition-colors text-sm flex items-center shadow-sm"
+          >
+            クリア
+          </Link>
+        )}
+      </form>
+
+      {/* 件数表示 */}
+      <p className="mb-4 text-sm text-gray-600 font-medium">
+        {q ? `検索結果: ${requests.length} 件` : `全 ${requests.length} 件`}
+      </p>
+
       {/* テーブルデザイン */}
       <div className="bg-white border rounded-xl overflow-hidden shadow-sm">
         {requests.length === 0 ? (
-          <div className="text-center py-12 text-gray-500">
-            まだ申請データが登録されていません。
+          <div className="text-center py-12 text-gray-500 text-sm">
+            該当する申請データが見つかりませんでした。
           </div>
         ) : (
           <div className="overflow-x-auto">
@@ -85,7 +166,7 @@ export default async function RequestsPage() {
                       key={request.id}
                       className="hover:bg-gray-50/70 transition-colors"
                     >
-                      {/* タイトル（リンク化完了） */}
+                      {/* タイトル */}
                       <td className="py-4 px-6 font-medium">
                         <Link 
                           href={`/requests/${request.id}`}
