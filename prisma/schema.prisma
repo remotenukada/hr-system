@@ -1,39 +1,28 @@
-generator client {
-  provider = "prisma-client-js"
-  output   = "../generated/prisma"
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
-datasource db {
-  provider = "postgresql"
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Department {
+  id        String     @id @default(uuid())
+  name      String     @unique
+  employees Employee[]
+  createdAt DateTime   @default(now())
 }
 
 model Employee {
   id           String            @id @default(uuid())
   employeeNo   String            @unique
-  firstName    String
   lastName     String
-  email        String            @unique
+  firstName    String
   departmentId String?
-  department   Department?       @relation(fields: [departmentId], references: [id])
+  department   Department?       @relation(fields: [departmentId], references: [id], onDelete: SetNull)
   requests     EmployeeRequest[]
   createdAt    DateTime          @default(now())
-}
-
-model Department {
-  id        String     @id @default(uuid())
-  name      String
-  createdAt DateTime   @default(now())
-  employees Employee[]
-}
-
-model EmployeeRequest {
-  id         String        @id @default(uuid())
-  title      String
-  type       RequestType
-  status     RequestStatus @default(PENDING)
-  employeeId String?
-  employee   Employee?     @relation(fields: [employeeId], references: [id], onDelete: SetNull)
-  createdAt  DateTime      @default(now())
 }
 
 enum RequestType {
@@ -46,4 +35,15 @@ enum RequestStatus {
   PENDING
   APPROVED
   REJECTED
+}
+
+model EmployeeRequest {
+  id         String        @id @default(uuid())
+  title      String
+  comment    String?
+  type       RequestType
+  status     RequestStatus @default(PENDING)
+  employeeId String?
+  employee   Employee?     @relation(fields: [employeeId], references: [id], onDelete: SetNull)
+  createdAt  DateTime      @default(now())
 }

@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { prisma } from "../../lib/prisma";
-import { Prisma } from "@prisma/client";
+import { Prisma, RequestStatus } from "@prisma/client";
 
 type Props = {
   searchParams: Promise<{
     q?: string;
+    status?: string;
   }>;
 };
 
@@ -37,15 +38,12 @@ function getRequestStatusDetails(status: string) {
 }
 
 export default async function RequestsPage({ searchParams }: Props) {
-  const { q } = await searchParams;
+  const { q, status } = await searchParams;
 
   // 日本語の検索ワードからEnumのキーワードを推測して検索条件を生成
   const getSearchConditions = (query: string): Prisma.EmployeeRequestWhereInput[] => {
-    // 💡 any[] から Prismaの厳密な型に変更しました
     const conditions: Prisma.EmployeeRequestWhereInput[] = [
-      // 1. タイトル検索
       { title: { contains: query, mode: "insensitive" } },
-      // 2. 対象社員の姓名検索
       {
         employee: {
           OR: [
@@ -56,7 +54,6 @@ export default async function RequestsPage({ searchParams }: Props) {
       },
     ];
 
-    // 3. 申請種別の日本語対応
     if ("入社申請".includes(query) || "入社".includes(query)) {
       conditions.push({ type: "ONBOARDING" });
     }
@@ -67,7 +64,6 @@ export default async function RequestsPage({ searchParams }: Props) {
       conditions.push({ type: "OTHER" });
     }
 
-    // 4. ステータスの日本語対応
     if ("未対応".includes(query) || "保留".includes(query)) {
       conditions.push({ status: "PENDING" });
     }
@@ -81,8 +77,15 @@ export default async function RequestsPage({ searchParams }: Props) {
     return conditions;
   };
 
+  // URLから渡ってきたstatus文字列が有効なEnum値かどうかチェック
+  const isValidStatus = status && ["PENDING", "APPROVED", "REJECTED"].includes(status);
+
+  // 複合検索条件の組み立て（anyを排除）
   const requests = await prisma.employeeRequest.findMany({
-    where: q ? { OR: getSearchConditions(q) } : undefined,
+    where: {
+      ...(q ? { OR: getSearchConditions(q) } : {}),
+      ...(isValidStatus ? { status: status as RequestStatus } : {}),
+    },
     include: {
       employee: true,
     },
@@ -90,6 +93,16 @@ export default async function RequestsPage({ searchParams }: Props) {
       createdAt: "desc",
     },
   });
+
+  // フィルターボタンのアクティブ状態を判定するヘルパー
+  const getFilterClass = (isActive: boolean) => {
+    return isActive
+      ? "bg-gray-800 text-white font-medium text-xs px-3 py-1.5 rounded-full shadow-sm border border-transparent transition-colors"
+      : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 text-xs px-3 py-1.5 rounded-full transition-colors";
+  };
+
+  // 検索キーワードをURLに維持するためのヘルパークエリ
+  const queryParam = q ? `&q=${encodeURIComponent(q)}` : "";
 
   return (
     <main className="p-8 max-w-5xl mx-auto">
@@ -109,13 +122,16 @@ export default async function RequestsPage({ searchParams }: Props) {
       </div>
 
       {/* 検索フォーム */}
-      <form className="mb-6 flex gap-2">
+      <form className="mb-4 flex gap-2">
         <input
           name="q"
           defaultValue={q || ""}
           placeholder="タイトル、社員名、種別、ステータスで検索..."
           className="border border-gray-300 px-4 py-2 rounded-lg w-96 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
         />
+        {/* ステータスフィルターがある場合は隠しフィールドで引き継ぐ */}
+        {status && <input type="hidden" name="status" value={status} />}
+        
         <button
           type="submit"
           className="bg-gray-800 hover:bg-gray-900 text-white font-medium px-4 py-2 rounded-lg transition-colors text-sm shadow-sm"
@@ -124,7 +140,7 @@ export default async function RequestsPage({ searchParams }: Props) {
         </button>
         {q && (
           <Link
-            href="/requests"
+            href={status ? `/requests?status=${status}` : "/requests"}
             className="border border-gray-300 bg-white hover:bg-gray-50 text-gray-600 px-4 py-2 rounded-lg transition-colors text-sm flex items-center shadow-sm"
           >
             クリア
@@ -132,9 +148,26 @@ export default async function RequestsPage({ searchParams }: Props) {
         )}
       </form>
 
+      {/* ステータスフィルターボタン (トグル形式) */}
+      <div className="flex gap-2 mb-6 items-center">
+        <span className="text-xs text-gray-400 font-medium mr-1">ステータス:</span>
+        <Link href={q ? `/requests?q=${encodeURIComponent(q)}` : "/requests"} className={getFilterClass(!status)}>
+          すべて
+        </Link>
+        <Link href={`/requests?status=PENDING${queryParam}`} className={getFilterClass(status === "PENDING")}>
+          未対応
+        </Link>
+        <Link href={`/requests?status=APPROVED${queryParam}`} className={getFilterClass(status === "APPROVED")}>
+          承認済み
+        </Link>
+        <Link href={`/requests?status=REJECTED${queryParam}`} className={getFilterClass(status === "REJECTED")}>
+          却下
+        </Link>
+      </div>
+
       {/* 件数表示 */}
       <p className="mb-4 text-sm text-gray-600 font-medium">
-        {q ? `検索結果: ${requests.length} 件` : `全 ${requests.length} 件`}
+        {q || status ? `検索結果: ${requests.length} 件` : `全 ${requests.length} 件`}
       </p>
 
       {/* テーブルデザイン */}
@@ -168,7 +201,7 @@ export default async function RequestsPage({ searchParams }: Props) {
                     >
                       {/* タイトル */}
                       <td className="py-4 px-6 font-medium">
-                        <Link 
+                        <Link
                           href={`/requests/${request.id}`}
                           className="text-blue-600 hover:text-blue-800 hover:underline transition-colors"
                         >
