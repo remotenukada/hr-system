@@ -120,6 +120,21 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.UserScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  password: 'password',
+  role: 'role',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.DepartmentScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.EmployeeScalarFieldEnum = {
   id: 'id',
   employeeNo: 'employeeNo',
@@ -130,18 +145,25 @@ exports.Prisma.EmployeeScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
-exports.Prisma.DepartmentScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  createdAt: 'createdAt'
-};
-
 exports.Prisma.EmployeeRequestScalarFieldEnum = {
   id: 'id',
   title: 'title',
+  comment: 'comment',
   type: 'type',
   status: 'status',
+  approvalComment: 'approvalComment',
+  rejectionReason: 'rejectionReason',
+  userId: 'userId',
   employeeId: 'employeeId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.RequestHistoryScalarFieldEnum = {
+  id: 'id',
+  action: 'action',
+  comment: 'comment',
+  actor: 'actor',
+  requestId: 'requestId',
   createdAt: 'createdAt'
 };
 
@@ -159,6 +181,11 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.UserRole = exports.$Enums.UserRole = {
+  ADMIN: 'ADMIN',
+  USER: 'USER'
+};
+
 exports.RequestType = exports.$Enums.RequestType = {
   ONBOARDING: 'ONBOARDING',
   DEPARTMENT_CHANGE: 'DEPARTMENT_CHANGE',
@@ -171,10 +198,19 @@ exports.RequestStatus = exports.$Enums.RequestStatus = {
   REJECTED: 'REJECTED'
 };
 
+exports.RequestHistoryAction = exports.$Enums.RequestHistoryAction = {
+  CREATED: 'CREATED',
+  UPDATED: 'UPDATED',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+};
+
 exports.Prisma.ModelName = {
-  Employee: 'Employee',
+  User: 'User',
   Department: 'Department',
-  EmployeeRequest: 'EmployeeRequest'
+  Employee: 'Employee',
+  EmployeeRequest: 'EmployeeRequest',
+  RequestHistory: 'RequestHistory'
 };
 
 /**

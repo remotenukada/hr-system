@@ -1,166 +1,64 @@
+import { auth, signOut } from "../auth";
+import { redirect } from "next/navigation";
 import Link from "next/link";
-import { prisma } from "../lib/prisma";
 
-export default async function HomePage() {
-  const employeeCount = await prisma.employee.count();
-  const departmentCount = await prisma.department.count();
+export default async function DashboardPage() {
+  const session = await auth();
 
-  const pendingRequestCount = await prisma.employeeRequest.count({
-    where: {
-      status: "PENDING",
-    },
-  });
+  if (!session?.user) {
+    redirect("/login");
+  }
 
-  const approvedRequestCount = await prisma.employeeRequest.count({
-    where: {
-      status: "APPROVED",
-    },
-  });
-
-  const rejectedRequestCount = await prisma.employeeRequest.count({
-    where: {
-      status: "REJECTED",
-    },
-  });
-
-  const recentEmployees = await prisma.employee.findMany({
-    take: 5,
-    orderBy: {
-      createdAt: "desc",
-    },
-    include: {
-      department: true,
-    },
-  });
-
-  const departments = await prisma.department.findMany({
-    include: {
-      _count: {
-        select: {
-          employees: true,
-        },
-      },
-    },
-    orderBy: {
-      name: "asc",
-    },
-  });
+  const user = session.user;
 
   return (
-    <main className="p-8 max-w-6xl mx-auto space-y-8">
-      {/* ヘッダー */}
-      <div>
-        <h1 className="text-3xl font-bold text-gray-800">人事管理システム</h1>
-        <p className="text-sm text-gray-500 mt-1">組織の状況および各種申請のステータスを俯瞰します。</p>
-      </div>
-
-      {/* サマリーメトリクス */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-        {/* 社員総数 */}
-        <Link href="/employees" className="block bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-          <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">社員総数</p>
-          <p className="text-3xl font-bold text-gray-900 mt-2">{employeeCount} <span className="text-sm font-normal text-gray-500">名</span></p>
-        </Link>
-
-        {/* 部署総数 */}
-        <Link href="/departments" className="block bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-          <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">部署総数</p>
-          <p className="text-3xl font-bold text-gray-900 mt-2">{departmentCount} <span className="text-sm font-normal text-gray-500">部署</span></p>
-        </Link>
-
-        {/* 未対応申請 */}
-        <Link href="/requests?status=PENDING" className="block bg-amber-50 p-6 rounded-xl border border-amber-200 shadow-sm hover:shadow-md transition-shadow">
-          <p className="text-xs font-medium text-amber-700 uppercase tracking-wider">未対応の申請</p>
-          <p className="text-3xl font-bold text-amber-900 mt-2">{pendingRequestCount} <span className="text-sm font-normal text-amber-600">件</span></p>
-        </Link>
-
-        {/* 承認済み申請 */}
-        <Link href="/requests?status=APPROVED" className="block bg-green-50 p-6 rounded-xl border border-green-200 shadow-sm hover:shadow-md transition-shadow">
-          <p className="text-xs font-medium text-green-700 uppercase tracking-wider">承認済みの申請</p>
-          <p className="text-3xl font-bold text-green-900 mt-2">{approvedRequestCount} <span className="text-sm font-normal text-green-600">件</span></p>
-        </Link>
-
-        {/* 却下された申請 */}
-        <Link href="/requests?status=REJECTED" className="block bg-rose-50 p-6 rounded-xl border border-rose-200 shadow-sm hover:shadow-md transition-shadow">
-          <p className="text-xs font-medium text-rose-700 uppercase tracking-wider">却下された申請</p>
-          <p className="text-3xl font-bold text-rose-900 mt-2">{rejectedRequestCount} <span className="text-sm font-normal text-rose-600">件</span></p>
-        </Link>
-      </div>
-
-      {/* 2カラムレイアウト */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* 左側：最近登録された社員 */}
-        <div className="lg:col-span-2 space-y-4">
-          <div className="flex justify-between items-center">
-            <h2 className="text-xl font-bold text-gray-800">最近追加された社員</h2>
-            <Link href="/employees" className="text-sm text-blue-600 hover:underline">
-              全員見る →
-            </Link>
-          </div>
-          <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
-            {recentEmployees.length === 0 ? (
-              <div className="p-6 text-center text-gray-500 text-sm">社員データがありません。</div>
-            ) : (
-              <div className="divide-y divide-gray-100">
-                {recentEmployees.map((emp) => (
-                  <div key={emp.id} className="p-4 flex justify-between items-center hover:bg-gray-50/50 transition-colors">
-                    <div>
-                      <p className="text-sm font-semibold text-gray-900">
-                        {emp.lastName} {emp.firstName}
-                      </p>
-                      <p className="text-xs text-gray-400 font-mono mt-0.5">社員番号: {emp.employeeNo}</p>
-                    </div>
-                    <div className="text-right">
-                      <span className="inline-block text-xs font-medium px-2.5 py-1 bg-gray-100 rounded-md border text-gray-700">
-                        {emp.department?.name || "未所属"}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
+    <div style={styles.container}>
+      <header style={styles.header}>
+        <div>
+          <h1 style={styles.title}>人事管理システム</h1>
+          <p style={styles.welcome}>ようこそ、{user.name} さん（権限: {user.role}）</p>
         </div>
+        <form
+          action={async () => {
+            "use server";
+            await signOut({ redirectTo: "/login" });
+          }}
+        >
+          <button type="submit" style={styles.logoutButton}>
+            ログアウト
+          </button>
+        </form>
+      </header>
 
-        {/* 右側：部署の所属状況 */}
-        <div className="space-y-4">
-          <div className="flex justify-between items-center">
-            <h2 className="text-xl font-bold text-gray-800">部署別の所属人数</h2>
-            <Link href="/departments" className="text-sm text-blue-600 hover:underline">
-              部署管理 →
-            </Link>
+      <main style={styles.main}>
+        <div style={styles.grid}>
+          <div style={styles.card}>
+            <h3>各種申請の確認・作成</h3>
+            <p>休暇申請、住所変更、各種申請の提出とステータス確認を行います。</p>
+            <Link href="/requests" style={styles.link}>申請一覧へ →</Link>
           </div>
-          <div className="bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
-            {departments.length === 0 ? (
-              <div className="p-6 text-center text-gray-500 text-sm">部署データがありません。</div>
-            ) : (
-              <div className="divide-y divide-gray-100">
-                {departments.map((dept) => (
-                  <div key={dept.id} className="p-4 flex justify-between items-center hover:bg-gray-50/50 transition-colors">
-                    <span className="text-sm font-medium text-gray-800">{dept.name}</span>
-                    <span className="text-xs bg-blue-50 text-blue-700 font-semibold px-2.5 py-1 rounded-full border border-blue-100">
-                      {dept._count.employees} 名
-                    </span>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
 
-      {/* クイックリンクエリア */}
-      <div className="bg-gray-50 p-6 rounded-xl border border-gray-200 flex flex-wrap gap-4 items-center justify-between">
-        <div className="text-sm text-gray-600 font-medium">クイックアクション:</div>
-        <div className="flex flex-wrap gap-3">
-          <Link href="/employees/new" className="bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg text-sm shadow-sm transition-colors font-medium">
-            ＋ 社員を追加
-          </Link>
-          <Link href="/requests/new" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm shadow-sm transition-colors font-medium">
-            ＋ 新規申請を作成
-          </Link>
+          {user.role === "ADMIN" && (
+            <div style={{ ...styles.card, borderColor: "#0070f3" }}>
+              <h3 style={{ color: "#0070f3" }}>【管理者専用】社員マスタ管理</h3>
+              <p>社員の新規登録、所属部署の変更、アカウント権限の管理を行います。</p>
+              <Link href="/employees" style={styles.link}>社員一覧へ →</Link>
+            </div>
+          )}
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
   );
 }
+
+const styles = {
+  container: { padding: "24px", fontFamily: "sans-serif", backgroundColor: "#f9fafb", minHeight: "100vh" },
+  header: { display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid #e5e7eb", paddingBottom: "16px", marginBottom: "32px" },
+  title: { margin: 0, fontSize: "24px", color: "#111827" },
+  welcome: { margin: "4px 0 0 0", color: "#4b5563", fontSize: "14px" },
+  logoutButton: { padding: "8px 16px", backgroundColor: "#ef4444", color: "#fff", border: "none", borderRadius: "4px", cursor: "pointer", fontWeight: "bold" },
+  main: { maxWidth: "1200px", margin: "0 auto" },
+  grid: { display: "flex", gap: "24px", flexWrap: "wrap" as const },
+  card: { backgroundColor: "#fff", padding: "24px", borderRadius: "8px", border: "1px solid #e5e7eb", width: "calc(50% - 12px)", minWidth: "300px", boxShadow: "0 1px 3px rgba(0,0,0,0.05)" },
+  link: { display: "inline-block", marginTop: "16px", color: "#0070f3", textDecoration: "none", fontWeight: "bold" },
+};
