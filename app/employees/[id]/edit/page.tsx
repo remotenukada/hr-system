@@ -6,6 +6,7 @@ import {
   EmploymentType,
   EmployeeStatus,
 } from "@/generated/prisma";
+import PhotoUploadField from "./PhotoUploadField";
 
 type Props = {
   params: Promise<{
@@ -415,20 +416,7 @@ export default async function EmployeeEditPage({ params }: Props) {
                 </div>
               )}
 
-              <div>
-                <label className="mb-1 block text-xs font-medium text-slate-700">
-                  写真パス
-                </label>
-                <input
-                  name="photoPath"
-                  defaultValue={employee.photoPath ?? ""}
-                  className="w-full rounded border p-2 focus:outline-indigo-500"
-                  placeholder="/uploads/employees/example.jpg"
-                />
-                <p className="mt-1 text-xs text-gray-500">
-                  次のステップで画像アップロードボタンから自動入力できるようにします。
-                </p>
-              </div>
+              <PhotoUploadField initialPath={employee.photoPath} />
             </div>
           </section>
 
