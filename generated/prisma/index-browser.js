@@ -138,10 +138,22 @@ exports.Prisma.DepartmentScalarFieldEnum = {
 exports.Prisma.EmployeeScalarFieldEnum = {
   id: 'id',
   employeeNo: 'employeeNo',
-  firstName: 'firstName',
   lastName: 'lastName',
+  firstName: 'firstName',
+  lastNameKana: 'lastNameKana',
+  firstNameKana: 'firstNameKana',
+  gender: 'gender',
+  birthDate: 'birthDate',
+  phoneNumber: 'phoneNumber',
+  address: 'address',
   email: 'email',
   departmentId: 'departmentId',
+  occupation: 'occupation',
+  position: 'position',
+  hireDate: 'hireDate',
+  employmentType: 'employmentType',
+  commutingType: 'commutingType',
+  status: 'status',
   createdAt: 'createdAt'
 };
 
@@ -184,6 +196,25 @@ exports.Prisma.NullsOrder = {
 exports.UserRole = exports.$Enums.UserRole = {
   ADMIN: 'ADMIN',
   USER: 'USER'
+};
+
+exports.Gender = exports.$Enums.Gender = {
+  MALE: 'MALE',
+  FEMALE: 'FEMALE',
+  OTHER: 'OTHER'
+};
+
+exports.EmploymentType = exports.$Enums.EmploymentType = {
+  FULL_TIME: 'FULL_TIME',
+  CONTRACT: 'CONTRACT',
+  PART_TIME: 'PART_TIME',
+  TEMPORARY: 'TEMPORARY'
+};
+
+exports.EmployeeStatus = exports.$Enums.EmployeeStatus = {
+  ACTIVE: 'ACTIVE',
+  LEAVE: 'LEAVE',
+  RETIRED: 'RETIRED'
 };
 
 exports.RequestType = exports.$Enums.RequestType = {

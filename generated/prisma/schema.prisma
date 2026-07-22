@@ -12,6 +12,12 @@ enum UserRole {
   USER
 }
 
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
 model User {
   id        String            @id @default(uuid())
   name      String
@@ -30,15 +36,44 @@ model Department {
 }
 
 model Employee {
-  id           String            @id @default(uuid())
-  employeeNo   String            @unique
-  firstName    String
-  lastName     String
-  email        String            @unique
+  id String @id @default(uuid())
+
+  employeeNo String @unique
+
+  lastName  String
+  firstName String
+
+  lastNameKana  String?
+  firstNameKana String?
+
+  gender Gender?
+
+  birthDate DateTime?
+
+  phoneNumber String?
+
+  address String?
+
+  email String @unique
+
   departmentId String?
-  department   Department?       @relation(fields: [departmentId], references: [id], onDelete: SetNull)
-  requests     EmployeeRequest[] // 🔽 ここを復活させました！
-  createdAt    DateTime          @default(now())
+  department   Department? @relation(fields: [departmentId], references: [id], onDelete: SetNull)
+
+  occupation String?
+
+  position String?
+
+  hireDate DateTime?
+
+  employmentType EmploymentType?
+
+  commutingType String?
+
+  status EmployeeStatus @default(ACTIVE)
+
+  requests EmployeeRequest[]
+
+  createdAt DateTime @default(now())
 }
 
 enum RequestType {
@@ -89,4 +124,17 @@ model RequestHistory {
   requestId String
   request   EmployeeRequest      @relation(fields: [requestId], references: [id], onDelete: Cascade)
   createdAt DateTime             @default(now())
+}
+
+enum EmploymentType {
+  FULL_TIME
+  CONTRACT
+  PART_TIME
+  TEMPORARY
+}
+
+enum EmployeeStatus {
+  ACTIVE
+  LEAVE
+  RETIRED
 }

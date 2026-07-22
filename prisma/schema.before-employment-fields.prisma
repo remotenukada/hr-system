@@ -65,12 +65,6 @@ model Employee {
 
   hireDate DateTime?
 
-  employmentType EmploymentType?
-
-  commutingType String?
-
-  status EmployeeStatus @default(ACTIVE)
-
   requests EmployeeRequest[]
 
   createdAt DateTime @default(now())
@@ -124,17 +118,4 @@ model RequestHistory {
   requestId String
   request   EmployeeRequest      @relation(fields: [requestId], references: [id], onDelete: Cascade)
   createdAt DateTime             @default(now())
-}
-
-enum EmploymentType {
-  FULL_TIME
-  CONTRACT
-  PART_TIME
-  TEMPORARY
-}
-
-enum EmployeeStatus {
-  ACTIVE
-  LEAVE
-  RETIRED
 }
