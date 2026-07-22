@@ -155,13 +155,6 @@ export default async function EmployeesPage({ searchParams }: Props) {
           >
             新規登録
           </Link>
-
-          <a
-            href="/api/employees/export"
-            className="rounded border bg-white px-4 py-2 font-medium text-gray-700 transition-colors hover:bg-gray-50"
-          >
-            CSV出力
-          </a>
         </div>
       </div>
 
