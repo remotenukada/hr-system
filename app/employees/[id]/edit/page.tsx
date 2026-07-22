@@ -61,6 +61,7 @@ export default async function EmployeeEditPage({ params }: Props) {
     const statusRaw = formData.get("status") as string;
     const healthInsuranceNo = formData.get("healthInsuranceNo") as string;
     const employmentInsuranceNo = formData.get("employmentInsuranceNo") as string;
+    const photoPath = formData.get("photoPath") as string;
 
     await prisma.employee.update({
       where: {
@@ -98,6 +99,7 @@ export default async function EmployeeEditPage({ params }: Props) {
 
         healthInsuranceNo: healthInsuranceNo || null,
         employmentInsuranceNo: employmentInsuranceNo || null,
+        photoPath: photoPath || employee.photoPath || null,
       },
     });
 
@@ -390,6 +392,42 @@ export default async function EmployeeEditPage({ params }: Props) {
                   defaultValue={employee.employmentInsuranceNo ?? ""}
                   className="w-full rounded border p-2 focus:outline-indigo-500"
                 />
+              </div>
+            </div>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="border-b pb-1 text-sm font-semibold text-slate-500">
+              プロフィール写真
+            </h2>
+
+            <div className="space-y-3">
+              {employee.photoPath && (
+                <div>
+                  <p className="mb-2 text-xs font-medium text-slate-700">
+                    現在の写真
+                  </p>
+                  <img
+                    src={employee.photoPath}
+                    alt="プロフィール写真"
+                    className="h-20 w-20 rounded-full object-cover border"
+                  />
+                </div>
+              )}
+
+              <div>
+                <label className="mb-1 block text-xs font-medium text-slate-700">
+                  写真パス
+                </label>
+                <input
+                  name="photoPath"
+                  defaultValue={employee.photoPath ?? ""}
+                  className="w-full rounded border p-2 focus:outline-indigo-500"
+                  placeholder="/uploads/employees/example.jpg"
+                />
+                <p className="mt-1 text-xs text-gray-500">
+                  次のステップで画像アップロードボタンから自動入力できるようにします。
+                </p>
               </div>
             </div>
           </section>

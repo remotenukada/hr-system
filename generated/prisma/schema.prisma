@@ -77,6 +77,8 @@ model Employee {
 
   employmentInsuranceNo String?
 
+  photoPath String?
+
   requests EmployeeRequest[]
 
   createdAt DateTime @default(now())

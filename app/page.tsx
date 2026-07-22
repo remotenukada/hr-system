@@ -1,6 +1,40 @@
-import { auth, signOut } from "../auth";
+import { auth, signOut } from "@/auth";
+import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+
+function StatCard({
+  title,
+  value,
+  description,
+  color = "blue",
+}: {
+  title: string;
+  value: number;
+  description?: string;
+  color?: "blue" | "green" | "yellow" | "red" | "gray" | "purple";
+}) {
+  const colorClasses = {
+    blue: "border-blue-200 bg-blue-50 text-blue-700",
+    green: "border-green-200 bg-green-50 text-green-700",
+    yellow: "border-yellow-200 bg-yellow-50 text-yellow-700",
+    red: "border-red-200 bg-red-50 text-red-700",
+    gray: "border-gray-200 bg-gray-50 text-gray-700",
+    purple: "border-purple-200 bg-purple-50 text-purple-700",
+  };
+
+  return (
+    <div className={`rounded-lg border p-5 ${colorClasses[color]}`}>
+      <p className="text-sm font-medium">{title}</p>
+      <p className="mt-2 text-3xl font-bold">{value}</p>
+      {description && (
+        <p className="mt-1 text-xs opacity-80">
+          {description}
+        </p>
+      )}
+    </div>
+  );
+}
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -10,55 +44,337 @@ export default async function DashboardPage() {
   }
 
   const user = session.user;
+  const isAdmin = user.role === "ADMIN";
+
+  const [
+    totalEmployees,
+    activeEmployees,
+    leaveEmployees,
+    retiredEmployees,
+    totalDepartments,
+    totalRequests,
+    pendingRequests,
+    approvedRequests,
+    rejectedRequests,
+    myRequests,
+    myPendingRequests,
+    myApprovedRequests,
+    myRejectedRequests,
+  ] = await Promise.all([
+    prisma.employee.count(),
+    prisma.employee.count({
+      where: {
+        status: "ACTIVE",
+      },
+    }),
+    prisma.employee.count({
+      where: {
+        status: "LEAVE",
+      },
+    }),
+    prisma.employee.count({
+      where: {
+        status: "RETIRED",
+      },
+    }),
+    prisma.department.count(),
+    prisma.employeeRequest.count(),
+    prisma.employeeRequest.count({
+      where: {
+        status: "PENDING",
+      },
+    }),
+    prisma.employeeRequest.count({
+      where: {
+        status: "APPROVED",
+      },
+    }),
+    prisma.employeeRequest.count({
+      where: {
+        status: "REJECTED",
+      },
+    }),
+    prisma.employeeRequest.count({
+      where: {
+        userId: user.id,
+      },
+    }),
+    prisma.employeeRequest.count({
+      where: {
+        userId: user.id,
+        status: "PENDING",
+      },
+    }),
+    prisma.employeeRequest.count({
+      where: {
+        userId: user.id,
+        status: "APPROVED",
+      },
+    }),
+    prisma.employeeRequest.count({
+      where: {
+        userId: user.id,
+        status: "REJECTED",
+      },
+    }),
+  ]);
+
+  const recentRequests = await prisma.employeeRequest.findMany({
+    include: {
+      user: true,
+      employee: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+    take: 5,
+  });
 
   return (
-    <div style={styles.container}>
-      <header style={styles.header}>
+    <main className="min-h-screen bg-gray-50 p-8">
+      <header className="mb-8 flex items-start justify-between border-b pb-6">
         <div>
-          <h1 style={styles.title}>人事管理システム</h1>
-          <p style={styles.welcome}>ようこそ、{user.name} さん（権限: {user.role}）</p>
+          <h1 className="text-3xl font-bold text-gray-900">
+            人事管理システム
+          </h1>
+          <p className="mt-2 text-sm text-gray-600">
+            ようこそ、{user.name} さん（権限: {user.role}）
+          </p>
         </div>
+
         <form
           action={async () => {
             "use server";
-            await signOut({ redirectTo: "/login" });
+            await signOut({
+              redirectTo: "/login",
+            });
           }}
         >
-          <button type="submit" style={styles.logoutButton}>
+          <button
+            type="submit"
+            className="rounded bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
+          >
             ログアウト
           </button>
         </form>
       </header>
 
-      <main style={styles.main}>
-        <div style={styles.grid}>
-          <div style={styles.card}>
-            <h3>各種申請の確認・作成</h3>
-            <p>休暇申請、住所変更、各種申請の提出とステータス確認を行います。</p>
-            <Link href="/requests" style={styles.link}>申請一覧へ →</Link>
-          </div>
+      <section className="mb-8">
+        <h2 className="mb-4 text-xl font-semibold text-gray-800">
+          ダッシュボード
+        </h2>
 
-          {user.role === "ADMIN" && (
-            <div style={{ ...styles.card, borderColor: "#0070f3" }}>
-              <h3 style={{ color: "#0070f3" }}>【管理者専用】社員マスタ管理</h3>
-              <p>社員の新規登録、所属部署の変更、アカウント権限の管理を行います。</p>
-              <Link href="/employees" style={styles.link}>社員一覧へ →</Link>
+        {isAdmin ? (
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <StatCard
+              title="総社員数"
+              value={totalEmployees}
+              description="登録されている社員数"
+              color="blue"
+            />
+            <StatCard
+              title="在職者数"
+              value={activeEmployees}
+              description="現在在職中の社員"
+              color="green"
+            />
+            <StatCard
+              title="休職者数"
+              value={leaveEmployees}
+              description="休職中の社員"
+              color="yellow"
+            />
+            <StatCard
+              title="退職者数"
+              value={retiredEmployees}
+              description="退職済みの社員"
+              color="gray"
+            />
+            <StatCard
+              title="部署数"
+              value={totalDepartments}
+              description="登録部署数"
+              color="purple"
+            />
+            <StatCard
+              title="総申請数"
+              value={totalRequests}
+              description="全申請件数"
+              color="blue"
+            />
+            <StatCard
+              title="承認待ち"
+              value={pendingRequests}
+              description="未対応の申請"
+              color="yellow"
+            />
+            <StatCard
+              title="承認済み"
+              value={approvedRequests}
+              description="承認された申請"
+              color="green"
+            />
+            <StatCard
+              title="却下"
+              value={rejectedRequests}
+              description="却下された申請"
+              color="red"
+            />
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <StatCard
+              title="自分の申請数"
+              value={myRequests}
+              description="自分が提出した申請"
+              color="blue"
+            />
+            <StatCard
+              title="承認待ち"
+              value={myPendingRequests}
+              description="未対応の申請"
+              color="yellow"
+            />
+            <StatCard
+              title="承認済み"
+              value={myApprovedRequests}
+              description="承認された申請"
+              color="green"
+            />
+            <StatCard
+              title="却下"
+              value={myRejectedRequests}
+              description="却下された申請"
+              color="red"
+            />
+          </div>
+        )}
+      </section>
+
+      <section className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className="rounded-lg border bg-white p-6 shadow-sm">
+          <h3 className="mb-3 text-lg font-semibold text-gray-800">
+            申請管理
+          </h3>
+          <p className="text-sm text-gray-600">
+            各種申請の作成、確認、承認状況の確認を行います。
+          </p>
+
+          <div className="mt-4 flex flex-wrap gap-3">
+            <Link
+              href="/requests"
+              className="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+            >
+              申請一覧へ
+            </Link>
+
+            <Link
+              href="/requests/new"
+              className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            >
+              新規申請
+            </Link>
+
+            <Link
+              href="/requests/my"
+              className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            >
+              マイ申請
+            </Link>
+          </div>
+        </div>
+
+        {isAdmin && (
+          <div className="rounded-lg border bg-white p-6 shadow-sm">
+            <h3 className="mb-3 text-lg font-semibold text-gray-800">
+              管理者メニュー
+            </h3>
+            <p className="text-sm text-gray-600">
+              社員マスタ、部署マスタの管理を行います。
+            </p>
+
+            <div className="mt-4 flex flex-wrap gap-3">
+              <Link
+                href="/employees"
+                className="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+              >
+                社員一覧へ
+              </Link>
+
+              <Link
+                href="/employees/new"
+                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                社員登録
+              </Link>
+
+              <Link
+                href="/departments"
+                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                部署管理
+              </Link>
+            </div>
+          </div>
+        )}
+      </section>
+
+      {isAdmin && (
+        <section className="mt-8 rounded-lg border bg-white p-6 shadow-sm">
+          <h3 className="mb-4 text-lg font-semibold text-gray-800">
+            最近の申請
+          </h3>
+
+          {recentRequests.length === 0 ? (
+            <p className="text-sm text-gray-500">
+              最近の申請はありません。
+            </p>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b bg-gray-50 text-left">
+                    <th className="p-3">タイトル</th>
+                    <th className="p-3">申請者</th>
+                    <th className="p-3">対象社員</th>
+                    <th className="p-3">ステータス</th>
+                    <th className="p-3">作成日</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {recentRequests.map((request) => (
+                    <tr key={request.id} className="border-b">
+                      <td className="p-3">
+                        <Link
+                          href={`/requests/${request.id}`}
+                          className="font-medium text-blue-600 hover:underline"
+                        >
+                          {request.title}
+                        </Link>
+                      </td>
+                      <td className="p-3">
+                        {request.user?.name ?? "-"}
+                      </td>
+                      <td className="p-3">
+                        {request.employee
+                          ? `${request.employee.lastName} ${request.employee.firstName}`
+                          : "-"}
+                      </td>
+                      <td className="p-3">
+                        {request.status}
+                      </td>
+                      <td className="p-3">
+                        {new Date(request.createdAt).toLocaleDateString("ja-JP")}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           )}
-        </div>
-      </main>
-    </div>
+        </section>
+      )}
+    </main>
   );
 }
-
-const styles = {
-  container: { padding: "24px", fontFamily: "sans-serif", backgroundColor: "#f9fafb", minHeight: "100vh" },
-  header: { display: "flex", justifyContent: "space-between", alignItems: "center", borderBottom: "1px solid #e5e7eb", paddingBottom: "16px", marginBottom: "32px" },
-  title: { margin: 0, fontSize: "24px", color: "#111827" },
-  welcome: { margin: "4px 0 0 0", color: "#4b5563", fontSize: "14px" },
-  logoutButton: { padding: "8px 16px", backgroundColor: "#ef4444", color: "#fff", border: "none", borderRadius: "4px", cursor: "pointer", fontWeight: "bold" },
-  main: { maxWidth: "1200px", margin: "0 auto" },
-  grid: { display: "flex", gap: "24px", flexWrap: "wrap" as const },
-  card: { backgroundColor: "#fff", padding: "24px", borderRadius: "8px", border: "1px solid #e5e7eb", width: "calc(50% - 12px)", minWidth: "300px", boxShadow: "0 1px 3px rgba(0,0,0,0.05)" },
-  link: { display: "inline-block", marginTop: "16px", color: "#0070f3", textDecoration: "none", fontWeight: "bold" },
-};
