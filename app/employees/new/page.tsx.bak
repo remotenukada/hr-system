@@ -12,7 +12,7 @@ export default async function NewEmployeePage() {
         新規社員登録
       </h1>
 
-      <form action={createEmployee} className="space-y-6">
+      {createEmployee}
         <section className="space-y-4">
           <h2 className="text-sm font-semibold text-slate-500 border-b pb-1">
             基本情報
@@ -242,7 +242,6 @@ export default async function NewEmployeePage() {
               <select
                 name="status"
                 className="border p-2 w-full rounded focus:outline-indigo-500 bg-white"
-                defaultValue="ACTIVE"
               >
                 <option value="ACTIVE">在職</option>
                 <option value="LEAVE">休職</option>

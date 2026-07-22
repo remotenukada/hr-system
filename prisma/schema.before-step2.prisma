@@ -71,12 +71,6 @@ model Employee {
 
   status EmployeeStatus @default(ACTIVE)
 
-  retirementDate DateTime?
-
-  healthInsuranceNo String?
-
-  employmentInsuranceNo String?
-
   requests EmployeeRequest[]
 
   createdAt DateTime @default(now())
