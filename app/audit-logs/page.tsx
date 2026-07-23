@@ -175,6 +175,7 @@ export default async function AuditLogsPage({
               <th className="border-b p-3">対象ID</th>
               <th className="border-b p-3">ユーザー</th>
               <th className="border-b p-3">内容</th>
+              <th className="border-b p-3">詳細</th>
             </tr>
           </thead>
 
@@ -205,6 +206,12 @@ export default async function AuditLogsPage({
 
                 <td className="border-b p-3">
                   {log.description}
+                </td>
+
+                <td className="border-b p-3">
+                  <Link href={`/audit-logs/${log.id}`}>
+                    詳細
+                  </Link>
                 </td>
               </tr>
             ))}
