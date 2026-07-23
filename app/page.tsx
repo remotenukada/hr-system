@@ -36,6 +36,57 @@ function StatCard({
   );
 }
 
+function SimpleBarChart({
+  title,
+  items,
+}: {
+  title: string;
+  items: {
+    label: string;
+    value: number;
+  }[];
+}) {
+  const maxValue = Math.max(...items.map((item) => item.value), 1);
+
+  return (
+    <div className="rounded-lg border bg-white p-6 shadow-sm">
+      <h3 className="mb-4 text-lg font-semibold text-gray-800">
+        {title}
+      </h3>
+
+      {items.length === 0 ? (
+        <p className="text-sm text-gray-500">データがありません。</p>
+      ) : (
+        <div className="space-y-4">
+          {items.map((item) => {
+            const width = Math.max((item.value / maxValue) * 100, 4);
+
+            return (
+              <div key={item.label}>
+                <div className="mb-1 flex items-center justify-between text-sm">
+                  <span className="font-medium text-gray-700">
+                    {item.label}
+                  </span>
+                  <span className="text-gray-500">
+                    {item.value}件
+                  </span>
+                </div>
+
+                <div className="h-3 overflow-hidden rounded-full bg-gray-100">
+                  <div
+                    className="h-full rounded-full bg-blue-500"
+                    style={{ width: `${width}%` }}
+                  />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default async function DashboardPage() {
   const session = await auth();
 
@@ -129,6 +180,68 @@ export default async function DashboardPage() {
     },
     take: 5,
   });
+
+  const departmentsWithCounts = await prisma.department.findMany({
+    include: {
+      _count: {
+        select: {
+          employees: true,
+        },
+      },
+    },
+    orderBy: {
+      name: "asc",
+    },
+  });
+
+  const employmentTypeCounts = await prisma.employee.groupBy({
+    by: ["employmentType"],
+    _count: {
+      _all: true,
+    },
+    where: {
+      employmentType: {
+        not: null,
+      },
+    },
+  });
+
+  const requestStatusCounts = await prisma.employeeRequest.groupBy({
+    by: ["status"],
+    _count: {
+      _all: true,
+    },
+  });
+
+  const employmentTypeLabels: Record<string, string> = {
+    FULL_TIME: "正職員",
+    CONTRACT: "契約職員",
+    PART_TIME: "パート",
+    TEMPORARY: "派遣",
+  };
+
+  const requestStatusLabels: Record<string, string> = {
+    PENDING: "承認待ち",
+    APPROVED: "承認済み",
+    REJECTED: "却下",
+  };
+
+  const departmentChartItems = departmentsWithCounts.map((department) => ({
+    label: department.name,
+    value: department._count.employees,
+  }));
+
+  const employmentTypeChartItems = employmentTypeCounts.map((item) => ({
+    label: item.employmentType
+      ? employmentTypeLabels[item.employmentType] ?? item.employmentType
+      : "未設定",
+    value: item._count._all,
+  }));
+
+  const requestStatusChartItems = requestStatusCounts.map((item) => ({
+    label: requestStatusLabels[item.status] ?? item.status,
+    value: item._count._all,
+  }));
 
   return (
     <main className="min-h-screen bg-gray-50 p-8">
@@ -318,6 +431,29 @@ export default async function DashboardPage() {
           </div>
         )}
       </section>
+
+      {isAdmin && (
+        <section className="mt-8">
+          <h2 className="mb-4 text-xl font-semibold text-gray-800">
+            グラフ
+          </h2>
+
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+            <SimpleBarChart
+              title="部署別人数"
+              items={departmentChartItems}
+            />
+            <SimpleBarChart
+              title="雇用形態別人数"
+              items={employmentTypeChartItems}
+            />
+            <SimpleBarChart
+              title="申請ステータス別件数"
+              items={requestStatusChartItems}
+            />
+          </div>
+        </section>
+      )}
 
       {isAdmin && (
         <section className="mt-8 rounded-lg border bg-white p-6 shadow-sm">
