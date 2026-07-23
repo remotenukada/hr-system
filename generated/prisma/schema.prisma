@@ -83,7 +83,8 @@ model Employee {
 
   requests EmployeeRequest[]
 
-  createdAt DateTime @default(now())
+  createdAt        DateTime          @default(now())
+  employeeMyNumber EmployeeMyNumber?
 }
 
 enum RequestType {
@@ -103,6 +104,19 @@ enum RequestHistoryAction {
   UPDATED
   APPROVED
   REJECTED
+}
+
+model EmployeeMyNumber {
+  id String @id @default(uuid())
+
+  employeeId String @unique
+
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  encryptedNumber String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model EmployeeRequest {

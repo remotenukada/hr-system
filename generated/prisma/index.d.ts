@@ -29,6 +29,11 @@ export type Department = $Result.DefaultSelection<Prisma.$DepartmentPayload>
  */
 export type Employee = $Result.DefaultSelection<Prisma.$EmployeePayload>
 /**
+ * Model EmployeeMyNumber
+ * 
+ */
+export type EmployeeMyNumber = $Result.DefaultSelection<Prisma.$EmployeeMyNumberPayload>
+/**
  * Model EmployeeRequest
  * 
  */
@@ -298,6 +303,16 @@ export class PrismaClient<
     * ```
     */
   get employee(): Prisma.EmployeeDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.employeeMyNumber`: Exposes CRUD operations for the **EmployeeMyNumber** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EmployeeMyNumbers
+    * const employeeMyNumbers = await prisma.employeeMyNumber.findMany()
+    * ```
+    */
+  get employeeMyNumber(): Prisma.EmployeeMyNumberDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.employeeRequest`: Exposes CRUD operations for the **EmployeeRequest** model.
@@ -775,6 +790,7 @@ export namespace Prisma {
     User: 'User',
     Department: 'Department',
     Employee: 'Employee',
+    EmployeeMyNumber: 'EmployeeMyNumber',
     EmployeeRequest: 'EmployeeRequest',
     RequestAttachment: 'RequestAttachment',
     RequestHistory: 'RequestHistory',
@@ -794,7 +810,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "department" | "employee" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog"
+      modelProps: "user" | "department" | "employee" | "employeeMyNumber" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1017,6 +1033,80 @@ export namespace Prisma {
           count: {
             args: Prisma.EmployeeCountArgs<ExtArgs>
             result: $Utils.Optional<EmployeeCountAggregateOutputType> | number
+          }
+        }
+      }
+      EmployeeMyNumber: {
+        payload: Prisma.$EmployeeMyNumberPayload<ExtArgs>
+        fields: Prisma.EmployeeMyNumberFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EmployeeMyNumberFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeMyNumberPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EmployeeMyNumberFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeMyNumberPayload>
+          }
+          findFirst: {
+            args: Prisma.EmployeeMyNumberFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeMyNumberPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EmployeeMyNumberFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeMyNumberPayload>
+          }
+          findMany: {
+            args: Prisma.EmployeeMyNumberFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeMyNumberPayload>[]
+          }
+          create: {
+            args: Prisma.EmployeeMyNumberCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeMyNumberPayload>
+          }
+          createMany: {
+            args: Prisma.EmployeeMyNumberCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EmployeeMyNumberCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeMyNumberPayload>[]
+          }
+          delete: {
+            args: Prisma.EmployeeMyNumberDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeMyNumberPayload>
+          }
+          update: {
+            args: Prisma.EmployeeMyNumberUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeMyNumberPayload>
+          }
+          deleteMany: {
+            args: Prisma.EmployeeMyNumberDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EmployeeMyNumberUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EmployeeMyNumberUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeMyNumberPayload>[]
+          }
+          upsert: {
+            args: Prisma.EmployeeMyNumberUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeMyNumberPayload>
+          }
+          aggregate: {
+            args: Prisma.EmployeeMyNumberAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEmployeeMyNumber>
+          }
+          groupBy: {
+            args: Prisma.EmployeeMyNumberGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EmployeeMyNumberGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EmployeeMyNumberCountArgs<ExtArgs>
+            result: $Utils.Optional<EmployeeMyNumberCountAggregateOutputType> | number
           }
         }
       }
@@ -1427,6 +1517,7 @@ export namespace Prisma {
     user?: UserOmit
     department?: DepartmentOmit
     employee?: EmployeeOmit
+    employeeMyNumber?: EmployeeMyNumberOmit
     employeeRequest?: EmployeeRequestOmit
     requestAttachment?: RequestAttachmentOmit
     requestHistory?: RequestHistoryOmit
@@ -4090,6 +4181,7 @@ export namespace Prisma {
     createdAt?: boolean
     department?: boolean | Employee$departmentArgs<ExtArgs>
     requests?: boolean | Employee$requestsArgs<ExtArgs>
+    employeeMyNumber?: boolean | Employee$employeeMyNumberArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["employee"]>
 
@@ -4177,6 +4269,7 @@ export namespace Prisma {
   export type EmployeeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     department?: boolean | Employee$departmentArgs<ExtArgs>
     requests?: boolean | Employee$requestsArgs<ExtArgs>
+    employeeMyNumber?: boolean | Employee$employeeMyNumberArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EmployeeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4191,6 +4284,7 @@ export namespace Prisma {
     objects: {
       department: Prisma.$DepartmentPayload<ExtArgs> | null
       requests: Prisma.$EmployeeRequestPayload<ExtArgs>[]
+      employeeMyNumber: Prisma.$EmployeeMyNumberPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -4612,6 +4706,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     department<T extends Employee$departmentArgs<ExtArgs> = {}>(args?: Subset<T, Employee$departmentArgs<ExtArgs>>): Prisma__DepartmentClient<$Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     requests<T extends Employee$requestsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$requestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    employeeMyNumber<T extends Employee$employeeMyNumberArgs<ExtArgs> = {}>(args?: Subset<T, Employee$employeeMyNumberArgs<ExtArgs>>): Prisma__EmployeeMyNumberClient<$Result.GetResult<Prisma.$EmployeeMyNumberPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5108,6 +5203,25 @@ export namespace Prisma {
   }
 
   /**
+   * Employee.employeeMyNumber
+   */
+  export type Employee$employeeMyNumberArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeMyNumber
+     */
+    select?: EmployeeMyNumberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeMyNumber
+     */
+    omit?: EmployeeMyNumberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeMyNumberInclude<ExtArgs> | null
+    where?: EmployeeMyNumberWhereInput
+  }
+
+  /**
    * Employee without action
    */
   export type EmployeeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5123,6 +5237,1069 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: EmployeeInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model EmployeeMyNumber
+   */
+
+  export type AggregateEmployeeMyNumber = {
+    _count: EmployeeMyNumberCountAggregateOutputType | null
+    _min: EmployeeMyNumberMinAggregateOutputType | null
+    _max: EmployeeMyNumberMaxAggregateOutputType | null
+  }
+
+  export type EmployeeMyNumberMinAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    encryptedNumber: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type EmployeeMyNumberMaxAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    encryptedNumber: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type EmployeeMyNumberCountAggregateOutputType = {
+    id: number
+    employeeId: number
+    encryptedNumber: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type EmployeeMyNumberMinAggregateInputType = {
+    id?: true
+    employeeId?: true
+    encryptedNumber?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type EmployeeMyNumberMaxAggregateInputType = {
+    id?: true
+    employeeId?: true
+    encryptedNumber?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type EmployeeMyNumberCountAggregateInputType = {
+    id?: true
+    employeeId?: true
+    encryptedNumber?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type EmployeeMyNumberAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmployeeMyNumber to aggregate.
+     */
+    where?: EmployeeMyNumberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmployeeMyNumbers to fetch.
+     */
+    orderBy?: EmployeeMyNumberOrderByWithRelationInput | EmployeeMyNumberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EmployeeMyNumberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmployeeMyNumbers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmployeeMyNumbers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EmployeeMyNumbers
+    **/
+    _count?: true | EmployeeMyNumberCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EmployeeMyNumberMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EmployeeMyNumberMaxAggregateInputType
+  }
+
+  export type GetEmployeeMyNumberAggregateType<T extends EmployeeMyNumberAggregateArgs> = {
+        [P in keyof T & keyof AggregateEmployeeMyNumber]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEmployeeMyNumber[P]>
+      : GetScalarType<T[P], AggregateEmployeeMyNumber[P]>
+  }
+
+
+
+
+  export type EmployeeMyNumberGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmployeeMyNumberWhereInput
+    orderBy?: EmployeeMyNumberOrderByWithAggregationInput | EmployeeMyNumberOrderByWithAggregationInput[]
+    by: EmployeeMyNumberScalarFieldEnum[] | EmployeeMyNumberScalarFieldEnum
+    having?: EmployeeMyNumberScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EmployeeMyNumberCountAggregateInputType | true
+    _min?: EmployeeMyNumberMinAggregateInputType
+    _max?: EmployeeMyNumberMaxAggregateInputType
+  }
+
+  export type EmployeeMyNumberGroupByOutputType = {
+    id: string
+    employeeId: string
+    encryptedNumber: string
+    createdAt: Date
+    updatedAt: Date
+    _count: EmployeeMyNumberCountAggregateOutputType | null
+    _min: EmployeeMyNumberMinAggregateOutputType | null
+    _max: EmployeeMyNumberMaxAggregateOutputType | null
+  }
+
+  type GetEmployeeMyNumberGroupByPayload<T extends EmployeeMyNumberGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EmployeeMyNumberGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EmployeeMyNumberGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EmployeeMyNumberGroupByOutputType[P]>
+            : GetScalarType<T[P], EmployeeMyNumberGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EmployeeMyNumberSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    encryptedNumber?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["employeeMyNumber"]>
+
+  export type EmployeeMyNumberSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    encryptedNumber?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["employeeMyNumber"]>
+
+  export type EmployeeMyNumberSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    encryptedNumber?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["employeeMyNumber"]>
+
+  export type EmployeeMyNumberSelectScalar = {
+    id?: boolean
+    employeeId?: boolean
+    encryptedNumber?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type EmployeeMyNumberOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "encryptedNumber" | "createdAt" | "updatedAt", ExtArgs["result"]["employeeMyNumber"]>
+  export type EmployeeMyNumberInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+  export type EmployeeMyNumberIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+  export type EmployeeMyNumberIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+
+  export type $EmployeeMyNumberPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EmployeeMyNumber"
+    objects: {
+      employee: Prisma.$EmployeePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      employeeId: string
+      encryptedNumber: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["employeeMyNumber"]>
+    composites: {}
+  }
+
+  type EmployeeMyNumberGetPayload<S extends boolean | null | undefined | EmployeeMyNumberDefaultArgs> = $Result.GetResult<Prisma.$EmployeeMyNumberPayload, S>
+
+  type EmployeeMyNumberCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EmployeeMyNumberFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EmployeeMyNumberCountAggregateInputType | true
+    }
+
+  export interface EmployeeMyNumberDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EmployeeMyNumber'], meta: { name: 'EmployeeMyNumber' } }
+    /**
+     * Find zero or one EmployeeMyNumber that matches the filter.
+     * @param {EmployeeMyNumberFindUniqueArgs} args - Arguments to find a EmployeeMyNumber
+     * @example
+     * // Get one EmployeeMyNumber
+     * const employeeMyNumber = await prisma.employeeMyNumber.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EmployeeMyNumberFindUniqueArgs>(args: SelectSubset<T, EmployeeMyNumberFindUniqueArgs<ExtArgs>>): Prisma__EmployeeMyNumberClient<$Result.GetResult<Prisma.$EmployeeMyNumberPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EmployeeMyNumber that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EmployeeMyNumberFindUniqueOrThrowArgs} args - Arguments to find a EmployeeMyNumber
+     * @example
+     * // Get one EmployeeMyNumber
+     * const employeeMyNumber = await prisma.employeeMyNumber.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EmployeeMyNumberFindUniqueOrThrowArgs>(args: SelectSubset<T, EmployeeMyNumberFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EmployeeMyNumberClient<$Result.GetResult<Prisma.$EmployeeMyNumberPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmployeeMyNumber that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeMyNumberFindFirstArgs} args - Arguments to find a EmployeeMyNumber
+     * @example
+     * // Get one EmployeeMyNumber
+     * const employeeMyNumber = await prisma.employeeMyNumber.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EmployeeMyNumberFindFirstArgs>(args?: SelectSubset<T, EmployeeMyNumberFindFirstArgs<ExtArgs>>): Prisma__EmployeeMyNumberClient<$Result.GetResult<Prisma.$EmployeeMyNumberPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmployeeMyNumber that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeMyNumberFindFirstOrThrowArgs} args - Arguments to find a EmployeeMyNumber
+     * @example
+     * // Get one EmployeeMyNumber
+     * const employeeMyNumber = await prisma.employeeMyNumber.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EmployeeMyNumberFindFirstOrThrowArgs>(args?: SelectSubset<T, EmployeeMyNumberFindFirstOrThrowArgs<ExtArgs>>): Prisma__EmployeeMyNumberClient<$Result.GetResult<Prisma.$EmployeeMyNumberPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EmployeeMyNumbers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeMyNumberFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EmployeeMyNumbers
+     * const employeeMyNumbers = await prisma.employeeMyNumber.findMany()
+     * 
+     * // Get first 10 EmployeeMyNumbers
+     * const employeeMyNumbers = await prisma.employeeMyNumber.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const employeeMyNumberWithIdOnly = await prisma.employeeMyNumber.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EmployeeMyNumberFindManyArgs>(args?: SelectSubset<T, EmployeeMyNumberFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeMyNumberPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EmployeeMyNumber.
+     * @param {EmployeeMyNumberCreateArgs} args - Arguments to create a EmployeeMyNumber.
+     * @example
+     * // Create one EmployeeMyNumber
+     * const EmployeeMyNumber = await prisma.employeeMyNumber.create({
+     *   data: {
+     *     // ... data to create a EmployeeMyNumber
+     *   }
+     * })
+     * 
+     */
+    create<T extends EmployeeMyNumberCreateArgs>(args: SelectSubset<T, EmployeeMyNumberCreateArgs<ExtArgs>>): Prisma__EmployeeMyNumberClient<$Result.GetResult<Prisma.$EmployeeMyNumberPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EmployeeMyNumbers.
+     * @param {EmployeeMyNumberCreateManyArgs} args - Arguments to create many EmployeeMyNumbers.
+     * @example
+     * // Create many EmployeeMyNumbers
+     * const employeeMyNumber = await prisma.employeeMyNumber.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EmployeeMyNumberCreateManyArgs>(args?: SelectSubset<T, EmployeeMyNumberCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EmployeeMyNumbers and returns the data saved in the database.
+     * @param {EmployeeMyNumberCreateManyAndReturnArgs} args - Arguments to create many EmployeeMyNumbers.
+     * @example
+     * // Create many EmployeeMyNumbers
+     * const employeeMyNumber = await prisma.employeeMyNumber.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EmployeeMyNumbers and only return the `id`
+     * const employeeMyNumberWithIdOnly = await prisma.employeeMyNumber.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EmployeeMyNumberCreateManyAndReturnArgs>(args?: SelectSubset<T, EmployeeMyNumberCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeMyNumberPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EmployeeMyNumber.
+     * @param {EmployeeMyNumberDeleteArgs} args - Arguments to delete one EmployeeMyNumber.
+     * @example
+     * // Delete one EmployeeMyNumber
+     * const EmployeeMyNumber = await prisma.employeeMyNumber.delete({
+     *   where: {
+     *     // ... filter to delete one EmployeeMyNumber
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EmployeeMyNumberDeleteArgs>(args: SelectSubset<T, EmployeeMyNumberDeleteArgs<ExtArgs>>): Prisma__EmployeeMyNumberClient<$Result.GetResult<Prisma.$EmployeeMyNumberPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EmployeeMyNumber.
+     * @param {EmployeeMyNumberUpdateArgs} args - Arguments to update one EmployeeMyNumber.
+     * @example
+     * // Update one EmployeeMyNumber
+     * const employeeMyNumber = await prisma.employeeMyNumber.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EmployeeMyNumberUpdateArgs>(args: SelectSubset<T, EmployeeMyNumberUpdateArgs<ExtArgs>>): Prisma__EmployeeMyNumberClient<$Result.GetResult<Prisma.$EmployeeMyNumberPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EmployeeMyNumbers.
+     * @param {EmployeeMyNumberDeleteManyArgs} args - Arguments to filter EmployeeMyNumbers to delete.
+     * @example
+     * // Delete a few EmployeeMyNumbers
+     * const { count } = await prisma.employeeMyNumber.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EmployeeMyNumberDeleteManyArgs>(args?: SelectSubset<T, EmployeeMyNumberDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmployeeMyNumbers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeMyNumberUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EmployeeMyNumbers
+     * const employeeMyNumber = await prisma.employeeMyNumber.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EmployeeMyNumberUpdateManyArgs>(args: SelectSubset<T, EmployeeMyNumberUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmployeeMyNumbers and returns the data updated in the database.
+     * @param {EmployeeMyNumberUpdateManyAndReturnArgs} args - Arguments to update many EmployeeMyNumbers.
+     * @example
+     * // Update many EmployeeMyNumbers
+     * const employeeMyNumber = await prisma.employeeMyNumber.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EmployeeMyNumbers and only return the `id`
+     * const employeeMyNumberWithIdOnly = await prisma.employeeMyNumber.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EmployeeMyNumberUpdateManyAndReturnArgs>(args: SelectSubset<T, EmployeeMyNumberUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeMyNumberPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EmployeeMyNumber.
+     * @param {EmployeeMyNumberUpsertArgs} args - Arguments to update or create a EmployeeMyNumber.
+     * @example
+     * // Update or create a EmployeeMyNumber
+     * const employeeMyNumber = await prisma.employeeMyNumber.upsert({
+     *   create: {
+     *     // ... data to create a EmployeeMyNumber
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EmployeeMyNumber we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EmployeeMyNumberUpsertArgs>(args: SelectSubset<T, EmployeeMyNumberUpsertArgs<ExtArgs>>): Prisma__EmployeeMyNumberClient<$Result.GetResult<Prisma.$EmployeeMyNumberPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EmployeeMyNumbers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeMyNumberCountArgs} args - Arguments to filter EmployeeMyNumbers to count.
+     * @example
+     * // Count the number of EmployeeMyNumbers
+     * const count = await prisma.employeeMyNumber.count({
+     *   where: {
+     *     // ... the filter for the EmployeeMyNumbers we want to count
+     *   }
+     * })
+    **/
+    count<T extends EmployeeMyNumberCountArgs>(
+      args?: Subset<T, EmployeeMyNumberCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EmployeeMyNumberCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EmployeeMyNumber.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeMyNumberAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EmployeeMyNumberAggregateArgs>(args: Subset<T, EmployeeMyNumberAggregateArgs>): Prisma.PrismaPromise<GetEmployeeMyNumberAggregateType<T>>
+
+    /**
+     * Group by EmployeeMyNumber.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeMyNumberGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EmployeeMyNumberGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EmployeeMyNumberGroupByArgs['orderBy'] }
+        : { orderBy?: EmployeeMyNumberGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EmployeeMyNumberGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEmployeeMyNumberGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EmployeeMyNumber model
+   */
+  readonly fields: EmployeeMyNumberFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EmployeeMyNumber.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EmployeeMyNumberClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EmployeeMyNumber model
+   */
+  interface EmployeeMyNumberFieldRefs {
+    readonly id: FieldRef<"EmployeeMyNumber", 'String'>
+    readonly employeeId: FieldRef<"EmployeeMyNumber", 'String'>
+    readonly encryptedNumber: FieldRef<"EmployeeMyNumber", 'String'>
+    readonly createdAt: FieldRef<"EmployeeMyNumber", 'DateTime'>
+    readonly updatedAt: FieldRef<"EmployeeMyNumber", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EmployeeMyNumber findUnique
+   */
+  export type EmployeeMyNumberFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeMyNumber
+     */
+    select?: EmployeeMyNumberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeMyNumber
+     */
+    omit?: EmployeeMyNumberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeMyNumberInclude<ExtArgs> | null
+    /**
+     * Filter, which EmployeeMyNumber to fetch.
+     */
+    where: EmployeeMyNumberWhereUniqueInput
+  }
+
+  /**
+   * EmployeeMyNumber findUniqueOrThrow
+   */
+  export type EmployeeMyNumberFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeMyNumber
+     */
+    select?: EmployeeMyNumberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeMyNumber
+     */
+    omit?: EmployeeMyNumberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeMyNumberInclude<ExtArgs> | null
+    /**
+     * Filter, which EmployeeMyNumber to fetch.
+     */
+    where: EmployeeMyNumberWhereUniqueInput
+  }
+
+  /**
+   * EmployeeMyNumber findFirst
+   */
+  export type EmployeeMyNumberFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeMyNumber
+     */
+    select?: EmployeeMyNumberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeMyNumber
+     */
+    omit?: EmployeeMyNumberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeMyNumberInclude<ExtArgs> | null
+    /**
+     * Filter, which EmployeeMyNumber to fetch.
+     */
+    where?: EmployeeMyNumberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmployeeMyNumbers to fetch.
+     */
+    orderBy?: EmployeeMyNumberOrderByWithRelationInput | EmployeeMyNumberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmployeeMyNumbers.
+     */
+    cursor?: EmployeeMyNumberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmployeeMyNumbers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmployeeMyNumbers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmployeeMyNumbers.
+     */
+    distinct?: EmployeeMyNumberScalarFieldEnum | EmployeeMyNumberScalarFieldEnum[]
+  }
+
+  /**
+   * EmployeeMyNumber findFirstOrThrow
+   */
+  export type EmployeeMyNumberFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeMyNumber
+     */
+    select?: EmployeeMyNumberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeMyNumber
+     */
+    omit?: EmployeeMyNumberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeMyNumberInclude<ExtArgs> | null
+    /**
+     * Filter, which EmployeeMyNumber to fetch.
+     */
+    where?: EmployeeMyNumberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmployeeMyNumbers to fetch.
+     */
+    orderBy?: EmployeeMyNumberOrderByWithRelationInput | EmployeeMyNumberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmployeeMyNumbers.
+     */
+    cursor?: EmployeeMyNumberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmployeeMyNumbers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmployeeMyNumbers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmployeeMyNumbers.
+     */
+    distinct?: EmployeeMyNumberScalarFieldEnum | EmployeeMyNumberScalarFieldEnum[]
+  }
+
+  /**
+   * EmployeeMyNumber findMany
+   */
+  export type EmployeeMyNumberFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeMyNumber
+     */
+    select?: EmployeeMyNumberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeMyNumber
+     */
+    omit?: EmployeeMyNumberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeMyNumberInclude<ExtArgs> | null
+    /**
+     * Filter, which EmployeeMyNumbers to fetch.
+     */
+    where?: EmployeeMyNumberWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmployeeMyNumbers to fetch.
+     */
+    orderBy?: EmployeeMyNumberOrderByWithRelationInput | EmployeeMyNumberOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EmployeeMyNumbers.
+     */
+    cursor?: EmployeeMyNumberWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmployeeMyNumbers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmployeeMyNumbers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmployeeMyNumbers.
+     */
+    distinct?: EmployeeMyNumberScalarFieldEnum | EmployeeMyNumberScalarFieldEnum[]
+  }
+
+  /**
+   * EmployeeMyNumber create
+   */
+  export type EmployeeMyNumberCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeMyNumber
+     */
+    select?: EmployeeMyNumberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeMyNumber
+     */
+    omit?: EmployeeMyNumberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeMyNumberInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EmployeeMyNumber.
+     */
+    data: XOR<EmployeeMyNumberCreateInput, EmployeeMyNumberUncheckedCreateInput>
+  }
+
+  /**
+   * EmployeeMyNumber createMany
+   */
+  export type EmployeeMyNumberCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EmployeeMyNumbers.
+     */
+    data: EmployeeMyNumberCreateManyInput | EmployeeMyNumberCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EmployeeMyNumber createManyAndReturn
+   */
+  export type EmployeeMyNumberCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeMyNumber
+     */
+    select?: EmployeeMyNumberSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeMyNumber
+     */
+    omit?: EmployeeMyNumberOmit<ExtArgs> | null
+    /**
+     * The data used to create many EmployeeMyNumbers.
+     */
+    data: EmployeeMyNumberCreateManyInput | EmployeeMyNumberCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeMyNumberIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EmployeeMyNumber update
+   */
+  export type EmployeeMyNumberUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeMyNumber
+     */
+    select?: EmployeeMyNumberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeMyNumber
+     */
+    omit?: EmployeeMyNumberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeMyNumberInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EmployeeMyNumber.
+     */
+    data: XOR<EmployeeMyNumberUpdateInput, EmployeeMyNumberUncheckedUpdateInput>
+    /**
+     * Choose, which EmployeeMyNumber to update.
+     */
+    where: EmployeeMyNumberWhereUniqueInput
+  }
+
+  /**
+   * EmployeeMyNumber updateMany
+   */
+  export type EmployeeMyNumberUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EmployeeMyNumbers.
+     */
+    data: XOR<EmployeeMyNumberUpdateManyMutationInput, EmployeeMyNumberUncheckedUpdateManyInput>
+    /**
+     * Filter which EmployeeMyNumbers to update
+     */
+    where?: EmployeeMyNumberWhereInput
+    /**
+     * Limit how many EmployeeMyNumbers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmployeeMyNumber updateManyAndReturn
+   */
+  export type EmployeeMyNumberUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeMyNumber
+     */
+    select?: EmployeeMyNumberSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeMyNumber
+     */
+    omit?: EmployeeMyNumberOmit<ExtArgs> | null
+    /**
+     * The data used to update EmployeeMyNumbers.
+     */
+    data: XOR<EmployeeMyNumberUpdateManyMutationInput, EmployeeMyNumberUncheckedUpdateManyInput>
+    /**
+     * Filter which EmployeeMyNumbers to update
+     */
+    where?: EmployeeMyNumberWhereInput
+    /**
+     * Limit how many EmployeeMyNumbers to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeMyNumberIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EmployeeMyNumber upsert
+   */
+  export type EmployeeMyNumberUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeMyNumber
+     */
+    select?: EmployeeMyNumberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeMyNumber
+     */
+    omit?: EmployeeMyNumberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeMyNumberInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EmployeeMyNumber to update in case it exists.
+     */
+    where: EmployeeMyNumberWhereUniqueInput
+    /**
+     * In case the EmployeeMyNumber found by the `where` argument doesn't exist, create a new EmployeeMyNumber with this data.
+     */
+    create: XOR<EmployeeMyNumberCreateInput, EmployeeMyNumberUncheckedCreateInput>
+    /**
+     * In case the EmployeeMyNumber was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EmployeeMyNumberUpdateInput, EmployeeMyNumberUncheckedUpdateInput>
+  }
+
+  /**
+   * EmployeeMyNumber delete
+   */
+  export type EmployeeMyNumberDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeMyNumber
+     */
+    select?: EmployeeMyNumberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeMyNumber
+     */
+    omit?: EmployeeMyNumberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeMyNumberInclude<ExtArgs> | null
+    /**
+     * Filter which EmployeeMyNumber to delete.
+     */
+    where: EmployeeMyNumberWhereUniqueInput
+  }
+
+  /**
+   * EmployeeMyNumber deleteMany
+   */
+  export type EmployeeMyNumberDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmployeeMyNumbers to delete
+     */
+    where?: EmployeeMyNumberWhereInput
+    /**
+     * Limit how many EmployeeMyNumbers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmployeeMyNumber without action
+   */
+  export type EmployeeMyNumberDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeMyNumber
+     */
+    select?: EmployeeMyNumberSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeMyNumber
+     */
+    omit?: EmployeeMyNumberOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeMyNumberInclude<ExtArgs> | null
   }
 
 
@@ -9678,6 +10855,17 @@ export namespace Prisma {
   export type EmployeeScalarFieldEnum = (typeof EmployeeScalarFieldEnum)[keyof typeof EmployeeScalarFieldEnum]
 
 
+  export const EmployeeMyNumberScalarFieldEnum: {
+    id: 'id',
+    employeeId: 'employeeId',
+    encryptedNumber: 'encryptedNumber',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type EmployeeMyNumberScalarFieldEnum = (typeof EmployeeMyNumberScalarFieldEnum)[keyof typeof EmployeeMyNumberScalarFieldEnum]
+
+
   export const EmployeeRequestScalarFieldEnum: {
     id: 'id',
     title: 'title',
@@ -10086,6 +11274,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Employee"> | Date | string
     department?: XOR<DepartmentNullableScalarRelationFilter, DepartmentWhereInput> | null
     requests?: EmployeeRequestListRelationFilter
+    employeeMyNumber?: XOR<EmployeeMyNumberNullableScalarRelationFilter, EmployeeMyNumberWhereInput> | null
   }
 
   export type EmployeeOrderByWithRelationInput = {
@@ -10114,6 +11303,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     department?: DepartmentOrderByWithRelationInput
     requests?: EmployeeRequestOrderByRelationAggregateInput
+    employeeMyNumber?: EmployeeMyNumberOrderByWithRelationInput
   }
 
   export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
@@ -10145,6 +11335,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Employee"> | Date | string
     department?: XOR<DepartmentNullableScalarRelationFilter, DepartmentWhereInput> | null
     requests?: EmployeeRequestListRelationFilter
+    employeeMyNumber?: XOR<EmployeeMyNumberNullableScalarRelationFilter, EmployeeMyNumberWhereInput> | null
   }, "id" | "employeeNo" | "email">
 
   export type EmployeeOrderByWithAggregationInput = {
@@ -10203,6 +11394,61 @@ export namespace Prisma {
     employmentInsuranceNo?: StringNullableWithAggregatesFilter<"Employee"> | string | null
     photoPath?: StringNullableWithAggregatesFilter<"Employee"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Employee"> | Date | string
+  }
+
+  export type EmployeeMyNumberWhereInput = {
+    AND?: EmployeeMyNumberWhereInput | EmployeeMyNumberWhereInput[]
+    OR?: EmployeeMyNumberWhereInput[]
+    NOT?: EmployeeMyNumberWhereInput | EmployeeMyNumberWhereInput[]
+    id?: StringFilter<"EmployeeMyNumber"> | string
+    employeeId?: StringFilter<"EmployeeMyNumber"> | string
+    encryptedNumber?: StringFilter<"EmployeeMyNumber"> | string
+    createdAt?: DateTimeFilter<"EmployeeMyNumber"> | Date | string
+    updatedAt?: DateTimeFilter<"EmployeeMyNumber"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+  }
+
+  export type EmployeeMyNumberOrderByWithRelationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    encryptedNumber?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    employee?: EmployeeOrderByWithRelationInput
+  }
+
+  export type EmployeeMyNumberWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    employeeId?: string
+    AND?: EmployeeMyNumberWhereInput | EmployeeMyNumberWhereInput[]
+    OR?: EmployeeMyNumberWhereInput[]
+    NOT?: EmployeeMyNumberWhereInput | EmployeeMyNumberWhereInput[]
+    encryptedNumber?: StringFilter<"EmployeeMyNumber"> | string
+    createdAt?: DateTimeFilter<"EmployeeMyNumber"> | Date | string
+    updatedAt?: DateTimeFilter<"EmployeeMyNumber"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+  }, "id" | "employeeId">
+
+  export type EmployeeMyNumberOrderByWithAggregationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    encryptedNumber?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: EmployeeMyNumberCountOrderByAggregateInput
+    _max?: EmployeeMyNumberMaxOrderByAggregateInput
+    _min?: EmployeeMyNumberMinOrderByAggregateInput
+  }
+
+  export type EmployeeMyNumberScalarWhereWithAggregatesInput = {
+    AND?: EmployeeMyNumberScalarWhereWithAggregatesInput | EmployeeMyNumberScalarWhereWithAggregatesInput[]
+    OR?: EmployeeMyNumberScalarWhereWithAggregatesInput[]
+    NOT?: EmployeeMyNumberScalarWhereWithAggregatesInput | EmployeeMyNumberScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EmployeeMyNumber"> | string
+    employeeId?: StringWithAggregatesFilter<"EmployeeMyNumber"> | string
+    encryptedNumber?: StringWithAggregatesFilter<"EmployeeMyNumber"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"EmployeeMyNumber"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"EmployeeMyNumber"> | Date | string
   }
 
   export type EmployeeRequestWhereInput = {
@@ -10636,6 +11882,7 @@ export namespace Prisma {
     createdAt?: Date | string
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
     requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateInput = {
@@ -10663,6 +11910,7 @@ export namespace Prisma {
     photoPath?: string | null
     createdAt?: Date | string
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUpdateInput = {
@@ -10690,6 +11938,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateInput = {
@@ -10717,6 +11966,7 @@ export namespace Prisma {
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateManyInput = {
@@ -10794,6 +12044,61 @@ export namespace Prisma {
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeMyNumberCreateInput = {
+    id?: string
+    encryptedNumber: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutEmployeeMyNumberInput
+  }
+
+  export type EmployeeMyNumberUncheckedCreateInput = {
+    id?: string
+    employeeId: string
+    encryptedNumber: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EmployeeMyNumberUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    encryptedNumber?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutEmployeeMyNumberNestedInput
+  }
+
+  export type EmployeeMyNumberUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    encryptedNumber?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeMyNumberCreateManyInput = {
+    id?: string
+    employeeId: string
+    encryptedNumber: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EmployeeMyNumberUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    encryptedNumber?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeMyNumberUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    encryptedNumber?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EmployeeRequestCreateInput = {
@@ -11307,6 +12612,11 @@ export namespace Prisma {
     isNot?: DepartmentWhereInput | null
   }
 
+  export type EmployeeMyNumberNullableScalarRelationFilter = {
+    is?: EmployeeMyNumberWhereInput | null
+    isNot?: EmployeeMyNumberWhereInput | null
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -11450,6 +12760,35 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumEmployeeStatusFilter<$PrismaModel>
     _max?: NestedEnumEmployeeStatusFilter<$PrismaModel>
+  }
+
+  export type EmployeeScalarRelationFilter = {
+    is?: EmployeeWhereInput
+    isNot?: EmployeeWhereInput
+  }
+
+  export type EmployeeMyNumberCountOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    encryptedNumber?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EmployeeMyNumberMaxOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    encryptedNumber?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EmployeeMyNumberMinOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    encryptedNumber?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type EnumRequestTypeFilter<$PrismaModel = never> = {
@@ -11862,11 +13201,23 @@ export namespace Prisma {
     connect?: EmployeeRequestWhereUniqueInput | EmployeeRequestWhereUniqueInput[]
   }
 
+  export type EmployeeMyNumberCreateNestedOneWithoutEmployeeInput = {
+    create?: XOR<EmployeeMyNumberCreateWithoutEmployeeInput, EmployeeMyNumberUncheckedCreateWithoutEmployeeInput>
+    connectOrCreate?: EmployeeMyNumberCreateOrConnectWithoutEmployeeInput
+    connect?: EmployeeMyNumberWhereUniqueInput
+  }
+
   export type EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput = {
     create?: XOR<EmployeeRequestCreateWithoutEmployeeInput, EmployeeRequestUncheckedCreateWithoutEmployeeInput> | EmployeeRequestCreateWithoutEmployeeInput[] | EmployeeRequestUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeRequestCreateOrConnectWithoutEmployeeInput | EmployeeRequestCreateOrConnectWithoutEmployeeInput[]
     createMany?: EmployeeRequestCreateManyEmployeeInputEnvelope
     connect?: EmployeeRequestWhereUniqueInput | EmployeeRequestWhereUniqueInput[]
+  }
+
+  export type EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput = {
+    create?: XOR<EmployeeMyNumberCreateWithoutEmployeeInput, EmployeeMyNumberUncheckedCreateWithoutEmployeeInput>
+    connectOrCreate?: EmployeeMyNumberCreateOrConnectWithoutEmployeeInput
+    connect?: EmployeeMyNumberWhereUniqueInput
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -11913,6 +13264,16 @@ export namespace Prisma {
     deleteMany?: EmployeeRequestScalarWhereInput | EmployeeRequestScalarWhereInput[]
   }
 
+  export type EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput = {
+    create?: XOR<EmployeeMyNumberCreateWithoutEmployeeInput, EmployeeMyNumberUncheckedCreateWithoutEmployeeInput>
+    connectOrCreate?: EmployeeMyNumberCreateOrConnectWithoutEmployeeInput
+    upsert?: EmployeeMyNumberUpsertWithoutEmployeeInput
+    disconnect?: EmployeeMyNumberWhereInput | boolean
+    delete?: EmployeeMyNumberWhereInput | boolean
+    connect?: EmployeeMyNumberWhereUniqueInput
+    update?: XOR<XOR<EmployeeMyNumberUpdateToOneWithWhereWithoutEmployeeInput, EmployeeMyNumberUpdateWithoutEmployeeInput>, EmployeeMyNumberUncheckedUpdateWithoutEmployeeInput>
+  }
+
   export type EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput = {
     create?: XOR<EmployeeRequestCreateWithoutEmployeeInput, EmployeeRequestUncheckedCreateWithoutEmployeeInput> | EmployeeRequestCreateWithoutEmployeeInput[] | EmployeeRequestUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeRequestCreateOrConnectWithoutEmployeeInput | EmployeeRequestCreateOrConnectWithoutEmployeeInput[]
@@ -11925,6 +13286,30 @@ export namespace Prisma {
     update?: EmployeeRequestUpdateWithWhereUniqueWithoutEmployeeInput | EmployeeRequestUpdateWithWhereUniqueWithoutEmployeeInput[]
     updateMany?: EmployeeRequestUpdateManyWithWhereWithoutEmployeeInput | EmployeeRequestUpdateManyWithWhereWithoutEmployeeInput[]
     deleteMany?: EmployeeRequestScalarWhereInput | EmployeeRequestScalarWhereInput[]
+  }
+
+  export type EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput = {
+    create?: XOR<EmployeeMyNumberCreateWithoutEmployeeInput, EmployeeMyNumberUncheckedCreateWithoutEmployeeInput>
+    connectOrCreate?: EmployeeMyNumberCreateOrConnectWithoutEmployeeInput
+    upsert?: EmployeeMyNumberUpsertWithoutEmployeeInput
+    disconnect?: EmployeeMyNumberWhereInput | boolean
+    delete?: EmployeeMyNumberWhereInput | boolean
+    connect?: EmployeeMyNumberWhereUniqueInput
+    update?: XOR<XOR<EmployeeMyNumberUpdateToOneWithWhereWithoutEmployeeInput, EmployeeMyNumberUpdateWithoutEmployeeInput>, EmployeeMyNumberUncheckedUpdateWithoutEmployeeInput>
+  }
+
+  export type EmployeeCreateNestedOneWithoutEmployeeMyNumberInput = {
+    create?: XOR<EmployeeCreateWithoutEmployeeMyNumberInput, EmployeeUncheckedCreateWithoutEmployeeMyNumberInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutEmployeeMyNumberInput
+    connect?: EmployeeWhereUniqueInput
+  }
+
+  export type EmployeeUpdateOneRequiredWithoutEmployeeMyNumberNestedInput = {
+    create?: XOR<EmployeeCreateWithoutEmployeeMyNumberInput, EmployeeUncheckedCreateWithoutEmployeeMyNumberInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutEmployeeMyNumberInput
+    upsert?: EmployeeUpsertWithoutEmployeeMyNumberInput
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutEmployeeMyNumberInput, EmployeeUpdateWithoutEmployeeMyNumberInput>, EmployeeUncheckedUpdateWithoutEmployeeMyNumberInput>
   }
 
   export type UserCreateNestedOneWithoutRequestsInput = {
@@ -12488,6 +13873,7 @@ export namespace Prisma {
     photoPath?: string | null
     createdAt?: Date | string
     requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDepartmentInput = {
@@ -12514,6 +13900,7 @@ export namespace Prisma {
     photoPath?: string | null
     createdAt?: Date | string
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDepartmentInput = {
@@ -12626,6 +14013,25 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type EmployeeMyNumberCreateWithoutEmployeeInput = {
+    id?: string
+    encryptedNumber: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EmployeeMyNumberUncheckedCreateWithoutEmployeeInput = {
+    id?: string
+    encryptedNumber: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EmployeeMyNumberCreateOrConnectWithoutEmployeeInput = {
+    where: EmployeeMyNumberWhereUniqueInput
+    create: XOR<EmployeeMyNumberCreateWithoutEmployeeInput, EmployeeMyNumberUncheckedCreateWithoutEmployeeInput>
+  }
+
   export type DepartmentUpsertWithoutEmployeesInput = {
     update: XOR<DepartmentUpdateWithoutEmployeesInput, DepartmentUncheckedUpdateWithoutEmployeesInput>
     create: XOR<DepartmentCreateWithoutEmployeesInput, DepartmentUncheckedCreateWithoutEmployeesInput>
@@ -12663,6 +14069,155 @@ export namespace Prisma {
   export type EmployeeRequestUpdateManyWithWhereWithoutEmployeeInput = {
     where: EmployeeRequestScalarWhereInput
     data: XOR<EmployeeRequestUpdateManyMutationInput, EmployeeRequestUncheckedUpdateManyWithoutEmployeeInput>
+  }
+
+  export type EmployeeMyNumberUpsertWithoutEmployeeInput = {
+    update: XOR<EmployeeMyNumberUpdateWithoutEmployeeInput, EmployeeMyNumberUncheckedUpdateWithoutEmployeeInput>
+    create: XOR<EmployeeMyNumberCreateWithoutEmployeeInput, EmployeeMyNumberUncheckedCreateWithoutEmployeeInput>
+    where?: EmployeeMyNumberWhereInput
+  }
+
+  export type EmployeeMyNumberUpdateToOneWithWhereWithoutEmployeeInput = {
+    where?: EmployeeMyNumberWhereInput
+    data: XOR<EmployeeMyNumberUpdateWithoutEmployeeInput, EmployeeMyNumberUncheckedUpdateWithoutEmployeeInput>
+  }
+
+  export type EmployeeMyNumberUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    encryptedNumber?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeMyNumberUncheckedUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    encryptedNumber?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeCreateWithoutEmployeeMyNumberInput = {
+    id?: string
+    employeeNo: string
+    lastName: string
+    firstName: string
+    lastNameKana?: string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    birthDate?: Date | string | null
+    phoneNumber?: string | null
+    address?: string | null
+    email: string
+    occupation?: string | null
+    position?: string | null
+    hireDate?: Date | string | null
+    employmentType?: $Enums.EmploymentType | null
+    commutingType?: string | null
+    status?: $Enums.EmployeeStatus
+    retirementDate?: Date | string | null
+    healthInsuranceNo?: string | null
+    employmentInsuranceNo?: string | null
+    photoPath?: string | null
+    createdAt?: Date | string
+    department?: DepartmentCreateNestedOneWithoutEmployeesInput
+    requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeUncheckedCreateWithoutEmployeeMyNumberInput = {
+    id?: string
+    employeeNo: string
+    lastName: string
+    firstName: string
+    lastNameKana?: string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    birthDate?: Date | string | null
+    phoneNumber?: string | null
+    address?: string | null
+    email: string
+    departmentId?: string | null
+    occupation?: string | null
+    position?: string | null
+    hireDate?: Date | string | null
+    employmentType?: $Enums.EmploymentType | null
+    commutingType?: string | null
+    status?: $Enums.EmployeeStatus
+    retirementDate?: Date | string | null
+    healthInsuranceNo?: string | null
+    employmentInsuranceNo?: string | null
+    photoPath?: string | null
+    createdAt?: Date | string
+    requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeCreateOrConnectWithoutEmployeeMyNumberInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutEmployeeMyNumberInput, EmployeeUncheckedCreateWithoutEmployeeMyNumberInput>
+  }
+
+  export type EmployeeUpsertWithoutEmployeeMyNumberInput = {
+    update: XOR<EmployeeUpdateWithoutEmployeeMyNumberInput, EmployeeUncheckedUpdateWithoutEmployeeMyNumberInput>
+    create: XOR<EmployeeCreateWithoutEmployeeMyNumberInput, EmployeeUncheckedCreateWithoutEmployeeMyNumberInput>
+    where?: EmployeeWhereInput
+  }
+
+  export type EmployeeUpdateToOneWithWhereWithoutEmployeeMyNumberInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutEmployeeMyNumberInput, EmployeeUncheckedUpdateWithoutEmployeeMyNumberInput>
+  }
+
+  export type EmployeeUpdateWithoutEmployeeMyNumberInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    department?: DepartmentUpdateOneWithoutEmployeesNestedInput
+    requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateWithoutEmployeeMyNumberInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type UserCreateWithoutRequestsInput = {
@@ -12712,6 +14267,7 @@ export namespace Prisma {
     photoPath?: string | null
     createdAt?: Date | string
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
+    employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutRequestsInput = {
@@ -12738,6 +14294,7 @@ export namespace Prisma {
     employmentInsuranceNo?: string | null
     photoPath?: string | null
     createdAt?: Date | string
+    employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutRequestsInput = {
@@ -12863,6 +14420,7 @@ export namespace Prisma {
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
+    employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutRequestsInput = {
@@ -12889,6 +14447,7 @@ export namespace Prisma {
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type RequestHistoryUpsertWithWhereUniqueWithoutRequestInput = {
@@ -13193,6 +14752,7 @@ export namespace Prisma {
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDepartmentInput = {
@@ -13219,6 +14779,7 @@ export namespace Prisma {
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateManyWithoutDepartmentInput = {

@@ -83,7 +83,8 @@ model Employee {
 
   requests EmployeeRequest[]
 
-  createdAt DateTime @default(now())
+  createdAt        DateTime          @default(now())
+  employeeMyNumber EmployeeMyNumber?
 }
 
 enum RequestType {
@@ -105,16 +106,12 @@ enum RequestHistoryAction {
   REJECTED
 }
 
-
 model EmployeeMyNumber {
   id String @id @default(uuid())
 
   employeeId String @unique
-  employee Employee @relation(
-    fields: [employeeId],
-    references: [id],
-    onDelete: Cascade
-  )
+
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
 
   encryptedNumber String
 
@@ -146,16 +143,16 @@ model EmployeeRequest {
 }
 
 model RequestAttachment {
-  id          String @id @default(uuid())
-  fileName    String
-  filePath    String
-  fileSize    Int?
-  mimeType    String?
+  id       String  @id @default(uuid())
+  fileName String
+  filePath String
+  fileSize Int?
+  mimeType String?
 
-  requestId   String
-  request     EmployeeRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+  requestId String
+  request   EmployeeRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
 
-  createdAt   DateTime @default(now())
+  createdAt DateTime @default(now())
 }
 
 model RequestHistory {
@@ -181,9 +178,8 @@ enum EmployeeStatus {
   RETIRED
 }
 
-
 model AuditLog {
-  id          String   @id @default(uuid())
+  id          String  @id @default(uuid())
   userId      String?
   userName    String?
   action      String
@@ -191,10 +187,10 @@ model AuditLog {
   targetId    String?
   description String?
 
-  beforeData  Json?
-  afterData   Json?
+  beforeData Json?
+  afterData  Json?
 
-  createdAt   DateTime @default(now())
+  createdAt DateTime @default(now())
 
   @@index([createdAt])
   @@index([targetType])

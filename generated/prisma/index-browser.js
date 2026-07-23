@@ -161,6 +161,14 @@ exports.Prisma.EmployeeScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.EmployeeMyNumberScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  encryptedNumber: 'encryptedNumber',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.EmployeeRequestScalarFieldEnum = {
   id: 'id',
   title: 'title',
@@ -280,6 +288,7 @@ exports.Prisma.ModelName = {
   User: 'User',
   Department: 'Department',
   Employee: 'Employee',
+  EmployeeMyNumber: 'EmployeeMyNumber',
   EmployeeRequest: 'EmployeeRequest',
   RequestAttachment: 'RequestAttachment',
   RequestHistory: 'RequestHistory',
