@@ -120,8 +120,23 @@ model EmployeeRequest {
   employeeId String?
   employee   Employee? @relation(fields: [employeeId], references: [id], onDelete: SetNull)
 
-  histories RequestHistory[]
-  createdAt DateTime         @default(now())
+  histories   RequestHistory[]
+  attachments RequestAttachment[]
+
+  createdAt DateTime @default(now())
+}
+
+model RequestAttachment {
+  id          String @id @default(uuid())
+  fileName    String
+  filePath    String
+  fileSize    Int?
+  mimeType    String?
+
+  requestId   String
+  request     EmployeeRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+
+  createdAt   DateTime @default(now())
 }
 
 model RequestHistory {
