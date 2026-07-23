@@ -112,6 +112,8 @@ export default async function EmployeeEditPage({ params }: Props) {
       targetType: "Employee",
       targetId: updatedEmployee.id,
       description: `${updatedEmployee.employeeNo} を更新`,
+      beforeData: employee,
+      afterData: updatedEmployee,
     });
 
     revalidatePath(`/employees/${id}`);

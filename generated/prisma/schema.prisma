@@ -173,6 +173,9 @@ model AuditLog {
   targetId    String?
   description String?
 
+  beforeData Json?
+  afterData  Json?
+
   createdAt DateTime @default(now())
 
   @@index([createdAt])

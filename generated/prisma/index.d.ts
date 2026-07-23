@@ -8597,6 +8597,8 @@ export namespace Prisma {
     targetType: number
     targetId: number
     description: number
+    beforeData: number
+    afterData: number
     createdAt: number
     _all: number
   }
@@ -8632,6 +8634,8 @@ export namespace Prisma {
     targetType?: true
     targetId?: true
     description?: true
+    beforeData?: true
+    afterData?: true
     createdAt?: true
     _all?: true
   }
@@ -8716,6 +8720,8 @@ export namespace Prisma {
     targetType: string
     targetId: string | null
     description: string | null
+    beforeData: JsonValue | null
+    afterData: JsonValue | null
     createdAt: Date
     _count: AuditLogCountAggregateOutputType | null
     _min: AuditLogMinAggregateOutputType | null
@@ -8744,6 +8750,8 @@ export namespace Prisma {
     targetType?: boolean
     targetId?: boolean
     description?: boolean
+    beforeData?: boolean
+    afterData?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["auditLog"]>
 
@@ -8755,6 +8763,8 @@ export namespace Prisma {
     targetType?: boolean
     targetId?: boolean
     description?: boolean
+    beforeData?: boolean
+    afterData?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["auditLog"]>
 
@@ -8766,6 +8776,8 @@ export namespace Prisma {
     targetType?: boolean
     targetId?: boolean
     description?: boolean
+    beforeData?: boolean
+    afterData?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["auditLog"]>
 
@@ -8777,10 +8789,12 @@ export namespace Prisma {
     targetType?: boolean
     targetId?: boolean
     description?: boolean
+    beforeData?: boolean
+    afterData?: boolean
     createdAt?: boolean
   }
 
-  export type AuditLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "userName" | "action" | "targetType" | "targetId" | "description" | "createdAt", ExtArgs["result"]["auditLog"]>
+  export type AuditLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "userName" | "action" | "targetType" | "targetId" | "description" | "beforeData" | "afterData" | "createdAt", ExtArgs["result"]["auditLog"]>
 
   export type $AuditLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "AuditLog"
@@ -8793,6 +8807,8 @@ export namespace Prisma {
       targetType: string
       targetId: string | null
       description: string | null
+      beforeData: Prisma.JsonValue | null
+      afterData: Prisma.JsonValue | null
       createdAt: Date
     }, ExtArgs["result"]["auditLog"]>
     composites: {}
@@ -9224,6 +9240,8 @@ export namespace Prisma {
     readonly targetType: FieldRef<"AuditLog", 'String'>
     readonly targetId: FieldRef<"AuditLog", 'String'>
     readonly description: FieldRef<"AuditLog", 'String'>
+    readonly beforeData: FieldRef<"AuditLog", 'Json'>
+    readonly afterData: FieldRef<"AuditLog", 'Json'>
     readonly createdAt: FieldRef<"AuditLog", 'DateTime'>
   }
     
@@ -9709,6 +9727,8 @@ export namespace Prisma {
     targetType: 'targetType',
     targetId: 'targetId',
     description: 'description',
+    beforeData: 'beforeData',
+    afterData: 'afterData',
     createdAt: 'createdAt'
   };
 
@@ -9721,6 +9741,14 @@ export namespace Prisma {
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
   export const QueryMode: {
@@ -9737,6 +9765,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -9881,6 +9918,20 @@ export namespace Prisma {
    * Reference to a field of type 'RequestHistoryAction[]'
    */
   export type ListEnumRequestHistoryActionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RequestHistoryAction[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -10381,6 +10432,8 @@ export namespace Prisma {
     targetType?: StringFilter<"AuditLog"> | string
     targetId?: StringNullableFilter<"AuditLog"> | string | null
     description?: StringNullableFilter<"AuditLog"> | string | null
+    beforeData?: JsonNullableFilter<"AuditLog">
+    afterData?: JsonNullableFilter<"AuditLog">
     createdAt?: DateTimeFilter<"AuditLog"> | Date | string
   }
 
@@ -10392,6 +10445,8 @@ export namespace Prisma {
     targetType?: SortOrder
     targetId?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
+    beforeData?: SortOrderInput | SortOrder
+    afterData?: SortOrderInput | SortOrder
     createdAt?: SortOrder
   }
 
@@ -10406,6 +10461,8 @@ export namespace Prisma {
     targetType?: StringFilter<"AuditLog"> | string
     targetId?: StringNullableFilter<"AuditLog"> | string | null
     description?: StringNullableFilter<"AuditLog"> | string | null
+    beforeData?: JsonNullableFilter<"AuditLog">
+    afterData?: JsonNullableFilter<"AuditLog">
     createdAt?: DateTimeFilter<"AuditLog"> | Date | string
   }, "id">
 
@@ -10417,6 +10474,8 @@ export namespace Prisma {
     targetType?: SortOrder
     targetId?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
+    beforeData?: SortOrderInput | SortOrder
+    afterData?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     _count?: AuditLogCountOrderByAggregateInput
     _max?: AuditLogMaxOrderByAggregateInput
@@ -10434,6 +10493,8 @@ export namespace Prisma {
     targetType?: StringWithAggregatesFilter<"AuditLog"> | string
     targetId?: StringNullableWithAggregatesFilter<"AuditLog"> | string | null
     description?: StringNullableWithAggregatesFilter<"AuditLog"> | string | null
+    beforeData?: JsonNullableWithAggregatesFilter<"AuditLog">
+    afterData?: JsonNullableWithAggregatesFilter<"AuditLog">
     createdAt?: DateTimeWithAggregatesFilter<"AuditLog"> | Date | string
   }
 
@@ -10971,6 +11032,8 @@ export namespace Prisma {
     targetType: string
     targetId?: string | null
     description?: string | null
+    beforeData?: NullableJsonNullValueInput | InputJsonValue
+    afterData?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
   }
 
@@ -10982,6 +11045,8 @@ export namespace Prisma {
     targetType: string
     targetId?: string | null
     description?: string | null
+    beforeData?: NullableJsonNullValueInput | InputJsonValue
+    afterData?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
   }
 
@@ -10993,6 +11058,8 @@ export namespace Prisma {
     targetType?: StringFieldUpdateOperationsInput | string
     targetId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeData?: NullableJsonNullValueInput | InputJsonValue
+    afterData?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -11004,6 +11071,8 @@ export namespace Prisma {
     targetType?: StringFieldUpdateOperationsInput | string
     targetId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeData?: NullableJsonNullValueInput | InputJsonValue
+    afterData?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -11015,6 +11084,8 @@ export namespace Prisma {
     targetType: string
     targetId?: string | null
     description?: string | null
+    beforeData?: NullableJsonNullValueInput | InputJsonValue
+    afterData?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: Date | string
   }
 
@@ -11026,6 +11097,8 @@ export namespace Prisma {
     targetType?: StringFieldUpdateOperationsInput | string
     targetId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeData?: NullableJsonNullValueInput | InputJsonValue
+    afterData?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -11037,6 +11110,8 @@ export namespace Prisma {
     targetType?: StringFieldUpdateOperationsInput | string
     targetId?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    beforeData?: NullableJsonNullValueInput | InputJsonValue
+    afterData?: NullableJsonNullValueInput | InputJsonValue
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -11593,6 +11668,29 @@ export namespace Prisma {
     _min?: NestedEnumRequestHistoryActionFilter<$PrismaModel>
     _max?: NestedEnumRequestHistoryActionFilter<$PrismaModel>
   }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
 
   export type AuditLogCountOrderByAggregateInput = {
     id?: SortOrder
@@ -11602,6 +11700,8 @@ export namespace Prisma {
     targetType?: SortOrder
     targetId?: SortOrder
     description?: SortOrder
+    beforeData?: SortOrder
+    afterData?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -11625,6 +11725,32 @@ export namespace Prisma {
     targetId?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
   export type EmployeeRequestCreateNestedManyWithoutUserInput = {
@@ -12243,6 +12369,29 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumRequestHistoryActionFilter<$PrismaModel>
     _max?: NestedEnumRequestHistoryActionFilter<$PrismaModel>
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
   export type EmployeeRequestCreateWithoutUserInput = {
