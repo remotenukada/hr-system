@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { createEmployee } from '@/app/actions/employee'
 import { prisma } from '@/lib/prisma'
 
@@ -7,7 +8,7 @@ export default async function NewEmployeePage() {
   })
 
   return (
-    <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-sm border my-8">
+    <main className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-sm border my-8">
       <h1 className="text-xl font-bold mb-6 text-slate-800">
         新規社員登録
       </h1>
@@ -291,6 +292,15 @@ export default async function NewEmployeePage() {
           </button>
         </div>
       </form>
-    </div>
+
+      <div className="mt-6 pt-4 border-t border-slate-100">
+        <Link
+          href="/"
+          className="text-sm text-indigo-600 hover:underline inline-flex items-center gap-1"
+        >
+          ← ダッシュボードに戻る
+        </Link>
+      </div>
+    </main>
   )
 }
