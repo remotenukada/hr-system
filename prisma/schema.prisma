@@ -105,6 +105,23 @@ enum RequestHistoryAction {
   REJECTED
 }
 
+
+model EmployeeMyNumber {
+  id String @id @default(uuid())
+
+  employeeId String @unique
+  employee Employee @relation(
+    fields: [employeeId],
+    references: [id],
+    onDelete: Cascade
+  )
+
+  encryptedNumber String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model EmployeeRequest {
   id              String        @id @default(uuid())
   title           String
