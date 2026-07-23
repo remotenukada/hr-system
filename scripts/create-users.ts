@@ -7,10 +7,12 @@ async function main() {
 
   const hashedPassword = await bcrypt.hash("password123", 10);
 
-  // 1. 管理者ユーザーの作成
   const admin = await prisma.user.upsert({
     where: { email: "admin@example.com" },
-    update: {},
+    update: {
+      password: hashedPassword,
+      role: "ADMIN",
+    },
     create: {
       name: "管理者A",
       email: "admin@example.com",
@@ -18,20 +20,52 @@ async function main() {
       role: "ADMIN",
     },
   });
-  console.log(`管理者ユーザーを作成/確認しました: ${admin.email}`);
+  console.log(`ADMIN: ${admin.email}`);
 
-  // 2. 一般ユーザーの作成
+  const hrManager = await prisma.user.upsert({
+    where: { email: "hr@example.com" },
+    update: {
+      password: hashedPassword,
+      role: "HR_MANAGER",
+    },
+    create: {
+      name: "人事担当",
+      email: "hr@example.com",
+      password: hashedPassword,
+      role: "HR_MANAGER",
+    },
+  });
+  console.log(`HR_MANAGER: ${hrManager.email}`);
+
+  const manager = await prisma.user.upsert({
+    where: { email: "manager@example.com" },
+    update: {
+      password: hashedPassword,
+      role: "MANAGER",
+    },
+    create: {
+      name: "部門長",
+      email: "manager@example.com",
+      password: hashedPassword,
+      role: "MANAGER",
+    },
+  });
+  console.log(`MANAGER: ${manager.email}`);
+
   const user = await prisma.user.upsert({
     where: { email: "user@example.com" },
-    update: {},
+    update: {
+      password: hashedPassword,
+      role: "USER",
+    },
     create: {
-      name: "一般社員B",
+      name: "一般職員B",
       email: "user@example.com",
       password: hashedPassword,
       role: "USER",
     },
   });
-  console.log(`一般ユーザーを作成/確認しました: ${user.email}`);
+  console.log(`USER: ${user.email}`);
 
   console.log("初期ユーザーの作成がすべて完了しました！");
 }
