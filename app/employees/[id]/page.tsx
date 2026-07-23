@@ -269,6 +269,8 @@ export default async function EmployeeDetailPage({ params }: Props) {
   async function deleteEmployee() {
     "use server";
 
+    await requireHRManager();
+
     const deletedEmployee = await prisma.employee.delete({
       where: {
         id,
@@ -314,21 +316,25 @@ export default async function EmployeeDetailPage({ params }: Props) {
             PDF出力
           </a>
 
-          <Link
-            href={`/employees/${employee.id}/edit`}
-            className="rounded bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200"
-          >
-            編集
-          </Link>
+          {canManageMyNumber && (
+            <>
+              <Link
+                href={`/employees/${employee.id}/edit`}
+                className="rounded bg-gray-600 px-4 py-2 text-sm font-medium text-white hover:bg-gray-700"
+              >
+                編集
+              </Link>
 
-          <form action={deleteEmployee}>
-            <button
-              type="submit"
-              className="rounded bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
-            >
-              削除
-            </button>
-          </form>
+              <form action={deleteEmployee}>
+                <button
+                  type="submit"
+                  className="rounded bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
+                >
+                  削除
+                </button>
+              </form>
+            </>
+          )}
         </div>
       </div>
 
