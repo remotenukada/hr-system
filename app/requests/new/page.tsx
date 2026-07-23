@@ -1,7 +1,53 @@
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
+import { mkdir, writeFile } from "fs/promises";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import path from "path";
+import { randomUUID } from "crypto";
+
+const MAX_FILE_SIZE = 10 * 1024 * 1024;
+
+const ALLOWED_MIME_TYPES = new Set([
+  "application/pdf",
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+  "image/gif",
+  "application/vnd.ms-excel",
+  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+]);
+
+async function saveAttachmentFile(file: File) {
+  if (file.size > MAX_FILE_SIZE) {
+    throw new Error("ファイルサイズは10MB以下にしてください。");
+  }
+
+  if (!ALLOWED_MIME_TYPES.has(file.type)) {
+    throw new Error("対応していないファイル形式です。");
+  }
+
+  const uploadDir = path.join(process.cwd(), "public", "uploads", "requests");
+  await mkdir(uploadDir, { recursive: true });
+
+  const ext = path.extname(file.name).toLowerCase();
+  const storedFileName = `${randomUUID()}${ext}`;
+  const fullPath = path.join(uploadDir, storedFileName);
+
+  const bytes = await file.arrayBuffer();
+  const buffer = Buffer.from(bytes);
+
+  await writeFile(fullPath, buffer);
+
+  return {
+    fileName: file.name,
+    filePath: `/uploads/requests/${storedFileName}`,
+    fileSize: file.size,
+    mimeType: file.type,
+  };
+}
 
 async function createRequest(formData: FormData) {
   "use server";
@@ -16,6 +62,17 @@ async function createRequest(formData: FormData) {
   const comment = String(formData.get("comment") || "");
   const type = String(formData.get("type") || "");
 
+  const files = formData
+    .getAll("attachments")
+    .filter((file): file is File => file instanceof File && file.size > 0);
+
+  const attachments = [];
+
+  for (const file of files) {
+    const attachment = await saveAttachmentFile(file);
+    attachments.push(attachment);
+  }
+
   await prisma.employeeRequest.create({
     data: {
       title,
@@ -24,16 +81,27 @@ async function createRequest(formData: FormData) {
 
       userId: session.user.id,
 
+      attachments:
+        attachments.length > 0
+          ? {
+              create: attachments,
+            }
+          : undefined,
+
       histories: {
         create: {
           action: "CREATED",
           actor: session.user.name || "unknown",
-          comment: "申請を作成しました",
+          comment:
+            attachments.length > 0
+              ? `申請を作成しました。添付ファイル: ${attachments.length}件`
+              : "申請を作成しました",
         },
       },
     },
   });
 
+  revalidatePath("/requests");
   revalidatePath("/requests/my");
 
   redirect("/requests/my");
@@ -84,6 +152,20 @@ export default async function NewRequestPage() {
             className="w-full rounded border p-2"
             rows={5}
           />
+        </div>
+
+        <div>
+          <label className="mb-1 block font-medium">添付ファイル</label>
+          <input
+            type="file"
+            name="attachments"
+            multiple
+            accept=".pdf,.xls,.xlsx,.doc,.docx,.jpg,.jpeg,.png,.webp,.gif"
+            className="w-full rounded border bg-white p-2"
+          />
+          <p className="mt-1 text-xs text-gray-500">
+            PDF、Excel、Word、画像を添付できます。1ファイル10MBまで。
+          </p>
         </div>
 
         <button
