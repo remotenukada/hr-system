@@ -90,6 +90,7 @@ export type Gender = (typeof Gender)[keyof typeof Gender]
 export const RequestType: {
   ONBOARDING: 'ONBOARDING',
   DEPARTMENT_CHANGE: 'DEPARTMENT_CHANGE',
+  PAID_LEAVE: 'PAID_LEAVE',
   OTHER: 'OTHER'
 };
 

@@ -92,6 +92,7 @@ model Employee {
 enum RequestType {
   ONBOARDING
   DEPARTMENT_CHANGE
+  PAID_LEAVE
   OTHER
 }
 

@@ -288,6 +288,7 @@ exports.EmployeeStatus = exports.$Enums.EmployeeStatus = {
 exports.RequestType = exports.$Enums.RequestType = {
   ONBOARDING: 'ONBOARDING',
   DEPARTMENT_CHANGE: 'DEPARTMENT_CHANGE',
+  PAID_LEAVE: 'PAID_LEAVE',
   OTHER: 'OTHER'
 };
 

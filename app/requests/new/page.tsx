@@ -85,7 +85,11 @@ async function createRequest(formData: FormData) {
     data: {
       title,
       comment,
-      type: type as "ONBOARDING" | "DEPARTMENT_CHANGE" | "OTHER",
+      type: type as
+        | "ONBOARDING"
+        | "DEPARTMENT_CHANGE"
+        | "PAID_LEAVE"
+        | "OTHER",
 
       userId: currentUser?.id ?? null,
 
@@ -148,6 +152,7 @@ export default async function NewRequestPage() {
           >
             <option value="ONBOARDING">入社</option>
             <option value="DEPARTMENT_CHANGE">部署変更</option>
+            <option value="PAID_LEAVE">有給休暇</option>
             <option value="OTHER">その他</option>
           </select>
         </div>
