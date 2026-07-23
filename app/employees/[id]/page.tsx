@@ -3,6 +3,7 @@ import { revalidatePath } from "next/cache";
 import Link from "next/link";
 import Image from "next/image";
 import { prisma } from "@/lib/prisma";
+import { logAudit } from "@/lib/audit-log";
 
 type Props = {
   params: Promise<{
@@ -86,10 +87,17 @@ export default async function EmployeeDetailPage({ params }: Props) {
   async function deleteEmployee() {
     "use server";
 
-    await prisma.employee.delete({
+    const deletedEmployee = await prisma.employee.delete({
       where: {
         id,
       },
+    });
+
+    await logAudit({
+      action: "EMPLOYEE_DELETED",
+      targetType: "Employee",
+      targetId: deletedEmployee.id,
+      description: `${deletedEmployee.employeeNo} を削除`,
     });
 
     revalidatePath("/employees");

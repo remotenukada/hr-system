@@ -2,6 +2,7 @@ import Image from "next/image";
 import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
+import { logAudit } from "@/lib/audit-log";
 import {
   Gender,
   EmploymentType,
@@ -65,7 +66,7 @@ export default async function EmployeeEditPage({ params }: Props) {
     const employmentInsuranceNo = formData.get("employmentInsuranceNo") as string;
     const photoPath = formData.get("photoPath") as string;
 
-    await prisma.employee.update({
+    const updatedEmployee = await prisma.employee.update({
       where: {
         id,
       },
@@ -105,7 +106,16 @@ export default async function EmployeeEditPage({ params }: Props) {
       },
     });
 
+
+    await logAudit({
+      action: "EMPLOYEE_UPDATED",
+      targetType: "Employee",
+      targetId: updatedEmployee.id,
+      description: `${updatedEmployee.employeeNo} を更新`,
+    });
+
     revalidatePath(`/employees/${id}`);
+
     revalidatePath("/employees");
 
     redirect(`/employees/${id}`);

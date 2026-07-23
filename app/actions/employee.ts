@@ -1,6 +1,7 @@
 'use server'
 
 import { prisma } from '@/lib/prisma'
+import { logAudit } from '@/lib/audit-log'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import {
@@ -51,7 +52,7 @@ export async function createEmployee(formData: FormData) {
   const employmentInsuranceNo =
     formData.get('employmentInsuranceNo') as string
 
-  await prisma.employee.create({
+  const employee = await prisma.employee.create({
     data: {
       employeeNo,
 
@@ -107,7 +108,16 @@ export async function createEmployee(formData: FormData) {
     },
   })
 
+
+  await logAudit({
+    action: 'EMPLOYEE_CREATED',
+    targetType: 'Employee',
+    targetId: employee.id,
+    description: `${employee.employeeNo} ${employee.lastName} ${employee.firstName} を登録`,
+  })
+
   revalidatePath('/employees')
+
 
   redirect('/employees')
 }

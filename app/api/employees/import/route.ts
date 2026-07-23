@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { logAudit } from "@/lib/audit-log";
 
 export async function POST(req: Request) {
   try {
@@ -25,13 +26,20 @@ export async function POST(req: Request) {
     for (const row of dataRows) {
       const cols = row.split(",");
 
-      await prisma.employee.create({
+      const employee = await prisma.employee.create({
         data: {
           employeeNo: cols[0]?.replaceAll('"', ''),
           lastName: cols[1]?.replaceAll('"', ''),
           firstName: cols[2]?.replaceAll('"', ''),
           email: cols[3]?.replaceAll('"', ''),
         },
+      });
+
+      await logAudit({
+        action: "EMPLOYEE_IMPORTED",
+        targetType: "Employee",
+        targetId: employee.id,
+        description: `${employee.employeeNo} をCSVインポート`,
       });
     }
 
