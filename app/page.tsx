@@ -427,6 +427,13 @@ export default async function DashboardPage() {
               >
                 部署管理
               </Link>
+
+              <Link
+                href="/audit-logs"
+                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50"
+              >
+                監査ログ
+              </Link>
             </div>
           </div>
         )}
