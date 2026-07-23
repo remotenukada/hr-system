@@ -169,6 +169,17 @@ exports.Prisma.EmployeeMyNumberScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.EmployeeSalaryScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  baseSalary: 'baseSalary',
+  allowance: 'allowance',
+  bonus: 'bonus',
+  effectiveFrom: 'effectiveFrom',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.EmployeeRequestScalarFieldEnum = {
   id: 'id',
   title: 'title',
@@ -289,6 +300,7 @@ exports.Prisma.ModelName = {
   Department: 'Department',
   Employee: 'Employee',
   EmployeeMyNumber: 'EmployeeMyNumber',
+  EmployeeSalary: 'EmployeeSalary',
   EmployeeRequest: 'EmployeeRequest',
   RequestAttachment: 'RequestAttachment',
   RequestHistory: 'RequestHistory',
