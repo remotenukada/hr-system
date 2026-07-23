@@ -2,8 +2,15 @@ import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import Link from "next/link";
 import Image from "next/image";
+import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { logAudit } from "@/lib/audit-log";
+import { requireHRManager } from "@/lib/auth-guard";
+import {
+  encryptMyNumber,
+  decryptMyNumber,
+  maskMyNumber,
+} from "@/lib/mynumber";
 
 type Props = {
   params: Promise<{
@@ -71,17 +78,91 @@ function InfoItem({
 export default async function EmployeeDetailPage({ params }: Props) {
   const { id } = await params;
 
+  const session = await auth();
+
+  if (!session?.user) {
+    redirect("/login");
+  }
+
+  const canManageMyNumber =
+    session.user.role === "ADMIN" ||
+    session.user.role === "HR_MANAGER";
+
   const employee = await prisma.employee.findUnique({
     where: {
       id,
     },
     include: {
       department: true,
+      employeeMyNumber: true,
     },
   });
 
   if (!employee) {
     notFound();
+  }
+
+  const maskedMyNumber = employee.employeeMyNumber
+    ? maskMyNumber(
+        decryptMyNumber(employee.employeeMyNumber.encryptedNumber),
+      )
+    : null;
+
+  async function updateMyNumber(formData: FormData) {
+    "use server";
+
+    await requireHRManager();
+
+    const rawMyNumber = String(formData.get("myNumber") || "");
+    const normalizedMyNumber = rawMyNumber.replace(/\D/g, "");
+
+    if (normalizedMyNumber.length !== 12) {
+      throw new Error("マイナンバーは12桁で入力してください。");
+    }
+
+    const currentMyNumber = await prisma.employeeMyNumber.findUnique({
+      where: {
+        employeeId: id,
+      },
+    });
+
+    const beforeMasked = currentMyNumber
+      ? maskMyNumber(decryptMyNumber(currentMyNumber.encryptedNumber))
+      : null;
+
+    const encryptedNumber = encryptMyNumber(normalizedMyNumber);
+    const afterMasked = maskMyNumber(normalizedMyNumber);
+
+    const updatedMyNumber = await prisma.employeeMyNumber.upsert({
+      where: {
+        employeeId: id,
+      },
+      update: {
+        encryptedNumber,
+      },
+      create: {
+        employeeId: id,
+        encryptedNumber,
+      },
+    });
+
+    await logAudit({
+      userId: session.user.id,
+      userName: session.user.name,
+      action: "UPDATE_MYNUMBER",
+      targetType: "Employee",
+      targetId: id,
+      description: `${employee.employeeNo} のマイナンバーを更新`,
+      beforeData: {
+        maskedMyNumber: beforeMasked,
+      },
+      afterData: {
+        maskedMyNumber: afterMasked,
+        recordId: updatedMyNumber.id,
+      },
+    });
+
+    revalidatePath(`/employees/${id}`);
   }
 
   async function deleteEmployee() {
@@ -247,6 +328,49 @@ export default async function EmployeeDetailPage({ params }: Props) {
             />
           </div>
         </section>
+
+        {canManageMyNumber && (
+          <section className="rounded-lg border bg-red-50 p-5">
+            <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-red-800">
+              マイナンバー管理
+            </h2>
+
+            <div className="mb-4 rounded border bg-white p-3">
+              <p className="text-xs font-medium text-gray-500">
+                登録状況
+              </p>
+              <p className="mt-1 text-sm font-semibold text-gray-900">
+                {maskedMyNumber ?? "未登録"}
+              </p>
+              <p className="mt-1 text-xs text-red-600">
+                ※ マイナンバーは暗号化して保存されます。画面には下4桁のみ表示します。
+              </p>
+            </div>
+
+            <form action={updateMyNumber} className="space-y-4">
+              <div>
+                <label className="mb-1 block text-sm font-medium text-gray-700">
+                  マイナンバー
+                </label>
+                <input
+                  name="myNumber"
+                  inputMode="numeric"
+                  maxLength={12}
+                  placeholder="12桁の番号を入力"
+                  className="w-full rounded border bg-white p-2"
+                  required
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="rounded bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
+              >
+                マイナンバーを保存
+              </button>
+            </form>
+          </section>
+        )}
       </div>
     </main>
   );
