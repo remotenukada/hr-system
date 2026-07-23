@@ -243,6 +243,60 @@ export default async function DashboardPage() {
     value: item._count._all,
   }));
 
+  const allRequestsForMonthlyChart = await prisma.employeeRequest.findMany({
+    select: {
+      createdAt: true,
+      status: true,
+    },
+    orderBy: {
+      createdAt: "asc",
+    },
+  });
+
+  const monthlyRequestMap = new Map<
+    string,
+    {
+      total: number;
+      approved: number;
+      rejected: number;
+      pending: number;
+    }
+  >();
+
+  for (const request of allRequestsForMonthlyChart) {
+    const monthKey = request.createdAt.toISOString().slice(0, 7);
+
+    const current = monthlyRequestMap.get(monthKey) ?? {
+      total: 0,
+      approved: 0,
+      rejected: 0,
+      pending: 0,
+    };
+
+    current.total += 1;
+
+    if (request.status === "APPROVED") {
+      current.approved += 1;
+    }
+
+    if (request.status === "REJECTED") {
+      current.rejected += 1;
+    }
+
+    if (request.status === "PENDING") {
+      current.pending += 1;
+    }
+
+    monthlyRequestMap.set(monthKey, current);
+  }
+
+  const monthlyRequestChartItems = Array.from(monthlyRequestMap.entries())
+    .slice(-12)
+    .map(([month, value]) => ({
+      label: month,
+      value: value.total,
+    }));
+
   return (
     <main className="min-h-screen bg-gray-50 p-8">
       <header className="mb-8 flex items-start justify-between border-b pb-6">
@@ -457,6 +511,13 @@ export default async function DashboardPage() {
             <SimpleBarChart
               title="申請ステータス別件数"
               items={requestStatusChartItems}
+            />
+          </div>
+
+          <div className="mt-6">
+            <SimpleBarChart
+              title="月別申請件数"
+              items={monthlyRequestChartItems}
             />
           </div>
         </section>
