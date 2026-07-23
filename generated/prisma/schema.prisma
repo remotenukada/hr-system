@@ -161,3 +161,19 @@ enum EmployeeStatus {
   LEAVE
   RETIRED
 }
+
+model AuditLog {
+  id          String  @id @default(uuid())
+  userId      String?
+  userName    String?
+  action      String
+  targetType  String
+  targetId    String?
+  description String?
+
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([targetType])
+  @@index([userId])
+}

@@ -193,6 +193,17 @@ exports.Prisma.RequestHistoryScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.AuditLogScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  userName: 'userName',
+  action: 'action',
+  targetType: 'targetType',
+  targetId: 'targetId',
+  description: 'description',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -256,7 +267,8 @@ exports.Prisma.ModelName = {
   Employee: 'Employee',
   EmployeeRequest: 'EmployeeRequest',
   RequestAttachment: 'RequestAttachment',
-  RequestHistory: 'RequestHistory'
+  RequestHistory: 'RequestHistory',
+  AuditLog: 'AuditLog'
 };
 
 /**
