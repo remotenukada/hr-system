@@ -24,6 +24,14 @@ export default async function AuditLogsPage({
   const from = params.from?.trim();
   const to = params.to?.trim();
 
+  const exportQuery = new URLSearchParams({
+    ...(q ? { q } : {}),
+    ...(action ? { action } : {}),
+    ...(targetType ? { targetType } : {}),
+    ...(from ? { from } : {}),
+    ...(to ? { to } : {}),
+  }).toString();
+
   const createdAtFilter =
     from || to
       ? {
@@ -109,14 +117,14 @@ export default async function AuditLogsPage({
 
         <div className="flex gap-2">
           <a
-            href="/api/audit-logs/export"
+            href={`/api/audit-logs/export?${exportQuery}`}
             className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50"
           >
             CSVエクスポート
           </a>
 
           <a
-            href="/api/audit-logs/export-excel"
+            href={`/api/audit-logs/export-excel?${exportQuery}`}
             className="rounded bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700"
           >
             Excelエクスポート

@@ -82,7 +82,7 @@ export async function GET(request: Request) {
 
   return new Response(csv, {
     headers: {
-      "Content-Type": "text/csv; charset=utf-8",
+      "Content-Type": "text/csv; charset=utf-8; header=present",
       "Content-Disposition":
         'attachment; filename="audit_logs.csv"',
     },
