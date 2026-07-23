@@ -303,6 +303,14 @@ export default async function EmployeesPage({ searchParams }: Props) {
           </tbody>
         </table>
       </div>
+      <div className="mt-6">
+        <Link
+          href="/"
+          className="text-sm text-blue-600 hover:underline"
+        >
+          ← ダッシュボードに戻る
+        </Link>
+      </div>
     </main>
   );
 }
