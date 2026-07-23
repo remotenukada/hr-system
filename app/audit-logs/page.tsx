@@ -7,6 +7,8 @@ type Props = {
     q?: string;
     action?: string;
     targetType?: string;
+    from?: string;
+    to?: string;
   }>;
 };
 
@@ -19,6 +21,18 @@ export default async function AuditLogsPage({
   const q = params.q?.trim();
   const action = params.action?.trim();
   const targetType = params.targetType?.trim();
+  const from = params.from?.trim();
+  const to = params.to?.trim();
+
+  const createdAtFilter =
+    from || to
+      ? {
+          createdAt: {
+            ...(from ? { gte: new Date(`${from}T00:00:00`) } : {}),
+            ...(to ? { lte: new Date(`${to}T23:59:59`) } : {}),
+          },
+        }
+      : {};
 
   const logs = await prisma.auditLog.findMany({
     where: {
@@ -33,6 +47,7 @@ export default async function AuditLogsPage({
               targetType,
             }
           : {},
+        createdAtFilter,
         q
           ? {
               OR: [
@@ -110,7 +125,7 @@ export default async function AuditLogsPage({
       </div>
 
       <form className="mb-6 rounded-lg border bg-white p-4">
-        <div className="grid gap-3 md:grid-cols-4">
+        <div className="grid gap-3 md:grid-cols-6">
           <input
             name="q"
             defaultValue={q}
@@ -151,6 +166,20 @@ export default async function AuditLogsPage({
               </option>
             ))}
           </select>
+
+          <input
+            type="date"
+            name="from"
+            defaultValue={from}
+            className="rounded border p-2"
+          />
+
+          <input
+            type="date"
+            name="to"
+            defaultValue={to}
+            className="rounded border p-2"
+          />
 
           <button
             type="submit"
