@@ -334,7 +334,7 @@ export default async function DashboardPage() {
         {isAdmin ? (
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
             <StatCard
-              title="総社員数"
+              title="総職員数"
               value={totalEmployees}
               description="登録されている社員数"
               color="blue"
@@ -457,7 +457,7 @@ export default async function DashboardPage() {
               管理者メニュー
             </h3>
             <p className="text-sm text-gray-600">
-              社員マスタ、部署マスタの管理を行います。
+              職員マスタ、部署マスタの管理を行います。
             </p>
 
             <div className="mt-4 flex flex-wrap gap-3">
@@ -465,14 +465,14 @@ export default async function DashboardPage() {
                 href="/employees"
                 className="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
               >
-                社員一覧へ
+                職員一覧へ
               </Link>
 
               <Link
                 href="/employees/new"
                 className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
               >
-                社員登録
+                職員登録
               </Link>
 
               <Link
@@ -540,7 +540,7 @@ export default async function DashboardPage() {
                   <tr className="border-b bg-gray-50 text-left">
                     <th className="p-3">タイトル</th>
                     <th className="p-3">申請者</th>
-                    <th className="p-3">対象社員</th>
+                    <th className="p-3">対象職員</th>
                     <th className="p-3">ステータス</th>
                     <th className="p-3">作成日</th>
                   </tr>
