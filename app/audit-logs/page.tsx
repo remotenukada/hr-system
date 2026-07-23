@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
+import { requireHRManager } from "@/lib/auth-guard";
 
 type Props = {
   searchParams: Promise<{
@@ -12,6 +13,7 @@ type Props = {
 export default async function AuditLogsPage({
   searchParams,
 }: Props) {
+  await requireHRManager();
   const params = await searchParams;
 
   const q = params.q?.trim();

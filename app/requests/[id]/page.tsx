@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { requireManager } from "@/lib/auth-guard";
 
 interface PageProps {
   params: Promise<{
@@ -38,6 +39,8 @@ export default async function RequestDetailPage({ params }: PageProps) {
   async function approveAction(formData: FormData) {
     "use server";
 
+    await requireManager();
+
     const currentSession = await auth();
     const approvalComment =
       formData.get("approvalComment")?.toString() || null;
@@ -68,6 +71,8 @@ export default async function RequestDetailPage({ params }: PageProps) {
   // --- 却下処理（Server Action） ---
   async function rejectAction(formData: FormData) {
     "use server";
+
+    await requireManager();
 
     const currentSession = await auth();
     const rejectionReason =
