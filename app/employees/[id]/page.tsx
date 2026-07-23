@@ -96,6 +96,7 @@ export default async function EmployeeDetailPage({ params }: Props) {
       department: true,
       employeeMyNumber: true,
       employeeSalary: true,
+      leaveBalance: true,
     },
   });
 
@@ -216,6 +217,50 @@ export default async function EmployeeDetailPage({ params }: Props) {
       description: `${employee.employeeNo} の給与を更新`,
       beforeData: currentSalary,
       afterData: updatedSalary,
+    });
+
+    revalidatePath(`/employees/${id}`);
+  }
+
+
+  async function updateLeaveBalance(formData: FormData) {
+    "use server";
+
+    await requireHRManager();
+
+    const grantedDays = Number(formData.get("grantedDays") || 0);
+    const usedDays = Number(formData.get("usedDays") || 0);
+
+    const currentLeave = await prisma.leaveBalance.findUnique({
+      where: {
+        employeeId: id,
+      },
+    });
+
+    const updatedLeave = await prisma.leaveBalance.upsert({
+      where: {
+        employeeId: id,
+      },
+      update: {
+        grantedDays,
+        usedDays,
+      },
+      create: {
+        employeeId: id,
+        grantedDays,
+        usedDays,
+      },
+    });
+
+    await logAudit({
+      userId: session.user.id,
+      userName: session.user.name,
+      action: "UPDATE_LEAVE_BALANCE",
+      targetType: "Employee",
+      targetId: id,
+      description: `${employee.employeeNo} の有給残日数を更新`,
+      beforeData: currentLeave,
+      afterData: updatedLeave,
     });
 
     revalidatePath(`/employees/${id}`);
@@ -384,6 +429,66 @@ export default async function EmployeeDetailPage({ params }: Props) {
             />
           </div>
         </section>
+
+        {canManageMyNumber && (
+          <section className="rounded-lg border bg-blue-50 p-5">
+            <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-blue-800">
+              有給管理
+            </h2>
+
+            <form action={updateLeaveBalance} className="space-y-4">
+              <div>
+                <label className="mb-1 block text-sm font-medium">
+                  付与日数
+                </label>
+
+                <input
+                  type="number"
+                  step="0.5"
+                  name="grantedDays"
+                  defaultValue={employee.leaveBalance?.grantedDays ?? 0}
+                  className="w-full rounded border p-2"
+                />
+              </div>
+
+              <div>
+                <label className="mb-1 block text-sm font-medium">
+                  使用日数
+                </label>
+
+                <input
+                  type="number"
+                  step="0.5"
+                  name="usedDays"
+                  defaultValue={employee.leaveBalance?.usedDays ?? 0}
+                  className="w-full rounded border p-2"
+                />
+              </div>
+
+              <div className="rounded border bg-white p-3">
+                <p className="text-xs text-gray-500">
+                  残日数
+                </p>
+
+                <p className="text-lg font-bold text-blue-700">
+                  {(
+                    (employee.leaveBalance?.grantedDays ?? 0) -
+                    (employee.leaveBalance?.usedDays ?? 0)
+                  ).toFixed(1)}
+                  日
+                </p>
+              </div>
+
+              <button
+                type="submit"
+                className="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+              >
+                有給情報を保存
+              </button>
+            </form>
+          </section>
+        )}
+
 
         {canManageMyNumber && (
           <section className="rounded-lg border bg-green-50 p-5">
