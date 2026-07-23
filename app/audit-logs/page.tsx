@@ -89,12 +89,21 @@ export default async function AuditLogsPage({
           監査ログ
         </h1>
 
-        <a
-          href="/api/audit-logs/export"
-          className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50"
-        >
-          CSVエクスポート
-        </a>
+        <div className="flex gap-2">
+          <a
+            href="/api/audit-logs/export"
+            className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50"
+          >
+            CSVエクスポート
+          </a>
+
+          <a
+            href="/api/audit-logs/export-excel"
+            className="rounded bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700"
+          >
+            Excelエクスポート
+          </a>
+        </div>
       </div>
 
       <form className="mb-6 rounded-lg border bg-white p-4">
