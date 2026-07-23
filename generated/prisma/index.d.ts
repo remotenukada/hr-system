@@ -8796,8 +8796,18 @@ export namespace Prisma {
 
   export type AggregateEmployeeRequest = {
     _count: EmployeeRequestCountAggregateOutputType | null
+    _avg: EmployeeRequestAvgAggregateOutputType | null
+    _sum: EmployeeRequestSumAggregateOutputType | null
     _min: EmployeeRequestMinAggregateOutputType | null
     _max: EmployeeRequestMaxAggregateOutputType | null
+  }
+
+  export type EmployeeRequestAvgAggregateOutputType = {
+    leaveDays: number | null
+  }
+
+  export type EmployeeRequestSumAggregateOutputType = {
+    leaveDays: number | null
   }
 
   export type EmployeeRequestMinAggregateOutputType = {
@@ -8810,6 +8820,9 @@ export namespace Prisma {
     rejectionReason: string | null
     userId: string | null
     employeeId: string | null
+    leaveStartDate: Date | null
+    leaveEndDate: Date | null
+    leaveDays: number | null
     createdAt: Date | null
   }
 
@@ -8823,6 +8836,9 @@ export namespace Prisma {
     rejectionReason: string | null
     userId: string | null
     employeeId: string | null
+    leaveStartDate: Date | null
+    leaveEndDate: Date | null
+    leaveDays: number | null
     createdAt: Date | null
   }
 
@@ -8836,10 +8852,21 @@ export namespace Prisma {
     rejectionReason: number
     userId: number
     employeeId: number
+    leaveStartDate: number
+    leaveEndDate: number
+    leaveDays: number
     createdAt: number
     _all: number
   }
 
+
+  export type EmployeeRequestAvgAggregateInputType = {
+    leaveDays?: true
+  }
+
+  export type EmployeeRequestSumAggregateInputType = {
+    leaveDays?: true
+  }
 
   export type EmployeeRequestMinAggregateInputType = {
     id?: true
@@ -8851,6 +8878,9 @@ export namespace Prisma {
     rejectionReason?: true
     userId?: true
     employeeId?: true
+    leaveStartDate?: true
+    leaveEndDate?: true
+    leaveDays?: true
     createdAt?: true
   }
 
@@ -8864,6 +8894,9 @@ export namespace Prisma {
     rejectionReason?: true
     userId?: true
     employeeId?: true
+    leaveStartDate?: true
+    leaveEndDate?: true
+    leaveDays?: true
     createdAt?: true
   }
 
@@ -8877,6 +8910,9 @@ export namespace Prisma {
     rejectionReason?: true
     userId?: true
     employeeId?: true
+    leaveStartDate?: true
+    leaveEndDate?: true
+    leaveDays?: true
     createdAt?: true
     _all?: true
   }
@@ -8919,6 +8955,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: EmployeeRequestAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: EmployeeRequestSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: EmployeeRequestMinAggregateInputType
@@ -8949,6 +8997,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: EmployeeRequestCountAggregateInputType | true
+    _avg?: EmployeeRequestAvgAggregateInputType
+    _sum?: EmployeeRequestSumAggregateInputType
     _min?: EmployeeRequestMinAggregateInputType
     _max?: EmployeeRequestMaxAggregateInputType
   }
@@ -8963,8 +9013,13 @@ export namespace Prisma {
     rejectionReason: string | null
     userId: string | null
     employeeId: string | null
+    leaveStartDate: Date | null
+    leaveEndDate: Date | null
+    leaveDays: number | null
     createdAt: Date
     _count: EmployeeRequestCountAggregateOutputType | null
+    _avg: EmployeeRequestAvgAggregateOutputType | null
+    _sum: EmployeeRequestSumAggregateOutputType | null
     _min: EmployeeRequestMinAggregateOutputType | null
     _max: EmployeeRequestMaxAggregateOutputType | null
   }
@@ -8993,6 +9048,9 @@ export namespace Prisma {
     rejectionReason?: boolean
     userId?: boolean
     employeeId?: boolean
+    leaveStartDate?: boolean
+    leaveEndDate?: boolean
+    leaveDays?: boolean
     createdAt?: boolean
     user?: boolean | EmployeeRequest$userArgs<ExtArgs>
     employee?: boolean | EmployeeRequest$employeeArgs<ExtArgs>
@@ -9011,6 +9069,9 @@ export namespace Prisma {
     rejectionReason?: boolean
     userId?: boolean
     employeeId?: boolean
+    leaveStartDate?: boolean
+    leaveEndDate?: boolean
+    leaveDays?: boolean
     createdAt?: boolean
     user?: boolean | EmployeeRequest$userArgs<ExtArgs>
     employee?: boolean | EmployeeRequest$employeeArgs<ExtArgs>
@@ -9026,6 +9087,9 @@ export namespace Prisma {
     rejectionReason?: boolean
     userId?: boolean
     employeeId?: boolean
+    leaveStartDate?: boolean
+    leaveEndDate?: boolean
+    leaveDays?: boolean
     createdAt?: boolean
     user?: boolean | EmployeeRequest$userArgs<ExtArgs>
     employee?: boolean | EmployeeRequest$employeeArgs<ExtArgs>
@@ -9041,10 +9105,13 @@ export namespace Prisma {
     rejectionReason?: boolean
     userId?: boolean
     employeeId?: boolean
+    leaveStartDate?: boolean
+    leaveEndDate?: boolean
+    leaveDays?: boolean
     createdAt?: boolean
   }
 
-  export type EmployeeRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "comment" | "type" | "status" | "approvalComment" | "rejectionReason" | "userId" | "employeeId" | "createdAt", ExtArgs["result"]["employeeRequest"]>
+  export type EmployeeRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "comment" | "type" | "status" | "approvalComment" | "rejectionReason" | "userId" | "employeeId" | "leaveStartDate" | "leaveEndDate" | "leaveDays" | "createdAt", ExtArgs["result"]["employeeRequest"]>
   export type EmployeeRequestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | EmployeeRequest$userArgs<ExtArgs>
     employee?: boolean | EmployeeRequest$employeeArgs<ExtArgs>
@@ -9079,6 +9146,9 @@ export namespace Prisma {
       rejectionReason: string | null
       userId: string | null
       employeeId: string | null
+      leaveStartDate: Date | null
+      leaveEndDate: Date | null
+      leaveDays: number | null
       createdAt: Date
     }, ExtArgs["result"]["employeeRequest"]>
     composites: {}
@@ -9516,6 +9586,9 @@ export namespace Prisma {
     readonly rejectionReason: FieldRef<"EmployeeRequest", 'String'>
     readonly userId: FieldRef<"EmployeeRequest", 'String'>
     readonly employeeId: FieldRef<"EmployeeRequest", 'String'>
+    readonly leaveStartDate: FieldRef<"EmployeeRequest", 'DateTime'>
+    readonly leaveEndDate: FieldRef<"EmployeeRequest", 'DateTime'>
+    readonly leaveDays: FieldRef<"EmployeeRequest", 'Float'>
     readonly createdAt: FieldRef<"EmployeeRequest", 'DateTime'>
   }
     
@@ -13389,6 +13462,9 @@ export namespace Prisma {
     rejectionReason: 'rejectionReason',
     userId: 'userId',
     employeeId: 'employeeId',
+    leaveStartDate: 'leaveStartDate',
+    leaveEndDate: 'leaveEndDate',
+    leaveDays: 'leaveDays',
     createdAt: 'createdAt'
   };
 
@@ -14117,6 +14193,9 @@ export namespace Prisma {
     rejectionReason?: StringNullableFilter<"EmployeeRequest"> | string | null
     userId?: StringNullableFilter<"EmployeeRequest"> | string | null
     employeeId?: StringNullableFilter<"EmployeeRequest"> | string | null
+    leaveStartDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
+    leaveEndDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
+    leaveDays?: FloatNullableFilter<"EmployeeRequest"> | number | null
     createdAt?: DateTimeFilter<"EmployeeRequest"> | Date | string
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     employee?: XOR<EmployeeNullableScalarRelationFilter, EmployeeWhereInput> | null
@@ -14134,6 +14213,9 @@ export namespace Prisma {
     rejectionReason?: SortOrderInput | SortOrder
     userId?: SortOrderInput | SortOrder
     employeeId?: SortOrderInput | SortOrder
+    leaveStartDate?: SortOrderInput | SortOrder
+    leaveEndDate?: SortOrderInput | SortOrder
+    leaveDays?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     user?: UserOrderByWithRelationInput
     employee?: EmployeeOrderByWithRelationInput
@@ -14154,6 +14236,9 @@ export namespace Prisma {
     rejectionReason?: StringNullableFilter<"EmployeeRequest"> | string | null
     userId?: StringNullableFilter<"EmployeeRequest"> | string | null
     employeeId?: StringNullableFilter<"EmployeeRequest"> | string | null
+    leaveStartDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
+    leaveEndDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
+    leaveDays?: FloatNullableFilter<"EmployeeRequest"> | number | null
     createdAt?: DateTimeFilter<"EmployeeRequest"> | Date | string
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     employee?: XOR<EmployeeNullableScalarRelationFilter, EmployeeWhereInput> | null
@@ -14171,10 +14256,15 @@ export namespace Prisma {
     rejectionReason?: SortOrderInput | SortOrder
     userId?: SortOrderInput | SortOrder
     employeeId?: SortOrderInput | SortOrder
+    leaveStartDate?: SortOrderInput | SortOrder
+    leaveEndDate?: SortOrderInput | SortOrder
+    leaveDays?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     _count?: EmployeeRequestCountOrderByAggregateInput
+    _avg?: EmployeeRequestAvgOrderByAggregateInput
     _max?: EmployeeRequestMaxOrderByAggregateInput
     _min?: EmployeeRequestMinOrderByAggregateInput
+    _sum?: EmployeeRequestSumOrderByAggregateInput
   }
 
   export type EmployeeRequestScalarWhereWithAggregatesInput = {
@@ -14190,6 +14280,9 @@ export namespace Prisma {
     rejectionReason?: StringNullableWithAggregatesFilter<"EmployeeRequest"> | string | null
     userId?: StringNullableWithAggregatesFilter<"EmployeeRequest"> | string | null
     employeeId?: StringNullableWithAggregatesFilter<"EmployeeRequest"> | string | null
+    leaveStartDate?: DateTimeNullableWithAggregatesFilter<"EmployeeRequest"> | Date | string | null
+    leaveEndDate?: DateTimeNullableWithAggregatesFilter<"EmployeeRequest"> | Date | string | null
+    leaveDays?: FloatNullableWithAggregatesFilter<"EmployeeRequest"> | number | null
     createdAt?: DateTimeWithAggregatesFilter<"EmployeeRequest"> | Date | string
   }
 
@@ -14908,6 +15001,9 @@ export namespace Prisma {
     status?: $Enums.RequestStatus
     approvalComment?: string | null
     rejectionReason?: string | null
+    leaveStartDate?: Date | string | null
+    leaveEndDate?: Date | string | null
+    leaveDays?: number | null
     createdAt?: Date | string
     user?: UserCreateNestedOneWithoutRequestsInput
     employee?: EmployeeCreateNestedOneWithoutRequestsInput
@@ -14925,6 +15021,9 @@ export namespace Prisma {
     rejectionReason?: string | null
     userId?: string | null
     employeeId?: string | null
+    leaveStartDate?: Date | string | null
+    leaveEndDate?: Date | string | null
+    leaveDays?: number | null
     createdAt?: Date | string
     histories?: RequestHistoryUncheckedCreateNestedManyWithoutRequestInput
     attachments?: RequestAttachmentUncheckedCreateNestedManyWithoutRequestInput
@@ -14938,6 +15037,9 @@ export namespace Prisma {
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
     approvalComment?: NullableStringFieldUpdateOperationsInput | string | null
     rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneWithoutRequestsNestedInput
     employee?: EmployeeUpdateOneWithoutRequestsNestedInput
@@ -14955,6 +15057,9 @@ export namespace Prisma {
     rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     histories?: RequestHistoryUncheckedUpdateManyWithoutRequestNestedInput
     attachments?: RequestAttachmentUncheckedUpdateManyWithoutRequestNestedInput
@@ -14970,6 +15075,9 @@ export namespace Prisma {
     rejectionReason?: string | null
     userId?: string | null
     employeeId?: string | null
+    leaveStartDate?: Date | string | null
+    leaveEndDate?: Date | string | null
+    leaveDays?: number | null
     createdAt?: Date | string
   }
 
@@ -14981,6 +15089,9 @@ export namespace Prisma {
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
     approvalComment?: NullableStringFieldUpdateOperationsInput | string | null
     rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -14994,6 +15105,9 @@ export namespace Prisma {
     rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -15750,6 +15864,17 @@ export namespace Prisma {
     not?: NestedEnumRequestStatusFilter<$PrismaModel> | $Enums.RequestStatus
   }
 
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
   export type UserNullableScalarRelationFilter = {
     is?: UserWhereInput | null
     isNot?: UserWhereInput | null
@@ -15790,7 +15915,14 @@ export namespace Prisma {
     rejectionReason?: SortOrder
     userId?: SortOrder
     employeeId?: SortOrder
+    leaveStartDate?: SortOrder
+    leaveEndDate?: SortOrder
+    leaveDays?: SortOrder
     createdAt?: SortOrder
+  }
+
+  export type EmployeeRequestAvgOrderByAggregateInput = {
+    leaveDays?: SortOrder
   }
 
   export type EmployeeRequestMaxOrderByAggregateInput = {
@@ -15803,6 +15935,9 @@ export namespace Prisma {
     rejectionReason?: SortOrder
     userId?: SortOrder
     employeeId?: SortOrder
+    leaveStartDate?: SortOrder
+    leaveEndDate?: SortOrder
+    leaveDays?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -15816,7 +15951,14 @@ export namespace Prisma {
     rejectionReason?: SortOrder
     userId?: SortOrder
     employeeId?: SortOrder
+    leaveStartDate?: SortOrder
+    leaveEndDate?: SortOrder
+    leaveDays?: SortOrder
     createdAt?: SortOrder
+  }
+
+  export type EmployeeRequestSumOrderByAggregateInput = {
+    leaveDays?: SortOrder
   }
 
   export type EnumRequestTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -15837,6 +15979,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumRequestStatusFilter<$PrismaModel>
     _max?: NestedEnumRequestStatusFilter<$PrismaModel>
+  }
+
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
   export type IntNullableFilter<$PrismaModel = never> = {
@@ -16413,6 +16571,14 @@ export namespace Prisma {
     set?: $Enums.RequestStatus
   }
 
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type UserUpdateOneWithoutRequestsNestedInput = {
     create?: XOR<UserCreateWithoutRequestsInput, UserUncheckedCreateWithoutRequestsInput>
     connectOrCreate?: UserCreateOrConnectWithoutRequestsInput
@@ -16788,6 +16954,17 @@ export namespace Prisma {
     not?: NestedEnumRequestStatusFilter<$PrismaModel> | $Enums.RequestStatus
   }
 
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
   export type NestedEnumRequestTypeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.RequestType | EnumRequestTypeFieldRefInput<$PrismaModel>
     in?: $Enums.RequestType[] | ListEnumRequestTypeFieldRefInput<$PrismaModel>
@@ -16808,6 +16985,22 @@ export namespace Prisma {
     _max?: NestedEnumRequestStatusFilter<$PrismaModel>
   }
 
+  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -16822,17 +17015,6 @@ export namespace Prisma {
     _sum?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedIntNullableFilter<$PrismaModel>
     _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type NestedFloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedEnumRequestHistoryActionFilter<$PrismaModel = never> = {
@@ -16883,6 +17065,9 @@ export namespace Prisma {
     status?: $Enums.RequestStatus
     approvalComment?: string | null
     rejectionReason?: string | null
+    leaveStartDate?: Date | string | null
+    leaveEndDate?: Date | string | null
+    leaveDays?: number | null
     createdAt?: Date | string
     employee?: EmployeeCreateNestedOneWithoutRequestsInput
     histories?: RequestHistoryCreateNestedManyWithoutRequestInput
@@ -16898,6 +17083,9 @@ export namespace Prisma {
     approvalComment?: string | null
     rejectionReason?: string | null
     employeeId?: string | null
+    leaveStartDate?: Date | string | null
+    leaveEndDate?: Date | string | null
+    leaveDays?: number | null
     createdAt?: Date | string
     histories?: RequestHistoryUncheckedCreateNestedManyWithoutRequestInput
     attachments?: RequestAttachmentUncheckedCreateNestedManyWithoutRequestInput
@@ -16942,6 +17130,9 @@ export namespace Prisma {
     rejectionReason?: StringNullableFilter<"EmployeeRequest"> | string | null
     userId?: StringNullableFilter<"EmployeeRequest"> | string | null
     employeeId?: StringNullableFilter<"EmployeeRequest"> | string | null
+    leaveStartDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
+    leaveEndDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
+    leaveDays?: FloatNullableFilter<"EmployeeRequest"> | number | null
     createdAt?: DateTimeFilter<"EmployeeRequest"> | Date | string
   }
 
@@ -17083,6 +17274,9 @@ export namespace Prisma {
     status?: $Enums.RequestStatus
     approvalComment?: string | null
     rejectionReason?: string | null
+    leaveStartDate?: Date | string | null
+    leaveEndDate?: Date | string | null
+    leaveDays?: number | null
     createdAt?: Date | string
     user?: UserCreateNestedOneWithoutRequestsInput
     histories?: RequestHistoryCreateNestedManyWithoutRequestInput
@@ -17098,6 +17292,9 @@ export namespace Prisma {
     approvalComment?: string | null
     rejectionReason?: string | null
     userId?: string | null
+    leaveStartDate?: Date | string | null
+    leaveEndDate?: Date | string | null
+    leaveDays?: number | null
     createdAt?: Date | string
     histories?: RequestHistoryUncheckedCreateNestedManyWithoutRequestInput
     attachments?: RequestAttachmentUncheckedCreateNestedManyWithoutRequestInput
@@ -17999,6 +18196,9 @@ export namespace Prisma {
     status?: $Enums.RequestStatus
     approvalComment?: string | null
     rejectionReason?: string | null
+    leaveStartDate?: Date | string | null
+    leaveEndDate?: Date | string | null
+    leaveDays?: number | null
     createdAt?: Date | string
     user?: UserCreateNestedOneWithoutRequestsInput
     employee?: EmployeeCreateNestedOneWithoutRequestsInput
@@ -18015,6 +18215,9 @@ export namespace Prisma {
     rejectionReason?: string | null
     userId?: string | null
     employeeId?: string | null
+    leaveStartDate?: Date | string | null
+    leaveEndDate?: Date | string | null
+    leaveDays?: number | null
     createdAt?: Date | string
     histories?: RequestHistoryUncheckedCreateNestedManyWithoutRequestInput
   }
@@ -18043,6 +18246,9 @@ export namespace Prisma {
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
     approvalComment?: NullableStringFieldUpdateOperationsInput | string | null
     rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneWithoutRequestsNestedInput
     employee?: EmployeeUpdateOneWithoutRequestsNestedInput
@@ -18059,6 +18265,9 @@ export namespace Prisma {
     rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     histories?: RequestHistoryUncheckedUpdateManyWithoutRequestNestedInput
   }
@@ -18071,6 +18280,9 @@ export namespace Prisma {
     status?: $Enums.RequestStatus
     approvalComment?: string | null
     rejectionReason?: string | null
+    leaveStartDate?: Date | string | null
+    leaveEndDate?: Date | string | null
+    leaveDays?: number | null
     createdAt?: Date | string
     user?: UserCreateNestedOneWithoutRequestsInput
     employee?: EmployeeCreateNestedOneWithoutRequestsInput
@@ -18087,6 +18299,9 @@ export namespace Prisma {
     rejectionReason?: string | null
     userId?: string | null
     employeeId?: string | null
+    leaveStartDate?: Date | string | null
+    leaveEndDate?: Date | string | null
+    leaveDays?: number | null
     createdAt?: Date | string
     attachments?: RequestAttachmentUncheckedCreateNestedManyWithoutRequestInput
   }
@@ -18115,6 +18330,9 @@ export namespace Prisma {
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
     approvalComment?: NullableStringFieldUpdateOperationsInput | string | null
     rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneWithoutRequestsNestedInput
     employee?: EmployeeUpdateOneWithoutRequestsNestedInput
@@ -18131,6 +18349,9 @@ export namespace Prisma {
     rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     attachments?: RequestAttachmentUncheckedUpdateManyWithoutRequestNestedInput
   }
@@ -18144,6 +18365,9 @@ export namespace Prisma {
     approvalComment?: string | null
     rejectionReason?: string | null
     employeeId?: string | null
+    leaveStartDate?: Date | string | null
+    leaveEndDate?: Date | string | null
+    leaveDays?: number | null
     createdAt?: Date | string
   }
 
@@ -18155,6 +18379,9 @@ export namespace Prisma {
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
     approvalComment?: NullableStringFieldUpdateOperationsInput | string | null
     rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employee?: EmployeeUpdateOneWithoutRequestsNestedInput
     histories?: RequestHistoryUpdateManyWithoutRequestNestedInput
@@ -18170,6 +18397,9 @@ export namespace Prisma {
     approvalComment?: NullableStringFieldUpdateOperationsInput | string | null
     rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     histories?: RequestHistoryUncheckedUpdateManyWithoutRequestNestedInput
     attachments?: RequestAttachmentUncheckedUpdateManyWithoutRequestNestedInput
@@ -18184,6 +18414,9 @@ export namespace Prisma {
     approvalComment?: NullableStringFieldUpdateOperationsInput | string | null
     rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
     employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -18304,6 +18537,9 @@ export namespace Prisma {
     approvalComment?: string | null
     rejectionReason?: string | null
     userId?: string | null
+    leaveStartDate?: Date | string | null
+    leaveEndDate?: Date | string | null
+    leaveDays?: number | null
     createdAt?: Date | string
   }
 
@@ -18315,6 +18551,9 @@ export namespace Prisma {
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
     approvalComment?: NullableStringFieldUpdateOperationsInput | string | null
     rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneWithoutRequestsNestedInput
     histories?: RequestHistoryUpdateManyWithoutRequestNestedInput
@@ -18330,6 +18569,9 @@ export namespace Prisma {
     approvalComment?: NullableStringFieldUpdateOperationsInput | string | null
     rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
+    leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     histories?: RequestHistoryUncheckedUpdateManyWithoutRequestNestedInput
     attachments?: RequestAttachmentUncheckedUpdateManyWithoutRequestNestedInput
@@ -18344,6 +18586,9 @@ export namespace Prisma {
     approvalComment?: NullableStringFieldUpdateOperationsInput | string | null
     rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
+    leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
+import { requireHRManager } from "@/lib/auth-guard";
 import { logAudit } from "@/lib/audit-log";
 import {
   Gender,
@@ -22,6 +23,8 @@ function toDateInputValue(date: Date | null) {
 }
 
 export default async function EmployeeEditPage({ params }: Props) {
+  await requireHRManager();
+
   const { id } = await params;
 
   const employee = await prisma.employee.findUnique({

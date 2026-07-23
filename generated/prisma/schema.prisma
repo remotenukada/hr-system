@@ -173,6 +173,10 @@ model EmployeeRequest {
   employeeId String?
   employee   Employee? @relation(fields: [employeeId], references: [id], onDelete: SetNull)
 
+  leaveStartDate DateTime?
+  leaveEndDate   DateTime?
+  leaveDays      Float?
+
   histories   RequestHistory[]
   attachments RequestAttachment[]
 

@@ -1,8 +1,11 @@
+import { requireHRManager } from "@/lib/auth-guard";
 import Link from 'next/link'
 import { createEmployee } from '@/app/actions/employee'
 import { prisma } from '@/lib/prisma'
 
 export default async function NewEmployeePage() {
+  await requireHRManager();
+
   const departments = await prisma.department.findMany({
     orderBy: { name: 'asc' },
   })

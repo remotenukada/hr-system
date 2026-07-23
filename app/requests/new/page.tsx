@@ -62,6 +62,15 @@ async function createRequest(formData: FormData) {
   const comment = String(formData.get("comment") || "");
   const type = String(formData.get("type") || "");
 
+  const leaveStartDate =
+    String(formData.get("leaveStartDate") || "") || null;
+
+  const leaveEndDate =
+    String(formData.get("leaveEndDate") || "") || null;
+
+  const leaveDays =
+    Number(formData.get("leaveDays") || 0) || null;
+
   const currentUser = session.user.email
     ? await prisma.user.findUnique({
         where: {
@@ -92,6 +101,14 @@ async function createRequest(formData: FormData) {
         | "OTHER",
 
       userId: currentUser?.id ?? null,
+
+      leaveStartDate:
+        leaveStartDate ? new Date(leaveStartDate) : null,
+
+      leaveEndDate:
+        leaveEndDate ? new Date(leaveEndDate) : null,
+
+      leaveDays,
 
       attachments:
         attachments.length > 0
@@ -155,6 +172,44 @@ export default async function NewRequestPage() {
             <option value="PAID_LEAVE">有給休暇</option>
             <option value="OTHER">その他</option>
           </select>
+        </div>
+
+
+        <div>
+          <label className="mb-1 block font-medium">
+            有給開始日
+          </label>
+
+          <input
+            type="date"
+            name="leaveStartDate"
+            className="w-full rounded border p-2"
+          />
+        </div>
+
+        <div>
+          <label className="mb-1 block font-medium">
+            有給終了日
+          </label>
+
+          <input
+            type="date"
+            name="leaveEndDate"
+            className="w-full rounded border p-2"
+          />
+        </div>
+
+        <div>
+          <label className="mb-1 block font-medium">
+            取得日数
+          </label>
+
+          <input
+            type="number"
+            step="0.5"
+            name="leaveDays"
+            className="w-full rounded border p-2"
+          />
         </div>
 
         <div>

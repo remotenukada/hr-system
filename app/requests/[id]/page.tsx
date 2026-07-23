@@ -50,7 +50,7 @@ export default async function RequestDetailPage({ params }: PageProps) {
       currentSession?.user?.email ||
       "管理者";
 
-    await prisma.employeeRequest.update({
+    const updatedRequest = await prisma.employeeRequest.update({
       where: { id },
       data: {
         status: "APPROVED",
@@ -63,6 +63,32 @@ export default async function RequestDetailPage({ params }: PageProps) {
         },
       },
     });
+
+    if (
+      updatedRequest.type === "PAID_LEAVE" &&
+      updatedRequest.employeeId &&
+      updatedRequest.leaveDays
+    ) {
+      const leaveBalance =
+        await prisma.leaveBalance.findUnique({
+          where: {
+            employeeId: updatedRequest.employeeId,
+          },
+        });
+
+      if (leaveBalance) {
+        await prisma.leaveBalance.update({
+          where: {
+            employeeId: updatedRequest.employeeId,
+          },
+          data: {
+            usedDays:
+              leaveBalance.usedDays +
+              updatedRequest.leaveDays,
+          },
+        });
+      }
+    }
 
     revalidatePath(`/requests/${id}`);
     revalidatePath("/requests");

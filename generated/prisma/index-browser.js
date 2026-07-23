@@ -199,6 +199,9 @@ exports.Prisma.EmployeeRequestScalarFieldEnum = {
   rejectionReason: 'rejectionReason',
   userId: 'userId',
   employeeId: 'employeeId',
+  leaveStartDate: 'leaveStartDate',
+  leaveEndDate: 'leaveEndDate',
+  leaveDays: 'leaveDays',
   createdAt: 'createdAt'
 };
 

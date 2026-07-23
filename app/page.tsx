@@ -104,6 +104,11 @@ export default async function DashboardPage() {
     user.role === "HR_MANAGER" ||
     user.role === "MANAGER";
 
+  const canViewEmployees =
+    user.role === "ADMIN" ||
+    user.role === "HR_MANAGER" ||
+    user.role === "MANAGER";
+
   const [
     totalEmployees,
     activeEmployees,
@@ -474,6 +479,26 @@ export default async function DashboardPage() {
 
               <Link href="/requests">
                 申請一覧
+              </Link>
+            </div>
+          </div>
+        )}
+
+        {canViewEmployees && !isHRManager && (
+          <div className="rounded-lg border bg-white p-6 shadow-sm">
+            <h3 className="mb-3 text-lg font-semibold text-gray-800">
+              職員閲覧メニュー
+            </h3>
+            <p className="text-sm text-gray-600">
+              職員情報の閲覧を行います。
+            </p>
+
+            <div className="mt-4 flex flex-wrap gap-3">
+              <Link
+                href="/employees"
+                className="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+              >
+                職員一覧へ
               </Link>
             </div>
           </div>
