@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 
@@ -205,6 +206,7 @@ export default async function EmployeesPage({ searchParams }: Props) {
         <table className="w-full border-collapse text-sm">
           <thead>
             <tr className="bg-gray-50 text-left">
+              <th className="border-b p-3">写真</th>
               <th className="border-b p-3">社員番号</th>
               <th className="border-b p-3">氏名</th>
               <th className="border-b p-3">部署</th>
@@ -219,7 +221,7 @@ export default async function EmployeesPage({ searchParams }: Props) {
             {employees.length === 0 ? (
               <tr>
                 <td
-                  colSpan={7}
+                  colSpan={8}
                   className="p-8 text-center text-gray-500"
                 >
                   該当する社員が見つかりません。
@@ -231,7 +233,23 @@ export default async function EmployeesPage({ searchParams }: Props) {
                   key={employee.id}
                   className="transition-colors hover:bg-gray-50"
                 >
-                  <td className="border-b p-3 font-mono">
+                  
+                  <td className="border-b p-3">
+                    {employee.photoPath ? (
+                      <Image
+                        src={employee.photoPath}
+                        alt={`${employee.lastName} ${employee.firstName}`}
+                        width={40}
+                        height={40}
+                        className="h-10 w-10 rounded-full object-cover border"
+                      />
+                    ) : (
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-xs text-gray-400 border">
+                        なし
+                      </div>
+                    )}
+                  </td>
+<td className="border-b p-3 font-mono">
                     {employee.employeeNo}
                   </td>
 
