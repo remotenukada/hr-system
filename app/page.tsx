@@ -99,6 +99,11 @@ export default async function DashboardPage() {
     user.role === "ADMIN" ||
     user.role === "HR_MANAGER";
 
+  const canApprove =
+    user.role === "ADMIN" ||
+    user.role === "HR_MANAGER" ||
+    user.role === "MANAGER";
+
   const [
     totalEmployees,
     activeEmployees,
@@ -420,7 +425,7 @@ export default async function DashboardPage() {
         )}
       </section>
 
-      <section className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <section className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div className="rounded-lg border bg-white p-6 shadow-sm">
           <h3 className="mb-3 text-lg font-semibold text-gray-800">
             申請管理
@@ -452,6 +457,27 @@ export default async function DashboardPage() {
             </Link>
           </div>
         </div>
+
+        {canApprove && (
+          <div className="rounded-lg border bg-white p-6 shadow-sm">
+            <h3 className="mb-3 text-lg font-semibold text-gray-800">
+              承認メニュー
+            </h3>
+            <p className="text-sm text-gray-600">
+              承認待ちの申請を確認し、承認・却下を行います。
+            </p>
+
+            <div className="mt-4 flex flex-wrap gap-3">
+              <Link href="/requests?status=PENDING">
+                承認待ち申請
+              </Link>
+
+              <Link href="/requests">
+                申請一覧
+              </Link>
+            </div>
+          </div>
+        )}
 
         {isHRManager && (
           <div className="rounded-lg border bg-white p-6 shadow-sm">
