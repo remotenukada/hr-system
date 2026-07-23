@@ -21,6 +21,9 @@ export default async function RequestDetailPage({ params }: PageProps) {
   const request = await prisma.employeeRequest.findUnique({
     where: { id },
     include: {
+      attachments: {
+        orderBy: { createdAt: "desc" },
+      },
       histories: {
         orderBy: { createdAt: "desc" },
       },
@@ -110,6 +113,44 @@ export default async function RequestDetailPage({ params }: PageProps) {
       <div className="bg-white p-6 rounded border mb-8">
         <h2 className="text-xl font-bold mb-2">申請内容</h2>
         <p className="text-gray-700 whitespace-pre-wrap">{request.comment || "コメントなし"}</p>
+      </div>
+
+      <div className="bg-white p-6 rounded border mb-8">
+        <h2 className="text-xl font-bold mb-4">添付ファイル</h2>
+
+        {request.attachments.length === 0 ? (
+          <p className="text-gray-500">添付ファイルはありません。</p>
+        ) : (
+          <ul className="space-y-3">
+            {request.attachments.map((attachment) => (
+              <li
+                key={attachment.id}
+                className="flex items-center justify-between rounded border bg-gray-50 p-3"
+              >
+                <div>
+                  <p className="font-medium text-gray-800">
+                    {attachment.fileName}
+                  </p>
+                  <p className="text-xs text-gray-500">
+                    {attachment.mimeType || "unknown"} /{" "}
+                    {attachment.fileSize
+                      ? `${Math.ceil(attachment.fileSize / 1024)} KB`
+                      : "-"}
+                  </p>
+                </div>
+
+                <a
+                  href={attachment.filePath}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded border bg-white px-3 py-1 text-xs font-medium text-gray-700 hover:bg-gray-100"
+                >
+                  開く
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
 
       {/* 管理者用：承認・却下フォーム */}
