@@ -174,6 +174,16 @@ exports.Prisma.EmployeeRequestScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.RequestAttachmentScalarFieldEnum = {
+  id: 'id',
+  fileName: 'fileName',
+  filePath: 'filePath',
+  fileSize: 'fileSize',
+  mimeType: 'mimeType',
+  requestId: 'requestId',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.RequestHistoryScalarFieldEnum = {
   id: 'id',
   action: 'action',
@@ -245,6 +255,7 @@ exports.Prisma.ModelName = {
   Department: 'Department',
   Employee: 'Employee',
   EmployeeRequest: 'EmployeeRequest',
+  RequestAttachment: 'RequestAttachment',
   RequestHistory: 'RequestHistory'
 };
 
