@@ -62,6 +62,14 @@ async function createRequest(formData: FormData) {
   const comment = String(formData.get("comment") || "");
   const type = String(formData.get("type") || "");
 
+  const currentUser = session.user.email
+    ? await prisma.user.findUnique({
+        where: {
+          email: session.user.email,
+        },
+      })
+    : null;
+
   const files = formData
     .getAll("attachments")
     .filter((file): file is File => file instanceof File && file.size > 0);
@@ -79,7 +87,7 @@ async function createRequest(formData: FormData) {
       comment,
       type: type as "ONBOARDING" | "DEPARTMENT_CHANGE" | "OTHER",
 
-      userId: session.user.id,
+      userId: currentUser?.id ?? null,
 
       attachments:
         attachments.length > 0
