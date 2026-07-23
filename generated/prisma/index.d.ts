@@ -55,6 +55,8 @@ export type AuditLog = $Result.DefaultSelection<Prisma.$AuditLogPayload>
 export namespace $Enums {
   export const UserRole: {
   ADMIN: 'ADMIN',
+  HR_MANAGER: 'HR_MANAGER',
+  MANAGER: 'MANAGER',
   USER: 'USER'
 };
 

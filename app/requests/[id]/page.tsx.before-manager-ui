@@ -101,10 +101,7 @@ export default async function RequestDetailPage({ params }: PageProps) {
     revalidatePath("/requests");
   }
 
-  const canApprove =
-    session.user.role === "ADMIN" ||
-    session.user.role === "HR_MANAGER" ||
-    session.user.role === "MANAGER";
+  const isAdmin = session.user.role === "ADMIN";
 
   return (
     <main className="p-8 max-w-4xl mx-auto">
@@ -162,9 +159,9 @@ export default async function RequestDetailPage({ params }: PageProps) {
       </div>
 
       {/* 管理者用：承認・却下フォーム */}
-      {canApprove && request.status === "PENDING" && (
+      {isAdmin && request.status === "PENDING" && (
         <div className="bg-gray-50 p-6 rounded border mb-8 space-y-6">
-          <h2 className="text-xl font-bold">承認操作</h2>
+          <h2 className="text-xl font-bold">管理者操作</h2>
 
           {/* 承認フォーム */}
           <form action={approveAction} className="space-y-2">

@@ -95,7 +95,9 @@ export default async function DashboardPage() {
   }
 
   const user = session.user;
-  const isAdmin = user.role === "ADMIN";
+  const isHRManager =
+    user.role === "ADMIN" ||
+    user.role === "HR_MANAGER";
 
   const [
     totalEmployees,
@@ -331,7 +333,7 @@ export default async function DashboardPage() {
           ダッシュボード
         </h2>
 
-        {isAdmin ? (
+        {isHRManager ? (
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
             <StatCard
               title="総職員数"
@@ -451,10 +453,10 @@ export default async function DashboardPage() {
           </div>
         </div>
 
-        {isAdmin && (
+        {isHRManager && (
           <div className="rounded-lg border bg-white p-6 shadow-sm">
             <h3 className="mb-3 text-lg font-semibold text-gray-800">
-              管理者メニュー
+              人事管理メニュー
             </h3>
             <p className="text-sm text-gray-600">
               職員マスタ、部署マスタの管理を行います。
@@ -493,7 +495,7 @@ export default async function DashboardPage() {
         )}
       </section>
 
-      {isAdmin && (
+      {isHRManager && (
         <section className="mt-8">
           <h2 className="mb-4 text-xl font-semibold text-gray-800">
             グラフ
@@ -523,7 +525,7 @@ export default async function DashboardPage() {
         </section>
       )}
 
-      {isAdmin && (
+      {isHRManager && (
         <section className="mt-8 rounded-lg border bg-white p-6 shadow-sm">
           <h3 className="mb-4 text-lg font-semibold text-gray-800">
             最近の申請
