@@ -125,6 +125,13 @@ export default async function EmployeeDetailPage({ params }: Props) {
         </div>
 
         <div className="flex gap-3">
+          <a
+            href={`/api/employees/${employee.id}/pdf`}
+            className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50"
+          >
+            PDF出力
+          </a>
+
           <Link
             href={`/employees/${employee.id}/edit`}
             className="rounded bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-200"
