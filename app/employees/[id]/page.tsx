@@ -95,6 +95,7 @@ export default async function EmployeeDetailPage({ params }: Props) {
     include: {
       department: true,
       employeeMyNumber: true,
+      employeeSalary: true,
     },
   });
 
@@ -160,6 +161,61 @@ export default async function EmployeeDetailPage({ params }: Props) {
         maskedMyNumber: afterMasked,
         recordId: updatedMyNumber.id,
       },
+    });
+
+    revalidatePath(`/employees/${id}`);
+  }
+
+
+  async function updateSalary(formData: FormData) {
+    "use server";
+
+    await requireHRManager();
+
+    const baseSalary =
+      Number(formData.get("baseSalary") || 0);
+
+    const allowance =
+      Number(formData.get("allowance") || 0);
+
+    const bonus =
+      Number(formData.get("bonus") || 0);
+
+    const currentSalary =
+      await prisma.employeeSalary.findUnique({
+        where: {
+          employeeId: id,
+        },
+      });
+
+    const updatedSalary =
+      await prisma.employeeSalary.upsert({
+        where: {
+          employeeId: id,
+        },
+        update: {
+          baseSalary,
+          allowance,
+          bonus,
+        },
+        create: {
+          employeeId: id,
+          baseSalary,
+          allowance,
+          bonus,
+          effectiveFrom: new Date(),
+        },
+      });
+
+    await logAudit({
+      userId: session.user.id,
+      userName: session.user.name,
+      action: "UPDATE_SALARY",
+      targetType: "Employee",
+      targetId: id,
+      description: `${employee.employeeNo} の給与を更新`,
+      beforeData: currentSalary,
+      afterData: updatedSalary,
     });
 
     revalidatePath(`/employees/${id}`);
@@ -328,6 +384,65 @@ export default async function EmployeeDetailPage({ params }: Props) {
             />
           </div>
         </section>
+
+        {canManageMyNumber && (
+          <section className="rounded-lg border bg-green-50 p-5">
+            <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-green-800">
+              給与情報
+            </h2>
+
+            <form action={updateSalary} className="grid grid-cols-1 gap-4 md:grid-cols-3">
+              <div>
+                <label className="mb-1 block text-sm font-medium">
+                  基本給
+                </label>
+
+                <input
+                  type="number"
+                  name="baseSalary"
+                  defaultValue={employee.employeeSalary?.baseSalary ?? ""}
+                  className="w-full rounded border p-2"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="mb-1 block text-sm font-medium">
+                  手当
+                </label>
+
+                <input
+                  type="number"
+                  name="allowance"
+                  defaultValue={employee.employeeSalary?.allowance ?? 0}
+                  className="w-full rounded border p-2"
+                />
+              </div>
+
+              <div>
+                <label className="mb-1 block text-sm font-medium">
+                  賞与
+                </label>
+
+                <input
+                  type="number"
+                  name="bonus"
+                  defaultValue={employee.employeeSalary?.bonus ?? 0}
+                  className="w-full rounded border p-2"
+                />
+              </div>
+
+              <div className="md:col-span-3">
+                <button
+                  type="submit"
+                  className="rounded bg-green-600 px-4 py-2 text-white hover:bg-green-700"
+                >
+                  給与情報を保存
+                </button>
+              </div>
+            </form>
+          </section>
+        )}
 
         {canManageMyNumber && (
           <section className="rounded-lg border bg-red-50 p-5">
