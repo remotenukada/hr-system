@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
@@ -408,9 +409,11 @@ export default async function EmployeeEditPage({ params }: Props) {
                   <p className="mb-2 text-xs font-medium text-slate-700">
                     現在の写真
                   </p>
-                  <img
+                  <Image
                     src={employee.photoPath}
                     alt="プロフィール写真"
+                    width={80}
+                    height={80}
                     className="h-20 w-20 rounded-full object-cover border"
                   />
                 </div>

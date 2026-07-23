@@ -1,6 +1,7 @@
 import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import Link from "next/link";
+import Image from "next/image";
 import { prisma } from "@/lib/prisma";
 
 type Props = {
@@ -135,6 +136,27 @@ export default async function EmployeeDetailPage({ params }: Props) {
       </div>
 
       <div className="space-y-8">
+        <section className="rounded-lg border bg-gray-50 p-5">
+          <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
+            プロフィール写真
+          </h2>
+
+          <div className="flex justify-center">
+            {employee.photoPath ? (
+              <Image
+                src={employee.photoPath}
+                alt={`${employee.lastName} ${employee.firstName}`}
+                width={200}
+                height={200}
+                className="h-48 w-48 rounded-full object-cover border shadow-sm"
+              />
+            ) : (
+              <div className="flex h-48 w-48 items-center justify-center rounded-full border bg-gray-200 text-sm text-gray-500">
+                写真なし
+              </div>
+            )}
+          </div>
+        </section>
         <section className="rounded-lg border bg-gray-50 p-5">
           <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
             基本情報
