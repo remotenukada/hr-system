@@ -539,6 +539,12 @@ export default async function DashboardPage() {
                 有給管理一覧
               </Link>
               <Link
+                href="/leave-grants"
+                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50"
+              >
+                有給付与履歴
+              </Link>
+              <Link
                 href="/audit-logs"
                 className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50"
               >
