@@ -61,6 +61,7 @@ async function createRequest(formData: FormData) {
   const title = String(formData.get("title") || "");
   const comment = String(formData.get("comment") || "");
   const type = String(formData.get("type") || "");
+  const employeeId = String(formData.get("employeeId") || "") || null;
 
   const leaveStartDate =
     String(formData.get("leaveStartDate") || "") || null;
@@ -101,6 +102,8 @@ async function createRequest(formData: FormData) {
         | "OTHER",
 
       userId: currentUser?.id ?? null,
+
+      employeeId,
 
       leaveStartDate:
         leaveStartDate ? new Date(leaveStartDate) : null,
@@ -143,6 +146,12 @@ export default async function NewRequestPage() {
     redirect("/login");
   }
 
+  const employees = await prisma.employee.findMany({
+    orderBy: {
+      employeeNo: "asc",
+    },
+  });
+
   return (
     <main className="p-8 max-w-2xl mx-auto">
       <h1 className="mb-6 text-3xl font-bold">
@@ -158,6 +167,30 @@ export default async function NewRequestPage() {
             className="w-full rounded border p-2"
             required
           />
+        </div>
+
+        <div>
+          <label className="mb-1 block font-medium">
+            対象職員
+          </label>
+
+          <select
+            name="employeeId"
+            className="w-full rounded border bg-white p-2"
+          >
+            <option value="">
+              対象職員を選択
+            </option>
+
+            {employees.map((employee) => (
+              <option
+                key={employee.id}
+                value={employee.id}
+              >
+                {employee.employeeNo} {employee.lastName} {employee.firstName}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div>

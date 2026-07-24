@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { requireManager } from "@/lib/auth-guard";
+import { logAudit } from "@/lib/audit-log";
 
 interface PageProps {
   params: Promise<{
@@ -50,6 +51,16 @@ export default async function RequestDetailPage({ params }: PageProps) {
       currentSession?.user?.email ||
       "管理者";
 
+    const latestRequest = await prisma.employeeRequest.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (!latestRequest || latestRequest.status !== "PENDING") {
+      return;
+    }
+
     const updatedRequest = await prisma.employeeRequest.update({
       where: { id },
       data: {
@@ -76,18 +87,33 @@ export default async function RequestDetailPage({ params }: PageProps) {
           },
         });
 
-      if (leaveBalance) {
-        await prisma.leaveBalance.update({
+      const updatedLeaveBalance =
+        await prisma.leaveBalance.upsert({
           where: {
             employeeId: updatedRequest.employeeId,
           },
-          data: {
+          update: {
             usedDays:
-              leaveBalance.usedDays +
+              (leaveBalance?.usedDays ?? 0) +
               updatedRequest.leaveDays,
           },
+          create: {
+            employeeId: updatedRequest.employeeId,
+            grantedDays: 0,
+            usedDays: updatedRequest.leaveDays,
+          },
         });
-      }
+
+      await logAudit({
+        userId: currentSession?.user?.id,
+        userName: actorName,
+        action: "PAID_LEAVE_APPROVED",
+        targetType: "Employee",
+        targetId: updatedRequest.employeeId,
+        description: `有給休暇申請を承認しました。取得日数: ${updatedRequest.leaveDays}日`,
+        beforeData: leaveBalance,
+        afterData: updatedLeaveBalance,
+      });
     }
 
     revalidatePath(`/requests/${id}`);
