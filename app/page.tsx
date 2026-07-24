@@ -518,28 +518,31 @@ export default async function DashboardPage() {
                 href="/employees"
                 className="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
               >
-                職員一覧へ
+                社員一覧へ
               </Link>
-
               <Link
                 href="/employees/new"
-                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50"
               >
-                職員登録
+                新規社員登録
               </Link>
-
               <Link
                 href="/departments"
-                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50"
               >
-                部署管理
+                部署一覧
               </Link>
-
+              <Link
+                href="/leave-balances"
+                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50"
+              >
+                有給管理一覧
+              </Link>
               <Link
                 href="/audit-logs"
                 className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50"
               >
-                監査ログ
+                監査ログ一覧
               </Link>
             </div>
           </div>
