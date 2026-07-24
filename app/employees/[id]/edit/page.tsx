@@ -8,6 +8,7 @@ import {
   Gender,
   EmploymentType,
   EmployeeStatus,
+  EmploymentAction,
 } from "@/generated/prisma";
 import PhotoUploadField from "./PhotoUploadField";
 
@@ -109,6 +110,29 @@ export default async function EmployeeEditPage({ params }: Props) {
       },
     });
 
+
+
+    if (
+      employee.status !== "RETIRED" &&
+      updatedEmployee.status === "RETIRED"
+    ) {
+      await prisma.employmentHistory.create({
+        data: {
+          employeeId: updatedEmployee.id,
+          action: EmploymentAction.RETIRED,
+          effectiveDate:
+            updatedEmployee.retirementDate ?? new Date(),
+          reason: "退職",
+        },
+      });
+
+      await logAudit({
+        action: "EMPLOYEE_RETIRED",
+        targetType: "Employee",
+        targetId: updatedEmployee.id,
+        description: `${updatedEmployee.employeeNo} を退職処理`,
+      });
+    }
 
     await logAudit({
       action: "EMPLOYEE_UPDATED",
