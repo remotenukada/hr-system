@@ -113,6 +113,49 @@ export default async function EmployeeEditPage({ params }: Props) {
 
 
     if (
+      employee.status !== "LEAVE" &&
+      updatedEmployee.status === "LEAVE"
+    ) {
+      await prisma.employmentHistory.create({
+        data: {
+          employeeId: updatedEmployee.id,
+          action: EmploymentAction.LEAVE_STARTED,
+          effectiveDate: new Date(),
+          reason: "休職",
+        },
+      });
+
+      await logAudit({
+        action: "EMPLOYEE_LEAVE_STARTED",
+        targetType: "Employee",
+        targetId: updatedEmployee.id,
+        description: `${updatedEmployee.employeeNo} を休職処理`,
+      });
+    }
+
+    if (
+      employee.status === "LEAVE" &&
+      updatedEmployee.status === "ACTIVE"
+    ) {
+      await prisma.employmentHistory.create({
+        data: {
+          employeeId: updatedEmployee.id,
+          action: EmploymentAction.RETURNED,
+          effectiveDate: new Date(),
+          reason: "復職",
+        },
+      });
+
+      await logAudit({
+        action: "EMPLOYEE_RETURNED",
+        targetType: "Employee",
+        targetId: updatedEmployee.id,
+        description: `${updatedEmployee.employeeNo} を復職処理`,
+      });
+    }
+
+
+    if (
       employee.status !== "RETIRED" &&
       updatedEmployee.status === "RETIRED"
     ) {
