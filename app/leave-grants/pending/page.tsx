@@ -4,7 +4,19 @@ import { requireHRManager } from "@/lib/auth-guard";
 import {
   calculateAnnualGrantDays,
   calculateRuleBasedNextGrantDate,
+  getLeaveGrantCategory,
 } from "@/lib/leave-annual-grant";
+
+function formatEmploymentType(type: string | null) {
+  const labels: Record<string, string> = {
+    FULL_TIME: "常勤",
+    CONTRACT: "契約",
+    PART_TIME: "非常勤",
+    TEMPORARY: "派遣",
+  };
+
+  return type ? labels[type] ?? type : "-";
+}
 
 export default async function PendingLeaveGrantPage() {
   await requireHRManager();
@@ -34,12 +46,21 @@ export default async function PendingLeaveGrantPage() {
           </p>
         </div>
 
-        <Link
-          href="/leave-grants"
-          className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50"
-        >
-          有給付与履歴へ
-        </Link>
+        <div className="flex gap-3">
+          <Link
+            href="/leave-balances"
+            className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50"
+          >
+            有給管理一覧へ
+          </Link>
+
+          <Link
+            href="/leave-grants"
+            className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50"
+          >
+            有給付与履歴へ
+          </Link>
+        </div>
       </div>
 
       <div className="overflow-x-auto rounded-lg border bg-white">
@@ -51,44 +72,92 @@ export default async function PendingLeaveGrantPage() {
               <th className="border-b p-3">雇用形態</th>
               <th className="border-b p-3">次回付与日</th>
               <th className="border-b p-3">予定付与日数</th>
+              <th className="border-b p-3">判定</th>
+              <th className="border-b p-3">詳細</th>
             </tr>
           </thead>
 
           <tbody>
-            {employees.map((employee) => (
-              <tr
-                key={employee.id}
-                className="border-b"
-              >
-                <td className="p-3">
-                  {employee.employeeNo}
-                </td>
-
-                <td className="p-3">
-                  {employee.lastName} {employee.firstName}
-                </td>
-
-                <td className="p-3">
-                  {employee.employmentType ?? "-"}
-                </td>
-
-                <td className="p-3">
-                  {employee.hireDate
-                    ? calculateRuleBasedNextGrantDate(
-                        new Date(employee.hireDate),
-                      ).toLocaleDateString("ja-JP")
-                    : "-"}
-                </td>
-
-                <td className="p-3 font-medium text-green-700">
-                  {employee.hireDate
-                    ? `${calculateAnnualGrantDays(
-                        new Date(employee.hireDate),
-                      )}日`
-                    : "-"}
+            {employees.length === 0 ? (
+              <tr>
+                <td
+                  colSpan={7}
+                  className="p-8 text-center text-gray-500"
+                >
+                  対象者はいません。
                 </td>
               </tr>
-            ))}
+            ) : (
+              employees.map((employee) => {
+                const hireDate = employee.hireDate
+                  ? new Date(employee.hireDate)
+                  : null;
+
+                const nextGrantDate = hireDate
+                  ? calculateRuleBasedNextGrantDate(hireDate)
+                  : null;
+
+                const plannedDays = hireDate
+                  ? calculateAnnualGrantDays(hireDate)
+                  : null;
+
+                const category = hireDate
+                  ? getLeaveGrantCategory(hireDate)
+                  : "-";
+
+                return (
+                  <tr
+                    key={employee.id}
+                    className="border-b hover:bg-gray-50"
+                  >
+                    <td className="p-3">
+                      {employee.employeeNo}
+                    </td>
+
+                    <td className="p-3 font-medium">
+                      {employee.lastName} {employee.firstName}
+                    </td>
+
+                    <td className="p-3">
+                      {formatEmploymentType(employee.employmentType)}
+                    </td>
+
+                    <td className="p-3">
+                      {nextGrantDate
+                        ? nextGrantDate.toLocaleDateString("ja-JP")
+                        : "-"}
+                    </td>
+
+                    <td className="p-3 font-medium text-green-700">
+                      {plannedDays !== null
+                        ? `${plannedDays}日`
+                        : "-"}
+                    </td>
+
+                    <td className="p-3">
+                      <span
+                        className={
+                          category === "初回付与"
+                            ? "rounded bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700"
+                            : "rounded bg-green-50 px-2 py-1 text-xs font-medium text-green-700"
+                        }
+                      >
+                        {category}
+                      </span>
+                    </td>
+
+                    <td className="p-3">
+                      <Link
+                        href={`/employees/${employee.id}`}
+                        className="text-blue-600 hover:underline"
+                      >
+                        社員詳細
+                      </Link>
+                    </td>
+                  </tr>
+                );
+              })
+            )}
           </tbody>
         </table>
       </div>
