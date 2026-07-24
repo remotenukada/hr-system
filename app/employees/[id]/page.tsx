@@ -116,6 +116,17 @@ export default async function EmployeeDetailPage({ params }: Props) {
       )
     : null;
 
+  if (employee.employeeMyNumber && canManageMyNumber) {
+    await logAudit({
+      userId: session.user.id,
+      userName: session.user.name,
+      action: "VIEW_MYNUMBER",
+      targetType: "Employee",
+      targetId: employee.id,
+      description: `${employee.employeeNo} のマイナンバーを閲覧`,
+    });
+  }
+
   async function updateMyNumber(formData: FormData) {
     "use server";
 
