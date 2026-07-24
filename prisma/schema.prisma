@@ -83,11 +83,12 @@ model Employee {
 
   requests EmployeeRequest[]
 
-  createdAt        DateTime          @default(now())
-  employeeMyNumber EmployeeMyNumber?
-  employeeSalary   EmployeeSalary?
-  salaryHistories  SalaryHistory[]
-  leaveBalance     LeaveBalance?
+  createdAt           DateTime            @default(now())
+  employeeMyNumber    EmployeeMyNumber?
+  employeeSalary      EmployeeSalary?
+  salaryHistories     SalaryHistory[]
+  leaveBalance        LeaveBalance?
+  employmentHistories EmploymentHistory[]
 }
 
 enum RequestType {
@@ -108,6 +109,25 @@ enum RequestHistoryAction {
   UPDATED
   APPROVED
   REJECTED
+}
+
+model EmploymentHistory {
+  id String @id @default(uuid())
+
+  employeeId String
+
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  action EmploymentAction
+
+  effectiveDate DateTime
+
+  reason String?
+
+  createdAt DateTime @default(now())
+
+  @@index([employeeId])
+  @@index([effectiveDate])
 }
 
 model EmployeeMyNumber {
@@ -231,6 +251,13 @@ enum EmploymentType {
   CONTRACT
   PART_TIME
   TEMPORARY
+}
+
+enum EmploymentAction {
+  HIRED
+  LEAVE_STARTED
+  RETURNED
+  RETIRED
 }
 
 enum EmployeeStatus {

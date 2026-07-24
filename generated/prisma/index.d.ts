@@ -29,6 +29,11 @@ export type Department = $Result.DefaultSelection<Prisma.$DepartmentPayload>
  */
 export type Employee = $Result.DefaultSelection<Prisma.$EmployeePayload>
 /**
+ * Model EmploymentHistory
+ * 
+ */
+export type EmploymentHistory = $Result.DefaultSelection<Prisma.$EmploymentHistoryPayload>
+/**
  * Model EmployeeMyNumber
  * 
  */
@@ -131,6 +136,16 @@ export const EmploymentType: {
 export type EmploymentType = (typeof EmploymentType)[keyof typeof EmploymentType]
 
 
+export const EmploymentAction: {
+  HIRED: 'HIRED',
+  LEAVE_STARTED: 'LEAVE_STARTED',
+  RETURNED: 'RETURNED',
+  RETIRED: 'RETIRED'
+};
+
+export type EmploymentAction = (typeof EmploymentAction)[keyof typeof EmploymentAction]
+
+
 export const EmployeeStatus: {
   ACTIVE: 'ACTIVE',
   LEAVE: 'LEAVE',
@@ -164,6 +179,10 @@ export const RequestHistoryAction: typeof $Enums.RequestHistoryAction
 export type EmploymentType = $Enums.EmploymentType
 
 export const EmploymentType: typeof $Enums.EmploymentType
+
+export type EmploymentAction = $Enums.EmploymentAction
+
+export const EmploymentAction: typeof $Enums.EmploymentAction
 
 export type EmployeeStatus = $Enums.EmployeeStatus
 
@@ -319,6 +338,16 @@ export class PrismaClient<
     * ```
     */
   get employee(): Prisma.EmployeeDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.employmentHistory`: Exposes CRUD operations for the **EmploymentHistory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EmploymentHistories
+    * const employmentHistories = await prisma.employmentHistory.findMany()
+    * ```
+    */
+  get employmentHistory(): Prisma.EmploymentHistoryDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.employeeMyNumber`: Exposes CRUD operations for the **EmployeeMyNumber** model.
@@ -836,6 +865,7 @@ export namespace Prisma {
     User: 'User',
     Department: 'Department',
     Employee: 'Employee',
+    EmploymentHistory: 'EmploymentHistory',
     EmployeeMyNumber: 'EmployeeMyNumber',
     EmployeeSalary: 'EmployeeSalary',
     SalaryHistory: 'SalaryHistory',
@@ -859,7 +889,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "department" | "employee" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog"
+      modelProps: "user" | "department" | "employee" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1082,6 +1112,80 @@ export namespace Prisma {
           count: {
             args: Prisma.EmployeeCountArgs<ExtArgs>
             result: $Utils.Optional<EmployeeCountAggregateOutputType> | number
+          }
+        }
+      }
+      EmploymentHistory: {
+        payload: Prisma.$EmploymentHistoryPayload<ExtArgs>
+        fields: Prisma.EmploymentHistoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EmploymentHistoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentHistoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EmploymentHistoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentHistoryPayload>
+          }
+          findFirst: {
+            args: Prisma.EmploymentHistoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentHistoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EmploymentHistoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentHistoryPayload>
+          }
+          findMany: {
+            args: Prisma.EmploymentHistoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentHistoryPayload>[]
+          }
+          create: {
+            args: Prisma.EmploymentHistoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentHistoryPayload>
+          }
+          createMany: {
+            args: Prisma.EmploymentHistoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EmploymentHistoryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentHistoryPayload>[]
+          }
+          delete: {
+            args: Prisma.EmploymentHistoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentHistoryPayload>
+          }
+          update: {
+            args: Prisma.EmploymentHistoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentHistoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.EmploymentHistoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EmploymentHistoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EmploymentHistoryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentHistoryPayload>[]
+          }
+          upsert: {
+            args: Prisma.EmploymentHistoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentHistoryPayload>
+          }
+          aggregate: {
+            args: Prisma.EmploymentHistoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEmploymentHistory>
+          }
+          groupBy: {
+            args: Prisma.EmploymentHistoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EmploymentHistoryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EmploymentHistoryCountArgs<ExtArgs>
+            result: $Utils.Optional<EmploymentHistoryCountAggregateOutputType> | number
           }
         }
       }
@@ -1788,6 +1892,7 @@ export namespace Prisma {
     user?: UserOmit
     department?: DepartmentOmit
     employee?: EmployeeOmit
+    employmentHistory?: EmploymentHistoryOmit
     employeeMyNumber?: EmployeeMyNumberOmit
     employeeSalary?: EmployeeSalaryOmit
     salaryHistory?: SalaryHistoryOmit
@@ -1940,11 +2045,13 @@ export namespace Prisma {
   export type EmployeeCountOutputType = {
     requests: number
     salaryHistories: number
+    employmentHistories: number
   }
 
   export type EmployeeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     requests?: boolean | EmployeeCountOutputTypeCountRequestsArgs
     salaryHistories?: boolean | EmployeeCountOutputTypeCountSalaryHistoriesArgs
+    employmentHistories?: boolean | EmployeeCountOutputTypeCountEmploymentHistoriesArgs
   }
 
   // Custom InputTypes
@@ -1970,6 +2077,13 @@ export namespace Prisma {
    */
   export type EmployeeCountOutputTypeCountSalaryHistoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SalaryHistoryWhereInput
+  }
+
+  /**
+   * EmployeeCountOutputType without action
+   */
+  export type EmployeeCountOutputTypeCountEmploymentHistoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmploymentHistoryWhereInput
   }
 
 
@@ -4468,6 +4582,7 @@ export namespace Prisma {
     employeeSalary?: boolean | Employee$employeeSalaryArgs<ExtArgs>
     salaryHistories?: boolean | Employee$salaryHistoriesArgs<ExtArgs>
     leaveBalance?: boolean | Employee$leaveBalanceArgs<ExtArgs>
+    employmentHistories?: boolean | Employee$employmentHistoriesArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["employee"]>
 
@@ -4559,6 +4674,7 @@ export namespace Prisma {
     employeeSalary?: boolean | Employee$employeeSalaryArgs<ExtArgs>
     salaryHistories?: boolean | Employee$salaryHistoriesArgs<ExtArgs>
     leaveBalance?: boolean | Employee$leaveBalanceArgs<ExtArgs>
+    employmentHistories?: boolean | Employee$employmentHistoriesArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EmployeeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4577,6 +4693,7 @@ export namespace Prisma {
       employeeSalary: Prisma.$EmployeeSalaryPayload<ExtArgs> | null
       salaryHistories: Prisma.$SalaryHistoryPayload<ExtArgs>[]
       leaveBalance: Prisma.$LeaveBalancePayload<ExtArgs> | null
+      employmentHistories: Prisma.$EmploymentHistoryPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5002,6 +5119,7 @@ export namespace Prisma {
     employeeSalary<T extends Employee$employeeSalaryArgs<ExtArgs> = {}>(args?: Subset<T, Employee$employeeSalaryArgs<ExtArgs>>): Prisma__EmployeeSalaryClient<$Result.GetResult<Prisma.$EmployeeSalaryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     salaryHistories<T extends Employee$salaryHistoriesArgs<ExtArgs> = {}>(args?: Subset<T, Employee$salaryHistoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SalaryHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     leaveBalance<T extends Employee$leaveBalanceArgs<ExtArgs> = {}>(args?: Subset<T, Employee$leaveBalanceArgs<ExtArgs>>): Prisma__LeaveBalanceClient<$Result.GetResult<Prisma.$LeaveBalancePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    employmentHistories<T extends Employee$employmentHistoriesArgs<ExtArgs> = {}>(args?: Subset<T, Employee$employmentHistoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5579,6 +5697,30 @@ export namespace Prisma {
   }
 
   /**
+   * Employee.employmentHistories
+   */
+  export type Employee$employmentHistoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentHistory
+     */
+    select?: EmploymentHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentHistory
+     */
+    omit?: EmploymentHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentHistoryInclude<ExtArgs> | null
+    where?: EmploymentHistoryWhereInput
+    orderBy?: EmploymentHistoryOrderByWithRelationInput | EmploymentHistoryOrderByWithRelationInput[]
+    cursor?: EmploymentHistoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmploymentHistoryScalarFieldEnum | EmploymentHistoryScalarFieldEnum[]
+  }
+
+  /**
    * Employee without action
    */
   export type EmployeeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5594,6 +5736,1082 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: EmployeeInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model EmploymentHistory
+   */
+
+  export type AggregateEmploymentHistory = {
+    _count: EmploymentHistoryCountAggregateOutputType | null
+    _min: EmploymentHistoryMinAggregateOutputType | null
+    _max: EmploymentHistoryMaxAggregateOutputType | null
+  }
+
+  export type EmploymentHistoryMinAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    action: $Enums.EmploymentAction | null
+    effectiveDate: Date | null
+    reason: string | null
+    createdAt: Date | null
+  }
+
+  export type EmploymentHistoryMaxAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    action: $Enums.EmploymentAction | null
+    effectiveDate: Date | null
+    reason: string | null
+    createdAt: Date | null
+  }
+
+  export type EmploymentHistoryCountAggregateOutputType = {
+    id: number
+    employeeId: number
+    action: number
+    effectiveDate: number
+    reason: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type EmploymentHistoryMinAggregateInputType = {
+    id?: true
+    employeeId?: true
+    action?: true
+    effectiveDate?: true
+    reason?: true
+    createdAt?: true
+  }
+
+  export type EmploymentHistoryMaxAggregateInputType = {
+    id?: true
+    employeeId?: true
+    action?: true
+    effectiveDate?: true
+    reason?: true
+    createdAt?: true
+  }
+
+  export type EmploymentHistoryCountAggregateInputType = {
+    id?: true
+    employeeId?: true
+    action?: true
+    effectiveDate?: true
+    reason?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type EmploymentHistoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmploymentHistory to aggregate.
+     */
+    where?: EmploymentHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmploymentHistories to fetch.
+     */
+    orderBy?: EmploymentHistoryOrderByWithRelationInput | EmploymentHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EmploymentHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmploymentHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmploymentHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EmploymentHistories
+    **/
+    _count?: true | EmploymentHistoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EmploymentHistoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EmploymentHistoryMaxAggregateInputType
+  }
+
+  export type GetEmploymentHistoryAggregateType<T extends EmploymentHistoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateEmploymentHistory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEmploymentHistory[P]>
+      : GetScalarType<T[P], AggregateEmploymentHistory[P]>
+  }
+
+
+
+
+  export type EmploymentHistoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmploymentHistoryWhereInput
+    orderBy?: EmploymentHistoryOrderByWithAggregationInput | EmploymentHistoryOrderByWithAggregationInput[]
+    by: EmploymentHistoryScalarFieldEnum[] | EmploymentHistoryScalarFieldEnum
+    having?: EmploymentHistoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EmploymentHistoryCountAggregateInputType | true
+    _min?: EmploymentHistoryMinAggregateInputType
+    _max?: EmploymentHistoryMaxAggregateInputType
+  }
+
+  export type EmploymentHistoryGroupByOutputType = {
+    id: string
+    employeeId: string
+    action: $Enums.EmploymentAction
+    effectiveDate: Date
+    reason: string | null
+    createdAt: Date
+    _count: EmploymentHistoryCountAggregateOutputType | null
+    _min: EmploymentHistoryMinAggregateOutputType | null
+    _max: EmploymentHistoryMaxAggregateOutputType | null
+  }
+
+  type GetEmploymentHistoryGroupByPayload<T extends EmploymentHistoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EmploymentHistoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EmploymentHistoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EmploymentHistoryGroupByOutputType[P]>
+            : GetScalarType<T[P], EmploymentHistoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EmploymentHistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    action?: boolean
+    effectiveDate?: boolean
+    reason?: boolean
+    createdAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["employmentHistory"]>
+
+  export type EmploymentHistorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    action?: boolean
+    effectiveDate?: boolean
+    reason?: boolean
+    createdAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["employmentHistory"]>
+
+  export type EmploymentHistorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    action?: boolean
+    effectiveDate?: boolean
+    reason?: boolean
+    createdAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["employmentHistory"]>
+
+  export type EmploymentHistorySelectScalar = {
+    id?: boolean
+    employeeId?: boolean
+    action?: boolean
+    effectiveDate?: boolean
+    reason?: boolean
+    createdAt?: boolean
+  }
+
+  export type EmploymentHistoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "action" | "effectiveDate" | "reason" | "createdAt", ExtArgs["result"]["employmentHistory"]>
+  export type EmploymentHistoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+  export type EmploymentHistoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+  export type EmploymentHistoryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+
+  export type $EmploymentHistoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EmploymentHistory"
+    objects: {
+      employee: Prisma.$EmployeePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      employeeId: string
+      action: $Enums.EmploymentAction
+      effectiveDate: Date
+      reason: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["employmentHistory"]>
+    composites: {}
+  }
+
+  type EmploymentHistoryGetPayload<S extends boolean | null | undefined | EmploymentHistoryDefaultArgs> = $Result.GetResult<Prisma.$EmploymentHistoryPayload, S>
+
+  type EmploymentHistoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EmploymentHistoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EmploymentHistoryCountAggregateInputType | true
+    }
+
+  export interface EmploymentHistoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EmploymentHistory'], meta: { name: 'EmploymentHistory' } }
+    /**
+     * Find zero or one EmploymentHistory that matches the filter.
+     * @param {EmploymentHistoryFindUniqueArgs} args - Arguments to find a EmploymentHistory
+     * @example
+     * // Get one EmploymentHistory
+     * const employmentHistory = await prisma.employmentHistory.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EmploymentHistoryFindUniqueArgs>(args: SelectSubset<T, EmploymentHistoryFindUniqueArgs<ExtArgs>>): Prisma__EmploymentHistoryClient<$Result.GetResult<Prisma.$EmploymentHistoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EmploymentHistory that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EmploymentHistoryFindUniqueOrThrowArgs} args - Arguments to find a EmploymentHistory
+     * @example
+     * // Get one EmploymentHistory
+     * const employmentHistory = await prisma.employmentHistory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EmploymentHistoryFindUniqueOrThrowArgs>(args: SelectSubset<T, EmploymentHistoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EmploymentHistoryClient<$Result.GetResult<Prisma.$EmploymentHistoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmploymentHistory that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentHistoryFindFirstArgs} args - Arguments to find a EmploymentHistory
+     * @example
+     * // Get one EmploymentHistory
+     * const employmentHistory = await prisma.employmentHistory.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EmploymentHistoryFindFirstArgs>(args?: SelectSubset<T, EmploymentHistoryFindFirstArgs<ExtArgs>>): Prisma__EmploymentHistoryClient<$Result.GetResult<Prisma.$EmploymentHistoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmploymentHistory that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentHistoryFindFirstOrThrowArgs} args - Arguments to find a EmploymentHistory
+     * @example
+     * // Get one EmploymentHistory
+     * const employmentHistory = await prisma.employmentHistory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EmploymentHistoryFindFirstOrThrowArgs>(args?: SelectSubset<T, EmploymentHistoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__EmploymentHistoryClient<$Result.GetResult<Prisma.$EmploymentHistoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EmploymentHistories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentHistoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EmploymentHistories
+     * const employmentHistories = await prisma.employmentHistory.findMany()
+     * 
+     * // Get first 10 EmploymentHistories
+     * const employmentHistories = await prisma.employmentHistory.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const employmentHistoryWithIdOnly = await prisma.employmentHistory.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EmploymentHistoryFindManyArgs>(args?: SelectSubset<T, EmploymentHistoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EmploymentHistory.
+     * @param {EmploymentHistoryCreateArgs} args - Arguments to create a EmploymentHistory.
+     * @example
+     * // Create one EmploymentHistory
+     * const EmploymentHistory = await prisma.employmentHistory.create({
+     *   data: {
+     *     // ... data to create a EmploymentHistory
+     *   }
+     * })
+     * 
+     */
+    create<T extends EmploymentHistoryCreateArgs>(args: SelectSubset<T, EmploymentHistoryCreateArgs<ExtArgs>>): Prisma__EmploymentHistoryClient<$Result.GetResult<Prisma.$EmploymentHistoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EmploymentHistories.
+     * @param {EmploymentHistoryCreateManyArgs} args - Arguments to create many EmploymentHistories.
+     * @example
+     * // Create many EmploymentHistories
+     * const employmentHistory = await prisma.employmentHistory.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EmploymentHistoryCreateManyArgs>(args?: SelectSubset<T, EmploymentHistoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EmploymentHistories and returns the data saved in the database.
+     * @param {EmploymentHistoryCreateManyAndReturnArgs} args - Arguments to create many EmploymentHistories.
+     * @example
+     * // Create many EmploymentHistories
+     * const employmentHistory = await prisma.employmentHistory.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EmploymentHistories and only return the `id`
+     * const employmentHistoryWithIdOnly = await prisma.employmentHistory.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EmploymentHistoryCreateManyAndReturnArgs>(args?: SelectSubset<T, EmploymentHistoryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentHistoryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EmploymentHistory.
+     * @param {EmploymentHistoryDeleteArgs} args - Arguments to delete one EmploymentHistory.
+     * @example
+     * // Delete one EmploymentHistory
+     * const EmploymentHistory = await prisma.employmentHistory.delete({
+     *   where: {
+     *     // ... filter to delete one EmploymentHistory
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EmploymentHistoryDeleteArgs>(args: SelectSubset<T, EmploymentHistoryDeleteArgs<ExtArgs>>): Prisma__EmploymentHistoryClient<$Result.GetResult<Prisma.$EmploymentHistoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EmploymentHistory.
+     * @param {EmploymentHistoryUpdateArgs} args - Arguments to update one EmploymentHistory.
+     * @example
+     * // Update one EmploymentHistory
+     * const employmentHistory = await prisma.employmentHistory.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EmploymentHistoryUpdateArgs>(args: SelectSubset<T, EmploymentHistoryUpdateArgs<ExtArgs>>): Prisma__EmploymentHistoryClient<$Result.GetResult<Prisma.$EmploymentHistoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EmploymentHistories.
+     * @param {EmploymentHistoryDeleteManyArgs} args - Arguments to filter EmploymentHistories to delete.
+     * @example
+     * // Delete a few EmploymentHistories
+     * const { count } = await prisma.employmentHistory.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EmploymentHistoryDeleteManyArgs>(args?: SelectSubset<T, EmploymentHistoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmploymentHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentHistoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EmploymentHistories
+     * const employmentHistory = await prisma.employmentHistory.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EmploymentHistoryUpdateManyArgs>(args: SelectSubset<T, EmploymentHistoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmploymentHistories and returns the data updated in the database.
+     * @param {EmploymentHistoryUpdateManyAndReturnArgs} args - Arguments to update many EmploymentHistories.
+     * @example
+     * // Update many EmploymentHistories
+     * const employmentHistory = await prisma.employmentHistory.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EmploymentHistories and only return the `id`
+     * const employmentHistoryWithIdOnly = await prisma.employmentHistory.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EmploymentHistoryUpdateManyAndReturnArgs>(args: SelectSubset<T, EmploymentHistoryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentHistoryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EmploymentHistory.
+     * @param {EmploymentHistoryUpsertArgs} args - Arguments to update or create a EmploymentHistory.
+     * @example
+     * // Update or create a EmploymentHistory
+     * const employmentHistory = await prisma.employmentHistory.upsert({
+     *   create: {
+     *     // ... data to create a EmploymentHistory
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EmploymentHistory we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EmploymentHistoryUpsertArgs>(args: SelectSubset<T, EmploymentHistoryUpsertArgs<ExtArgs>>): Prisma__EmploymentHistoryClient<$Result.GetResult<Prisma.$EmploymentHistoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EmploymentHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentHistoryCountArgs} args - Arguments to filter EmploymentHistories to count.
+     * @example
+     * // Count the number of EmploymentHistories
+     * const count = await prisma.employmentHistory.count({
+     *   where: {
+     *     // ... the filter for the EmploymentHistories we want to count
+     *   }
+     * })
+    **/
+    count<T extends EmploymentHistoryCountArgs>(
+      args?: Subset<T, EmploymentHistoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EmploymentHistoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EmploymentHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentHistoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EmploymentHistoryAggregateArgs>(args: Subset<T, EmploymentHistoryAggregateArgs>): Prisma.PrismaPromise<GetEmploymentHistoryAggregateType<T>>
+
+    /**
+     * Group by EmploymentHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentHistoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EmploymentHistoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EmploymentHistoryGroupByArgs['orderBy'] }
+        : { orderBy?: EmploymentHistoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EmploymentHistoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEmploymentHistoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EmploymentHistory model
+   */
+  readonly fields: EmploymentHistoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EmploymentHistory.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EmploymentHistoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EmploymentHistory model
+   */
+  interface EmploymentHistoryFieldRefs {
+    readonly id: FieldRef<"EmploymentHistory", 'String'>
+    readonly employeeId: FieldRef<"EmploymentHistory", 'String'>
+    readonly action: FieldRef<"EmploymentHistory", 'EmploymentAction'>
+    readonly effectiveDate: FieldRef<"EmploymentHistory", 'DateTime'>
+    readonly reason: FieldRef<"EmploymentHistory", 'String'>
+    readonly createdAt: FieldRef<"EmploymentHistory", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EmploymentHistory findUnique
+   */
+  export type EmploymentHistoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentHistory
+     */
+    select?: EmploymentHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentHistory
+     */
+    omit?: EmploymentHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which EmploymentHistory to fetch.
+     */
+    where: EmploymentHistoryWhereUniqueInput
+  }
+
+  /**
+   * EmploymentHistory findUniqueOrThrow
+   */
+  export type EmploymentHistoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentHistory
+     */
+    select?: EmploymentHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentHistory
+     */
+    omit?: EmploymentHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which EmploymentHistory to fetch.
+     */
+    where: EmploymentHistoryWhereUniqueInput
+  }
+
+  /**
+   * EmploymentHistory findFirst
+   */
+  export type EmploymentHistoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentHistory
+     */
+    select?: EmploymentHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentHistory
+     */
+    omit?: EmploymentHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which EmploymentHistory to fetch.
+     */
+    where?: EmploymentHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmploymentHistories to fetch.
+     */
+    orderBy?: EmploymentHistoryOrderByWithRelationInput | EmploymentHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmploymentHistories.
+     */
+    cursor?: EmploymentHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmploymentHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmploymentHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmploymentHistories.
+     */
+    distinct?: EmploymentHistoryScalarFieldEnum | EmploymentHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * EmploymentHistory findFirstOrThrow
+   */
+  export type EmploymentHistoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentHistory
+     */
+    select?: EmploymentHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentHistory
+     */
+    omit?: EmploymentHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which EmploymentHistory to fetch.
+     */
+    where?: EmploymentHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmploymentHistories to fetch.
+     */
+    orderBy?: EmploymentHistoryOrderByWithRelationInput | EmploymentHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmploymentHistories.
+     */
+    cursor?: EmploymentHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmploymentHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmploymentHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmploymentHistories.
+     */
+    distinct?: EmploymentHistoryScalarFieldEnum | EmploymentHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * EmploymentHistory findMany
+   */
+  export type EmploymentHistoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentHistory
+     */
+    select?: EmploymentHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentHistory
+     */
+    omit?: EmploymentHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentHistoryInclude<ExtArgs> | null
+    /**
+     * Filter, which EmploymentHistories to fetch.
+     */
+    where?: EmploymentHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmploymentHistories to fetch.
+     */
+    orderBy?: EmploymentHistoryOrderByWithRelationInput | EmploymentHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EmploymentHistories.
+     */
+    cursor?: EmploymentHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmploymentHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmploymentHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmploymentHistories.
+     */
+    distinct?: EmploymentHistoryScalarFieldEnum | EmploymentHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * EmploymentHistory create
+   */
+  export type EmploymentHistoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentHistory
+     */
+    select?: EmploymentHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentHistory
+     */
+    omit?: EmploymentHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentHistoryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EmploymentHistory.
+     */
+    data: XOR<EmploymentHistoryCreateInput, EmploymentHistoryUncheckedCreateInput>
+  }
+
+  /**
+   * EmploymentHistory createMany
+   */
+  export type EmploymentHistoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EmploymentHistories.
+     */
+    data: EmploymentHistoryCreateManyInput | EmploymentHistoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EmploymentHistory createManyAndReturn
+   */
+  export type EmploymentHistoryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentHistory
+     */
+    select?: EmploymentHistorySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentHistory
+     */
+    omit?: EmploymentHistoryOmit<ExtArgs> | null
+    /**
+     * The data used to create many EmploymentHistories.
+     */
+    data: EmploymentHistoryCreateManyInput | EmploymentHistoryCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentHistoryIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EmploymentHistory update
+   */
+  export type EmploymentHistoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentHistory
+     */
+    select?: EmploymentHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentHistory
+     */
+    omit?: EmploymentHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentHistoryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EmploymentHistory.
+     */
+    data: XOR<EmploymentHistoryUpdateInput, EmploymentHistoryUncheckedUpdateInput>
+    /**
+     * Choose, which EmploymentHistory to update.
+     */
+    where: EmploymentHistoryWhereUniqueInput
+  }
+
+  /**
+   * EmploymentHistory updateMany
+   */
+  export type EmploymentHistoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EmploymentHistories.
+     */
+    data: XOR<EmploymentHistoryUpdateManyMutationInput, EmploymentHistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which EmploymentHistories to update
+     */
+    where?: EmploymentHistoryWhereInput
+    /**
+     * Limit how many EmploymentHistories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmploymentHistory updateManyAndReturn
+   */
+  export type EmploymentHistoryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentHistory
+     */
+    select?: EmploymentHistorySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentHistory
+     */
+    omit?: EmploymentHistoryOmit<ExtArgs> | null
+    /**
+     * The data used to update EmploymentHistories.
+     */
+    data: XOR<EmploymentHistoryUpdateManyMutationInput, EmploymentHistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which EmploymentHistories to update
+     */
+    where?: EmploymentHistoryWhereInput
+    /**
+     * Limit how many EmploymentHistories to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentHistoryIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EmploymentHistory upsert
+   */
+  export type EmploymentHistoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentHistory
+     */
+    select?: EmploymentHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentHistory
+     */
+    omit?: EmploymentHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentHistoryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EmploymentHistory to update in case it exists.
+     */
+    where: EmploymentHistoryWhereUniqueInput
+    /**
+     * In case the EmploymentHistory found by the `where` argument doesn't exist, create a new EmploymentHistory with this data.
+     */
+    create: XOR<EmploymentHistoryCreateInput, EmploymentHistoryUncheckedCreateInput>
+    /**
+     * In case the EmploymentHistory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EmploymentHistoryUpdateInput, EmploymentHistoryUncheckedUpdateInput>
+  }
+
+  /**
+   * EmploymentHistory delete
+   */
+  export type EmploymentHistoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentHistory
+     */
+    select?: EmploymentHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentHistory
+     */
+    omit?: EmploymentHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentHistoryInclude<ExtArgs> | null
+    /**
+     * Filter which EmploymentHistory to delete.
+     */
+    where: EmploymentHistoryWhereUniqueInput
+  }
+
+  /**
+   * EmploymentHistory deleteMany
+   */
+  export type EmploymentHistoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmploymentHistories to delete
+     */
+    where?: EmploymentHistoryWhereInput
+    /**
+     * Limit how many EmploymentHistories to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmploymentHistory without action
+   */
+  export type EmploymentHistoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentHistory
+     */
+    select?: EmploymentHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentHistory
+     */
+    omit?: EmploymentHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentHistoryInclude<ExtArgs> | null
   }
 
 
@@ -14674,6 +15892,18 @@ export namespace Prisma {
   export type EmployeeScalarFieldEnum = (typeof EmployeeScalarFieldEnum)[keyof typeof EmployeeScalarFieldEnum]
 
 
+  export const EmploymentHistoryScalarFieldEnum: {
+    id: 'id',
+    employeeId: 'employeeId',
+    action: 'action',
+    effectiveDate: 'effectiveDate',
+    reason: 'reason',
+    createdAt: 'createdAt'
+  };
+
+  export type EmploymentHistoryScalarFieldEnum = (typeof EmploymentHistoryScalarFieldEnum)[keyof typeof EmploymentHistoryScalarFieldEnum]
+
+
   export const EmployeeMyNumberScalarFieldEnum: {
     id: 'id',
     employeeId: 'employeeId',
@@ -14915,6 +16145,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'EmploymentAction'
+   */
+  export type EnumEmploymentActionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EmploymentAction'>
+    
+
+
+  /**
+   * Reference to a field of type 'EmploymentAction[]'
+   */
+  export type ListEnumEmploymentActionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EmploymentAction[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -15139,6 +16383,7 @@ export namespace Prisma {
     employeeSalary?: XOR<EmployeeSalaryNullableScalarRelationFilter, EmployeeSalaryWhereInput> | null
     salaryHistories?: SalaryHistoryListRelationFilter
     leaveBalance?: XOR<LeaveBalanceNullableScalarRelationFilter, LeaveBalanceWhereInput> | null
+    employmentHistories?: EmploymentHistoryListRelationFilter
   }
 
   export type EmployeeOrderByWithRelationInput = {
@@ -15171,6 +16416,7 @@ export namespace Prisma {
     employeeSalary?: EmployeeSalaryOrderByWithRelationInput
     salaryHistories?: SalaryHistoryOrderByRelationAggregateInput
     leaveBalance?: LeaveBalanceOrderByWithRelationInput
+    employmentHistories?: EmploymentHistoryOrderByRelationAggregateInput
   }
 
   export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
@@ -15206,6 +16452,7 @@ export namespace Prisma {
     employeeSalary?: XOR<EmployeeSalaryNullableScalarRelationFilter, EmployeeSalaryWhereInput> | null
     salaryHistories?: SalaryHistoryListRelationFilter
     leaveBalance?: XOR<LeaveBalanceNullableScalarRelationFilter, LeaveBalanceWhereInput> | null
+    employmentHistories?: EmploymentHistoryListRelationFilter
   }, "id" | "employeeNo" | "email">
 
   export type EmployeeOrderByWithAggregationInput = {
@@ -15264,6 +16511,66 @@ export namespace Prisma {
     employmentInsuranceNo?: StringNullableWithAggregatesFilter<"Employee"> | string | null
     photoPath?: StringNullableWithAggregatesFilter<"Employee"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Employee"> | Date | string
+  }
+
+  export type EmploymentHistoryWhereInput = {
+    AND?: EmploymentHistoryWhereInput | EmploymentHistoryWhereInput[]
+    OR?: EmploymentHistoryWhereInput[]
+    NOT?: EmploymentHistoryWhereInput | EmploymentHistoryWhereInput[]
+    id?: StringFilter<"EmploymentHistory"> | string
+    employeeId?: StringFilter<"EmploymentHistory"> | string
+    action?: EnumEmploymentActionFilter<"EmploymentHistory"> | $Enums.EmploymentAction
+    effectiveDate?: DateTimeFilter<"EmploymentHistory"> | Date | string
+    reason?: StringNullableFilter<"EmploymentHistory"> | string | null
+    createdAt?: DateTimeFilter<"EmploymentHistory"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+  }
+
+  export type EmploymentHistoryOrderByWithRelationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    action?: SortOrder
+    effectiveDate?: SortOrder
+    reason?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    employee?: EmployeeOrderByWithRelationInput
+  }
+
+  export type EmploymentHistoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: EmploymentHistoryWhereInput | EmploymentHistoryWhereInput[]
+    OR?: EmploymentHistoryWhereInput[]
+    NOT?: EmploymentHistoryWhereInput | EmploymentHistoryWhereInput[]
+    employeeId?: StringFilter<"EmploymentHistory"> | string
+    action?: EnumEmploymentActionFilter<"EmploymentHistory"> | $Enums.EmploymentAction
+    effectiveDate?: DateTimeFilter<"EmploymentHistory"> | Date | string
+    reason?: StringNullableFilter<"EmploymentHistory"> | string | null
+    createdAt?: DateTimeFilter<"EmploymentHistory"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+  }, "id">
+
+  export type EmploymentHistoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    action?: SortOrder
+    effectiveDate?: SortOrder
+    reason?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: EmploymentHistoryCountOrderByAggregateInput
+    _max?: EmploymentHistoryMaxOrderByAggregateInput
+    _min?: EmploymentHistoryMinOrderByAggregateInput
+  }
+
+  export type EmploymentHistoryScalarWhereWithAggregatesInput = {
+    AND?: EmploymentHistoryScalarWhereWithAggregatesInput | EmploymentHistoryScalarWhereWithAggregatesInput[]
+    OR?: EmploymentHistoryScalarWhereWithAggregatesInput[]
+    NOT?: EmploymentHistoryScalarWhereWithAggregatesInput | EmploymentHistoryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EmploymentHistory"> | string
+    employeeId?: StringWithAggregatesFilter<"EmploymentHistory"> | string
+    action?: EnumEmploymentActionWithAggregatesFilter<"EmploymentHistory"> | $Enums.EmploymentAction
+    effectiveDate?: DateTimeWithAggregatesFilter<"EmploymentHistory"> | Date | string
+    reason?: StringNullableWithAggregatesFilter<"EmploymentHistory"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"EmploymentHistory"> | Date | string
   }
 
   export type EmployeeMyNumberWhereInput = {
@@ -15974,6 +17281,7 @@ export namespace Prisma {
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateInput = {
@@ -16005,6 +17313,7 @@ export namespace Prisma {
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUpdateInput = {
@@ -16036,6 +17345,7 @@ export namespace Prisma {
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateInput = {
@@ -16067,6 +17377,7 @@ export namespace Prisma {
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateManyInput = {
@@ -16143,6 +17454,68 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmploymentHistoryCreateInput = {
+    id?: string
+    action: $Enums.EmploymentAction
+    effectiveDate: Date | string
+    reason?: string | null
+    createdAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutEmploymentHistoriesInput
+  }
+
+  export type EmploymentHistoryUncheckedCreateInput = {
+    id?: string
+    employeeId: string
+    action: $Enums.EmploymentAction
+    effectiveDate: Date | string
+    reason?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmploymentHistoryUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    action?: EnumEmploymentActionFieldUpdateOperationsInput | $Enums.EmploymentAction
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutEmploymentHistoriesNestedInput
+  }
+
+  export type EmploymentHistoryUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    action?: EnumEmploymentActionFieldUpdateOperationsInput | $Enums.EmploymentAction
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmploymentHistoryCreateManyInput = {
+    id?: string
+    employeeId: string
+    action: $Enums.EmploymentAction
+    effectiveDate: Date | string
+    reason?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmploymentHistoryUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    action?: EnumEmploymentActionFieldUpdateOperationsInput | $Enums.EmploymentAction
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmploymentHistoryUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    action?: EnumEmploymentActionFieldUpdateOperationsInput | $Enums.EmploymentAction
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -16961,12 +18334,22 @@ export namespace Prisma {
     isNot?: LeaveBalanceWhereInput | null
   }
 
+  export type EmploymentHistoryListRelationFilter = {
+    every?: EmploymentHistoryWhereInput
+    some?: EmploymentHistoryWhereInput
+    none?: EmploymentHistoryWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
   }
 
   export type SalaryHistoryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EmploymentHistoryOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -17110,9 +18493,53 @@ export namespace Prisma {
     _max?: NestedEnumEmployeeStatusFilter<$PrismaModel>
   }
 
+  export type EnumEmploymentActionFilter<$PrismaModel = never> = {
+    equals?: $Enums.EmploymentAction | EnumEmploymentActionFieldRefInput<$PrismaModel>
+    in?: $Enums.EmploymentAction[] | ListEnumEmploymentActionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EmploymentAction[] | ListEnumEmploymentActionFieldRefInput<$PrismaModel>
+    not?: NestedEnumEmploymentActionFilter<$PrismaModel> | $Enums.EmploymentAction
+  }
+
   export type EmployeeScalarRelationFilter = {
     is?: EmployeeWhereInput
     isNot?: EmployeeWhereInput
+  }
+
+  export type EmploymentHistoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    action?: SortOrder
+    effectiveDate?: SortOrder
+    reason?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EmploymentHistoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    action?: SortOrder
+    effectiveDate?: SortOrder
+    reason?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EmploymentHistoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    action?: SortOrder
+    effectiveDate?: SortOrder
+    reason?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EnumEmploymentActionWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.EmploymentAction | EnumEmploymentActionFieldRefInput<$PrismaModel>
+    in?: $Enums.EmploymentAction[] | ListEnumEmploymentActionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EmploymentAction[] | ListEnumEmploymentActionFieldRefInput<$PrismaModel>
+    not?: NestedEnumEmploymentActionWithAggregatesFilter<$PrismaModel> | $Enums.EmploymentAction
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumEmploymentActionFilter<$PrismaModel>
+    _max?: NestedEnumEmploymentActionFilter<$PrismaModel>
   }
 
   export type EmployeeMyNumberCountOrderByAggregateInput = {
@@ -17796,6 +19223,13 @@ export namespace Prisma {
     connect?: LeaveBalanceWhereUniqueInput
   }
 
+  export type EmploymentHistoryCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<EmploymentHistoryCreateWithoutEmployeeInput, EmploymentHistoryUncheckedCreateWithoutEmployeeInput> | EmploymentHistoryCreateWithoutEmployeeInput[] | EmploymentHistoryUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EmploymentHistoryCreateOrConnectWithoutEmployeeInput | EmploymentHistoryCreateOrConnectWithoutEmployeeInput[]
+    createMany?: EmploymentHistoryCreateManyEmployeeInputEnvelope
+    connect?: EmploymentHistoryWhereUniqueInput | EmploymentHistoryWhereUniqueInput[]
+  }
+
   export type EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput = {
     create?: XOR<EmployeeRequestCreateWithoutEmployeeInput, EmployeeRequestUncheckedCreateWithoutEmployeeInput> | EmployeeRequestCreateWithoutEmployeeInput[] | EmployeeRequestUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeRequestCreateOrConnectWithoutEmployeeInput | EmployeeRequestCreateOrConnectWithoutEmployeeInput[]
@@ -17826,6 +19260,13 @@ export namespace Prisma {
     create?: XOR<LeaveBalanceCreateWithoutEmployeeInput, LeaveBalanceUncheckedCreateWithoutEmployeeInput>
     connectOrCreate?: LeaveBalanceCreateOrConnectWithoutEmployeeInput
     connect?: LeaveBalanceWhereUniqueInput
+  }
+
+  export type EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<EmploymentHistoryCreateWithoutEmployeeInput, EmploymentHistoryUncheckedCreateWithoutEmployeeInput> | EmploymentHistoryCreateWithoutEmployeeInput[] | EmploymentHistoryUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EmploymentHistoryCreateOrConnectWithoutEmployeeInput | EmploymentHistoryCreateOrConnectWithoutEmployeeInput[]
+    createMany?: EmploymentHistoryCreateManyEmployeeInputEnvelope
+    connect?: EmploymentHistoryWhereUniqueInput | EmploymentHistoryWhereUniqueInput[]
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -17916,6 +19357,20 @@ export namespace Prisma {
     update?: XOR<XOR<LeaveBalanceUpdateToOneWithWhereWithoutEmployeeInput, LeaveBalanceUpdateWithoutEmployeeInput>, LeaveBalanceUncheckedUpdateWithoutEmployeeInput>
   }
 
+  export type EmploymentHistoryUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<EmploymentHistoryCreateWithoutEmployeeInput, EmploymentHistoryUncheckedCreateWithoutEmployeeInput> | EmploymentHistoryCreateWithoutEmployeeInput[] | EmploymentHistoryUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EmploymentHistoryCreateOrConnectWithoutEmployeeInput | EmploymentHistoryCreateOrConnectWithoutEmployeeInput[]
+    upsert?: EmploymentHistoryUpsertWithWhereUniqueWithoutEmployeeInput | EmploymentHistoryUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: EmploymentHistoryCreateManyEmployeeInputEnvelope
+    set?: EmploymentHistoryWhereUniqueInput | EmploymentHistoryWhereUniqueInput[]
+    disconnect?: EmploymentHistoryWhereUniqueInput | EmploymentHistoryWhereUniqueInput[]
+    delete?: EmploymentHistoryWhereUniqueInput | EmploymentHistoryWhereUniqueInput[]
+    connect?: EmploymentHistoryWhereUniqueInput | EmploymentHistoryWhereUniqueInput[]
+    update?: EmploymentHistoryUpdateWithWhereUniqueWithoutEmployeeInput | EmploymentHistoryUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: EmploymentHistoryUpdateManyWithWhereWithoutEmployeeInput | EmploymentHistoryUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: EmploymentHistoryScalarWhereInput | EmploymentHistoryScalarWhereInput[]
+  }
+
   export type EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput = {
     create?: XOR<EmployeeRequestCreateWithoutEmployeeInput, EmployeeRequestUncheckedCreateWithoutEmployeeInput> | EmployeeRequestCreateWithoutEmployeeInput[] | EmployeeRequestUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeRequestCreateOrConnectWithoutEmployeeInput | EmployeeRequestCreateOrConnectWithoutEmployeeInput[]
@@ -17972,6 +19427,38 @@ export namespace Prisma {
     delete?: LeaveBalanceWhereInput | boolean
     connect?: LeaveBalanceWhereUniqueInput
     update?: XOR<XOR<LeaveBalanceUpdateToOneWithWhereWithoutEmployeeInput, LeaveBalanceUpdateWithoutEmployeeInput>, LeaveBalanceUncheckedUpdateWithoutEmployeeInput>
+  }
+
+  export type EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<EmploymentHistoryCreateWithoutEmployeeInput, EmploymentHistoryUncheckedCreateWithoutEmployeeInput> | EmploymentHistoryCreateWithoutEmployeeInput[] | EmploymentHistoryUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EmploymentHistoryCreateOrConnectWithoutEmployeeInput | EmploymentHistoryCreateOrConnectWithoutEmployeeInput[]
+    upsert?: EmploymentHistoryUpsertWithWhereUniqueWithoutEmployeeInput | EmploymentHistoryUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: EmploymentHistoryCreateManyEmployeeInputEnvelope
+    set?: EmploymentHistoryWhereUniqueInput | EmploymentHistoryWhereUniqueInput[]
+    disconnect?: EmploymentHistoryWhereUniqueInput | EmploymentHistoryWhereUniqueInput[]
+    delete?: EmploymentHistoryWhereUniqueInput | EmploymentHistoryWhereUniqueInput[]
+    connect?: EmploymentHistoryWhereUniqueInput | EmploymentHistoryWhereUniqueInput[]
+    update?: EmploymentHistoryUpdateWithWhereUniqueWithoutEmployeeInput | EmploymentHistoryUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: EmploymentHistoryUpdateManyWithWhereWithoutEmployeeInput | EmploymentHistoryUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: EmploymentHistoryScalarWhereInput | EmploymentHistoryScalarWhereInput[]
+  }
+
+  export type EmployeeCreateNestedOneWithoutEmploymentHistoriesInput = {
+    create?: XOR<EmployeeCreateWithoutEmploymentHistoriesInput, EmployeeUncheckedCreateWithoutEmploymentHistoriesInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutEmploymentHistoriesInput
+    connect?: EmployeeWhereUniqueInput
+  }
+
+  export type EnumEmploymentActionFieldUpdateOperationsInput = {
+    set?: $Enums.EmploymentAction
+  }
+
+  export type EmployeeUpdateOneRequiredWithoutEmploymentHistoriesNestedInput = {
+    create?: XOR<EmployeeCreateWithoutEmploymentHistoriesInput, EmployeeUncheckedCreateWithoutEmploymentHistoriesInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutEmploymentHistoriesInput
+    upsert?: EmployeeUpsertWithoutEmploymentHistoriesInput
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutEmploymentHistoriesInput, EmployeeUpdateWithoutEmploymentHistoriesInput>, EmployeeUncheckedUpdateWithoutEmploymentHistoriesInput>
   }
 
   export type EmployeeCreateNestedOneWithoutEmployeeMyNumberInput = {
@@ -18420,6 +19907,23 @@ export namespace Prisma {
     _max?: NestedEnumEmployeeStatusFilter<$PrismaModel>
   }
 
+  export type NestedEnumEmploymentActionFilter<$PrismaModel = never> = {
+    equals?: $Enums.EmploymentAction | EnumEmploymentActionFieldRefInput<$PrismaModel>
+    in?: $Enums.EmploymentAction[] | ListEnumEmploymentActionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EmploymentAction[] | ListEnumEmploymentActionFieldRefInput<$PrismaModel>
+    not?: NestedEnumEmploymentActionFilter<$PrismaModel> | $Enums.EmploymentAction
+  }
+
+  export type NestedEnumEmploymentActionWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.EmploymentAction | EnumEmploymentActionFieldRefInput<$PrismaModel>
+    in?: $Enums.EmploymentAction[] | ListEnumEmploymentActionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EmploymentAction[] | ListEnumEmploymentActionFieldRefInput<$PrismaModel>
+    not?: NestedEnumEmploymentActionWithAggregatesFilter<$PrismaModel> | $Enums.EmploymentAction
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumEmploymentActionFilter<$PrismaModel>
+    _max?: NestedEnumEmploymentActionFilter<$PrismaModel>
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -18687,6 +20191,7 @@ export namespace Prisma {
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDepartmentInput = {
@@ -18717,6 +20222,7 @@ export namespace Prisma {
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDepartmentInput = {
@@ -18928,6 +20434,32 @@ export namespace Prisma {
     create: XOR<LeaveBalanceCreateWithoutEmployeeInput, LeaveBalanceUncheckedCreateWithoutEmployeeInput>
   }
 
+  export type EmploymentHistoryCreateWithoutEmployeeInput = {
+    id?: string
+    action: $Enums.EmploymentAction
+    effectiveDate: Date | string
+    reason?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmploymentHistoryUncheckedCreateWithoutEmployeeInput = {
+    id?: string
+    action: $Enums.EmploymentAction
+    effectiveDate: Date | string
+    reason?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmploymentHistoryCreateOrConnectWithoutEmployeeInput = {
+    where: EmploymentHistoryWhereUniqueInput
+    create: XOR<EmploymentHistoryCreateWithoutEmployeeInput, EmploymentHistoryUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type EmploymentHistoryCreateManyEmployeeInputEnvelope = {
+    data: EmploymentHistoryCreateManyEmployeeInput | EmploymentHistoryCreateManyEmployeeInput[]
+    skipDuplicates?: boolean
+  }
+
   export type DepartmentUpsertWithoutEmployeesInput = {
     update: XOR<DepartmentUpdateWithoutEmployeesInput, DepartmentUncheckedUpdateWithoutEmployeesInput>
     create: XOR<DepartmentCreateWithoutEmployeesInput, DepartmentUncheckedCreateWithoutEmployeesInput>
@@ -19079,6 +20611,174 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type EmploymentHistoryUpsertWithWhereUniqueWithoutEmployeeInput = {
+    where: EmploymentHistoryWhereUniqueInput
+    update: XOR<EmploymentHistoryUpdateWithoutEmployeeInput, EmploymentHistoryUncheckedUpdateWithoutEmployeeInput>
+    create: XOR<EmploymentHistoryCreateWithoutEmployeeInput, EmploymentHistoryUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type EmploymentHistoryUpdateWithWhereUniqueWithoutEmployeeInput = {
+    where: EmploymentHistoryWhereUniqueInput
+    data: XOR<EmploymentHistoryUpdateWithoutEmployeeInput, EmploymentHistoryUncheckedUpdateWithoutEmployeeInput>
+  }
+
+  export type EmploymentHistoryUpdateManyWithWhereWithoutEmployeeInput = {
+    where: EmploymentHistoryScalarWhereInput
+    data: XOR<EmploymentHistoryUpdateManyMutationInput, EmploymentHistoryUncheckedUpdateManyWithoutEmployeeInput>
+  }
+
+  export type EmploymentHistoryScalarWhereInput = {
+    AND?: EmploymentHistoryScalarWhereInput | EmploymentHistoryScalarWhereInput[]
+    OR?: EmploymentHistoryScalarWhereInput[]
+    NOT?: EmploymentHistoryScalarWhereInput | EmploymentHistoryScalarWhereInput[]
+    id?: StringFilter<"EmploymentHistory"> | string
+    employeeId?: StringFilter<"EmploymentHistory"> | string
+    action?: EnumEmploymentActionFilter<"EmploymentHistory"> | $Enums.EmploymentAction
+    effectiveDate?: DateTimeFilter<"EmploymentHistory"> | Date | string
+    reason?: StringNullableFilter<"EmploymentHistory"> | string | null
+    createdAt?: DateTimeFilter<"EmploymentHistory"> | Date | string
+  }
+
+  export type EmployeeCreateWithoutEmploymentHistoriesInput = {
+    id?: string
+    employeeNo: string
+    lastName: string
+    firstName: string
+    lastNameKana?: string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    birthDate?: Date | string | null
+    phoneNumber?: string | null
+    address?: string | null
+    email: string
+    occupation?: string | null
+    position?: string | null
+    hireDate?: Date | string | null
+    employmentType?: $Enums.EmploymentType | null
+    commutingType?: string | null
+    status?: $Enums.EmployeeStatus
+    retirementDate?: Date | string | null
+    healthInsuranceNo?: string | null
+    employmentInsuranceNo?: string | null
+    photoPath?: string | null
+    createdAt?: Date | string
+    department?: DepartmentCreateNestedOneWithoutEmployeesInput
+    requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
+  }
+
+  export type EmployeeUncheckedCreateWithoutEmploymentHistoriesInput = {
+    id?: string
+    employeeNo: string
+    lastName: string
+    firstName: string
+    lastNameKana?: string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    birthDate?: Date | string | null
+    phoneNumber?: string | null
+    address?: string | null
+    email: string
+    departmentId?: string | null
+    occupation?: string | null
+    position?: string | null
+    hireDate?: Date | string | null
+    employmentType?: $Enums.EmploymentType | null
+    commutingType?: string | null
+    status?: $Enums.EmployeeStatus
+    retirementDate?: Date | string | null
+    healthInsuranceNo?: string | null
+    employmentInsuranceNo?: string | null
+    photoPath?: string | null
+    createdAt?: Date | string
+    requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
+  }
+
+  export type EmployeeCreateOrConnectWithoutEmploymentHistoriesInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutEmploymentHistoriesInput, EmployeeUncheckedCreateWithoutEmploymentHistoriesInput>
+  }
+
+  export type EmployeeUpsertWithoutEmploymentHistoriesInput = {
+    update: XOR<EmployeeUpdateWithoutEmploymentHistoriesInput, EmployeeUncheckedUpdateWithoutEmploymentHistoriesInput>
+    create: XOR<EmployeeCreateWithoutEmploymentHistoriesInput, EmployeeUncheckedCreateWithoutEmploymentHistoriesInput>
+    where?: EmployeeWhereInput
+  }
+
+  export type EmployeeUpdateToOneWithWhereWithoutEmploymentHistoriesInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutEmploymentHistoriesInput, EmployeeUncheckedUpdateWithoutEmploymentHistoriesInput>
+  }
+
+  export type EmployeeUpdateWithoutEmploymentHistoriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    department?: DepartmentUpdateOneWithoutEmployeesNestedInput
+    requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateWithoutEmploymentHistoriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
+  }
+
   export type EmployeeCreateWithoutEmployeeMyNumberInput = {
     id?: string
     employeeNo: string
@@ -19107,6 +20807,7 @@ export namespace Prisma {
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmployeeMyNumberInput = {
@@ -19137,6 +20838,7 @@ export namespace Prisma {
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmployeeMyNumberInput = {
@@ -19183,6 +20885,7 @@ export namespace Prisma {
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmployeeMyNumberInput = {
@@ -19213,6 +20916,7 @@ export namespace Prisma {
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmployeeSalaryInput = {
@@ -19243,6 +20947,7 @@ export namespace Prisma {
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmployeeSalaryInput = {
@@ -19273,6 +20978,7 @@ export namespace Prisma {
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmployeeSalaryInput = {
@@ -19319,6 +21025,7 @@ export namespace Prisma {
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmployeeSalaryInput = {
@@ -19349,6 +21056,7 @@ export namespace Prisma {
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutSalaryHistoriesInput = {
@@ -19379,6 +21087,7 @@ export namespace Prisma {
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutSalaryHistoriesInput = {
@@ -19409,6 +21118,7 @@ export namespace Prisma {
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutSalaryHistoriesInput = {
@@ -19455,6 +21165,7 @@ export namespace Prisma {
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutSalaryHistoriesInput = {
@@ -19485,6 +21196,7 @@ export namespace Prisma {
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutLeaveBalanceInput = {
@@ -19515,6 +21227,7 @@ export namespace Prisma {
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLeaveBalanceInput = {
@@ -19545,6 +21258,7 @@ export namespace Prisma {
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLeaveBalanceInput = {
@@ -19591,6 +21305,7 @@ export namespace Prisma {
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLeaveBalanceInput = {
@@ -19621,6 +21336,7 @@ export namespace Prisma {
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type UserCreateWithoutRequestsInput = {
@@ -19674,6 +21390,7 @@ export namespace Prisma {
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutRequestsInput = {
@@ -19704,6 +21421,7 @@ export namespace Prisma {
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutRequestsInput = {
@@ -19833,6 +21551,7 @@ export namespace Prisma {
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutRequestsInput = {
@@ -19863,6 +21582,7 @@ export namespace Prisma {
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type RequestHistoryUpsertWithWhereUniqueWithoutRequestInput = {
@@ -20207,6 +21927,7 @@ export namespace Prisma {
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDepartmentInput = {
@@ -20237,6 +21958,7 @@ export namespace Prisma {
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateManyWithoutDepartmentInput = {
@@ -20285,6 +22007,14 @@ export namespace Prisma {
     allowance?: number
     bonus?: number
     effectiveFrom: Date | string
+    createdAt?: Date | string
+  }
+
+  export type EmploymentHistoryCreateManyEmployeeInput = {
+    id?: string
+    action: $Enums.EmploymentAction
+    effectiveDate: Date | string
+    reason?: string | null
     createdAt?: Date | string
   }
 
@@ -20361,6 +22091,30 @@ export namespace Prisma {
     allowance?: IntFieldUpdateOperationsInput | number
     bonus?: IntFieldUpdateOperationsInput | number
     effectiveFrom?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmploymentHistoryUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    action?: EnumEmploymentActionFieldUpdateOperationsInput | $Enums.EmploymentAction
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmploymentHistoryUncheckedUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    action?: EnumEmploymentActionFieldUpdateOperationsInput | $Enums.EmploymentAction
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmploymentHistoryUncheckedUpdateManyWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    action?: EnumEmploymentActionFieldUpdateOperationsInput | $Enums.EmploymentAction
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

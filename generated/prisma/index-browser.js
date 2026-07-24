@@ -161,6 +161,15 @@ exports.Prisma.EmployeeScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.EmploymentHistoryScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  action: 'action',
+  effectiveDate: 'effectiveDate',
+  reason: 'reason',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.EmployeeMyNumberScalarFieldEnum = {
   id: 'id',
   employeeId: 'employeeId',
@@ -298,6 +307,13 @@ exports.EmployeeStatus = exports.$Enums.EmployeeStatus = {
   RETIRED: 'RETIRED'
 };
 
+exports.EmploymentAction = exports.$Enums.EmploymentAction = {
+  HIRED: 'HIRED',
+  LEAVE_STARTED: 'LEAVE_STARTED',
+  RETURNED: 'RETURNED',
+  RETIRED: 'RETIRED'
+};
+
 exports.RequestType = exports.$Enums.RequestType = {
   ONBOARDING: 'ONBOARDING',
   DEPARTMENT_CHANGE: 'DEPARTMENT_CHANGE',
@@ -322,6 +338,7 @@ exports.Prisma.ModelName = {
   User: 'User',
   Department: 'Department',
   Employee: 'Employee',
+  EmploymentHistory: 'EmploymentHistory',
   EmployeeMyNumber: 'EmployeeMyNumber',
   EmployeeSalary: 'EmployeeSalary',
   SalaryHistory: 'SalaryHistory',
