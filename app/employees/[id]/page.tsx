@@ -96,6 +96,12 @@ export default async function EmployeeDetailPage({ params }: Props) {
       department: true,
       employeeMyNumber: true,
       employeeSalary: true,
+      salaryHistories: {
+        orderBy: {
+          effectiveFrom: "desc",
+        },
+        take: 10,
+      },
       leaveBalance: true,
     },
   });
@@ -207,6 +213,16 @@ export default async function EmployeeDetailPage({ params }: Props) {
           effectiveFrom: new Date(),
         },
       });
+
+    await prisma.salaryHistory.create({
+      data: {
+        employeeId: id,
+        baseSalary,
+        allowance,
+        bonus,
+        effectiveFrom: new Date(),
+      },
+    });
 
     await logAudit({
       userId: session.user.id,
@@ -435,6 +451,56 @@ export default async function EmployeeDetailPage({ params }: Props) {
             />
           </div>
         </section>
+
+        {canManageMyNumber && (
+          <section className="rounded-lg border bg-white p-5">
+            <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
+              給与履歴
+            </h2>
+
+            {employee.salaryHistories.length === 0 ? (
+              <p className="text-sm text-gray-500">
+                給与履歴はありません。
+              </p>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b bg-gray-50 text-left">
+                      <th className="p-3">適用日</th>
+                      <th className="p-3">基本給</th>
+                      <th className="p-3">手当</th>
+                      <th className="p-3">賞与</th>
+                      <th className="p-3">登録日</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    {employee.salaryHistories.map((history) => (
+                      <tr key={history.id} className="border-b">
+                        <td className="p-3">
+                          {new Date(history.effectiveFrom).toLocaleDateString("ja-JP")}
+                        </td>
+                        <td className="p-3">
+                          {history.baseSalary.toLocaleString("ja-JP")}円
+                        </td>
+                        <td className="p-3">
+                          {history.allowance.toLocaleString("ja-JP")}円
+                        </td>
+                        <td className="p-3">
+                          {history.bonus.toLocaleString("ja-JP")}円
+                        </td>
+                        <td className="p-3">
+                          {new Date(history.createdAt).toLocaleDateString("ja-JP")}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </section>
+        )}
 
         {canManageMyNumber && (
           <section className="rounded-lg border bg-blue-50 p-5">

@@ -180,6 +180,16 @@ exports.Prisma.EmployeeSalaryScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.SalaryHistoryScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  baseSalary: 'baseSalary',
+  allowance: 'allowance',
+  bonus: 'bonus',
+  effectiveFrom: 'effectiveFrom',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.LeaveBalanceScalarFieldEnum = {
   id: 'id',
   employeeId: 'employeeId',
@@ -314,6 +324,7 @@ exports.Prisma.ModelName = {
   Employee: 'Employee',
   EmployeeMyNumber: 'EmployeeMyNumber',
   EmployeeSalary: 'EmployeeSalary',
+  SalaryHistory: 'SalaryHistory',
   LeaveBalance: 'LeaveBalance',
   EmployeeRequest: 'EmployeeRequest',
   RequestAttachment: 'RequestAttachment',
