@@ -8,6 +8,7 @@ import {
   Gender,
   EmploymentType,
   EmployeeStatus,
+  EmploymentAction,
 } from '@/generated/prisma'
 
 export async function createEmployee(formData: FormData) {
@@ -108,6 +109,17 @@ export async function createEmployee(formData: FormData) {
     },
   })
 
+
+
+  await prisma.employmentHistory.create({
+    data: {
+      employeeId: employee.id,
+      action: EmploymentAction.HIRED,
+      effectiveDate:
+        employee.hireDate ?? new Date(),
+      reason: '職員登録',
+    },
+  })
 
   await logAudit({
     action: 'EMPLOYEE_CREATED',
