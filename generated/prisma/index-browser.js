@@ -199,6 +199,16 @@ exports.Prisma.SalaryHistoryScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.LeaveGrantHistoryScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  grantDate: 'grantDate',
+  grantedDays: 'grantedDays',
+  grantType: 'grantType',
+  note: 'note',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.LeaveBalanceScalarFieldEnum = {
   id: 'id',
   employeeId: 'employeeId',
@@ -314,6 +324,11 @@ exports.EmploymentAction = exports.$Enums.EmploymentAction = {
   RETIRED: 'RETIRED'
 };
 
+exports.LeaveGrantType = exports.$Enums.LeaveGrantType = {
+  LEGAL: 'LEGAL',
+  SPECIAL: 'SPECIAL'
+};
+
 exports.RequestType = exports.$Enums.RequestType = {
   ONBOARDING: 'ONBOARDING',
   DEPARTMENT_CHANGE: 'DEPARTMENT_CHANGE',
@@ -342,6 +357,7 @@ exports.Prisma.ModelName = {
   EmployeeMyNumber: 'EmployeeMyNumber',
   EmployeeSalary: 'EmployeeSalary',
   SalaryHistory: 'SalaryHistory',
+  LeaveGrantHistory: 'LeaveGrantHistory',
   LeaveBalance: 'LeaveBalance',
   EmployeeRequest: 'EmployeeRequest',
   RequestAttachment: 'RequestAttachment',

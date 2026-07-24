@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { requireHRManager } from "@/lib/auth-guard";
-import { calculateNextLeaveGrantDate } from "@/lib/leave-next-grant-date";
+import {
+  calculateAnnualGrantDays,
+  calculateRuleBasedNextGrantDate,
+} from "@/lib/leave-annual-grant";
 
 export default async function LeaveBalancesPage() {
   await requireHRManager();
@@ -52,6 +55,7 @@ export default async function LeaveBalancesPage() {
               <th className="border-b p-3">使用日数</th>
               <th className="border-b p-3">残日数</th>
               <th className="border-b p-3">次回付与日</th>
+              <th className="border-b p-3">次回付与予定</th>
               <th className="border-b p-3">詳細</th>
             </tr>
           </thead>
@@ -98,9 +102,17 @@ export default async function LeaveBalancesPage() {
 
                   <td className="p-3">
                     {row.employee.hireDate
-                      ? calculateNextLeaveGrantDate(
+                      ? calculateRuleBasedNextGrantDate(
                           new Date(row.employee.hireDate),
                         ).toLocaleDateString("ja-JP")
+                      : "-"}
+                  </td>
+
+                  <td className="p-3 font-medium text-green-700">
+                    {row.employee.hireDate
+                      ? `${calculateAnnualGrantDays(
+                          new Date(row.employee.hireDate),
+                        )}日`
                       : "-"}
                   </td>
 

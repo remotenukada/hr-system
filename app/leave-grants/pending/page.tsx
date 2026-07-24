@@ -2,7 +2,6 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { requireHRManager } from "@/lib/auth-guard";
 import {
-  calculateAnnualGrantDays,
   calculateAnnualGrantBreakdown,
   calculateRuleBasedNextGrantDate,
   getLeaveGrantCategory,
@@ -50,14 +49,14 @@ export default async function PendingLeaveGrantPage() {
         <div className="flex gap-3">
           <Link
             href="/leave-balances"
-            className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50"
+            className="rounded-md border bg-white px-4 py-2 text-sm hover:bg-gray-50"
           >
             有給管理一覧へ
           </Link>
 
           <Link
             href="/leave-grants"
-            className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50"
+            className="rounded-md border bg-white px-4 py-2 text-sm hover:bg-gray-50"
           >
             有給付与履歴へ
           </Link>
@@ -76,50 +75,106 @@ export default async function PendingLeaveGrantPage() {
               <th className="border-b p-3">特別休暇</th>
               <th className="border-b p-3">合計</th>
               <th className="border-b p-3">判定</th>
+              <th className="border-b p-3">詳細</th>
             </tr>
           </thead>
 
           <tbody>
-            {employees.map((employee) => (
-              <tr key={employee.id} className="border-b">
-                <td className="p-3">
-                  {employee.employeeNo}
-                </td>
-
-                <td className="p-3">
-                  {employee.lastName} {employee.firstName}
-                </td>
-
-                <td className="p-3">
-                  {formatEmploymentType(employee.employmentType)}
-                </td>
-
-                <td className="p-3">
-                  {employee.hireDate
-                    ? calculateRuleBasedNextGrantDate(
-                        new Date(employee.hireDate),
-                      ).toLocaleDateString("ja-JP")
-                    : "-"}
-                </td>
-
-                <td className="p-3 font-medium text-green-700">
-                  {employee.hireDate
-                    ? `${calculateAnnualGrantDays,
-  calculateAnnualGrantBreakdown(
-                        new Date(employee.hireDate),
-                      )}日`
-                    : "-"}
-                </td>
-
-                <td className="p-3">
-                  {employee.hireDate
-                    ? getLeaveGrantCategory(
-                        new Date(employee.hireDate),
-                      )
-                    : "-"}
+            {employees.length === 0 ? (
+              <tr>
+                <td
+                  colSpan={9}
+                  className="p-8 text-center text-gray-500"
+                >
+                  対象者はいません。
                 </td>
               </tr>
-            ))}
+            ) : (
+              employees.map((employee) => {
+                const hireDate = employee.hireDate
+                  ? new Date(employee.hireDate)
+                  : null;
+
+                const nextGrantDate = hireDate
+                  ? calculateRuleBasedNextGrantDate(hireDate)
+                  : null;
+
+                const breakdown = hireDate
+                  ? calculateAnnualGrantBreakdown(
+                      hireDate,
+                      employee.employmentType,
+                    )
+                  : null;
+
+                const category = hireDate
+                  ? getLeaveGrantCategory(hireDate)
+                  : "-";
+
+                return (
+                  <tr
+                    key={employee.id}
+                    className="border-b hover:bg-gray-50"
+                  >
+                    <td className="p-3">
+                      {employee.employeeNo}
+                    </td>
+
+                    <td className="p-3 font-medium">
+                      {employee.lastName} {employee.firstName}
+                    </td>
+
+                    <td className="p-3">
+                      {formatEmploymentType(employee.employmentType)}
+                    </td>
+
+                    <td className="p-3">
+                      {nextGrantDate
+                        ? nextGrantDate.toLocaleDateString("ja-JP")
+                        : "-"}
+                    </td>
+
+                    <td className="p-3">
+                      {breakdown
+                        ? `${breakdown.legalDays}日`
+                        : "-"}
+                    </td>
+
+                    <td className="p-3">
+                      {breakdown
+                        ? `${breakdown.specialDays}日`
+                        : "-"}
+                    </td>
+
+                    <td className="p-3 font-medium text-green-700">
+                      {breakdown
+                        ? `${breakdown.totalDays}日`
+                        : "-"}
+                    </td>
+
+                    <td className="p-3">
+                      <span
+                        className={
+                          category === "初回付与"
+                            ? "rounded bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700"
+                            : "rounded bg-green-50 px-2 py-1 text-xs font-medium text-green-700"
+                        }
+                      >
+                        {category}
+                      </span>
+                    </td>
+
+                    <td className="p-3">
+                      <Link
+                        href={`/employees/${employee.id}`}
+                        className="text-blue-600 hover:underline"
+                      >
+                        社員詳細
+                      </Link>
+                    </td>
+                  </tr>
+                );
+              })
+            )}
           </tbody>
         </table>
       </div>
