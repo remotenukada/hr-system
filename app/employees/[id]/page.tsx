@@ -82,6 +82,7 @@ function formatLeaveGrantType(type: string) {
     SPECIAL: "特別休暇",
     MANUAL: "手動付与",
     MANUAL_DEDUCT: "手動減算",
+    MANUAL_CANCEL: "取消",
   };
 
   return labels[type] ?? type;
@@ -90,6 +91,10 @@ function formatLeaveGrantType(type: string) {
 function formatGrantDays(type: string, days: number) {
   if (type === "MANUAL_DEDUCT") {
     return `-${days}日`;
+  }
+
+  if (type === "MANUAL_CANCEL") {
+    return `取消 ${days}日`;
   }
 
   return `+${days}日`;

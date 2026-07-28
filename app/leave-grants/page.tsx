@@ -205,6 +205,113 @@ async function grantManualLeave(formData: FormData) {
   revalidatePath("/leave-balances");
 }
 
+
+async function cancelManualLeaveGrant(formData: FormData) {
+  "use server";
+
+  const session = await requireHRManager();
+
+  const grantId = String(
+    formData.get("grantId") ?? "",
+  );
+
+  if (!grantId) {
+    return;
+  }
+
+  const grant =
+    await prisma.leaveGrantHistory.findUnique({
+      where: {
+        id: grantId,
+      },
+      include: {
+        employee: true,
+      },
+    });
+
+  if (!grant) {
+    return;
+  }
+
+  if (
+    grant.grantType !== "MANUAL" &&
+    grant.grantType !== "MANUAL_DEDUCT"
+  ) {
+    return;
+  }
+
+  const alreadyCanceled =
+    await prisma.leaveGrantHistory.findFirst({
+      where: {
+        grantType: "MANUAL_CANCEL",
+        note: {
+          contains: `取消元:${grant.id}`,
+        },
+      },
+    });
+
+  if (alreadyCanceled) {
+    return;
+  }
+
+  const currentBalance =
+    await prisma.leaveBalance.findUnique({
+      where: {
+        employeeId: grant.employeeId,
+      },
+    });
+
+  const currentGrantedDays =
+    currentBalance?.grantedDays ?? 0;
+
+  const nextGrantedDays =
+    grant.grantType === "MANUAL"
+      ? Math.max(
+          0,
+          currentGrantedDays - grant.grantedDays,
+        )
+      : currentGrantedDays + grant.grantedDays;
+
+  const updatedBalance =
+    await prisma.leaveBalance.upsert({
+      where: {
+        employeeId: grant.employeeId,
+      },
+      update: {
+        grantedDays: nextGrantedDays,
+      },
+      create: {
+        employeeId: grant.employeeId,
+        grantedDays: nextGrantedDays,
+        usedDays: 0,
+      },
+    });
+
+  await prisma.leaveGrantHistory.create({
+    data: {
+      employeeId: grant.employeeId,
+      grantDate: new Date(),
+      grantedDays: grant.grantedDays,
+      grantType: "MANUAL_CANCEL",
+      note: `取消元:${grant.id} ${grant.grantType} ${grant.note ?? ""}`.trim(),
+    },
+  });
+
+  await logAudit({
+    userId: session.user.id,
+    userName: session.user.name,
+    action: "LEAVE_ADJUSTMENT_CANCELLED",
+    targetType: "Employee",
+    targetId: grant.employeeId,
+    description: `${grant.employee.employeeNo} の有給調整を取消`,
+    beforeData: currentBalance,
+    afterData: updatedBalance,
+  });
+
+  revalidatePath("/leave-grants");
+  revalidatePath("/leave-balances");
+}
+
 export default async function LeaveGrantHistoryPage() {
   await requireHRManager();
 
@@ -229,6 +336,21 @@ export default async function LeaveGrantHistoryPage() {
       grantDate: "desc",
     },
   });
+
+  const canceledGrantIds = new Set(
+    grants
+      .filter(
+        (grant) =>
+          grant.grantType === "MANUAL_CANCEL" &&
+          grant.note?.includes("取消元:"),
+      )
+      .map((grant) =>
+        grant.note
+          ?.split("取消元:")[1]
+          ?.split(" ")[0],
+      )
+      .filter(Boolean),
+  );
 
   return (
     <main className="p-8">
@@ -334,6 +456,7 @@ export default async function LeaveGrantHistoryPage() {
               <th className="p-3 text-left">日数</th>
               <th className="p-3 text-left">区分</th>
               <th className="p-3 text-left">備考</th>
+              <th className="p-3 text-left">操作</th>
             </tr>
           </thead>
 
@@ -341,7 +464,7 @@ export default async function LeaveGrantHistoryPage() {
             {grants.length === 0 ? (
               <tr>
                 <td
-                  colSpan={6}
+                  colSpan={7}
                   className="p-8 text-center text-gray-500"
                 >
                   有給付与履歴はありません。
@@ -372,6 +495,31 @@ export default async function LeaveGrantHistoryPage() {
 
                   <td className="p-3">
                     {x.note ?? "-"}
+                  </td>
+
+                  <td className="p-3">
+                    {(x.grantType === "MANUAL" ||
+                      x.grantType === "MANUAL_DEDUCT") &&
+                    !canceledGrantIds.has(x.id) ? (
+                      <form action={cancelManualLeaveGrant}>
+                        <input
+                          type="hidden"
+                          name="grantId"
+                          value={x.id}
+                        />
+
+                        <button
+                          type="submit"
+                          className="rounded bg-red-600 px-3 py-1 text-xs font-medium text-white hover:bg-red-700"
+                        >
+                          取消
+                        </button>
+                      </form>
+                    ) : (
+                      <span className="text-xs text-gray-400">
+                        -
+                      </span>
+                    )}
                   </td>
                 </tr>
               ))

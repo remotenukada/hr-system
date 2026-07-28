@@ -280,6 +280,7 @@ enum LeaveGrantType {
   SPECIAL
   MANUAL
   MANUAL_DEDUCT
+  MANUAL_CANCEL
 }
 
 enum EmploymentAction {

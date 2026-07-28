@@ -145,7 +145,8 @@ export const LeaveGrantType: {
   LEGAL: 'LEGAL',
   SPECIAL: 'SPECIAL',
   MANUAL: 'MANUAL',
-  MANUAL_DEDUCT: 'MANUAL_DEDUCT'
+  MANUAL_DEDUCT: 'MANUAL_DEDUCT',
+  MANUAL_CANCEL: 'MANUAL_CANCEL'
 };
 
 export type LeaveGrantType = (typeof LeaveGrantType)[keyof typeof LeaveGrantType]
