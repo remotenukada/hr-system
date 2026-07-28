@@ -75,6 +75,26 @@ function InfoItem({
   );
 }
 
+
+function formatLeaveGrantType(type: string) {
+  const labels: Record<string, string> = {
+    LEGAL: "法定付与",
+    SPECIAL: "特別休暇",
+    MANUAL: "手動付与",
+    MANUAL_DEDUCT: "手動減算",
+  };
+
+  return labels[type] ?? type;
+}
+
+function formatGrantDays(type: string, days: number) {
+  if (type === "MANUAL_DEDUCT") {
+    return `-${days}日`;
+  }
+
+  return `+${days}日`;
+}
+
 export default async function EmployeeDetailPage({ params }: Props) {
   const { id } = await params;
 
@@ -103,6 +123,12 @@ export default async function EmployeeDetailPage({ params }: Props) {
         take: 10,
       },
       leaveBalance: true,
+      leaveGrantHistories: {
+        orderBy: {
+          createdAt: "desc",
+        },
+        take: 20,
+      },
     },
   });
 
@@ -503,6 +529,61 @@ export default async function EmployeeDetailPage({ params }: Props) {
                         </td>
                         <td className="p-3">
                           {new Date(history.createdAt).toLocaleDateString("ja-JP")}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </section>
+        )}
+
+        {canManageMyNumber && (
+          <section className="rounded-lg border bg-white p-5">
+            <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
+              有給残数調整履歴
+            </h2>
+
+            {employee.leaveGrantHistories.length === 0 ? (
+              <p className="text-sm text-gray-500">
+                有給付与・調整履歴はありません。
+              </p>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b bg-gray-50 text-left">
+                      <th className="p-3">日付</th>
+                      <th className="p-3">区分</th>
+                      <th className="p-3">日数</th>
+                      <th className="p-3">備考</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    {employee.leaveGrantHistories.map((history) => (
+                      <tr key={history.id} className="border-b">
+                        <td className="p-3">
+                          {new Date(history.grantDate).toLocaleDateString("ja-JP")}
+                        </td>
+
+                        <td className="p-3">
+                          {formatLeaveGrantType(history.grantType)}
+                        </td>
+
+                        <td
+                          className={
+                            history.grantType === "MANUAL_DEDUCT"
+                              ? "p-3 font-medium text-red-700"
+                              : "p-3 font-medium text-green-700"
+                          }
+                        >
+                          {formatGrantDays(history.grantType, history.grantedDays)}
+                        </td>
+
+                        <td className="p-3">
+                          {history.note ?? "-"}
                         </td>
                       </tr>
                     ))}
