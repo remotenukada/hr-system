@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { requireHRManager } from "@/lib/auth-guard";
+import { logAudit } from "@/lib/audit-log";
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -10,14 +12,18 @@ function addYears(date: Date, years: number) {
   return result;
 }
 
-function getDaysUntil(date: Date) {
+function getTodayOnly() {
   const today = new Date();
 
-  const todayOnly = new Date(
+  return new Date(
     today.getFullYear(),
     today.getMonth(),
     today.getDate(),
   );
+}
+
+function getDaysUntil(date: Date) {
+  const todayOnly = getTodayOnly();
 
   const targetOnly = new Date(
     date.getFullYear(),
@@ -35,14 +41,30 @@ function formatGrantType(type: string) {
     LEGAL: "法定付与",
     SPECIAL: "特別休暇",
     MANUAL: "手動付与",
+    EXPIRED: "失効",
   };
 
   return labels[type] ?? type;
 }
 
-function getStatusLabel(daysUntil: number) {
+function getExpiredSourceId(note: string | null) {
+  if (!note?.includes("失効元:")) {
+    return null;
+  }
+
+  return note.split("失効元:")[1]?.split(" ")[0] ?? null;
+}
+
+function getStatusLabel(
+  daysUntil: number,
+  alreadyExpired: boolean,
+) {
+  if (alreadyExpired) {
+    return "失効処理済";
+  }
+
   if (daysUntil < 0) {
-    return "失効済";
+    return "失効対象";
   }
 
   if (daysUntil <= 30) {
@@ -52,9 +74,16 @@ function getStatusLabel(daysUntil: number) {
   return "予定";
 }
 
-function getStatusClass(daysUntil: number) {
-  if (daysUntil < 0) {
+function getStatusClass(
+  daysUntil: number,
+  alreadyExpired: boolean,
+) {
+  if (alreadyExpired) {
     return "rounded bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600";
+  }
+
+  if (daysUntil < 0) {
+    return "rounded bg-red-100 px-2 py-1 text-xs font-medium text-red-700";
   }
 
   if (daysUntil <= 30) {
@@ -64,13 +93,15 @@ function getStatusClass(daysUntil: number) {
   return "rounded bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700";
 }
 
-export default async function LeaveExpirationPage() {
-  await requireHRManager();
+async function expireLeave() {
+  "use server";
+
+  const session = await requireHRManager();
 
   const grants = await prisma.leaveGrantHistory.findMany({
     where: {
       grantType: {
-        in: ["LEGAL", "SPECIAL", "MANUAL"],
+        in: ["LEGAL", "SPECIAL", "MANUAL", "EXPIRED"],
       },
       employee: {
         status: "ACTIVE",
@@ -84,32 +115,170 @@ export default async function LeaveExpirationPage() {
     },
   });
 
-  const expirationRows = grants.map((grant) => {
+  const expiredSourceIds = new Set(
+    grants
+      .filter((grant) => grant.grantType === "EXPIRED")
+      .map((grant) => getExpiredSourceId(grant.note))
+      .filter(Boolean),
+  );
+
+  const today = getTodayOnly();
+
+  const targets = grants.filter((grant) => {
+    if (
+      grant.grantType !== "LEGAL" &&
+      grant.grantType !== "SPECIAL" &&
+      grant.grantType !== "MANUAL"
+    ) {
+      return false;
+    }
+
+    if (expiredSourceIds.has(grant.id)) {
+      return false;
+    }
+
     const expirationDate = addYears(
       new Date(grant.grantDate),
       2,
     );
 
-    const daysUntil = getDaysUntil(expirationDate);
-
-    return {
-      id: grant.id,
-      employeeNo: grant.employee.employeeNo,
-      name: `${grant.employee.lastName} ${grant.employee.firstName}`,
-      grantDate: grant.grantDate,
-      expirationDate,
-      daysUntil,
-      days: grant.grantedDays,
-      grantType: grant.grantType,
-      note: grant.note,
-    };
+    return expirationDate < today;
   });
 
+  for (const grant of targets) {
+    const currentBalance =
+      await prisma.leaveBalance.findUnique({
+        where: {
+          employeeId: grant.employeeId,
+        },
+      });
+
+    const currentGrantedDays =
+      currentBalance?.grantedDays ?? 0;
+
+    const currentUsedDays =
+      currentBalance?.usedDays ?? 0;
+
+    const nextGrantedDays = Math.max(
+      currentUsedDays,
+      currentGrantedDays - grant.grantedDays,
+    );
+
+    const updatedBalance =
+      await prisma.leaveBalance.upsert({
+        where: {
+          employeeId: grant.employeeId,
+        },
+        update: {
+          grantedDays: nextGrantedDays,
+        },
+        create: {
+          employeeId: grant.employeeId,
+          grantedDays: 0,
+          usedDays: 0,
+        },
+      });
+
+    await prisma.leaveGrantHistory.create({
+      data: {
+        employeeId: grant.employeeId,
+        grantDate: new Date(),
+        grantedDays: grant.grantedDays,
+        grantType: "EXPIRED",
+        note: `失効元:${grant.id} ${formatGrantType(grant.grantType)} ${grant.note ?? ""}`.trim(),
+      },
+    });
+
+    await logAudit({
+      userId: session.user.id,
+      userName: session.user.name,
+      action: "LEAVE_EXPIRED",
+      targetType: "Employee",
+      targetId: grant.employeeId,
+      description: `${grant.employee.employeeNo} の有給 ${grant.grantedDays}日 を失効処理`,
+      beforeData: currentBalance,
+      afterData: updatedBalance,
+    });
+  }
+
+  revalidatePath("/leave-expiration");
+  revalidatePath("/leave-balances");
+  revalidatePath("/leave-grants");
+}
+
+export default async function LeaveExpirationPage() {
+  await requireHRManager();
+
+  const grants = await prisma.leaveGrantHistory.findMany({
+    where: {
+      grantType: {
+        in: ["LEGAL", "SPECIAL", "MANUAL", "EXPIRED"],
+      },
+      employee: {
+        status: "ACTIVE",
+      },
+    },
+    include: {
+      employee: true,
+    },
+    orderBy: {
+      grantDate: "asc",
+    },
+  });
+
+  const expiredSourceIds = new Set(
+    grants
+      .filter((grant) => grant.grantType === "EXPIRED")
+      .map((grant) => getExpiredSourceId(grant.note))
+      .filter(Boolean),
+  );
+
+  const expirationRows = grants
+    .filter((grant) =>
+      ["LEGAL", "SPECIAL", "MANUAL"].includes(grant.grantType),
+    )
+    .map((grant) => {
+      const expirationDate = addYears(
+        new Date(grant.grantDate),
+        2,
+      );
+
+      const daysUntil = getDaysUntil(expirationDate);
+      const alreadyExpired = expiredSourceIds.has(grant.id);
+
+      return {
+        id: grant.id,
+        employeeNo: grant.employee.employeeNo,
+        name: `${grant.employee.lastName} ${grant.employee.firstName}`,
+        grantDate: grant.grantDate,
+        expirationDate,
+        daysUntil,
+        alreadyExpired,
+        days: grant.grantedDays,
+        grantType: grant.grantType,
+        note: grant.note,
+      };
+    });
+
   const soonRows = expirationRows.filter(
-    (row) => row.daysUntil >= 0 && row.daysUntil <= 30,
+    (row) =>
+      !row.alreadyExpired &&
+      row.daysUntil >= 0 &&
+      row.daysUntil <= 30,
   );
 
   const soonDaysTotal = soonRows.reduce(
+    (sum, row) => sum + row.days,
+    0,
+  );
+
+  const expiredTargets = expirationRows.filter(
+    (row) =>
+      !row.alreadyExpired &&
+      row.daysUntil < 0,
+  );
+
+  const expiredDaysTotal = expiredTargets.reduce(
     (sum, row) => sum + row.days,
     0,
   );
@@ -147,6 +316,15 @@ export default async function LeaveExpirationPage() {
 
             <div className="rounded border bg-white px-4 py-3">
               <p className="text-xs text-gray-500">
+                失効実行対象
+              </p>
+              <p className="text-xl font-bold text-red-700">
+                {expiredTargets.length}件 / {expiredDaysTotal.toFixed(1)}日
+              </p>
+            </div>
+
+            <div className="rounded border bg-white px-4 py-3">
+              <p className="text-xs text-gray-500">
                 表示件数
               </p>
               <p className="text-xl font-bold text-gray-800">
@@ -157,6 +335,16 @@ export default async function LeaveExpirationPage() {
         </div>
 
         <div className="flex gap-3">
+          <form action={expireLeave}>
+            <button
+              type="submit"
+              disabled={expiredTargets.length === 0}
+              className="rounded bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700 disabled:bg-gray-300"
+            >
+              失効実行
+            </button>
+          </form>
+
           <Link
             href="/leave-balances"
             className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50"
@@ -204,7 +392,9 @@ export default async function LeaveExpirationPage() {
                 <tr
                   key={row.id}
                   className={
-                    row.daysUntil >= 0 && row.daysUntil <= 30
+                    !row.alreadyExpired &&
+                    row.daysUntil >= 0 &&
+                    row.daysUntil <= 30
                       ? "border-t bg-red-50"
                       : "border-t"
                   }
@@ -240,8 +430,16 @@ export default async function LeaveExpirationPage() {
                   </td>
 
                   <td className="p-3">
-                    <span className={getStatusClass(row.daysUntil)}>
-                      {getStatusLabel(row.daysUntil)}
+                    <span
+                      className={getStatusClass(
+                        row.daysUntil,
+                        row.alreadyExpired,
+                      )}
+                    >
+                      {getStatusLabel(
+                        row.daysUntil,
+                        row.alreadyExpired,
+                      )}
                     </span>
                   </td>
 
