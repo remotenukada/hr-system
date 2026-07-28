@@ -118,6 +118,15 @@ async function grantManualLeave(formData: FormData) {
     return;
   }
 
+  if (
+    adjustType === "DEDUCT" &&
+    !note.trim()
+  ) {
+    throw new Error(
+      "減算時は理由を入力してください。",
+    );
+  }
+
   const employee =
     await prisma.employee.findUnique({
       where: {
@@ -302,7 +311,7 @@ export default async function LeaveGrantHistoryPage() {
           <input
             type="text"
             name="note"
-            placeholder="理由"
+            placeholder="理由（減算時は必須）"
             className="rounded border p-2"
           />
 
