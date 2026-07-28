@@ -148,3 +148,7 @@ export function calculateAnnualGrantBreakdown(
     totalDays: 20,
   };
 }
+
+export function toDateKey(date: Date) {
+  return date.toISOString().slice(0, 10);
+}

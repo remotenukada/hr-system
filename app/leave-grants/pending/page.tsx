@@ -1,10 +1,13 @@
 import Link from "next/link";
+import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { requireHRManager } from "@/lib/auth-guard";
+import { logAudit } from "@/lib/audit-log";
 import {
   calculateAnnualGrantBreakdown,
   calculateRuleBasedNextGrantDate,
   getLeaveGrantCategory,
+  toDateKey,
 } from "@/lib/leave-annual-grant";
 
 function formatEmploymentType(type: string | null) {
@@ -16,6 +19,115 @@ function formatEmploymentType(type: string | null) {
   };
 
   return type ? labels[type] ?? type : "-";
+}
+
+async function grantPendingLeave() {
+  "use server";
+
+  const session = await requireHRManager();
+
+  const employees = await prisma.employee.findMany({
+    where: {
+      hireDate: {
+        not: null,
+      },
+      status: "ACTIVE",
+    },
+    include: {
+      leaveGrantHistories: true,
+      leaveBalance: true,
+    },
+    orderBy: {
+      employeeNo: "asc",
+    },
+  });
+
+  for (const employee of employees) {
+    if (!employee.hireDate) {
+      continue;
+    }
+
+    const hireDate = new Date(employee.hireDate);
+    const nextGrantDate = calculateRuleBasedNextGrantDate(hireDate);
+    const nextGrantDateKey = toDateKey(nextGrantDate);
+
+    const alreadyGranted = employee.leaveGrantHistories.some(
+      (history) => toDateKey(new Date(history.grantDate)) === nextGrantDateKey,
+    );
+
+    if (alreadyGranted) {
+      continue;
+    }
+
+    const breakdown = calculateAnnualGrantBreakdown(
+      hireDate,
+      employee.employmentType,
+    );
+
+    if (breakdown.totalDays <= 0) {
+      continue;
+    }
+
+    const grantRows = [
+      {
+        employeeId: employee.id,
+        grantDate: nextGrantDate,
+        grantedDays: breakdown.legalDays,
+        grantType: "LEGAL" as const,
+        note: "年次有給休暇 法定付与",
+      },
+      ...(breakdown.specialDays > 0
+        ? [
+            {
+              employeeId: employee.id,
+              grantDate: nextGrantDate,
+              grantedDays: breakdown.specialDays,
+              grantType: "SPECIAL" as const,
+              note: "年次有給休暇 特別休暇付与",
+            },
+          ]
+        : []),
+    ];
+
+    await prisma.leaveGrantHistory.createMany({
+      data: grantRows,
+    });
+
+    const beforeBalance = employee.leaveBalance;
+
+    const updatedBalance = await prisma.leaveBalance.upsert({
+      where: {
+        employeeId: employee.id,
+      },
+      update: {
+        grantedDays:
+          (employee.leaveBalance?.grantedDays ?? 0) + breakdown.totalDays,
+      },
+      create: {
+        employeeId: employee.id,
+        grantedDays: breakdown.totalDays,
+        usedDays: 0,
+      },
+    });
+
+    await logAudit({
+      userId: session.user.id,
+      userName: session.user.name,
+      action: "LEAVE_GRANTED",
+      targetType: "Employee",
+      targetId: employee.id,
+      description: `${employee.employeeNo} に有給 ${breakdown.totalDays}日 を一括付与`,
+      beforeData: beforeBalance,
+      afterData: {
+        balance: updatedBalance,
+        grants: grantRows,
+      },
+    });
+  }
+
+  revalidatePath("/leave-grants/pending");
+  revalidatePath("/leave-grants");
+  revalidatePath("/leave-balances");
 }
 
 export default async function PendingLeaveGrantPage() {
@@ -36,6 +148,23 @@ export default async function PendingLeaveGrantPage() {
     },
   });
 
+  const targets = employees.filter((employee) => {
+    if (!employee.hireDate) {
+      return false;
+    }
+
+    const nextGrantDate = calculateRuleBasedNextGrantDate(
+      new Date(employee.hireDate),
+    );
+
+    const alreadyGranted = employee.leaveGrantHistories.some(
+      (history) =>
+        toDateKey(new Date(history.grantDate)) === toDateKey(nextGrantDate),
+    );
+
+    return !alreadyGranted;
+  });
+
   return (
     <main className="p-8">
       <div className="mb-6 flex items-center justify-between">
@@ -45,11 +174,25 @@ export default async function PendingLeaveGrantPage() {
           </h1>
 
           <p className="mt-1 text-sm text-gray-500">
-            次回付与予定の職員を確認します。
+            次回付与予定の職員を確認し、一括付与します。
+          </p>
+
+          <p className="mt-2 font-medium text-blue-700">
+            付与対象: {targets.length}件
           </p>
         </div>
 
         <div className="flex gap-3">
+          <form action={grantPendingLeave}>
+            <button
+              type="submit"
+              className="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:bg-gray-300"
+              disabled={targets.length === 0}
+            >
+              対象者へ一括付与
+            </button>
+          </form>
+
           <Link
             href="/leave-balances"
             className="rounded-md border bg-white px-4 py-2 text-sm hover:bg-gray-50"
@@ -78,23 +221,22 @@ export default async function PendingLeaveGrantPage() {
               <th className="border-b p-3">特別休暇</th>
               <th className="border-b p-3">合計</th>
               <th className="border-b p-3">判定</th>
-              <th className="border-b p-3">状態</th>
               <th className="border-b p-3">詳細</th>
             </tr>
           </thead>
 
           <tbody>
-            {employees.length === 0 ? (
+            {targets.length === 0 ? (
               <tr>
                 <td
                   colSpan={9}
                   className="p-8 text-center text-gray-500"
                 >
-                  対象者はいません。
+                  付与対象者はいません。
                 </td>
               </tr>
             ) : (
-              employees.map((employee) => {
+              targets.map((employee) => {
                 const hireDate = employee.hireDate
                   ? new Date(employee.hireDate)
                   : null;
@@ -113,15 +255,6 @@ export default async function PendingLeaveGrantPage() {
                 const category = hireDate
                   ? getLeaveGrantCategory(hireDate)
                   : "-";
-
-                const alreadyGranted =
-                  employee.leaveGrantHistories.some(
-                    (history) =>
-                      nextGrantDate &&
-                      new Date(history.grantDate)
-                        .toDateString() ===
-                      nextGrantDate.toDateString(),
-                  );
 
                 return (
                   <tr
@@ -174,18 +307,6 @@ export default async function PendingLeaveGrantPage() {
                       >
                         {category}
                       </span>
-                    </td>
-
-                    <td className="p-3">
-                      {alreadyGranted ? (
-                        <span className="rounded bg-green-100 px-2 py-1 text-xs font-medium text-green-700">
-                          付与済
-                        </span>
-                      ) : (
-                        <span className="rounded bg-yellow-100 px-2 py-1 text-xs font-medium text-yellow-700">
-                          未付与
-                        </span>
-                      )}
                     </td>
 
                     <td className="p-3">
