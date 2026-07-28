@@ -28,6 +28,9 @@ export default async function PendingLeaveGrantPage() {
       },
       status: "ACTIVE",
     },
+    include: {
+      leaveGrantHistories: true,
+    },
     orderBy: {
       employeeNo: "asc",
     },
@@ -75,6 +78,7 @@ export default async function PendingLeaveGrantPage() {
               <th className="border-b p-3">特別休暇</th>
               <th className="border-b p-3">合計</th>
               <th className="border-b p-3">判定</th>
+              <th className="border-b p-3">状態</th>
               <th className="border-b p-3">詳細</th>
             </tr>
           </thead>
@@ -109,6 +113,15 @@ export default async function PendingLeaveGrantPage() {
                 const category = hireDate
                   ? getLeaveGrantCategory(hireDate)
                   : "-";
+
+                const alreadyGranted =
+                  employee.leaveGrantHistories.some(
+                    (history) =>
+                      nextGrantDate &&
+                      new Date(history.grantDate)
+                        .toDateString() ===
+                      nextGrantDate.toDateString(),
+                  );
 
                 return (
                   <tr
@@ -161,6 +174,18 @@ export default async function PendingLeaveGrantPage() {
                       >
                         {category}
                       </span>
+                    </td>
+
+                    <td className="p-3">
+                      {alreadyGranted ? (
+                        <span className="rounded bg-green-100 px-2 py-1 text-xs font-medium text-green-700">
+                          付与済
+                        </span>
+                      ) : (
+                        <span className="rounded bg-yellow-100 px-2 py-1 text-xs font-medium text-yellow-700">
+                          未付与
+                        </span>
+                      )}
                     </td>
 
                     <td className="p-3">
