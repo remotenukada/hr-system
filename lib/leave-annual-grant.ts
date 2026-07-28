@@ -152,3 +152,12 @@ export function calculateAnnualGrantBreakdown(
 export function toDateKey(date: Date) {
   return date.toISOString().slice(0, 10);
 }
+
+export function calculateAnnualGrantDays(
+  hireDate: Date,
+): number {
+  return calculateAnnualGrantBreakdown(
+    hireDate,
+    "FULL_TIME",
+  ).totalDays;
+}
