@@ -326,7 +326,9 @@ exports.EmploymentAction = exports.$Enums.EmploymentAction = {
 
 exports.LeaveGrantType = exports.$Enums.LeaveGrantType = {
   LEGAL: 'LEGAL',
-  SPECIAL: 'SPECIAL'
+  SPECIAL: 'SPECIAL',
+  MANUAL: 'MANUAL',
+  MANUAL_DEDUCT: 'MANUAL_DEDUCT'
 };
 
 exports.RequestType = exports.$Enums.RequestType = {

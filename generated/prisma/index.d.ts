@@ -143,7 +143,9 @@ export type EmploymentType = (typeof EmploymentType)[keyof typeof EmploymentType
 
 export const LeaveGrantType: {
   LEGAL: 'LEGAL',
-  SPECIAL: 'SPECIAL'
+  SPECIAL: 'SPECIAL',
+  MANUAL: 'MANUAL',
+  MANUAL_DEDUCT: 'MANUAL_DEDUCT'
 };
 
 export type LeaveGrantType = (typeof LeaveGrantType)[keyof typeof LeaveGrantType]

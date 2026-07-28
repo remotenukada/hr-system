@@ -92,8 +92,125 @@ async function grantInitialFullTimeLeave() {
   revalidatePath("/leave-balances");
 }
 
+
+async function grantManualLeave(formData: FormData) {
+  "use server";
+
+  const session = await requireHRManager();
+
+  const employeeId = String(
+    formData.get("employeeId") ?? "",
+  );
+
+  const days = Number(
+    formData.get("days") ?? 0,
+  );
+
+  const adjustType = String(
+    formData.get("adjustType") ?? "GRANT",
+  );
+
+  const note = String(
+    formData.get("note") ?? "",
+  );
+
+  if (!employeeId || days <= 0) {
+    return;
+  }
+
+  const employee =
+    await prisma.employee.findUnique({
+      where: {
+        id: employeeId,
+      },
+    });
+
+  if (!employee) {
+    return;
+  }
+
+  const currentBalance =
+    await prisma.leaveBalance.findUnique({
+      where: {
+        employeeId,
+      },
+    });
+
+  await prisma.leaveGrantHistory.create({
+    data: {
+      employeeId,
+      grantDate: new Date(),
+      grantedDays: days,
+      grantType:
+        adjustType === "DEDUCT"
+          ? "MANUAL_DEDUCT"
+          : "MANUAL",
+      note,
+    },
+  });
+
+  const updatedBalance =
+    await prisma.leaveBalance.upsert({
+      where: {
+        employeeId,
+      },
+      update: {
+        grantedDays:
+          adjustType === "DEDUCT"
+            ? Math.max(
+                0,
+                (currentBalance?.grantedDays ?? 0) -
+                  days,
+              )
+            : (currentBalance?.grantedDays ?? 0) +
+              days,
+      },
+      create: {
+        employeeId,
+        grantedDays:
+          adjustType === "DEDUCT"
+            ? 0
+            : days,
+        usedDays: 0,
+      },
+    });
+
+  await logAudit({
+    userId: session.user.id,
+    userName: session.user.name,
+    action:
+      adjustType === "DEDUCT"
+        ? "LEAVE_DEDUCT_MANUAL"
+        : "LEAVE_GRANTED_MANUAL",
+    targetType: "Employee",
+    targetId: employeeId,
+    description:
+      adjustType === "DEDUCT"
+        ? `${employee.employeeNo} の有給を ${days}日 減算`
+        : `${employee.employeeNo} に手動付与 ${days}日`,
+    beforeData: currentBalance,
+    afterData: updatedBalance,
+  });
+
+  revalidatePath("/leave-grants");
+  revalidatePath("/leave-balances");
+}
+
 export default async function LeaveGrantHistoryPage() {
   await requireHRManager();
+
+  const employees =
+    await prisma.employee.findMany({
+      select: {
+        id: true,
+        employeeNo: true,
+        lastName: true,
+        firstName: true,
+      },
+      orderBy: {
+        employeeNo: "asc",
+      },
+    });
 
   const grants = await prisma.leaveGrantHistory.findMany({
     include: {
@@ -125,6 +242,78 @@ export default async function LeaveGrantHistoryPage() {
           </button>
         </form>
       </div>
+
+
+      <form
+        action={grantManualLeave}
+        className="mb-6 rounded border bg-white p-4"
+      >
+        <h2 className="mb-3 text-lg font-bold">
+          手動付与
+        </h2>
+
+        <div className="flex flex-wrap gap-3">
+          <select
+            name="employeeId"
+            className="rounded border p-2"
+            required
+          >
+            <option value="">
+              社員を選択
+            </option>
+
+            {employees.map((employee) => (
+              <option
+                key={employee.id}
+                value={employee.id}
+              >
+                {employee.employeeNo}
+                {" "}
+                {employee.lastName}
+                {" "}
+                {employee.firstName}
+              </option>
+            ))}
+          </select>
+
+          <select
+            name="adjustType"
+            className="rounded border p-2"
+          >
+            <option value="GRANT">
+              付与
+            </option>
+
+            <option value="DEDUCT">
+              減算
+            </option>
+          </select>
+
+          <input
+            type="number"
+            name="days"
+            min="0.5"
+            step="0.5"
+            placeholder="付与日数"
+            className="rounded border p-2"
+            required
+          />
+
+          <input
+            type="text"
+            name="note"
+            placeholder="理由"
+            className="rounded border p-2"
+          />
+
+          <button
+            type="submit"
+            className="rounded bg-green-600 px-4 py-2 text-white hover:bg-green-700"
+          >
+            手動付与
+          </button>
+        </div>
+      </form>
 
       <div className="overflow-x-auto rounded border bg-white">
         <table className="w-full text-sm">

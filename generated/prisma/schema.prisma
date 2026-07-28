@@ -278,6 +278,8 @@ enum EmploymentType {
 enum LeaveGrantType {
   LEGAL
   SPECIAL
+  MANUAL
+  MANUAL_DEDUCT
 }
 
 enum EmploymentAction {
