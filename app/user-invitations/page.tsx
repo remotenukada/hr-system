@@ -81,6 +81,7 @@ export default async function UserInvitationsPage() {
               <th className="p-3 text-left">状態</th>
               <th className="p-3 text-left">招待URL</th>
               <th className="p-3 text-left">QR</th>
+              <th className="p-3 text-left">印刷</th>
             </tr>
           </thead>
 
@@ -88,7 +89,7 @@ export default async function UserInvitationsPage() {
             {invitations.length === 0 ? (
               <tr>
                 <td
-                  colSpan={8}
+                  colSpan={9}
                   className="p-8 text-center text-gray-500"
                 >
                   招待はまだありません。
@@ -142,6 +143,14 @@ export default async function UserInvitationsPage() {
                       className="text-blue-600 hover:underline"
                     >
                       QRコード
+                    </Link>
+                  </td>
+                  <td className="p-3">
+                    <Link
+                      href={`/user-invitations/${invitation.id}/print`}
+                      className="text-blue-600 hover:underline"
+                    >
+                      印刷
                     </Link>
                   </td>
                 </tr>
