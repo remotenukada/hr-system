@@ -82,6 +82,7 @@ export default async function UserInvitationsPage() {
               <th className="p-3 text-left">招待URL</th>
               <th className="p-3 text-left">QR</th>
               <th className="p-3 text-left">印刷</th>
+              <th className="p-3 text-left">再発行</th>
             </tr>
           </thead>
 
@@ -89,7 +90,7 @@ export default async function UserInvitationsPage() {
             {invitations.length === 0 ? (
               <tr>
                 <td
-                  colSpan={9}
+                  colSpan={10}
                   className="p-8 text-center text-gray-500"
                 >
                   招待はまだありません。
@@ -152,6 +153,23 @@ export default async function UserInvitationsPage() {
                     >
                       印刷
                     </Link>
+                  </td>
+                  <td className="p-3">
+                    {!invitation.acceptedAt ? (
+                      <form
+                        action={`/api/user-invitations/${invitation.id}/reissue`}
+                        method="POST"
+                      >
+                        <button
+                          type="submit"
+                          className="text-red-600 hover:underline"
+                        >
+                          再発行
+                        </button>
+                      </form>
+                    ) : (
+                      "-"
+                    )}
                   </td>
                 </tr>
               ))
