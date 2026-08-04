@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { prisma } from "../../lib/prisma";
-import { Prisma, RequestStatus } from "@prisma/client";
+import { Prisma } from "../../generated/prisma";
 
 type Props = {
   searchParams: Promise<{
@@ -84,7 +84,7 @@ export default async function RequestsPage({ searchParams }: Props) {
   const requests = await prisma.employeeRequest.findMany({
     where: {
       ...(q ? { OR: getSearchConditions(q) } : {}),
-      ...(isValidStatus ? { status: status as RequestStatus } : {}),
+      ...(isValidStatus ? { status: status as "PENDING" | "APPROVED" | "REJECTED" } : {}),
     },
     include: {
       employee: true,

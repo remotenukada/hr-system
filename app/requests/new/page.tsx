@@ -91,6 +91,31 @@ async function createRequest(formData: FormData) {
     attachments.push(attachment);
   }
 
+  if (
+    type === "PAID_LEAVE" &&
+    employeeId &&
+    leaveDays
+  ) {
+    const leaveBalance =
+      await prisma.leaveBalance.findUnique({
+        where: {
+          employeeId,
+        },
+      });
+
+    const remainingDays =
+      (leaveBalance?.grantedDays ?? 0) -
+      (leaveBalance?.usedDays ?? 0);
+
+    if (remainingDays < leaveDays) {
+      redirect(
+        `/requests/new?error=${encodeURIComponent(
+          `有給残数不足（残数: ${remainingDays}日）`,
+        )}`,
+      );
+    }
+  }
+
   await prisma.employeeRequest.create({
     data: {
       title,
@@ -139,7 +164,18 @@ async function createRequest(formData: FormData) {
   redirect("/requests/my");
 }
 
-export default async function NewRequestPage() {
+type NewRequestPageProps = {
+  searchParams: Promise<{
+    error?: string;
+  }>;
+};
+
+export default async function NewRequestPage({
+  searchParams,
+}: NewRequestPageProps) {
+  const params = await searchParams;
+  const error = params.error;
+
   const session = await auth();
 
   if (!session?.user) {
@@ -157,6 +193,12 @@ export default async function NewRequestPage() {
       <h1 className="mb-6 text-3xl font-bold">
         新規申請作成
       </h1>
+
+      {error && (
+        <div className="mb-4 rounded border border-red-200 bg-red-50 p-3 text-sm font-medium text-red-700">
+          {error}
+        </div>
+      )}
 
       <form action={createRequest} className="space-y-4">
         <div>

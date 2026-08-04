@@ -26,8 +26,33 @@ model User {
   email     String            @unique
   password  String // クレデンシャルログイン用
   role      UserRole          @default(USER)
+  isActive  Boolean           @default(true)
   createdAt DateTime          @default(now())
   requests  EmployeeRequest[] // ユーザーが作成した申請一覧
+}
+
+model UserInvitation {
+  id String @id @default(uuid())
+
+  employeeNo String
+  lastName   String
+  firstName  String
+  email      String
+
+  token String @unique
+
+  expectedHireDate DateTime?
+  expiresAt        DateTime
+  acceptedAt       DateTime?
+
+  createdUserId     String?
+  createdEmployeeId String?
+
+  createdAt DateTime @default(now())
+
+  @@index([email])
+  @@index([token])
+  @@index([acceptedAt])
 }
 
 model Department {
@@ -281,6 +306,7 @@ enum LeaveGrantType {
   MANUAL
   MANUAL_DEDUCT
   MANUAL_CANCEL
+  EXPIRED
 }
 
 enum EmploymentAction {

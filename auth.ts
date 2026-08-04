@@ -35,6 +35,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           return null;
         }
 
+        if (!user.isActive) {
+          return null;
+        }
+
         const isValid = await bcrypt.compare(password, user.password);
 
         console.log("PASSWORD VALID:", isValid);
@@ -65,8 +69,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
     async session({ session, token }) {
       if (session.user && token) {
-        session.user.id = token.id ?? "";
-        session.user.role = token.role ?? "USER";
+        session.user.id = String(token.id ?? "");
+        session.user.role = String(token.role ?? "USER");
       }
 
       return session;

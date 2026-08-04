@@ -106,14 +106,14 @@ export default async function EmployeeEditPage({ params }: Props) {
 
         healthInsuranceNo: healthInsuranceNo || null,
         employmentInsuranceNo: employmentInsuranceNo || null,
-        photoPath: photoPath || employee.photoPath || null,
+        photoPath: photoPath || employee?.photoPath || null,
       },
     });
 
 
 
     if (
-      employee.status !== "LEAVE" &&
+      employee?.status !== "LEAVE" &&
       updatedEmployee.status === "LEAVE"
     ) {
       await prisma.employmentHistory.create({
@@ -134,7 +134,7 @@ export default async function EmployeeEditPage({ params }: Props) {
     }
 
     if (
-      employee.status === "LEAVE" &&
+      employee?.status === "LEAVE" &&
       updatedEmployee.status === "ACTIVE"
     ) {
       await prisma.employmentHistory.create({
@@ -156,7 +156,7 @@ export default async function EmployeeEditPage({ params }: Props) {
 
 
     if (
-      employee.status !== "RETIRED" &&
+      employee?.status !== "RETIRED" &&
       updatedEmployee.status === "RETIRED"
     ) {
       await prisma.employmentHistory.create({

@@ -149,12 +149,12 @@ export default async function EmployeeDetailPage({ params }: Props) {
 
   if (employee.employeeMyNumber && canManageMyNumber) {
     await logAudit({
-      userId: session.user.id,
-      userName: session.user.name,
+      userId: session?.user?.id,
+      userName: session?.user?.name,
       action: "VIEW_MYNUMBER",
       targetType: "Employee",
       targetId: employee.id,
-      description: `${employee.employeeNo} のマイナンバーを閲覧`,
+      description: `${employee?.employeeNo} のマイナンバーを閲覧`,
     });
   }
 
@@ -197,12 +197,12 @@ export default async function EmployeeDetailPage({ params }: Props) {
     });
 
     await logAudit({
-      userId: session.user.id,
-      userName: session.user.name,
+      userId: session?.user?.id,
+      userName: session?.user?.name,
       action: "UPDATE_MYNUMBER",
       targetType: "Employee",
       targetId: id,
-      description: `${employee.employeeNo} のマイナンバーを更新`,
+      description: `${employee?.employeeNo} のマイナンバーを更新`,
       beforeData: {
         maskedMyNumber: beforeMasked,
       },
@@ -267,12 +267,12 @@ export default async function EmployeeDetailPage({ params }: Props) {
     });
 
     await logAudit({
-      userId: session.user.id,
-      userName: session.user.name,
+      userId: session?.user?.id,
+      userName: session?.user?.name,
       action: "UPDATE_SALARY",
       targetType: "Employee",
       targetId: id,
-      description: `${employee.employeeNo} の給与を更新`,
+      description: `${employee?.employeeNo} の給与を更新`,
       beforeData: currentSalary,
       afterData: updatedSalary,
     });
@@ -311,12 +311,12 @@ export default async function EmployeeDetailPage({ params }: Props) {
     });
 
     await logAudit({
-      userId: session.user.id,
-      userName: session.user.name,
+      userId: session?.user?.id,
+      userName: session?.user?.name,
       action: "UPDATE_LEAVE_BALANCE",
       targetType: "Employee",
       targetId: id,
-      description: `${employee.employeeNo} の有給残日数を更新`,
+      description: `${employee?.employeeNo} の有給残日数を更新`,
       beforeData: currentLeave,
       afterData: updatedLeave,
     });
@@ -424,7 +424,7 @@ export default async function EmployeeDetailPage({ params }: Props) {
           </h2>
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <InfoItem label="社員番号" value={employee.employeeNo} />
+            <InfoItem label="社員番号" value={employee?.employeeNo} />
             <InfoItem label="メールアドレス" value={employee.email} />
             <InfoItem
               label="氏名"

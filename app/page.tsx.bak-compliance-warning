@@ -393,47 +393,6 @@ export default async function DashboardPage() {
   const leaveComplianceNotCompletedCount =
     leaveComplianceNotCompletedEmployeeIds.size;
 
-  const leaveComplianceWarningRows =
-    leaveComplianceGrants.filter((grant) => {
-      const dueDate = addYears(grant.grantDate, 1);
-      const daysUntilDue = getDaysUntil(dueDate);
-
-      const acquiredDays = leaveComplianceRequests
-        .filter((request) => {
-          if (
-            !request.employeeId ||
-            !request.leaveStartDate ||
-            !request.leaveDays
-          ) {
-            return false;
-          }
-
-          return (
-            request.employeeId === grant.employeeId &&
-            request.leaveStartDate >= grant.grantDate &&
-            request.leaveStartDate < dueDate
-          );
-        })
-        .reduce(
-          (sum, request) => sum + (request.leaveDays ?? 0),
-          0,
-        );
-
-      return acquiredDays < 5 && daysUntilDue >= 0;
-    });
-
-  const leaveComplianceWarning90Count =
-    leaveComplianceWarningRows.filter((grant) => {
-      const dueDate = addYears(grant.grantDate, 1);
-      return getDaysUntil(dueDate) <= 90;
-    }).length;
-
-  const leaveComplianceWarning30Count =
-    leaveComplianceWarningRows.filter((grant) => {
-      const dueDate = addYears(grant.grantDate, 1);
-      return getDaysUntil(dueDate) <= 30;
-    }).length;
-
   const today = new Date();
 
   const todayStart = new Date(today);
@@ -738,20 +697,6 @@ export default async function DashboardPage() {
               color="red"
               href="/leave-compliance"
             />
-            <StatCard
-              title="5日取得義務 90日以内"
-              value={leaveComplianceWarning90Count}
-              description="期限90日以内の未達者"
-              color="yellow"
-              href="/leave-compliance"
-            />
-            <StatCard
-              title="5日取得義務 30日以内"
-              value={leaveComplianceWarning30Count}
-              description="期限30日以内の未達者"
-              color="red"
-              href="/leave-compliance"
-            />
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -922,14 +867,6 @@ export default async function DashboardPage() {
               >
                 監査ログ一覧
               </Link>
-              {user.role === "ADMIN" && (
-                <Link
-                  href="/users"
-                  className="rounded bg-purple-600 px-4 py-2 text-sm text-white hover:bg-purple-700"
-                >
-                  ユーザー管理
-                </Link>
-              )}
             </div>
           </div>
         )}

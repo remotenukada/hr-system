@@ -107,3 +107,32 @@ export function buildFullTimeInitialLeaveGrantPlan(
 
   return results;
 }
+export function getLeaveGrantCategory(
+  hireDate: Date,
+): string {
+  const nextGrantDate =
+    calculateRuleBasedNextGrantDate(
+      hireDate,
+    );
+
+  const firstGrantDate = new Date(hireDate);
+  firstGrantDate.setMonth(
+    firstGrantDate.getMonth() + 6,
+  );
+
+  if (
+    nextGrantDate.getTime() ===
+    firstGrantDate.getTime()
+  ) {
+    return "初回付与";
+  }
+
+  return "定期付与";
+}
+function calculateRuleBasedNextGrantDate(
+  hireDate: Date,
+) {
+  const result = new Date(hireDate);
+  result.setMonth(result.getMonth() + 6);
+  return result;
+}

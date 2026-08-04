@@ -2,7 +2,6 @@ import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import Link from "next/link";
 import { prisma } from "../../../../lib/prisma";
-import { RequestType } from "@prisma/client";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -25,7 +24,9 @@ export default async function EditRequestPage({ params }: Props) {
 
     const title = formData.get("title")?.toString() || "";
     const comment = formData.get("comment")?.toString() || null;
-    const type = formData.get("type")?.toString() as RequestType;
+    const type = formData.get("type")?.toString() as "ONBOARDING" | "DEPARTMENT_CHANGE" | "PAID_LEAVE" | "OTHER";
+
+
     const employeeId = formData.get("employeeId")?.toString() || null;
 
     if (!title || !type) {

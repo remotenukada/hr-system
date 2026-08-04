@@ -3,64 +3,16 @@ import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
-const DAY_MS = 24 * 60 * 60 * 1000;
-
-function addYears(date: Date, years: number) {
-  const result = new Date(date);
-  result.setFullYear(result.getFullYear() + years);
-  return result;
-}
-
-function getTodayOnly() {
-  const today = new Date();
-
-  const todayStart = new Date(today);
-  todayStart.setHours(0, 0, 0, 0);
-
-  const todayEnd = new Date(today);
-  todayEnd.setHours(23, 59, 59, 999);
-
-  return new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate(),
-  );
-}
-
-function getDaysUntil(date: Date) {
-  const todayOnly = getTodayOnly();
-
-  const targetOnly = new Date(
-    date.getFullYear(),
-    date.getMonth(),
-    date.getDate(),
-  );
-
-  return Math.ceil(
-    (targetOnly.getTime() - todayOnly.getTime()) / DAY_MS,
-  );
-}
-
-function getExpiredSourceId(note: string | null) {
-  if (!note?.includes("失効元:")) {
-    return null;
-  }
-
-  return note.split("失効元:")[1]?.split(" ")[0] ?? null;
-}
-
 function StatCard({
   title,
   value,
   description,
   color = "blue",
-  href,
 }: {
   title: string;
   value: number | string;
   description?: string;
   color?: "blue" | "green" | "yellow" | "red" | "gray" | "purple";
-  href?: string;
 }) {
   const colorClasses = {
     blue: "border-blue-200 bg-blue-50 text-blue-700",
@@ -71,12 +23,8 @@ function StatCard({
     purple: "border-purple-200 bg-purple-50 text-purple-700",
   };
 
-  const card = (
-    <div
-      className={`rounded-lg border p-5 ${colorClasses[color]} ${
-        href ? "transition hover:opacity-80" : ""
-      }`}
-    >
+  return (
+    <div className={`rounded-lg border p-5 ${colorClasses[color]}`}>
       <p className="text-sm font-medium">{title}</p>
       <p className="mt-2 text-3xl font-bold">{value}</p>
       {description && (
@@ -86,12 +34,6 @@ function StatCard({
       )}
     </div>
   );
-
-  if (href) {
-    return <Link href={href}>{card}</Link>;
-  }
-
-  return card;
 }
 
 function SimpleBarChart({
@@ -259,230 +201,6 @@ export default async function DashboardPage() {
       sum + (item.grantedDays - item.usedDays),
     0,
   );
-
-  const leaveExpirationGrants =
-    await prisma.leaveGrantHistory.findMany({
-      where: {
-        grantType: {
-          in: ["LEGAL", "SPECIAL", "MANUAL", "EXPIRED"],
-        },
-        employee: {
-          status: "ACTIVE",
-        },
-      },
-      select: {
-        id: true,
-        grantDate: true,
-        grantType: true,
-        note: true,
-      },
-    });
-
-  const expiredSourceIds = new Set(
-    leaveExpirationGrants
-      .filter((grant) => grant.grantType === "EXPIRED")
-      .map((grant) => getExpiredSourceId(grant.note))
-      .filter((id): id is string => Boolean(id)),
-  );
-
-  const expirationRows = leaveExpirationGrants
-    .filter((grant) =>
-      ["LEGAL", "SPECIAL", "MANUAL"].includes(grant.grantType),
-    )
-    .map((grant) => {
-      const expirationDate = addYears(
-        new Date(grant.grantDate),
-        2,
-      );
-
-      return {
-        id: grant.id,
-        daysUntil: getDaysUntil(expirationDate),
-        alreadyExpired: expiredSourceIds.has(grant.id),
-      };
-    });
-
-  const soonExpiringLeaveCount = expirationRows.filter(
-    (row) =>
-      !row.alreadyExpired &&
-      row.daysUntil >= 0 &&
-      row.daysUntil <= 30,
-  ).length;
-
-  const expiredLeaveTargetCount = expirationRows.filter(
-    (row) => !row.alreadyExpired && row.daysUntil < 0,
-  ).length;
-
-  const complianceToday = getTodayOnly();
-
-  const leaveComplianceGrants =
-    await prisma.leaveGrantHistory.findMany({
-      where: {
-        grantedDays: {
-          gte: 10,
-        },
-        grantType: {
-          in: ["LEGAL", "MANUAL"],
-        },
-        grantDate: {
-          lte: complianceToday,
-        },
-        employee: {
-          status: "ACTIVE",
-        },
-      },
-      select: {
-        employeeId: true,
-        grantDate: true,
-      },
-    });
-
-  const leaveComplianceEmployeeIds = Array.from(
-    new Set(
-      leaveComplianceGrants.map((grant) => grant.employeeId),
-    ),
-  );
-
-  const leaveComplianceRequests =
-    await prisma.employeeRequest.findMany({
-      where: {
-        type: "PAID_LEAVE",
-        status: "APPROVED",
-        employeeId: {
-          in: leaveComplianceEmployeeIds,
-        },
-      },
-      select: {
-        employeeId: true,
-        leaveStartDate: true,
-        leaveDays: true,
-      },
-    });
-
-  const leaveComplianceNotCompletedEmployeeIds = new Set(
-    leaveComplianceGrants
-      .filter((grant) => {
-        const dueDate = addYears(grant.grantDate, 1);
-
-        const acquiredDays = leaveComplianceRequests
-          .filter((request) => {
-            if (
-              !request.employeeId ||
-              !request.leaveStartDate ||
-              !request.leaveDays
-            ) {
-              return false;
-            }
-
-            return (
-              request.employeeId === grant.employeeId &&
-              request.leaveStartDate >= grant.grantDate &&
-              request.leaveStartDate < dueDate
-            );
-          })
-          .reduce(
-            (sum, request) => sum + (request.leaveDays ?? 0),
-            0,
-          );
-
-        return acquiredDays < 5;
-      })
-      .map((grant) => grant.employeeId),
-  );
-
-  const leaveComplianceNotCompletedCount =
-    leaveComplianceNotCompletedEmployeeIds.size;
-
-  const leaveComplianceWarningRows =
-    leaveComplianceGrants.filter((grant) => {
-      const dueDate = addYears(grant.grantDate, 1);
-      const daysUntilDue = getDaysUntil(dueDate);
-
-      const acquiredDays = leaveComplianceRequests
-        .filter((request) => {
-          if (
-            !request.employeeId ||
-            !request.leaveStartDate ||
-            !request.leaveDays
-          ) {
-            return false;
-          }
-
-          return (
-            request.employeeId === grant.employeeId &&
-            request.leaveStartDate >= grant.grantDate &&
-            request.leaveStartDate < dueDate
-          );
-        })
-        .reduce(
-          (sum, request) => sum + (request.leaveDays ?? 0),
-          0,
-        );
-
-      return acquiredDays < 5 && daysUntilDue >= 0;
-    });
-
-  const leaveComplianceWarning90Count =
-    leaveComplianceWarningRows.filter((grant) => {
-      const dueDate = addYears(grant.grantDate, 1);
-      return getDaysUntil(dueDate) <= 90;
-    }).length;
-
-  const leaveComplianceWarning30Count =
-    leaveComplianceWarningRows.filter((grant) => {
-      const dueDate = addYears(grant.grantDate, 1);
-      return getDaysUntil(dueDate) <= 30;
-    }).length;
-
-  const today = new Date();
-
-  const todayStart = new Date(today);
-  todayStart.setHours(0, 0, 0, 0);
-
-  const todayEnd = new Date(today);
-  todayEnd.setHours(23, 59, 59, 999);
-
-  const todayLeaveRequests =
-    await prisma.employeeRequest.findMany({
-      where: {
-        type: "PAID_LEAVE",
-        status: "APPROVED",
-        leaveStartDate: {
-          lte: todayEnd,
-        },
-        leaveEndDate: {
-          gte: todayStart,
-        },
-      },
-      include: {
-        employee: true,
-      },
-      take: 10,
-    });
-
-  const weekStart = new Date(today);
-  weekStart.setDate(today.getDate() - today.getDay());
-
-  const weekEnd = new Date(weekStart);
-  weekEnd.setDate(weekStart.getDate() + 6);
-
-  const thisWeekLeaveRequests =
-    await prisma.employeeRequest.findMany({
-      where: {
-        type: "PAID_LEAVE",
-        status: "APPROVED",
-        leaveStartDate: {
-          lte: weekEnd,
-        },
-        leaveEndDate: {
-          gte: weekStart,
-        },
-      },
-      include: {
-        employee: true,
-      },
-      take: 20,
-    });
 
   const recentRequests = await prisma.employeeRequest.findMany({
     include: {
@@ -719,39 +437,6 @@ export default async function DashboardPage() {
               description="全社員の残日数合計"
               color="green"
             />
-            <StatCard
-              title="30日以内失効件数"
-              value={soonExpiringLeaveCount}
-              description="30日以内に失効予定の付与履歴"
-              color="yellow"
-            />
-            <StatCard
-              title="失効実行対象件数"
-              value={expiredLeaveTargetCount}
-              description="失効実行が必要な付与履歴"
-              color="red"
-            />
-            <StatCard
-              title="5日取得義務未達"
-              value={leaveComplianceNotCompletedCount}
-              description="年10日以上付与者の5日未達者"
-              color="red"
-              href="/leave-compliance"
-            />
-            <StatCard
-              title="5日取得義務 90日以内"
-              value={leaveComplianceWarning90Count}
-              description="期限90日以内の未達者"
-              color="yellow"
-              href="/leave-compliance"
-            />
-            <StatCard
-              title="5日取得義務 30日以内"
-              value={leaveComplianceWarning30Count}
-              description="期限30日以内の未達者"
-              color="red"
-              href="/leave-compliance"
-            />
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -826,17 +511,11 @@ export default async function DashboardPage() {
             </p>
 
             <div className="mt-4 flex flex-wrap gap-3">
-              <Link
-                href="/requests?status=PENDING"
-                className="rounded bg-yellow-100 px-4 py-2 text-sm font-medium text-yellow-800 hover:bg-yellow-200"
-              >
+              <Link href="/requests?status=PENDING">
                 承認待ち申請
               </Link>
 
-              <Link
-                href="/requests"
-                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
+              <Link href="/requests">
                 申請一覧
               </Link>
             </div>
@@ -922,14 +601,6 @@ export default async function DashboardPage() {
               >
                 監査ログ一覧
               </Link>
-              {user.role === "ADMIN" && (
-                <Link
-                  href="/users"
-                  className="rounded bg-purple-600 px-4 py-2 text-sm text-white hover:bg-purple-700"
-                >
-                  ユーザー管理
-                </Link>
-              )}
             </div>
           </div>
         )}
@@ -962,71 +633,6 @@ export default async function DashboardPage() {
               items={monthlyRequestChartItems}
             />
           </div>
-        </section>
-      )}
-
-      {isHRManager && (
-        <section className="mt-8 rounded-lg border bg-white p-6 shadow-sm">
-          <h3 className="mb-4 text-lg font-semibold text-gray-800">
-            本日の休暇取得者
-          </h3>
-
-          {todayLeaveRequests.length === 0 ? (
-            <p className="text-sm text-gray-500">
-              本日の休暇取得者はいません。
-            </p>
-          ) : (
-            <div className="space-y-2">
-              {todayLeaveRequests.map((request) => (
-                <div
-                  key={request.id}
-                  className="rounded border p-3"
-                >
-                  {request.employee
-                    ? `${request.employee.lastName} ${request.employee.firstName}`
-                    : "-"}
-                  {" "}
-                  ({request.leaveDays ?? 0}日)
-                </div>
-              ))}
-            </div>
-          )}
-        </section>
-      )}
-
-      {isHRManager && (
-        <section className="mt-8 rounded-lg border bg-white p-6 shadow-sm">
-          <h3 className="mb-4 text-lg font-semibold text-gray-800">
-            今週の休暇取得者
-          </h3>
-
-          {thisWeekLeaveRequests.length === 0 ? (
-            <p className="text-sm text-gray-500">
-              今週の休暇取得者はいません。
-            </p>
-          ) : (
-            <div className="space-y-2">
-              {thisWeekLeaveRequests.map((request) => (
-                <div
-                  key={request.id}
-                  className="rounded border p-3"
-                >
-                  <div className="font-medium text-gray-800">
-                    {request.employee
-                      ? `${request.employee.lastName} ${request.employee.firstName}`
-                      : "-"}
-                  </div>
-                  <div className="mt-1 text-sm text-gray-500">
-                    {request.leaveStartDate?.toLocaleDateString("ja-JP") ?? "-"}
-                    {" 〜 "}
-                    {request.leaveEndDate?.toLocaleDateString("ja-JP") ?? "-"}
-                    {" / "}
-                    {request.leaveDays ?? 0}日
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
         </section>
       )}
 

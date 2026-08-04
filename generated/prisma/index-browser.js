@@ -126,6 +126,22 @@ exports.Prisma.UserScalarFieldEnum = {
   email: 'email',
   password: 'password',
   role: 'role',
+  isActive: 'isActive',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.UserInvitationScalarFieldEnum = {
+  id: 'id',
+  employeeNo: 'employeeNo',
+  lastName: 'lastName',
+  firstName: 'firstName',
+  email: 'email',
+  token: 'token',
+  expectedHireDate: 'expectedHireDate',
+  expiresAt: 'expiresAt',
+  acceptedAt: 'acceptedAt',
+  createdUserId: 'createdUserId',
+  createdEmployeeId: 'createdEmployeeId',
   createdAt: 'createdAt'
 };
 
@@ -329,7 +345,8 @@ exports.LeaveGrantType = exports.$Enums.LeaveGrantType = {
   SPECIAL: 'SPECIAL',
   MANUAL: 'MANUAL',
   MANUAL_DEDUCT: 'MANUAL_DEDUCT',
-  MANUAL_CANCEL: 'MANUAL_CANCEL'
+  MANUAL_CANCEL: 'MANUAL_CANCEL',
+  EXPIRED: 'EXPIRED'
 };
 
 exports.RequestType = exports.$Enums.RequestType = {
@@ -354,6 +371,7 @@ exports.RequestHistoryAction = exports.$Enums.RequestHistoryAction = {
 
 exports.Prisma.ModelName = {
   User: 'User',
+  UserInvitation: 'UserInvitation',
   Department: 'Department',
   Employee: 'Employee',
   EmploymentHistory: 'EmploymentHistory',

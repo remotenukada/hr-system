@@ -1,0 +1,135 @@
+import Link from "next/link";
+import { prisma } from "@/lib/prisma";
+import { requireManager } from "@/lib/auth-guard";
+
+export default async function LeaveReportsPage() {
+  await requireManager();
+
+  const balances = await prisma.leaveBalance.findMany({
+    include: {
+      employee: true,
+    },
+    orderBy: {
+      employeeId: "asc",
+    },
+  });
+
+  const rows = balances.map((balance) => {
+    const remaining =
+      balance.grantedDays - balance.usedDays;
+
+    const rate =
+      balance.grantedDays > 0
+        ? (
+            (balance.usedDays /
+              balance.grantedDays) *
+            100
+          ).toFixed(1)
+        : "0.0";
+
+    return {
+      ...balance,
+      remaining,
+      rate,
+    };
+  });
+
+  const rankingRows = [...rows]
+    .filter((row) => row.grantedDays > 0)
+    .sort(
+      (a, b) =>
+        Number(b.rate) - Number(a.rate),
+    )
+    .slice(0, 5);
+
+  return (
+    <main className="mx-auto max-w-7xl p-8">
+      <h1 className="mb-6 text-3xl font-bold">
+        有給取得レポート
+      </h1>
+
+      <section className="mb-6 rounded border bg-white p-4">
+        <h2 className="mb-3 text-lg font-semibold">
+          有給取得率ランキング TOP5
+        </h2>
+
+        {rankingRows.length === 0 ? (
+          <p className="text-sm text-gray-500">
+            データがありません。
+          </p>
+        ) : (
+          <ol className="space-y-2">
+            {rankingRows.map((row, index) => (
+              <li
+                key={row.employeeId}
+                className="flex justify-between rounded border p-2"
+              >
+                <span>
+                  {index + 1}位　
+                  {row.employee
+                    ? `${row.employee.lastName} ${row.employee.firstName}`
+                    : "-"}
+                </span>
+
+                <span>
+                  {row.rate}%
+                </span>
+              </li>
+            ))}
+          </ol>
+        )}
+      </section>
+
+      <div className="overflow-x-auto rounded border bg-white">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="bg-gray-50">
+              <th className="p-3 text-left">社員名</th>
+              <th className="p-3 text-right">付与</th>
+              <th className="p-3 text-right">使用</th>
+              <th className="p-3 text-right">残数</th>
+              <th className="p-3 text-right">取得率</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {rows.map((row) => (
+              <tr
+                key={row.employeeId}
+                className="border-t"
+              >
+                <td className="p-3">
+                  {row.employee
+                    ? `${row.employee.lastName} ${row.employee.firstName}`
+                    : "-"}
+                </td>
+
+                <td className="p-3 text-right">
+                  {row.grantedDays}
+                </td>
+
+                <td className="p-3 text-right">
+                  {row.usedDays}
+                </td>
+
+                <td className="p-3 text-right">
+                  {row.remaining}
+                </td>
+
+                <td className="p-3 text-right">
+                  {row.rate}%
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="mt-6">
+        <Link href="/">
+          ← ダッシュボードへ戻る
+        </Link>
+      </div>
+    </main>
+  );
+}

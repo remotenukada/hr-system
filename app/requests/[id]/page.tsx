@@ -87,6 +87,16 @@ export default async function RequestDetailPage({ params }: PageProps) {
           },
         });
 
+      const remainingDays =
+        (leaveBalance?.grantedDays ?? 0) -
+        (leaveBalance?.usedDays ?? 0);
+
+      if (remainingDays < updatedRequest.leaveDays) {
+        throw new Error(
+          `有給残数不足（残数: ${remainingDays}日）`,
+        );
+      }
+
       const updatedLeaveBalance =
         await prisma.leaveBalance.upsert({
           where: {

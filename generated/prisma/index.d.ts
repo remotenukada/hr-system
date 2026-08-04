@@ -19,6 +19,11 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
+ * Model UserInvitation
+ * 
+ */
+export type UserInvitation = $Result.DefaultSelection<Prisma.$UserInvitationPayload>
+/**
  * Model Department
  * 
  */
@@ -146,7 +151,8 @@ export const LeaveGrantType: {
   SPECIAL: 'SPECIAL',
   MANUAL: 'MANUAL',
   MANUAL_DEDUCT: 'MANUAL_DEDUCT',
-  MANUAL_CANCEL: 'MANUAL_CANCEL'
+  MANUAL_CANCEL: 'MANUAL_CANCEL',
+  EXPIRED: 'EXPIRED'
 };
 
 export type LeaveGrantType = (typeof LeaveGrantType)[keyof typeof LeaveGrantType]
@@ -338,6 +344,16 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.userInvitation`: Exposes CRUD operations for the **UserInvitation** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserInvitations
+    * const userInvitations = await prisma.userInvitation.findMany()
+    * ```
+    */
+  get userInvitation(): Prisma.UserInvitationDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.department`: Exposes CRUD operations for the **Department** model.
@@ -893,6 +909,7 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
+    UserInvitation: 'UserInvitation',
     Department: 'Department',
     Employee: 'Employee',
     EmploymentHistory: 'EmploymentHistory',
@@ -920,7 +937,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "department" | "employee" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog"
+      modelProps: "user" | "userInvitation" | "department" | "employee" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -995,6 +1012,80 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      UserInvitation: {
+        payload: Prisma.$UserInvitationPayload<ExtArgs>
+        fields: Prisma.UserInvitationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserInvitationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserInvitationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserInvitationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserInvitationPayload>
+          }
+          findFirst: {
+            args: Prisma.UserInvitationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserInvitationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserInvitationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserInvitationPayload>
+          }
+          findMany: {
+            args: Prisma.UserInvitationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserInvitationPayload>[]
+          }
+          create: {
+            args: Prisma.UserInvitationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserInvitationPayload>
+          }
+          createMany: {
+            args: Prisma.UserInvitationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.UserInvitationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserInvitationPayload>[]
+          }
+          delete: {
+            args: Prisma.UserInvitationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserInvitationPayload>
+          }
+          update: {
+            args: Prisma.UserInvitationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserInvitationPayload>
+          }
+          deleteMany: {
+            args: Prisma.UserInvitationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserInvitationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.UserInvitationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserInvitationPayload>[]
+          }
+          upsert: {
+            args: Prisma.UserInvitationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserInvitationPayload>
+          }
+          aggregate: {
+            args: Prisma.UserInvitationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUserInvitation>
+          }
+          groupBy: {
+            args: Prisma.UserInvitationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserInvitationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserInvitationCountArgs<ExtArgs>
+            result: $Utils.Optional<UserInvitationCountAggregateOutputType> | number
           }
         }
       }
@@ -1995,6 +2086,7 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
+    userInvitation?: UserInvitationOmit
     department?: DepartmentOmit
     employee?: EmployeeOmit
     employmentHistory?: EmploymentHistoryOmit
@@ -2262,6 +2354,7 @@ export namespace Prisma {
     email: string | null
     password: string | null
     role: $Enums.UserRole | null
+    isActive: boolean | null
     createdAt: Date | null
   }
 
@@ -2271,6 +2364,7 @@ export namespace Prisma {
     email: string | null
     password: string | null
     role: $Enums.UserRole | null
+    isActive: boolean | null
     createdAt: Date | null
   }
 
@@ -2280,6 +2374,7 @@ export namespace Prisma {
     email: number
     password: number
     role: number
+    isActive: number
     createdAt: number
     _all: number
   }
@@ -2291,6 +2386,7 @@ export namespace Prisma {
     email?: true
     password?: true
     role?: true
+    isActive?: true
     createdAt?: true
   }
 
@@ -2300,6 +2396,7 @@ export namespace Prisma {
     email?: true
     password?: true
     role?: true
+    isActive?: true
     createdAt?: true
   }
 
@@ -2309,6 +2406,7 @@ export namespace Prisma {
     email?: true
     password?: true
     role?: true
+    isActive?: true
     createdAt?: true
     _all?: true
   }
@@ -2391,6 +2489,7 @@ export namespace Prisma {
     email: string
     password: string
     role: $Enums.UserRole
+    isActive: boolean
     createdAt: Date
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
@@ -2417,6 +2516,7 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     role?: boolean
+    isActive?: boolean
     createdAt?: boolean
     requests?: boolean | User$requestsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -2428,6 +2528,7 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     role?: boolean
+    isActive?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["user"]>
 
@@ -2437,6 +2538,7 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     role?: boolean
+    isActive?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["user"]>
 
@@ -2446,10 +2548,11 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     role?: boolean
+    isActive?: boolean
     createdAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "role" | "createdAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "role" | "isActive" | "createdAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     requests?: boolean | User$requestsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -2468,6 +2571,7 @@ export namespace Prisma {
       email: string
       password: string
       role: $Enums.UserRole
+      isActive: boolean
       createdAt: Date
     }, ExtArgs["result"]["user"]>
     composites: {}
@@ -2898,6 +3002,7 @@ export namespace Prisma {
     readonly email: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'UserRole'>
+    readonly isActive: FieldRef<"User", 'Boolean'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
   }
     
@@ -3331,6 +3436,1097 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: UserInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model UserInvitation
+   */
+
+  export type AggregateUserInvitation = {
+    _count: UserInvitationCountAggregateOutputType | null
+    _min: UserInvitationMinAggregateOutputType | null
+    _max: UserInvitationMaxAggregateOutputType | null
+  }
+
+  export type UserInvitationMinAggregateOutputType = {
+    id: string | null
+    employeeNo: string | null
+    lastName: string | null
+    firstName: string | null
+    email: string | null
+    token: string | null
+    expectedHireDate: Date | null
+    expiresAt: Date | null
+    acceptedAt: Date | null
+    createdUserId: string | null
+    createdEmployeeId: string | null
+    createdAt: Date | null
+  }
+
+  export type UserInvitationMaxAggregateOutputType = {
+    id: string | null
+    employeeNo: string | null
+    lastName: string | null
+    firstName: string | null
+    email: string | null
+    token: string | null
+    expectedHireDate: Date | null
+    expiresAt: Date | null
+    acceptedAt: Date | null
+    createdUserId: string | null
+    createdEmployeeId: string | null
+    createdAt: Date | null
+  }
+
+  export type UserInvitationCountAggregateOutputType = {
+    id: number
+    employeeNo: number
+    lastName: number
+    firstName: number
+    email: number
+    token: number
+    expectedHireDate: number
+    expiresAt: number
+    acceptedAt: number
+    createdUserId: number
+    createdEmployeeId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type UserInvitationMinAggregateInputType = {
+    id?: true
+    employeeNo?: true
+    lastName?: true
+    firstName?: true
+    email?: true
+    token?: true
+    expectedHireDate?: true
+    expiresAt?: true
+    acceptedAt?: true
+    createdUserId?: true
+    createdEmployeeId?: true
+    createdAt?: true
+  }
+
+  export type UserInvitationMaxAggregateInputType = {
+    id?: true
+    employeeNo?: true
+    lastName?: true
+    firstName?: true
+    email?: true
+    token?: true
+    expectedHireDate?: true
+    expiresAt?: true
+    acceptedAt?: true
+    createdUserId?: true
+    createdEmployeeId?: true
+    createdAt?: true
+  }
+
+  export type UserInvitationCountAggregateInputType = {
+    id?: true
+    employeeNo?: true
+    lastName?: true
+    firstName?: true
+    email?: true
+    token?: true
+    expectedHireDate?: true
+    expiresAt?: true
+    acceptedAt?: true
+    createdUserId?: true
+    createdEmployeeId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type UserInvitationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserInvitation to aggregate.
+     */
+    where?: UserInvitationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserInvitations to fetch.
+     */
+    orderBy?: UserInvitationOrderByWithRelationInput | UserInvitationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserInvitationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserInvitations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserInvitations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned UserInvitations
+    **/
+    _count?: true | UserInvitationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserInvitationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserInvitationMaxAggregateInputType
+  }
+
+  export type GetUserInvitationAggregateType<T extends UserInvitationAggregateArgs> = {
+        [P in keyof T & keyof AggregateUserInvitation]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUserInvitation[P]>
+      : GetScalarType<T[P], AggregateUserInvitation[P]>
+  }
+
+
+
+
+  export type UserInvitationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserInvitationWhereInput
+    orderBy?: UserInvitationOrderByWithAggregationInput | UserInvitationOrderByWithAggregationInput[]
+    by: UserInvitationScalarFieldEnum[] | UserInvitationScalarFieldEnum
+    having?: UserInvitationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserInvitationCountAggregateInputType | true
+    _min?: UserInvitationMinAggregateInputType
+    _max?: UserInvitationMaxAggregateInputType
+  }
+
+  export type UserInvitationGroupByOutputType = {
+    id: string
+    employeeNo: string
+    lastName: string
+    firstName: string
+    email: string
+    token: string
+    expectedHireDate: Date | null
+    expiresAt: Date
+    acceptedAt: Date | null
+    createdUserId: string | null
+    createdEmployeeId: string | null
+    createdAt: Date
+    _count: UserInvitationCountAggregateOutputType | null
+    _min: UserInvitationMinAggregateOutputType | null
+    _max: UserInvitationMaxAggregateOutputType | null
+  }
+
+  type GetUserInvitationGroupByPayload<T extends UserInvitationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserInvitationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserInvitationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserInvitationGroupByOutputType[P]>
+            : GetScalarType<T[P], UserInvitationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserInvitationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeNo?: boolean
+    lastName?: boolean
+    firstName?: boolean
+    email?: boolean
+    token?: boolean
+    expectedHireDate?: boolean
+    expiresAt?: boolean
+    acceptedAt?: boolean
+    createdUserId?: boolean
+    createdEmployeeId?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["userInvitation"]>
+
+  export type UserInvitationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeNo?: boolean
+    lastName?: boolean
+    firstName?: boolean
+    email?: boolean
+    token?: boolean
+    expectedHireDate?: boolean
+    expiresAt?: boolean
+    acceptedAt?: boolean
+    createdUserId?: boolean
+    createdEmployeeId?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["userInvitation"]>
+
+  export type UserInvitationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeNo?: boolean
+    lastName?: boolean
+    firstName?: boolean
+    email?: boolean
+    token?: boolean
+    expectedHireDate?: boolean
+    expiresAt?: boolean
+    acceptedAt?: boolean
+    createdUserId?: boolean
+    createdEmployeeId?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["userInvitation"]>
+
+  export type UserInvitationSelectScalar = {
+    id?: boolean
+    employeeNo?: boolean
+    lastName?: boolean
+    firstName?: boolean
+    email?: boolean
+    token?: boolean
+    expectedHireDate?: boolean
+    expiresAt?: boolean
+    acceptedAt?: boolean
+    createdUserId?: boolean
+    createdEmployeeId?: boolean
+    createdAt?: boolean
+  }
+
+  export type UserInvitationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeNo" | "lastName" | "firstName" | "email" | "token" | "expectedHireDate" | "expiresAt" | "acceptedAt" | "createdUserId" | "createdEmployeeId" | "createdAt", ExtArgs["result"]["userInvitation"]>
+
+  export type $UserInvitationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "UserInvitation"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      employeeNo: string
+      lastName: string
+      firstName: string
+      email: string
+      token: string
+      expectedHireDate: Date | null
+      expiresAt: Date
+      acceptedAt: Date | null
+      createdUserId: string | null
+      createdEmployeeId: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["userInvitation"]>
+    composites: {}
+  }
+
+  type UserInvitationGetPayload<S extends boolean | null | undefined | UserInvitationDefaultArgs> = $Result.GetResult<Prisma.$UserInvitationPayload, S>
+
+  type UserInvitationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserInvitationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserInvitationCountAggregateInputType | true
+    }
+
+  export interface UserInvitationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserInvitation'], meta: { name: 'UserInvitation' } }
+    /**
+     * Find zero or one UserInvitation that matches the filter.
+     * @param {UserInvitationFindUniqueArgs} args - Arguments to find a UserInvitation
+     * @example
+     * // Get one UserInvitation
+     * const userInvitation = await prisma.userInvitation.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserInvitationFindUniqueArgs>(args: SelectSubset<T, UserInvitationFindUniqueArgs<ExtArgs>>): Prisma__UserInvitationClient<$Result.GetResult<Prisma.$UserInvitationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one UserInvitation that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UserInvitationFindUniqueOrThrowArgs} args - Arguments to find a UserInvitation
+     * @example
+     * // Get one UserInvitation
+     * const userInvitation = await prisma.userInvitation.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserInvitationFindUniqueOrThrowArgs>(args: SelectSubset<T, UserInvitationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserInvitationClient<$Result.GetResult<Prisma.$UserInvitationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserInvitation that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserInvitationFindFirstArgs} args - Arguments to find a UserInvitation
+     * @example
+     * // Get one UserInvitation
+     * const userInvitation = await prisma.userInvitation.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserInvitationFindFirstArgs>(args?: SelectSubset<T, UserInvitationFindFirstArgs<ExtArgs>>): Prisma__UserInvitationClient<$Result.GetResult<Prisma.$UserInvitationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserInvitation that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserInvitationFindFirstOrThrowArgs} args - Arguments to find a UserInvitation
+     * @example
+     * // Get one UserInvitation
+     * const userInvitation = await prisma.userInvitation.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserInvitationFindFirstOrThrowArgs>(args?: SelectSubset<T, UserInvitationFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserInvitationClient<$Result.GetResult<Prisma.$UserInvitationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UserInvitations that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserInvitationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UserInvitations
+     * const userInvitations = await prisma.userInvitation.findMany()
+     * 
+     * // Get first 10 UserInvitations
+     * const userInvitations = await prisma.userInvitation.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userInvitationWithIdOnly = await prisma.userInvitation.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UserInvitationFindManyArgs>(args?: SelectSubset<T, UserInvitationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserInvitationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a UserInvitation.
+     * @param {UserInvitationCreateArgs} args - Arguments to create a UserInvitation.
+     * @example
+     * // Create one UserInvitation
+     * const UserInvitation = await prisma.userInvitation.create({
+     *   data: {
+     *     // ... data to create a UserInvitation
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserInvitationCreateArgs>(args: SelectSubset<T, UserInvitationCreateArgs<ExtArgs>>): Prisma__UserInvitationClient<$Result.GetResult<Prisma.$UserInvitationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many UserInvitations.
+     * @param {UserInvitationCreateManyArgs} args - Arguments to create many UserInvitations.
+     * @example
+     * // Create many UserInvitations
+     * const userInvitation = await prisma.userInvitation.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserInvitationCreateManyArgs>(args?: SelectSubset<T, UserInvitationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many UserInvitations and returns the data saved in the database.
+     * @param {UserInvitationCreateManyAndReturnArgs} args - Arguments to create many UserInvitations.
+     * @example
+     * // Create many UserInvitations
+     * const userInvitation = await prisma.userInvitation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UserInvitations and only return the `id`
+     * const userInvitationWithIdOnly = await prisma.userInvitation.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends UserInvitationCreateManyAndReturnArgs>(args?: SelectSubset<T, UserInvitationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserInvitationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a UserInvitation.
+     * @param {UserInvitationDeleteArgs} args - Arguments to delete one UserInvitation.
+     * @example
+     * // Delete one UserInvitation
+     * const UserInvitation = await prisma.userInvitation.delete({
+     *   where: {
+     *     // ... filter to delete one UserInvitation
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserInvitationDeleteArgs>(args: SelectSubset<T, UserInvitationDeleteArgs<ExtArgs>>): Prisma__UserInvitationClient<$Result.GetResult<Prisma.$UserInvitationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one UserInvitation.
+     * @param {UserInvitationUpdateArgs} args - Arguments to update one UserInvitation.
+     * @example
+     * // Update one UserInvitation
+     * const userInvitation = await prisma.userInvitation.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserInvitationUpdateArgs>(args: SelectSubset<T, UserInvitationUpdateArgs<ExtArgs>>): Prisma__UserInvitationClient<$Result.GetResult<Prisma.$UserInvitationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more UserInvitations.
+     * @param {UserInvitationDeleteManyArgs} args - Arguments to filter UserInvitations to delete.
+     * @example
+     * // Delete a few UserInvitations
+     * const { count } = await prisma.userInvitation.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserInvitationDeleteManyArgs>(args?: SelectSubset<T, UserInvitationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserInvitations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserInvitationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UserInvitations
+     * const userInvitation = await prisma.userInvitation.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserInvitationUpdateManyArgs>(args: SelectSubset<T, UserInvitationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserInvitations and returns the data updated in the database.
+     * @param {UserInvitationUpdateManyAndReturnArgs} args - Arguments to update many UserInvitations.
+     * @example
+     * // Update many UserInvitations
+     * const userInvitation = await prisma.userInvitation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more UserInvitations and only return the `id`
+     * const userInvitationWithIdOnly = await prisma.userInvitation.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends UserInvitationUpdateManyAndReturnArgs>(args: SelectSubset<T, UserInvitationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserInvitationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one UserInvitation.
+     * @param {UserInvitationUpsertArgs} args - Arguments to update or create a UserInvitation.
+     * @example
+     * // Update or create a UserInvitation
+     * const userInvitation = await prisma.userInvitation.upsert({
+     *   create: {
+     *     // ... data to create a UserInvitation
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UserInvitation we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserInvitationUpsertArgs>(args: SelectSubset<T, UserInvitationUpsertArgs<ExtArgs>>): Prisma__UserInvitationClient<$Result.GetResult<Prisma.$UserInvitationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of UserInvitations.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserInvitationCountArgs} args - Arguments to filter UserInvitations to count.
+     * @example
+     * // Count the number of UserInvitations
+     * const count = await prisma.userInvitation.count({
+     *   where: {
+     *     // ... the filter for the UserInvitations we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserInvitationCountArgs>(
+      args?: Subset<T, UserInvitationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserInvitationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UserInvitation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserInvitationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserInvitationAggregateArgs>(args: Subset<T, UserInvitationAggregateArgs>): Prisma.PrismaPromise<GetUserInvitationAggregateType<T>>
+
+    /**
+     * Group by UserInvitation.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserInvitationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserInvitationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserInvitationGroupByArgs['orderBy'] }
+        : { orderBy?: UserInvitationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserInvitationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserInvitationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the UserInvitation model
+   */
+  readonly fields: UserInvitationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for UserInvitation.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserInvitationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the UserInvitation model
+   */
+  interface UserInvitationFieldRefs {
+    readonly id: FieldRef<"UserInvitation", 'String'>
+    readonly employeeNo: FieldRef<"UserInvitation", 'String'>
+    readonly lastName: FieldRef<"UserInvitation", 'String'>
+    readonly firstName: FieldRef<"UserInvitation", 'String'>
+    readonly email: FieldRef<"UserInvitation", 'String'>
+    readonly token: FieldRef<"UserInvitation", 'String'>
+    readonly expectedHireDate: FieldRef<"UserInvitation", 'DateTime'>
+    readonly expiresAt: FieldRef<"UserInvitation", 'DateTime'>
+    readonly acceptedAt: FieldRef<"UserInvitation", 'DateTime'>
+    readonly createdUserId: FieldRef<"UserInvitation", 'String'>
+    readonly createdEmployeeId: FieldRef<"UserInvitation", 'String'>
+    readonly createdAt: FieldRef<"UserInvitation", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * UserInvitation findUnique
+   */
+  export type UserInvitationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserInvitation
+     */
+    select?: UserInvitationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserInvitation
+     */
+    omit?: UserInvitationOmit<ExtArgs> | null
+    /**
+     * Filter, which UserInvitation to fetch.
+     */
+    where: UserInvitationWhereUniqueInput
+  }
+
+  /**
+   * UserInvitation findUniqueOrThrow
+   */
+  export type UserInvitationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserInvitation
+     */
+    select?: UserInvitationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserInvitation
+     */
+    omit?: UserInvitationOmit<ExtArgs> | null
+    /**
+     * Filter, which UserInvitation to fetch.
+     */
+    where: UserInvitationWhereUniqueInput
+  }
+
+  /**
+   * UserInvitation findFirst
+   */
+  export type UserInvitationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserInvitation
+     */
+    select?: UserInvitationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserInvitation
+     */
+    omit?: UserInvitationOmit<ExtArgs> | null
+    /**
+     * Filter, which UserInvitation to fetch.
+     */
+    where?: UserInvitationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserInvitations to fetch.
+     */
+    orderBy?: UserInvitationOrderByWithRelationInput | UserInvitationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserInvitations.
+     */
+    cursor?: UserInvitationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserInvitations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserInvitations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserInvitations.
+     */
+    distinct?: UserInvitationScalarFieldEnum | UserInvitationScalarFieldEnum[]
+  }
+
+  /**
+   * UserInvitation findFirstOrThrow
+   */
+  export type UserInvitationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserInvitation
+     */
+    select?: UserInvitationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserInvitation
+     */
+    omit?: UserInvitationOmit<ExtArgs> | null
+    /**
+     * Filter, which UserInvitation to fetch.
+     */
+    where?: UserInvitationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserInvitations to fetch.
+     */
+    orderBy?: UserInvitationOrderByWithRelationInput | UserInvitationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for UserInvitations.
+     */
+    cursor?: UserInvitationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserInvitations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserInvitations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserInvitations.
+     */
+    distinct?: UserInvitationScalarFieldEnum | UserInvitationScalarFieldEnum[]
+  }
+
+  /**
+   * UserInvitation findMany
+   */
+  export type UserInvitationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserInvitation
+     */
+    select?: UserInvitationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserInvitation
+     */
+    omit?: UserInvitationOmit<ExtArgs> | null
+    /**
+     * Filter, which UserInvitations to fetch.
+     */
+    where?: UserInvitationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of UserInvitations to fetch.
+     */
+    orderBy?: UserInvitationOrderByWithRelationInput | UserInvitationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing UserInvitations.
+     */
+    cursor?: UserInvitationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` UserInvitations from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` UserInvitations.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of UserInvitations.
+     */
+    distinct?: UserInvitationScalarFieldEnum | UserInvitationScalarFieldEnum[]
+  }
+
+  /**
+   * UserInvitation create
+   */
+  export type UserInvitationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserInvitation
+     */
+    select?: UserInvitationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserInvitation
+     */
+    omit?: UserInvitationOmit<ExtArgs> | null
+    /**
+     * The data needed to create a UserInvitation.
+     */
+    data: XOR<UserInvitationCreateInput, UserInvitationUncheckedCreateInput>
+  }
+
+  /**
+   * UserInvitation createMany
+   */
+  export type UserInvitationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many UserInvitations.
+     */
+    data: UserInvitationCreateManyInput | UserInvitationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UserInvitation createManyAndReturn
+   */
+  export type UserInvitationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserInvitation
+     */
+    select?: UserInvitationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserInvitation
+     */
+    omit?: UserInvitationOmit<ExtArgs> | null
+    /**
+     * The data used to create many UserInvitations.
+     */
+    data: UserInvitationCreateManyInput | UserInvitationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * UserInvitation update
+   */
+  export type UserInvitationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserInvitation
+     */
+    select?: UserInvitationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserInvitation
+     */
+    omit?: UserInvitationOmit<ExtArgs> | null
+    /**
+     * The data needed to update a UserInvitation.
+     */
+    data: XOR<UserInvitationUpdateInput, UserInvitationUncheckedUpdateInput>
+    /**
+     * Choose, which UserInvitation to update.
+     */
+    where: UserInvitationWhereUniqueInput
+  }
+
+  /**
+   * UserInvitation updateMany
+   */
+  export type UserInvitationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update UserInvitations.
+     */
+    data: XOR<UserInvitationUpdateManyMutationInput, UserInvitationUncheckedUpdateManyInput>
+    /**
+     * Filter which UserInvitations to update
+     */
+    where?: UserInvitationWhereInput
+    /**
+     * Limit how many UserInvitations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserInvitation updateManyAndReturn
+   */
+  export type UserInvitationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserInvitation
+     */
+    select?: UserInvitationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserInvitation
+     */
+    omit?: UserInvitationOmit<ExtArgs> | null
+    /**
+     * The data used to update UserInvitations.
+     */
+    data: XOR<UserInvitationUpdateManyMutationInput, UserInvitationUncheckedUpdateManyInput>
+    /**
+     * Filter which UserInvitations to update
+     */
+    where?: UserInvitationWhereInput
+    /**
+     * Limit how many UserInvitations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserInvitation upsert
+   */
+  export type UserInvitationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserInvitation
+     */
+    select?: UserInvitationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserInvitation
+     */
+    omit?: UserInvitationOmit<ExtArgs> | null
+    /**
+     * The filter to search for the UserInvitation to update in case it exists.
+     */
+    where: UserInvitationWhereUniqueInput
+    /**
+     * In case the UserInvitation found by the `where` argument doesn't exist, create a new UserInvitation with this data.
+     */
+    create: XOR<UserInvitationCreateInput, UserInvitationUncheckedCreateInput>
+    /**
+     * In case the UserInvitation was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserInvitationUpdateInput, UserInvitationUncheckedUpdateInput>
+  }
+
+  /**
+   * UserInvitation delete
+   */
+  export type UserInvitationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserInvitation
+     */
+    select?: UserInvitationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserInvitation
+     */
+    omit?: UserInvitationOmit<ExtArgs> | null
+    /**
+     * Filter which UserInvitation to delete.
+     */
+    where: UserInvitationWhereUniqueInput
+  }
+
+  /**
+   * UserInvitation deleteMany
+   */
+  export type UserInvitationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which UserInvitations to delete
+     */
+    where?: UserInvitationWhereInput
+    /**
+     * Limit how many UserInvitations to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * UserInvitation without action
+   */
+  export type UserInvitationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserInvitation
+     */
+    select?: UserInvitationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserInvitation
+     */
+    omit?: UserInvitationOmit<ExtArgs> | null
   }
 
 
@@ -17114,10 +18310,29 @@ export namespace Prisma {
     email: 'email',
     password: 'password',
     role: 'role',
+    isActive: 'isActive',
     createdAt: 'createdAt'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const UserInvitationScalarFieldEnum: {
+    id: 'id',
+    employeeNo: 'employeeNo',
+    lastName: 'lastName',
+    firstName: 'firstName',
+    email: 'email',
+    token: 'token',
+    expectedHireDate: 'expectedHireDate',
+    expiresAt: 'expiresAt',
+    acceptedAt: 'acceptedAt',
+    createdUserId: 'createdUserId',
+    createdEmployeeId: 'createdEmployeeId',
+    createdAt: 'createdAt'
+  };
+
+  export type UserInvitationScalarFieldEnum = (typeof UserInvitationScalarFieldEnum)[keyof typeof UserInvitationScalarFieldEnum]
 
 
   export const DepartmentScalarFieldEnum: {
@@ -17368,6 +18583,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -17547,6 +18769,7 @@ export namespace Prisma {
     email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
+    isActive?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
     requests?: EmployeeRequestListRelationFilter
   }
@@ -17557,6 +18780,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     role?: SortOrder
+    isActive?: SortOrder
     createdAt?: SortOrder
     requests?: EmployeeRequestOrderByRelationAggregateInput
   }
@@ -17570,6 +18794,7 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     role?: EnumUserRoleFilter<"User"> | $Enums.UserRole
+    isActive?: BoolFilter<"User"> | boolean
     createdAt?: DateTimeFilter<"User"> | Date | string
     requests?: EmployeeRequestListRelationFilter
   }, "id" | "email">
@@ -17580,6 +18805,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     role?: SortOrder
+    isActive?: SortOrder
     createdAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -17595,7 +18821,95 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"User"> | string
     password?: StringWithAggregatesFilter<"User"> | string
     role?: EnumUserRoleWithAggregatesFilter<"User"> | $Enums.UserRole
+    isActive?: BoolWithAggregatesFilter<"User"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+  }
+
+  export type UserInvitationWhereInput = {
+    AND?: UserInvitationWhereInput | UserInvitationWhereInput[]
+    OR?: UserInvitationWhereInput[]
+    NOT?: UserInvitationWhereInput | UserInvitationWhereInput[]
+    id?: StringFilter<"UserInvitation"> | string
+    employeeNo?: StringFilter<"UserInvitation"> | string
+    lastName?: StringFilter<"UserInvitation"> | string
+    firstName?: StringFilter<"UserInvitation"> | string
+    email?: StringFilter<"UserInvitation"> | string
+    token?: StringFilter<"UserInvitation"> | string
+    expectedHireDate?: DateTimeNullableFilter<"UserInvitation"> | Date | string | null
+    expiresAt?: DateTimeFilter<"UserInvitation"> | Date | string
+    acceptedAt?: DateTimeNullableFilter<"UserInvitation"> | Date | string | null
+    createdUserId?: StringNullableFilter<"UserInvitation"> | string | null
+    createdEmployeeId?: StringNullableFilter<"UserInvitation"> | string | null
+    createdAt?: DateTimeFilter<"UserInvitation"> | Date | string
+  }
+
+  export type UserInvitationOrderByWithRelationInput = {
+    id?: SortOrder
+    employeeNo?: SortOrder
+    lastName?: SortOrder
+    firstName?: SortOrder
+    email?: SortOrder
+    token?: SortOrder
+    expectedHireDate?: SortOrderInput | SortOrder
+    expiresAt?: SortOrder
+    acceptedAt?: SortOrderInput | SortOrder
+    createdUserId?: SortOrderInput | SortOrder
+    createdEmployeeId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type UserInvitationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    token?: string
+    AND?: UserInvitationWhereInput | UserInvitationWhereInput[]
+    OR?: UserInvitationWhereInput[]
+    NOT?: UserInvitationWhereInput | UserInvitationWhereInput[]
+    employeeNo?: StringFilter<"UserInvitation"> | string
+    lastName?: StringFilter<"UserInvitation"> | string
+    firstName?: StringFilter<"UserInvitation"> | string
+    email?: StringFilter<"UserInvitation"> | string
+    expectedHireDate?: DateTimeNullableFilter<"UserInvitation"> | Date | string | null
+    expiresAt?: DateTimeFilter<"UserInvitation"> | Date | string
+    acceptedAt?: DateTimeNullableFilter<"UserInvitation"> | Date | string | null
+    createdUserId?: StringNullableFilter<"UserInvitation"> | string | null
+    createdEmployeeId?: StringNullableFilter<"UserInvitation"> | string | null
+    createdAt?: DateTimeFilter<"UserInvitation"> | Date | string
+  }, "id" | "token">
+
+  export type UserInvitationOrderByWithAggregationInput = {
+    id?: SortOrder
+    employeeNo?: SortOrder
+    lastName?: SortOrder
+    firstName?: SortOrder
+    email?: SortOrder
+    token?: SortOrder
+    expectedHireDate?: SortOrderInput | SortOrder
+    expiresAt?: SortOrder
+    acceptedAt?: SortOrderInput | SortOrder
+    createdUserId?: SortOrderInput | SortOrder
+    createdEmployeeId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: UserInvitationCountOrderByAggregateInput
+    _max?: UserInvitationMaxOrderByAggregateInput
+    _min?: UserInvitationMinOrderByAggregateInput
+  }
+
+  export type UserInvitationScalarWhereWithAggregatesInput = {
+    AND?: UserInvitationScalarWhereWithAggregatesInput | UserInvitationScalarWhereWithAggregatesInput[]
+    OR?: UserInvitationScalarWhereWithAggregatesInput[]
+    NOT?: UserInvitationScalarWhereWithAggregatesInput | UserInvitationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"UserInvitation"> | string
+    employeeNo?: StringWithAggregatesFilter<"UserInvitation"> | string
+    lastName?: StringWithAggregatesFilter<"UserInvitation"> | string
+    firstName?: StringWithAggregatesFilter<"UserInvitation"> | string
+    email?: StringWithAggregatesFilter<"UserInvitation"> | string
+    token?: StringWithAggregatesFilter<"UserInvitation"> | string
+    expectedHireDate?: DateTimeNullableWithAggregatesFilter<"UserInvitation"> | Date | string | null
+    expiresAt?: DateTimeWithAggregatesFilter<"UserInvitation"> | Date | string
+    acceptedAt?: DateTimeNullableWithAggregatesFilter<"UserInvitation"> | Date | string | null
+    createdUserId?: StringNullableWithAggregatesFilter<"UserInvitation"> | string | null
+    createdEmployeeId?: StringNullableWithAggregatesFilter<"UserInvitation"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"UserInvitation"> | Date | string
   }
 
   export type DepartmentWhereInput = {
@@ -18508,6 +19822,7 @@ export namespace Prisma {
     email: string
     password: string
     role?: $Enums.UserRole
+    isActive?: boolean
     createdAt?: Date | string
     requests?: EmployeeRequestCreateNestedManyWithoutUserInput
   }
@@ -18518,6 +19833,7 @@ export namespace Prisma {
     email: string
     password: string
     role?: $Enums.UserRole
+    isActive?: boolean
     createdAt?: Date | string
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutUserInput
   }
@@ -18528,6 +19844,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     requests?: EmployeeRequestUpdateManyWithoutUserNestedInput
   }
@@ -18538,6 +19855,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     requests?: EmployeeRequestUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -18548,6 +19866,7 @@ export namespace Prisma {
     email: string
     password: string
     role?: $Enums.UserRole
+    isActive?: boolean
     createdAt?: Date | string
   }
 
@@ -18557,6 +19876,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -18566,6 +19886,112 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserInvitationCreateInput = {
+    id?: string
+    employeeNo: string
+    lastName: string
+    firstName: string
+    email: string
+    token: string
+    expectedHireDate?: Date | string | null
+    expiresAt: Date | string
+    acceptedAt?: Date | string | null
+    createdUserId?: string | null
+    createdEmployeeId?: string | null
+    createdAt?: Date | string
+  }
+
+  export type UserInvitationUncheckedCreateInput = {
+    id?: string
+    employeeNo: string
+    lastName: string
+    firstName: string
+    email: string
+    token: string
+    expectedHireDate?: Date | string | null
+    expiresAt: Date | string
+    acceptedAt?: Date | string | null
+    createdUserId?: string | null
+    createdEmployeeId?: string | null
+    createdAt?: Date | string
+  }
+
+  export type UserInvitationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expectedHireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    acceptedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdEmployeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserInvitationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expectedHireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    acceptedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdEmployeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserInvitationCreateManyInput = {
+    id?: string
+    employeeNo: string
+    lastName: string
+    firstName: string
+    email: string
+    token: string
+    expectedHireDate?: Date | string | null
+    expiresAt: Date | string
+    acceptedAt?: Date | string | null
+    createdUserId?: string | null
+    createdEmployeeId?: string | null
+    createdAt?: Date | string
+  }
+
+  export type UserInvitationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expectedHireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    acceptedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdEmployeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserInvitationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expectedHireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    acceptedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdEmployeeId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -19579,6 +21005,11 @@ export namespace Prisma {
     not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -19606,6 +21037,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     role?: SortOrder
+    isActive?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -19615,6 +21047,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     role?: SortOrder
+    isActive?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -19624,6 +21057,7 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     role?: SortOrder
+    isActive?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -19655,6 +21089,14 @@ export namespace Prisma {
     _max?: NestedEnumUserRoleFilter<$PrismaModel>
   }
 
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -19667,6 +21109,114 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
+  export type UserInvitationCountOrderByAggregateInput = {
+    id?: SortOrder
+    employeeNo?: SortOrder
+    lastName?: SortOrder
+    firstName?: SortOrder
+    email?: SortOrder
+    token?: SortOrder
+    expectedHireDate?: SortOrder
+    expiresAt?: SortOrder
+    acceptedAt?: SortOrder
+    createdUserId?: SortOrder
+    createdEmployeeId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type UserInvitationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    employeeNo?: SortOrder
+    lastName?: SortOrder
+    firstName?: SortOrder
+    email?: SortOrder
+    token?: SortOrder
+    expectedHireDate?: SortOrder
+    expiresAt?: SortOrder
+    acceptedAt?: SortOrder
+    createdUserId?: SortOrder
+    createdEmployeeId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type UserInvitationMinOrderByAggregateInput = {
+    id?: SortOrder
+    employeeNo?: SortOrder
+    lastName?: SortOrder
+    firstName?: SortOrder
+    email?: SortOrder
+    token?: SortOrder
+    expectedHireDate?: SortOrder
+    expiresAt?: SortOrder
+    acceptedAt?: SortOrder
+    createdUserId?: SortOrder
+    createdEmployeeId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type EmployeeListRelationFilter = {
@@ -19697,37 +21247,11 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type EnumGenderNullableFilter<$PrismaModel = never> = {
     equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel> | null
     in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel> | null
     notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel> | null
     not?: NestedEnumGenderNullableFilter<$PrismaModel> | $Enums.Gender | null
-  }
-
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type EnumEmploymentTypeNullableFilter<$PrismaModel = never> = {
@@ -19780,11 +21304,6 @@ export namespace Prisma {
     every?: LeaveGrantHistoryWhereInput
     some?: LeaveGrantHistoryWhereInput
     none?: LeaveGrantHistoryWhereInput
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
   }
 
   export type SalaryHistoryOrderByRelationAggregateInput = {
@@ -19877,24 +21396,6 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
   export type EnumGenderNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel> | null
     in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel> | null
@@ -19903,20 +21404,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedEnumGenderNullableFilter<$PrismaModel>
     _max?: NestedEnumGenderNullableFilter<$PrismaModel>
-  }
-
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type EnumEmploymentTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -20612,6 +22099,10 @@ export namespace Prisma {
     set?: $Enums.UserRole
   }
 
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
   }
@@ -20642,6 +22133,14 @@ export namespace Prisma {
     update?: EmployeeRequestUpdateWithWhereUniqueWithoutUserInput | EmployeeRequestUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: EmployeeRequestUpdateManyWithWhereWithoutUserInput | EmployeeRequestUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: EmployeeRequestScalarWhereInput | EmployeeRequestScalarWhereInput[]
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type EmployeeCreateNestedManyWithoutDepartmentInput = {
@@ -20784,16 +22283,8 @@ export namespace Prisma {
     connect?: LeaveGrantHistoryWhereUniqueInput | LeaveGrantHistoryWhereUniqueInput[]
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
   export type NullableEnumGenderFieldUpdateOperationsInput = {
     set?: $Enums.Gender | null
-  }
-
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
   }
 
   export type NullableEnumEmploymentTypeFieldUpdateOperationsInput = {
@@ -21287,6 +22778,11 @@ export namespace Prisma {
     not?: NestedEnumUserRoleFilter<$PrismaModel> | $Enums.UserRole
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -21336,6 +22832,14 @@ export namespace Prisma {
     _max?: NestedEnumUserRoleFilter<$PrismaModel>
   }
 
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -21348,6 +22852,17 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
@@ -21364,14 +22879,7 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type NestedEnumGenderNullableFilter<$PrismaModel = never> = {
-    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel> | null
-    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel> | null
-    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel> | null
-    not?: NestedEnumGenderNullableFilter<$PrismaModel> | $Enums.Gender | null
-  }
-
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
     notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -21379,21 +22887,21 @@ export namespace Prisma {
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
-  export type NestedEnumEmploymentTypeNullableFilter<$PrismaModel = never> = {
-    equals?: $Enums.EmploymentType | EnumEmploymentTypeFieldRefInput<$PrismaModel> | null
-    in?: $Enums.EmploymentType[] | ListEnumEmploymentTypeFieldRefInput<$PrismaModel> | null
-    notIn?: $Enums.EmploymentType[] | ListEnumEmploymentTypeFieldRefInput<$PrismaModel> | null
-    not?: NestedEnumEmploymentTypeNullableFilter<$PrismaModel> | $Enums.EmploymentType | null
-  }
-
-  export type NestedEnumEmployeeStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.EmployeeStatus | EnumEmployeeStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.EmployeeStatus[] | ListEnumEmployeeStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.EmployeeStatus[] | ListEnumEmployeeStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumEmployeeStatusFilter<$PrismaModel> | $Enums.EmployeeStatus
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -21413,15 +22921,25 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  export type NestedEnumGenderNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.Gender | EnumGenderFieldRefInput<$PrismaModel> | null
+    in?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.Gender[] | ListEnumGenderFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumGenderNullableFilter<$PrismaModel> | $Enums.Gender | null
+  }
+
+  export type NestedEnumEmploymentTypeNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.EmploymentType | EnumEmploymentTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.EmploymentType[] | ListEnumEmploymentTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.EmploymentType[] | ListEnumEmploymentTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumEmploymentTypeNullableFilter<$PrismaModel> | $Enums.EmploymentType | null
+  }
+
+  export type NestedEnumEmployeeStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.EmployeeStatus | EnumEmployeeStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.EmployeeStatus[] | ListEnumEmployeeStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EmployeeStatus[] | ListEnumEmployeeStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumEmployeeStatusFilter<$PrismaModel> | $Enums.EmployeeStatus
   }
 
   export type NestedEnumGenderNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -21432,20 +22950,6 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedEnumGenderNullableFilter<$PrismaModel>
     _max?: NestedEnumGenderNullableFilter<$PrismaModel>
-  }
-
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumEmploymentTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -23146,6 +24650,7 @@ export namespace Prisma {
     email: string
     password: string
     role?: $Enums.UserRole
+    isActive?: boolean
     createdAt?: Date | string
   }
 
@@ -23155,6 +24660,7 @@ export namespace Prisma {
     email: string
     password: string
     role?: $Enums.UserRole
+    isActive?: boolean
     createdAt?: Date | string
   }
 
@@ -23303,6 +24809,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -23312,6 +24819,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

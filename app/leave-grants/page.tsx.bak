@@ -111,7 +111,35 @@ async function grantManualLeave(formData: FormData) {
   );
 
   const note = String(
+
+  const grantDate = String(
+    formData.get("grantDate") ?? "",
+  );
+
+
+  const grantDate = String(
+    formData.get("grantDate") ?? "",
+  );
+  const grantDate = String(
+
+  const grantDate = String(
+    formData.get("grantDate") ?? "",
+  );
+    formData.get("grantDate") ?? "",
+
+  const grantDate = String(
+    formData.get("grantDate") ?? "",
+  );
+  );
+
+  const grantDate = String(
+    formData.get("grantDate") ?? "",
+  );
     formData.get("note") ?? "",
+
+  const grantDate = String(
+    formData.get("grantDate") ?? "",
+  );
   );
 
   const grantDate = String(
@@ -294,7 +322,7 @@ async function cancelManualLeaveGrant(formData: FormData) {
   await prisma.leaveGrantHistory.create({
     data: {
       employeeId: grant.employeeId,
-      grantDate: new Date(),
+      grantDate: grantDate ? new Date(grantDate) : new Date(),
       grantedDays: grant.grantedDays,
       grantType: "MANUAL_CANCEL",
       note: `取消元:${grant.id} ${grant.grantType} ${grant.note ?? ""}`.trim(),
@@ -410,13 +438,6 @@ export default async function LeaveGrantHistoryPage() {
               </option>
             ))}
           </select>
-
-          <input
-            type="date"
-            name="grantDate"
-            defaultValue={new Date().toISOString().split("T")[0]}
-            className="rounded border p-2"
-          />
 
           <select
             name="adjustType"
