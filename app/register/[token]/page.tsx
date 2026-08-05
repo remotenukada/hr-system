@@ -139,6 +139,7 @@ async function completeRegistration(formData: FormData) {
           : null,
         hireDate: invitation.expectedHireDate ?? null,
         status: "ACTIVE",
+        userId: user.id,
       },
     });
 
