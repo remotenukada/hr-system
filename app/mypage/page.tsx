@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { auth } from "../../auth";
 import { prisma } from "../../lib/prisma";
 import { redirect } from "next/navigation";
@@ -78,6 +79,15 @@ export default async function MyPage() {
             <dd>{remainingLeave} 日</dd>
           </div>
         </dl>
+      </div>
+
+      <div className="mt-6">
+        <Link
+          href="/requests/my"
+          className="inline-block rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+        >
+          自分の申請一覧を見る
+        </Link>
       </div>
     </main>
   );
