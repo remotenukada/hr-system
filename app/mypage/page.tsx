@@ -15,8 +15,13 @@ export default async function MyPage() {
     },
     include: {
       department: true,
+      leaveBalance: true,
     },
   });
+
+  const remainingLeave = employee?.leaveBalance
+    ? employee.leaveBalance.grantedDays - employee.leaveBalance.usedDays
+    : 0;
 
   if (!employee) {
     return (
@@ -66,6 +71,11 @@ export default async function MyPage() {
                 ? employee.hireDate.toLocaleDateString("ja-JP")
                 : "-"}
             </dd>
+          </div>
+
+          <div>
+            <dt className="font-semibold">有給残数</dt>
+            <dd>{remainingLeave} 日</dd>
           </div>
         </dl>
       </div>
