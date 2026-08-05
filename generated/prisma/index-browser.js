@@ -175,6 +175,7 @@ exports.Prisma.EmployeeScalarFieldEnum = {
   healthInsuranceNo: 'healthInsuranceNo',
   employmentInsuranceNo: 'employmentInsuranceNo',
   photoPath: 'photoPath',
+  userId: 'userId',
   createdAt: 'createdAt'
 };
 

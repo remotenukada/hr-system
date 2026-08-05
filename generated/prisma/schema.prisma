@@ -29,6 +29,8 @@ model User {
   isActive  Boolean           @default(true)
   createdAt DateTime          @default(now())
   requests  EmployeeRequest[] // ユーザーが作成した申請一覧
+
+  employee Employee?
 }
 
 model UserInvitation {
@@ -106,6 +108,10 @@ model Employee {
   employmentInsuranceNo String?
 
   photoPath String?
+
+  userId String? @unique
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
 
   requests EmployeeRequest[]
 
