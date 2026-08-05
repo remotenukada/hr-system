@@ -3459,6 +3459,7 @@ export namespace Prisma {
     expectedHireDate: Date | null
     expiresAt: Date | null
     acceptedAt: Date | null
+    cancelledAt: Date | null
     createdUserId: string | null
     createdEmployeeId: string | null
     createdAt: Date | null
@@ -3474,6 +3475,7 @@ export namespace Prisma {
     expectedHireDate: Date | null
     expiresAt: Date | null
     acceptedAt: Date | null
+    cancelledAt: Date | null
     createdUserId: string | null
     createdEmployeeId: string | null
     createdAt: Date | null
@@ -3489,6 +3491,7 @@ export namespace Prisma {
     expectedHireDate: number
     expiresAt: number
     acceptedAt: number
+    cancelledAt: number
     createdUserId: number
     createdEmployeeId: number
     createdAt: number
@@ -3506,6 +3509,7 @@ export namespace Prisma {
     expectedHireDate?: true
     expiresAt?: true
     acceptedAt?: true
+    cancelledAt?: true
     createdUserId?: true
     createdEmployeeId?: true
     createdAt?: true
@@ -3521,6 +3525,7 @@ export namespace Prisma {
     expectedHireDate?: true
     expiresAt?: true
     acceptedAt?: true
+    cancelledAt?: true
     createdUserId?: true
     createdEmployeeId?: true
     createdAt?: true
@@ -3536,6 +3541,7 @@ export namespace Prisma {
     expectedHireDate?: true
     expiresAt?: true
     acceptedAt?: true
+    cancelledAt?: true
     createdUserId?: true
     createdEmployeeId?: true
     createdAt?: true
@@ -3624,6 +3630,7 @@ export namespace Prisma {
     expectedHireDate: Date | null
     expiresAt: Date
     acceptedAt: Date | null
+    cancelledAt: Date | null
     createdUserId: string | null
     createdEmployeeId: string | null
     createdAt: Date
@@ -3656,6 +3663,7 @@ export namespace Prisma {
     expectedHireDate?: boolean
     expiresAt?: boolean
     acceptedAt?: boolean
+    cancelledAt?: boolean
     createdUserId?: boolean
     createdEmployeeId?: boolean
     createdAt?: boolean
@@ -3671,6 +3679,7 @@ export namespace Prisma {
     expectedHireDate?: boolean
     expiresAt?: boolean
     acceptedAt?: boolean
+    cancelledAt?: boolean
     createdUserId?: boolean
     createdEmployeeId?: boolean
     createdAt?: boolean
@@ -3686,6 +3695,7 @@ export namespace Prisma {
     expectedHireDate?: boolean
     expiresAt?: boolean
     acceptedAt?: boolean
+    cancelledAt?: boolean
     createdUserId?: boolean
     createdEmployeeId?: boolean
     createdAt?: boolean
@@ -3701,12 +3711,13 @@ export namespace Prisma {
     expectedHireDate?: boolean
     expiresAt?: boolean
     acceptedAt?: boolean
+    cancelledAt?: boolean
     createdUserId?: boolean
     createdEmployeeId?: boolean
     createdAt?: boolean
   }
 
-  export type UserInvitationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeNo" | "lastName" | "firstName" | "email" | "token" | "expectedHireDate" | "expiresAt" | "acceptedAt" | "createdUserId" | "createdEmployeeId" | "createdAt", ExtArgs["result"]["userInvitation"]>
+  export type UserInvitationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeNo" | "lastName" | "firstName" | "email" | "token" | "expectedHireDate" | "expiresAt" | "acceptedAt" | "cancelledAt" | "createdUserId" | "createdEmployeeId" | "createdAt", ExtArgs["result"]["userInvitation"]>
 
   export type $UserInvitationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "UserInvitation"
@@ -3721,6 +3732,7 @@ export namespace Prisma {
       expectedHireDate: Date | null
       expiresAt: Date
       acceptedAt: Date | null
+      cancelledAt: Date | null
       createdUserId: string | null
       createdEmployeeId: string | null
       createdAt: Date
@@ -4156,6 +4168,7 @@ export namespace Prisma {
     readonly expectedHireDate: FieldRef<"UserInvitation", 'DateTime'>
     readonly expiresAt: FieldRef<"UserInvitation", 'DateTime'>
     readonly acceptedAt: FieldRef<"UserInvitation", 'DateTime'>
+    readonly cancelledAt: FieldRef<"UserInvitation", 'DateTime'>
     readonly createdUserId: FieldRef<"UserInvitation", 'String'>
     readonly createdEmployeeId: FieldRef<"UserInvitation", 'String'>
     readonly createdAt: FieldRef<"UserInvitation", 'DateTime'>
@@ -18327,6 +18340,7 @@ export namespace Prisma {
     expectedHireDate: 'expectedHireDate',
     expiresAt: 'expiresAt',
     acceptedAt: 'acceptedAt',
+    cancelledAt: 'cancelledAt',
     createdUserId: 'createdUserId',
     createdEmployeeId: 'createdEmployeeId',
     createdAt: 'createdAt'
@@ -18838,6 +18852,7 @@ export namespace Prisma {
     expectedHireDate?: DateTimeNullableFilter<"UserInvitation"> | Date | string | null
     expiresAt?: DateTimeFilter<"UserInvitation"> | Date | string
     acceptedAt?: DateTimeNullableFilter<"UserInvitation"> | Date | string | null
+    cancelledAt?: DateTimeNullableFilter<"UserInvitation"> | Date | string | null
     createdUserId?: StringNullableFilter<"UserInvitation"> | string | null
     createdEmployeeId?: StringNullableFilter<"UserInvitation"> | string | null
     createdAt?: DateTimeFilter<"UserInvitation"> | Date | string
@@ -18853,6 +18868,7 @@ export namespace Prisma {
     expectedHireDate?: SortOrderInput | SortOrder
     expiresAt?: SortOrder
     acceptedAt?: SortOrderInput | SortOrder
+    cancelledAt?: SortOrderInput | SortOrder
     createdUserId?: SortOrderInput | SortOrder
     createdEmployeeId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -18871,6 +18887,7 @@ export namespace Prisma {
     expectedHireDate?: DateTimeNullableFilter<"UserInvitation"> | Date | string | null
     expiresAt?: DateTimeFilter<"UserInvitation"> | Date | string
     acceptedAt?: DateTimeNullableFilter<"UserInvitation"> | Date | string | null
+    cancelledAt?: DateTimeNullableFilter<"UserInvitation"> | Date | string | null
     createdUserId?: StringNullableFilter<"UserInvitation"> | string | null
     createdEmployeeId?: StringNullableFilter<"UserInvitation"> | string | null
     createdAt?: DateTimeFilter<"UserInvitation"> | Date | string
@@ -18886,6 +18903,7 @@ export namespace Prisma {
     expectedHireDate?: SortOrderInput | SortOrder
     expiresAt?: SortOrder
     acceptedAt?: SortOrderInput | SortOrder
+    cancelledAt?: SortOrderInput | SortOrder
     createdUserId?: SortOrderInput | SortOrder
     createdEmployeeId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -18907,6 +18925,7 @@ export namespace Prisma {
     expectedHireDate?: DateTimeNullableWithAggregatesFilter<"UserInvitation"> | Date | string | null
     expiresAt?: DateTimeWithAggregatesFilter<"UserInvitation"> | Date | string
     acceptedAt?: DateTimeNullableWithAggregatesFilter<"UserInvitation"> | Date | string | null
+    cancelledAt?: DateTimeNullableWithAggregatesFilter<"UserInvitation"> | Date | string | null
     createdUserId?: StringNullableWithAggregatesFilter<"UserInvitation"> | string | null
     createdEmployeeId?: StringNullableWithAggregatesFilter<"UserInvitation"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"UserInvitation"> | Date | string
@@ -19900,6 +19919,7 @@ export namespace Prisma {
     expectedHireDate?: Date | string | null
     expiresAt: Date | string
     acceptedAt?: Date | string | null
+    cancelledAt?: Date | string | null
     createdUserId?: string | null
     createdEmployeeId?: string | null
     createdAt?: Date | string
@@ -19915,6 +19935,7 @@ export namespace Prisma {
     expectedHireDate?: Date | string | null
     expiresAt: Date | string
     acceptedAt?: Date | string | null
+    cancelledAt?: Date | string | null
     createdUserId?: string | null
     createdEmployeeId?: string | null
     createdAt?: Date | string
@@ -19930,6 +19951,7 @@ export namespace Prisma {
     expectedHireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     acceptedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdUserId?: NullableStringFieldUpdateOperationsInput | string | null
     createdEmployeeId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19945,6 +19967,7 @@ export namespace Prisma {
     expectedHireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     acceptedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdUserId?: NullableStringFieldUpdateOperationsInput | string | null
     createdEmployeeId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19960,6 +19983,7 @@ export namespace Prisma {
     expectedHireDate?: Date | string | null
     expiresAt: Date | string
     acceptedAt?: Date | string | null
+    cancelledAt?: Date | string | null
     createdUserId?: string | null
     createdEmployeeId?: string | null
     createdAt?: Date | string
@@ -19975,6 +19999,7 @@ export namespace Prisma {
     expectedHireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     acceptedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdUserId?: NullableStringFieldUpdateOperationsInput | string | null
     createdEmployeeId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19990,6 +20015,7 @@ export namespace Prisma {
     expectedHireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
     acceptedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdUserId?: NullableStringFieldUpdateOperationsInput | string | null
     createdEmployeeId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -21152,6 +21178,7 @@ export namespace Prisma {
     expectedHireDate?: SortOrder
     expiresAt?: SortOrder
     acceptedAt?: SortOrder
+    cancelledAt?: SortOrder
     createdUserId?: SortOrder
     createdEmployeeId?: SortOrder
     createdAt?: SortOrder
@@ -21167,6 +21194,7 @@ export namespace Prisma {
     expectedHireDate?: SortOrder
     expiresAt?: SortOrder
     acceptedAt?: SortOrder
+    cancelledAt?: SortOrder
     createdUserId?: SortOrder
     createdEmployeeId?: SortOrder
     createdAt?: SortOrder
@@ -21182,6 +21210,7 @@ export namespace Prisma {
     expectedHireDate?: SortOrder
     expiresAt?: SortOrder
     acceptedAt?: SortOrder
+    cancelledAt?: SortOrder
     createdUserId?: SortOrder
     createdEmployeeId?: SortOrder
     createdAt?: SortOrder

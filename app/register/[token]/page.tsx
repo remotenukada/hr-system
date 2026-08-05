@@ -50,6 +50,13 @@ async function completeRegistration(formData: FormData) {
     );
   }
 
+  if (invitation.cancelledAt) {
+    redirectWithError(
+      token,
+      "この招待は取り消されています。",
+    );
+  }
+
   if (invitation.expiresAt < new Date()) {
     redirectWithError(
       token,

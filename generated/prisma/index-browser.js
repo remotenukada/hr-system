@@ -140,6 +140,7 @@ exports.Prisma.UserInvitationScalarFieldEnum = {
   expectedHireDate: 'expectedHireDate',
   expiresAt: 'expiresAt',
   acceptedAt: 'acceptedAt',
+  cancelledAt: 'cancelledAt',
   createdUserId: 'createdUserId',
   createdEmployeeId: 'createdEmployeeId',
   createdAt: 'createdAt'

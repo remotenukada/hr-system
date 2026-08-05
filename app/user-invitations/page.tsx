@@ -4,10 +4,15 @@ import { requireAdmin } from "@/lib/auth-guard";
 
 function getStatusText(invitation: {
   acceptedAt: Date | null;
+  cancelledAt: Date | null;
   expiresAt: Date;
 }) {
   if (invitation.acceptedAt) {
     return "登録済";
+  }
+
+  if (invitation.cancelledAt) {
+    return "取消";
   }
 
   if (invitation.expiresAt < new Date()) {
@@ -19,10 +24,15 @@ function getStatusText(invitation: {
 
 function getStatusClass(invitation: {
   acceptedAt: Date | null;
+  cancelledAt: Date | null;
   expiresAt: Date;
 }) {
   if (invitation.acceptedAt) {
     return "rounded bg-green-100 px-2 py-1 text-xs font-medium text-green-700";
+  }
+
+  if (invitation.cancelledAt) {
+    return "rounded bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600";
   }
 
   if (invitation.expiresAt < new Date()) {
@@ -83,6 +93,7 @@ export default async function UserInvitationsPage() {
               <th className="p-3 text-left">QR</th>
               <th className="p-3 text-left">印刷</th>
               <th className="p-3 text-left">再発行</th>
+              <th className="p-3 text-left">取消</th>
             </tr>
           </thead>
 
@@ -90,7 +101,7 @@ export default async function UserInvitationsPage() {
             {invitations.length === 0 ? (
               <tr>
                 <td
-                  colSpan={10}
+                  colSpan={11}
                   className="p-8 text-center text-gray-500"
                 >
                   招待はまだありません。
@@ -155,16 +166,34 @@ export default async function UserInvitationsPage() {
                     </Link>
                   </td>
                   <td className="p-3">
-                    {!invitation.acceptedAt ? (
+                    {!invitation.acceptedAt && !invitation.cancelledAt ? (
                       <form
                         action={`/api/user-invitations/${invitation.id}/reissue`}
                         method="POST"
                       >
                         <button
                           type="submit"
-                          className="text-red-600 hover:underline"
+                          className="text-orange-600 hover:underline"
                         >
                           再発行
+                        </button>
+                      </form>
+                    ) : (
+                      "-"
+                    )}
+                  </td>
+
+                  <td className="p-3">
+                    {!invitation.acceptedAt && !invitation.cancelledAt ? (
+                      <form
+                        action={`/api/user-invitations/${invitation.id}/cancel`}
+                        method="POST"
+                      >
+                        <button
+                          type="submit"
+                          className="text-red-600 hover:underline"
+                        >
+                          取消
                         </button>
                       </form>
                     ) : (

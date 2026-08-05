@@ -1,4 +1,3 @@
-import { randomUUID } from "crypto";
 import { NextResponse } from "next/server";
 
 import { requireAdmin } from "@/lib/auth-guard";
@@ -21,7 +20,17 @@ export async function POST(
 
   const invitation =
     await prisma.userInvitation.findUnique({
-      where: { id },
+      where: {
+        id,
+      },
+      select: {
+        id: true,
+        email: true,
+        token: true,
+        expiresAt: true,
+        acceptedAt: true,
+        cancelledAt: true,
+      },
     });
 
   if (!invitation) {
@@ -33,13 +42,19 @@ export async function POST(
 
   if (invitation.acceptedAt) {
     return NextResponse.json(
-      { error: "登録済み招待は再発行できません。" },
+      { error: "登録済み招待は取消できません。" },
       { status: 400 },
     );
   }
 
-  const expiresAt = new Date();
-  expiresAt.setDate(expiresAt.getDate() + 14);
+  if (invitation.cancelledAt) {
+    return NextResponse.redirect(
+      new URL("/user-invitations", request.url),
+      303,
+    );
+  }
+
+  const cancelledAt = new Date();
 
   const updatedInvitation =
     await prisma.userInvitation.update({
@@ -47,19 +62,29 @@ export async function POST(
         id,
       },
       data: {
-        token: randomUUID(),
-        expiresAt,
+        cancelledAt,
       },
     });
 
   await logAudit({
     userId: session.user.id,
     userName: session.user.name,
-    action: "USER_INVITATION_REISSUED",
+    action: "USER_INVITATION_CANCELLED",
     targetType: "UserInvitation",
     targetId: updatedInvitation.id,
-    description:
-      `招待再発行: ${updatedInvitation.email}`,
+    description: `招待取消: ${updatedInvitation.email}`,
+    beforeData: {
+      email: invitation.email,
+      token: invitation.token,
+      expiresAt: invitation.expiresAt,
+      cancelledAt: invitation.cancelledAt,
+    },
+    afterData: {
+      email: updatedInvitation.email,
+      token: updatedInvitation.token,
+      expiresAt: updatedInvitation.expiresAt,
+      cancelledAt: updatedInvitation.cancelledAt,
+    },
   });
 
   return NextResponse.redirect(
