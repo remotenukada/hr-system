@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth-guard";
 import { logAudit } from "@/lib/audit-log";
+import { sendInvitationMail } from "@/lib/mail";
 
 type Props = {
   searchParams: Promise<{
@@ -78,6 +79,17 @@ async function createInvitation(formData: FormData) {
       expiresAt,
     },
   });
+
+  const invitationUrl =
+    `${process.env.NEXT_PUBLIC_APP_URL}/register/${token}`;
+
+  await sendInvitationMail(
+    email,
+    `${lastName} ${firstName}`,
+    invitationUrl,
+  );
+
+
 
   await logAudit({
     userId: session.user.id,
