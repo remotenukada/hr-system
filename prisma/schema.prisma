@@ -117,14 +117,15 @@ model Employee {
 
   requests EmployeeRequest[]
 
-  createdAt           DateTime                @default(now())
-  employeeMyNumber    EmployeeMyNumber?
-  employeeSalary      EmployeeSalary?
-  salaryHistories     SalaryHistory[]
-  leaveBalance        LeaveBalance?
-  employmentHistories EmploymentHistory[]
-  leaveGrantHistories LeaveGrantHistory[]
-  certifications      EmployeeCertification[]
+  createdAt             DateTime                @default(now())
+  employeeMyNumber      EmployeeMyNumber?
+  employeeSalary        EmployeeSalary?
+  salaryHistories       SalaryHistory[]
+  leaveBalance          LeaveBalance?
+  employmentHistories   EmploymentHistory[]
+  leaveGrantHistories   LeaveGrantHistory[]
+  profileChangeRequests ProfileChangeRequest[]
+  certifications        EmployeeCertification[]
 }
 
 enum RequestType {
@@ -392,4 +393,40 @@ model EmployeeCertificationAttachment {
   userInvitationId String?
 
   @@index([employeeCertificationId])
+}
+
+enum ProfileChangeStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model ProfileChangeRequest {
+  id String @id @default(uuid())
+
+  employeeId String
+  employee   Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  currentAddress String?
+  newAddress     String?
+
+  currentPhoneNumber String?
+  newPhoneNumber     String?
+
+  currentEmail String?
+  newEmail     String?
+
+  currentEmergencyContact String?
+  newEmergencyContact     String?
+
+  status ProfileChangeStatus @default(PENDING)
+
+  reviewedAt DateTime?
+  reviewedBy String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([employeeId])
+  @@index([status])
 }
