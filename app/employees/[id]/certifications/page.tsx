@@ -72,6 +72,10 @@ export default async function EmployeeCertificationsPage({
       formData.get("certificationId") ?? "",
     ).trim();
 
+    const newCertificationName = String(
+      formData.get("newCertificationName") ?? "",
+    ).trim();
+
     const acquiredDateRaw = String(
       formData.get("acquiredDate") ?? "",
     );
@@ -80,16 +84,35 @@ export default async function EmployeeCertificationsPage({
       formData.get("expiryDate") ?? "",
     );
 
-    if (!certificationId) {
+    // 既存選択もフリーワード入力もない場合はエラー
+    if (!certificationId && !newCertificationName) {
       redirect(`/employees/${id}/certifications?error=required`);
     }
 
+    let targetCertificationId = certificationId;
+
+    // フリーワード入力があれば資格マスタへ upsert
+    if (newCertificationName) {
+      const certification = await prisma.certification.upsert({
+        where: {
+          name: newCertificationName,
+        },
+        update: {},
+        create: {
+          name: newCertificationName,
+        },
+      });
+
+      targetCertificationId = certification.id;
+    }
+
+    // 重複チェック
     const existing =
       await prisma.employeeCertification.findUnique({
         where: {
           employeeId_certificationId: {
             employeeId: id,
-            certificationId,
+            certificationId: targetCertificationId,
           },
         },
       });
@@ -136,7 +159,7 @@ export default async function EmployeeCertificationsPage({
       });
 
       const storedFileName =
-        `${id}-${certificationId}-${randomUUID()}${extension}`;
+        `${id}-${targetCertificationId}-${randomUUID()}${extension}`;
 
       const filePath = path.join(uploadDir, storedFileName);
 
@@ -154,7 +177,7 @@ export default async function EmployeeCertificationsPage({
     await prisma.employeeCertification.create({
       data: {
         employeeId: id,
-        certificationId,
+        certificationId: targetCertificationId,
         acquiredDate: acquiredDateRaw
           ? new Date(`${acquiredDateRaw}T00:00:00`)
           : null,
@@ -221,7 +244,7 @@ export default async function EmployeeCertificationsPage({
 
       {error === "required" && (
         <div className="mb-4 max-w-xl rounded border border-red-300 bg-red-50 p-3 text-sm text-red-700">
-          資格を選択してください。
+          資格を選択するか、新しい資格名を入力してください。
         </div>
       )}
 
@@ -248,84 +271,90 @@ export default async function EmployeeCertificationsPage({
           資格を追加
         </h2>
 
-        {certifications.length === 0 ? (
-          <p className="text-sm text-gray-500">
-            先に資格マスタを登録してください。
-          </p>
-        ) : (
-          <form action={addEmployeeCertification} className="space-y-4">
-            <div>
-              <label className="mb-1 block text-sm font-medium">
-                資格
-              </label>
+        <form action={addEmployeeCertification} className="space-y-4">
+          <div>
+            <label className="mb-1 block text-sm font-medium">
+              既存資格から選択
+            </label>
 
-              <select
-                name="certificationId"
-                className="w-full rounded border p-2"
-                required
-              >
-                <option value="">選択してください</option>
-                {certifications.map((certification) => (
-                  <option
-                    key={certification.id}
-                    value={certification.id}
-                  >
-                    {certification.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <label className="mb-1 block text-sm font-medium">
-                取得日
-              </label>
-
-              <input
-                type="date"
-                name="acquiredDate"
-                className="w-full rounded border p-2"
-              />
-            </div>
-
-            <div>
-              <label className="mb-1 block text-sm font-medium">
-                有効期限
-              </label>
-
-              <input
-                type="date"
-                name="expiryDate"
-                className="w-full rounded border p-2"
-              />
-            </div>
-
-            <div>
-              <label className="mb-1 block text-sm font-medium">
-                資格証・免許証ファイル
-              </label>
-
-              <input
-                type="file"
-                name="certificateFiles"
-                accept="application/pdf,image/jpeg,image/png,image/webp"
-                multiple
-                className="w-full rounded border p-2"
-              />
-
-              <p className="mt-1 text-xs text-gray-500">
-                PDF、JPG、PNG、WebPを複数添付できます。1ファイル最大5MBです。
-              </p>
-            </div>
-
-            <button
-              type="submit"
-              className="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+            <select
+              name="certificationId"
+              className="w-full rounded border p-2"
             >
-              追加
-            </button>
-          </form>
-        )}
+              <option value="">既存の資格を選択</option>
+              {certifications.map((certification) => (
+                <option
+                  key={certification.id}
+                  value={certification.id}
+                >
+                  {certification.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="mb-1 block text-sm font-medium">
+              または 新しい資格名を入力
+            </label>
+
+            <input
+              type="text"
+              name="newCertificationName"
+              placeholder="リストにない場合は入力してください"
+              className="w-full rounded border p-2"
+            />
+          </div>
+
+          <div>
+            <label className="mb-1 block text-sm font-medium">
+              取得日
+            </label>
+
+            <input
+              type="date"
+              name="acquiredDate"
+              className="w-full rounded border p-2"
+            />
+          </div>
+
+          <div>
+            <label className="mb-1 block text-sm font-medium">
+              有効期限
+            </label>
+
+            <input
+              type="date"
+              name="expiryDate"
+              className="w-full rounded border p-2"
+            />
+          </div>
+
+          <div>
+            <label className="mb-1 block text-sm font-medium">
+              資格証・免許証ファイル
+            </label>
+
+            <input
+              type="file"
+              name="certificateFiles"
+              accept="application/pdf,image/jpeg,image/png,image/webp"
+              multiple
+              className="w-full rounded border p-2"
+            />
+
+            <p className="mt-1 text-xs text-gray-500">
+              PDF、JPG、PNG、WebPを複数添付できます。1ファイル最大5MBです。
+            </p>
+          </div>
+
+          <button
+            type="submit"
+            className="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+          >
+            追加
+          </button>
+        </form>
       </section>
 
       <section>
