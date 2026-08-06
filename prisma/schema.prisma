@@ -84,7 +84,8 @@ model Employee {
 
   phoneNumber String?
 
-  address String?
+  address          String?
+  emergencyContact String?
 
   email String @unique
 
@@ -369,8 +370,13 @@ model EmployeeCertification {
   certificationId String
   certification   Certification @relation(fields: [certificationId], references: [id], onDelete: Cascade)
 
-  acquiredDate                     DateTime?
-  expiryDate                       DateTime?
+  acquiredDate DateTime?
+  expiryDate   DateTime?
+
+  status     CertificationStatus @default(PENDING)
+  reviewedAt DateTime?
+  reviewedBy String?
+
   createdAt                        DateTime                          @default(now())
   employeeCertificationAttachments EmployeeCertificationAttachment[]
 
@@ -429,4 +435,10 @@ model ProfileChangeRequest {
 
   @@index([employeeId])
   @@index([status])
+}
+
+enum CertificationStatus {
+  PENDING
+  APPROVED
+  REJECTED
 }
