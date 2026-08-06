@@ -51,6 +51,8 @@ model UserInvitation {
   createdUserId     String?
   createdEmployeeId String?
 
+  attachments EmployeeCertificationAttachment[]
+
   createdAt DateTime @default(now())
 
   @@index([email])
@@ -82,7 +84,8 @@ model Employee {
 
   phoneNumber String?
 
-  address String?
+  address          String?
+  emergencyContact String?
 
   email String @unique
 
@@ -115,14 +118,15 @@ model Employee {
 
   requests EmployeeRequest[]
 
-  createdAt           DateTime                @default(now())
-  employeeMyNumber    EmployeeMyNumber?
-  employeeSalary      EmployeeSalary?
-  salaryHistories     SalaryHistory[]
-  leaveBalance        LeaveBalance?
-  employmentHistories EmploymentHistory[]
-  leaveGrantHistories LeaveGrantHistory[]
-  certifications      EmployeeCertification[]
+  createdAt             DateTime                @default(now())
+  employeeMyNumber      EmployeeMyNumber?
+  employeeSalary        EmployeeSalary?
+  salaryHistories       SalaryHistory[]
+  leaveBalance          LeaveBalance?
+  employmentHistories   EmploymentHistory[]
+  leaveGrantHistories   LeaveGrantHistory[]
+  profileChangeRequests ProfileChangeRequest[]
+  certifications        EmployeeCertification[]
 }
 
 enum RequestType {
@@ -369,7 +373,72 @@ model EmployeeCertification {
   acquiredDate DateTime?
   expiryDate   DateTime?
 
-  createdAt DateTime @default(now())
+  status     CertificationStatus @default(PENDING)
+  reviewedAt DateTime?
+  reviewedBy String?
+
+  createdAt                        DateTime                          @default(now())
+  employeeCertificationAttachments EmployeeCertificationAttachment[]
 
   @@unique([employeeId, certificationId])
+}
+
+model EmployeeCertificationAttachment {
+  id String @id @default(uuid())
+
+  employeeCertificationId String
+  employeeCertification   EmployeeCertification @relation(fields: [employeeCertificationId], references: [id], onDelete: Cascade)
+
+  fileName String
+  filePath String
+  fileType String?
+  fileSize Int?
+
+  createdAt        DateTime        @default(now())
+  userInvitation   UserInvitation? @relation(fields: [userInvitationId], references: [id])
+  userInvitationId String?
+
+  @@index([employeeCertificationId])
+}
+
+enum ProfileChangeStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model ProfileChangeRequest {
+  id String @id @default(uuid())
+
+  employeeId String
+  employee   Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  currentAddress String?
+  newAddress     String?
+
+  currentPhoneNumber String?
+  newPhoneNumber     String?
+
+  currentEmail String?
+  newEmail     String?
+
+  currentEmergencyContact String?
+  newEmergencyContact     String?
+
+  status ProfileChangeStatus @default(PENDING)
+
+  reviewedAt DateTime?
+  reviewedBy String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([employeeId])
+  @@index([status])
+}
+
+enum CertificationStatus {
+  PENDING
+  APPROVED
+  REJECTED
 }

@@ -93,6 +93,16 @@ export type Certification = $Result.DefaultSelection<Prisma.$CertificationPayloa
  * 
  */
 export type EmployeeCertification = $Result.DefaultSelection<Prisma.$EmployeeCertificationPayload>
+/**
+ * Model EmployeeCertificationAttachment
+ * 
+ */
+export type EmployeeCertificationAttachment = $Result.DefaultSelection<Prisma.$EmployeeCertificationAttachmentPayload>
+/**
+ * Model ProfileChangeRequest
+ * 
+ */
+export type ProfileChangeRequest = $Result.DefaultSelection<Prisma.$ProfileChangeRequestPayload>
 
 /**
  * Enums
@@ -186,6 +196,24 @@ export const EmployeeStatus: {
 
 export type EmployeeStatus = (typeof EmployeeStatus)[keyof typeof EmployeeStatus]
 
+
+export const ProfileChangeStatus: {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+};
+
+export type ProfileChangeStatus = (typeof ProfileChangeStatus)[keyof typeof ProfileChangeStatus]
+
+
+export const CertificationStatus: {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+};
+
+export type CertificationStatus = (typeof CertificationStatus)[keyof typeof CertificationStatus]
+
 }
 
 export type UserRole = $Enums.UserRole
@@ -223,6 +251,14 @@ export const EmploymentAction: typeof $Enums.EmploymentAction
 export type EmployeeStatus = $Enums.EmployeeStatus
 
 export const EmployeeStatus: typeof $Enums.EmployeeStatus
+
+export type ProfileChangeStatus = $Enums.ProfileChangeStatus
+
+export const ProfileChangeStatus: typeof $Enums.ProfileChangeStatus
+
+export type CertificationStatus = $Enums.CertificationStatus
+
+export const CertificationStatus: typeof $Enums.CertificationStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -504,6 +540,26 @@ export class PrismaClient<
     * ```
     */
   get employeeCertification(): Prisma.EmployeeCertificationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.employeeCertificationAttachment`: Exposes CRUD operations for the **EmployeeCertificationAttachment** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EmployeeCertificationAttachments
+    * const employeeCertificationAttachments = await prisma.employeeCertificationAttachment.findMany()
+    * ```
+    */
+  get employeeCertificationAttachment(): Prisma.EmployeeCertificationAttachmentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.profileChangeRequest`: Exposes CRUD operations for the **ProfileChangeRequest** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ProfileChangeRequests
+    * const profileChangeRequests = await prisma.profileChangeRequest.findMany()
+    * ```
+    */
+  get profileChangeRequest(): Prisma.ProfileChangeRequestDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -953,7 +1009,9 @@ export namespace Prisma {
     RequestHistory: 'RequestHistory',
     AuditLog: 'AuditLog',
     Certification: 'Certification',
-    EmployeeCertification: 'EmployeeCertification'
+    EmployeeCertification: 'EmployeeCertification',
+    EmployeeCertificationAttachment: 'EmployeeCertificationAttachment',
+    ProfileChangeRequest: 'ProfileChangeRequest'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -969,7 +1027,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "userInvitation" | "department" | "employee" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification"
+      modelProps: "user" | "userInvitation" | "department" | "employee" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "profileChangeRequest"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2157,6 +2215,154 @@ export namespace Prisma {
           }
         }
       }
+      EmployeeCertificationAttachment: {
+        payload: Prisma.$EmployeeCertificationAttachmentPayload<ExtArgs>
+        fields: Prisma.EmployeeCertificationAttachmentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EmployeeCertificationAttachmentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeCertificationAttachmentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EmployeeCertificationAttachmentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeCertificationAttachmentPayload>
+          }
+          findFirst: {
+            args: Prisma.EmployeeCertificationAttachmentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeCertificationAttachmentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EmployeeCertificationAttachmentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeCertificationAttachmentPayload>
+          }
+          findMany: {
+            args: Prisma.EmployeeCertificationAttachmentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeCertificationAttachmentPayload>[]
+          }
+          create: {
+            args: Prisma.EmployeeCertificationAttachmentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeCertificationAttachmentPayload>
+          }
+          createMany: {
+            args: Prisma.EmployeeCertificationAttachmentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EmployeeCertificationAttachmentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeCertificationAttachmentPayload>[]
+          }
+          delete: {
+            args: Prisma.EmployeeCertificationAttachmentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeCertificationAttachmentPayload>
+          }
+          update: {
+            args: Prisma.EmployeeCertificationAttachmentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeCertificationAttachmentPayload>
+          }
+          deleteMany: {
+            args: Prisma.EmployeeCertificationAttachmentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EmployeeCertificationAttachmentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EmployeeCertificationAttachmentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeCertificationAttachmentPayload>[]
+          }
+          upsert: {
+            args: Prisma.EmployeeCertificationAttachmentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeCertificationAttachmentPayload>
+          }
+          aggregate: {
+            args: Prisma.EmployeeCertificationAttachmentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEmployeeCertificationAttachment>
+          }
+          groupBy: {
+            args: Prisma.EmployeeCertificationAttachmentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EmployeeCertificationAttachmentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EmployeeCertificationAttachmentCountArgs<ExtArgs>
+            result: $Utils.Optional<EmployeeCertificationAttachmentCountAggregateOutputType> | number
+          }
+        }
+      }
+      ProfileChangeRequest: {
+        payload: Prisma.$ProfileChangeRequestPayload<ExtArgs>
+        fields: Prisma.ProfileChangeRequestFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProfileChangeRequestFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfileChangeRequestPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProfileChangeRequestFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfileChangeRequestPayload>
+          }
+          findFirst: {
+            args: Prisma.ProfileChangeRequestFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfileChangeRequestPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProfileChangeRequestFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfileChangeRequestPayload>
+          }
+          findMany: {
+            args: Prisma.ProfileChangeRequestFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfileChangeRequestPayload>[]
+          }
+          create: {
+            args: Prisma.ProfileChangeRequestCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfileChangeRequestPayload>
+          }
+          createMany: {
+            args: Prisma.ProfileChangeRequestCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ProfileChangeRequestCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfileChangeRequestPayload>[]
+          }
+          delete: {
+            args: Prisma.ProfileChangeRequestDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfileChangeRequestPayload>
+          }
+          update: {
+            args: Prisma.ProfileChangeRequestUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfileChangeRequestPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProfileChangeRequestDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProfileChangeRequestUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ProfileChangeRequestUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfileChangeRequestPayload>[]
+          }
+          upsert: {
+            args: Prisma.ProfileChangeRequestUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProfileChangeRequestPayload>
+          }
+          aggregate: {
+            args: Prisma.ProfileChangeRequestAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProfileChangeRequest>
+          }
+          groupBy: {
+            args: Prisma.ProfileChangeRequestGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProfileChangeRequestGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProfileChangeRequestCountArgs<ExtArgs>
+            result: $Utils.Optional<ProfileChangeRequestCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2281,6 +2487,8 @@ export namespace Prisma {
     auditLog?: AuditLogOmit
     certification?: CertificationOmit
     employeeCertification?: EmployeeCertificationOmit
+    employeeCertificationAttachment?: EmployeeCertificationAttachmentOmit
+    profileChangeRequest?: ProfileChangeRequestOmit
   }
 
   /* Types for Logging */
@@ -2388,6 +2596,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type UserInvitationCountOutputType
+   */
+
+  export type UserInvitationCountOutputType = {
+    attachments: number
+  }
+
+  export type UserInvitationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    attachments?: boolean | UserInvitationCountOutputTypeCountAttachmentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UserInvitationCountOutputType without action
+   */
+  export type UserInvitationCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserInvitationCountOutputType
+     */
+    select?: UserInvitationCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserInvitationCountOutputType without action
+   */
+  export type UserInvitationCountOutputTypeCountAttachmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmployeeCertificationAttachmentWhereInput
+  }
+
+
+  /**
    * Count Type DepartmentCountOutputType
    */
 
@@ -2427,6 +2666,7 @@ export namespace Prisma {
     salaryHistories: number
     employmentHistories: number
     leaveGrantHistories: number
+    profileChangeRequests: number
     certifications: number
   }
 
@@ -2435,6 +2675,7 @@ export namespace Prisma {
     salaryHistories?: boolean | EmployeeCountOutputTypeCountSalaryHistoriesArgs
     employmentHistories?: boolean | EmployeeCountOutputTypeCountEmploymentHistoriesArgs
     leaveGrantHistories?: boolean | EmployeeCountOutputTypeCountLeaveGrantHistoriesArgs
+    profileChangeRequests?: boolean | EmployeeCountOutputTypeCountProfileChangeRequestsArgs
     certifications?: boolean | EmployeeCountOutputTypeCountCertificationsArgs
   }
 
@@ -2475,6 +2716,13 @@ export namespace Prisma {
    */
   export type EmployeeCountOutputTypeCountLeaveGrantHistoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: LeaveGrantHistoryWhereInput
+  }
+
+  /**
+   * EmployeeCountOutputType without action
+   */
+  export type EmployeeCountOutputTypeCountProfileChangeRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProfileChangeRequestWhereInput
   }
 
   /**
@@ -2553,6 +2801,37 @@ export namespace Prisma {
    */
   export type CertificationCountOutputTypeCountEmployeeCertificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: EmployeeCertificationWhereInput
+  }
+
+
+  /**
+   * Count Type EmployeeCertificationCountOutputType
+   */
+
+  export type EmployeeCertificationCountOutputType = {
+    employeeCertificationAttachments: number
+  }
+
+  export type EmployeeCertificationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employeeCertificationAttachments?: boolean | EmployeeCertificationCountOutputTypeCountEmployeeCertificationAttachmentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * EmployeeCertificationCountOutputType without action
+   */
+  export type EmployeeCertificationCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertificationCountOutputType
+     */
+    select?: EmployeeCertificationCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * EmployeeCertificationCountOutputType without action
+   */
+  export type EmployeeCertificationCountOutputTypeCountEmployeeCertificationAttachmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmployeeCertificationAttachmentWhereInput
   }
 
 
@@ -3912,6 +4191,8 @@ export namespace Prisma {
     createdUserId?: boolean
     createdEmployeeId?: boolean
     createdAt?: boolean
+    attachments?: boolean | UserInvitation$attachmentsArgs<ExtArgs>
+    _count?: boolean | UserInvitationCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userInvitation"]>
 
   export type UserInvitationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3963,10 +4244,18 @@ export namespace Prisma {
   }
 
   export type UserInvitationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeNo" | "lastName" | "firstName" | "email" | "token" | "expectedHireDate" | "expiresAt" | "acceptedAt" | "cancelledAt" | "createdUserId" | "createdEmployeeId" | "createdAt", ExtArgs["result"]["userInvitation"]>
+  export type UserInvitationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    attachments?: boolean | UserInvitation$attachmentsArgs<ExtArgs>
+    _count?: boolean | UserInvitationCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type UserInvitationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserInvitationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $UserInvitationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "UserInvitation"
-    objects: {}
+    objects: {
+      attachments: Prisma.$EmployeeCertificationAttachmentPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       employeeNo: string
@@ -4375,6 +4664,7 @@ export namespace Prisma {
    */
   export interface Prisma__UserInvitationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    attachments<T extends UserInvitation$attachmentsArgs<ExtArgs> = {}>(args?: Subset<T, UserInvitation$attachmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeCertificationAttachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4434,6 +4724,10 @@ export namespace Prisma {
      */
     omit?: UserInvitationOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInvitationInclude<ExtArgs> | null
+    /**
      * Filter, which UserInvitation to fetch.
      */
     where: UserInvitationWhereUniqueInput
@@ -4452,6 +4746,10 @@ export namespace Prisma {
      */
     omit?: UserInvitationOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInvitationInclude<ExtArgs> | null
+    /**
      * Filter, which UserInvitation to fetch.
      */
     where: UserInvitationWhereUniqueInput
@@ -4469,6 +4767,10 @@ export namespace Prisma {
      * Omit specific fields from the UserInvitation
      */
     omit?: UserInvitationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInvitationInclude<ExtArgs> | null
     /**
      * Filter, which UserInvitation to fetch.
      */
@@ -4518,6 +4820,10 @@ export namespace Prisma {
      */
     omit?: UserInvitationOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInvitationInclude<ExtArgs> | null
+    /**
      * Filter, which UserInvitation to fetch.
      */
     where?: UserInvitationWhereInput
@@ -4565,6 +4871,10 @@ export namespace Prisma {
      * Omit specific fields from the UserInvitation
      */
     omit?: UserInvitationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInvitationInclude<ExtArgs> | null
     /**
      * Filter, which UserInvitations to fetch.
      */
@@ -4614,6 +4924,10 @@ export namespace Prisma {
      */
     omit?: UserInvitationOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInvitationInclude<ExtArgs> | null
+    /**
      * The data needed to create a UserInvitation.
      */
     data: XOR<UserInvitationCreateInput, UserInvitationUncheckedCreateInput>
@@ -4661,6 +4975,10 @@ export namespace Prisma {
      * Omit specific fields from the UserInvitation
      */
     omit?: UserInvitationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInvitationInclude<ExtArgs> | null
     /**
      * The data needed to update a UserInvitation.
      */
@@ -4728,6 +5046,10 @@ export namespace Prisma {
      */
     omit?: UserInvitationOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInvitationInclude<ExtArgs> | null
+    /**
      * The filter to search for the UserInvitation to update in case it exists.
      */
     where: UserInvitationWhereUniqueInput
@@ -4754,6 +5076,10 @@ export namespace Prisma {
      */
     omit?: UserInvitationOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInvitationInclude<ExtArgs> | null
+    /**
      * Filter which UserInvitation to delete.
      */
     where: UserInvitationWhereUniqueInput
@@ -4774,6 +5100,30 @@ export namespace Prisma {
   }
 
   /**
+   * UserInvitation.attachments
+   */
+  export type UserInvitation$attachmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertificationAttachment
+     */
+    select?: EmployeeCertificationAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertificationAttachment
+     */
+    omit?: EmployeeCertificationAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationAttachmentInclude<ExtArgs> | null
+    where?: EmployeeCertificationAttachmentWhereInput
+    orderBy?: EmployeeCertificationAttachmentOrderByWithRelationInput | EmployeeCertificationAttachmentOrderByWithRelationInput[]
+    cursor?: EmployeeCertificationAttachmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmployeeCertificationAttachmentScalarFieldEnum | EmployeeCertificationAttachmentScalarFieldEnum[]
+  }
+
+  /**
    * UserInvitation without action
    */
   export type UserInvitationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4785,6 +5135,10 @@ export namespace Prisma {
      * Omit specific fields from the UserInvitation
      */
     omit?: UserInvitationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInvitationInclude<ExtArgs> | null
   }
 
 
@@ -5858,6 +6212,7 @@ export namespace Prisma {
     birthDate: Date | null
     phoneNumber: string | null
     address: string | null
+    emergencyContact: string | null
     email: string | null
     departmentId: string | null
     occupation: string | null
@@ -5885,6 +6240,7 @@ export namespace Prisma {
     birthDate: Date | null
     phoneNumber: string | null
     address: string | null
+    emergencyContact: string | null
     email: string | null
     departmentId: string | null
     occupation: string | null
@@ -5912,6 +6268,7 @@ export namespace Prisma {
     birthDate: number
     phoneNumber: number
     address: number
+    emergencyContact: number
     email: number
     departmentId: number
     occupation: number
@@ -5941,6 +6298,7 @@ export namespace Prisma {
     birthDate?: true
     phoneNumber?: true
     address?: true
+    emergencyContact?: true
     email?: true
     departmentId?: true
     occupation?: true
@@ -5968,6 +6326,7 @@ export namespace Prisma {
     birthDate?: true
     phoneNumber?: true
     address?: true
+    emergencyContact?: true
     email?: true
     departmentId?: true
     occupation?: true
@@ -5995,6 +6354,7 @@ export namespace Prisma {
     birthDate?: true
     phoneNumber?: true
     address?: true
+    emergencyContact?: true
     email?: true
     departmentId?: true
     occupation?: true
@@ -6095,6 +6455,7 @@ export namespace Prisma {
     birthDate: Date | null
     phoneNumber: string | null
     address: string | null
+    emergencyContact: string | null
     email: string
     departmentId: string | null
     occupation: string | null
@@ -6139,6 +6500,7 @@ export namespace Prisma {
     birthDate?: boolean
     phoneNumber?: boolean
     address?: boolean
+    emergencyContact?: boolean
     email?: boolean
     departmentId?: boolean
     occupation?: boolean
@@ -6162,6 +6524,7 @@ export namespace Prisma {
     leaveBalance?: boolean | Employee$leaveBalanceArgs<ExtArgs>
     employmentHistories?: boolean | Employee$employmentHistoriesArgs<ExtArgs>
     leaveGrantHistories?: boolean | Employee$leaveGrantHistoriesArgs<ExtArgs>
+    profileChangeRequests?: boolean | Employee$profileChangeRequestsArgs<ExtArgs>
     certifications?: boolean | Employee$certificationsArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["employee"]>
@@ -6177,6 +6540,7 @@ export namespace Prisma {
     birthDate?: boolean
     phoneNumber?: boolean
     address?: boolean
+    emergencyContact?: boolean
     email?: boolean
     departmentId?: boolean
     occupation?: boolean
@@ -6206,6 +6570,7 @@ export namespace Prisma {
     birthDate?: boolean
     phoneNumber?: boolean
     address?: boolean
+    emergencyContact?: boolean
     email?: boolean
     departmentId?: boolean
     occupation?: boolean
@@ -6235,6 +6600,7 @@ export namespace Prisma {
     birthDate?: boolean
     phoneNumber?: boolean
     address?: boolean
+    emergencyContact?: boolean
     email?: boolean
     departmentId?: boolean
     occupation?: boolean
@@ -6251,7 +6617,7 @@ export namespace Prisma {
     createdAt?: boolean
   }
 
-  export type EmployeeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeNo" | "lastName" | "firstName" | "lastNameKana" | "firstNameKana" | "gender" | "birthDate" | "phoneNumber" | "address" | "email" | "departmentId" | "occupation" | "position" | "hireDate" | "employmentType" | "commutingType" | "status" | "retirementDate" | "healthInsuranceNo" | "employmentInsuranceNo" | "photoPath" | "userId" | "createdAt", ExtArgs["result"]["employee"]>
+  export type EmployeeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeNo" | "lastName" | "firstName" | "lastNameKana" | "firstNameKana" | "gender" | "birthDate" | "phoneNumber" | "address" | "emergencyContact" | "email" | "departmentId" | "occupation" | "position" | "hireDate" | "employmentType" | "commutingType" | "status" | "retirementDate" | "healthInsuranceNo" | "employmentInsuranceNo" | "photoPath" | "userId" | "createdAt", ExtArgs["result"]["employee"]>
   export type EmployeeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     department?: boolean | Employee$departmentArgs<ExtArgs>
     user?: boolean | Employee$userArgs<ExtArgs>
@@ -6262,6 +6628,7 @@ export namespace Prisma {
     leaveBalance?: boolean | Employee$leaveBalanceArgs<ExtArgs>
     employmentHistories?: boolean | Employee$employmentHistoriesArgs<ExtArgs>
     leaveGrantHistories?: boolean | Employee$leaveGrantHistoriesArgs<ExtArgs>
+    profileChangeRequests?: boolean | Employee$profileChangeRequestsArgs<ExtArgs>
     certifications?: boolean | Employee$certificationsArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -6286,6 +6653,7 @@ export namespace Prisma {
       leaveBalance: Prisma.$LeaveBalancePayload<ExtArgs> | null
       employmentHistories: Prisma.$EmploymentHistoryPayload<ExtArgs>[]
       leaveGrantHistories: Prisma.$LeaveGrantHistoryPayload<ExtArgs>[]
+      profileChangeRequests: Prisma.$ProfileChangeRequestPayload<ExtArgs>[]
       certifications: Prisma.$EmployeeCertificationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -6299,6 +6667,7 @@ export namespace Prisma {
       birthDate: Date | null
       phoneNumber: string | null
       address: string | null
+      emergencyContact: string | null
       email: string
       departmentId: string | null
       occupation: string | null
@@ -6716,6 +7085,7 @@ export namespace Prisma {
     leaveBalance<T extends Employee$leaveBalanceArgs<ExtArgs> = {}>(args?: Subset<T, Employee$leaveBalanceArgs<ExtArgs>>): Prisma__LeaveBalanceClient<$Result.GetResult<Prisma.$LeaveBalancePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     employmentHistories<T extends Employee$employmentHistoriesArgs<ExtArgs> = {}>(args?: Subset<T, Employee$employmentHistoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     leaveGrantHistories<T extends Employee$leaveGrantHistoriesArgs<ExtArgs> = {}>(args?: Subset<T, Employee$leaveGrantHistoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeaveGrantHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    profileChangeRequests<T extends Employee$profileChangeRequestsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$profileChangeRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfileChangeRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     certifications<T extends Employee$certificationsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$certificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeCertificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -6756,6 +7126,7 @@ export namespace Prisma {
     readonly birthDate: FieldRef<"Employee", 'DateTime'>
     readonly phoneNumber: FieldRef<"Employee", 'String'>
     readonly address: FieldRef<"Employee", 'String'>
+    readonly emergencyContact: FieldRef<"Employee", 'String'>
     readonly email: FieldRef<"Employee", 'String'>
     readonly departmentId: FieldRef<"Employee", 'String'>
     readonly occupation: FieldRef<"Employee", 'String'>
@@ -7359,6 +7730,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: LeaveGrantHistoryScalarFieldEnum | LeaveGrantHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * Employee.profileChangeRequests
+   */
+  export type Employee$profileChangeRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileChangeRequest
+     */
+    select?: ProfileChangeRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileChangeRequest
+     */
+    omit?: ProfileChangeRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileChangeRequestInclude<ExtArgs> | null
+    where?: ProfileChangeRequestWhereInput
+    orderBy?: ProfileChangeRequestOrderByWithRelationInput | ProfileChangeRequestOrderByWithRelationInput[]
+    cursor?: ProfileChangeRequestWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProfileChangeRequestScalarFieldEnum | ProfileChangeRequestScalarFieldEnum[]
   }
 
   /**
@@ -19681,6 +20076,9 @@ export namespace Prisma {
     certificationId: string | null
     acquiredDate: Date | null
     expiryDate: Date | null
+    status: $Enums.CertificationStatus | null
+    reviewedAt: Date | null
+    reviewedBy: string | null
     createdAt: Date | null
   }
 
@@ -19690,6 +20088,9 @@ export namespace Prisma {
     certificationId: string | null
     acquiredDate: Date | null
     expiryDate: Date | null
+    status: $Enums.CertificationStatus | null
+    reviewedAt: Date | null
+    reviewedBy: string | null
     createdAt: Date | null
   }
 
@@ -19699,6 +20100,9 @@ export namespace Prisma {
     certificationId: number
     acquiredDate: number
     expiryDate: number
+    status: number
+    reviewedAt: number
+    reviewedBy: number
     createdAt: number
     _all: number
   }
@@ -19710,6 +20114,9 @@ export namespace Prisma {
     certificationId?: true
     acquiredDate?: true
     expiryDate?: true
+    status?: true
+    reviewedAt?: true
+    reviewedBy?: true
     createdAt?: true
   }
 
@@ -19719,6 +20126,9 @@ export namespace Prisma {
     certificationId?: true
     acquiredDate?: true
     expiryDate?: true
+    status?: true
+    reviewedAt?: true
+    reviewedBy?: true
     createdAt?: true
   }
 
@@ -19728,6 +20138,9 @@ export namespace Prisma {
     certificationId?: true
     acquiredDate?: true
     expiryDate?: true
+    status?: true
+    reviewedAt?: true
+    reviewedBy?: true
     createdAt?: true
     _all?: true
   }
@@ -19810,6 +20223,9 @@ export namespace Prisma {
     certificationId: string
     acquiredDate: Date | null
     expiryDate: Date | null
+    status: $Enums.CertificationStatus
+    reviewedAt: Date | null
+    reviewedBy: string | null
     createdAt: Date
     _count: EmployeeCertificationCountAggregateOutputType | null
     _min: EmployeeCertificationMinAggregateOutputType | null
@@ -19836,9 +20252,14 @@ export namespace Prisma {
     certificationId?: boolean
     acquiredDate?: boolean
     expiryDate?: boolean
+    status?: boolean
+    reviewedAt?: boolean
+    reviewedBy?: boolean
     createdAt?: boolean
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     certification?: boolean | CertificationDefaultArgs<ExtArgs>
+    employeeCertificationAttachments?: boolean | EmployeeCertification$employeeCertificationAttachmentsArgs<ExtArgs>
+    _count?: boolean | EmployeeCertificationCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["employeeCertification"]>
 
   export type EmployeeCertificationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -19847,6 +20268,9 @@ export namespace Prisma {
     certificationId?: boolean
     acquiredDate?: boolean
     expiryDate?: boolean
+    status?: boolean
+    reviewedAt?: boolean
+    reviewedBy?: boolean
     createdAt?: boolean
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     certification?: boolean | CertificationDefaultArgs<ExtArgs>
@@ -19858,6 +20282,9 @@ export namespace Prisma {
     certificationId?: boolean
     acquiredDate?: boolean
     expiryDate?: boolean
+    status?: boolean
+    reviewedAt?: boolean
+    reviewedBy?: boolean
     createdAt?: boolean
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     certification?: boolean | CertificationDefaultArgs<ExtArgs>
@@ -19869,13 +20296,18 @@ export namespace Prisma {
     certificationId?: boolean
     acquiredDate?: boolean
     expiryDate?: boolean
+    status?: boolean
+    reviewedAt?: boolean
+    reviewedBy?: boolean
     createdAt?: boolean
   }
 
-  export type EmployeeCertificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "certificationId" | "acquiredDate" | "expiryDate" | "createdAt", ExtArgs["result"]["employeeCertification"]>
+  export type EmployeeCertificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "certificationId" | "acquiredDate" | "expiryDate" | "status" | "reviewedAt" | "reviewedBy" | "createdAt", ExtArgs["result"]["employeeCertification"]>
   export type EmployeeCertificationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     certification?: boolean | CertificationDefaultArgs<ExtArgs>
+    employeeCertificationAttachments?: boolean | EmployeeCertification$employeeCertificationAttachmentsArgs<ExtArgs>
+    _count?: boolean | EmployeeCertificationCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EmployeeCertificationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
@@ -19891,6 +20323,7 @@ export namespace Prisma {
     objects: {
       employee: Prisma.$EmployeePayload<ExtArgs>
       certification: Prisma.$CertificationPayload<ExtArgs>
+      employeeCertificationAttachments: Prisma.$EmployeeCertificationAttachmentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -19898,6 +20331,9 @@ export namespace Prisma {
       certificationId: string
       acquiredDate: Date | null
       expiryDate: Date | null
+      status: $Enums.CertificationStatus
+      reviewedAt: Date | null
+      reviewedBy: string | null
       createdAt: Date
     }, ExtArgs["result"]["employeeCertification"]>
     composites: {}
@@ -20295,6 +20731,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     certification<T extends CertificationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CertificationDefaultArgs<ExtArgs>>): Prisma__CertificationClient<$Result.GetResult<Prisma.$CertificationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    employeeCertificationAttachments<T extends EmployeeCertification$employeeCertificationAttachmentsArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeCertification$employeeCertificationAttachmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeCertificationAttachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -20329,6 +20766,9 @@ export namespace Prisma {
     readonly certificationId: FieldRef<"EmployeeCertification", 'String'>
     readonly acquiredDate: FieldRef<"EmployeeCertification", 'DateTime'>
     readonly expiryDate: FieldRef<"EmployeeCertification", 'DateTime'>
+    readonly status: FieldRef<"EmployeeCertification", 'CertificationStatus'>
+    readonly reviewedAt: FieldRef<"EmployeeCertification", 'DateTime'>
+    readonly reviewedBy: FieldRef<"EmployeeCertification", 'String'>
     readonly createdAt: FieldRef<"EmployeeCertification", 'DateTime'>
   }
     
@@ -20731,6 +21171,30 @@ export namespace Prisma {
   }
 
   /**
+   * EmployeeCertification.employeeCertificationAttachments
+   */
+  export type EmployeeCertification$employeeCertificationAttachmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertificationAttachment
+     */
+    select?: EmployeeCertificationAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertificationAttachment
+     */
+    omit?: EmployeeCertificationAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationAttachmentInclude<ExtArgs> | null
+    where?: EmployeeCertificationAttachmentWhereInput
+    orderBy?: EmployeeCertificationAttachmentOrderByWithRelationInput | EmployeeCertificationAttachmentOrderByWithRelationInput[]
+    cursor?: EmployeeCertificationAttachmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmployeeCertificationAttachmentScalarFieldEnum | EmployeeCertificationAttachmentScalarFieldEnum[]
+  }
+
+  /**
    * EmployeeCertification without action
    */
   export type EmployeeCertificationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -20746,6 +21210,2362 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: EmployeeCertificationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model EmployeeCertificationAttachment
+   */
+
+  export type AggregateEmployeeCertificationAttachment = {
+    _count: EmployeeCertificationAttachmentCountAggregateOutputType | null
+    _avg: EmployeeCertificationAttachmentAvgAggregateOutputType | null
+    _sum: EmployeeCertificationAttachmentSumAggregateOutputType | null
+    _min: EmployeeCertificationAttachmentMinAggregateOutputType | null
+    _max: EmployeeCertificationAttachmentMaxAggregateOutputType | null
+  }
+
+  export type EmployeeCertificationAttachmentAvgAggregateOutputType = {
+    fileSize: number | null
+  }
+
+  export type EmployeeCertificationAttachmentSumAggregateOutputType = {
+    fileSize: number | null
+  }
+
+  export type EmployeeCertificationAttachmentMinAggregateOutputType = {
+    id: string | null
+    employeeCertificationId: string | null
+    fileName: string | null
+    filePath: string | null
+    fileType: string | null
+    fileSize: number | null
+    createdAt: Date | null
+    userInvitationId: string | null
+  }
+
+  export type EmployeeCertificationAttachmentMaxAggregateOutputType = {
+    id: string | null
+    employeeCertificationId: string | null
+    fileName: string | null
+    filePath: string | null
+    fileType: string | null
+    fileSize: number | null
+    createdAt: Date | null
+    userInvitationId: string | null
+  }
+
+  export type EmployeeCertificationAttachmentCountAggregateOutputType = {
+    id: number
+    employeeCertificationId: number
+    fileName: number
+    filePath: number
+    fileType: number
+    fileSize: number
+    createdAt: number
+    userInvitationId: number
+    _all: number
+  }
+
+
+  export type EmployeeCertificationAttachmentAvgAggregateInputType = {
+    fileSize?: true
+  }
+
+  export type EmployeeCertificationAttachmentSumAggregateInputType = {
+    fileSize?: true
+  }
+
+  export type EmployeeCertificationAttachmentMinAggregateInputType = {
+    id?: true
+    employeeCertificationId?: true
+    fileName?: true
+    filePath?: true
+    fileType?: true
+    fileSize?: true
+    createdAt?: true
+    userInvitationId?: true
+  }
+
+  export type EmployeeCertificationAttachmentMaxAggregateInputType = {
+    id?: true
+    employeeCertificationId?: true
+    fileName?: true
+    filePath?: true
+    fileType?: true
+    fileSize?: true
+    createdAt?: true
+    userInvitationId?: true
+  }
+
+  export type EmployeeCertificationAttachmentCountAggregateInputType = {
+    id?: true
+    employeeCertificationId?: true
+    fileName?: true
+    filePath?: true
+    fileType?: true
+    fileSize?: true
+    createdAt?: true
+    userInvitationId?: true
+    _all?: true
+  }
+
+  export type EmployeeCertificationAttachmentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmployeeCertificationAttachment to aggregate.
+     */
+    where?: EmployeeCertificationAttachmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmployeeCertificationAttachments to fetch.
+     */
+    orderBy?: EmployeeCertificationAttachmentOrderByWithRelationInput | EmployeeCertificationAttachmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EmployeeCertificationAttachmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmployeeCertificationAttachments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmployeeCertificationAttachments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EmployeeCertificationAttachments
+    **/
+    _count?: true | EmployeeCertificationAttachmentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: EmployeeCertificationAttachmentAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: EmployeeCertificationAttachmentSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EmployeeCertificationAttachmentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EmployeeCertificationAttachmentMaxAggregateInputType
+  }
+
+  export type GetEmployeeCertificationAttachmentAggregateType<T extends EmployeeCertificationAttachmentAggregateArgs> = {
+        [P in keyof T & keyof AggregateEmployeeCertificationAttachment]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEmployeeCertificationAttachment[P]>
+      : GetScalarType<T[P], AggregateEmployeeCertificationAttachment[P]>
+  }
+
+
+
+
+  export type EmployeeCertificationAttachmentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmployeeCertificationAttachmentWhereInput
+    orderBy?: EmployeeCertificationAttachmentOrderByWithAggregationInput | EmployeeCertificationAttachmentOrderByWithAggregationInput[]
+    by: EmployeeCertificationAttachmentScalarFieldEnum[] | EmployeeCertificationAttachmentScalarFieldEnum
+    having?: EmployeeCertificationAttachmentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EmployeeCertificationAttachmentCountAggregateInputType | true
+    _avg?: EmployeeCertificationAttachmentAvgAggregateInputType
+    _sum?: EmployeeCertificationAttachmentSumAggregateInputType
+    _min?: EmployeeCertificationAttachmentMinAggregateInputType
+    _max?: EmployeeCertificationAttachmentMaxAggregateInputType
+  }
+
+  export type EmployeeCertificationAttachmentGroupByOutputType = {
+    id: string
+    employeeCertificationId: string
+    fileName: string
+    filePath: string
+    fileType: string | null
+    fileSize: number | null
+    createdAt: Date
+    userInvitationId: string | null
+    _count: EmployeeCertificationAttachmentCountAggregateOutputType | null
+    _avg: EmployeeCertificationAttachmentAvgAggregateOutputType | null
+    _sum: EmployeeCertificationAttachmentSumAggregateOutputType | null
+    _min: EmployeeCertificationAttachmentMinAggregateOutputType | null
+    _max: EmployeeCertificationAttachmentMaxAggregateOutputType | null
+  }
+
+  type GetEmployeeCertificationAttachmentGroupByPayload<T extends EmployeeCertificationAttachmentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EmployeeCertificationAttachmentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EmployeeCertificationAttachmentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EmployeeCertificationAttachmentGroupByOutputType[P]>
+            : GetScalarType<T[P], EmployeeCertificationAttachmentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EmployeeCertificationAttachmentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeCertificationId?: boolean
+    fileName?: boolean
+    filePath?: boolean
+    fileType?: boolean
+    fileSize?: boolean
+    createdAt?: boolean
+    userInvitationId?: boolean
+    employeeCertification?: boolean | EmployeeCertificationDefaultArgs<ExtArgs>
+    userInvitation?: boolean | EmployeeCertificationAttachment$userInvitationArgs<ExtArgs>
+  }, ExtArgs["result"]["employeeCertificationAttachment"]>
+
+  export type EmployeeCertificationAttachmentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeCertificationId?: boolean
+    fileName?: boolean
+    filePath?: boolean
+    fileType?: boolean
+    fileSize?: boolean
+    createdAt?: boolean
+    userInvitationId?: boolean
+    employeeCertification?: boolean | EmployeeCertificationDefaultArgs<ExtArgs>
+    userInvitation?: boolean | EmployeeCertificationAttachment$userInvitationArgs<ExtArgs>
+  }, ExtArgs["result"]["employeeCertificationAttachment"]>
+
+  export type EmployeeCertificationAttachmentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeCertificationId?: boolean
+    fileName?: boolean
+    filePath?: boolean
+    fileType?: boolean
+    fileSize?: boolean
+    createdAt?: boolean
+    userInvitationId?: boolean
+    employeeCertification?: boolean | EmployeeCertificationDefaultArgs<ExtArgs>
+    userInvitation?: boolean | EmployeeCertificationAttachment$userInvitationArgs<ExtArgs>
+  }, ExtArgs["result"]["employeeCertificationAttachment"]>
+
+  export type EmployeeCertificationAttachmentSelectScalar = {
+    id?: boolean
+    employeeCertificationId?: boolean
+    fileName?: boolean
+    filePath?: boolean
+    fileType?: boolean
+    fileSize?: boolean
+    createdAt?: boolean
+    userInvitationId?: boolean
+  }
+
+  export type EmployeeCertificationAttachmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeCertificationId" | "fileName" | "filePath" | "fileType" | "fileSize" | "createdAt" | "userInvitationId", ExtArgs["result"]["employeeCertificationAttachment"]>
+  export type EmployeeCertificationAttachmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employeeCertification?: boolean | EmployeeCertificationDefaultArgs<ExtArgs>
+    userInvitation?: boolean | EmployeeCertificationAttachment$userInvitationArgs<ExtArgs>
+  }
+  export type EmployeeCertificationAttachmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employeeCertification?: boolean | EmployeeCertificationDefaultArgs<ExtArgs>
+    userInvitation?: boolean | EmployeeCertificationAttachment$userInvitationArgs<ExtArgs>
+  }
+  export type EmployeeCertificationAttachmentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employeeCertification?: boolean | EmployeeCertificationDefaultArgs<ExtArgs>
+    userInvitation?: boolean | EmployeeCertificationAttachment$userInvitationArgs<ExtArgs>
+  }
+
+  export type $EmployeeCertificationAttachmentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EmployeeCertificationAttachment"
+    objects: {
+      employeeCertification: Prisma.$EmployeeCertificationPayload<ExtArgs>
+      userInvitation: Prisma.$UserInvitationPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      employeeCertificationId: string
+      fileName: string
+      filePath: string
+      fileType: string | null
+      fileSize: number | null
+      createdAt: Date
+      userInvitationId: string | null
+    }, ExtArgs["result"]["employeeCertificationAttachment"]>
+    composites: {}
+  }
+
+  type EmployeeCertificationAttachmentGetPayload<S extends boolean | null | undefined | EmployeeCertificationAttachmentDefaultArgs> = $Result.GetResult<Prisma.$EmployeeCertificationAttachmentPayload, S>
+
+  type EmployeeCertificationAttachmentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EmployeeCertificationAttachmentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EmployeeCertificationAttachmentCountAggregateInputType | true
+    }
+
+  export interface EmployeeCertificationAttachmentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EmployeeCertificationAttachment'], meta: { name: 'EmployeeCertificationAttachment' } }
+    /**
+     * Find zero or one EmployeeCertificationAttachment that matches the filter.
+     * @param {EmployeeCertificationAttachmentFindUniqueArgs} args - Arguments to find a EmployeeCertificationAttachment
+     * @example
+     * // Get one EmployeeCertificationAttachment
+     * const employeeCertificationAttachment = await prisma.employeeCertificationAttachment.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EmployeeCertificationAttachmentFindUniqueArgs>(args: SelectSubset<T, EmployeeCertificationAttachmentFindUniqueArgs<ExtArgs>>): Prisma__EmployeeCertificationAttachmentClient<$Result.GetResult<Prisma.$EmployeeCertificationAttachmentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EmployeeCertificationAttachment that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EmployeeCertificationAttachmentFindUniqueOrThrowArgs} args - Arguments to find a EmployeeCertificationAttachment
+     * @example
+     * // Get one EmployeeCertificationAttachment
+     * const employeeCertificationAttachment = await prisma.employeeCertificationAttachment.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EmployeeCertificationAttachmentFindUniqueOrThrowArgs>(args: SelectSubset<T, EmployeeCertificationAttachmentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EmployeeCertificationAttachmentClient<$Result.GetResult<Prisma.$EmployeeCertificationAttachmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmployeeCertificationAttachment that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeCertificationAttachmentFindFirstArgs} args - Arguments to find a EmployeeCertificationAttachment
+     * @example
+     * // Get one EmployeeCertificationAttachment
+     * const employeeCertificationAttachment = await prisma.employeeCertificationAttachment.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EmployeeCertificationAttachmentFindFirstArgs>(args?: SelectSubset<T, EmployeeCertificationAttachmentFindFirstArgs<ExtArgs>>): Prisma__EmployeeCertificationAttachmentClient<$Result.GetResult<Prisma.$EmployeeCertificationAttachmentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmployeeCertificationAttachment that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeCertificationAttachmentFindFirstOrThrowArgs} args - Arguments to find a EmployeeCertificationAttachment
+     * @example
+     * // Get one EmployeeCertificationAttachment
+     * const employeeCertificationAttachment = await prisma.employeeCertificationAttachment.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EmployeeCertificationAttachmentFindFirstOrThrowArgs>(args?: SelectSubset<T, EmployeeCertificationAttachmentFindFirstOrThrowArgs<ExtArgs>>): Prisma__EmployeeCertificationAttachmentClient<$Result.GetResult<Prisma.$EmployeeCertificationAttachmentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EmployeeCertificationAttachments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeCertificationAttachmentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EmployeeCertificationAttachments
+     * const employeeCertificationAttachments = await prisma.employeeCertificationAttachment.findMany()
+     * 
+     * // Get first 10 EmployeeCertificationAttachments
+     * const employeeCertificationAttachments = await prisma.employeeCertificationAttachment.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const employeeCertificationAttachmentWithIdOnly = await prisma.employeeCertificationAttachment.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EmployeeCertificationAttachmentFindManyArgs>(args?: SelectSubset<T, EmployeeCertificationAttachmentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeCertificationAttachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EmployeeCertificationAttachment.
+     * @param {EmployeeCertificationAttachmentCreateArgs} args - Arguments to create a EmployeeCertificationAttachment.
+     * @example
+     * // Create one EmployeeCertificationAttachment
+     * const EmployeeCertificationAttachment = await prisma.employeeCertificationAttachment.create({
+     *   data: {
+     *     // ... data to create a EmployeeCertificationAttachment
+     *   }
+     * })
+     * 
+     */
+    create<T extends EmployeeCertificationAttachmentCreateArgs>(args: SelectSubset<T, EmployeeCertificationAttachmentCreateArgs<ExtArgs>>): Prisma__EmployeeCertificationAttachmentClient<$Result.GetResult<Prisma.$EmployeeCertificationAttachmentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EmployeeCertificationAttachments.
+     * @param {EmployeeCertificationAttachmentCreateManyArgs} args - Arguments to create many EmployeeCertificationAttachments.
+     * @example
+     * // Create many EmployeeCertificationAttachments
+     * const employeeCertificationAttachment = await prisma.employeeCertificationAttachment.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EmployeeCertificationAttachmentCreateManyArgs>(args?: SelectSubset<T, EmployeeCertificationAttachmentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EmployeeCertificationAttachments and returns the data saved in the database.
+     * @param {EmployeeCertificationAttachmentCreateManyAndReturnArgs} args - Arguments to create many EmployeeCertificationAttachments.
+     * @example
+     * // Create many EmployeeCertificationAttachments
+     * const employeeCertificationAttachment = await prisma.employeeCertificationAttachment.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EmployeeCertificationAttachments and only return the `id`
+     * const employeeCertificationAttachmentWithIdOnly = await prisma.employeeCertificationAttachment.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EmployeeCertificationAttachmentCreateManyAndReturnArgs>(args?: SelectSubset<T, EmployeeCertificationAttachmentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeCertificationAttachmentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EmployeeCertificationAttachment.
+     * @param {EmployeeCertificationAttachmentDeleteArgs} args - Arguments to delete one EmployeeCertificationAttachment.
+     * @example
+     * // Delete one EmployeeCertificationAttachment
+     * const EmployeeCertificationAttachment = await prisma.employeeCertificationAttachment.delete({
+     *   where: {
+     *     // ... filter to delete one EmployeeCertificationAttachment
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EmployeeCertificationAttachmentDeleteArgs>(args: SelectSubset<T, EmployeeCertificationAttachmentDeleteArgs<ExtArgs>>): Prisma__EmployeeCertificationAttachmentClient<$Result.GetResult<Prisma.$EmployeeCertificationAttachmentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EmployeeCertificationAttachment.
+     * @param {EmployeeCertificationAttachmentUpdateArgs} args - Arguments to update one EmployeeCertificationAttachment.
+     * @example
+     * // Update one EmployeeCertificationAttachment
+     * const employeeCertificationAttachment = await prisma.employeeCertificationAttachment.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EmployeeCertificationAttachmentUpdateArgs>(args: SelectSubset<T, EmployeeCertificationAttachmentUpdateArgs<ExtArgs>>): Prisma__EmployeeCertificationAttachmentClient<$Result.GetResult<Prisma.$EmployeeCertificationAttachmentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EmployeeCertificationAttachments.
+     * @param {EmployeeCertificationAttachmentDeleteManyArgs} args - Arguments to filter EmployeeCertificationAttachments to delete.
+     * @example
+     * // Delete a few EmployeeCertificationAttachments
+     * const { count } = await prisma.employeeCertificationAttachment.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EmployeeCertificationAttachmentDeleteManyArgs>(args?: SelectSubset<T, EmployeeCertificationAttachmentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmployeeCertificationAttachments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeCertificationAttachmentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EmployeeCertificationAttachments
+     * const employeeCertificationAttachment = await prisma.employeeCertificationAttachment.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EmployeeCertificationAttachmentUpdateManyArgs>(args: SelectSubset<T, EmployeeCertificationAttachmentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmployeeCertificationAttachments and returns the data updated in the database.
+     * @param {EmployeeCertificationAttachmentUpdateManyAndReturnArgs} args - Arguments to update many EmployeeCertificationAttachments.
+     * @example
+     * // Update many EmployeeCertificationAttachments
+     * const employeeCertificationAttachment = await prisma.employeeCertificationAttachment.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EmployeeCertificationAttachments and only return the `id`
+     * const employeeCertificationAttachmentWithIdOnly = await prisma.employeeCertificationAttachment.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EmployeeCertificationAttachmentUpdateManyAndReturnArgs>(args: SelectSubset<T, EmployeeCertificationAttachmentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeCertificationAttachmentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EmployeeCertificationAttachment.
+     * @param {EmployeeCertificationAttachmentUpsertArgs} args - Arguments to update or create a EmployeeCertificationAttachment.
+     * @example
+     * // Update or create a EmployeeCertificationAttachment
+     * const employeeCertificationAttachment = await prisma.employeeCertificationAttachment.upsert({
+     *   create: {
+     *     // ... data to create a EmployeeCertificationAttachment
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EmployeeCertificationAttachment we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EmployeeCertificationAttachmentUpsertArgs>(args: SelectSubset<T, EmployeeCertificationAttachmentUpsertArgs<ExtArgs>>): Prisma__EmployeeCertificationAttachmentClient<$Result.GetResult<Prisma.$EmployeeCertificationAttachmentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EmployeeCertificationAttachments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeCertificationAttachmentCountArgs} args - Arguments to filter EmployeeCertificationAttachments to count.
+     * @example
+     * // Count the number of EmployeeCertificationAttachments
+     * const count = await prisma.employeeCertificationAttachment.count({
+     *   where: {
+     *     // ... the filter for the EmployeeCertificationAttachments we want to count
+     *   }
+     * })
+    **/
+    count<T extends EmployeeCertificationAttachmentCountArgs>(
+      args?: Subset<T, EmployeeCertificationAttachmentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EmployeeCertificationAttachmentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EmployeeCertificationAttachment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeCertificationAttachmentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EmployeeCertificationAttachmentAggregateArgs>(args: Subset<T, EmployeeCertificationAttachmentAggregateArgs>): Prisma.PrismaPromise<GetEmployeeCertificationAttachmentAggregateType<T>>
+
+    /**
+     * Group by EmployeeCertificationAttachment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeCertificationAttachmentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EmployeeCertificationAttachmentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EmployeeCertificationAttachmentGroupByArgs['orderBy'] }
+        : { orderBy?: EmployeeCertificationAttachmentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EmployeeCertificationAttachmentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEmployeeCertificationAttachmentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EmployeeCertificationAttachment model
+   */
+  readonly fields: EmployeeCertificationAttachmentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EmployeeCertificationAttachment.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EmployeeCertificationAttachmentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    employeeCertification<T extends EmployeeCertificationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeCertificationDefaultArgs<ExtArgs>>): Prisma__EmployeeCertificationClient<$Result.GetResult<Prisma.$EmployeeCertificationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    userInvitation<T extends EmployeeCertificationAttachment$userInvitationArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeCertificationAttachment$userInvitationArgs<ExtArgs>>): Prisma__UserInvitationClient<$Result.GetResult<Prisma.$UserInvitationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EmployeeCertificationAttachment model
+   */
+  interface EmployeeCertificationAttachmentFieldRefs {
+    readonly id: FieldRef<"EmployeeCertificationAttachment", 'String'>
+    readonly employeeCertificationId: FieldRef<"EmployeeCertificationAttachment", 'String'>
+    readonly fileName: FieldRef<"EmployeeCertificationAttachment", 'String'>
+    readonly filePath: FieldRef<"EmployeeCertificationAttachment", 'String'>
+    readonly fileType: FieldRef<"EmployeeCertificationAttachment", 'String'>
+    readonly fileSize: FieldRef<"EmployeeCertificationAttachment", 'Int'>
+    readonly createdAt: FieldRef<"EmployeeCertificationAttachment", 'DateTime'>
+    readonly userInvitationId: FieldRef<"EmployeeCertificationAttachment", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EmployeeCertificationAttachment findUnique
+   */
+  export type EmployeeCertificationAttachmentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertificationAttachment
+     */
+    select?: EmployeeCertificationAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertificationAttachment
+     */
+    omit?: EmployeeCertificationAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationAttachmentInclude<ExtArgs> | null
+    /**
+     * Filter, which EmployeeCertificationAttachment to fetch.
+     */
+    where: EmployeeCertificationAttachmentWhereUniqueInput
+  }
+
+  /**
+   * EmployeeCertificationAttachment findUniqueOrThrow
+   */
+  export type EmployeeCertificationAttachmentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertificationAttachment
+     */
+    select?: EmployeeCertificationAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertificationAttachment
+     */
+    omit?: EmployeeCertificationAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationAttachmentInclude<ExtArgs> | null
+    /**
+     * Filter, which EmployeeCertificationAttachment to fetch.
+     */
+    where: EmployeeCertificationAttachmentWhereUniqueInput
+  }
+
+  /**
+   * EmployeeCertificationAttachment findFirst
+   */
+  export type EmployeeCertificationAttachmentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertificationAttachment
+     */
+    select?: EmployeeCertificationAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertificationAttachment
+     */
+    omit?: EmployeeCertificationAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationAttachmentInclude<ExtArgs> | null
+    /**
+     * Filter, which EmployeeCertificationAttachment to fetch.
+     */
+    where?: EmployeeCertificationAttachmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmployeeCertificationAttachments to fetch.
+     */
+    orderBy?: EmployeeCertificationAttachmentOrderByWithRelationInput | EmployeeCertificationAttachmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmployeeCertificationAttachments.
+     */
+    cursor?: EmployeeCertificationAttachmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmployeeCertificationAttachments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmployeeCertificationAttachments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmployeeCertificationAttachments.
+     */
+    distinct?: EmployeeCertificationAttachmentScalarFieldEnum | EmployeeCertificationAttachmentScalarFieldEnum[]
+  }
+
+  /**
+   * EmployeeCertificationAttachment findFirstOrThrow
+   */
+  export type EmployeeCertificationAttachmentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertificationAttachment
+     */
+    select?: EmployeeCertificationAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertificationAttachment
+     */
+    omit?: EmployeeCertificationAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationAttachmentInclude<ExtArgs> | null
+    /**
+     * Filter, which EmployeeCertificationAttachment to fetch.
+     */
+    where?: EmployeeCertificationAttachmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmployeeCertificationAttachments to fetch.
+     */
+    orderBy?: EmployeeCertificationAttachmentOrderByWithRelationInput | EmployeeCertificationAttachmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmployeeCertificationAttachments.
+     */
+    cursor?: EmployeeCertificationAttachmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmployeeCertificationAttachments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmployeeCertificationAttachments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmployeeCertificationAttachments.
+     */
+    distinct?: EmployeeCertificationAttachmentScalarFieldEnum | EmployeeCertificationAttachmentScalarFieldEnum[]
+  }
+
+  /**
+   * EmployeeCertificationAttachment findMany
+   */
+  export type EmployeeCertificationAttachmentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertificationAttachment
+     */
+    select?: EmployeeCertificationAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertificationAttachment
+     */
+    omit?: EmployeeCertificationAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationAttachmentInclude<ExtArgs> | null
+    /**
+     * Filter, which EmployeeCertificationAttachments to fetch.
+     */
+    where?: EmployeeCertificationAttachmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmployeeCertificationAttachments to fetch.
+     */
+    orderBy?: EmployeeCertificationAttachmentOrderByWithRelationInput | EmployeeCertificationAttachmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EmployeeCertificationAttachments.
+     */
+    cursor?: EmployeeCertificationAttachmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmployeeCertificationAttachments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmployeeCertificationAttachments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmployeeCertificationAttachments.
+     */
+    distinct?: EmployeeCertificationAttachmentScalarFieldEnum | EmployeeCertificationAttachmentScalarFieldEnum[]
+  }
+
+  /**
+   * EmployeeCertificationAttachment create
+   */
+  export type EmployeeCertificationAttachmentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertificationAttachment
+     */
+    select?: EmployeeCertificationAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertificationAttachment
+     */
+    omit?: EmployeeCertificationAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationAttachmentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EmployeeCertificationAttachment.
+     */
+    data: XOR<EmployeeCertificationAttachmentCreateInput, EmployeeCertificationAttachmentUncheckedCreateInput>
+  }
+
+  /**
+   * EmployeeCertificationAttachment createMany
+   */
+  export type EmployeeCertificationAttachmentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EmployeeCertificationAttachments.
+     */
+    data: EmployeeCertificationAttachmentCreateManyInput | EmployeeCertificationAttachmentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EmployeeCertificationAttachment createManyAndReturn
+   */
+  export type EmployeeCertificationAttachmentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertificationAttachment
+     */
+    select?: EmployeeCertificationAttachmentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertificationAttachment
+     */
+    omit?: EmployeeCertificationAttachmentOmit<ExtArgs> | null
+    /**
+     * The data used to create many EmployeeCertificationAttachments.
+     */
+    data: EmployeeCertificationAttachmentCreateManyInput | EmployeeCertificationAttachmentCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationAttachmentIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EmployeeCertificationAttachment update
+   */
+  export type EmployeeCertificationAttachmentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertificationAttachment
+     */
+    select?: EmployeeCertificationAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertificationAttachment
+     */
+    omit?: EmployeeCertificationAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationAttachmentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EmployeeCertificationAttachment.
+     */
+    data: XOR<EmployeeCertificationAttachmentUpdateInput, EmployeeCertificationAttachmentUncheckedUpdateInput>
+    /**
+     * Choose, which EmployeeCertificationAttachment to update.
+     */
+    where: EmployeeCertificationAttachmentWhereUniqueInput
+  }
+
+  /**
+   * EmployeeCertificationAttachment updateMany
+   */
+  export type EmployeeCertificationAttachmentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EmployeeCertificationAttachments.
+     */
+    data: XOR<EmployeeCertificationAttachmentUpdateManyMutationInput, EmployeeCertificationAttachmentUncheckedUpdateManyInput>
+    /**
+     * Filter which EmployeeCertificationAttachments to update
+     */
+    where?: EmployeeCertificationAttachmentWhereInput
+    /**
+     * Limit how many EmployeeCertificationAttachments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmployeeCertificationAttachment updateManyAndReturn
+   */
+  export type EmployeeCertificationAttachmentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertificationAttachment
+     */
+    select?: EmployeeCertificationAttachmentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertificationAttachment
+     */
+    omit?: EmployeeCertificationAttachmentOmit<ExtArgs> | null
+    /**
+     * The data used to update EmployeeCertificationAttachments.
+     */
+    data: XOR<EmployeeCertificationAttachmentUpdateManyMutationInput, EmployeeCertificationAttachmentUncheckedUpdateManyInput>
+    /**
+     * Filter which EmployeeCertificationAttachments to update
+     */
+    where?: EmployeeCertificationAttachmentWhereInput
+    /**
+     * Limit how many EmployeeCertificationAttachments to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationAttachmentIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EmployeeCertificationAttachment upsert
+   */
+  export type EmployeeCertificationAttachmentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertificationAttachment
+     */
+    select?: EmployeeCertificationAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertificationAttachment
+     */
+    omit?: EmployeeCertificationAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationAttachmentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EmployeeCertificationAttachment to update in case it exists.
+     */
+    where: EmployeeCertificationAttachmentWhereUniqueInput
+    /**
+     * In case the EmployeeCertificationAttachment found by the `where` argument doesn't exist, create a new EmployeeCertificationAttachment with this data.
+     */
+    create: XOR<EmployeeCertificationAttachmentCreateInput, EmployeeCertificationAttachmentUncheckedCreateInput>
+    /**
+     * In case the EmployeeCertificationAttachment was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EmployeeCertificationAttachmentUpdateInput, EmployeeCertificationAttachmentUncheckedUpdateInput>
+  }
+
+  /**
+   * EmployeeCertificationAttachment delete
+   */
+  export type EmployeeCertificationAttachmentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertificationAttachment
+     */
+    select?: EmployeeCertificationAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertificationAttachment
+     */
+    omit?: EmployeeCertificationAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationAttachmentInclude<ExtArgs> | null
+    /**
+     * Filter which EmployeeCertificationAttachment to delete.
+     */
+    where: EmployeeCertificationAttachmentWhereUniqueInput
+  }
+
+  /**
+   * EmployeeCertificationAttachment deleteMany
+   */
+  export type EmployeeCertificationAttachmentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmployeeCertificationAttachments to delete
+     */
+    where?: EmployeeCertificationAttachmentWhereInput
+    /**
+     * Limit how many EmployeeCertificationAttachments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmployeeCertificationAttachment.userInvitation
+   */
+  export type EmployeeCertificationAttachment$userInvitationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserInvitation
+     */
+    select?: UserInvitationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the UserInvitation
+     */
+    omit?: UserInvitationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInvitationInclude<ExtArgs> | null
+    where?: UserInvitationWhereInput
+  }
+
+  /**
+   * EmployeeCertificationAttachment without action
+   */
+  export type EmployeeCertificationAttachmentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertificationAttachment
+     */
+    select?: EmployeeCertificationAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertificationAttachment
+     */
+    omit?: EmployeeCertificationAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationAttachmentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ProfileChangeRequest
+   */
+
+  export type AggregateProfileChangeRequest = {
+    _count: ProfileChangeRequestCountAggregateOutputType | null
+    _min: ProfileChangeRequestMinAggregateOutputType | null
+    _max: ProfileChangeRequestMaxAggregateOutputType | null
+  }
+
+  export type ProfileChangeRequestMinAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    currentAddress: string | null
+    newAddress: string | null
+    currentPhoneNumber: string | null
+    newPhoneNumber: string | null
+    currentEmail: string | null
+    newEmail: string | null
+    currentEmergencyContact: string | null
+    newEmergencyContact: string | null
+    status: $Enums.ProfileChangeStatus | null
+    reviewedAt: Date | null
+    reviewedBy: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ProfileChangeRequestMaxAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    currentAddress: string | null
+    newAddress: string | null
+    currentPhoneNumber: string | null
+    newPhoneNumber: string | null
+    currentEmail: string | null
+    newEmail: string | null
+    currentEmergencyContact: string | null
+    newEmergencyContact: string | null
+    status: $Enums.ProfileChangeStatus | null
+    reviewedAt: Date | null
+    reviewedBy: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ProfileChangeRequestCountAggregateOutputType = {
+    id: number
+    employeeId: number
+    currentAddress: number
+    newAddress: number
+    currentPhoneNumber: number
+    newPhoneNumber: number
+    currentEmail: number
+    newEmail: number
+    currentEmergencyContact: number
+    newEmergencyContact: number
+    status: number
+    reviewedAt: number
+    reviewedBy: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ProfileChangeRequestMinAggregateInputType = {
+    id?: true
+    employeeId?: true
+    currentAddress?: true
+    newAddress?: true
+    currentPhoneNumber?: true
+    newPhoneNumber?: true
+    currentEmail?: true
+    newEmail?: true
+    currentEmergencyContact?: true
+    newEmergencyContact?: true
+    status?: true
+    reviewedAt?: true
+    reviewedBy?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ProfileChangeRequestMaxAggregateInputType = {
+    id?: true
+    employeeId?: true
+    currentAddress?: true
+    newAddress?: true
+    currentPhoneNumber?: true
+    newPhoneNumber?: true
+    currentEmail?: true
+    newEmail?: true
+    currentEmergencyContact?: true
+    newEmergencyContact?: true
+    status?: true
+    reviewedAt?: true
+    reviewedBy?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ProfileChangeRequestCountAggregateInputType = {
+    id?: true
+    employeeId?: true
+    currentAddress?: true
+    newAddress?: true
+    currentPhoneNumber?: true
+    newPhoneNumber?: true
+    currentEmail?: true
+    newEmail?: true
+    currentEmergencyContact?: true
+    newEmergencyContact?: true
+    status?: true
+    reviewedAt?: true
+    reviewedBy?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ProfileChangeRequestAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProfileChangeRequest to aggregate.
+     */
+    where?: ProfileChangeRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProfileChangeRequests to fetch.
+     */
+    orderBy?: ProfileChangeRequestOrderByWithRelationInput | ProfileChangeRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProfileChangeRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProfileChangeRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProfileChangeRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ProfileChangeRequests
+    **/
+    _count?: true | ProfileChangeRequestCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProfileChangeRequestMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProfileChangeRequestMaxAggregateInputType
+  }
+
+  export type GetProfileChangeRequestAggregateType<T extends ProfileChangeRequestAggregateArgs> = {
+        [P in keyof T & keyof AggregateProfileChangeRequest]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProfileChangeRequest[P]>
+      : GetScalarType<T[P], AggregateProfileChangeRequest[P]>
+  }
+
+
+
+
+  export type ProfileChangeRequestGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProfileChangeRequestWhereInput
+    orderBy?: ProfileChangeRequestOrderByWithAggregationInput | ProfileChangeRequestOrderByWithAggregationInput[]
+    by: ProfileChangeRequestScalarFieldEnum[] | ProfileChangeRequestScalarFieldEnum
+    having?: ProfileChangeRequestScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProfileChangeRequestCountAggregateInputType | true
+    _min?: ProfileChangeRequestMinAggregateInputType
+    _max?: ProfileChangeRequestMaxAggregateInputType
+  }
+
+  export type ProfileChangeRequestGroupByOutputType = {
+    id: string
+    employeeId: string
+    currentAddress: string | null
+    newAddress: string | null
+    currentPhoneNumber: string | null
+    newPhoneNumber: string | null
+    currentEmail: string | null
+    newEmail: string | null
+    currentEmergencyContact: string | null
+    newEmergencyContact: string | null
+    status: $Enums.ProfileChangeStatus
+    reviewedAt: Date | null
+    reviewedBy: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: ProfileChangeRequestCountAggregateOutputType | null
+    _min: ProfileChangeRequestMinAggregateOutputType | null
+    _max: ProfileChangeRequestMaxAggregateOutputType | null
+  }
+
+  type GetProfileChangeRequestGroupByPayload<T extends ProfileChangeRequestGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProfileChangeRequestGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProfileChangeRequestGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProfileChangeRequestGroupByOutputType[P]>
+            : GetScalarType<T[P], ProfileChangeRequestGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProfileChangeRequestSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    currentAddress?: boolean
+    newAddress?: boolean
+    currentPhoneNumber?: boolean
+    newPhoneNumber?: boolean
+    currentEmail?: boolean
+    newEmail?: boolean
+    currentEmergencyContact?: boolean
+    newEmergencyContact?: boolean
+    status?: boolean
+    reviewedAt?: boolean
+    reviewedBy?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["profileChangeRequest"]>
+
+  export type ProfileChangeRequestSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    currentAddress?: boolean
+    newAddress?: boolean
+    currentPhoneNumber?: boolean
+    newPhoneNumber?: boolean
+    currentEmail?: boolean
+    newEmail?: boolean
+    currentEmergencyContact?: boolean
+    newEmergencyContact?: boolean
+    status?: boolean
+    reviewedAt?: boolean
+    reviewedBy?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["profileChangeRequest"]>
+
+  export type ProfileChangeRequestSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    currentAddress?: boolean
+    newAddress?: boolean
+    currentPhoneNumber?: boolean
+    newPhoneNumber?: boolean
+    currentEmail?: boolean
+    newEmail?: boolean
+    currentEmergencyContact?: boolean
+    newEmergencyContact?: boolean
+    status?: boolean
+    reviewedAt?: boolean
+    reviewedBy?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["profileChangeRequest"]>
+
+  export type ProfileChangeRequestSelectScalar = {
+    id?: boolean
+    employeeId?: boolean
+    currentAddress?: boolean
+    newAddress?: boolean
+    currentPhoneNumber?: boolean
+    newPhoneNumber?: boolean
+    currentEmail?: boolean
+    newEmail?: boolean
+    currentEmergencyContact?: boolean
+    newEmergencyContact?: boolean
+    status?: boolean
+    reviewedAt?: boolean
+    reviewedBy?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ProfileChangeRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "currentAddress" | "newAddress" | "currentPhoneNumber" | "newPhoneNumber" | "currentEmail" | "newEmail" | "currentEmergencyContact" | "newEmergencyContact" | "status" | "reviewedAt" | "reviewedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["profileChangeRequest"]>
+  export type ProfileChangeRequestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+  export type ProfileChangeRequestIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+  export type ProfileChangeRequestIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+
+  export type $ProfileChangeRequestPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ProfileChangeRequest"
+    objects: {
+      employee: Prisma.$EmployeePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      employeeId: string
+      currentAddress: string | null
+      newAddress: string | null
+      currentPhoneNumber: string | null
+      newPhoneNumber: string | null
+      currentEmail: string | null
+      newEmail: string | null
+      currentEmergencyContact: string | null
+      newEmergencyContact: string | null
+      status: $Enums.ProfileChangeStatus
+      reviewedAt: Date | null
+      reviewedBy: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["profileChangeRequest"]>
+    composites: {}
+  }
+
+  type ProfileChangeRequestGetPayload<S extends boolean | null | undefined | ProfileChangeRequestDefaultArgs> = $Result.GetResult<Prisma.$ProfileChangeRequestPayload, S>
+
+  type ProfileChangeRequestCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProfileChangeRequestFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProfileChangeRequestCountAggregateInputType | true
+    }
+
+  export interface ProfileChangeRequestDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ProfileChangeRequest'], meta: { name: 'ProfileChangeRequest' } }
+    /**
+     * Find zero or one ProfileChangeRequest that matches the filter.
+     * @param {ProfileChangeRequestFindUniqueArgs} args - Arguments to find a ProfileChangeRequest
+     * @example
+     * // Get one ProfileChangeRequest
+     * const profileChangeRequest = await prisma.profileChangeRequest.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProfileChangeRequestFindUniqueArgs>(args: SelectSubset<T, ProfileChangeRequestFindUniqueArgs<ExtArgs>>): Prisma__ProfileChangeRequestClient<$Result.GetResult<Prisma.$ProfileChangeRequestPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ProfileChangeRequest that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProfileChangeRequestFindUniqueOrThrowArgs} args - Arguments to find a ProfileChangeRequest
+     * @example
+     * // Get one ProfileChangeRequest
+     * const profileChangeRequest = await prisma.profileChangeRequest.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProfileChangeRequestFindUniqueOrThrowArgs>(args: SelectSubset<T, ProfileChangeRequestFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProfileChangeRequestClient<$Result.GetResult<Prisma.$ProfileChangeRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProfileChangeRequest that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProfileChangeRequestFindFirstArgs} args - Arguments to find a ProfileChangeRequest
+     * @example
+     * // Get one ProfileChangeRequest
+     * const profileChangeRequest = await prisma.profileChangeRequest.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProfileChangeRequestFindFirstArgs>(args?: SelectSubset<T, ProfileChangeRequestFindFirstArgs<ExtArgs>>): Prisma__ProfileChangeRequestClient<$Result.GetResult<Prisma.$ProfileChangeRequestPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ProfileChangeRequest that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProfileChangeRequestFindFirstOrThrowArgs} args - Arguments to find a ProfileChangeRequest
+     * @example
+     * // Get one ProfileChangeRequest
+     * const profileChangeRequest = await prisma.profileChangeRequest.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProfileChangeRequestFindFirstOrThrowArgs>(args?: SelectSubset<T, ProfileChangeRequestFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProfileChangeRequestClient<$Result.GetResult<Prisma.$ProfileChangeRequestPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ProfileChangeRequests that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProfileChangeRequestFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ProfileChangeRequests
+     * const profileChangeRequests = await prisma.profileChangeRequest.findMany()
+     * 
+     * // Get first 10 ProfileChangeRequests
+     * const profileChangeRequests = await prisma.profileChangeRequest.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const profileChangeRequestWithIdOnly = await prisma.profileChangeRequest.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProfileChangeRequestFindManyArgs>(args?: SelectSubset<T, ProfileChangeRequestFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfileChangeRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ProfileChangeRequest.
+     * @param {ProfileChangeRequestCreateArgs} args - Arguments to create a ProfileChangeRequest.
+     * @example
+     * // Create one ProfileChangeRequest
+     * const ProfileChangeRequest = await prisma.profileChangeRequest.create({
+     *   data: {
+     *     // ... data to create a ProfileChangeRequest
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProfileChangeRequestCreateArgs>(args: SelectSubset<T, ProfileChangeRequestCreateArgs<ExtArgs>>): Prisma__ProfileChangeRequestClient<$Result.GetResult<Prisma.$ProfileChangeRequestPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ProfileChangeRequests.
+     * @param {ProfileChangeRequestCreateManyArgs} args - Arguments to create many ProfileChangeRequests.
+     * @example
+     * // Create many ProfileChangeRequests
+     * const profileChangeRequest = await prisma.profileChangeRequest.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProfileChangeRequestCreateManyArgs>(args?: SelectSubset<T, ProfileChangeRequestCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ProfileChangeRequests and returns the data saved in the database.
+     * @param {ProfileChangeRequestCreateManyAndReturnArgs} args - Arguments to create many ProfileChangeRequests.
+     * @example
+     * // Create many ProfileChangeRequests
+     * const profileChangeRequest = await prisma.profileChangeRequest.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ProfileChangeRequests and only return the `id`
+     * const profileChangeRequestWithIdOnly = await prisma.profileChangeRequest.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ProfileChangeRequestCreateManyAndReturnArgs>(args?: SelectSubset<T, ProfileChangeRequestCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfileChangeRequestPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ProfileChangeRequest.
+     * @param {ProfileChangeRequestDeleteArgs} args - Arguments to delete one ProfileChangeRequest.
+     * @example
+     * // Delete one ProfileChangeRequest
+     * const ProfileChangeRequest = await prisma.profileChangeRequest.delete({
+     *   where: {
+     *     // ... filter to delete one ProfileChangeRequest
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProfileChangeRequestDeleteArgs>(args: SelectSubset<T, ProfileChangeRequestDeleteArgs<ExtArgs>>): Prisma__ProfileChangeRequestClient<$Result.GetResult<Prisma.$ProfileChangeRequestPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ProfileChangeRequest.
+     * @param {ProfileChangeRequestUpdateArgs} args - Arguments to update one ProfileChangeRequest.
+     * @example
+     * // Update one ProfileChangeRequest
+     * const profileChangeRequest = await prisma.profileChangeRequest.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProfileChangeRequestUpdateArgs>(args: SelectSubset<T, ProfileChangeRequestUpdateArgs<ExtArgs>>): Prisma__ProfileChangeRequestClient<$Result.GetResult<Prisma.$ProfileChangeRequestPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ProfileChangeRequests.
+     * @param {ProfileChangeRequestDeleteManyArgs} args - Arguments to filter ProfileChangeRequests to delete.
+     * @example
+     * // Delete a few ProfileChangeRequests
+     * const { count } = await prisma.profileChangeRequest.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProfileChangeRequestDeleteManyArgs>(args?: SelectSubset<T, ProfileChangeRequestDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProfileChangeRequests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProfileChangeRequestUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ProfileChangeRequests
+     * const profileChangeRequest = await prisma.profileChangeRequest.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProfileChangeRequestUpdateManyArgs>(args: SelectSubset<T, ProfileChangeRequestUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ProfileChangeRequests and returns the data updated in the database.
+     * @param {ProfileChangeRequestUpdateManyAndReturnArgs} args - Arguments to update many ProfileChangeRequests.
+     * @example
+     * // Update many ProfileChangeRequests
+     * const profileChangeRequest = await prisma.profileChangeRequest.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ProfileChangeRequests and only return the `id`
+     * const profileChangeRequestWithIdOnly = await prisma.profileChangeRequest.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ProfileChangeRequestUpdateManyAndReturnArgs>(args: SelectSubset<T, ProfileChangeRequestUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProfileChangeRequestPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ProfileChangeRequest.
+     * @param {ProfileChangeRequestUpsertArgs} args - Arguments to update or create a ProfileChangeRequest.
+     * @example
+     * // Update or create a ProfileChangeRequest
+     * const profileChangeRequest = await prisma.profileChangeRequest.upsert({
+     *   create: {
+     *     // ... data to create a ProfileChangeRequest
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ProfileChangeRequest we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProfileChangeRequestUpsertArgs>(args: SelectSubset<T, ProfileChangeRequestUpsertArgs<ExtArgs>>): Prisma__ProfileChangeRequestClient<$Result.GetResult<Prisma.$ProfileChangeRequestPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ProfileChangeRequests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProfileChangeRequestCountArgs} args - Arguments to filter ProfileChangeRequests to count.
+     * @example
+     * // Count the number of ProfileChangeRequests
+     * const count = await prisma.profileChangeRequest.count({
+     *   where: {
+     *     // ... the filter for the ProfileChangeRequests we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProfileChangeRequestCountArgs>(
+      args?: Subset<T, ProfileChangeRequestCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProfileChangeRequestCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ProfileChangeRequest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProfileChangeRequestAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProfileChangeRequestAggregateArgs>(args: Subset<T, ProfileChangeRequestAggregateArgs>): Prisma.PrismaPromise<GetProfileChangeRequestAggregateType<T>>
+
+    /**
+     * Group by ProfileChangeRequest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProfileChangeRequestGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProfileChangeRequestGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProfileChangeRequestGroupByArgs['orderBy'] }
+        : { orderBy?: ProfileChangeRequestGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProfileChangeRequestGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProfileChangeRequestGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ProfileChangeRequest model
+   */
+  readonly fields: ProfileChangeRequestFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ProfileChangeRequest.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProfileChangeRequestClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ProfileChangeRequest model
+   */
+  interface ProfileChangeRequestFieldRefs {
+    readonly id: FieldRef<"ProfileChangeRequest", 'String'>
+    readonly employeeId: FieldRef<"ProfileChangeRequest", 'String'>
+    readonly currentAddress: FieldRef<"ProfileChangeRequest", 'String'>
+    readonly newAddress: FieldRef<"ProfileChangeRequest", 'String'>
+    readonly currentPhoneNumber: FieldRef<"ProfileChangeRequest", 'String'>
+    readonly newPhoneNumber: FieldRef<"ProfileChangeRequest", 'String'>
+    readonly currentEmail: FieldRef<"ProfileChangeRequest", 'String'>
+    readonly newEmail: FieldRef<"ProfileChangeRequest", 'String'>
+    readonly currentEmergencyContact: FieldRef<"ProfileChangeRequest", 'String'>
+    readonly newEmergencyContact: FieldRef<"ProfileChangeRequest", 'String'>
+    readonly status: FieldRef<"ProfileChangeRequest", 'ProfileChangeStatus'>
+    readonly reviewedAt: FieldRef<"ProfileChangeRequest", 'DateTime'>
+    readonly reviewedBy: FieldRef<"ProfileChangeRequest", 'String'>
+    readonly createdAt: FieldRef<"ProfileChangeRequest", 'DateTime'>
+    readonly updatedAt: FieldRef<"ProfileChangeRequest", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ProfileChangeRequest findUnique
+   */
+  export type ProfileChangeRequestFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileChangeRequest
+     */
+    select?: ProfileChangeRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileChangeRequest
+     */
+    omit?: ProfileChangeRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileChangeRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which ProfileChangeRequest to fetch.
+     */
+    where: ProfileChangeRequestWhereUniqueInput
+  }
+
+  /**
+   * ProfileChangeRequest findUniqueOrThrow
+   */
+  export type ProfileChangeRequestFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileChangeRequest
+     */
+    select?: ProfileChangeRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileChangeRequest
+     */
+    omit?: ProfileChangeRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileChangeRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which ProfileChangeRequest to fetch.
+     */
+    where: ProfileChangeRequestWhereUniqueInput
+  }
+
+  /**
+   * ProfileChangeRequest findFirst
+   */
+  export type ProfileChangeRequestFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileChangeRequest
+     */
+    select?: ProfileChangeRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileChangeRequest
+     */
+    omit?: ProfileChangeRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileChangeRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which ProfileChangeRequest to fetch.
+     */
+    where?: ProfileChangeRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProfileChangeRequests to fetch.
+     */
+    orderBy?: ProfileChangeRequestOrderByWithRelationInput | ProfileChangeRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProfileChangeRequests.
+     */
+    cursor?: ProfileChangeRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProfileChangeRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProfileChangeRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProfileChangeRequests.
+     */
+    distinct?: ProfileChangeRequestScalarFieldEnum | ProfileChangeRequestScalarFieldEnum[]
+  }
+
+  /**
+   * ProfileChangeRequest findFirstOrThrow
+   */
+  export type ProfileChangeRequestFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileChangeRequest
+     */
+    select?: ProfileChangeRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileChangeRequest
+     */
+    omit?: ProfileChangeRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileChangeRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which ProfileChangeRequest to fetch.
+     */
+    where?: ProfileChangeRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProfileChangeRequests to fetch.
+     */
+    orderBy?: ProfileChangeRequestOrderByWithRelationInput | ProfileChangeRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ProfileChangeRequests.
+     */
+    cursor?: ProfileChangeRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProfileChangeRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProfileChangeRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProfileChangeRequests.
+     */
+    distinct?: ProfileChangeRequestScalarFieldEnum | ProfileChangeRequestScalarFieldEnum[]
+  }
+
+  /**
+   * ProfileChangeRequest findMany
+   */
+  export type ProfileChangeRequestFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileChangeRequest
+     */
+    select?: ProfileChangeRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileChangeRequest
+     */
+    omit?: ProfileChangeRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileChangeRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which ProfileChangeRequests to fetch.
+     */
+    where?: ProfileChangeRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ProfileChangeRequests to fetch.
+     */
+    orderBy?: ProfileChangeRequestOrderByWithRelationInput | ProfileChangeRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ProfileChangeRequests.
+     */
+    cursor?: ProfileChangeRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ProfileChangeRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ProfileChangeRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ProfileChangeRequests.
+     */
+    distinct?: ProfileChangeRequestScalarFieldEnum | ProfileChangeRequestScalarFieldEnum[]
+  }
+
+  /**
+   * ProfileChangeRequest create
+   */
+  export type ProfileChangeRequestCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileChangeRequest
+     */
+    select?: ProfileChangeRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileChangeRequest
+     */
+    omit?: ProfileChangeRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileChangeRequestInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ProfileChangeRequest.
+     */
+    data: XOR<ProfileChangeRequestCreateInput, ProfileChangeRequestUncheckedCreateInput>
+  }
+
+  /**
+   * ProfileChangeRequest createMany
+   */
+  export type ProfileChangeRequestCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ProfileChangeRequests.
+     */
+    data: ProfileChangeRequestCreateManyInput | ProfileChangeRequestCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ProfileChangeRequest createManyAndReturn
+   */
+  export type ProfileChangeRequestCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileChangeRequest
+     */
+    select?: ProfileChangeRequestSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileChangeRequest
+     */
+    omit?: ProfileChangeRequestOmit<ExtArgs> | null
+    /**
+     * The data used to create many ProfileChangeRequests.
+     */
+    data: ProfileChangeRequestCreateManyInput | ProfileChangeRequestCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileChangeRequestIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProfileChangeRequest update
+   */
+  export type ProfileChangeRequestUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileChangeRequest
+     */
+    select?: ProfileChangeRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileChangeRequest
+     */
+    omit?: ProfileChangeRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileChangeRequestInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ProfileChangeRequest.
+     */
+    data: XOR<ProfileChangeRequestUpdateInput, ProfileChangeRequestUncheckedUpdateInput>
+    /**
+     * Choose, which ProfileChangeRequest to update.
+     */
+    where: ProfileChangeRequestWhereUniqueInput
+  }
+
+  /**
+   * ProfileChangeRequest updateMany
+   */
+  export type ProfileChangeRequestUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ProfileChangeRequests.
+     */
+    data: XOR<ProfileChangeRequestUpdateManyMutationInput, ProfileChangeRequestUncheckedUpdateManyInput>
+    /**
+     * Filter which ProfileChangeRequests to update
+     */
+    where?: ProfileChangeRequestWhereInput
+    /**
+     * Limit how many ProfileChangeRequests to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProfileChangeRequest updateManyAndReturn
+   */
+  export type ProfileChangeRequestUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileChangeRequest
+     */
+    select?: ProfileChangeRequestSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileChangeRequest
+     */
+    omit?: ProfileChangeRequestOmit<ExtArgs> | null
+    /**
+     * The data used to update ProfileChangeRequests.
+     */
+    data: XOR<ProfileChangeRequestUpdateManyMutationInput, ProfileChangeRequestUncheckedUpdateManyInput>
+    /**
+     * Filter which ProfileChangeRequests to update
+     */
+    where?: ProfileChangeRequestWhereInput
+    /**
+     * Limit how many ProfileChangeRequests to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileChangeRequestIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ProfileChangeRequest upsert
+   */
+  export type ProfileChangeRequestUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileChangeRequest
+     */
+    select?: ProfileChangeRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileChangeRequest
+     */
+    omit?: ProfileChangeRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileChangeRequestInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ProfileChangeRequest to update in case it exists.
+     */
+    where: ProfileChangeRequestWhereUniqueInput
+    /**
+     * In case the ProfileChangeRequest found by the `where` argument doesn't exist, create a new ProfileChangeRequest with this data.
+     */
+    create: XOR<ProfileChangeRequestCreateInput, ProfileChangeRequestUncheckedCreateInput>
+    /**
+     * In case the ProfileChangeRequest was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProfileChangeRequestUpdateInput, ProfileChangeRequestUncheckedUpdateInput>
+  }
+
+  /**
+   * ProfileChangeRequest delete
+   */
+  export type ProfileChangeRequestDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileChangeRequest
+     */
+    select?: ProfileChangeRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileChangeRequest
+     */
+    omit?: ProfileChangeRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileChangeRequestInclude<ExtArgs> | null
+    /**
+     * Filter which ProfileChangeRequest to delete.
+     */
+    where: ProfileChangeRequestWhereUniqueInput
+  }
+
+  /**
+   * ProfileChangeRequest deleteMany
+   */
+  export type ProfileChangeRequestDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ProfileChangeRequests to delete
+     */
+    where?: ProfileChangeRequestWhereInput
+    /**
+     * Limit how many ProfileChangeRequests to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ProfileChangeRequest without action
+   */
+  export type ProfileChangeRequestDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProfileChangeRequest
+     */
+    select?: ProfileChangeRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ProfileChangeRequest
+     */
+    omit?: ProfileChangeRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProfileChangeRequestInclude<ExtArgs> | null
   }
 
 
@@ -20815,6 +23635,7 @@ export namespace Prisma {
     birthDate: 'birthDate',
     phoneNumber: 'phoneNumber',
     address: 'address',
+    emergencyContact: 'emergencyContact',
     email: 'email',
     departmentId: 'departmentId',
     occupation: 'occupation',
@@ -20984,10 +23805,48 @@ export namespace Prisma {
     certificationId: 'certificationId',
     acquiredDate: 'acquiredDate',
     expiryDate: 'expiryDate',
+    status: 'status',
+    reviewedAt: 'reviewedAt',
+    reviewedBy: 'reviewedBy',
     createdAt: 'createdAt'
   };
 
   export type EmployeeCertificationScalarFieldEnum = (typeof EmployeeCertificationScalarFieldEnum)[keyof typeof EmployeeCertificationScalarFieldEnum]
+
+
+  export const EmployeeCertificationAttachmentScalarFieldEnum: {
+    id: 'id',
+    employeeCertificationId: 'employeeCertificationId',
+    fileName: 'fileName',
+    filePath: 'filePath',
+    fileType: 'fileType',
+    fileSize: 'fileSize',
+    createdAt: 'createdAt',
+    userInvitationId: 'userInvitationId'
+  };
+
+  export type EmployeeCertificationAttachmentScalarFieldEnum = (typeof EmployeeCertificationAttachmentScalarFieldEnum)[keyof typeof EmployeeCertificationAttachmentScalarFieldEnum]
+
+
+  export const ProfileChangeRequestScalarFieldEnum: {
+    id: 'id',
+    employeeId: 'employeeId',
+    currentAddress: 'currentAddress',
+    newAddress: 'newAddress',
+    currentPhoneNumber: 'currentPhoneNumber',
+    newPhoneNumber: 'newPhoneNumber',
+    currentEmail: 'currentEmail',
+    newEmail: 'newEmail',
+    currentEmergencyContact: 'currentEmergencyContact',
+    newEmergencyContact: 'newEmergencyContact',
+    status: 'status',
+    reviewedAt: 'reviewedAt',
+    reviewedBy: 'reviewedBy',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ProfileChangeRequestScalarFieldEnum = (typeof ProfileChangeRequestScalarFieldEnum)[keyof typeof ProfileChangeRequestScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -21237,6 +24096,34 @@ export namespace Prisma {
    */
   export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
+
+
+  /**
+   * Reference to a field of type 'CertificationStatus'
+   */
+  export type EnumCertificationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CertificationStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'CertificationStatus[]'
+   */
+  export type ListEnumCertificationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CertificationStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'ProfileChangeStatus'
+   */
+  export type EnumProfileChangeStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProfileChangeStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'ProfileChangeStatus[]'
+   */
+  export type ListEnumProfileChangeStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProfileChangeStatus[]'>
+    
   /**
    * Deep Input Types
    */
@@ -21327,6 +24214,7 @@ export namespace Prisma {
     createdUserId?: StringNullableFilter<"UserInvitation"> | string | null
     createdEmployeeId?: StringNullableFilter<"UserInvitation"> | string | null
     createdAt?: DateTimeFilter<"UserInvitation"> | Date | string
+    attachments?: EmployeeCertificationAttachmentListRelationFilter
   }
 
   export type UserInvitationOrderByWithRelationInput = {
@@ -21343,6 +24231,7 @@ export namespace Prisma {
     createdUserId?: SortOrderInput | SortOrder
     createdEmployeeId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
+    attachments?: EmployeeCertificationAttachmentOrderByRelationAggregateInput
   }
 
   export type UserInvitationWhereUniqueInput = Prisma.AtLeast<{
@@ -21362,6 +24251,7 @@ export namespace Prisma {
     createdUserId?: StringNullableFilter<"UserInvitation"> | string | null
     createdEmployeeId?: StringNullableFilter<"UserInvitation"> | string | null
     createdAt?: DateTimeFilter<"UserInvitation"> | Date | string
+    attachments?: EmployeeCertificationAttachmentListRelationFilter
   }, "id" | "token">
 
   export type UserInvitationOrderByWithAggregationInput = {
@@ -21461,6 +24351,7 @@ export namespace Prisma {
     birthDate?: DateTimeNullableFilter<"Employee"> | Date | string | null
     phoneNumber?: StringNullableFilter<"Employee"> | string | null
     address?: StringNullableFilter<"Employee"> | string | null
+    emergencyContact?: StringNullableFilter<"Employee"> | string | null
     email?: StringFilter<"Employee"> | string
     departmentId?: StringNullableFilter<"Employee"> | string | null
     occupation?: StringNullableFilter<"Employee"> | string | null
@@ -21484,6 +24375,7 @@ export namespace Prisma {
     leaveBalance?: XOR<LeaveBalanceNullableScalarRelationFilter, LeaveBalanceWhereInput> | null
     employmentHistories?: EmploymentHistoryListRelationFilter
     leaveGrantHistories?: LeaveGrantHistoryListRelationFilter
+    profileChangeRequests?: ProfileChangeRequestListRelationFilter
     certifications?: EmployeeCertificationListRelationFilter
   }
 
@@ -21498,6 +24390,7 @@ export namespace Prisma {
     birthDate?: SortOrderInput | SortOrder
     phoneNumber?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
+    emergencyContact?: SortOrderInput | SortOrder
     email?: SortOrder
     departmentId?: SortOrderInput | SortOrder
     occupation?: SortOrderInput | SortOrder
@@ -21521,6 +24414,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceOrderByWithRelationInput
     employmentHistories?: EmploymentHistoryOrderByRelationAggregateInput
     leaveGrantHistories?: LeaveGrantHistoryOrderByRelationAggregateInput
+    profileChangeRequests?: ProfileChangeRequestOrderByRelationAggregateInput
     certifications?: EmployeeCertificationOrderByRelationAggregateInput
   }
 
@@ -21540,6 +24434,7 @@ export namespace Prisma {
     birthDate?: DateTimeNullableFilter<"Employee"> | Date | string | null
     phoneNumber?: StringNullableFilter<"Employee"> | string | null
     address?: StringNullableFilter<"Employee"> | string | null
+    emergencyContact?: StringNullableFilter<"Employee"> | string | null
     departmentId?: StringNullableFilter<"Employee"> | string | null
     occupation?: StringNullableFilter<"Employee"> | string | null
     position?: StringNullableFilter<"Employee"> | string | null
@@ -21561,6 +24456,7 @@ export namespace Prisma {
     leaveBalance?: XOR<LeaveBalanceNullableScalarRelationFilter, LeaveBalanceWhereInput> | null
     employmentHistories?: EmploymentHistoryListRelationFilter
     leaveGrantHistories?: LeaveGrantHistoryListRelationFilter
+    profileChangeRequests?: ProfileChangeRequestListRelationFilter
     certifications?: EmployeeCertificationListRelationFilter
   }, "id" | "employeeNo" | "email" | "userId">
 
@@ -21575,6 +24471,7 @@ export namespace Prisma {
     birthDate?: SortOrderInput | SortOrder
     phoneNumber?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
+    emergencyContact?: SortOrderInput | SortOrder
     email?: SortOrder
     departmentId?: SortOrderInput | SortOrder
     occupation?: SortOrderInput | SortOrder
@@ -21608,6 +24505,7 @@ export namespace Prisma {
     birthDate?: DateTimeNullableWithAggregatesFilter<"Employee"> | Date | string | null
     phoneNumber?: StringNullableWithAggregatesFilter<"Employee"> | string | null
     address?: StringNullableWithAggregatesFilter<"Employee"> | string | null
+    emergencyContact?: StringNullableWithAggregatesFilter<"Employee"> | string | null
     email?: StringWithAggregatesFilter<"Employee"> | string
     departmentId?: StringNullableWithAggregatesFilter<"Employee"> | string | null
     occupation?: StringNullableWithAggregatesFilter<"Employee"> | string | null
@@ -22371,9 +25269,13 @@ export namespace Prisma {
     certificationId?: StringFilter<"EmployeeCertification"> | string
     acquiredDate?: DateTimeNullableFilter<"EmployeeCertification"> | Date | string | null
     expiryDate?: DateTimeNullableFilter<"EmployeeCertification"> | Date | string | null
+    status?: EnumCertificationStatusFilter<"EmployeeCertification"> | $Enums.CertificationStatus
+    reviewedAt?: DateTimeNullableFilter<"EmployeeCertification"> | Date | string | null
+    reviewedBy?: StringNullableFilter<"EmployeeCertification"> | string | null
     createdAt?: DateTimeFilter<"EmployeeCertification"> | Date | string
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
     certification?: XOR<CertificationScalarRelationFilter, CertificationWhereInput>
+    employeeCertificationAttachments?: EmployeeCertificationAttachmentListRelationFilter
   }
 
   export type EmployeeCertificationOrderByWithRelationInput = {
@@ -22382,9 +25284,13 @@ export namespace Prisma {
     certificationId?: SortOrder
     acquiredDate?: SortOrderInput | SortOrder
     expiryDate?: SortOrderInput | SortOrder
+    status?: SortOrder
+    reviewedAt?: SortOrderInput | SortOrder
+    reviewedBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     employee?: EmployeeOrderByWithRelationInput
     certification?: CertificationOrderByWithRelationInput
+    employeeCertificationAttachments?: EmployeeCertificationAttachmentOrderByRelationAggregateInput
   }
 
   export type EmployeeCertificationWhereUniqueInput = Prisma.AtLeast<{
@@ -22397,9 +25303,13 @@ export namespace Prisma {
     certificationId?: StringFilter<"EmployeeCertification"> | string
     acquiredDate?: DateTimeNullableFilter<"EmployeeCertification"> | Date | string | null
     expiryDate?: DateTimeNullableFilter<"EmployeeCertification"> | Date | string | null
+    status?: EnumCertificationStatusFilter<"EmployeeCertification"> | $Enums.CertificationStatus
+    reviewedAt?: DateTimeNullableFilter<"EmployeeCertification"> | Date | string | null
+    reviewedBy?: StringNullableFilter<"EmployeeCertification"> | string | null
     createdAt?: DateTimeFilter<"EmployeeCertification"> | Date | string
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
     certification?: XOR<CertificationScalarRelationFilter, CertificationWhereInput>
+    employeeCertificationAttachments?: EmployeeCertificationAttachmentListRelationFilter
   }, "id" | "employeeId_certificationId">
 
   export type EmployeeCertificationOrderByWithAggregationInput = {
@@ -22408,6 +25318,9 @@ export namespace Prisma {
     certificationId?: SortOrder
     acquiredDate?: SortOrderInput | SortOrder
     expiryDate?: SortOrderInput | SortOrder
+    status?: SortOrder
+    reviewedAt?: SortOrderInput | SortOrder
+    reviewedBy?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     _count?: EmployeeCertificationCountOrderByAggregateInput
     _max?: EmployeeCertificationMaxOrderByAggregateInput
@@ -22423,7 +25336,190 @@ export namespace Prisma {
     certificationId?: StringWithAggregatesFilter<"EmployeeCertification"> | string
     acquiredDate?: DateTimeNullableWithAggregatesFilter<"EmployeeCertification"> | Date | string | null
     expiryDate?: DateTimeNullableWithAggregatesFilter<"EmployeeCertification"> | Date | string | null
+    status?: EnumCertificationStatusWithAggregatesFilter<"EmployeeCertification"> | $Enums.CertificationStatus
+    reviewedAt?: DateTimeNullableWithAggregatesFilter<"EmployeeCertification"> | Date | string | null
+    reviewedBy?: StringNullableWithAggregatesFilter<"EmployeeCertification"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"EmployeeCertification"> | Date | string
+  }
+
+  export type EmployeeCertificationAttachmentWhereInput = {
+    AND?: EmployeeCertificationAttachmentWhereInput | EmployeeCertificationAttachmentWhereInput[]
+    OR?: EmployeeCertificationAttachmentWhereInput[]
+    NOT?: EmployeeCertificationAttachmentWhereInput | EmployeeCertificationAttachmentWhereInput[]
+    id?: StringFilter<"EmployeeCertificationAttachment"> | string
+    employeeCertificationId?: StringFilter<"EmployeeCertificationAttachment"> | string
+    fileName?: StringFilter<"EmployeeCertificationAttachment"> | string
+    filePath?: StringFilter<"EmployeeCertificationAttachment"> | string
+    fileType?: StringNullableFilter<"EmployeeCertificationAttachment"> | string | null
+    fileSize?: IntNullableFilter<"EmployeeCertificationAttachment"> | number | null
+    createdAt?: DateTimeFilter<"EmployeeCertificationAttachment"> | Date | string
+    userInvitationId?: StringNullableFilter<"EmployeeCertificationAttachment"> | string | null
+    employeeCertification?: XOR<EmployeeCertificationScalarRelationFilter, EmployeeCertificationWhereInput>
+    userInvitation?: XOR<UserInvitationNullableScalarRelationFilter, UserInvitationWhereInput> | null
+  }
+
+  export type EmployeeCertificationAttachmentOrderByWithRelationInput = {
+    id?: SortOrder
+    employeeCertificationId?: SortOrder
+    fileName?: SortOrder
+    filePath?: SortOrder
+    fileType?: SortOrderInput | SortOrder
+    fileSize?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    userInvitationId?: SortOrderInput | SortOrder
+    employeeCertification?: EmployeeCertificationOrderByWithRelationInput
+    userInvitation?: UserInvitationOrderByWithRelationInput
+  }
+
+  export type EmployeeCertificationAttachmentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: EmployeeCertificationAttachmentWhereInput | EmployeeCertificationAttachmentWhereInput[]
+    OR?: EmployeeCertificationAttachmentWhereInput[]
+    NOT?: EmployeeCertificationAttachmentWhereInput | EmployeeCertificationAttachmentWhereInput[]
+    employeeCertificationId?: StringFilter<"EmployeeCertificationAttachment"> | string
+    fileName?: StringFilter<"EmployeeCertificationAttachment"> | string
+    filePath?: StringFilter<"EmployeeCertificationAttachment"> | string
+    fileType?: StringNullableFilter<"EmployeeCertificationAttachment"> | string | null
+    fileSize?: IntNullableFilter<"EmployeeCertificationAttachment"> | number | null
+    createdAt?: DateTimeFilter<"EmployeeCertificationAttachment"> | Date | string
+    userInvitationId?: StringNullableFilter<"EmployeeCertificationAttachment"> | string | null
+    employeeCertification?: XOR<EmployeeCertificationScalarRelationFilter, EmployeeCertificationWhereInput>
+    userInvitation?: XOR<UserInvitationNullableScalarRelationFilter, UserInvitationWhereInput> | null
+  }, "id">
+
+  export type EmployeeCertificationAttachmentOrderByWithAggregationInput = {
+    id?: SortOrder
+    employeeCertificationId?: SortOrder
+    fileName?: SortOrder
+    filePath?: SortOrder
+    fileType?: SortOrderInput | SortOrder
+    fileSize?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    userInvitationId?: SortOrderInput | SortOrder
+    _count?: EmployeeCertificationAttachmentCountOrderByAggregateInput
+    _avg?: EmployeeCertificationAttachmentAvgOrderByAggregateInput
+    _max?: EmployeeCertificationAttachmentMaxOrderByAggregateInput
+    _min?: EmployeeCertificationAttachmentMinOrderByAggregateInput
+    _sum?: EmployeeCertificationAttachmentSumOrderByAggregateInput
+  }
+
+  export type EmployeeCertificationAttachmentScalarWhereWithAggregatesInput = {
+    AND?: EmployeeCertificationAttachmentScalarWhereWithAggregatesInput | EmployeeCertificationAttachmentScalarWhereWithAggregatesInput[]
+    OR?: EmployeeCertificationAttachmentScalarWhereWithAggregatesInput[]
+    NOT?: EmployeeCertificationAttachmentScalarWhereWithAggregatesInput | EmployeeCertificationAttachmentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EmployeeCertificationAttachment"> | string
+    employeeCertificationId?: StringWithAggregatesFilter<"EmployeeCertificationAttachment"> | string
+    fileName?: StringWithAggregatesFilter<"EmployeeCertificationAttachment"> | string
+    filePath?: StringWithAggregatesFilter<"EmployeeCertificationAttachment"> | string
+    fileType?: StringNullableWithAggregatesFilter<"EmployeeCertificationAttachment"> | string | null
+    fileSize?: IntNullableWithAggregatesFilter<"EmployeeCertificationAttachment"> | number | null
+    createdAt?: DateTimeWithAggregatesFilter<"EmployeeCertificationAttachment"> | Date | string
+    userInvitationId?: StringNullableWithAggregatesFilter<"EmployeeCertificationAttachment"> | string | null
+  }
+
+  export type ProfileChangeRequestWhereInput = {
+    AND?: ProfileChangeRequestWhereInput | ProfileChangeRequestWhereInput[]
+    OR?: ProfileChangeRequestWhereInput[]
+    NOT?: ProfileChangeRequestWhereInput | ProfileChangeRequestWhereInput[]
+    id?: StringFilter<"ProfileChangeRequest"> | string
+    employeeId?: StringFilter<"ProfileChangeRequest"> | string
+    currentAddress?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    newAddress?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    currentPhoneNumber?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    newPhoneNumber?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    currentEmail?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    newEmail?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    currentEmergencyContact?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    newEmergencyContact?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    status?: EnumProfileChangeStatusFilter<"ProfileChangeRequest"> | $Enums.ProfileChangeStatus
+    reviewedAt?: DateTimeNullableFilter<"ProfileChangeRequest"> | Date | string | null
+    reviewedBy?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    createdAt?: DateTimeFilter<"ProfileChangeRequest"> | Date | string
+    updatedAt?: DateTimeFilter<"ProfileChangeRequest"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+  }
+
+  export type ProfileChangeRequestOrderByWithRelationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    currentAddress?: SortOrderInput | SortOrder
+    newAddress?: SortOrderInput | SortOrder
+    currentPhoneNumber?: SortOrderInput | SortOrder
+    newPhoneNumber?: SortOrderInput | SortOrder
+    currentEmail?: SortOrderInput | SortOrder
+    newEmail?: SortOrderInput | SortOrder
+    currentEmergencyContact?: SortOrderInput | SortOrder
+    newEmergencyContact?: SortOrderInput | SortOrder
+    status?: SortOrder
+    reviewedAt?: SortOrderInput | SortOrder
+    reviewedBy?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    employee?: EmployeeOrderByWithRelationInput
+  }
+
+  export type ProfileChangeRequestWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ProfileChangeRequestWhereInput | ProfileChangeRequestWhereInput[]
+    OR?: ProfileChangeRequestWhereInput[]
+    NOT?: ProfileChangeRequestWhereInput | ProfileChangeRequestWhereInput[]
+    employeeId?: StringFilter<"ProfileChangeRequest"> | string
+    currentAddress?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    newAddress?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    currentPhoneNumber?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    newPhoneNumber?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    currentEmail?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    newEmail?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    currentEmergencyContact?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    newEmergencyContact?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    status?: EnumProfileChangeStatusFilter<"ProfileChangeRequest"> | $Enums.ProfileChangeStatus
+    reviewedAt?: DateTimeNullableFilter<"ProfileChangeRequest"> | Date | string | null
+    reviewedBy?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    createdAt?: DateTimeFilter<"ProfileChangeRequest"> | Date | string
+    updatedAt?: DateTimeFilter<"ProfileChangeRequest"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+  }, "id">
+
+  export type ProfileChangeRequestOrderByWithAggregationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    currentAddress?: SortOrderInput | SortOrder
+    newAddress?: SortOrderInput | SortOrder
+    currentPhoneNumber?: SortOrderInput | SortOrder
+    newPhoneNumber?: SortOrderInput | SortOrder
+    currentEmail?: SortOrderInput | SortOrder
+    newEmail?: SortOrderInput | SortOrder
+    currentEmergencyContact?: SortOrderInput | SortOrder
+    newEmergencyContact?: SortOrderInput | SortOrder
+    status?: SortOrder
+    reviewedAt?: SortOrderInput | SortOrder
+    reviewedBy?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ProfileChangeRequestCountOrderByAggregateInput
+    _max?: ProfileChangeRequestMaxOrderByAggregateInput
+    _min?: ProfileChangeRequestMinOrderByAggregateInput
+  }
+
+  export type ProfileChangeRequestScalarWhereWithAggregatesInput = {
+    AND?: ProfileChangeRequestScalarWhereWithAggregatesInput | ProfileChangeRequestScalarWhereWithAggregatesInput[]
+    OR?: ProfileChangeRequestScalarWhereWithAggregatesInput[]
+    NOT?: ProfileChangeRequestScalarWhereWithAggregatesInput | ProfileChangeRequestScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ProfileChangeRequest"> | string
+    employeeId?: StringWithAggregatesFilter<"ProfileChangeRequest"> | string
+    currentAddress?: StringNullableWithAggregatesFilter<"ProfileChangeRequest"> | string | null
+    newAddress?: StringNullableWithAggregatesFilter<"ProfileChangeRequest"> | string | null
+    currentPhoneNumber?: StringNullableWithAggregatesFilter<"ProfileChangeRequest"> | string | null
+    newPhoneNumber?: StringNullableWithAggregatesFilter<"ProfileChangeRequest"> | string | null
+    currentEmail?: StringNullableWithAggregatesFilter<"ProfileChangeRequest"> | string | null
+    newEmail?: StringNullableWithAggregatesFilter<"ProfileChangeRequest"> | string | null
+    currentEmergencyContact?: StringNullableWithAggregatesFilter<"ProfileChangeRequest"> | string | null
+    newEmergencyContact?: StringNullableWithAggregatesFilter<"ProfileChangeRequest"> | string | null
+    status?: EnumProfileChangeStatusWithAggregatesFilter<"ProfileChangeRequest"> | $Enums.ProfileChangeStatus
+    reviewedAt?: DateTimeNullableWithAggregatesFilter<"ProfileChangeRequest"> | Date | string | null
+    reviewedBy?: StringNullableWithAggregatesFilter<"ProfileChangeRequest"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"ProfileChangeRequest"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ProfileChangeRequest"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -22518,6 +25614,7 @@ export namespace Prisma {
     createdUserId?: string | null
     createdEmployeeId?: string | null
     createdAt?: Date | string
+    attachments?: EmployeeCertificationAttachmentCreateNestedManyWithoutUserInvitationInput
   }
 
   export type UserInvitationUncheckedCreateInput = {
@@ -22534,6 +25631,7 @@ export namespace Prisma {
     createdUserId?: string | null
     createdEmployeeId?: string | null
     createdAt?: Date | string
+    attachments?: EmployeeCertificationAttachmentUncheckedCreateNestedManyWithoutUserInvitationInput
   }
 
   export type UserInvitationUpdateInput = {
@@ -22550,6 +25648,7 @@ export namespace Prisma {
     createdUserId?: NullableStringFieldUpdateOperationsInput | string | null
     createdEmployeeId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attachments?: EmployeeCertificationAttachmentUpdateManyWithoutUserInvitationNestedInput
   }
 
   export type UserInvitationUncheckedUpdateInput = {
@@ -22566,6 +25665,7 @@ export namespace Prisma {
     createdUserId?: NullableStringFieldUpdateOperationsInput | string | null
     createdEmployeeId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attachments?: EmployeeCertificationAttachmentUncheckedUpdateManyWithoutUserInvitationNestedInput
   }
 
   export type UserInvitationCreateManyInput = {
@@ -22673,6 +25773,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     phoneNumber?: string | null
     address?: string | null
+    emergencyContact?: string | null
     email: string
     occupation?: string | null
     position?: string | null
@@ -22694,6 +25795,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
   }
 
@@ -22708,6 +25810,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     phoneNumber?: string | null
     address?: string | null
+    emergencyContact?: string | null
     email: string
     departmentId?: string | null
     occupation?: string | null
@@ -22729,6 +25832,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
@@ -22743,6 +25847,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     occupation?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
@@ -22764,6 +25869,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
   }
 
@@ -22778,6 +25884,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
     occupation?: NullableStringFieldUpdateOperationsInput | string | null
@@ -22799,6 +25906,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
@@ -22813,6 +25921,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     phoneNumber?: string | null
     address?: string | null
+    emergencyContact?: string | null
     email: string
     departmentId?: string | null
     occupation?: string | null
@@ -22840,6 +25949,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     occupation?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
@@ -22865,6 +25975,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
     occupation?: NullableStringFieldUpdateOperationsInput | string | null
@@ -23664,9 +26775,13 @@ export namespace Prisma {
     id?: string
     acquiredDate?: Date | string | null
     expiryDate?: Date | string | null
+    status?: $Enums.CertificationStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
     createdAt?: Date | string
     employee: EmployeeCreateNestedOneWithoutCertificationsInput
     certification: CertificationCreateNestedOneWithoutEmployeeCertificationsInput
+    employeeCertificationAttachments?: EmployeeCertificationAttachmentCreateNestedManyWithoutEmployeeCertificationInput
   }
 
   export type EmployeeCertificationUncheckedCreateInput = {
@@ -23675,16 +26790,24 @@ export namespace Prisma {
     certificationId: string
     acquiredDate?: Date | string | null
     expiryDate?: Date | string | null
+    status?: $Enums.CertificationStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
     createdAt?: Date | string
+    employeeCertificationAttachments?: EmployeeCertificationAttachmentUncheckedCreateNestedManyWithoutEmployeeCertificationInput
   }
 
   export type EmployeeCertificationUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     acquiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employee?: EmployeeUpdateOneRequiredWithoutCertificationsNestedInput
     certification?: CertificationUpdateOneRequiredWithoutEmployeeCertificationsNestedInput
+    employeeCertificationAttachments?: EmployeeCertificationAttachmentUpdateManyWithoutEmployeeCertificationNestedInput
   }
 
   export type EmployeeCertificationUncheckedUpdateInput = {
@@ -23693,7 +26816,11 @@ export namespace Prisma {
     certificationId?: StringFieldUpdateOperationsInput | string
     acquiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employeeCertificationAttachments?: EmployeeCertificationAttachmentUncheckedUpdateManyWithoutEmployeeCertificationNestedInput
   }
 
   export type EmployeeCertificationCreateManyInput = {
@@ -23702,6 +26829,9 @@ export namespace Prisma {
     certificationId: string
     acquiredDate?: Date | string | null
     expiryDate?: Date | string | null
+    status?: $Enums.CertificationStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
     createdAt?: Date | string
   }
 
@@ -23709,6 +26839,9 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     acquiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -23718,7 +26851,210 @@ export namespace Prisma {
     certificationId?: StringFieldUpdateOperationsInput | string
     acquiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeCertificationAttachmentCreateInput = {
+    id?: string
+    fileName: string
+    filePath: string
+    fileType?: string | null
+    fileSize?: number | null
+    createdAt?: Date | string
+    employeeCertification: EmployeeCertificationCreateNestedOneWithoutEmployeeCertificationAttachmentsInput
+    userInvitation?: UserInvitationCreateNestedOneWithoutAttachmentsInput
+  }
+
+  export type EmployeeCertificationAttachmentUncheckedCreateInput = {
+    id?: string
+    employeeCertificationId: string
+    fileName: string
+    filePath: string
+    fileType?: string | null
+    fileSize?: number | null
+    createdAt?: Date | string
+    userInvitationId?: string | null
+  }
+
+  export type EmployeeCertificationAttachmentUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employeeCertification?: EmployeeCertificationUpdateOneRequiredWithoutEmployeeCertificationAttachmentsNestedInput
+    userInvitation?: UserInvitationUpdateOneWithoutAttachmentsNestedInput
+  }
+
+  export type EmployeeCertificationAttachmentUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeCertificationId?: StringFieldUpdateOperationsInput | string
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userInvitationId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EmployeeCertificationAttachmentCreateManyInput = {
+    id?: string
+    employeeCertificationId: string
+    fileName: string
+    filePath: string
+    fileType?: string | null
+    fileSize?: number | null
+    createdAt?: Date | string
+    userInvitationId?: string | null
+  }
+
+  export type EmployeeCertificationAttachmentUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeCertificationAttachmentUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeCertificationId?: StringFieldUpdateOperationsInput | string
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userInvitationId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ProfileChangeRequestCreateInput = {
+    id?: string
+    currentAddress?: string | null
+    newAddress?: string | null
+    currentPhoneNumber?: string | null
+    newPhoneNumber?: string | null
+    currentEmail?: string | null
+    newEmail?: string | null
+    currentEmergencyContact?: string | null
+    newEmergencyContact?: string | null
+    status?: $Enums.ProfileChangeStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutProfileChangeRequestsInput
+  }
+
+  export type ProfileChangeRequestUncheckedCreateInput = {
+    id?: string
+    employeeId: string
+    currentAddress?: string | null
+    newAddress?: string | null
+    currentPhoneNumber?: string | null
+    newPhoneNumber?: string | null
+    currentEmail?: string | null
+    newEmail?: string | null
+    currentEmergencyContact?: string | null
+    newEmergencyContact?: string | null
+    status?: $Enums.ProfileChangeStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProfileChangeRequestUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    currentAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    newAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    currentPhoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    newPhoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    currentEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    newEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    currentEmergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    newEmergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumProfileChangeStatusFieldUpdateOperationsInput | $Enums.ProfileChangeStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutProfileChangeRequestsNestedInput
+  }
+
+  export type ProfileChangeRequestUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    currentAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    newAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    currentPhoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    newPhoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    currentEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    newEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    currentEmergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    newEmergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumProfileChangeStatusFieldUpdateOperationsInput | $Enums.ProfileChangeStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProfileChangeRequestCreateManyInput = {
+    id?: string
+    employeeId: string
+    currentAddress?: string | null
+    newAddress?: string | null
+    currentPhoneNumber?: string | null
+    newPhoneNumber?: string | null
+    currentEmail?: string | null
+    newEmail?: string | null
+    currentEmergencyContact?: string | null
+    newEmergencyContact?: string | null
+    status?: $Enums.ProfileChangeStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProfileChangeRequestUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    currentAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    newAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    currentPhoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    newPhoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    currentEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    newEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    currentEmergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    newEmergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumProfileChangeStatusFieldUpdateOperationsInput | $Enums.ProfileChangeStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProfileChangeRequestUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    currentAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    newAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    currentPhoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    newPhoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    currentEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    newEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    currentEmergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    newEmergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumProfileChangeStatusFieldUpdateOperationsInput | $Enums.ProfileChangeStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -23880,9 +27216,19 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type EmployeeCertificationAttachmentListRelationFilter = {
+    every?: EmployeeCertificationAttachmentWhereInput
+    some?: EmployeeCertificationAttachmentWhereInput
+    none?: EmployeeCertificationAttachmentWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
+  }
+
+  export type EmployeeCertificationAttachmentOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type UserInvitationCountOrderByAggregateInput = {
@@ -24057,6 +27403,12 @@ export namespace Prisma {
     none?: LeaveGrantHistoryWhereInput
   }
 
+  export type ProfileChangeRequestListRelationFilter = {
+    every?: ProfileChangeRequestWhereInput
+    some?: ProfileChangeRequestWhereInput
+    none?: ProfileChangeRequestWhereInput
+  }
+
   export type EmployeeCertificationListRelationFilter = {
     every?: EmployeeCertificationWhereInput
     some?: EmployeeCertificationWhereInput
@@ -24075,6 +27427,10 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type ProfileChangeRequestOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type EmployeeCertificationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -24090,6 +27446,7 @@ export namespace Prisma {
     birthDate?: SortOrder
     phoneNumber?: SortOrder
     address?: SortOrder
+    emergencyContact?: SortOrder
     email?: SortOrder
     departmentId?: SortOrder
     occupation?: SortOrder
@@ -24117,6 +27474,7 @@ export namespace Prisma {
     birthDate?: SortOrder
     phoneNumber?: SortOrder
     address?: SortOrder
+    emergencyContact?: SortOrder
     email?: SortOrder
     departmentId?: SortOrder
     occupation?: SortOrder
@@ -24144,6 +27502,7 @@ export namespace Prisma {
     birthDate?: SortOrder
     phoneNumber?: SortOrder
     address?: SortOrder
+    emergencyContact?: SortOrder
     email?: SortOrder
     departmentId?: SortOrder
     occupation?: SortOrder
@@ -24849,6 +28208,13 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
+  export type EnumCertificationStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.CertificationStatus | EnumCertificationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.CertificationStatus[] | ListEnumCertificationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CertificationStatus[] | ListEnumCertificationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumCertificationStatusFilter<$PrismaModel> | $Enums.CertificationStatus
+  }
+
   export type CertificationScalarRelationFilter = {
     is?: CertificationWhereInput
     isNot?: CertificationWhereInput
@@ -24865,6 +28231,9 @@ export namespace Prisma {
     certificationId?: SortOrder
     acquiredDate?: SortOrder
     expiryDate?: SortOrder
+    status?: SortOrder
+    reviewedAt?: SortOrder
+    reviewedBy?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -24874,6 +28243,9 @@ export namespace Prisma {
     certificationId?: SortOrder
     acquiredDate?: SortOrder
     expiryDate?: SortOrder
+    status?: SortOrder
+    reviewedAt?: SortOrder
+    reviewedBy?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -24883,7 +28255,142 @@ export namespace Prisma {
     certificationId?: SortOrder
     acquiredDate?: SortOrder
     expiryDate?: SortOrder
+    status?: SortOrder
+    reviewedAt?: SortOrder
+    reviewedBy?: SortOrder
     createdAt?: SortOrder
+  }
+
+  export type EnumCertificationStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CertificationStatus | EnumCertificationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.CertificationStatus[] | ListEnumCertificationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CertificationStatus[] | ListEnumCertificationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumCertificationStatusWithAggregatesFilter<$PrismaModel> | $Enums.CertificationStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCertificationStatusFilter<$PrismaModel>
+    _max?: NestedEnumCertificationStatusFilter<$PrismaModel>
+  }
+
+  export type EmployeeCertificationScalarRelationFilter = {
+    is?: EmployeeCertificationWhereInput
+    isNot?: EmployeeCertificationWhereInput
+  }
+
+  export type UserInvitationNullableScalarRelationFilter = {
+    is?: UserInvitationWhereInput | null
+    isNot?: UserInvitationWhereInput | null
+  }
+
+  export type EmployeeCertificationAttachmentCountOrderByAggregateInput = {
+    id?: SortOrder
+    employeeCertificationId?: SortOrder
+    fileName?: SortOrder
+    filePath?: SortOrder
+    fileType?: SortOrder
+    fileSize?: SortOrder
+    createdAt?: SortOrder
+    userInvitationId?: SortOrder
+  }
+
+  export type EmployeeCertificationAttachmentAvgOrderByAggregateInput = {
+    fileSize?: SortOrder
+  }
+
+  export type EmployeeCertificationAttachmentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    employeeCertificationId?: SortOrder
+    fileName?: SortOrder
+    filePath?: SortOrder
+    fileType?: SortOrder
+    fileSize?: SortOrder
+    createdAt?: SortOrder
+    userInvitationId?: SortOrder
+  }
+
+  export type EmployeeCertificationAttachmentMinOrderByAggregateInput = {
+    id?: SortOrder
+    employeeCertificationId?: SortOrder
+    fileName?: SortOrder
+    filePath?: SortOrder
+    fileType?: SortOrder
+    fileSize?: SortOrder
+    createdAt?: SortOrder
+    userInvitationId?: SortOrder
+  }
+
+  export type EmployeeCertificationAttachmentSumOrderByAggregateInput = {
+    fileSize?: SortOrder
+  }
+
+  export type EnumProfileChangeStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProfileChangeStatus | EnumProfileChangeStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ProfileChangeStatus[] | ListEnumProfileChangeStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProfileChangeStatus[] | ListEnumProfileChangeStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumProfileChangeStatusFilter<$PrismaModel> | $Enums.ProfileChangeStatus
+  }
+
+  export type ProfileChangeRequestCountOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    currentAddress?: SortOrder
+    newAddress?: SortOrder
+    currentPhoneNumber?: SortOrder
+    newPhoneNumber?: SortOrder
+    currentEmail?: SortOrder
+    newEmail?: SortOrder
+    currentEmergencyContact?: SortOrder
+    newEmergencyContact?: SortOrder
+    status?: SortOrder
+    reviewedAt?: SortOrder
+    reviewedBy?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ProfileChangeRequestMaxOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    currentAddress?: SortOrder
+    newAddress?: SortOrder
+    currentPhoneNumber?: SortOrder
+    newPhoneNumber?: SortOrder
+    currentEmail?: SortOrder
+    newEmail?: SortOrder
+    currentEmergencyContact?: SortOrder
+    newEmergencyContact?: SortOrder
+    status?: SortOrder
+    reviewedAt?: SortOrder
+    reviewedBy?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ProfileChangeRequestMinOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    currentAddress?: SortOrder
+    newAddress?: SortOrder
+    currentPhoneNumber?: SortOrder
+    newPhoneNumber?: SortOrder
+    currentEmail?: SortOrder
+    newEmail?: SortOrder
+    currentEmergencyContact?: SortOrder
+    newEmergencyContact?: SortOrder
+    status?: SortOrder
+    reviewedAt?: SortOrder
+    reviewedBy?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumProfileChangeStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProfileChangeStatus | EnumProfileChangeStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ProfileChangeStatus[] | ListEnumProfileChangeStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProfileChangeStatus[] | ListEnumProfileChangeStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumProfileChangeStatusWithAggregatesFilter<$PrismaModel> | $Enums.ProfileChangeStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumProfileChangeStatusFilter<$PrismaModel>
+    _max?: NestedEnumProfileChangeStatusFilter<$PrismaModel>
   }
 
   export type EmployeeRequestCreateNestedManyWithoutUserInput = {
@@ -24976,12 +28483,54 @@ export namespace Prisma {
     update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutUserInput, EmployeeUpdateWithoutUserInput>, EmployeeUncheckedUpdateWithoutUserInput>
   }
 
+  export type EmployeeCertificationAttachmentCreateNestedManyWithoutUserInvitationInput = {
+    create?: XOR<EmployeeCertificationAttachmentCreateWithoutUserInvitationInput, EmployeeCertificationAttachmentUncheckedCreateWithoutUserInvitationInput> | EmployeeCertificationAttachmentCreateWithoutUserInvitationInput[] | EmployeeCertificationAttachmentUncheckedCreateWithoutUserInvitationInput[]
+    connectOrCreate?: EmployeeCertificationAttachmentCreateOrConnectWithoutUserInvitationInput | EmployeeCertificationAttachmentCreateOrConnectWithoutUserInvitationInput[]
+    createMany?: EmployeeCertificationAttachmentCreateManyUserInvitationInputEnvelope
+    connect?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+  }
+
+  export type EmployeeCertificationAttachmentUncheckedCreateNestedManyWithoutUserInvitationInput = {
+    create?: XOR<EmployeeCertificationAttachmentCreateWithoutUserInvitationInput, EmployeeCertificationAttachmentUncheckedCreateWithoutUserInvitationInput> | EmployeeCertificationAttachmentCreateWithoutUserInvitationInput[] | EmployeeCertificationAttachmentUncheckedCreateWithoutUserInvitationInput[]
+    connectOrCreate?: EmployeeCertificationAttachmentCreateOrConnectWithoutUserInvitationInput | EmployeeCertificationAttachmentCreateOrConnectWithoutUserInvitationInput[]
+    createMany?: EmployeeCertificationAttachmentCreateManyUserInvitationInputEnvelope
+    connect?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+  }
+
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type EmployeeCertificationAttachmentUpdateManyWithoutUserInvitationNestedInput = {
+    create?: XOR<EmployeeCertificationAttachmentCreateWithoutUserInvitationInput, EmployeeCertificationAttachmentUncheckedCreateWithoutUserInvitationInput> | EmployeeCertificationAttachmentCreateWithoutUserInvitationInput[] | EmployeeCertificationAttachmentUncheckedCreateWithoutUserInvitationInput[]
+    connectOrCreate?: EmployeeCertificationAttachmentCreateOrConnectWithoutUserInvitationInput | EmployeeCertificationAttachmentCreateOrConnectWithoutUserInvitationInput[]
+    upsert?: EmployeeCertificationAttachmentUpsertWithWhereUniqueWithoutUserInvitationInput | EmployeeCertificationAttachmentUpsertWithWhereUniqueWithoutUserInvitationInput[]
+    createMany?: EmployeeCertificationAttachmentCreateManyUserInvitationInputEnvelope
+    set?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+    disconnect?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+    delete?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+    connect?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+    update?: EmployeeCertificationAttachmentUpdateWithWhereUniqueWithoutUserInvitationInput | EmployeeCertificationAttachmentUpdateWithWhereUniqueWithoutUserInvitationInput[]
+    updateMany?: EmployeeCertificationAttachmentUpdateManyWithWhereWithoutUserInvitationInput | EmployeeCertificationAttachmentUpdateManyWithWhereWithoutUserInvitationInput[]
+    deleteMany?: EmployeeCertificationAttachmentScalarWhereInput | EmployeeCertificationAttachmentScalarWhereInput[]
+  }
+
+  export type EmployeeCertificationAttachmentUncheckedUpdateManyWithoutUserInvitationNestedInput = {
+    create?: XOR<EmployeeCertificationAttachmentCreateWithoutUserInvitationInput, EmployeeCertificationAttachmentUncheckedCreateWithoutUserInvitationInput> | EmployeeCertificationAttachmentCreateWithoutUserInvitationInput[] | EmployeeCertificationAttachmentUncheckedCreateWithoutUserInvitationInput[]
+    connectOrCreate?: EmployeeCertificationAttachmentCreateOrConnectWithoutUserInvitationInput | EmployeeCertificationAttachmentCreateOrConnectWithoutUserInvitationInput[]
+    upsert?: EmployeeCertificationAttachmentUpsertWithWhereUniqueWithoutUserInvitationInput | EmployeeCertificationAttachmentUpsertWithWhereUniqueWithoutUserInvitationInput[]
+    createMany?: EmployeeCertificationAttachmentCreateManyUserInvitationInputEnvelope
+    set?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+    disconnect?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+    delete?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+    connect?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+    update?: EmployeeCertificationAttachmentUpdateWithWhereUniqueWithoutUserInvitationInput | EmployeeCertificationAttachmentUpdateWithWhereUniqueWithoutUserInvitationInput[]
+    updateMany?: EmployeeCertificationAttachmentUpdateManyWithWhereWithoutUserInvitationInput | EmployeeCertificationAttachmentUpdateManyWithWhereWithoutUserInvitationInput[]
+    deleteMany?: EmployeeCertificationAttachmentScalarWhereInput | EmployeeCertificationAttachmentScalarWhereInput[]
   }
 
   export type EmployeeCreateNestedManyWithoutDepartmentInput = {
@@ -25084,6 +28633,13 @@ export namespace Prisma {
     connect?: LeaveGrantHistoryWhereUniqueInput | LeaveGrantHistoryWhereUniqueInput[]
   }
 
+  export type ProfileChangeRequestCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<ProfileChangeRequestCreateWithoutEmployeeInput, ProfileChangeRequestUncheckedCreateWithoutEmployeeInput> | ProfileChangeRequestCreateWithoutEmployeeInput[] | ProfileChangeRequestUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: ProfileChangeRequestCreateOrConnectWithoutEmployeeInput | ProfileChangeRequestCreateOrConnectWithoutEmployeeInput[]
+    createMany?: ProfileChangeRequestCreateManyEmployeeInputEnvelope
+    connect?: ProfileChangeRequestWhereUniqueInput | ProfileChangeRequestWhereUniqueInput[]
+  }
+
   export type EmployeeCertificationCreateNestedManyWithoutEmployeeInput = {
     create?: XOR<EmployeeCertificationCreateWithoutEmployeeInput, EmployeeCertificationUncheckedCreateWithoutEmployeeInput> | EmployeeCertificationCreateWithoutEmployeeInput[] | EmployeeCertificationUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutEmployeeInput | EmployeeCertificationCreateOrConnectWithoutEmployeeInput[]
@@ -25135,6 +28691,13 @@ export namespace Prisma {
     connectOrCreate?: LeaveGrantHistoryCreateOrConnectWithoutEmployeeInput | LeaveGrantHistoryCreateOrConnectWithoutEmployeeInput[]
     createMany?: LeaveGrantHistoryCreateManyEmployeeInputEnvelope
     connect?: LeaveGrantHistoryWhereUniqueInput | LeaveGrantHistoryWhereUniqueInput[]
+  }
+
+  export type ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<ProfileChangeRequestCreateWithoutEmployeeInput, ProfileChangeRequestUncheckedCreateWithoutEmployeeInput> | ProfileChangeRequestCreateWithoutEmployeeInput[] | ProfileChangeRequestUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: ProfileChangeRequestCreateOrConnectWithoutEmployeeInput | ProfileChangeRequestCreateOrConnectWithoutEmployeeInput[]
+    createMany?: ProfileChangeRequestCreateManyEmployeeInputEnvelope
+    connect?: ProfileChangeRequestWhereUniqueInput | ProfileChangeRequestWhereUniqueInput[]
   }
 
   export type EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput = {
@@ -25262,6 +28825,20 @@ export namespace Prisma {
     deleteMany?: LeaveGrantHistoryScalarWhereInput | LeaveGrantHistoryScalarWhereInput[]
   }
 
+  export type ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<ProfileChangeRequestCreateWithoutEmployeeInput, ProfileChangeRequestUncheckedCreateWithoutEmployeeInput> | ProfileChangeRequestCreateWithoutEmployeeInput[] | ProfileChangeRequestUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: ProfileChangeRequestCreateOrConnectWithoutEmployeeInput | ProfileChangeRequestCreateOrConnectWithoutEmployeeInput[]
+    upsert?: ProfileChangeRequestUpsertWithWhereUniqueWithoutEmployeeInput | ProfileChangeRequestUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: ProfileChangeRequestCreateManyEmployeeInputEnvelope
+    set?: ProfileChangeRequestWhereUniqueInput | ProfileChangeRequestWhereUniqueInput[]
+    disconnect?: ProfileChangeRequestWhereUniqueInput | ProfileChangeRequestWhereUniqueInput[]
+    delete?: ProfileChangeRequestWhereUniqueInput | ProfileChangeRequestWhereUniqueInput[]
+    connect?: ProfileChangeRequestWhereUniqueInput | ProfileChangeRequestWhereUniqueInput[]
+    update?: ProfileChangeRequestUpdateWithWhereUniqueWithoutEmployeeInput | ProfileChangeRequestUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: ProfileChangeRequestUpdateManyWithWhereWithoutEmployeeInput | ProfileChangeRequestUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: ProfileChangeRequestScalarWhereInput | ProfileChangeRequestScalarWhereInput[]
+  }
+
   export type EmployeeCertificationUpdateManyWithoutEmployeeNestedInput = {
     create?: XOR<EmployeeCertificationCreateWithoutEmployeeInput, EmployeeCertificationUncheckedCreateWithoutEmployeeInput> | EmployeeCertificationCreateWithoutEmployeeInput[] | EmployeeCertificationUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutEmployeeInput | EmployeeCertificationCreateOrConnectWithoutEmployeeInput[]
@@ -25360,6 +28937,20 @@ export namespace Prisma {
     update?: LeaveGrantHistoryUpdateWithWhereUniqueWithoutEmployeeInput | LeaveGrantHistoryUpdateWithWhereUniqueWithoutEmployeeInput[]
     updateMany?: LeaveGrantHistoryUpdateManyWithWhereWithoutEmployeeInput | LeaveGrantHistoryUpdateManyWithWhereWithoutEmployeeInput[]
     deleteMany?: LeaveGrantHistoryScalarWhereInput | LeaveGrantHistoryScalarWhereInput[]
+  }
+
+  export type ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<ProfileChangeRequestCreateWithoutEmployeeInput, ProfileChangeRequestUncheckedCreateWithoutEmployeeInput> | ProfileChangeRequestCreateWithoutEmployeeInput[] | ProfileChangeRequestUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: ProfileChangeRequestCreateOrConnectWithoutEmployeeInput | ProfileChangeRequestCreateOrConnectWithoutEmployeeInput[]
+    upsert?: ProfileChangeRequestUpsertWithWhereUniqueWithoutEmployeeInput | ProfileChangeRequestUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: ProfileChangeRequestCreateManyEmployeeInputEnvelope
+    set?: ProfileChangeRequestWhereUniqueInput | ProfileChangeRequestWhereUniqueInput[]
+    disconnect?: ProfileChangeRequestWhereUniqueInput | ProfileChangeRequestWhereUniqueInput[]
+    delete?: ProfileChangeRequestWhereUniqueInput | ProfileChangeRequestWhereUniqueInput[]
+    connect?: ProfileChangeRequestWhereUniqueInput | ProfileChangeRequestWhereUniqueInput[]
+    update?: ProfileChangeRequestUpdateWithWhereUniqueWithoutEmployeeInput | ProfileChangeRequestUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: ProfileChangeRequestUpdateManyWithWhereWithoutEmployeeInput | ProfileChangeRequestUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: ProfileChangeRequestScalarWhereInput | ProfileChangeRequestScalarWhereInput[]
   }
 
   export type EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput = {
@@ -25710,6 +29301,24 @@ export namespace Prisma {
     connect?: CertificationWhereUniqueInput
   }
 
+  export type EmployeeCertificationAttachmentCreateNestedManyWithoutEmployeeCertificationInput = {
+    create?: XOR<EmployeeCertificationAttachmentCreateWithoutEmployeeCertificationInput, EmployeeCertificationAttachmentUncheckedCreateWithoutEmployeeCertificationInput> | EmployeeCertificationAttachmentCreateWithoutEmployeeCertificationInput[] | EmployeeCertificationAttachmentUncheckedCreateWithoutEmployeeCertificationInput[]
+    connectOrCreate?: EmployeeCertificationAttachmentCreateOrConnectWithoutEmployeeCertificationInput | EmployeeCertificationAttachmentCreateOrConnectWithoutEmployeeCertificationInput[]
+    createMany?: EmployeeCertificationAttachmentCreateManyEmployeeCertificationInputEnvelope
+    connect?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+  }
+
+  export type EmployeeCertificationAttachmentUncheckedCreateNestedManyWithoutEmployeeCertificationInput = {
+    create?: XOR<EmployeeCertificationAttachmentCreateWithoutEmployeeCertificationInput, EmployeeCertificationAttachmentUncheckedCreateWithoutEmployeeCertificationInput> | EmployeeCertificationAttachmentCreateWithoutEmployeeCertificationInput[] | EmployeeCertificationAttachmentUncheckedCreateWithoutEmployeeCertificationInput[]
+    connectOrCreate?: EmployeeCertificationAttachmentCreateOrConnectWithoutEmployeeCertificationInput | EmployeeCertificationAttachmentCreateOrConnectWithoutEmployeeCertificationInput[]
+    createMany?: EmployeeCertificationAttachmentCreateManyEmployeeCertificationInputEnvelope
+    connect?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+  }
+
+  export type EnumCertificationStatusFieldUpdateOperationsInput = {
+    set?: $Enums.CertificationStatus
+  }
+
   export type EmployeeUpdateOneRequiredWithoutCertificationsNestedInput = {
     create?: XOR<EmployeeCreateWithoutCertificationsInput, EmployeeUncheckedCreateWithoutCertificationsInput>
     connectOrCreate?: EmployeeCreateOrConnectWithoutCertificationsInput
@@ -25724,6 +29333,82 @@ export namespace Prisma {
     upsert?: CertificationUpsertWithoutEmployeeCertificationsInput
     connect?: CertificationWhereUniqueInput
     update?: XOR<XOR<CertificationUpdateToOneWithWhereWithoutEmployeeCertificationsInput, CertificationUpdateWithoutEmployeeCertificationsInput>, CertificationUncheckedUpdateWithoutEmployeeCertificationsInput>
+  }
+
+  export type EmployeeCertificationAttachmentUpdateManyWithoutEmployeeCertificationNestedInput = {
+    create?: XOR<EmployeeCertificationAttachmentCreateWithoutEmployeeCertificationInput, EmployeeCertificationAttachmentUncheckedCreateWithoutEmployeeCertificationInput> | EmployeeCertificationAttachmentCreateWithoutEmployeeCertificationInput[] | EmployeeCertificationAttachmentUncheckedCreateWithoutEmployeeCertificationInput[]
+    connectOrCreate?: EmployeeCertificationAttachmentCreateOrConnectWithoutEmployeeCertificationInput | EmployeeCertificationAttachmentCreateOrConnectWithoutEmployeeCertificationInput[]
+    upsert?: EmployeeCertificationAttachmentUpsertWithWhereUniqueWithoutEmployeeCertificationInput | EmployeeCertificationAttachmentUpsertWithWhereUniqueWithoutEmployeeCertificationInput[]
+    createMany?: EmployeeCertificationAttachmentCreateManyEmployeeCertificationInputEnvelope
+    set?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+    disconnect?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+    delete?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+    connect?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+    update?: EmployeeCertificationAttachmentUpdateWithWhereUniqueWithoutEmployeeCertificationInput | EmployeeCertificationAttachmentUpdateWithWhereUniqueWithoutEmployeeCertificationInput[]
+    updateMany?: EmployeeCertificationAttachmentUpdateManyWithWhereWithoutEmployeeCertificationInput | EmployeeCertificationAttachmentUpdateManyWithWhereWithoutEmployeeCertificationInput[]
+    deleteMany?: EmployeeCertificationAttachmentScalarWhereInput | EmployeeCertificationAttachmentScalarWhereInput[]
+  }
+
+  export type EmployeeCertificationAttachmentUncheckedUpdateManyWithoutEmployeeCertificationNestedInput = {
+    create?: XOR<EmployeeCertificationAttachmentCreateWithoutEmployeeCertificationInput, EmployeeCertificationAttachmentUncheckedCreateWithoutEmployeeCertificationInput> | EmployeeCertificationAttachmentCreateWithoutEmployeeCertificationInput[] | EmployeeCertificationAttachmentUncheckedCreateWithoutEmployeeCertificationInput[]
+    connectOrCreate?: EmployeeCertificationAttachmentCreateOrConnectWithoutEmployeeCertificationInput | EmployeeCertificationAttachmentCreateOrConnectWithoutEmployeeCertificationInput[]
+    upsert?: EmployeeCertificationAttachmentUpsertWithWhereUniqueWithoutEmployeeCertificationInput | EmployeeCertificationAttachmentUpsertWithWhereUniqueWithoutEmployeeCertificationInput[]
+    createMany?: EmployeeCertificationAttachmentCreateManyEmployeeCertificationInputEnvelope
+    set?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+    disconnect?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+    delete?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+    connect?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+    update?: EmployeeCertificationAttachmentUpdateWithWhereUniqueWithoutEmployeeCertificationInput | EmployeeCertificationAttachmentUpdateWithWhereUniqueWithoutEmployeeCertificationInput[]
+    updateMany?: EmployeeCertificationAttachmentUpdateManyWithWhereWithoutEmployeeCertificationInput | EmployeeCertificationAttachmentUpdateManyWithWhereWithoutEmployeeCertificationInput[]
+    deleteMany?: EmployeeCertificationAttachmentScalarWhereInput | EmployeeCertificationAttachmentScalarWhereInput[]
+  }
+
+  export type EmployeeCertificationCreateNestedOneWithoutEmployeeCertificationAttachmentsInput = {
+    create?: XOR<EmployeeCertificationCreateWithoutEmployeeCertificationAttachmentsInput, EmployeeCertificationUncheckedCreateWithoutEmployeeCertificationAttachmentsInput>
+    connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutEmployeeCertificationAttachmentsInput
+    connect?: EmployeeCertificationWhereUniqueInput
+  }
+
+  export type UserInvitationCreateNestedOneWithoutAttachmentsInput = {
+    create?: XOR<UserInvitationCreateWithoutAttachmentsInput, UserInvitationUncheckedCreateWithoutAttachmentsInput>
+    connectOrCreate?: UserInvitationCreateOrConnectWithoutAttachmentsInput
+    connect?: UserInvitationWhereUniqueInput
+  }
+
+  export type EmployeeCertificationUpdateOneRequiredWithoutEmployeeCertificationAttachmentsNestedInput = {
+    create?: XOR<EmployeeCertificationCreateWithoutEmployeeCertificationAttachmentsInput, EmployeeCertificationUncheckedCreateWithoutEmployeeCertificationAttachmentsInput>
+    connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutEmployeeCertificationAttachmentsInput
+    upsert?: EmployeeCertificationUpsertWithoutEmployeeCertificationAttachmentsInput
+    connect?: EmployeeCertificationWhereUniqueInput
+    update?: XOR<XOR<EmployeeCertificationUpdateToOneWithWhereWithoutEmployeeCertificationAttachmentsInput, EmployeeCertificationUpdateWithoutEmployeeCertificationAttachmentsInput>, EmployeeCertificationUncheckedUpdateWithoutEmployeeCertificationAttachmentsInput>
+  }
+
+  export type UserInvitationUpdateOneWithoutAttachmentsNestedInput = {
+    create?: XOR<UserInvitationCreateWithoutAttachmentsInput, UserInvitationUncheckedCreateWithoutAttachmentsInput>
+    connectOrCreate?: UserInvitationCreateOrConnectWithoutAttachmentsInput
+    upsert?: UserInvitationUpsertWithoutAttachmentsInput
+    disconnect?: UserInvitationWhereInput | boolean
+    delete?: UserInvitationWhereInput | boolean
+    connect?: UserInvitationWhereUniqueInput
+    update?: XOR<XOR<UserInvitationUpdateToOneWithWhereWithoutAttachmentsInput, UserInvitationUpdateWithoutAttachmentsInput>, UserInvitationUncheckedUpdateWithoutAttachmentsInput>
+  }
+
+  export type EmployeeCreateNestedOneWithoutProfileChangeRequestsInput = {
+    create?: XOR<EmployeeCreateWithoutProfileChangeRequestsInput, EmployeeUncheckedCreateWithoutProfileChangeRequestsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutProfileChangeRequestsInput
+    connect?: EmployeeWhereUniqueInput
+  }
+
+  export type EnumProfileChangeStatusFieldUpdateOperationsInput = {
+    set?: $Enums.ProfileChangeStatus
+  }
+
+  export type EmployeeUpdateOneRequiredWithoutProfileChangeRequestsNestedInput = {
+    create?: XOR<EmployeeCreateWithoutProfileChangeRequestsInput, EmployeeUncheckedCreateWithoutProfileChangeRequestsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutProfileChangeRequestsInput
+    upsert?: EmployeeUpsertWithoutProfileChangeRequestsInput
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutProfileChangeRequestsInput, EmployeeUpdateWithoutProfileChangeRequestsInput>, EmployeeUncheckedUpdateWithoutProfileChangeRequestsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -26135,6 +29820,40 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
+  export type NestedEnumCertificationStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.CertificationStatus | EnumCertificationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.CertificationStatus[] | ListEnumCertificationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CertificationStatus[] | ListEnumCertificationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumCertificationStatusFilter<$PrismaModel> | $Enums.CertificationStatus
+  }
+
+  export type NestedEnumCertificationStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CertificationStatus | EnumCertificationStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.CertificationStatus[] | ListEnumCertificationStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CertificationStatus[] | ListEnumCertificationStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumCertificationStatusWithAggregatesFilter<$PrismaModel> | $Enums.CertificationStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCertificationStatusFilter<$PrismaModel>
+    _max?: NestedEnumCertificationStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumProfileChangeStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProfileChangeStatus | EnumProfileChangeStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ProfileChangeStatus[] | ListEnumProfileChangeStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProfileChangeStatus[] | ListEnumProfileChangeStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumProfileChangeStatusFilter<$PrismaModel> | $Enums.ProfileChangeStatus
+  }
+
+  export type NestedEnumProfileChangeStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ProfileChangeStatus | EnumProfileChangeStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.ProfileChangeStatus[] | ListEnumProfileChangeStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ProfileChangeStatus[] | ListEnumProfileChangeStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumProfileChangeStatusWithAggregatesFilter<$PrismaModel> | $Enums.ProfileChangeStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumProfileChangeStatusFilter<$PrismaModel>
+    _max?: NestedEnumProfileChangeStatusFilter<$PrismaModel>
+  }
+
   export type EmployeeRequestCreateWithoutUserInput = {
     id?: string
     title: string
@@ -26190,6 +29909,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     phoneNumber?: string | null
     address?: string | null
+    emergencyContact?: string | null
     email: string
     occupation?: string | null
     position?: string | null
@@ -26210,6 +29930,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
   }
 
@@ -26224,6 +29945,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     phoneNumber?: string | null
     address?: string | null
+    emergencyContact?: string | null
     email: string
     departmentId?: string | null
     occupation?: string | null
@@ -26244,6 +29966,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
@@ -26309,6 +30032,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     occupation?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
@@ -26329,6 +30053,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
   }
 
@@ -26343,6 +30068,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
     occupation?: NullableStringFieldUpdateOperationsInput | string | null
@@ -26363,7 +30089,68 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeCertificationAttachmentCreateWithoutUserInvitationInput = {
+    id?: string
+    fileName: string
+    filePath: string
+    fileType?: string | null
+    fileSize?: number | null
+    createdAt?: Date | string
+    employeeCertification: EmployeeCertificationCreateNestedOneWithoutEmployeeCertificationAttachmentsInput
+  }
+
+  export type EmployeeCertificationAttachmentUncheckedCreateWithoutUserInvitationInput = {
+    id?: string
+    employeeCertificationId: string
+    fileName: string
+    filePath: string
+    fileType?: string | null
+    fileSize?: number | null
+    createdAt?: Date | string
+  }
+
+  export type EmployeeCertificationAttachmentCreateOrConnectWithoutUserInvitationInput = {
+    where: EmployeeCertificationAttachmentWhereUniqueInput
+    create: XOR<EmployeeCertificationAttachmentCreateWithoutUserInvitationInput, EmployeeCertificationAttachmentUncheckedCreateWithoutUserInvitationInput>
+  }
+
+  export type EmployeeCertificationAttachmentCreateManyUserInvitationInputEnvelope = {
+    data: EmployeeCertificationAttachmentCreateManyUserInvitationInput | EmployeeCertificationAttachmentCreateManyUserInvitationInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EmployeeCertificationAttachmentUpsertWithWhereUniqueWithoutUserInvitationInput = {
+    where: EmployeeCertificationAttachmentWhereUniqueInput
+    update: XOR<EmployeeCertificationAttachmentUpdateWithoutUserInvitationInput, EmployeeCertificationAttachmentUncheckedUpdateWithoutUserInvitationInput>
+    create: XOR<EmployeeCertificationAttachmentCreateWithoutUserInvitationInput, EmployeeCertificationAttachmentUncheckedCreateWithoutUserInvitationInput>
+  }
+
+  export type EmployeeCertificationAttachmentUpdateWithWhereUniqueWithoutUserInvitationInput = {
+    where: EmployeeCertificationAttachmentWhereUniqueInput
+    data: XOR<EmployeeCertificationAttachmentUpdateWithoutUserInvitationInput, EmployeeCertificationAttachmentUncheckedUpdateWithoutUserInvitationInput>
+  }
+
+  export type EmployeeCertificationAttachmentUpdateManyWithWhereWithoutUserInvitationInput = {
+    where: EmployeeCertificationAttachmentScalarWhereInput
+    data: XOR<EmployeeCertificationAttachmentUpdateManyMutationInput, EmployeeCertificationAttachmentUncheckedUpdateManyWithoutUserInvitationInput>
+  }
+
+  export type EmployeeCertificationAttachmentScalarWhereInput = {
+    AND?: EmployeeCertificationAttachmentScalarWhereInput | EmployeeCertificationAttachmentScalarWhereInput[]
+    OR?: EmployeeCertificationAttachmentScalarWhereInput[]
+    NOT?: EmployeeCertificationAttachmentScalarWhereInput | EmployeeCertificationAttachmentScalarWhereInput[]
+    id?: StringFilter<"EmployeeCertificationAttachment"> | string
+    employeeCertificationId?: StringFilter<"EmployeeCertificationAttachment"> | string
+    fileName?: StringFilter<"EmployeeCertificationAttachment"> | string
+    filePath?: StringFilter<"EmployeeCertificationAttachment"> | string
+    fileType?: StringNullableFilter<"EmployeeCertificationAttachment"> | string | null
+    fileSize?: IntNullableFilter<"EmployeeCertificationAttachment"> | number | null
+    createdAt?: DateTimeFilter<"EmployeeCertificationAttachment"> | Date | string
+    userInvitationId?: StringNullableFilter<"EmployeeCertificationAttachment"> | string | null
   }
 
   export type EmployeeCreateWithoutDepartmentInput = {
@@ -26377,6 +30164,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     phoneNumber?: string | null
     address?: string | null
+    emergencyContact?: string | null
     email: string
     occupation?: string | null
     position?: string | null
@@ -26397,6 +30185,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
   }
 
@@ -26411,6 +30200,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     phoneNumber?: string | null
     address?: string | null
+    emergencyContact?: string | null
     email: string
     occupation?: string | null
     position?: string | null
@@ -26431,6 +30221,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
@@ -26474,6 +30265,7 @@ export namespace Prisma {
     birthDate?: DateTimeNullableFilter<"Employee"> | Date | string | null
     phoneNumber?: StringNullableFilter<"Employee"> | string | null
     address?: StringNullableFilter<"Employee"> | string | null
+    emergencyContact?: StringNullableFilter<"Employee"> | string | null
     email?: StringFilter<"Employee"> | string
     departmentId?: StringNullableFilter<"Employee"> | string | null
     occupation?: StringNullableFilter<"Employee"> | string | null
@@ -26725,12 +30517,60 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ProfileChangeRequestCreateWithoutEmployeeInput = {
+    id?: string
+    currentAddress?: string | null
+    newAddress?: string | null
+    currentPhoneNumber?: string | null
+    newPhoneNumber?: string | null
+    currentEmail?: string | null
+    newEmail?: string | null
+    currentEmergencyContact?: string | null
+    newEmergencyContact?: string | null
+    status?: $Enums.ProfileChangeStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProfileChangeRequestUncheckedCreateWithoutEmployeeInput = {
+    id?: string
+    currentAddress?: string | null
+    newAddress?: string | null
+    currentPhoneNumber?: string | null
+    newPhoneNumber?: string | null
+    currentEmail?: string | null
+    newEmail?: string | null
+    currentEmergencyContact?: string | null
+    newEmergencyContact?: string | null
+    status?: $Enums.ProfileChangeStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ProfileChangeRequestCreateOrConnectWithoutEmployeeInput = {
+    where: ProfileChangeRequestWhereUniqueInput
+    create: XOR<ProfileChangeRequestCreateWithoutEmployeeInput, ProfileChangeRequestUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type ProfileChangeRequestCreateManyEmployeeInputEnvelope = {
+    data: ProfileChangeRequestCreateManyEmployeeInput | ProfileChangeRequestCreateManyEmployeeInput[]
+    skipDuplicates?: boolean
+  }
+
   export type EmployeeCertificationCreateWithoutEmployeeInput = {
     id?: string
     acquiredDate?: Date | string | null
     expiryDate?: Date | string | null
+    status?: $Enums.CertificationStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
     createdAt?: Date | string
     certification: CertificationCreateNestedOneWithoutEmployeeCertificationsInput
+    employeeCertificationAttachments?: EmployeeCertificationAttachmentCreateNestedManyWithoutEmployeeCertificationInput
   }
 
   export type EmployeeCertificationUncheckedCreateWithoutEmployeeInput = {
@@ -26738,7 +30578,11 @@ export namespace Prisma {
     certificationId: string
     acquiredDate?: Date | string | null
     expiryDate?: Date | string | null
+    status?: $Enums.CertificationStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
     createdAt?: Date | string
+    employeeCertificationAttachments?: EmployeeCertificationAttachmentUncheckedCreateNestedManyWithoutEmployeeCertificationInput
   }
 
   export type EmployeeCertificationCreateOrConnectWithoutEmployeeInput = {
@@ -26992,6 +30836,43 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"LeaveGrantHistory"> | Date | string
   }
 
+  export type ProfileChangeRequestUpsertWithWhereUniqueWithoutEmployeeInput = {
+    where: ProfileChangeRequestWhereUniqueInput
+    update: XOR<ProfileChangeRequestUpdateWithoutEmployeeInput, ProfileChangeRequestUncheckedUpdateWithoutEmployeeInput>
+    create: XOR<ProfileChangeRequestCreateWithoutEmployeeInput, ProfileChangeRequestUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type ProfileChangeRequestUpdateWithWhereUniqueWithoutEmployeeInput = {
+    where: ProfileChangeRequestWhereUniqueInput
+    data: XOR<ProfileChangeRequestUpdateWithoutEmployeeInput, ProfileChangeRequestUncheckedUpdateWithoutEmployeeInput>
+  }
+
+  export type ProfileChangeRequestUpdateManyWithWhereWithoutEmployeeInput = {
+    where: ProfileChangeRequestScalarWhereInput
+    data: XOR<ProfileChangeRequestUpdateManyMutationInput, ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeInput>
+  }
+
+  export type ProfileChangeRequestScalarWhereInput = {
+    AND?: ProfileChangeRequestScalarWhereInput | ProfileChangeRequestScalarWhereInput[]
+    OR?: ProfileChangeRequestScalarWhereInput[]
+    NOT?: ProfileChangeRequestScalarWhereInput | ProfileChangeRequestScalarWhereInput[]
+    id?: StringFilter<"ProfileChangeRequest"> | string
+    employeeId?: StringFilter<"ProfileChangeRequest"> | string
+    currentAddress?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    newAddress?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    currentPhoneNumber?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    newPhoneNumber?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    currentEmail?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    newEmail?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    currentEmergencyContact?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    newEmergencyContact?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    status?: EnumProfileChangeStatusFilter<"ProfileChangeRequest"> | $Enums.ProfileChangeStatus
+    reviewedAt?: DateTimeNullableFilter<"ProfileChangeRequest"> | Date | string | null
+    reviewedBy?: StringNullableFilter<"ProfileChangeRequest"> | string | null
+    createdAt?: DateTimeFilter<"ProfileChangeRequest"> | Date | string
+    updatedAt?: DateTimeFilter<"ProfileChangeRequest"> | Date | string
+  }
+
   export type EmployeeCertificationUpsertWithWhereUniqueWithoutEmployeeInput = {
     where: EmployeeCertificationWhereUniqueInput
     update: XOR<EmployeeCertificationUpdateWithoutEmployeeInput, EmployeeCertificationUncheckedUpdateWithoutEmployeeInput>
@@ -27017,6 +30898,9 @@ export namespace Prisma {
     certificationId?: StringFilter<"EmployeeCertification"> | string
     acquiredDate?: DateTimeNullableFilter<"EmployeeCertification"> | Date | string | null
     expiryDate?: DateTimeNullableFilter<"EmployeeCertification"> | Date | string | null
+    status?: EnumCertificationStatusFilter<"EmployeeCertification"> | $Enums.CertificationStatus
+    reviewedAt?: DateTimeNullableFilter<"EmployeeCertification"> | Date | string | null
+    reviewedBy?: StringNullableFilter<"EmployeeCertification"> | string | null
     createdAt?: DateTimeFilter<"EmployeeCertification"> | Date | string
   }
 
@@ -27031,6 +30915,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     phoneNumber?: string | null
     address?: string | null
+    emergencyContact?: string | null
     email: string
     occupation?: string | null
     position?: string | null
@@ -27051,6 +30936,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
   }
 
@@ -27065,6 +30951,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     phoneNumber?: string | null
     address?: string | null
+    emergencyContact?: string | null
     email: string
     departmentId?: string | null
     occupation?: string | null
@@ -27085,6 +30972,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
@@ -27115,6 +31003,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     occupation?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27135,6 +31024,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
   }
 
@@ -27149,6 +31039,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
     occupation?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27169,6 +31060,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
@@ -27183,6 +31075,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     phoneNumber?: string | null
     address?: string | null
+    emergencyContact?: string | null
     email: string
     occupation?: string | null
     position?: string | null
@@ -27203,6 +31096,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
   }
 
@@ -27217,6 +31111,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     phoneNumber?: string | null
     address?: string | null
+    emergencyContact?: string | null
     email: string
     departmentId?: string | null
     occupation?: string | null
@@ -27237,6 +31132,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
@@ -27267,6 +31163,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     occupation?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27287,6 +31184,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
   }
 
@@ -27301,6 +31199,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
     occupation?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27321,6 +31220,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
@@ -27335,6 +31235,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     phoneNumber?: string | null
     address?: string | null
+    emergencyContact?: string | null
     email: string
     occupation?: string | null
     position?: string | null
@@ -27355,6 +31256,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
   }
 
@@ -27369,6 +31271,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     phoneNumber?: string | null
     address?: string | null
+    emergencyContact?: string | null
     email: string
     departmentId?: string | null
     occupation?: string | null
@@ -27389,6 +31292,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
@@ -27419,6 +31323,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     occupation?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27439,6 +31344,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
   }
 
@@ -27453,6 +31359,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
     occupation?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27473,6 +31380,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
@@ -27487,6 +31395,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     phoneNumber?: string | null
     address?: string | null
+    emergencyContact?: string | null
     email: string
     occupation?: string | null
     position?: string | null
@@ -27507,6 +31416,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
   }
 
@@ -27521,6 +31431,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     phoneNumber?: string | null
     address?: string | null
+    emergencyContact?: string | null
     email: string
     departmentId?: string | null
     occupation?: string | null
@@ -27541,6 +31452,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
@@ -27571,6 +31483,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     occupation?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27591,6 +31504,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
   }
 
@@ -27605,6 +31519,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
     occupation?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27625,6 +31540,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
@@ -27639,6 +31555,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     phoneNumber?: string | null
     address?: string | null
+    emergencyContact?: string | null
     email: string
     occupation?: string | null
     position?: string | null
@@ -27659,6 +31576,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
   }
 
@@ -27673,6 +31591,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     phoneNumber?: string | null
     address?: string | null
+    emergencyContact?: string | null
     email: string
     departmentId?: string | null
     occupation?: string | null
@@ -27693,6 +31612,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
@@ -27723,6 +31643,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     occupation?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27743,6 +31664,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
   }
 
@@ -27757,6 +31679,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
     occupation?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27777,6 +31700,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
@@ -27791,6 +31715,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     phoneNumber?: string | null
     address?: string | null
+    emergencyContact?: string | null
     email: string
     occupation?: string | null
     position?: string | null
@@ -27811,6 +31736,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
   }
 
@@ -27825,6 +31751,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     phoneNumber?: string | null
     address?: string | null
+    emergencyContact?: string | null
     email: string
     departmentId?: string | null
     occupation?: string | null
@@ -27845,6 +31772,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
@@ -27875,6 +31803,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     occupation?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27895,6 +31824,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
   }
 
@@ -27909,6 +31839,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
     occupation?: NullableStringFieldUpdateOperationsInput | string | null
@@ -27929,6 +31860,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
@@ -27970,6 +31902,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     phoneNumber?: string | null
     address?: string | null
+    emergencyContact?: string | null
     email: string
     occupation?: string | null
     position?: string | null
@@ -27990,6 +31923,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
   }
 
@@ -28004,6 +31938,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     phoneNumber?: string | null
     address?: string | null
+    emergencyContact?: string | null
     email: string
     departmentId?: string | null
     occupation?: string | null
@@ -28024,6 +31959,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
@@ -28141,6 +32077,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     occupation?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28161,6 +32098,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
   }
 
@@ -28175,6 +32113,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
     occupation?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28195,6 +32134,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
@@ -28427,8 +32367,12 @@ export namespace Prisma {
     id?: string
     acquiredDate?: Date | string | null
     expiryDate?: Date | string | null
+    status?: $Enums.CertificationStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
     createdAt?: Date | string
     employee: EmployeeCreateNestedOneWithoutCertificationsInput
+    employeeCertificationAttachments?: EmployeeCertificationAttachmentCreateNestedManyWithoutEmployeeCertificationInput
   }
 
   export type EmployeeCertificationUncheckedCreateWithoutCertificationInput = {
@@ -28436,7 +32380,11 @@ export namespace Prisma {
     employeeId: string
     acquiredDate?: Date | string | null
     expiryDate?: Date | string | null
+    status?: $Enums.CertificationStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
     createdAt?: Date | string
+    employeeCertificationAttachments?: EmployeeCertificationAttachmentUncheckedCreateNestedManyWithoutEmployeeCertificationInput
   }
 
   export type EmployeeCertificationCreateOrConnectWithoutCertificationInput = {
@@ -28476,6 +32424,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     phoneNumber?: string | null
     address?: string | null
+    emergencyContact?: string | null
     email: string
     occupation?: string | null
     position?: string | null
@@ -28497,6 +32446,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutCertificationsInput = {
@@ -28510,6 +32460,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     phoneNumber?: string | null
     address?: string | null
+    emergencyContact?: string | null
     email: string
     departmentId?: string | null
     occupation?: string | null
@@ -28531,6 +32482,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutCertificationsInput = {
@@ -28555,6 +32507,36 @@ export namespace Prisma {
     create: XOR<CertificationCreateWithoutEmployeeCertificationsInput, CertificationUncheckedCreateWithoutEmployeeCertificationsInput>
   }
 
+  export type EmployeeCertificationAttachmentCreateWithoutEmployeeCertificationInput = {
+    id?: string
+    fileName: string
+    filePath: string
+    fileType?: string | null
+    fileSize?: number | null
+    createdAt?: Date | string
+    userInvitation?: UserInvitationCreateNestedOneWithoutAttachmentsInput
+  }
+
+  export type EmployeeCertificationAttachmentUncheckedCreateWithoutEmployeeCertificationInput = {
+    id?: string
+    fileName: string
+    filePath: string
+    fileType?: string | null
+    fileSize?: number | null
+    createdAt?: Date | string
+    userInvitationId?: string | null
+  }
+
+  export type EmployeeCertificationAttachmentCreateOrConnectWithoutEmployeeCertificationInput = {
+    where: EmployeeCertificationAttachmentWhereUniqueInput
+    create: XOR<EmployeeCertificationAttachmentCreateWithoutEmployeeCertificationInput, EmployeeCertificationAttachmentUncheckedCreateWithoutEmployeeCertificationInput>
+  }
+
+  export type EmployeeCertificationAttachmentCreateManyEmployeeCertificationInputEnvelope = {
+    data: EmployeeCertificationAttachmentCreateManyEmployeeCertificationInput | EmployeeCertificationAttachmentCreateManyEmployeeCertificationInput[]
+    skipDuplicates?: boolean
+  }
+
   export type EmployeeUpsertWithoutCertificationsInput = {
     update: XOR<EmployeeUpdateWithoutCertificationsInput, EmployeeUncheckedUpdateWithoutCertificationsInput>
     create: XOR<EmployeeCreateWithoutCertificationsInput, EmployeeUncheckedCreateWithoutCertificationsInput>
@@ -28577,6 +32559,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     occupation?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28598,6 +32581,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutCertificationsInput = {
@@ -28611,6 +32595,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
     occupation?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28632,6 +32617,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type CertificationUpsertWithoutEmployeeCertificationsInput = {
@@ -28655,6 +32641,326 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeCertificationAttachmentUpsertWithWhereUniqueWithoutEmployeeCertificationInput = {
+    where: EmployeeCertificationAttachmentWhereUniqueInput
+    update: XOR<EmployeeCertificationAttachmentUpdateWithoutEmployeeCertificationInput, EmployeeCertificationAttachmentUncheckedUpdateWithoutEmployeeCertificationInput>
+    create: XOR<EmployeeCertificationAttachmentCreateWithoutEmployeeCertificationInput, EmployeeCertificationAttachmentUncheckedCreateWithoutEmployeeCertificationInput>
+  }
+
+  export type EmployeeCertificationAttachmentUpdateWithWhereUniqueWithoutEmployeeCertificationInput = {
+    where: EmployeeCertificationAttachmentWhereUniqueInput
+    data: XOR<EmployeeCertificationAttachmentUpdateWithoutEmployeeCertificationInput, EmployeeCertificationAttachmentUncheckedUpdateWithoutEmployeeCertificationInput>
+  }
+
+  export type EmployeeCertificationAttachmentUpdateManyWithWhereWithoutEmployeeCertificationInput = {
+    where: EmployeeCertificationAttachmentScalarWhereInput
+    data: XOR<EmployeeCertificationAttachmentUpdateManyMutationInput, EmployeeCertificationAttachmentUncheckedUpdateManyWithoutEmployeeCertificationInput>
+  }
+
+  export type EmployeeCertificationCreateWithoutEmployeeCertificationAttachmentsInput = {
+    id?: string
+    acquiredDate?: Date | string | null
+    expiryDate?: Date | string | null
+    status?: $Enums.CertificationStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
+    createdAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutCertificationsInput
+    certification: CertificationCreateNestedOneWithoutEmployeeCertificationsInput
+  }
+
+  export type EmployeeCertificationUncheckedCreateWithoutEmployeeCertificationAttachmentsInput = {
+    id?: string
+    employeeId: string
+    certificationId: string
+    acquiredDate?: Date | string | null
+    expiryDate?: Date | string | null
+    status?: $Enums.CertificationStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmployeeCertificationCreateOrConnectWithoutEmployeeCertificationAttachmentsInput = {
+    where: EmployeeCertificationWhereUniqueInput
+    create: XOR<EmployeeCertificationCreateWithoutEmployeeCertificationAttachmentsInput, EmployeeCertificationUncheckedCreateWithoutEmployeeCertificationAttachmentsInput>
+  }
+
+  export type UserInvitationCreateWithoutAttachmentsInput = {
+    id?: string
+    employeeNo: string
+    lastName: string
+    firstName: string
+    email: string
+    token: string
+    expectedHireDate?: Date | string | null
+    expiresAt: Date | string
+    acceptedAt?: Date | string | null
+    cancelledAt?: Date | string | null
+    createdUserId?: string | null
+    createdEmployeeId?: string | null
+    createdAt?: Date | string
+  }
+
+  export type UserInvitationUncheckedCreateWithoutAttachmentsInput = {
+    id?: string
+    employeeNo: string
+    lastName: string
+    firstName: string
+    email: string
+    token: string
+    expectedHireDate?: Date | string | null
+    expiresAt: Date | string
+    acceptedAt?: Date | string | null
+    cancelledAt?: Date | string | null
+    createdUserId?: string | null
+    createdEmployeeId?: string | null
+    createdAt?: Date | string
+  }
+
+  export type UserInvitationCreateOrConnectWithoutAttachmentsInput = {
+    where: UserInvitationWhereUniqueInput
+    create: XOR<UserInvitationCreateWithoutAttachmentsInput, UserInvitationUncheckedCreateWithoutAttachmentsInput>
+  }
+
+  export type EmployeeCertificationUpsertWithoutEmployeeCertificationAttachmentsInput = {
+    update: XOR<EmployeeCertificationUpdateWithoutEmployeeCertificationAttachmentsInput, EmployeeCertificationUncheckedUpdateWithoutEmployeeCertificationAttachmentsInput>
+    create: XOR<EmployeeCertificationCreateWithoutEmployeeCertificationAttachmentsInput, EmployeeCertificationUncheckedCreateWithoutEmployeeCertificationAttachmentsInput>
+    where?: EmployeeCertificationWhereInput
+  }
+
+  export type EmployeeCertificationUpdateToOneWithWhereWithoutEmployeeCertificationAttachmentsInput = {
+    where?: EmployeeCertificationWhereInput
+    data: XOR<EmployeeCertificationUpdateWithoutEmployeeCertificationAttachmentsInput, EmployeeCertificationUncheckedUpdateWithoutEmployeeCertificationAttachmentsInput>
+  }
+
+  export type EmployeeCertificationUpdateWithoutEmployeeCertificationAttachmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    acquiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutCertificationsNestedInput
+    certification?: CertificationUpdateOneRequiredWithoutEmployeeCertificationsNestedInput
+  }
+
+  export type EmployeeCertificationUncheckedUpdateWithoutEmployeeCertificationAttachmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    certificationId?: StringFieldUpdateOperationsInput | string
+    acquiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserInvitationUpsertWithoutAttachmentsInput = {
+    update: XOR<UserInvitationUpdateWithoutAttachmentsInput, UserInvitationUncheckedUpdateWithoutAttachmentsInput>
+    create: XOR<UserInvitationCreateWithoutAttachmentsInput, UserInvitationUncheckedCreateWithoutAttachmentsInput>
+    where?: UserInvitationWhereInput
+  }
+
+  export type UserInvitationUpdateToOneWithWhereWithoutAttachmentsInput = {
+    where?: UserInvitationWhereInput
+    data: XOR<UserInvitationUpdateWithoutAttachmentsInput, UserInvitationUncheckedUpdateWithoutAttachmentsInput>
+  }
+
+  export type UserInvitationUpdateWithoutAttachmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expectedHireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    acceptedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdEmployeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserInvitationUncheckedUpdateWithoutAttachmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    token?: StringFieldUpdateOperationsInput | string
+    expectedHireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    acceptedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdUserId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdEmployeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeCreateWithoutProfileChangeRequestsInput = {
+    id?: string
+    employeeNo: string
+    lastName: string
+    firstName: string
+    lastNameKana?: string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    birthDate?: Date | string | null
+    phoneNumber?: string | null
+    address?: string | null
+    emergencyContact?: string | null
+    email: string
+    occupation?: string | null
+    position?: string | null
+    hireDate?: Date | string | null
+    employmentType?: $Enums.EmploymentType | null
+    commutingType?: string | null
+    status?: $Enums.EmployeeStatus
+    retirementDate?: Date | string | null
+    healthInsuranceNo?: string | null
+    employmentInsuranceNo?: string | null
+    photoPath?: string | null
+    createdAt?: Date | string
+    department?: DepartmentCreateNestedOneWithoutEmployeesInput
+    user?: UserCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeUncheckedCreateWithoutProfileChangeRequestsInput = {
+    id?: string
+    employeeNo: string
+    lastName: string
+    firstName: string
+    lastNameKana?: string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    birthDate?: Date | string | null
+    phoneNumber?: string | null
+    address?: string | null
+    emergencyContact?: string | null
+    email: string
+    departmentId?: string | null
+    occupation?: string | null
+    position?: string | null
+    hireDate?: Date | string | null
+    employmentType?: $Enums.EmploymentType | null
+    commutingType?: string | null
+    status?: $Enums.EmployeeStatus
+    retirementDate?: Date | string | null
+    healthInsuranceNo?: string | null
+    employmentInsuranceNo?: string | null
+    photoPath?: string | null
+    userId?: string | null
+    createdAt?: Date | string
+    requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeCreateOrConnectWithoutProfileChangeRequestsInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutProfileChangeRequestsInput, EmployeeUncheckedCreateWithoutProfileChangeRequestsInput>
+  }
+
+  export type EmployeeUpsertWithoutProfileChangeRequestsInput = {
+    update: XOR<EmployeeUpdateWithoutProfileChangeRequestsInput, EmployeeUncheckedUpdateWithoutProfileChangeRequestsInput>
+    create: XOR<EmployeeCreateWithoutProfileChangeRequestsInput, EmployeeUncheckedCreateWithoutProfileChangeRequestsInput>
+    where?: EmployeeWhereInput
+  }
+
+  export type EmployeeUpdateToOneWithWhereWithoutProfileChangeRequestsInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutProfileChangeRequestsInput, EmployeeUncheckedUpdateWithoutProfileChangeRequestsInput>
+  }
+
+  export type EmployeeUpdateWithoutProfileChangeRequestsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    department?: DepartmentUpdateOneWithoutEmployeesNestedInput
+    user?: UserUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateWithoutProfileChangeRequestsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeRequestCreateManyUserInput = {
@@ -28721,6 +33027,46 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type EmployeeCertificationAttachmentCreateManyUserInvitationInput = {
+    id?: string
+    employeeCertificationId: string
+    fileName: string
+    filePath: string
+    fileType?: string | null
+    fileSize?: number | null
+    createdAt?: Date | string
+  }
+
+  export type EmployeeCertificationAttachmentUpdateWithoutUserInvitationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employeeCertification?: EmployeeCertificationUpdateOneRequiredWithoutEmployeeCertificationAttachmentsNestedInput
+  }
+
+  export type EmployeeCertificationAttachmentUncheckedUpdateWithoutUserInvitationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeCertificationId?: StringFieldUpdateOperationsInput | string
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeCertificationAttachmentUncheckedUpdateManyWithoutUserInvitationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeCertificationId?: StringFieldUpdateOperationsInput | string
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type EmployeeCreateManyDepartmentInput = {
     id?: string
     employeeNo: string
@@ -28732,6 +33078,7 @@ export namespace Prisma {
     birthDate?: Date | string | null
     phoneNumber?: string | null
     address?: string | null
+    emergencyContact?: string | null
     email: string
     occupation?: string | null
     position?: string | null
@@ -28758,6 +33105,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     occupation?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28778,6 +33126,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
   }
 
@@ -28792,6 +33141,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     occupation?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28812,6 +33162,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
@@ -28826,6 +33177,7 @@ export namespace Prisma {
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     occupation?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableStringFieldUpdateOperationsInput | string | null
@@ -28882,11 +33234,31 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
+  export type ProfileChangeRequestCreateManyEmployeeInput = {
+    id?: string
+    currentAddress?: string | null
+    newAddress?: string | null
+    currentPhoneNumber?: string | null
+    newPhoneNumber?: string | null
+    currentEmail?: string | null
+    newEmail?: string | null
+    currentEmergencyContact?: string | null
+    newEmergencyContact?: string | null
+    status?: $Enums.ProfileChangeStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type EmployeeCertificationCreateManyEmployeeInput = {
     id?: string
     certificationId: string
     acquiredDate?: Date | string | null
     expiryDate?: Date | string | null
+    status?: $Enums.CertificationStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
     createdAt?: Date | string
   }
 
@@ -29017,12 +33389,67 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ProfileChangeRequestUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    currentAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    newAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    currentPhoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    newPhoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    currentEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    newEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    currentEmergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    newEmergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumProfileChangeStatusFieldUpdateOperationsInput | $Enums.ProfileChangeStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProfileChangeRequestUncheckedUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    currentAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    newAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    currentPhoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    newPhoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    currentEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    newEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    currentEmergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    newEmergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumProfileChangeStatusFieldUpdateOperationsInput | $Enums.ProfileChangeStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    currentAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    newAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    currentPhoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    newPhoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    currentEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    newEmail?: NullableStringFieldUpdateOperationsInput | string | null
+    currentEmergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    newEmergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumProfileChangeStatusFieldUpdateOperationsInput | $Enums.ProfileChangeStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type EmployeeCertificationUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
     acquiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     certification?: CertificationUpdateOneRequiredWithoutEmployeeCertificationsNestedInput
+    employeeCertificationAttachments?: EmployeeCertificationAttachmentUpdateManyWithoutEmployeeCertificationNestedInput
   }
 
   export type EmployeeCertificationUncheckedUpdateWithoutEmployeeInput = {
@@ -29030,7 +33457,11 @@ export namespace Prisma {
     certificationId?: StringFieldUpdateOperationsInput | string
     acquiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employeeCertificationAttachments?: EmployeeCertificationAttachmentUncheckedUpdateManyWithoutEmployeeCertificationNestedInput
   }
 
   export type EmployeeCertificationUncheckedUpdateManyWithoutEmployeeInput = {
@@ -29038,6 +33469,9 @@ export namespace Prisma {
     certificationId?: StringFieldUpdateOperationsInput | string
     acquiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -29114,6 +33548,9 @@ export namespace Prisma {
     employeeId: string
     acquiredDate?: Date | string | null
     expiryDate?: Date | string | null
+    status?: $Enums.CertificationStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
     createdAt?: Date | string
   }
 
@@ -29121,8 +33558,12 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     acquiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employee?: EmployeeUpdateOneRequiredWithoutCertificationsNestedInput
+    employeeCertificationAttachments?: EmployeeCertificationAttachmentUpdateManyWithoutEmployeeCertificationNestedInput
   }
 
   export type EmployeeCertificationUncheckedUpdateWithoutCertificationInput = {
@@ -29130,7 +33571,11 @@ export namespace Prisma {
     employeeId?: StringFieldUpdateOperationsInput | string
     acquiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employeeCertificationAttachments?: EmployeeCertificationAttachmentUncheckedUpdateManyWithoutEmployeeCertificationNestedInput
   }
 
   export type EmployeeCertificationUncheckedUpdateManyWithoutCertificationInput = {
@@ -29138,7 +33583,50 @@ export namespace Prisma {
     employeeId?: StringFieldUpdateOperationsInput | string
     acquiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeCertificationAttachmentCreateManyEmployeeCertificationInput = {
+    id?: string
+    fileName: string
+    filePath: string
+    fileType?: string | null
+    fileSize?: number | null
+    createdAt?: Date | string
+    userInvitationId?: string | null
+  }
+
+  export type EmployeeCertificationAttachmentUpdateWithoutEmployeeCertificationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userInvitation?: UserInvitationUpdateOneWithoutAttachmentsNestedInput
+  }
+
+  export type EmployeeCertificationAttachmentUncheckedUpdateWithoutEmployeeCertificationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userInvitationId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EmployeeCertificationAttachmentUncheckedUpdateManyWithoutEmployeeCertificationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userInvitationId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

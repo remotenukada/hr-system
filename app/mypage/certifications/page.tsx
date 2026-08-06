@@ -1,19 +1,11 @@
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { randomUUID } from "crypto";
 import path from "path";
 import { mkdir, writeFile, unlink } from "fs/promises";
-import { prisma } from "../../../../lib/prisma";
-
-type Props = {
-  params: Promise<{
-    id: string;
-  }>;
-  searchParams: Promise<{
-    error?: string;
-  }>;
-};
+import { auth } from "@/auth";
+import { prisma } from "@/lib/prisma";
 
 const allowedFileTypes = [
   "application/pdf",
@@ -27,16 +19,16 @@ function formatDate(date: Date | null) {
   return date.toLocaleDateString("ja-JP");
 }
 
-export default async function EmployeeCertificationsPage({
-  params,
-  searchParams,
-}: Props) {
-  const { id } = await params;
-  const { error } = await searchParams;
+async function getCurrentEmployee() {
+  const session = await auth();
+
+  if (!session?.user?.id) {
+    redirect("/login");
+  }
 
   const employee = await prisma.employee.findUnique({
     where: {
-      id,
+      userId: session.user.id,
     },
     include: {
       certifications: {
@@ -56,8 +48,14 @@ export default async function EmployeeCertificationsPage({
   });
 
   if (!employee) {
-    notFound();
+    redirect("/mypage");
   }
+
+  return employee;
+}
+
+export default async function MyCertificationsPage() {
+  const employee = await getCurrentEmployee();
 
   const certifications = await prisma.certification.findMany({
     orderBy: {
@@ -65,10 +63,12 @@ export default async function EmployeeCertificationsPage({
     },
   });
 
-  async function addEmployeeCertification(formData: FormData) {
+  async function addMyCertification(formData: FormData) {
     "use server";
 
-    const certificationId = String(
+    const currentEmployee = await getCurrentEmployee();
+
+    const selectedCertificationId = String(
       formData.get("certificationId") ?? "",
     ).trim();
 
@@ -84,11 +84,11 @@ export default async function EmployeeCertificationsPage({
       formData.get("expiryDate") ?? "",
     );
 
-    if (!certificationId && !newCertificationName) {
-      redirect(`/employees/${id}/certifications?error=required`);
+    if (!selectedCertificationId && !newCertificationName) {
+      redirect("/mypage/certifications?error=required");
     }
 
-    let targetCertificationId = certificationId;
+    let targetCertificationId = selectedCertificationId;
 
     if (newCertificationName) {
       const certification = await prisma.certification.upsert({
@@ -108,14 +108,14 @@ export default async function EmployeeCertificationsPage({
       await prisma.employeeCertification.findUnique({
         where: {
           employeeId_certificationId: {
-            employeeId: id,
+            employeeId: currentEmployee.id,
             certificationId: targetCertificationId,
           },
         },
       });
 
     if (existing) {
-      redirect(`/employees/${id}/certifications?error=duplicate`);
+      redirect("/mypage/certifications?error=duplicate");
     }
 
     const files = formData.getAll("certificateFiles");
@@ -133,11 +133,11 @@ export default async function EmployeeCertificationsPage({
       }
 
       if (!allowedFileTypes.includes(file.type)) {
-        redirect(`/employees/${id}/certifications?error=invalidFile`);
+        redirect("/mypage/certifications?error=invalidFile");
       }
 
       if (file.size > 5 * 1024 * 1024) {
-        redirect(`/employees/${id}/certifications?error=fileTooLarge`);
+        redirect("/mypage/certifications?error=fileTooLarge");
       }
 
       const extension =
@@ -156,7 +156,7 @@ export default async function EmployeeCertificationsPage({
       });
 
       const storedFileName =
-        `${id}-${targetCertificationId}-${randomUUID()}${extension}`;
+        `${currentEmployee.id}-${targetCertificationId}-${randomUUID()}${extension}`;
 
       const filePath = path.join(uploadDir, storedFileName);
 
@@ -173,7 +173,7 @@ export default async function EmployeeCertificationsPage({
 
     await prisma.employeeCertification.create({
       data: {
-        employeeId: id,
+        employeeId: currentEmployee.id,
         certificationId: targetCertificationId,
         acquiredDate: acquiredDateRaw
           ? new Date(`${acquiredDateRaw}T00:00:00`)
@@ -190,45 +190,49 @@ export default async function EmployeeCertificationsPage({
       },
     });
 
-    revalidatePath(`/employees/${id}`);
-    revalidatePath(`/employees/${id}/certifications`);
+    revalidatePath("/mypage");
+    revalidatePath("/mypage/certifications");
 
-    redirect(`/employees/${id}/certifications`);
+    redirect("/mypage/certifications");
   }
 
-  async function deleteEmployeeCertification(formData: FormData) {
+  async function deleteMyCertification(formData: FormData) {
     "use server";
+
+    const currentEmployee = await getCurrentEmployee();
 
     const employeeCertificationId = String(
       formData.get("employeeCertificationId") ?? "",
     ).trim();
 
     if (!employeeCertificationId) {
-      redirect(`/employees/${id}/certifications`);
+      redirect("/mypage/certifications");
     }
 
     await prisma.employeeCertification.deleteMany({
       where: {
         id: employeeCertificationId,
-        employeeId: id,
+        employeeId: currentEmployee.id,
       },
     });
 
-    revalidatePath(`/employees/${id}`);
-    revalidatePath(`/employees/${id}/certifications`);
+    revalidatePath("/mypage");
+    revalidatePath("/mypage/certifications");
 
-    redirect(`/employees/${id}/certifications`);
+    redirect("/mypage/certifications");
   }
 
-  async function deleteEmployeeCertificationAttachment(formData: FormData) {
+  async function deleteMyCertificationAttachment(formData: FormData) {
     "use server";
+
+    const currentEmployee = await getCurrentEmployee();
 
     const attachmentId = String(
       formData.get("attachmentId") ?? "",
     ).trim();
 
     if (!attachmentId) {
-      redirect(`/employees/${id}/certifications`);
+      redirect("/mypage/certifications");
     }
 
     const attachment =
@@ -236,13 +240,13 @@ export default async function EmployeeCertificationsPage({
         where: {
           id: attachmentId,
           employeeCertification: {
-            employeeId: id,
+            employeeId: currentEmployee.id,
           },
         },
       });
 
     if (!attachment) {
-      redirect(`/employees/${id}/certifications`);
+      redirect("/mypage/certifications");
     }
 
     await prisma.employeeCertificationAttachment.delete({
@@ -252,86 +256,55 @@ export default async function EmployeeCertificationsPage({
     });
 
     if (attachment.filePath.startsWith("/uploads/certifications/")) {
-      const relativePath = attachment.filePath.replace(/^\//, "");
       const absolutePath = path.join(
         process.cwd(),
         "public",
-        relativePath,
+        attachment.filePath,
       );
 
       await unlink(absolutePath).catch(() => undefined);
     }
 
-    revalidatePath(`/employees/${id}`);
-    revalidatePath(`/employees/${id}/certifications`);
+    revalidatePath("/mypage");
+    revalidatePath("/mypage/certifications");
 
-    redirect(`/employees/${id}/certifications`);
+    redirect("/mypage/certifications");
   }
 
   return (
-    <main className="p-8">
+    <main className="mx-auto max-w-5xl p-8">
       <div className="mb-6">
-        <Link
-          href={`/employees/${employee.id}`}
-          className="text-sm text-blue-600 hover:underline"
-        >
-          ← 職員詳細へ戻る
+        <Link href="/mypage" className="text-sm text-blue-600 hover:underline">
+          ← マイページへ戻る
         </Link>
 
         <h1 className="mt-2 text-3xl font-bold">
-          職員資格管理
+          自分の資格・免許証
         </h1>
 
         <p className="mt-1 text-sm text-gray-500">
-          {employee.lastName} {employee.firstName} さんの保有資格を管理します。
+          保有資格の登録、資格証・免許証ファイルの添付ができます。
         </p>
       </div>
-
-      {error === "required" && (
-        <div className="mb-4 max-w-xl rounded border border-red-300 bg-red-50 p-3 text-sm text-red-700">
-          資格を選択するか、新しい資格名を入力してください。
-        </div>
-      )}
-
-      {error === "duplicate" && (
-        <div className="mb-4 max-w-xl rounded border border-red-300 bg-red-50 p-3 text-sm text-red-700">
-          この資格は既に登録されています。
-        </div>
-      )}
-
-      {error === "invalidFile" && (
-        <div className="mb-4 max-w-xl rounded border border-red-300 bg-red-50 p-3 text-sm text-red-700">
-          添付できるファイルは PDF、JPG、PNG、WebP のみです。
-        </div>
-      )}
-
-      {error === "fileTooLarge" && (
-        <div className="mb-4 max-w-xl rounded border border-red-300 bg-red-50 p-3 text-sm text-red-700">
-          添付ファイルは1ファイルあたり5MB以下にしてください。
-        </div>
-      )}
 
       <section className="mb-8 max-w-xl rounded border bg-white p-6">
         <h2 className="mb-4 text-xl font-bold">
           資格を追加
         </h2>
 
-        <form action={addEmployeeCertification} className="space-y-4">
+        <form action={addMyCertification} className="space-y-4">
           <div>
             <label className="mb-1 block text-sm font-medium">
-              既存資格から選択
+              資格を選択
             </label>
 
             <select
               name="certificationId"
               className="w-full rounded border p-2"
             >
-              <option value="">既存の資格を選択</option>
+              <option value="">選択してください</option>
               {certifications.map((certification) => (
-                <option
-                  key={certification.id}
-                  value={certification.id}
-                >
+                <option key={certification.id} value={certification.id}>
                   {certification.name}
                 </option>
               ))}
@@ -340,15 +313,18 @@ export default async function EmployeeCertificationsPage({
 
           <div>
             <label className="mb-1 block text-sm font-medium">
-              または 新しい資格名を入力
+              または新しい資格名を入力
             </label>
 
             <input
-              type="text"
               name="newCertificationName"
-              placeholder="リストにない場合は入力してください"
               className="w-full rounded border p-2"
+              placeholder="例: 認知症ケア専門士"
             />
+
+            <p className="mt-1 text-xs text-gray-500">
+              入力した場合は、プルダウンよりこちらを優先します。
+            </p>
           </div>
 
           <div>
@@ -397,14 +373,14 @@ export default async function EmployeeCertificationsPage({
             type="submit"
             className="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
           >
-            追加
+            登録
           </button>
         </form>
       </section>
 
       <section>
         <h2 className="mb-4 text-xl font-bold">
-          保有資格一覧
+          登録済み資格
         </h2>
 
         {employee.certifications.length === 0 ? (
@@ -412,24 +388,14 @@ export default async function EmployeeCertificationsPage({
             登録済みの資格はありません。
           </p>
         ) : (
-          <table className="w-full max-w-6xl border-collapse border">
+          <table className="w-full border-collapse border text-sm">
             <thead>
               <tr className="bg-gray-50">
-                <th className="border p-2 text-left">
-                  資格名
-                </th>
-                <th className="border p-2 text-left">
-                  取得日
-                </th>
-                <th className="border p-2 text-left">
-                  有効期限
-                </th>
-                <th className="border p-2 text-left">
-                  添付ファイル
-                </th>
-                <th className="border p-2 text-center">
-                  操作
-                </th>
+                <th className="border p-2 text-left">資格名</th>
+                <th className="border p-2 text-left">取得日</th>
+                <th className="border p-2 text-left">有効期限</th>
+                <th className="border p-2 text-left">添付ファイル</th>
+                <th className="border p-2 text-center">操作</th>
               </tr>
             </thead>
 
@@ -461,13 +427,13 @@ export default async function EmployeeCertificationsPage({
                             <a
                               href={attachment.filePath}
                               target="_blank"
-                              rel="noreferrer"
+                              rel="noopener noreferrer"
                               className="text-blue-600 hover:underline"
                             >
                               {attachment.fileName}
                             </a>
 
-                            <form action={deleteEmployeeCertificationAttachment}>
+                            <form action={deleteMyCertificationAttachment}>
                               <input
                                 type="hidden"
                                 name="attachmentId"
@@ -476,7 +442,7 @@ export default async function EmployeeCertificationsPage({
 
                               <button
                                 type="submit"
-                                className="rounded bg-red-50 px-2 py-0.5 text-xs text-red-700 hover:bg-red-100"
+                                className="rounded bg-red-50 px-2 py-1 text-xs text-red-700 hover:bg-red-100"
                               >
                                 削除
                               </button>
@@ -488,7 +454,7 @@ export default async function EmployeeCertificationsPage({
                   </td>
 
                   <td className="border p-2 text-center">
-                    <form action={deleteEmployeeCertification}>
+                    <form action={deleteMyCertification}>
                       <input
                         type="hidden"
                         name="employeeCertificationId"

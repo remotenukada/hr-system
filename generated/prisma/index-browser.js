@@ -163,6 +163,7 @@ exports.Prisma.EmployeeScalarFieldEnum = {
   birthDate: 'birthDate',
   phoneNumber: 'phoneNumber',
   address: 'address',
+  emergencyContact: 'emergencyContact',
   email: 'email',
   departmentId: 'departmentId',
   occupation: 'occupation',
@@ -296,7 +297,39 @@ exports.Prisma.EmployeeCertificationScalarFieldEnum = {
   certificationId: 'certificationId',
   acquiredDate: 'acquiredDate',
   expiryDate: 'expiryDate',
+  status: 'status',
+  reviewedAt: 'reviewedAt',
+  reviewedBy: 'reviewedBy',
   createdAt: 'createdAt'
+};
+
+exports.Prisma.EmployeeCertificationAttachmentScalarFieldEnum = {
+  id: 'id',
+  employeeCertificationId: 'employeeCertificationId',
+  fileName: 'fileName',
+  filePath: 'filePath',
+  fileType: 'fileType',
+  fileSize: 'fileSize',
+  createdAt: 'createdAt',
+  userInvitationId: 'userInvitationId'
+};
+
+exports.Prisma.ProfileChangeRequestScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  currentAddress: 'currentAddress',
+  newAddress: 'newAddress',
+  currentPhoneNumber: 'currentPhoneNumber',
+  newPhoneNumber: 'newPhoneNumber',
+  currentEmail: 'currentEmail',
+  newEmail: 'newEmail',
+  currentEmergencyContact: 'currentEmergencyContact',
+  newEmergencyContact: 'newEmergencyContact',
+  status: 'status',
+  reviewedAt: 'reviewedAt',
+  reviewedBy: 'reviewedBy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -386,6 +419,18 @@ exports.RequestHistoryAction = exports.$Enums.RequestHistoryAction = {
   REJECTED: 'REJECTED'
 };
 
+exports.CertificationStatus = exports.$Enums.CertificationStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+};
+
+exports.ProfileChangeStatus = exports.$Enums.ProfileChangeStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   UserInvitation: 'UserInvitation',
@@ -402,7 +447,9 @@ exports.Prisma.ModelName = {
   RequestHistory: 'RequestHistory',
   AuditLog: 'AuditLog',
   Certification: 'Certification',
-  EmployeeCertification: 'EmployeeCertification'
+  EmployeeCertification: 'EmployeeCertification',
+  EmployeeCertificationAttachment: 'EmployeeCertificationAttachment',
+  ProfileChangeRequest: 'ProfileChangeRequest'
 };
 
 /**
