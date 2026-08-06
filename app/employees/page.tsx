@@ -59,6 +59,7 @@ export default async function EmployeesPage({ searchParams }: Props) {
 
   const statusQuery = mapJapaneseStatusToEnum(q);
 
+
   const employees = await prisma.employee.findMany({
     where: q
       ? {
