@@ -284,6 +284,21 @@ exports.Prisma.AuditLogScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.CertificationScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.EmployeeCertificationScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  certificationId: 'certificationId',
+  acquiredDate: 'acquiredDate',
+  expiryDate: 'expiryDate',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -385,7 +400,9 @@ exports.Prisma.ModelName = {
   EmployeeRequest: 'EmployeeRequest',
   RequestAttachment: 'RequestAttachment',
   RequestHistory: 'RequestHistory',
-  AuditLog: 'AuditLog'
+  AuditLog: 'AuditLog',
+  Certification: 'Certification',
+  EmployeeCertification: 'EmployeeCertification'
 };
 
 /**

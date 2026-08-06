@@ -115,13 +115,14 @@ model Employee {
 
   requests EmployeeRequest[]
 
-  createdAt           DateTime            @default(now())
+  createdAt           DateTime                @default(now())
   employeeMyNumber    EmployeeMyNumber?
   employeeSalary      EmployeeSalary?
   salaryHistories     SalaryHistory[]
   leaveBalance        LeaveBalance?
   employmentHistories EmploymentHistory[]
   leaveGrantHistories LeaveGrantHistory[]
+  certifications      EmployeeCertification[]
 }
 
 enum RequestType {
@@ -346,4 +347,29 @@ model AuditLog {
   @@index([createdAt])
   @@index([targetType])
   @@index([userId])
+}
+
+model Certification {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+
+  employeeCertifications EmployeeCertification[]
+}
+
+model EmployeeCertification {
+  id String @id @default(uuid())
+
+  employeeId String
+  employee   Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  certificationId String
+  certification   Certification @relation(fields: [certificationId], references: [id], onDelete: Cascade)
+
+  acquiredDate DateTime?
+  expiryDate   DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@unique([employeeId, certificationId])
 }

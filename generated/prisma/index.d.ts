@@ -83,6 +83,16 @@ export type RequestHistory = $Result.DefaultSelection<Prisma.$RequestHistoryPayl
  * 
  */
 export type AuditLog = $Result.DefaultSelection<Prisma.$AuditLogPayload>
+/**
+ * Model Certification
+ * 
+ */
+export type Certification = $Result.DefaultSelection<Prisma.$CertificationPayload>
+/**
+ * Model EmployeeCertification
+ * 
+ */
+export type EmployeeCertification = $Result.DefaultSelection<Prisma.$EmployeeCertificationPayload>
 
 /**
  * Enums
@@ -474,6 +484,26 @@ export class PrismaClient<
     * ```
     */
   get auditLog(): Prisma.AuditLogDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.certification`: Exposes CRUD operations for the **Certification** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Certifications
+    * const certifications = await prisma.certification.findMany()
+    * ```
+    */
+  get certification(): Prisma.CertificationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.employeeCertification`: Exposes CRUD operations for the **EmployeeCertification** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EmployeeCertifications
+    * const employeeCertifications = await prisma.employeeCertification.findMany()
+    * ```
+    */
+  get employeeCertification(): Prisma.EmployeeCertificationDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -921,7 +951,9 @@ export namespace Prisma {
     EmployeeRequest: 'EmployeeRequest',
     RequestAttachment: 'RequestAttachment',
     RequestHistory: 'RequestHistory',
-    AuditLog: 'AuditLog'
+    AuditLog: 'AuditLog',
+    Certification: 'Certification',
+    EmployeeCertification: 'EmployeeCertification'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -937,7 +969,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "userInvitation" | "department" | "employee" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog"
+      modelProps: "user" | "userInvitation" | "department" | "employee" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1977,6 +2009,154 @@ export namespace Prisma {
           }
         }
       }
+      Certification: {
+        payload: Prisma.$CertificationPayload<ExtArgs>
+        fields: Prisma.CertificationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CertificationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CertificationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CertificationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CertificationPayload>
+          }
+          findFirst: {
+            args: Prisma.CertificationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CertificationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CertificationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CertificationPayload>
+          }
+          findMany: {
+            args: Prisma.CertificationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CertificationPayload>[]
+          }
+          create: {
+            args: Prisma.CertificationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CertificationPayload>
+          }
+          createMany: {
+            args: Prisma.CertificationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CertificationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CertificationPayload>[]
+          }
+          delete: {
+            args: Prisma.CertificationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CertificationPayload>
+          }
+          update: {
+            args: Prisma.CertificationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CertificationPayload>
+          }
+          deleteMany: {
+            args: Prisma.CertificationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CertificationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CertificationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CertificationPayload>[]
+          }
+          upsert: {
+            args: Prisma.CertificationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CertificationPayload>
+          }
+          aggregate: {
+            args: Prisma.CertificationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCertification>
+          }
+          groupBy: {
+            args: Prisma.CertificationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CertificationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CertificationCountArgs<ExtArgs>
+            result: $Utils.Optional<CertificationCountAggregateOutputType> | number
+          }
+        }
+      }
+      EmployeeCertification: {
+        payload: Prisma.$EmployeeCertificationPayload<ExtArgs>
+        fields: Prisma.EmployeeCertificationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EmployeeCertificationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeCertificationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EmployeeCertificationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeCertificationPayload>
+          }
+          findFirst: {
+            args: Prisma.EmployeeCertificationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeCertificationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EmployeeCertificationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeCertificationPayload>
+          }
+          findMany: {
+            args: Prisma.EmployeeCertificationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeCertificationPayload>[]
+          }
+          create: {
+            args: Prisma.EmployeeCertificationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeCertificationPayload>
+          }
+          createMany: {
+            args: Prisma.EmployeeCertificationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EmployeeCertificationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeCertificationPayload>[]
+          }
+          delete: {
+            args: Prisma.EmployeeCertificationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeCertificationPayload>
+          }
+          update: {
+            args: Prisma.EmployeeCertificationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeCertificationPayload>
+          }
+          deleteMany: {
+            args: Prisma.EmployeeCertificationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EmployeeCertificationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EmployeeCertificationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeCertificationPayload>[]
+          }
+          upsert: {
+            args: Prisma.EmployeeCertificationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeCertificationPayload>
+          }
+          aggregate: {
+            args: Prisma.EmployeeCertificationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEmployeeCertification>
+          }
+          groupBy: {
+            args: Prisma.EmployeeCertificationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EmployeeCertificationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EmployeeCertificationCountArgs<ExtArgs>
+            result: $Utils.Optional<EmployeeCertificationCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2099,6 +2279,8 @@ export namespace Prisma {
     requestAttachment?: RequestAttachmentOmit
     requestHistory?: RequestHistoryOmit
     auditLog?: AuditLogOmit
+    certification?: CertificationOmit
+    employeeCertification?: EmployeeCertificationOmit
   }
 
   /* Types for Logging */
@@ -2245,6 +2427,7 @@ export namespace Prisma {
     salaryHistories: number
     employmentHistories: number
     leaveGrantHistories: number
+    certifications: number
   }
 
   export type EmployeeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2252,6 +2435,7 @@ export namespace Prisma {
     salaryHistories?: boolean | EmployeeCountOutputTypeCountSalaryHistoriesArgs
     employmentHistories?: boolean | EmployeeCountOutputTypeCountEmploymentHistoriesArgs
     leaveGrantHistories?: boolean | EmployeeCountOutputTypeCountLeaveGrantHistoriesArgs
+    certifications?: boolean | EmployeeCountOutputTypeCountCertificationsArgs
   }
 
   // Custom InputTypes
@@ -2293,6 +2477,13 @@ export namespace Prisma {
     where?: LeaveGrantHistoryWhereInput
   }
 
+  /**
+   * EmployeeCountOutputType without action
+   */
+  export type EmployeeCountOutputTypeCountCertificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmployeeCertificationWhereInput
+  }
+
 
   /**
    * Count Type EmployeeRequestCountOutputType
@@ -2331,6 +2522,37 @@ export namespace Prisma {
    */
   export type EmployeeRequestCountOutputTypeCountAttachmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: RequestAttachmentWhereInput
+  }
+
+
+  /**
+   * Count Type CertificationCountOutputType
+   */
+
+  export type CertificationCountOutputType = {
+    employeeCertifications: number
+  }
+
+  export type CertificationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employeeCertifications?: boolean | CertificationCountOutputTypeCountEmployeeCertificationsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CertificationCountOutputType without action
+   */
+  export type CertificationCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CertificationCountOutputType
+     */
+    select?: CertificationCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CertificationCountOutputType without action
+   */
+  export type CertificationCountOutputTypeCountEmployeeCertificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmployeeCertificationWhereInput
   }
 
 
@@ -5940,6 +6162,7 @@ export namespace Prisma {
     leaveBalance?: boolean | Employee$leaveBalanceArgs<ExtArgs>
     employmentHistories?: boolean | Employee$employmentHistoriesArgs<ExtArgs>
     leaveGrantHistories?: boolean | Employee$leaveGrantHistoriesArgs<ExtArgs>
+    certifications?: boolean | Employee$certificationsArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["employee"]>
 
@@ -6039,6 +6262,7 @@ export namespace Prisma {
     leaveBalance?: boolean | Employee$leaveBalanceArgs<ExtArgs>
     employmentHistories?: boolean | Employee$employmentHistoriesArgs<ExtArgs>
     leaveGrantHistories?: boolean | Employee$leaveGrantHistoriesArgs<ExtArgs>
+    certifications?: boolean | Employee$certificationsArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EmployeeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6062,6 +6286,7 @@ export namespace Prisma {
       leaveBalance: Prisma.$LeaveBalancePayload<ExtArgs> | null
       employmentHistories: Prisma.$EmploymentHistoryPayload<ExtArgs>[]
       leaveGrantHistories: Prisma.$LeaveGrantHistoryPayload<ExtArgs>[]
+      certifications: Prisma.$EmployeeCertificationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6491,6 +6716,7 @@ export namespace Prisma {
     leaveBalance<T extends Employee$leaveBalanceArgs<ExtArgs> = {}>(args?: Subset<T, Employee$leaveBalanceArgs<ExtArgs>>): Prisma__LeaveBalanceClient<$Result.GetResult<Prisma.$LeaveBalancePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     employmentHistories<T extends Employee$employmentHistoriesArgs<ExtArgs> = {}>(args?: Subset<T, Employee$employmentHistoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     leaveGrantHistories<T extends Employee$leaveGrantHistoriesArgs<ExtArgs> = {}>(args?: Subset<T, Employee$leaveGrantHistoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeaveGrantHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    certifications<T extends Employee$certificationsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$certificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeCertificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7133,6 +7359,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: LeaveGrantHistoryScalarFieldEnum | LeaveGrantHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * Employee.certifications
+   */
+  export type Employee$certificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertification
+     */
+    select?: EmployeeCertificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertification
+     */
+    omit?: EmployeeCertificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationInclude<ExtArgs> | null
+    where?: EmployeeCertificationWhereInput
+    orderBy?: EmployeeCertificationOrderByWithRelationInput | EmployeeCertificationOrderByWithRelationInput[]
+    cursor?: EmployeeCertificationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmployeeCertificationScalarFieldEnum | EmployeeCertificationScalarFieldEnum[]
   }
 
   /**
@@ -18367,6 +18617,2139 @@ export namespace Prisma {
 
 
   /**
+   * Model Certification
+   */
+
+  export type AggregateCertification = {
+    _count: CertificationCountAggregateOutputType | null
+    _min: CertificationMinAggregateOutputType | null
+    _max: CertificationMaxAggregateOutputType | null
+  }
+
+  export type CertificationMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    createdAt: Date | null
+  }
+
+  export type CertificationMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    createdAt: Date | null
+  }
+
+  export type CertificationCountAggregateOutputType = {
+    id: number
+    name: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type CertificationMinAggregateInputType = {
+    id?: true
+    name?: true
+    createdAt?: true
+  }
+
+  export type CertificationMaxAggregateInputType = {
+    id?: true
+    name?: true
+    createdAt?: true
+  }
+
+  export type CertificationCountAggregateInputType = {
+    id?: true
+    name?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type CertificationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Certification to aggregate.
+     */
+    where?: CertificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Certifications to fetch.
+     */
+    orderBy?: CertificationOrderByWithRelationInput | CertificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CertificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Certifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Certifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Certifications
+    **/
+    _count?: true | CertificationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CertificationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CertificationMaxAggregateInputType
+  }
+
+  export type GetCertificationAggregateType<T extends CertificationAggregateArgs> = {
+        [P in keyof T & keyof AggregateCertification]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCertification[P]>
+      : GetScalarType<T[P], AggregateCertification[P]>
+  }
+
+
+
+
+  export type CertificationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CertificationWhereInput
+    orderBy?: CertificationOrderByWithAggregationInput | CertificationOrderByWithAggregationInput[]
+    by: CertificationScalarFieldEnum[] | CertificationScalarFieldEnum
+    having?: CertificationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CertificationCountAggregateInputType | true
+    _min?: CertificationMinAggregateInputType
+    _max?: CertificationMaxAggregateInputType
+  }
+
+  export type CertificationGroupByOutputType = {
+    id: string
+    name: string
+    createdAt: Date
+    _count: CertificationCountAggregateOutputType | null
+    _min: CertificationMinAggregateOutputType | null
+    _max: CertificationMaxAggregateOutputType | null
+  }
+
+  type GetCertificationGroupByPayload<T extends CertificationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CertificationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CertificationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CertificationGroupByOutputType[P]>
+            : GetScalarType<T[P], CertificationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CertificationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    createdAt?: boolean
+    employeeCertifications?: boolean | Certification$employeeCertificationsArgs<ExtArgs>
+    _count?: boolean | CertificationCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["certification"]>
+
+  export type CertificationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["certification"]>
+
+  export type CertificationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["certification"]>
+
+  export type CertificationSelectScalar = {
+    id?: boolean
+    name?: boolean
+    createdAt?: boolean
+  }
+
+  export type CertificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt", ExtArgs["result"]["certification"]>
+  export type CertificationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employeeCertifications?: boolean | Certification$employeeCertificationsArgs<ExtArgs>
+    _count?: boolean | CertificationCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type CertificationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type CertificationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $CertificationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Certification"
+    objects: {
+      employeeCertifications: Prisma.$EmployeeCertificationPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      createdAt: Date
+    }, ExtArgs["result"]["certification"]>
+    composites: {}
+  }
+
+  type CertificationGetPayload<S extends boolean | null | undefined | CertificationDefaultArgs> = $Result.GetResult<Prisma.$CertificationPayload, S>
+
+  type CertificationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CertificationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CertificationCountAggregateInputType | true
+    }
+
+  export interface CertificationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Certification'], meta: { name: 'Certification' } }
+    /**
+     * Find zero or one Certification that matches the filter.
+     * @param {CertificationFindUniqueArgs} args - Arguments to find a Certification
+     * @example
+     * // Get one Certification
+     * const certification = await prisma.certification.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CertificationFindUniqueArgs>(args: SelectSubset<T, CertificationFindUniqueArgs<ExtArgs>>): Prisma__CertificationClient<$Result.GetResult<Prisma.$CertificationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Certification that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CertificationFindUniqueOrThrowArgs} args - Arguments to find a Certification
+     * @example
+     * // Get one Certification
+     * const certification = await prisma.certification.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CertificationFindUniqueOrThrowArgs>(args: SelectSubset<T, CertificationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CertificationClient<$Result.GetResult<Prisma.$CertificationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Certification that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CertificationFindFirstArgs} args - Arguments to find a Certification
+     * @example
+     * // Get one Certification
+     * const certification = await prisma.certification.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CertificationFindFirstArgs>(args?: SelectSubset<T, CertificationFindFirstArgs<ExtArgs>>): Prisma__CertificationClient<$Result.GetResult<Prisma.$CertificationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Certification that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CertificationFindFirstOrThrowArgs} args - Arguments to find a Certification
+     * @example
+     * // Get one Certification
+     * const certification = await prisma.certification.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CertificationFindFirstOrThrowArgs>(args?: SelectSubset<T, CertificationFindFirstOrThrowArgs<ExtArgs>>): Prisma__CertificationClient<$Result.GetResult<Prisma.$CertificationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Certifications that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CertificationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Certifications
+     * const certifications = await prisma.certification.findMany()
+     * 
+     * // Get first 10 Certifications
+     * const certifications = await prisma.certification.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const certificationWithIdOnly = await prisma.certification.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CertificationFindManyArgs>(args?: SelectSubset<T, CertificationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CertificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Certification.
+     * @param {CertificationCreateArgs} args - Arguments to create a Certification.
+     * @example
+     * // Create one Certification
+     * const Certification = await prisma.certification.create({
+     *   data: {
+     *     // ... data to create a Certification
+     *   }
+     * })
+     * 
+     */
+    create<T extends CertificationCreateArgs>(args: SelectSubset<T, CertificationCreateArgs<ExtArgs>>): Prisma__CertificationClient<$Result.GetResult<Prisma.$CertificationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Certifications.
+     * @param {CertificationCreateManyArgs} args - Arguments to create many Certifications.
+     * @example
+     * // Create many Certifications
+     * const certification = await prisma.certification.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CertificationCreateManyArgs>(args?: SelectSubset<T, CertificationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Certifications and returns the data saved in the database.
+     * @param {CertificationCreateManyAndReturnArgs} args - Arguments to create many Certifications.
+     * @example
+     * // Create many Certifications
+     * const certification = await prisma.certification.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Certifications and only return the `id`
+     * const certificationWithIdOnly = await prisma.certification.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CertificationCreateManyAndReturnArgs>(args?: SelectSubset<T, CertificationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CertificationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Certification.
+     * @param {CertificationDeleteArgs} args - Arguments to delete one Certification.
+     * @example
+     * // Delete one Certification
+     * const Certification = await prisma.certification.delete({
+     *   where: {
+     *     // ... filter to delete one Certification
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CertificationDeleteArgs>(args: SelectSubset<T, CertificationDeleteArgs<ExtArgs>>): Prisma__CertificationClient<$Result.GetResult<Prisma.$CertificationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Certification.
+     * @param {CertificationUpdateArgs} args - Arguments to update one Certification.
+     * @example
+     * // Update one Certification
+     * const certification = await prisma.certification.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CertificationUpdateArgs>(args: SelectSubset<T, CertificationUpdateArgs<ExtArgs>>): Prisma__CertificationClient<$Result.GetResult<Prisma.$CertificationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Certifications.
+     * @param {CertificationDeleteManyArgs} args - Arguments to filter Certifications to delete.
+     * @example
+     * // Delete a few Certifications
+     * const { count } = await prisma.certification.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CertificationDeleteManyArgs>(args?: SelectSubset<T, CertificationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Certifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CertificationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Certifications
+     * const certification = await prisma.certification.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CertificationUpdateManyArgs>(args: SelectSubset<T, CertificationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Certifications and returns the data updated in the database.
+     * @param {CertificationUpdateManyAndReturnArgs} args - Arguments to update many Certifications.
+     * @example
+     * // Update many Certifications
+     * const certification = await prisma.certification.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Certifications and only return the `id`
+     * const certificationWithIdOnly = await prisma.certification.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CertificationUpdateManyAndReturnArgs>(args: SelectSubset<T, CertificationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CertificationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Certification.
+     * @param {CertificationUpsertArgs} args - Arguments to update or create a Certification.
+     * @example
+     * // Update or create a Certification
+     * const certification = await prisma.certification.upsert({
+     *   create: {
+     *     // ... data to create a Certification
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Certification we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CertificationUpsertArgs>(args: SelectSubset<T, CertificationUpsertArgs<ExtArgs>>): Prisma__CertificationClient<$Result.GetResult<Prisma.$CertificationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Certifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CertificationCountArgs} args - Arguments to filter Certifications to count.
+     * @example
+     * // Count the number of Certifications
+     * const count = await prisma.certification.count({
+     *   where: {
+     *     // ... the filter for the Certifications we want to count
+     *   }
+     * })
+    **/
+    count<T extends CertificationCountArgs>(
+      args?: Subset<T, CertificationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CertificationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Certification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CertificationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CertificationAggregateArgs>(args: Subset<T, CertificationAggregateArgs>): Prisma.PrismaPromise<GetCertificationAggregateType<T>>
+
+    /**
+     * Group by Certification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CertificationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CertificationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CertificationGroupByArgs['orderBy'] }
+        : { orderBy?: CertificationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CertificationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCertificationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Certification model
+   */
+  readonly fields: CertificationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Certification.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CertificationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    employeeCertifications<T extends Certification$employeeCertificationsArgs<ExtArgs> = {}>(args?: Subset<T, Certification$employeeCertificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeCertificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Certification model
+   */
+  interface CertificationFieldRefs {
+    readonly id: FieldRef<"Certification", 'String'>
+    readonly name: FieldRef<"Certification", 'String'>
+    readonly createdAt: FieldRef<"Certification", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Certification findUnique
+   */
+  export type CertificationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Certification
+     */
+    select?: CertificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Certification
+     */
+    omit?: CertificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CertificationInclude<ExtArgs> | null
+    /**
+     * Filter, which Certification to fetch.
+     */
+    where: CertificationWhereUniqueInput
+  }
+
+  /**
+   * Certification findUniqueOrThrow
+   */
+  export type CertificationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Certification
+     */
+    select?: CertificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Certification
+     */
+    omit?: CertificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CertificationInclude<ExtArgs> | null
+    /**
+     * Filter, which Certification to fetch.
+     */
+    where: CertificationWhereUniqueInput
+  }
+
+  /**
+   * Certification findFirst
+   */
+  export type CertificationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Certification
+     */
+    select?: CertificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Certification
+     */
+    omit?: CertificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CertificationInclude<ExtArgs> | null
+    /**
+     * Filter, which Certification to fetch.
+     */
+    where?: CertificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Certifications to fetch.
+     */
+    orderBy?: CertificationOrderByWithRelationInput | CertificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Certifications.
+     */
+    cursor?: CertificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Certifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Certifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Certifications.
+     */
+    distinct?: CertificationScalarFieldEnum | CertificationScalarFieldEnum[]
+  }
+
+  /**
+   * Certification findFirstOrThrow
+   */
+  export type CertificationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Certification
+     */
+    select?: CertificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Certification
+     */
+    omit?: CertificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CertificationInclude<ExtArgs> | null
+    /**
+     * Filter, which Certification to fetch.
+     */
+    where?: CertificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Certifications to fetch.
+     */
+    orderBy?: CertificationOrderByWithRelationInput | CertificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Certifications.
+     */
+    cursor?: CertificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Certifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Certifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Certifications.
+     */
+    distinct?: CertificationScalarFieldEnum | CertificationScalarFieldEnum[]
+  }
+
+  /**
+   * Certification findMany
+   */
+  export type CertificationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Certification
+     */
+    select?: CertificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Certification
+     */
+    omit?: CertificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CertificationInclude<ExtArgs> | null
+    /**
+     * Filter, which Certifications to fetch.
+     */
+    where?: CertificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Certifications to fetch.
+     */
+    orderBy?: CertificationOrderByWithRelationInput | CertificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Certifications.
+     */
+    cursor?: CertificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Certifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Certifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Certifications.
+     */
+    distinct?: CertificationScalarFieldEnum | CertificationScalarFieldEnum[]
+  }
+
+  /**
+   * Certification create
+   */
+  export type CertificationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Certification
+     */
+    select?: CertificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Certification
+     */
+    omit?: CertificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CertificationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Certification.
+     */
+    data: XOR<CertificationCreateInput, CertificationUncheckedCreateInput>
+  }
+
+  /**
+   * Certification createMany
+   */
+  export type CertificationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Certifications.
+     */
+    data: CertificationCreateManyInput | CertificationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Certification createManyAndReturn
+   */
+  export type CertificationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Certification
+     */
+    select?: CertificationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Certification
+     */
+    omit?: CertificationOmit<ExtArgs> | null
+    /**
+     * The data used to create many Certifications.
+     */
+    data: CertificationCreateManyInput | CertificationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Certification update
+   */
+  export type CertificationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Certification
+     */
+    select?: CertificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Certification
+     */
+    omit?: CertificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CertificationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Certification.
+     */
+    data: XOR<CertificationUpdateInput, CertificationUncheckedUpdateInput>
+    /**
+     * Choose, which Certification to update.
+     */
+    where: CertificationWhereUniqueInput
+  }
+
+  /**
+   * Certification updateMany
+   */
+  export type CertificationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Certifications.
+     */
+    data: XOR<CertificationUpdateManyMutationInput, CertificationUncheckedUpdateManyInput>
+    /**
+     * Filter which Certifications to update
+     */
+    where?: CertificationWhereInput
+    /**
+     * Limit how many Certifications to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Certification updateManyAndReturn
+   */
+  export type CertificationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Certification
+     */
+    select?: CertificationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Certification
+     */
+    omit?: CertificationOmit<ExtArgs> | null
+    /**
+     * The data used to update Certifications.
+     */
+    data: XOR<CertificationUpdateManyMutationInput, CertificationUncheckedUpdateManyInput>
+    /**
+     * Filter which Certifications to update
+     */
+    where?: CertificationWhereInput
+    /**
+     * Limit how many Certifications to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Certification upsert
+   */
+  export type CertificationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Certification
+     */
+    select?: CertificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Certification
+     */
+    omit?: CertificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CertificationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Certification to update in case it exists.
+     */
+    where: CertificationWhereUniqueInput
+    /**
+     * In case the Certification found by the `where` argument doesn't exist, create a new Certification with this data.
+     */
+    create: XOR<CertificationCreateInput, CertificationUncheckedCreateInput>
+    /**
+     * In case the Certification was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CertificationUpdateInput, CertificationUncheckedUpdateInput>
+  }
+
+  /**
+   * Certification delete
+   */
+  export type CertificationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Certification
+     */
+    select?: CertificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Certification
+     */
+    omit?: CertificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CertificationInclude<ExtArgs> | null
+    /**
+     * Filter which Certification to delete.
+     */
+    where: CertificationWhereUniqueInput
+  }
+
+  /**
+   * Certification deleteMany
+   */
+  export type CertificationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Certifications to delete
+     */
+    where?: CertificationWhereInput
+    /**
+     * Limit how many Certifications to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Certification.employeeCertifications
+   */
+  export type Certification$employeeCertificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertification
+     */
+    select?: EmployeeCertificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertification
+     */
+    omit?: EmployeeCertificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationInclude<ExtArgs> | null
+    where?: EmployeeCertificationWhereInput
+    orderBy?: EmployeeCertificationOrderByWithRelationInput | EmployeeCertificationOrderByWithRelationInput[]
+    cursor?: EmployeeCertificationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmployeeCertificationScalarFieldEnum | EmployeeCertificationScalarFieldEnum[]
+  }
+
+  /**
+   * Certification without action
+   */
+  export type CertificationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Certification
+     */
+    select?: CertificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Certification
+     */
+    omit?: CertificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CertificationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model EmployeeCertification
+   */
+
+  export type AggregateEmployeeCertification = {
+    _count: EmployeeCertificationCountAggregateOutputType | null
+    _min: EmployeeCertificationMinAggregateOutputType | null
+    _max: EmployeeCertificationMaxAggregateOutputType | null
+  }
+
+  export type EmployeeCertificationMinAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    certificationId: string | null
+    acquiredDate: Date | null
+    expiryDate: Date | null
+    createdAt: Date | null
+  }
+
+  export type EmployeeCertificationMaxAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    certificationId: string | null
+    acquiredDate: Date | null
+    expiryDate: Date | null
+    createdAt: Date | null
+  }
+
+  export type EmployeeCertificationCountAggregateOutputType = {
+    id: number
+    employeeId: number
+    certificationId: number
+    acquiredDate: number
+    expiryDate: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type EmployeeCertificationMinAggregateInputType = {
+    id?: true
+    employeeId?: true
+    certificationId?: true
+    acquiredDate?: true
+    expiryDate?: true
+    createdAt?: true
+  }
+
+  export type EmployeeCertificationMaxAggregateInputType = {
+    id?: true
+    employeeId?: true
+    certificationId?: true
+    acquiredDate?: true
+    expiryDate?: true
+    createdAt?: true
+  }
+
+  export type EmployeeCertificationCountAggregateInputType = {
+    id?: true
+    employeeId?: true
+    certificationId?: true
+    acquiredDate?: true
+    expiryDate?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type EmployeeCertificationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmployeeCertification to aggregate.
+     */
+    where?: EmployeeCertificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmployeeCertifications to fetch.
+     */
+    orderBy?: EmployeeCertificationOrderByWithRelationInput | EmployeeCertificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EmployeeCertificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmployeeCertifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmployeeCertifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EmployeeCertifications
+    **/
+    _count?: true | EmployeeCertificationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EmployeeCertificationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EmployeeCertificationMaxAggregateInputType
+  }
+
+  export type GetEmployeeCertificationAggregateType<T extends EmployeeCertificationAggregateArgs> = {
+        [P in keyof T & keyof AggregateEmployeeCertification]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEmployeeCertification[P]>
+      : GetScalarType<T[P], AggregateEmployeeCertification[P]>
+  }
+
+
+
+
+  export type EmployeeCertificationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmployeeCertificationWhereInput
+    orderBy?: EmployeeCertificationOrderByWithAggregationInput | EmployeeCertificationOrderByWithAggregationInput[]
+    by: EmployeeCertificationScalarFieldEnum[] | EmployeeCertificationScalarFieldEnum
+    having?: EmployeeCertificationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EmployeeCertificationCountAggregateInputType | true
+    _min?: EmployeeCertificationMinAggregateInputType
+    _max?: EmployeeCertificationMaxAggregateInputType
+  }
+
+  export type EmployeeCertificationGroupByOutputType = {
+    id: string
+    employeeId: string
+    certificationId: string
+    acquiredDate: Date | null
+    expiryDate: Date | null
+    createdAt: Date
+    _count: EmployeeCertificationCountAggregateOutputType | null
+    _min: EmployeeCertificationMinAggregateOutputType | null
+    _max: EmployeeCertificationMaxAggregateOutputType | null
+  }
+
+  type GetEmployeeCertificationGroupByPayload<T extends EmployeeCertificationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EmployeeCertificationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EmployeeCertificationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EmployeeCertificationGroupByOutputType[P]>
+            : GetScalarType<T[P], EmployeeCertificationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EmployeeCertificationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    certificationId?: boolean
+    acquiredDate?: boolean
+    expiryDate?: boolean
+    createdAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    certification?: boolean | CertificationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["employeeCertification"]>
+
+  export type EmployeeCertificationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    certificationId?: boolean
+    acquiredDate?: boolean
+    expiryDate?: boolean
+    createdAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    certification?: boolean | CertificationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["employeeCertification"]>
+
+  export type EmployeeCertificationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    certificationId?: boolean
+    acquiredDate?: boolean
+    expiryDate?: boolean
+    createdAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    certification?: boolean | CertificationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["employeeCertification"]>
+
+  export type EmployeeCertificationSelectScalar = {
+    id?: boolean
+    employeeId?: boolean
+    certificationId?: boolean
+    acquiredDate?: boolean
+    expiryDate?: boolean
+    createdAt?: boolean
+  }
+
+  export type EmployeeCertificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "certificationId" | "acquiredDate" | "expiryDate" | "createdAt", ExtArgs["result"]["employeeCertification"]>
+  export type EmployeeCertificationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    certification?: boolean | CertificationDefaultArgs<ExtArgs>
+  }
+  export type EmployeeCertificationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    certification?: boolean | CertificationDefaultArgs<ExtArgs>
+  }
+  export type EmployeeCertificationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    certification?: boolean | CertificationDefaultArgs<ExtArgs>
+  }
+
+  export type $EmployeeCertificationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EmployeeCertification"
+    objects: {
+      employee: Prisma.$EmployeePayload<ExtArgs>
+      certification: Prisma.$CertificationPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      employeeId: string
+      certificationId: string
+      acquiredDate: Date | null
+      expiryDate: Date | null
+      createdAt: Date
+    }, ExtArgs["result"]["employeeCertification"]>
+    composites: {}
+  }
+
+  type EmployeeCertificationGetPayload<S extends boolean | null | undefined | EmployeeCertificationDefaultArgs> = $Result.GetResult<Prisma.$EmployeeCertificationPayload, S>
+
+  type EmployeeCertificationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EmployeeCertificationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EmployeeCertificationCountAggregateInputType | true
+    }
+
+  export interface EmployeeCertificationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EmployeeCertification'], meta: { name: 'EmployeeCertification' } }
+    /**
+     * Find zero or one EmployeeCertification that matches the filter.
+     * @param {EmployeeCertificationFindUniqueArgs} args - Arguments to find a EmployeeCertification
+     * @example
+     * // Get one EmployeeCertification
+     * const employeeCertification = await prisma.employeeCertification.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EmployeeCertificationFindUniqueArgs>(args: SelectSubset<T, EmployeeCertificationFindUniqueArgs<ExtArgs>>): Prisma__EmployeeCertificationClient<$Result.GetResult<Prisma.$EmployeeCertificationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EmployeeCertification that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EmployeeCertificationFindUniqueOrThrowArgs} args - Arguments to find a EmployeeCertification
+     * @example
+     * // Get one EmployeeCertification
+     * const employeeCertification = await prisma.employeeCertification.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EmployeeCertificationFindUniqueOrThrowArgs>(args: SelectSubset<T, EmployeeCertificationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EmployeeCertificationClient<$Result.GetResult<Prisma.$EmployeeCertificationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmployeeCertification that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeCertificationFindFirstArgs} args - Arguments to find a EmployeeCertification
+     * @example
+     * // Get one EmployeeCertification
+     * const employeeCertification = await prisma.employeeCertification.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EmployeeCertificationFindFirstArgs>(args?: SelectSubset<T, EmployeeCertificationFindFirstArgs<ExtArgs>>): Prisma__EmployeeCertificationClient<$Result.GetResult<Prisma.$EmployeeCertificationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmployeeCertification that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeCertificationFindFirstOrThrowArgs} args - Arguments to find a EmployeeCertification
+     * @example
+     * // Get one EmployeeCertification
+     * const employeeCertification = await prisma.employeeCertification.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EmployeeCertificationFindFirstOrThrowArgs>(args?: SelectSubset<T, EmployeeCertificationFindFirstOrThrowArgs<ExtArgs>>): Prisma__EmployeeCertificationClient<$Result.GetResult<Prisma.$EmployeeCertificationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EmployeeCertifications that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeCertificationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EmployeeCertifications
+     * const employeeCertifications = await prisma.employeeCertification.findMany()
+     * 
+     * // Get first 10 EmployeeCertifications
+     * const employeeCertifications = await prisma.employeeCertification.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const employeeCertificationWithIdOnly = await prisma.employeeCertification.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EmployeeCertificationFindManyArgs>(args?: SelectSubset<T, EmployeeCertificationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeCertificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EmployeeCertification.
+     * @param {EmployeeCertificationCreateArgs} args - Arguments to create a EmployeeCertification.
+     * @example
+     * // Create one EmployeeCertification
+     * const EmployeeCertification = await prisma.employeeCertification.create({
+     *   data: {
+     *     // ... data to create a EmployeeCertification
+     *   }
+     * })
+     * 
+     */
+    create<T extends EmployeeCertificationCreateArgs>(args: SelectSubset<T, EmployeeCertificationCreateArgs<ExtArgs>>): Prisma__EmployeeCertificationClient<$Result.GetResult<Prisma.$EmployeeCertificationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EmployeeCertifications.
+     * @param {EmployeeCertificationCreateManyArgs} args - Arguments to create many EmployeeCertifications.
+     * @example
+     * // Create many EmployeeCertifications
+     * const employeeCertification = await prisma.employeeCertification.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EmployeeCertificationCreateManyArgs>(args?: SelectSubset<T, EmployeeCertificationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EmployeeCertifications and returns the data saved in the database.
+     * @param {EmployeeCertificationCreateManyAndReturnArgs} args - Arguments to create many EmployeeCertifications.
+     * @example
+     * // Create many EmployeeCertifications
+     * const employeeCertification = await prisma.employeeCertification.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EmployeeCertifications and only return the `id`
+     * const employeeCertificationWithIdOnly = await prisma.employeeCertification.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EmployeeCertificationCreateManyAndReturnArgs>(args?: SelectSubset<T, EmployeeCertificationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeCertificationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EmployeeCertification.
+     * @param {EmployeeCertificationDeleteArgs} args - Arguments to delete one EmployeeCertification.
+     * @example
+     * // Delete one EmployeeCertification
+     * const EmployeeCertification = await prisma.employeeCertification.delete({
+     *   where: {
+     *     // ... filter to delete one EmployeeCertification
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EmployeeCertificationDeleteArgs>(args: SelectSubset<T, EmployeeCertificationDeleteArgs<ExtArgs>>): Prisma__EmployeeCertificationClient<$Result.GetResult<Prisma.$EmployeeCertificationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EmployeeCertification.
+     * @param {EmployeeCertificationUpdateArgs} args - Arguments to update one EmployeeCertification.
+     * @example
+     * // Update one EmployeeCertification
+     * const employeeCertification = await prisma.employeeCertification.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EmployeeCertificationUpdateArgs>(args: SelectSubset<T, EmployeeCertificationUpdateArgs<ExtArgs>>): Prisma__EmployeeCertificationClient<$Result.GetResult<Prisma.$EmployeeCertificationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EmployeeCertifications.
+     * @param {EmployeeCertificationDeleteManyArgs} args - Arguments to filter EmployeeCertifications to delete.
+     * @example
+     * // Delete a few EmployeeCertifications
+     * const { count } = await prisma.employeeCertification.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EmployeeCertificationDeleteManyArgs>(args?: SelectSubset<T, EmployeeCertificationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmployeeCertifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeCertificationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EmployeeCertifications
+     * const employeeCertification = await prisma.employeeCertification.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EmployeeCertificationUpdateManyArgs>(args: SelectSubset<T, EmployeeCertificationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmployeeCertifications and returns the data updated in the database.
+     * @param {EmployeeCertificationUpdateManyAndReturnArgs} args - Arguments to update many EmployeeCertifications.
+     * @example
+     * // Update many EmployeeCertifications
+     * const employeeCertification = await prisma.employeeCertification.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EmployeeCertifications and only return the `id`
+     * const employeeCertificationWithIdOnly = await prisma.employeeCertification.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EmployeeCertificationUpdateManyAndReturnArgs>(args: SelectSubset<T, EmployeeCertificationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeCertificationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EmployeeCertification.
+     * @param {EmployeeCertificationUpsertArgs} args - Arguments to update or create a EmployeeCertification.
+     * @example
+     * // Update or create a EmployeeCertification
+     * const employeeCertification = await prisma.employeeCertification.upsert({
+     *   create: {
+     *     // ... data to create a EmployeeCertification
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EmployeeCertification we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EmployeeCertificationUpsertArgs>(args: SelectSubset<T, EmployeeCertificationUpsertArgs<ExtArgs>>): Prisma__EmployeeCertificationClient<$Result.GetResult<Prisma.$EmployeeCertificationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EmployeeCertifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeCertificationCountArgs} args - Arguments to filter EmployeeCertifications to count.
+     * @example
+     * // Count the number of EmployeeCertifications
+     * const count = await prisma.employeeCertification.count({
+     *   where: {
+     *     // ... the filter for the EmployeeCertifications we want to count
+     *   }
+     * })
+    **/
+    count<T extends EmployeeCertificationCountArgs>(
+      args?: Subset<T, EmployeeCertificationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EmployeeCertificationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EmployeeCertification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeCertificationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EmployeeCertificationAggregateArgs>(args: Subset<T, EmployeeCertificationAggregateArgs>): Prisma.PrismaPromise<GetEmployeeCertificationAggregateType<T>>
+
+    /**
+     * Group by EmployeeCertification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeCertificationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EmployeeCertificationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EmployeeCertificationGroupByArgs['orderBy'] }
+        : { orderBy?: EmployeeCertificationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EmployeeCertificationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEmployeeCertificationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EmployeeCertification model
+   */
+  readonly fields: EmployeeCertificationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EmployeeCertification.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EmployeeCertificationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    certification<T extends CertificationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CertificationDefaultArgs<ExtArgs>>): Prisma__CertificationClient<$Result.GetResult<Prisma.$CertificationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EmployeeCertification model
+   */
+  interface EmployeeCertificationFieldRefs {
+    readonly id: FieldRef<"EmployeeCertification", 'String'>
+    readonly employeeId: FieldRef<"EmployeeCertification", 'String'>
+    readonly certificationId: FieldRef<"EmployeeCertification", 'String'>
+    readonly acquiredDate: FieldRef<"EmployeeCertification", 'DateTime'>
+    readonly expiryDate: FieldRef<"EmployeeCertification", 'DateTime'>
+    readonly createdAt: FieldRef<"EmployeeCertification", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EmployeeCertification findUnique
+   */
+  export type EmployeeCertificationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertification
+     */
+    select?: EmployeeCertificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertification
+     */
+    omit?: EmployeeCertificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationInclude<ExtArgs> | null
+    /**
+     * Filter, which EmployeeCertification to fetch.
+     */
+    where: EmployeeCertificationWhereUniqueInput
+  }
+
+  /**
+   * EmployeeCertification findUniqueOrThrow
+   */
+  export type EmployeeCertificationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertification
+     */
+    select?: EmployeeCertificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertification
+     */
+    omit?: EmployeeCertificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationInclude<ExtArgs> | null
+    /**
+     * Filter, which EmployeeCertification to fetch.
+     */
+    where: EmployeeCertificationWhereUniqueInput
+  }
+
+  /**
+   * EmployeeCertification findFirst
+   */
+  export type EmployeeCertificationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertification
+     */
+    select?: EmployeeCertificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertification
+     */
+    omit?: EmployeeCertificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationInclude<ExtArgs> | null
+    /**
+     * Filter, which EmployeeCertification to fetch.
+     */
+    where?: EmployeeCertificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmployeeCertifications to fetch.
+     */
+    orderBy?: EmployeeCertificationOrderByWithRelationInput | EmployeeCertificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmployeeCertifications.
+     */
+    cursor?: EmployeeCertificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmployeeCertifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmployeeCertifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmployeeCertifications.
+     */
+    distinct?: EmployeeCertificationScalarFieldEnum | EmployeeCertificationScalarFieldEnum[]
+  }
+
+  /**
+   * EmployeeCertification findFirstOrThrow
+   */
+  export type EmployeeCertificationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertification
+     */
+    select?: EmployeeCertificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertification
+     */
+    omit?: EmployeeCertificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationInclude<ExtArgs> | null
+    /**
+     * Filter, which EmployeeCertification to fetch.
+     */
+    where?: EmployeeCertificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmployeeCertifications to fetch.
+     */
+    orderBy?: EmployeeCertificationOrderByWithRelationInput | EmployeeCertificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmployeeCertifications.
+     */
+    cursor?: EmployeeCertificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmployeeCertifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmployeeCertifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmployeeCertifications.
+     */
+    distinct?: EmployeeCertificationScalarFieldEnum | EmployeeCertificationScalarFieldEnum[]
+  }
+
+  /**
+   * EmployeeCertification findMany
+   */
+  export type EmployeeCertificationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertification
+     */
+    select?: EmployeeCertificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertification
+     */
+    omit?: EmployeeCertificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationInclude<ExtArgs> | null
+    /**
+     * Filter, which EmployeeCertifications to fetch.
+     */
+    where?: EmployeeCertificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmployeeCertifications to fetch.
+     */
+    orderBy?: EmployeeCertificationOrderByWithRelationInput | EmployeeCertificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EmployeeCertifications.
+     */
+    cursor?: EmployeeCertificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmployeeCertifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmployeeCertifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmployeeCertifications.
+     */
+    distinct?: EmployeeCertificationScalarFieldEnum | EmployeeCertificationScalarFieldEnum[]
+  }
+
+  /**
+   * EmployeeCertification create
+   */
+  export type EmployeeCertificationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertification
+     */
+    select?: EmployeeCertificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertification
+     */
+    omit?: EmployeeCertificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EmployeeCertification.
+     */
+    data: XOR<EmployeeCertificationCreateInput, EmployeeCertificationUncheckedCreateInput>
+  }
+
+  /**
+   * EmployeeCertification createMany
+   */
+  export type EmployeeCertificationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EmployeeCertifications.
+     */
+    data: EmployeeCertificationCreateManyInput | EmployeeCertificationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EmployeeCertification createManyAndReturn
+   */
+  export type EmployeeCertificationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertification
+     */
+    select?: EmployeeCertificationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertification
+     */
+    omit?: EmployeeCertificationOmit<ExtArgs> | null
+    /**
+     * The data used to create many EmployeeCertifications.
+     */
+    data: EmployeeCertificationCreateManyInput | EmployeeCertificationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EmployeeCertification update
+   */
+  export type EmployeeCertificationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertification
+     */
+    select?: EmployeeCertificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertification
+     */
+    omit?: EmployeeCertificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EmployeeCertification.
+     */
+    data: XOR<EmployeeCertificationUpdateInput, EmployeeCertificationUncheckedUpdateInput>
+    /**
+     * Choose, which EmployeeCertification to update.
+     */
+    where: EmployeeCertificationWhereUniqueInput
+  }
+
+  /**
+   * EmployeeCertification updateMany
+   */
+  export type EmployeeCertificationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EmployeeCertifications.
+     */
+    data: XOR<EmployeeCertificationUpdateManyMutationInput, EmployeeCertificationUncheckedUpdateManyInput>
+    /**
+     * Filter which EmployeeCertifications to update
+     */
+    where?: EmployeeCertificationWhereInput
+    /**
+     * Limit how many EmployeeCertifications to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmployeeCertification updateManyAndReturn
+   */
+  export type EmployeeCertificationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertification
+     */
+    select?: EmployeeCertificationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertification
+     */
+    omit?: EmployeeCertificationOmit<ExtArgs> | null
+    /**
+     * The data used to update EmployeeCertifications.
+     */
+    data: XOR<EmployeeCertificationUpdateManyMutationInput, EmployeeCertificationUncheckedUpdateManyInput>
+    /**
+     * Filter which EmployeeCertifications to update
+     */
+    where?: EmployeeCertificationWhereInput
+    /**
+     * Limit how many EmployeeCertifications to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EmployeeCertification upsert
+   */
+  export type EmployeeCertificationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertification
+     */
+    select?: EmployeeCertificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertification
+     */
+    omit?: EmployeeCertificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EmployeeCertification to update in case it exists.
+     */
+    where: EmployeeCertificationWhereUniqueInput
+    /**
+     * In case the EmployeeCertification found by the `where` argument doesn't exist, create a new EmployeeCertification with this data.
+     */
+    create: XOR<EmployeeCertificationCreateInput, EmployeeCertificationUncheckedCreateInput>
+    /**
+     * In case the EmployeeCertification was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EmployeeCertificationUpdateInput, EmployeeCertificationUncheckedUpdateInput>
+  }
+
+  /**
+   * EmployeeCertification delete
+   */
+  export type EmployeeCertificationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertification
+     */
+    select?: EmployeeCertificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertification
+     */
+    omit?: EmployeeCertificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationInclude<ExtArgs> | null
+    /**
+     * Filter which EmployeeCertification to delete.
+     */
+    where: EmployeeCertificationWhereUniqueInput
+  }
+
+  /**
+   * EmployeeCertification deleteMany
+   */
+  export type EmployeeCertificationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmployeeCertifications to delete
+     */
+    where?: EmployeeCertificationWhereInput
+    /**
+     * Limit how many EmployeeCertifications to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmployeeCertification without action
+   */
+  export type EmployeeCertificationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertification
+     */
+    select?: EmployeeCertificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertification
+     */
+    omit?: EmployeeCertificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -18584,6 +20967,27 @@ export namespace Prisma {
   };
 
   export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
+
+
+  export const CertificationScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    createdAt: 'createdAt'
+  };
+
+  export type CertificationScalarFieldEnum = (typeof CertificationScalarFieldEnum)[keyof typeof CertificationScalarFieldEnum]
+
+
+  export const EmployeeCertificationScalarFieldEnum: {
+    id: 'id',
+    employeeId: 'employeeId',
+    certificationId: 'certificationId',
+    acquiredDate: 'acquiredDate',
+    expiryDate: 'expiryDate',
+    createdAt: 'createdAt'
+  };
+
+  export type EmployeeCertificationScalarFieldEnum = (typeof EmployeeCertificationScalarFieldEnum)[keyof typeof EmployeeCertificationScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -19080,6 +21484,7 @@ export namespace Prisma {
     leaveBalance?: XOR<LeaveBalanceNullableScalarRelationFilter, LeaveBalanceWhereInput> | null
     employmentHistories?: EmploymentHistoryListRelationFilter
     leaveGrantHistories?: LeaveGrantHistoryListRelationFilter
+    certifications?: EmployeeCertificationListRelationFilter
   }
 
   export type EmployeeOrderByWithRelationInput = {
@@ -19116,6 +21521,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceOrderByWithRelationInput
     employmentHistories?: EmploymentHistoryOrderByRelationAggregateInput
     leaveGrantHistories?: LeaveGrantHistoryOrderByRelationAggregateInput
+    certifications?: EmployeeCertificationOrderByRelationAggregateInput
   }
 
   export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
@@ -19155,6 +21561,7 @@ export namespace Prisma {
     leaveBalance?: XOR<LeaveBalanceNullableScalarRelationFilter, LeaveBalanceWhereInput> | null
     employmentHistories?: EmploymentHistoryListRelationFilter
     leaveGrantHistories?: LeaveGrantHistoryListRelationFilter
+    certifications?: EmployeeCertificationListRelationFilter
   }, "id" | "employeeNo" | "email" | "userId">
 
   export type EmployeeOrderByWithAggregationInput = {
@@ -19910,6 +22317,115 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"AuditLog"> | Date | string
   }
 
+  export type CertificationWhereInput = {
+    AND?: CertificationWhereInput | CertificationWhereInput[]
+    OR?: CertificationWhereInput[]
+    NOT?: CertificationWhereInput | CertificationWhereInput[]
+    id?: StringFilter<"Certification"> | string
+    name?: StringFilter<"Certification"> | string
+    createdAt?: DateTimeFilter<"Certification"> | Date | string
+    employeeCertifications?: EmployeeCertificationListRelationFilter
+  }
+
+  export type CertificationOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    employeeCertifications?: EmployeeCertificationOrderByRelationAggregateInput
+  }
+
+  export type CertificationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    name?: string
+    AND?: CertificationWhereInput | CertificationWhereInput[]
+    OR?: CertificationWhereInput[]
+    NOT?: CertificationWhereInput | CertificationWhereInput[]
+    createdAt?: DateTimeFilter<"Certification"> | Date | string
+    employeeCertifications?: EmployeeCertificationListRelationFilter
+  }, "id" | "name">
+
+  export type CertificationOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    _count?: CertificationCountOrderByAggregateInput
+    _max?: CertificationMaxOrderByAggregateInput
+    _min?: CertificationMinOrderByAggregateInput
+  }
+
+  export type CertificationScalarWhereWithAggregatesInput = {
+    AND?: CertificationScalarWhereWithAggregatesInput | CertificationScalarWhereWithAggregatesInput[]
+    OR?: CertificationScalarWhereWithAggregatesInput[]
+    NOT?: CertificationScalarWhereWithAggregatesInput | CertificationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Certification"> | string
+    name?: StringWithAggregatesFilter<"Certification"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Certification"> | Date | string
+  }
+
+  export type EmployeeCertificationWhereInput = {
+    AND?: EmployeeCertificationWhereInput | EmployeeCertificationWhereInput[]
+    OR?: EmployeeCertificationWhereInput[]
+    NOT?: EmployeeCertificationWhereInput | EmployeeCertificationWhereInput[]
+    id?: StringFilter<"EmployeeCertification"> | string
+    employeeId?: StringFilter<"EmployeeCertification"> | string
+    certificationId?: StringFilter<"EmployeeCertification"> | string
+    acquiredDate?: DateTimeNullableFilter<"EmployeeCertification"> | Date | string | null
+    expiryDate?: DateTimeNullableFilter<"EmployeeCertification"> | Date | string | null
+    createdAt?: DateTimeFilter<"EmployeeCertification"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+    certification?: XOR<CertificationScalarRelationFilter, CertificationWhereInput>
+  }
+
+  export type EmployeeCertificationOrderByWithRelationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    certificationId?: SortOrder
+    acquiredDate?: SortOrderInput | SortOrder
+    expiryDate?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    employee?: EmployeeOrderByWithRelationInput
+    certification?: CertificationOrderByWithRelationInput
+  }
+
+  export type EmployeeCertificationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    employeeId_certificationId?: EmployeeCertificationEmployeeIdCertificationIdCompoundUniqueInput
+    AND?: EmployeeCertificationWhereInput | EmployeeCertificationWhereInput[]
+    OR?: EmployeeCertificationWhereInput[]
+    NOT?: EmployeeCertificationWhereInput | EmployeeCertificationWhereInput[]
+    employeeId?: StringFilter<"EmployeeCertification"> | string
+    certificationId?: StringFilter<"EmployeeCertification"> | string
+    acquiredDate?: DateTimeNullableFilter<"EmployeeCertification"> | Date | string | null
+    expiryDate?: DateTimeNullableFilter<"EmployeeCertification"> | Date | string | null
+    createdAt?: DateTimeFilter<"EmployeeCertification"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+    certification?: XOR<CertificationScalarRelationFilter, CertificationWhereInput>
+  }, "id" | "employeeId_certificationId">
+
+  export type EmployeeCertificationOrderByWithAggregationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    certificationId?: SortOrder
+    acquiredDate?: SortOrderInput | SortOrder
+    expiryDate?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: EmployeeCertificationCountOrderByAggregateInput
+    _max?: EmployeeCertificationMaxOrderByAggregateInput
+    _min?: EmployeeCertificationMinOrderByAggregateInput
+  }
+
+  export type EmployeeCertificationScalarWhereWithAggregatesInput = {
+    AND?: EmployeeCertificationScalarWhereWithAggregatesInput | EmployeeCertificationScalarWhereWithAggregatesInput[]
+    OR?: EmployeeCertificationScalarWhereWithAggregatesInput[]
+    NOT?: EmployeeCertificationScalarWhereWithAggregatesInput | EmployeeCertificationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EmployeeCertification"> | string
+    employeeId?: StringWithAggregatesFilter<"EmployeeCertification"> | string
+    certificationId?: StringWithAggregatesFilter<"EmployeeCertification"> | string
+    acquiredDate?: DateTimeNullableWithAggregatesFilter<"EmployeeCertification"> | Date | string | null
+    expiryDate?: DateTimeNullableWithAggregatesFilter<"EmployeeCertification"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"EmployeeCertification"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     name: string
@@ -20178,6 +22694,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateInput = {
@@ -20212,6 +22729,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUpdateInput = {
@@ -20246,6 +22764,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateInput = {
@@ -20280,6 +22799,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateManyInput = {
@@ -21094,6 +23614,113 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type CertificationCreateInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    employeeCertifications?: EmployeeCertificationCreateNestedManyWithoutCertificationInput
+  }
+
+  export type CertificationUncheckedCreateInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    employeeCertifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutCertificationInput
+  }
+
+  export type CertificationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employeeCertifications?: EmployeeCertificationUpdateManyWithoutCertificationNestedInput
+  }
+
+  export type CertificationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employeeCertifications?: EmployeeCertificationUncheckedUpdateManyWithoutCertificationNestedInput
+  }
+
+  export type CertificationCreateManyInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+  }
+
+  export type CertificationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CertificationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeCertificationCreateInput = {
+    id?: string
+    acquiredDate?: Date | string | null
+    expiryDate?: Date | string | null
+    createdAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutCertificationsInput
+    certification: CertificationCreateNestedOneWithoutEmployeeCertificationsInput
+  }
+
+  export type EmployeeCertificationUncheckedCreateInput = {
+    id?: string
+    employeeId: string
+    certificationId: string
+    acquiredDate?: Date | string | null
+    expiryDate?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type EmployeeCertificationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    acquiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutCertificationsNestedInput
+    certification?: CertificationUpdateOneRequiredWithoutEmployeeCertificationsNestedInput
+  }
+
+  export type EmployeeCertificationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    certificationId?: StringFieldUpdateOperationsInput | string
+    acquiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeCertificationCreateManyInput = {
+    id?: string
+    employeeId: string
+    certificationId: string
+    acquiredDate?: Date | string | null
+    expiryDate?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type EmployeeCertificationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    acquiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeCertificationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    certificationId?: StringFieldUpdateOperationsInput | string
+    acquiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -21430,6 +24057,12 @@ export namespace Prisma {
     none?: LeaveGrantHistoryWhereInput
   }
 
+  export type EmployeeCertificationListRelationFilter = {
+    every?: EmployeeCertificationWhereInput
+    some?: EmployeeCertificationWhereInput
+    none?: EmployeeCertificationWhereInput
+  }
+
   export type SalaryHistoryOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -21439,6 +24072,10 @@ export namespace Prisma {
   }
 
   export type LeaveGrantHistoryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EmployeeCertificationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -22194,6 +24831,61 @@ export namespace Prisma {
     _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
+  export type CertificationCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CertificationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CertificationMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CertificationScalarRelationFilter = {
+    is?: CertificationWhereInput
+    isNot?: CertificationWhereInput
+  }
+
+  export type EmployeeCertificationEmployeeIdCertificationIdCompoundUniqueInput = {
+    employeeId: string
+    certificationId: string
+  }
+
+  export type EmployeeCertificationCountOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    certificationId?: SortOrder
+    acquiredDate?: SortOrder
+    expiryDate?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EmployeeCertificationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    certificationId?: SortOrder
+    acquiredDate?: SortOrder
+    expiryDate?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EmployeeCertificationMinOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    certificationId?: SortOrder
+    acquiredDate?: SortOrder
+    expiryDate?: SortOrder
+    createdAt?: SortOrder
+  }
+
   export type EmployeeRequestCreateNestedManyWithoutUserInput = {
     create?: XOR<EmployeeRequestCreateWithoutUserInput, EmployeeRequestUncheckedCreateWithoutUserInput> | EmployeeRequestCreateWithoutUserInput[] | EmployeeRequestUncheckedCreateWithoutUserInput[]
     connectOrCreate?: EmployeeRequestCreateOrConnectWithoutUserInput | EmployeeRequestCreateOrConnectWithoutUserInput[]
@@ -22392,6 +25084,13 @@ export namespace Prisma {
     connect?: LeaveGrantHistoryWhereUniqueInput | LeaveGrantHistoryWhereUniqueInput[]
   }
 
+  export type EmployeeCertificationCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<EmployeeCertificationCreateWithoutEmployeeInput, EmployeeCertificationUncheckedCreateWithoutEmployeeInput> | EmployeeCertificationCreateWithoutEmployeeInput[] | EmployeeCertificationUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutEmployeeInput | EmployeeCertificationCreateOrConnectWithoutEmployeeInput[]
+    createMany?: EmployeeCertificationCreateManyEmployeeInputEnvelope
+    connect?: EmployeeCertificationWhereUniqueInput | EmployeeCertificationWhereUniqueInput[]
+  }
+
   export type EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput = {
     create?: XOR<EmployeeRequestCreateWithoutEmployeeInput, EmployeeRequestUncheckedCreateWithoutEmployeeInput> | EmployeeRequestCreateWithoutEmployeeInput[] | EmployeeRequestUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeRequestCreateOrConnectWithoutEmployeeInput | EmployeeRequestCreateOrConnectWithoutEmployeeInput[]
@@ -22436,6 +25135,13 @@ export namespace Prisma {
     connectOrCreate?: LeaveGrantHistoryCreateOrConnectWithoutEmployeeInput | LeaveGrantHistoryCreateOrConnectWithoutEmployeeInput[]
     createMany?: LeaveGrantHistoryCreateManyEmployeeInputEnvelope
     connect?: LeaveGrantHistoryWhereUniqueInput | LeaveGrantHistoryWhereUniqueInput[]
+  }
+
+  export type EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<EmployeeCertificationCreateWithoutEmployeeInput, EmployeeCertificationUncheckedCreateWithoutEmployeeInput> | EmployeeCertificationCreateWithoutEmployeeInput[] | EmployeeCertificationUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutEmployeeInput | EmployeeCertificationCreateOrConnectWithoutEmployeeInput[]
+    createMany?: EmployeeCertificationCreateManyEmployeeInputEnvelope
+    connect?: EmployeeCertificationWhereUniqueInput | EmployeeCertificationWhereUniqueInput[]
   }
 
   export type NullableEnumGenderFieldUpdateOperationsInput = {
@@ -22556,6 +25262,20 @@ export namespace Prisma {
     deleteMany?: LeaveGrantHistoryScalarWhereInput | LeaveGrantHistoryScalarWhereInput[]
   }
 
+  export type EmployeeCertificationUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<EmployeeCertificationCreateWithoutEmployeeInput, EmployeeCertificationUncheckedCreateWithoutEmployeeInput> | EmployeeCertificationCreateWithoutEmployeeInput[] | EmployeeCertificationUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutEmployeeInput | EmployeeCertificationCreateOrConnectWithoutEmployeeInput[]
+    upsert?: EmployeeCertificationUpsertWithWhereUniqueWithoutEmployeeInput | EmployeeCertificationUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: EmployeeCertificationCreateManyEmployeeInputEnvelope
+    set?: EmployeeCertificationWhereUniqueInput | EmployeeCertificationWhereUniqueInput[]
+    disconnect?: EmployeeCertificationWhereUniqueInput | EmployeeCertificationWhereUniqueInput[]
+    delete?: EmployeeCertificationWhereUniqueInput | EmployeeCertificationWhereUniqueInput[]
+    connect?: EmployeeCertificationWhereUniqueInput | EmployeeCertificationWhereUniqueInput[]
+    update?: EmployeeCertificationUpdateWithWhereUniqueWithoutEmployeeInput | EmployeeCertificationUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: EmployeeCertificationUpdateManyWithWhereWithoutEmployeeInput | EmployeeCertificationUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: EmployeeCertificationScalarWhereInput | EmployeeCertificationScalarWhereInput[]
+  }
+
   export type EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput = {
     create?: XOR<EmployeeRequestCreateWithoutEmployeeInput, EmployeeRequestUncheckedCreateWithoutEmployeeInput> | EmployeeRequestCreateWithoutEmployeeInput[] | EmployeeRequestUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeRequestCreateOrConnectWithoutEmployeeInput | EmployeeRequestCreateOrConnectWithoutEmployeeInput[]
@@ -22640,6 +25360,20 @@ export namespace Prisma {
     update?: LeaveGrantHistoryUpdateWithWhereUniqueWithoutEmployeeInput | LeaveGrantHistoryUpdateWithWhereUniqueWithoutEmployeeInput[]
     updateMany?: LeaveGrantHistoryUpdateManyWithWhereWithoutEmployeeInput | LeaveGrantHistoryUpdateManyWithWhereWithoutEmployeeInput[]
     deleteMany?: LeaveGrantHistoryScalarWhereInput | LeaveGrantHistoryScalarWhereInput[]
+  }
+
+  export type EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<EmployeeCertificationCreateWithoutEmployeeInput, EmployeeCertificationUncheckedCreateWithoutEmployeeInput> | EmployeeCertificationCreateWithoutEmployeeInput[] | EmployeeCertificationUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutEmployeeInput | EmployeeCertificationCreateOrConnectWithoutEmployeeInput[]
+    upsert?: EmployeeCertificationUpsertWithWhereUniqueWithoutEmployeeInput | EmployeeCertificationUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: EmployeeCertificationCreateManyEmployeeInputEnvelope
+    set?: EmployeeCertificationWhereUniqueInput | EmployeeCertificationWhereUniqueInput[]
+    disconnect?: EmployeeCertificationWhereUniqueInput | EmployeeCertificationWhereUniqueInput[]
+    delete?: EmployeeCertificationWhereUniqueInput | EmployeeCertificationWhereUniqueInput[]
+    connect?: EmployeeCertificationWhereUniqueInput | EmployeeCertificationWhereUniqueInput[]
+    update?: EmployeeCertificationUpdateWithWhereUniqueWithoutEmployeeInput | EmployeeCertificationUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: EmployeeCertificationUpdateManyWithWhereWithoutEmployeeInput | EmployeeCertificationUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: EmployeeCertificationScalarWhereInput | EmployeeCertificationScalarWhereInput[]
   }
 
   export type EmployeeCreateNestedOneWithoutEmploymentHistoriesInput = {
@@ -22920,6 +25654,76 @@ export namespace Prisma {
     upsert?: EmployeeRequestUpsertWithoutHistoriesInput
     connect?: EmployeeRequestWhereUniqueInput
     update?: XOR<XOR<EmployeeRequestUpdateToOneWithWhereWithoutHistoriesInput, EmployeeRequestUpdateWithoutHistoriesInput>, EmployeeRequestUncheckedUpdateWithoutHistoriesInput>
+  }
+
+  export type EmployeeCertificationCreateNestedManyWithoutCertificationInput = {
+    create?: XOR<EmployeeCertificationCreateWithoutCertificationInput, EmployeeCertificationUncheckedCreateWithoutCertificationInput> | EmployeeCertificationCreateWithoutCertificationInput[] | EmployeeCertificationUncheckedCreateWithoutCertificationInput[]
+    connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutCertificationInput | EmployeeCertificationCreateOrConnectWithoutCertificationInput[]
+    createMany?: EmployeeCertificationCreateManyCertificationInputEnvelope
+    connect?: EmployeeCertificationWhereUniqueInput | EmployeeCertificationWhereUniqueInput[]
+  }
+
+  export type EmployeeCertificationUncheckedCreateNestedManyWithoutCertificationInput = {
+    create?: XOR<EmployeeCertificationCreateWithoutCertificationInput, EmployeeCertificationUncheckedCreateWithoutCertificationInput> | EmployeeCertificationCreateWithoutCertificationInput[] | EmployeeCertificationUncheckedCreateWithoutCertificationInput[]
+    connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutCertificationInput | EmployeeCertificationCreateOrConnectWithoutCertificationInput[]
+    createMany?: EmployeeCertificationCreateManyCertificationInputEnvelope
+    connect?: EmployeeCertificationWhereUniqueInput | EmployeeCertificationWhereUniqueInput[]
+  }
+
+  export type EmployeeCertificationUpdateManyWithoutCertificationNestedInput = {
+    create?: XOR<EmployeeCertificationCreateWithoutCertificationInput, EmployeeCertificationUncheckedCreateWithoutCertificationInput> | EmployeeCertificationCreateWithoutCertificationInput[] | EmployeeCertificationUncheckedCreateWithoutCertificationInput[]
+    connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutCertificationInput | EmployeeCertificationCreateOrConnectWithoutCertificationInput[]
+    upsert?: EmployeeCertificationUpsertWithWhereUniqueWithoutCertificationInput | EmployeeCertificationUpsertWithWhereUniqueWithoutCertificationInput[]
+    createMany?: EmployeeCertificationCreateManyCertificationInputEnvelope
+    set?: EmployeeCertificationWhereUniqueInput | EmployeeCertificationWhereUniqueInput[]
+    disconnect?: EmployeeCertificationWhereUniqueInput | EmployeeCertificationWhereUniqueInput[]
+    delete?: EmployeeCertificationWhereUniqueInput | EmployeeCertificationWhereUniqueInput[]
+    connect?: EmployeeCertificationWhereUniqueInput | EmployeeCertificationWhereUniqueInput[]
+    update?: EmployeeCertificationUpdateWithWhereUniqueWithoutCertificationInput | EmployeeCertificationUpdateWithWhereUniqueWithoutCertificationInput[]
+    updateMany?: EmployeeCertificationUpdateManyWithWhereWithoutCertificationInput | EmployeeCertificationUpdateManyWithWhereWithoutCertificationInput[]
+    deleteMany?: EmployeeCertificationScalarWhereInput | EmployeeCertificationScalarWhereInput[]
+  }
+
+  export type EmployeeCertificationUncheckedUpdateManyWithoutCertificationNestedInput = {
+    create?: XOR<EmployeeCertificationCreateWithoutCertificationInput, EmployeeCertificationUncheckedCreateWithoutCertificationInput> | EmployeeCertificationCreateWithoutCertificationInput[] | EmployeeCertificationUncheckedCreateWithoutCertificationInput[]
+    connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutCertificationInput | EmployeeCertificationCreateOrConnectWithoutCertificationInput[]
+    upsert?: EmployeeCertificationUpsertWithWhereUniqueWithoutCertificationInput | EmployeeCertificationUpsertWithWhereUniqueWithoutCertificationInput[]
+    createMany?: EmployeeCertificationCreateManyCertificationInputEnvelope
+    set?: EmployeeCertificationWhereUniqueInput | EmployeeCertificationWhereUniqueInput[]
+    disconnect?: EmployeeCertificationWhereUniqueInput | EmployeeCertificationWhereUniqueInput[]
+    delete?: EmployeeCertificationWhereUniqueInput | EmployeeCertificationWhereUniqueInput[]
+    connect?: EmployeeCertificationWhereUniqueInput | EmployeeCertificationWhereUniqueInput[]
+    update?: EmployeeCertificationUpdateWithWhereUniqueWithoutCertificationInput | EmployeeCertificationUpdateWithWhereUniqueWithoutCertificationInput[]
+    updateMany?: EmployeeCertificationUpdateManyWithWhereWithoutCertificationInput | EmployeeCertificationUpdateManyWithWhereWithoutCertificationInput[]
+    deleteMany?: EmployeeCertificationScalarWhereInput | EmployeeCertificationScalarWhereInput[]
+  }
+
+  export type EmployeeCreateNestedOneWithoutCertificationsInput = {
+    create?: XOR<EmployeeCreateWithoutCertificationsInput, EmployeeUncheckedCreateWithoutCertificationsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutCertificationsInput
+    connect?: EmployeeWhereUniqueInput
+  }
+
+  export type CertificationCreateNestedOneWithoutEmployeeCertificationsInput = {
+    create?: XOR<CertificationCreateWithoutEmployeeCertificationsInput, CertificationUncheckedCreateWithoutEmployeeCertificationsInput>
+    connectOrCreate?: CertificationCreateOrConnectWithoutEmployeeCertificationsInput
+    connect?: CertificationWhereUniqueInput
+  }
+
+  export type EmployeeUpdateOneRequiredWithoutCertificationsNestedInput = {
+    create?: XOR<EmployeeCreateWithoutCertificationsInput, EmployeeUncheckedCreateWithoutCertificationsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutCertificationsInput
+    upsert?: EmployeeUpsertWithoutCertificationsInput
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutCertificationsInput, EmployeeUpdateWithoutCertificationsInput>, EmployeeUncheckedUpdateWithoutCertificationsInput>
+  }
+
+  export type CertificationUpdateOneRequiredWithoutEmployeeCertificationsNestedInput = {
+    create?: XOR<CertificationCreateWithoutEmployeeCertificationsInput, CertificationUncheckedCreateWithoutEmployeeCertificationsInput>
+    connectOrCreate?: CertificationCreateOrConnectWithoutEmployeeCertificationsInput
+    upsert?: CertificationUpsertWithoutEmployeeCertificationsInput
+    connect?: CertificationWhereUniqueInput
+    update?: XOR<XOR<CertificationUpdateToOneWithWhereWithoutEmployeeCertificationsInput, CertificationUpdateWithoutEmployeeCertificationsInput>, CertificationUncheckedUpdateWithoutEmployeeCertificationsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -23406,6 +26210,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutUserInput = {
@@ -23439,6 +26244,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutUserInput = {
@@ -23523,6 +26329,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutUserInput = {
@@ -23556,6 +26363,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutDepartmentInput = {
@@ -23589,6 +26397,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDepartmentInput = {
@@ -23622,6 +26431,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDepartmentInput = {
@@ -23915,6 +26725,32 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type EmployeeCertificationCreateWithoutEmployeeInput = {
+    id?: string
+    acquiredDate?: Date | string | null
+    expiryDate?: Date | string | null
+    createdAt?: Date | string
+    certification: CertificationCreateNestedOneWithoutEmployeeCertificationsInput
+  }
+
+  export type EmployeeCertificationUncheckedCreateWithoutEmployeeInput = {
+    id?: string
+    certificationId: string
+    acquiredDate?: Date | string | null
+    expiryDate?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type EmployeeCertificationCreateOrConnectWithoutEmployeeInput = {
+    where: EmployeeCertificationWhereUniqueInput
+    create: XOR<EmployeeCertificationCreateWithoutEmployeeInput, EmployeeCertificationUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type EmployeeCertificationCreateManyEmployeeInputEnvelope = {
+    data: EmployeeCertificationCreateManyEmployeeInput | EmployeeCertificationCreateManyEmployeeInput[]
+    skipDuplicates?: boolean
+  }
+
   export type DepartmentUpsertWithoutEmployeesInput = {
     update: XOR<DepartmentUpdateWithoutEmployeesInput, DepartmentUncheckedUpdateWithoutEmployeesInput>
     create: XOR<DepartmentCreateWithoutEmployeesInput, DepartmentUncheckedCreateWithoutEmployeesInput>
@@ -24156,6 +26992,34 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"LeaveGrantHistory"> | Date | string
   }
 
+  export type EmployeeCertificationUpsertWithWhereUniqueWithoutEmployeeInput = {
+    where: EmployeeCertificationWhereUniqueInput
+    update: XOR<EmployeeCertificationUpdateWithoutEmployeeInput, EmployeeCertificationUncheckedUpdateWithoutEmployeeInput>
+    create: XOR<EmployeeCertificationCreateWithoutEmployeeInput, EmployeeCertificationUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type EmployeeCertificationUpdateWithWhereUniqueWithoutEmployeeInput = {
+    where: EmployeeCertificationWhereUniqueInput
+    data: XOR<EmployeeCertificationUpdateWithoutEmployeeInput, EmployeeCertificationUncheckedUpdateWithoutEmployeeInput>
+  }
+
+  export type EmployeeCertificationUpdateManyWithWhereWithoutEmployeeInput = {
+    where: EmployeeCertificationScalarWhereInput
+    data: XOR<EmployeeCertificationUpdateManyMutationInput, EmployeeCertificationUncheckedUpdateManyWithoutEmployeeInput>
+  }
+
+  export type EmployeeCertificationScalarWhereInput = {
+    AND?: EmployeeCertificationScalarWhereInput | EmployeeCertificationScalarWhereInput[]
+    OR?: EmployeeCertificationScalarWhereInput[]
+    NOT?: EmployeeCertificationScalarWhereInput | EmployeeCertificationScalarWhereInput[]
+    id?: StringFilter<"EmployeeCertification"> | string
+    employeeId?: StringFilter<"EmployeeCertification"> | string
+    certificationId?: StringFilter<"EmployeeCertification"> | string
+    acquiredDate?: DateTimeNullableFilter<"EmployeeCertification"> | Date | string | null
+    expiryDate?: DateTimeNullableFilter<"EmployeeCertification"> | Date | string | null
+    createdAt?: DateTimeFilter<"EmployeeCertification"> | Date | string
+  }
+
   export type EmployeeCreateWithoutEmploymentHistoriesInput = {
     id?: string
     employeeNo: string
@@ -24187,6 +27051,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmploymentHistoriesInput = {
@@ -24220,6 +27085,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmploymentHistoriesInput = {
@@ -24269,6 +27135,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmploymentHistoriesInput = {
@@ -24302,6 +27169,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmployeeMyNumberInput = {
@@ -24335,6 +27203,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmployeeMyNumberInput = {
@@ -24368,6 +27237,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmployeeMyNumberInput = {
@@ -24417,6 +27287,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmployeeMyNumberInput = {
@@ -24450,6 +27321,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmployeeSalaryInput = {
@@ -24483,6 +27355,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmployeeSalaryInput = {
@@ -24516,6 +27389,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmployeeSalaryInput = {
@@ -24565,6 +27439,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmployeeSalaryInput = {
@@ -24598,6 +27473,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutSalaryHistoriesInput = {
@@ -24631,6 +27507,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutSalaryHistoriesInput = {
@@ -24664,6 +27541,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutSalaryHistoriesInput = {
@@ -24713,6 +27591,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutSalaryHistoriesInput = {
@@ -24746,6 +27625,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutLeaveGrantHistoriesInput = {
@@ -24779,6 +27659,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
+    certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLeaveGrantHistoriesInput = {
@@ -24812,6 +27693,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLeaveGrantHistoriesInput = {
@@ -24861,6 +27743,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLeaveGrantHistoriesInput = {
@@ -24894,6 +27777,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutLeaveBalanceInput = {
@@ -24927,6 +27811,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLeaveBalanceInput = {
@@ -24960,6 +27845,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLeaveBalanceInput = {
@@ -25009,6 +27895,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLeaveBalanceInput = {
@@ -25042,6 +27929,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type UserCreateWithoutRequestsInput = {
@@ -25102,6 +27990,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutRequestsInput = {
@@ -25135,6 +28024,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutRequestsInput = {
@@ -25271,6 +28161,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutRequestsInput = {
@@ -25304,6 +28195,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type RequestHistoryUpsertWithWhereUniqueWithoutRequestInput = {
@@ -25531,6 +28423,240 @@ export namespace Prisma {
     attachments?: RequestAttachmentUncheckedUpdateManyWithoutRequestNestedInput
   }
 
+  export type EmployeeCertificationCreateWithoutCertificationInput = {
+    id?: string
+    acquiredDate?: Date | string | null
+    expiryDate?: Date | string | null
+    createdAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutCertificationsInput
+  }
+
+  export type EmployeeCertificationUncheckedCreateWithoutCertificationInput = {
+    id?: string
+    employeeId: string
+    acquiredDate?: Date | string | null
+    expiryDate?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type EmployeeCertificationCreateOrConnectWithoutCertificationInput = {
+    where: EmployeeCertificationWhereUniqueInput
+    create: XOR<EmployeeCertificationCreateWithoutCertificationInput, EmployeeCertificationUncheckedCreateWithoutCertificationInput>
+  }
+
+  export type EmployeeCertificationCreateManyCertificationInputEnvelope = {
+    data: EmployeeCertificationCreateManyCertificationInput | EmployeeCertificationCreateManyCertificationInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EmployeeCertificationUpsertWithWhereUniqueWithoutCertificationInput = {
+    where: EmployeeCertificationWhereUniqueInput
+    update: XOR<EmployeeCertificationUpdateWithoutCertificationInput, EmployeeCertificationUncheckedUpdateWithoutCertificationInput>
+    create: XOR<EmployeeCertificationCreateWithoutCertificationInput, EmployeeCertificationUncheckedCreateWithoutCertificationInput>
+  }
+
+  export type EmployeeCertificationUpdateWithWhereUniqueWithoutCertificationInput = {
+    where: EmployeeCertificationWhereUniqueInput
+    data: XOR<EmployeeCertificationUpdateWithoutCertificationInput, EmployeeCertificationUncheckedUpdateWithoutCertificationInput>
+  }
+
+  export type EmployeeCertificationUpdateManyWithWhereWithoutCertificationInput = {
+    where: EmployeeCertificationScalarWhereInput
+    data: XOR<EmployeeCertificationUpdateManyMutationInput, EmployeeCertificationUncheckedUpdateManyWithoutCertificationInput>
+  }
+
+  export type EmployeeCreateWithoutCertificationsInput = {
+    id?: string
+    employeeNo: string
+    lastName: string
+    firstName: string
+    lastNameKana?: string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    birthDate?: Date | string | null
+    phoneNumber?: string | null
+    address?: string | null
+    email: string
+    occupation?: string | null
+    position?: string | null
+    hireDate?: Date | string | null
+    employmentType?: $Enums.EmploymentType | null
+    commutingType?: string | null
+    status?: $Enums.EmployeeStatus
+    retirementDate?: Date | string | null
+    healthInsuranceNo?: string | null
+    employmentInsuranceNo?: string | null
+    photoPath?: string | null
+    createdAt?: Date | string
+    department?: DepartmentCreateNestedOneWithoutEmployeesInput
+    user?: UserCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeUncheckedCreateWithoutCertificationsInput = {
+    id?: string
+    employeeNo: string
+    lastName: string
+    firstName: string
+    lastNameKana?: string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    birthDate?: Date | string | null
+    phoneNumber?: string | null
+    address?: string | null
+    email: string
+    departmentId?: string | null
+    occupation?: string | null
+    position?: string | null
+    hireDate?: Date | string | null
+    employmentType?: $Enums.EmploymentType | null
+    commutingType?: string | null
+    status?: $Enums.EmployeeStatus
+    retirementDate?: Date | string | null
+    healthInsuranceNo?: string | null
+    employmentInsuranceNo?: string | null
+    photoPath?: string | null
+    userId?: string | null
+    createdAt?: Date | string
+    requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeCreateOrConnectWithoutCertificationsInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutCertificationsInput, EmployeeUncheckedCreateWithoutCertificationsInput>
+  }
+
+  export type CertificationCreateWithoutEmployeeCertificationsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+  }
+
+  export type CertificationUncheckedCreateWithoutEmployeeCertificationsInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+  }
+
+  export type CertificationCreateOrConnectWithoutEmployeeCertificationsInput = {
+    where: CertificationWhereUniqueInput
+    create: XOR<CertificationCreateWithoutEmployeeCertificationsInput, CertificationUncheckedCreateWithoutEmployeeCertificationsInput>
+  }
+
+  export type EmployeeUpsertWithoutCertificationsInput = {
+    update: XOR<EmployeeUpdateWithoutCertificationsInput, EmployeeUncheckedUpdateWithoutCertificationsInput>
+    create: XOR<EmployeeCreateWithoutCertificationsInput, EmployeeUncheckedCreateWithoutCertificationsInput>
+    where?: EmployeeWhereInput
+  }
+
+  export type EmployeeUpdateToOneWithWhereWithoutCertificationsInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutCertificationsInput, EmployeeUncheckedUpdateWithoutCertificationsInput>
+  }
+
+  export type EmployeeUpdateWithoutCertificationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    department?: DepartmentUpdateOneWithoutEmployeesNestedInput
+    user?: UserUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateWithoutCertificationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type CertificationUpsertWithoutEmployeeCertificationsInput = {
+    update: XOR<CertificationUpdateWithoutEmployeeCertificationsInput, CertificationUncheckedUpdateWithoutEmployeeCertificationsInput>
+    create: XOR<CertificationCreateWithoutEmployeeCertificationsInput, CertificationUncheckedCreateWithoutEmployeeCertificationsInput>
+    where?: CertificationWhereInput
+  }
+
+  export type CertificationUpdateToOneWithWhereWithoutEmployeeCertificationsInput = {
+    where?: CertificationWhereInput
+    data: XOR<CertificationUpdateWithoutEmployeeCertificationsInput, CertificationUncheckedUpdateWithoutEmployeeCertificationsInput>
+  }
+
+  export type CertificationUpdateWithoutEmployeeCertificationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CertificationUncheckedUpdateWithoutEmployeeCertificationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type EmployeeRequestCreateManyUserInput = {
     id?: string
     title: string
@@ -25652,6 +28778,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDepartmentInput = {
@@ -25685,6 +28812,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateManyWithoutDepartmentInput = {
@@ -25751,6 +28879,14 @@ export namespace Prisma {
     grantedDays: number
     grantType: $Enums.LeaveGrantType
     note?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmployeeCertificationCreateManyEmployeeInput = {
+    id?: string
+    certificationId: string
+    acquiredDate?: Date | string | null
+    expiryDate?: Date | string | null
     createdAt?: Date | string
   }
 
@@ -25881,6 +29017,30 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type EmployeeCertificationUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    acquiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    certification?: CertificationUpdateOneRequiredWithoutEmployeeCertificationsNestedInput
+  }
+
+  export type EmployeeCertificationUncheckedUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    certificationId?: StringFieldUpdateOperationsInput | string
+    acquiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeCertificationUncheckedUpdateManyWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    certificationId?: StringFieldUpdateOperationsInput | string
+    acquiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type RequestHistoryCreateManyRequestInput = {
     id?: string
     action: $Enums.RequestHistoryAction
@@ -25946,6 +29106,38 @@ export namespace Prisma {
     filePath?: StringFieldUpdateOperationsInput | string
     fileSize?: NullableIntFieldUpdateOperationsInput | number | null
     mimeType?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeCertificationCreateManyCertificationInput = {
+    id?: string
+    employeeId: string
+    acquiredDate?: Date | string | null
+    expiryDate?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type EmployeeCertificationUpdateWithoutCertificationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    acquiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutCertificationsNestedInput
+  }
+
+  export type EmployeeCertificationUncheckedUpdateWithoutCertificationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    acquiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeCertificationUncheckedUpdateManyWithoutCertificationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    acquiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
