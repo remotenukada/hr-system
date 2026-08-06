@@ -50,3 +50,7 @@ public/uploads/*
 # Uploaded files
 public/uploads/*
 !public/uploads/**/.gitkeep
+
+# migration backup files
+backup.sql
+uploads-backup.tar.gz
