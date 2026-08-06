@@ -42,6 +42,11 @@ export default async function EmployeeCertificationsPage({
       certifications: {
         include: {
           certification: true,
+          employeeCertificationAttachments: {
+            orderBy: {
+              createdAt: "desc",
+            },
+          },
         },
         orderBy: {
           createdAt: "desc",
@@ -93,21 +98,31 @@ export default async function EmployeeCertificationsPage({
       redirect(`/employees/${id}/certifications?error=duplicate`);
     }
 
-    const certificateFile = formData.get("certificateFile");
-    let certificateFilePath: string | null = null;
+    const files = formData.getAll("certificateFiles");
 
-    if (certificateFile instanceof File && certificateFile.size > 0) {
-      if (!allowedFileTypes.includes(certificateFile.type)) {
+    const savedAttachments: {
+      fileName: string;
+      filePath: string;
+      fileType: string;
+      fileSize: number;
+    }[] = [];
+
+    for (const file of files) {
+      if (!(file instanceof File) || file.size === 0) {
+        continue;
+      }
+
+      if (!allowedFileTypes.includes(file.type)) {
         redirect(`/employees/${id}/certifications?error=invalidFile`);
       }
 
-      if (certificateFile.size > 5 * 1024 * 1024) {
+      if (file.size > 5 * 1024 * 1024) {
         redirect(`/employees/${id}/certifications?error=fileTooLarge`);
       }
 
       const extension =
-        path.extname(certificateFile.name).toLowerCase() ||
-        (certificateFile.type === "application/pdf" ? ".pdf" : ".jpg");
+        path.extname(file.name).toLowerCase() ||
+        (file.type === "application/pdf" ? ".pdf" : ".jpg");
 
       const uploadDir = path.join(
         process.cwd(),
@@ -120,14 +135,20 @@ export default async function EmployeeCertificationsPage({
         recursive: true,
       });
 
-      const fileName = `${id}-${certificationId}-${randomUUID()}${extension}`;
-      const filePath = path.join(uploadDir, fileName);
+      const storedFileName =
+        `${id}-${certificationId}-${randomUUID()}${extension}`;
 
-      const bytes = await certificateFile.arrayBuffer();
+      const filePath = path.join(uploadDir, storedFileName);
 
+      const bytes = await file.arrayBuffer();
       await writeFile(filePath, Buffer.from(bytes));
 
-      certificateFilePath = `/uploads/certifications/${fileName}`;
+      savedAttachments.push({
+        fileName: file.name,
+        filePath: `/uploads/certifications/${storedFileName}`,
+        fileType: file.type,
+        fileSize: file.size,
+      });
     }
 
     await prisma.employeeCertification.create({
@@ -140,7 +161,12 @@ export default async function EmployeeCertificationsPage({
         expiryDate: expiryDateRaw
           ? new Date(`${expiryDateRaw}T00:00:00`)
           : null,
-        certificateFilePath,
+        employeeCertificationAttachments:
+          savedAttachments.length > 0
+            ? {
+                create: savedAttachments,
+              }
+            : undefined,
       },
     });
 
@@ -213,7 +239,7 @@ export default async function EmployeeCertificationsPage({
 
       {error === "fileTooLarge" && (
         <div className="mb-4 max-w-xl rounded border border-red-300 bg-red-50 p-3 text-sm text-red-700">
-          添付ファイルは5MB以下にしてください。
+          添付ファイルは1ファイルあたり5MB以下にしてください。
         </div>
       )}
 
@@ -281,13 +307,14 @@ export default async function EmployeeCertificationsPage({
 
               <input
                 type="file"
-                name="certificateFile"
+                name="certificateFiles"
                 accept="application/pdf,image/jpeg,image/png,image/webp"
+                multiple
                 className="w-full rounded border p-2"
               />
 
               <p className="mt-1 text-xs text-gray-500">
-                PDF、JPG、PNG、WebPを添付できます。最大5MBです。
+                PDF、JPG、PNG、WebPを複数添付できます。1ファイル最大5MBです。
               </p>
             </div>
 
@@ -311,7 +338,7 @@ export default async function EmployeeCertificationsPage({
             登録済みの資格はありません。
           </p>
         ) : (
-          <table className="w-full max-w-5xl border-collapse border">
+          <table className="w-full max-w-6xl border-collapse border">
             <thead>
               <tr className="bg-gray-50">
                 <th className="border p-2 text-left">
@@ -324,7 +351,7 @@ export default async function EmployeeCertificationsPage({
                   有効期限
                 </th>
                 <th className="border p-2 text-left">
-                  証明書
+                  添付ファイル
                 </th>
                 <th className="border p-2 text-center">
                   操作
@@ -348,17 +375,23 @@ export default async function EmployeeCertificationsPage({
                   </td>
 
                   <td className="border p-2">
-                    {item.certificateFilePath ? (
-                      <a
-                        href={item.certificateFilePath}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-blue-600 hover:underline"
-                      >
-                        表示
-                      </a>
-                    ) : (
+                    {item.employeeCertificationAttachments.length === 0 ? (
                       "-"
+                    ) : (
+                      <ul className="space-y-1">
+                        {item.employeeCertificationAttachments.map((attachment) => (
+                          <li key={attachment.id}>
+                            <a
+                              href={attachment.filePath}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="text-blue-600 hover:underline"
+                            >
+                              {attachment.fileName}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
                     )}
                   </td>
 

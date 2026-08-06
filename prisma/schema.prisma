@@ -51,6 +51,8 @@ model UserInvitation {
   createdUserId     String?
   createdEmployeeId String?
 
+  attachments EmployeeCertificationAttachment[]
+
   createdAt DateTime @default(now())
 
   @@index([email])
@@ -366,11 +368,28 @@ model EmployeeCertification {
   certificationId String
   certification   Certification @relation(fields: [certificationId], references: [id], onDelete: Cascade)
 
-  acquiredDate DateTime?
-  expiryDate   DateTime?
-  certificateFilePath String?
-
-  createdAt DateTime @default(now())
+  acquiredDate                     DateTime?
+  expiryDate                       DateTime?
+  createdAt                        DateTime                          @default(now())
+  employeeCertificationAttachments EmployeeCertificationAttachment[]
 
   @@unique([employeeId, certificationId])
+}
+
+model EmployeeCertificationAttachment {
+  id String @id @default(uuid())
+
+  employeeCertificationId String
+  employeeCertification   EmployeeCertification @relation(fields: [employeeCertificationId], references: [id], onDelete: Cascade)
+
+  fileName String
+  filePath String
+  fileType String?
+  fileSize Int?
+
+  createdAt        DateTime        @default(now())
+  userInvitation   UserInvitation? @relation(fields: [userInvitationId], references: [id])
+  userInvitationId String?
+
+  @@index([employeeCertificationId])
 }
