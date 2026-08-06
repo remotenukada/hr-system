@@ -368,6 +368,7 @@ model EmployeeCertification {
 
   acquiredDate DateTime?
   expiryDate   DateTime?
+  certificateFilePath String?
 
   createdAt DateTime @default(now())
 
