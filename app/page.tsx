@@ -181,6 +181,7 @@ export default async function DashboardPage() {
     myPendingRequests,
     myApprovedRequests,
     myRejectedRequests,
+    pendingProfileChanges,
   ] = await Promise.all([
     prisma.employee.count(),
     prisma.employee.count({
@@ -236,6 +237,11 @@ export default async function DashboardPage() {
       where: {
         userId: user.id,
         status: "REJECTED",
+      },
+    }),
+    prisma.profileChangeRequest.count({
+      where: {
+        status: "PENDING",
       },
     }),
   ]);
@@ -831,6 +837,13 @@ export default async function DashboardPage() {
                 className="rounded bg-yellow-100 px-4 py-2 text-sm font-medium text-yellow-800 hover:bg-yellow-200"
               >
                 承認待ち申請
+              </Link>
+
+              <Link
+                href="/profile-change-requests"
+                className="text-blue-600 hover:underline"
+              >
+                プロフィール変更申請 ({pendingProfileChanges})
               </Link>
 
               <Link
