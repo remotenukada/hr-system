@@ -338,6 +338,9 @@ model DependentRequest {
   id         String @id @default(uuid())
   employeeId String
 
+  type        DependentRequestType @default(ADD)
+  dependentId String?
+
   name         String
   nameKana     String?
   relationship String
@@ -370,6 +373,8 @@ model DependentRequest {
 
   @@index([employeeId])
   @@index([status])
+  @@index([type])
+  @@index([dependentId])
 }
 
 model DependentRequestAttachment {
@@ -434,6 +439,12 @@ enum RequestStatus {
   PENDING
   APPROVED
   REJECTED
+}
+
+enum DependentRequestType {
+  ADD
+  UPDATE
+  REMOVE
 }
 
 enum RequestHistoryAction {

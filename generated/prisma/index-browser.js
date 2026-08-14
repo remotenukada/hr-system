@@ -368,6 +368,8 @@ exports.Prisma.EmployeeBankAttachmentScalarFieldEnum = {
 exports.Prisma.DependentRequestScalarFieldEnum = {
   id: 'id',
   employeeId: 'employeeId',
+  type: 'type',
+  dependentId: 'dependentId',
   name: 'name',
   nameKana: 'nameKana',
   relationship: 'relationship',
@@ -506,6 +508,12 @@ exports.CertificationStatus = exports.$Enums.CertificationStatus = {
   PENDING: 'PENDING',
   APPROVED: 'APPROVED',
   REJECTED: 'REJECTED'
+};
+
+exports.DependentRequestType = exports.$Enums.DependentRequestType = {
+  ADD: 'ADD',
+  UPDATE: 'UPDATE',
+  REMOVE: 'REMOVE'
 };
 
 exports.ProfileChangeStatus = exports.$Enums.ProfileChangeStatus = {

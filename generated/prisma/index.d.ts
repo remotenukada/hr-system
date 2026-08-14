@@ -171,6 +171,15 @@ export const RequestStatus: {
 export type RequestStatus = (typeof RequestStatus)[keyof typeof RequestStatus]
 
 
+export const DependentRequestType: {
+  ADD: 'ADD',
+  UPDATE: 'UPDATE',
+  REMOVE: 'REMOVE'
+};
+
+export type DependentRequestType = (typeof DependentRequestType)[keyof typeof DependentRequestType]
+
+
 export const RequestHistoryAction: {
   CREATED: 'CREATED',
   UPDATED: 'UPDATED',
@@ -258,6 +267,10 @@ export const RequestType: typeof $Enums.RequestType
 export type RequestStatus = $Enums.RequestStatus
 
 export const RequestStatus: typeof $Enums.RequestStatus
+
+export type DependentRequestType = $Enums.DependentRequestType
+
+export const DependentRequestType: typeof $Enums.DependentRequestType
 
 export type RequestHistoryAction = $Enums.RequestHistoryAction
 
@@ -26653,6 +26666,8 @@ export namespace Prisma {
   export type DependentRequestMinAggregateOutputType = {
     id: string | null
     employeeId: string | null
+    type: $Enums.DependentRequestType | null
+    dependentId: string | null
     name: string | null
     nameKana: string | null
     relationship: string | null
@@ -26673,6 +26688,8 @@ export namespace Prisma {
   export type DependentRequestMaxAggregateOutputType = {
     id: string | null
     employeeId: string | null
+    type: $Enums.DependentRequestType | null
+    dependentId: string | null
     name: string | null
     nameKana: string | null
     relationship: string | null
@@ -26693,6 +26710,8 @@ export namespace Prisma {
   export type DependentRequestCountAggregateOutputType = {
     id: number
     employeeId: number
+    type: number
+    dependentId: number
     name: number
     nameKana: number
     relationship: number
@@ -26723,6 +26742,8 @@ export namespace Prisma {
   export type DependentRequestMinAggregateInputType = {
     id?: true
     employeeId?: true
+    type?: true
+    dependentId?: true
     name?: true
     nameKana?: true
     relationship?: true
@@ -26743,6 +26764,8 @@ export namespace Prisma {
   export type DependentRequestMaxAggregateInputType = {
     id?: true
     employeeId?: true
+    type?: true
+    dependentId?: true
     name?: true
     nameKana?: true
     relationship?: true
@@ -26763,6 +26786,8 @@ export namespace Prisma {
   export type DependentRequestCountAggregateInputType = {
     id?: true
     employeeId?: true
+    type?: true
+    dependentId?: true
     name?: true
     nameKana?: true
     relationship?: true
@@ -26870,6 +26895,8 @@ export namespace Prisma {
   export type DependentRequestGroupByOutputType = {
     id: string
     employeeId: string
+    type: $Enums.DependentRequestType
+    dependentId: string | null
     name: string
     nameKana: string | null
     relationship: string
@@ -26909,6 +26936,8 @@ export namespace Prisma {
   export type DependentRequestSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     employeeId?: boolean
+    type?: boolean
+    dependentId?: boolean
     name?: boolean
     nameKana?: boolean
     relationship?: boolean
@@ -26932,6 +26961,8 @@ export namespace Prisma {
   export type DependentRequestSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     employeeId?: boolean
+    type?: boolean
+    dependentId?: boolean
     name?: boolean
     nameKana?: boolean
     relationship?: boolean
@@ -26953,6 +26984,8 @@ export namespace Prisma {
   export type DependentRequestSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     employeeId?: boolean
+    type?: boolean
+    dependentId?: boolean
     name?: boolean
     nameKana?: boolean
     relationship?: boolean
@@ -26974,6 +27007,8 @@ export namespace Prisma {
   export type DependentRequestSelectScalar = {
     id?: boolean
     employeeId?: boolean
+    type?: boolean
+    dependentId?: boolean
     name?: boolean
     nameKana?: boolean
     relationship?: boolean
@@ -26991,7 +27026,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type DependentRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "name" | "nameKana" | "relationship" | "birthDate" | "annualIncome" | "cohabiting" | "healthInsuranceDependent" | "encryptedMyNumber" | "note" | "status" | "reviewedAt" | "reviewedBy" | "reviewComment" | "createdAt" | "updatedAt", ExtArgs["result"]["dependentRequest"]>
+  export type DependentRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "type" | "dependentId" | "name" | "nameKana" | "relationship" | "birthDate" | "annualIncome" | "cohabiting" | "healthInsuranceDependent" | "encryptedMyNumber" | "note" | "status" | "reviewedAt" | "reviewedBy" | "reviewComment" | "createdAt" | "updatedAt", ExtArgs["result"]["dependentRequest"]>
   export type DependentRequestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     attachments?: boolean | DependentRequest$attachmentsArgs<ExtArgs>
@@ -27013,6 +27048,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       employeeId: string
+      type: $Enums.DependentRequestType
+      dependentId: string | null
       name: string
       nameKana: string | null
       relationship: string
@@ -27455,6 +27492,8 @@ export namespace Prisma {
   interface DependentRequestFieldRefs {
     readonly id: FieldRef<"DependentRequest", 'String'>
     readonly employeeId: FieldRef<"DependentRequest", 'String'>
+    readonly type: FieldRef<"DependentRequest", 'DependentRequestType'>
+    readonly dependentId: FieldRef<"DependentRequest", 'String'>
     readonly name: FieldRef<"DependentRequest", 'String'>
     readonly nameKana: FieldRef<"DependentRequest", 'String'>
     readonly relationship: FieldRef<"DependentRequest", 'String'>
@@ -30551,6 +30590,8 @@ export namespace Prisma {
   export const DependentRequestScalarFieldEnum: {
     id: 'id',
     employeeId: 'employeeId',
+    type: 'type',
+    dependentId: 'dependentId',
     name: 'name',
     nameKana: 'nameKana',
     relationship: 'relationship',
@@ -30865,6 +30906,20 @@ export namespace Prisma {
    * Reference to a field of type 'CertificationStatus[]'
    */
   export type ListEnumCertificationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CertificationStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'DependentRequestType'
+   */
+  export type EnumDependentRequestTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DependentRequestType'>
+    
+
+
+  /**
+   * Reference to a field of type 'DependentRequestType[]'
+   */
+  export type ListEnumDependentRequestTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DependentRequestType[]'>
     
 
 
@@ -32495,6 +32550,8 @@ export namespace Prisma {
     NOT?: DependentRequestWhereInput | DependentRequestWhereInput[]
     id?: StringFilter<"DependentRequest"> | string
     employeeId?: StringFilter<"DependentRequest"> | string
+    type?: EnumDependentRequestTypeFilter<"DependentRequest"> | $Enums.DependentRequestType
+    dependentId?: StringNullableFilter<"DependentRequest"> | string | null
     name?: StringFilter<"DependentRequest"> | string
     nameKana?: StringNullableFilter<"DependentRequest"> | string | null
     relationship?: StringFilter<"DependentRequest"> | string
@@ -32517,6 +32574,8 @@ export namespace Prisma {
   export type DependentRequestOrderByWithRelationInput = {
     id?: SortOrder
     employeeId?: SortOrder
+    type?: SortOrder
+    dependentId?: SortOrderInput | SortOrder
     name?: SortOrder
     nameKana?: SortOrderInput | SortOrder
     relationship?: SortOrder
@@ -32542,6 +32601,8 @@ export namespace Prisma {
     OR?: DependentRequestWhereInput[]
     NOT?: DependentRequestWhereInput | DependentRequestWhereInput[]
     employeeId?: StringFilter<"DependentRequest"> | string
+    type?: EnumDependentRequestTypeFilter<"DependentRequest"> | $Enums.DependentRequestType
+    dependentId?: StringNullableFilter<"DependentRequest"> | string | null
     name?: StringFilter<"DependentRequest"> | string
     nameKana?: StringNullableFilter<"DependentRequest"> | string | null
     relationship?: StringFilter<"DependentRequest"> | string
@@ -32564,6 +32625,8 @@ export namespace Prisma {
   export type DependentRequestOrderByWithAggregationInput = {
     id?: SortOrder
     employeeId?: SortOrder
+    type?: SortOrder
+    dependentId?: SortOrderInput | SortOrder
     name?: SortOrder
     nameKana?: SortOrderInput | SortOrder
     relationship?: SortOrder
@@ -32592,6 +32655,8 @@ export namespace Prisma {
     NOT?: DependentRequestScalarWhereWithAggregatesInput | DependentRequestScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"DependentRequest"> | string
     employeeId?: StringWithAggregatesFilter<"DependentRequest"> | string
+    type?: EnumDependentRequestTypeWithAggregatesFilter<"DependentRequest"> | $Enums.DependentRequestType
+    dependentId?: StringNullableWithAggregatesFilter<"DependentRequest"> | string | null
     name?: StringWithAggregatesFilter<"DependentRequest"> | string
     nameKana?: StringNullableWithAggregatesFilter<"DependentRequest"> | string | null
     relationship?: StringWithAggregatesFilter<"DependentRequest"> | string
@@ -34563,6 +34628,8 @@ export namespace Prisma {
 
   export type DependentRequestCreateInput = {
     id?: string
+    type?: $Enums.DependentRequestType
+    dependentId?: string | null
     name: string
     nameKana?: string | null
     relationship: string
@@ -34585,6 +34652,8 @@ export namespace Prisma {
   export type DependentRequestUncheckedCreateInput = {
     id?: string
     employeeId: string
+    type?: $Enums.DependentRequestType
+    dependentId?: string | null
     name: string
     nameKana?: string | null
     relationship: string
@@ -34605,6 +34674,8 @@ export namespace Prisma {
 
   export type DependentRequestUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    type?: EnumDependentRequestTypeFieldUpdateOperationsInput | $Enums.DependentRequestType
+    dependentId?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     nameKana?: NullableStringFieldUpdateOperationsInput | string | null
     relationship?: StringFieldUpdateOperationsInput | string
@@ -34627,6 +34698,8 @@ export namespace Prisma {
   export type DependentRequestUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
+    type?: EnumDependentRequestTypeFieldUpdateOperationsInput | $Enums.DependentRequestType
+    dependentId?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     nameKana?: NullableStringFieldUpdateOperationsInput | string | null
     relationship?: StringFieldUpdateOperationsInput | string
@@ -34648,6 +34721,8 @@ export namespace Prisma {
   export type DependentRequestCreateManyInput = {
     id?: string
     employeeId: string
+    type?: $Enums.DependentRequestType
+    dependentId?: string | null
     name: string
     nameKana?: string | null
     relationship: string
@@ -34667,6 +34742,8 @@ export namespace Prisma {
 
   export type DependentRequestUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    type?: EnumDependentRequestTypeFieldUpdateOperationsInput | $Enums.DependentRequestType
+    dependentId?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     nameKana?: NullableStringFieldUpdateOperationsInput | string | null
     relationship?: StringFieldUpdateOperationsInput | string
@@ -34687,6 +34764,8 @@ export namespace Prisma {
   export type DependentRequestUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
+    type?: EnumDependentRequestTypeFieldUpdateOperationsInput | $Enums.DependentRequestType
+    dependentId?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     nameKana?: NullableStringFieldUpdateOperationsInput | string | null
     relationship?: StringFieldUpdateOperationsInput | string
@@ -36372,6 +36451,13 @@ export namespace Prisma {
     fileSize?: SortOrder
   }
 
+  export type EnumDependentRequestTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.DependentRequestType | EnumDependentRequestTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.DependentRequestType[] | ListEnumDependentRequestTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.DependentRequestType[] | ListEnumDependentRequestTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumDependentRequestTypeFilter<$PrismaModel> | $Enums.DependentRequestType
+  }
+
   export type DependentRequestAttachmentListRelationFilter = {
     every?: DependentRequestAttachmentWhereInput
     some?: DependentRequestAttachmentWhereInput
@@ -36385,6 +36471,8 @@ export namespace Prisma {
   export type DependentRequestCountOrderByAggregateInput = {
     id?: SortOrder
     employeeId?: SortOrder
+    type?: SortOrder
+    dependentId?: SortOrder
     name?: SortOrder
     nameKana?: SortOrder
     relationship?: SortOrder
@@ -36409,6 +36497,8 @@ export namespace Prisma {
   export type DependentRequestMaxOrderByAggregateInput = {
     id?: SortOrder
     employeeId?: SortOrder
+    type?: SortOrder
+    dependentId?: SortOrder
     name?: SortOrder
     nameKana?: SortOrder
     relationship?: SortOrder
@@ -36429,6 +36519,8 @@ export namespace Prisma {
   export type DependentRequestMinOrderByAggregateInput = {
     id?: SortOrder
     employeeId?: SortOrder
+    type?: SortOrder
+    dependentId?: SortOrder
     name?: SortOrder
     nameKana?: SortOrder
     relationship?: SortOrder
@@ -36448,6 +36540,16 @@ export namespace Prisma {
 
   export type DependentRequestSumOrderByAggregateInput = {
     annualIncome?: SortOrder
+  }
+
+  export type EnumDependentRequestTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.DependentRequestType | EnumDependentRequestTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.DependentRequestType[] | ListEnumDependentRequestTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.DependentRequestType[] | ListEnumDependentRequestTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumDependentRequestTypeWithAggregatesFilter<$PrismaModel> | $Enums.DependentRequestType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumDependentRequestTypeFilter<$PrismaModel>
+    _max?: NestedEnumDependentRequestTypeFilter<$PrismaModel>
   }
 
   export type DependentRequestScalarRelationFilter = {
@@ -37784,6 +37886,10 @@ export namespace Prisma {
     connect?: DependentRequestAttachmentWhereUniqueInput | DependentRequestAttachmentWhereUniqueInput[]
   }
 
+  export type EnumDependentRequestTypeFieldUpdateOperationsInput = {
+    set?: $Enums.DependentRequestType
+  }
+
   export type EmployeeUpdateOneRequiredWithoutDependentRequestsNestedInput = {
     create?: XOR<EmployeeCreateWithoutDependentRequestsInput, EmployeeUncheckedCreateWithoutDependentRequestsInput>
     connectOrCreate?: EmployeeCreateOrConnectWithoutDependentRequestsInput
@@ -38276,6 +38382,23 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumCertificationStatusFilter<$PrismaModel>
     _max?: NestedEnumCertificationStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumDependentRequestTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.DependentRequestType | EnumDependentRequestTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.DependentRequestType[] | ListEnumDependentRequestTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.DependentRequestType[] | ListEnumDependentRequestTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumDependentRequestTypeFilter<$PrismaModel> | $Enums.DependentRequestType
+  }
+
+  export type NestedEnumDependentRequestTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.DependentRequestType | EnumDependentRequestTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.DependentRequestType[] | ListEnumDependentRequestTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.DependentRequestType[] | ListEnumDependentRequestTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumDependentRequestTypeWithAggregatesFilter<$PrismaModel> | $Enums.DependentRequestType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumDependentRequestTypeFilter<$PrismaModel>
+    _max?: NestedEnumDependentRequestTypeFilter<$PrismaModel>
   }
 
   export type NestedEnumProfileChangeStatusFilter<$PrismaModel = never> = {
@@ -39151,6 +39274,8 @@ export namespace Prisma {
 
   export type DependentRequestCreateWithoutEmployeeInput = {
     id?: string
+    type?: $Enums.DependentRequestType
+    dependentId?: string | null
     name: string
     nameKana?: string | null
     relationship: string
@@ -39171,6 +39296,8 @@ export namespace Prisma {
 
   export type DependentRequestUncheckedCreateWithoutEmployeeInput = {
     id?: string
+    type?: $Enums.DependentRequestType
+    dependentId?: string | null
     name: string
     nameKana?: string | null
     relationship: string
@@ -39624,6 +39751,8 @@ export namespace Prisma {
     NOT?: DependentRequestScalarWhereInput | DependentRequestScalarWhereInput[]
     id?: StringFilter<"DependentRequest"> | string
     employeeId?: StringFilter<"DependentRequest"> | string
+    type?: EnumDependentRequestTypeFilter<"DependentRequest"> | $Enums.DependentRequestType
+    dependentId?: StringNullableFilter<"DependentRequest"> | string | null
     name?: StringFilter<"DependentRequest"> | string
     nameKana?: StringNullableFilter<"DependentRequest"> | string | null
     relationship?: StringFilter<"DependentRequest"> | string
@@ -42360,6 +42489,8 @@ export namespace Prisma {
 
   export type DependentRequestCreateWithoutAttachmentsInput = {
     id?: string
+    type?: $Enums.DependentRequestType
+    dependentId?: string | null
     name: string
     nameKana?: string | null
     relationship: string
@@ -42381,6 +42512,8 @@ export namespace Prisma {
   export type DependentRequestUncheckedCreateWithoutAttachmentsInput = {
     id?: string
     employeeId: string
+    type?: $Enums.DependentRequestType
+    dependentId?: string | null
     name: string
     nameKana?: string | null
     relationship: string
@@ -42416,6 +42549,8 @@ export namespace Prisma {
 
   export type DependentRequestUpdateWithoutAttachmentsInput = {
     id?: StringFieldUpdateOperationsInput | string
+    type?: EnumDependentRequestTypeFieldUpdateOperationsInput | $Enums.DependentRequestType
+    dependentId?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     nameKana?: NullableStringFieldUpdateOperationsInput | string | null
     relationship?: StringFieldUpdateOperationsInput | string
@@ -42437,6 +42572,8 @@ export namespace Prisma {
   export type DependentRequestUncheckedUpdateWithoutAttachmentsInput = {
     id?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
+    type?: EnumDependentRequestTypeFieldUpdateOperationsInput | $Enums.DependentRequestType
+    dependentId?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     nameKana?: NullableStringFieldUpdateOperationsInput | string | null
     relationship?: StringFieldUpdateOperationsInput | string
@@ -42950,6 +43087,8 @@ export namespace Prisma {
 
   export type DependentRequestCreateManyEmployeeInput = {
     id?: string
+    type?: $Enums.DependentRequestType
+    dependentId?: string | null
     name: string
     nameKana?: string | null
     relationship: string
@@ -43233,6 +43372,8 @@ export namespace Prisma {
 
   export type DependentRequestUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
+    type?: EnumDependentRequestTypeFieldUpdateOperationsInput | $Enums.DependentRequestType
+    dependentId?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     nameKana?: NullableStringFieldUpdateOperationsInput | string | null
     relationship?: StringFieldUpdateOperationsInput | string
@@ -43253,6 +43394,8 @@ export namespace Prisma {
 
   export type DependentRequestUncheckedUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
+    type?: EnumDependentRequestTypeFieldUpdateOperationsInput | $Enums.DependentRequestType
+    dependentId?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     nameKana?: NullableStringFieldUpdateOperationsInput | string | null
     relationship?: StringFieldUpdateOperationsInput | string
@@ -43273,6 +43416,8 @@ export namespace Prisma {
 
   export type DependentRequestUncheckedUpdateManyWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
+    type?: EnumDependentRequestTypeFieldUpdateOperationsInput | $Enums.DependentRequestType
+    dependentId?: NullableStringFieldUpdateOperationsInput | string | null
     name?: StringFieldUpdateOperationsInput | string
     nameKana?: NullableStringFieldUpdateOperationsInput | string | null
     relationship?: StringFieldUpdateOperationsInput | string
