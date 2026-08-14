@@ -138,10 +138,6 @@ export default async function NewDependentRequestPage() {
 
     const attachments: AttachmentInput[] = [];
 
-    if (files.length === 0) {
-      throw new Error("添付資料を1件以上登録してください。");
-    }
-
     for (const file of files) {
       const attachment = await saveAttachmentFile(file);
       attachments.push(attachment);

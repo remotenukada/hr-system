@@ -245,6 +245,59 @@ export default async function EmployeeDetailPage({ params }: Props) {
     revalidatePath("/");
   }
 
+  async function restoreDependent(formData: FormData) {
+    "use server";
+
+    const currentSession = await requireHRManager();
+
+    const dependentId = String(
+      formData.get("dependentId") ?? "",
+    ).trim();
+
+    if (!dependentId) {
+      return;
+    }
+
+    const dependent = await prisma.dependent.findUnique({
+      where: {
+        id: dependentId,
+      },
+      include: {
+        employee: true,
+      },
+    });
+
+    if (!dependent || dependent.isActive) {
+      return;
+    }
+
+    await prisma.dependent.update({
+      where: {
+        id: dependentId,
+      },
+      data: {
+        isActive: true,
+        endedAt: null,
+      },
+    });
+
+    await logAudit({
+      userId: currentSession.user.id,
+      userName: currentSession.user.name,
+      action: "DEPENDENT_RESTORED",
+      targetType: "Dependent",
+      targetId: dependentId,
+      description: `${dependent.employee.employeeNo} の扶養家族（${dependent.name}）を復活`,
+      afterData: {
+        employeeId: dependent.employeeId,
+        name: dependent.name,
+      },
+    });
+
+    revalidatePath(`/employees/${dependent.employeeId}`);
+    revalidatePath("/");
+  }
+
   const maskedMyNumber = employee.employeeMyNumber
     ? maskMyNumber(
         decryptMyNumber(employee.employeeMyNumber.encryptedNumber),
@@ -747,6 +800,7 @@ export default async function EmployeeDetailPage({ params }: Props) {
                       <th className="border p-2 text-center">同居</th>
                       <th className="border p-2 text-right">年収</th>
                       <th className="border p-2 text-left">解除日</th>
+                      <th className="border p-2 text-center">操作</th>
                     </tr>
                   </thead>
 
@@ -785,6 +839,22 @@ export default async function EmployeeDetailPage({ params }: Props) {
                                 dependent.endedAt,
                               ).toLocaleDateString("ja-JP")
                             : "-"}
+                        </td>
+
+                        <td className="border p-2 text-center">
+                          <form action={restoreDependent}>
+                            <input
+                              type="hidden"
+                              name="dependentId"
+                              value={dependent.id}
+                            />
+                            <button
+                              type="submit"
+                              className="rounded bg-green-600 px-2 py-1 text-xs font-medium text-white hover:bg-green-700"
+                            >
+                              復活
+                            </button>
+                          </form>
                         </td>
                       </tr>
                     ))}
