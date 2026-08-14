@@ -49,6 +49,19 @@ function getExpiredSourceId(note: string | null) {
   return note.split("失効元:")[1]?.split(" ")[0] ?? null;
 }
 
+
+function getAlertClass(count: number) {
+  if (count >= 5) {
+    return "text-red-700 font-semibold";
+  }
+
+  if (count >= 1) {
+    return "text-yellow-700 font-medium";
+  }
+
+  return "text-green-700";
+}
+
 function StatCard({
   title,
   value,
@@ -182,6 +195,12 @@ export default async function DashboardPage() {
     myApprovedRequests,
     myRejectedRequests,
     pendingProfileChanges,
+    pendingCertificationRequests,
+    pendingBankAccounts,
+    pendingMyNumbers,
+    myCertificationCount,
+    myLeaveBalance,
+    myPendingProfileChanges,
   ] = await Promise.all([
     prisma.employee.count(),
     prisma.employee.count({
@@ -244,8 +263,88 @@ export default async function DashboardPage() {
         status: "PENDING",
       },
     }),
+    prisma.employeeCertification.count({
+      where: {
+        status: "PENDING",
+      },
+    }),
+    prisma.employeeBankAccount.count({
+      where: {
+        verifiedAt: null,
+      },
+    }),
+    prisma.employeeMyNumber.count({
+      where: {
+        status: "PENDING",
+      },
+    }),
+    prisma.employeeCertification.count({
+      where: {
+        employee: {
+          userId: user.id,
+        },
+        status: "APPROVED",
+      },
+    }),
+    prisma.leaveBalance.findFirst({
+      where: {
+        employee: {
+          userId: user.id,
+        },
+      },
+    }),
+    prisma.profileChangeRequest.count({
+      where: {
+        employee: {
+          userId: user.id,
+        },
+        status: "PENDING",
+      },
+    }),
+
   ]);
 
+  const retirementAlerts = await prisma.employee.findMany({
+    where: {
+      retirementDate: {
+        not: null,
+      },
+      NOT: {
+        status: "RETIRED",
+      },
+    },
+    include: {
+      department: true,
+    },
+    orderBy: {
+      retirementDate: "asc",
+    },
+    take: 5,
+  });
+
+
+
+  
+  const recentEmploymentHistories =
+    await prisma.employmentHistory.findMany({
+      include: {
+        employee: true,
+      },
+      orderBy: {
+        effectiveDate: "desc",
+      },
+      take: 10,
+    });
+
+const myEmployee =
+    await prisma.employee.findUnique({
+      where: {
+        userId: user.id,
+      },
+      include: {
+        department: true,
+      },
+    });
 
   const leaveBalances =
     await prisma.leaveBalance.findMany();
@@ -318,6 +417,18 @@ export default async function DashboardPage() {
   const expiredLeaveTargetCount = expirationRows.filter(
     (row) => !row.alreadyExpired && row.daysUntil < 0,
   ).length;
+
+  const myNextLeaveExpiration =
+    expirationRows
+      .filter(
+        (row) =>
+          !row.alreadyExpired &&
+          row.daysUntil >= 0,
+      )
+      .sort(
+        (a, b) => a.daysUntil - b.daysUntil,
+      )[0] ?? null;
+
 
   const complianceToday = getTodayOnly();
 
@@ -651,7 +762,44 @@ export default async function DashboardPage() {
           ダッシュボード
         </h2>
 
+
+        {retirementAlerts.length > 0 && (
+          <div className="mb-6 rounded-lg border border-red-200 bg-red-50 p-4">
+            <h3 className="mb-3 font-semibold text-red-800">
+              ⚠ 退職予定者アラート
+            </h3>
+
+            <div className="space-y-2">
+              {retirementAlerts.map((employee) => (
+                <div
+                  key={employee.id}
+                  className="rounded border border-red-100 bg-white p-3 text-sm"
+                >
+                  <div className="font-medium">
+                    {employee.lastName} {employee.firstName}
+                  </div>
+
+                  <div className="text-gray-600">
+                    {employee.department?.name ?? "-"}
+                  </div>
+
+                  <div className="text-red-700">
+                    退職予定日:
+                    {" "}
+                    {employee.retirementDate
+                      ? new Date(
+                          employee.retirementDate,
+                        ).toLocaleDateString("ja-JP")
+                      : "-"}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {isHRManager ? (
+
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
             <StatCard
               title="総職員数"
@@ -785,7 +933,44 @@ export default async function DashboardPage() {
               description="却下された申請"
               color="red"
             />
+            <StatCard
+              title="保有資格数"
+              value={myCertificationCount}
+              description="承認済み資格"
+              color="purple"
+            />
+            <StatCard
+              title="有給残日数"
+              value={
+                myLeaveBalance
+                  ? (
+                      myLeaveBalance.grantedDays -
+                      myLeaveBalance.usedDays
+                    ).toFixed(1)
+                  : "0"
+              }
+              description="利用可能な有給残数"
+              color="green"
+            />
+            <StatCard
+              title="プロフィール変更"
+              value={myPendingProfileChanges}
+              description="承認待ち申請"
+              color="yellow"
+            />
+
+            <StatCard
+              title="次回失効有給"
+              value={
+                myNextLeaveExpiration
+                  ? `${myNextLeaveExpiration.daysUntil}日`
+                  : "-"
+              }
+              description="次回失効まで"
+              color="yellow"
+            />
           </div>
+
         )}
       </section>
 
@@ -822,6 +1007,125 @@ export default async function DashboardPage() {
           </div>
         </div>
 
+        <div className="rounded-lg border bg-white p-6 shadow-sm">
+          <h3 className="mb-3 text-lg font-semibold text-gray-800">
+            マイページ
+          </h3>
+          <p className="text-sm text-gray-600">
+            個人情報、資格・免許、有給履歴の確認を行います。
+          </p>
+
+          <div className="mt-4 flex flex-wrap gap-3">
+            <Link
+              href="/mypage"
+              className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            >
+              マイページトップ
+            </Link>
+            <Link
+              href="/mypage/certifications"
+              className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            >
+              資格・免許管理
+            </Link>
+            <Link
+              href="/mypage/profile-change"
+              className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            >
+              プロフィール変更
+            </Link>
+            <Link
+              href="/mypage/bank-account"
+              className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            >
+              口座情報管理
+            </Link>
+
+            <Link
+              href="/mypage/my-number"
+              className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            >
+              マイナンバー管理
+            </Link>
+              <Link
+                href="/mypage/dependent-requests/new"
+                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                扶養家族申請
+              </Link>
+          </div>
+        </div>
+
+        <div className="rounded-lg border bg-white p-6 shadow-sm">
+          <h3 className="mb-3 text-lg font-semibold text-gray-800">
+            自分情報
+          </h3>
+
+          <div className="space-y-2 text-sm text-gray-700">
+            <div>
+              <span className="font-medium">社員番号:</span>{" "}
+              {myEmployee?.employeeNo ?? "-"}
+            </div>
+
+            <div>
+              <span className="font-medium">所属部署:</span>{" "}
+              {myEmployee?.department?.name ?? "-"}
+            </div>
+
+            <div>
+              <span className="font-medium">入社日:</span>{" "}
+              {myEmployee?.hireDate
+                ? new Date(
+                    myEmployee.hireDate,
+                  ).toLocaleDateString("ja-JP")
+                : "-"}
+            </div>
+
+            <div>
+              <span className="font-medium">役職:</span>{" "}
+              {myEmployee?.position ?? "-"}
+            </div>
+          </div>
+        </div>
+
+        <div className="rounded-lg border bg-white p-6 shadow-sm">
+          <h3 className="mb-3 text-lg font-semibold text-gray-800">
+            お知らせ
+          </h3>
+
+          <ul className="space-y-2 text-sm text-gray-700">
+            {myPendingRequests > 0 && (
+              <li>
+                ・承認待ちの申請が {myPendingRequests} 件あります
+              </li>
+            )}
+
+            {myPendingProfileChanges > 0 && (
+              <li>
+                ・プロフィール変更申請が承認待ちです
+              </li>
+            )}
+
+            {myNextLeaveExpiration &&
+              myNextLeaveExpiration.daysUntil <= 30 && (
+                <li>
+                  ・有給失効まで残り{" "}
+                  {myNextLeaveExpiration.daysUntil}
+                  日です
+                </li>
+              )}
+
+            {myPendingRequests === 0 &&
+              myPendingProfileChanges === 0 &&
+              (!myNextLeaveExpiration ||
+                myNextLeaveExpiration.daysUntil > 30) && (
+                <li>
+                  現在お知らせはありません。
+                </li>
+              )}
+          </ul>
+        </div>
+
         {canApprove && (
           <div className="rounded-lg border bg-white p-6 shadow-sm">
             <h3 className="mb-3 text-lg font-semibold text-gray-800">
@@ -839,11 +1143,21 @@ export default async function DashboardPage() {
                 承認待ち申請
               </Link>
 
-              <Link
-                href="/profile-change-requests"
-                className="text-blue-600 hover:underline"
-              >
+              <Link href="/profile-change-requests" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
                 プロフィール変更申請 ({pendingProfileChanges})
+              </Link>
+              <Link
+                href="/dependent-requests"
+                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                扶養家族申請
+              </Link>
+
+              <Link
+                href="/certification-requests"
+                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                資格承認 ({pendingCertificationRequests})
               </Link>
 
               <Link
@@ -884,6 +1198,19 @@ export default async function DashboardPage() {
             <p className="text-sm text-gray-600">
               職員マスタ、部署マスタの管理を行います。
             </p>
+
+            <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-4">
+              <h4 className="text-sm font-semibold text-amber-900">
+                要確認事項
+              </h4>
+
+              <ul className="mt-2 space-y-1 text-sm text-amber-800">
+                <li className={getAlertClass(pendingProfileChanges)}>プロフィール変更申請: {pendingProfileChanges}件</li>
+                <li className={getAlertClass(pendingCertificationRequests)}>資格承認: {pendingCertificationRequests}件</li>
+                <li className={getAlertClass(pendingBankAccounts)}>口座情報確認: {pendingBankAccounts}件</li>
+                <li className={getAlertClass(pendingMyNumbers ?? 0)}>マイナンバー確認: {pendingMyNumbers ?? 0}件</li>
+              </ul>
+            </div>
 
             <div className="mt-4 flex flex-wrap gap-3">
               <Link
@@ -930,21 +1257,78 @@ export default async function DashboardPage() {
                 有給失効管理
               </Link>
               <Link
+                href="/employee-leaves"
+                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                休職・復職管理
+              </Link>
+
+              <Link
+                href="/employee-retirements"
+                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                退職管理
+              </Link>
+
+              <Link
+                href="/organization-history"
+                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                組織変更履歴レポート
+              </Link>
+
+              <Link
+                href="/employee-transfers"
+                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                人事異動一覧
+              </Link>
+              <Link
+                href="/bank-accounts"
+                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                口座情報確認 ({pendingBankAccounts})
+              </Link>
+
+              <Link
+                href="/my-numbers"
+                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                マイナンバー確認 ({pendingMyNumbers ?? 0})
+              </Link>
+              <Link
                 href="/audit-logs"
                 className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50"
               >
                 監査ログ一覧
               </Link>
+
+              <Link
+                href="/role-permissions"
+                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                権限マトリクス
+              </Link>
+
               {user.role === "ADMIN" && (
-                <Link
-                  href="/users"
-                  className="rounded bg-purple-600 px-4 py-2 text-sm text-white hover:bg-purple-700"
-                >
-                  ユーザー管理
-                </Link>
+                <>
+                  <Link
+                    href="/users"
+                    className="rounded bg-purple-600 px-4 py-2 text-sm text-white hover:bg-purple-700"
+                  >
+                    ユーザー管理
+                  </Link>
+                  <Link
+                    href="/user-invitations"
+                    className="rounded border border-purple-300 bg-white px-4 py-2 text-sm font-medium text-purple-700 hover:bg-purple-50"
+                  >
+                    ユーザー招待
+                  </Link>
+                </>
               )}
             </div>
           </div>
+
         )}
       </section>
 

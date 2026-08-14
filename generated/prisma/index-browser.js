@@ -126,8 +126,8 @@ exports.Prisma.UserScalarFieldEnum = {
   email: 'email',
   password: 'password',
   role: 'role',
-  isActive: 'isActive',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  isActive: 'isActive'
 };
 
 exports.Prisma.UserInvitationScalarFieldEnum = {
@@ -140,10 +140,10 @@ exports.Prisma.UserInvitationScalarFieldEnum = {
   expectedHireDate: 'expectedHireDate',
   expiresAt: 'expiresAt',
   acceptedAt: 'acceptedAt',
-  cancelledAt: 'cancelledAt',
   createdUserId: 'createdUserId',
   createdEmployeeId: 'createdEmployeeId',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  cancelledAt: 'cancelledAt'
 };
 
 exports.Prisma.DepartmentScalarFieldEnum = {
@@ -155,29 +155,47 @@ exports.Prisma.DepartmentScalarFieldEnum = {
 exports.Prisma.EmployeeScalarFieldEnum = {
   id: 'id',
   employeeNo: 'employeeNo',
-  lastName: 'lastName',
   firstName: 'firstName',
-  lastNameKana: 'lastNameKana',
+  lastName: 'lastName',
+  email: 'email',
+  createdAt: 'createdAt',
+  departmentId: 'departmentId',
+  address: 'address',
+  birthDate: 'birthDate',
   firstNameKana: 'firstNameKana',
   gender: 'gender',
-  birthDate: 'birthDate',
-  phoneNumber: 'phoneNumber',
-  address: 'address',
-  emergencyContact: 'emergencyContact',
-  email: 'email',
-  departmentId: 'departmentId',
-  occupation: 'occupation',
-  position: 'position',
   hireDate: 'hireDate',
-  employmentType: 'employmentType',
+  lastNameKana: 'lastNameKana',
+  occupation: 'occupation',
+  phoneNumber: 'phoneNumber',
+  position: 'position',
   commutingType: 'commutingType',
+  employmentType: 'employmentType',
   status: 'status',
-  retirementDate: 'retirementDate',
-  healthInsuranceNo: 'healthInsuranceNo',
   employmentInsuranceNo: 'employmentInsuranceNo',
+  healthInsuranceNo: 'healthInsuranceNo',
+  retirementDate: 'retirementDate',
   photoPath: 'photoPath',
   userId: 'userId',
-  createdAt: 'createdAt'
+  emergencyContact: 'emergencyContact'
+};
+
+exports.Prisma.DependentScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  name: 'name',
+  nameKana: 'nameKana',
+  relationship: 'relationship',
+  birthDate: 'birthDate',
+  cohabiting: 'cohabiting',
+  annualIncome: 'annualIncome',
+  healthInsuranceDependent: 'healthInsuranceDependent',
+  encryptedMyNumber: 'encryptedMyNumber',
+  note: 'note',
+  isActive: 'isActive',
+  endedAt: 'endedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.EmploymentHistoryScalarFieldEnum = {
@@ -193,6 +211,10 @@ exports.Prisma.EmployeeMyNumberScalarFieldEnum = {
   id: 'id',
   employeeId: 'employeeId',
   encryptedNumber: 'encryptedNumber',
+  status: 'status',
+  reviewComment: 'reviewComment',
+  verifiedAt: 'verifiedAt',
+  verifiedBy: 'verifiedBy',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -240,17 +262,17 @@ exports.Prisma.LeaveBalanceScalarFieldEnum = {
 exports.Prisma.EmployeeRequestScalarFieldEnum = {
   id: 'id',
   title: 'title',
+  employeeId: 'employeeId',
+  createdAt: 'createdAt',
   comment: 'comment',
-  type: 'type',
-  status: 'status',
   approvalComment: 'approvalComment',
   rejectionReason: 'rejectionReason',
+  type: 'type',
   userId: 'userId',
-  employeeId: 'employeeId',
-  leaveStartDate: 'leaveStartDate',
-  leaveEndDate: 'leaveEndDate',
+  status: 'status',
   leaveDays: 'leaveDays',
-  createdAt: 'createdAt'
+  leaveEndDate: 'leaveEndDate',
+  leaveStartDate: 'leaveStartDate'
 };
 
 exports.Prisma.RequestAttachmentScalarFieldEnum = {
@@ -280,9 +302,9 @@ exports.Prisma.AuditLogScalarFieldEnum = {
   targetType: 'targetType',
   targetId: 'targetId',
   description: 'description',
-  beforeData: 'beforeData',
+  createdAt: 'createdAt',
   afterData: 'afterData',
-  createdAt: 'createdAt'
+  beforeData: 'beforeData'
 };
 
 exports.Prisma.CertificationScalarFieldEnum = {
@@ -297,10 +319,10 @@ exports.Prisma.EmployeeCertificationScalarFieldEnum = {
   certificationId: 'certificationId',
   acquiredDate: 'acquiredDate',
   expiryDate: 'expiryDate',
-  status: 'status',
+  createdAt: 'createdAt',
   reviewedAt: 'reviewedAt',
   reviewedBy: 'reviewedBy',
-  createdAt: 'createdAt'
+  status: 'status'
 };
 
 exports.Prisma.EmployeeCertificationAttachmentScalarFieldEnum = {
@@ -312,6 +334,65 @@ exports.Prisma.EmployeeCertificationAttachmentScalarFieldEnum = {
   fileSize: 'fileSize',
   createdAt: 'createdAt',
   userInvitationId: 'userInvitationId'
+};
+
+exports.Prisma.EmployeeBankAccountScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  bankName: 'bankName',
+  branchName: 'branchName',
+  accountType: 'accountType',
+  accountNumber: 'accountNumber',
+  accountHolder: 'accountHolder',
+  bankType: 'bankType',
+  yuchoSymbol: 'yuchoSymbol',
+  yuchoNumber: 'yuchoNumber',
+  verifiedAt: 'verifiedAt',
+  verifiedBy: 'verifiedBy',
+  status: 'status',
+  reviewComment: 'reviewComment',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.EmployeeBankAttachmentScalarFieldEnum = {
+  id: 'id',
+  bankAccountId: 'bankAccountId',
+  fileName: 'fileName',
+  filePath: 'filePath',
+  fileType: 'fileType',
+  fileSize: 'fileSize',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.DependentRequestScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  name: 'name',
+  nameKana: 'nameKana',
+  relationship: 'relationship',
+  birthDate: 'birthDate',
+  annualIncome: 'annualIncome',
+  cohabiting: 'cohabiting',
+  healthInsuranceDependent: 'healthInsuranceDependent',
+  encryptedMyNumber: 'encryptedMyNumber',
+  note: 'note',
+  status: 'status',
+  reviewedAt: 'reviewedAt',
+  reviewedBy: 'reviewedBy',
+  reviewComment: 'reviewComment',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.DependentRequestAttachmentScalarFieldEnum = {
+  id: 'id',
+  dependentRequestId: 'dependentRequestId',
+  fileName: 'fileName',
+  filePath: 'filePath',
+  fileType: 'fileType',
+  fileSize: 'fileSize',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.ProfileChangeRequestScalarFieldEnum = {
@@ -359,9 +440,9 @@ exports.Prisma.JsonNullValueFilter = {
 };
 exports.UserRole = exports.$Enums.UserRole = {
   ADMIN: 'ADMIN',
+  USER: 'USER',
   HR_MANAGER: 'HR_MANAGER',
-  MANAGER: 'MANAGER',
-  USER: 'USER'
+  MANAGER: 'MANAGER'
 };
 
 exports.Gender = exports.$Enums.Gender = {
@@ -387,7 +468,9 @@ exports.EmploymentAction = exports.$Enums.EmploymentAction = {
   HIRED: 'HIRED',
   LEAVE_STARTED: 'LEAVE_STARTED',
   RETURNED: 'RETURNED',
-  RETIRED: 'RETIRED'
+  RETIRED: 'RETIRED',
+  TRANSFER: 'TRANSFER',
+  POSITION_CHANGE: 'POSITION_CHANGE'
 };
 
 exports.LeaveGrantType = exports.$Enums.LeaveGrantType = {
@@ -402,8 +485,8 @@ exports.LeaveGrantType = exports.$Enums.LeaveGrantType = {
 exports.RequestType = exports.$Enums.RequestType = {
   ONBOARDING: 'ONBOARDING',
   DEPARTMENT_CHANGE: 'DEPARTMENT_CHANGE',
-  PAID_LEAVE: 'PAID_LEAVE',
-  OTHER: 'OTHER'
+  OTHER: 'OTHER',
+  PAID_LEAVE: 'PAID_LEAVE'
 };
 
 exports.RequestStatus = exports.$Enums.RequestStatus = {
@@ -436,6 +519,7 @@ exports.Prisma.ModelName = {
   UserInvitation: 'UserInvitation',
   Department: 'Department',
   Employee: 'Employee',
+  Dependent: 'Dependent',
   EmploymentHistory: 'EmploymentHistory',
   EmployeeMyNumber: 'EmployeeMyNumber',
   EmployeeSalary: 'EmployeeSalary',
@@ -449,6 +533,10 @@ exports.Prisma.ModelName = {
   Certification: 'Certification',
   EmployeeCertification: 'EmployeeCertification',
   EmployeeCertificationAttachment: 'EmployeeCertificationAttachment',
+  EmployeeBankAccount: 'EmployeeBankAccount',
+  EmployeeBankAttachment: 'EmployeeBankAttachment',
+  DependentRequest: 'DependentRequest',
+  DependentRequestAttachment: 'DependentRequestAttachment',
   ProfileChangeRequest: 'ProfileChangeRequest'
 };
 

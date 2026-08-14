@@ -112,6 +112,68 @@ export default async function EmployeeEditPage({ params }: Props) {
 
 
 
+    if ((employee?.departmentId ?? "") !== (updatedEmployee.departmentId ?? "")) {
+      const oldDepartment = employee?.departmentId
+        ? await prisma.department.findUnique({
+            where: { id: employee.departmentId },
+          })
+        : null;
+
+      const newDepartment = updatedEmployee.departmentId
+        ? await prisma.department.findUnique({
+            where: { id: updatedEmployee.departmentId },
+          })
+        : null;
+
+      await prisma.employmentHistory.create({
+        data: {
+          employeeId: updatedEmployee.id,
+          action: EmploymentAction.TRANSFER,
+          effectiveDate: new Date(),
+          reason: `部署異動: ${oldDepartment?.name ?? "未所属"} → ${newDepartment?.name ?? "未所属"}`,
+        },
+      });
+
+      await logAudit({
+        action: "EMPLOYEE_TRANSFER",
+        targetType: "Employee",
+        targetId: updatedEmployee.id,
+        description: `${updatedEmployee.employeeNo} の部署を変更`,
+        beforeData: {
+          departmentId: employee?.departmentId ?? null,
+          departmentName: oldDepartment?.name ?? null,
+        },
+        afterData: {
+          departmentId: updatedEmployee.departmentId ?? null,
+          departmentName: newDepartment?.name ?? null,
+        },
+      });
+    }
+
+    if ((employee?.position ?? "") !== (updatedEmployee.position ?? "")) {
+      await prisma.employmentHistory.create({
+        data: {
+          employeeId: updatedEmployee.id,
+          action: EmploymentAction.POSITION_CHANGE,
+          effectiveDate: new Date(),
+          reason: `役職変更: ${employee?.position || "未設定"} → ${updatedEmployee.position || "未設定"}`,
+        },
+      });
+
+      await logAudit({
+        action: "EMPLOYEE_POSITION_CHANGED",
+        targetType: "Employee",
+        targetId: updatedEmployee.id,
+        description: `${updatedEmployee.employeeNo} の役職を変更`,
+        beforeData: {
+          position: employee?.position ?? null,
+        },
+        afterData: {
+          position: updatedEmployee.position ?? null,
+        },
+      });
+    }
+
     if (
       employee?.status !== "LEAVE" &&
       updatedEmployee.status === "LEAVE"

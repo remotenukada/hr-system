@@ -5,6 +5,9 @@ import { prisma } from "@/lib/prisma";
 type Props = {
   searchParams: Promise<{
     q?: string;
+    departmentId?: string;
+    status?: string;
+    employmentType?: string;
   }>;
 };
 
@@ -55,81 +58,105 @@ function mapJapaneseStatusToEnum(q?: string) {
 }
 
 export default async function EmployeesPage({ searchParams }: Props) {
-  const { q } = await searchParams;
+  const {
+    q,
+    departmentId,
+    status,
+    employmentType,
+  } = await searchParams;
 
-  const statusQuery = mapJapaneseStatusToEnum(q);
+  const statusQuery = status || mapJapaneseStatusToEnum(q);
 
+  const departments = await prisma.department.findMany({
+    orderBy: {
+      name: "asc",
+    },
+  });
 
   const employees = await prisma.employee.findMany({
-    where: q
-      ? {
-          OR: [
-            {
-              lastName: {
-                contains: q,
-                mode: "insensitive",
-              },
-            },
-            {
-              firstName: {
-                contains: q,
-                mode: "insensitive",
-              },
-            },
-            {
-              lastNameKana: {
-                contains: q,
-                mode: "insensitive",
-              },
-            },
-            {
-              firstNameKana: {
-                contains: q,
-                mode: "insensitive",
-              },
-            },
-            {
-              employeeNo: {
-                contains: q,
-                mode: "insensitive",
-              },
-            },
-            {
-              email: {
-                contains: q,
-                mode: "insensitive",
-              },
-            },
-            {
-              occupation: {
-                contains: q,
-                mode: "insensitive",
-              },
-            },
-            {
-              position: {
-                contains: q,
-                mode: "insensitive",
-              },
-            },
-            {
-              department: {
-                name: {
+    where: {
+      ...(q
+        ? {
+            OR: [
+              {
+                lastName: {
                   contains: q,
                   mode: "insensitive",
                 },
               },
-            },
-            ...(statusQuery
-              ? [
-                  {
-                    status: statusQuery as "ACTIVE" | "LEAVE" | "RETIRED",
+              {
+                firstName: {
+                  contains: q,
+                  mode: "insensitive",
+                },
+              },
+              {
+                lastNameKana: {
+                  contains: q,
+                  mode: "insensitive",
+                },
+              },
+              {
+                firstNameKana: {
+                  contains: q,
+                  mode: "insensitive",
+                },
+              },
+              {
+                employeeNo: {
+                  contains: q,
+                  mode: "insensitive",
+                },
+              },
+              {
+                email: {
+                  contains: q,
+                  mode: "insensitive",
+                },
+              },
+              {
+                occupation: {
+                  contains: q,
+                  mode: "insensitive",
+                },
+              },
+              {
+                position: {
+                  contains: q,
+                  mode: "insensitive",
+                },
+              },
+              {
+                department: {
+                  name: {
+                    contains: q,
+                    mode: "insensitive",
                   },
-                ]
-              : []),
-          ],
-        }
-      : undefined,
+                },
+              },
+            ],
+          }
+        : {}),
+      ...(departmentId
+        ? {
+            departmentId,
+          }
+        : {}),
+      ...(statusQuery
+        ? {
+            status: statusQuery as "ACTIVE" | "LEAVE" | "RETIRED",
+          }
+        : {}),
+      ...(employmentType
+        ? {
+            employmentType: employmentType as
+              | "FULL_TIME"
+              | "CONTRACT"
+              | "PART_TIME"
+              | "TEMPORARY",
+          }
+        : {}),
+    },
     include: {
       department: true,
     },
@@ -137,7 +164,6 @@ export default async function EmployeesPage({ searchParams }: Props) {
       employeeNo: "asc",
     },
   });
-
   return (
     <main className="p-8">
       <div className="mb-6 flex items-center justify-between">
@@ -181,6 +207,42 @@ export default async function EmployeesPage({ searchParams }: Props) {
           placeholder="氏名、ふりがな、番号、メール、部署、職種、役職、状態で検索..."
           className="w-full rounded border p-2 md:w-[420px]"
         />
+
+        <select
+          name="departmentId"
+          defaultValue={departmentId}
+          className="rounded border p-2"
+        >
+          <option value="">全部署</option>
+          {departments.map((department) => (
+            <option key={department.id} value={department.id}>
+              {department.name}
+            </option>
+          ))}
+        </select>
+
+        <select
+          name="status"
+          defaultValue={status}
+          className="rounded border p-2"
+        >
+          <option value="">全状態</option>
+          <option value="ACTIVE">在職</option>
+          <option value="LEAVE">休職</option>
+          <option value="RETIRED">退職</option>
+        </select>
+
+        <select
+          name="employmentType"
+          defaultValue={employmentType}
+          className="rounded border p-2"
+        >
+          <option value="">全雇用形態</option>
+          <option value="FULL_TIME">正職員</option>
+          <option value="CONTRACT">契約職員</option>
+          <option value="PART_TIME">パート</option>
+          <option value="TEMPORARY">派遣</option>
+        </select>
 
         <button
           type="submit"

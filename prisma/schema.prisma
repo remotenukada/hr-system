@@ -1,59 +1,39 @@
-datasource db {
-  provider = "postgresql"
-}
-
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
 }
 
-enum UserRole {
-  ADMIN
-  HR_MANAGER
-  MANAGER
-  USER
-}
-
-enum Gender {
-  MALE
-  FEMALE
-  OTHER
+datasource db {
+  provider = "postgresql"
 }
 
 model User {
   id        String            @id @default(uuid())
   name      String
   email     String            @unique
-  password  String // クレデンシャルログイン用
+  password  String
   role      UserRole          @default(USER)
-  isActive  Boolean           @default(true)
   createdAt DateTime          @default(now())
-  requests  EmployeeRequest[] // ユーザーが作成した申請一覧
-
-  employee Employee?
+  isActive  Boolean           @default(true)
+  employee  Employee?
+  requests  EmployeeRequest[]
 }
 
 model UserInvitation {
-  id String @id @default(uuid())
-
-  employeeNo String
-  lastName   String
-  firstName  String
-  email      String
-
-  token String @unique
-
-  expectedHireDate DateTime?
-  expiresAt        DateTime
-  acceptedAt       DateTime?
-  cancelledAt      DateTime?
-
+  id                String                            @id @default(uuid())
+  employeeNo        String
+  lastName          String
+  firstName         String
+  email             String
+  token             String                            @unique
+  expectedHireDate  DateTime?
+  expiresAt         DateTime
+  acceptedAt        DateTime?
   createdUserId     String?
   createdEmployeeId String?
-
-  attachments EmployeeCertificationAttachment[]
-
-  createdAt DateTime @default(now())
+  createdAt         DateTime                          @default(now())
+  cancelledAt       DateTime?
+  attachments       EmployeeCertificationAttachment[]
 
   @@index([email])
   @@index([token])
@@ -63,77 +43,391 @@ model UserInvitation {
 model Department {
   id        String     @id @default(uuid())
   name      String     @unique
-  employees Employee[]
   createdAt DateTime   @default(now())
+  employees Employee[]
 }
 
 model Employee {
-  id String @id @default(uuid())
+  id                    String                  @id @default(uuid())
+  employeeNo            String                  @unique
+  firstName             String
+  lastName              String
+  email                 String                  @unique
+  createdAt             DateTime                @default(now())
+  departmentId          String?
+  address               String?
+  birthDate             DateTime?
+  firstNameKana         String?
+  gender                Gender?
+  hireDate              DateTime?
+  lastNameKana          String?
+  occupation            String?
+  phoneNumber           String?
+  position              String?
+  commutingType         String?
+  employmentType        EmploymentType?
+  status                EmployeeStatus          @default(ACTIVE)
+  employmentInsuranceNo String?
+  healthInsuranceNo     String?
+  retirementDate        DateTime?
+  photoPath             String?
+  userId                String?                 @unique
+  emergencyContact      String?
+  department            Department?             @relation(fields: [departmentId], references: [id])
+  user                  User?                   @relation(fields: [userId], references: [id])
+  certifications        EmployeeCertification[]
+  employeeMyNumber      EmployeeMyNumber?
+  requests              EmployeeRequest[]
+  employeeSalary        EmployeeSalary?
+  employmentHistories   EmploymentHistory[]
+  leaveBalance          LeaveBalance?
+  bankAccount           EmployeeBankAccount?
+  leaveGrantHistories   LeaveGrantHistory[]
+  profileChangeRequests ProfileChangeRequest[]
+  salaryHistories       SalaryHistory[]
+  dependents            Dependent[]
+  dependentRequests     DependentRequest[]
+}
 
-  employeeNo String @unique
+model Dependent {
+  id                       String    @id @default(uuid())
+  employeeId               String
+  name                     String
+  nameKana                 String?
+  relationship             String
+  birthDate                DateTime?
+  cohabiting               Boolean   @default(true)
+  annualIncome             Int?
+  healthInsuranceDependent Boolean   @default(true)
+  encryptedMyNumber        String?
+  note                     String?
+  isActive                 Boolean   @default(true)
+  endedAt                  DateTime?
+  createdAt                DateTime  @default(now())
+  updatedAt                DateTime  @updatedAt
 
-  lastName  String
-  firstName String
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
 
-  lastNameKana  String?
-  firstNameKana String?
+  @@index([employeeId])
+  @@index([relationship])
+}
 
-  gender Gender?
+model EmploymentHistory {
+  id            String           @id @default(uuid())
+  employeeId    String
+  action        EmploymentAction
+  effectiveDate DateTime
+  reason        String?
+  createdAt     DateTime         @default(now())
+  employee      Employee         @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@index([employeeId])
+  @@index([effectiveDate])
+}
+
+model EmployeeMyNumber {
+  id              String @id @default(uuid())
+  employeeId      String @unique
+  encryptedNumber String
+
+  status        String  @default("PENDING")
+  reviewComment String?
+
+  verifiedAt DateTime?
+  verifiedBy String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  employee  Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+}
+
+model EmployeeSalary {
+  id            String   @id @default(uuid())
+  employeeId    String   @unique
+  baseSalary    Int
+  allowance     Int      @default(0)
+  bonus         Int      @default(0)
+  effectiveFrom DateTime
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  employee      Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+}
+
+model SalaryHistory {
+  id            String   @id @default(uuid())
+  employeeId    String
+  baseSalary    Int
+  allowance     Int      @default(0)
+  bonus         Int      @default(0)
+  effectiveFrom DateTime
+  createdAt     DateTime @default(now())
+  employee      Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@index([employeeId])
+  @@index([effectiveFrom])
+}
+
+model LeaveGrantHistory {
+  id          String         @id @default(uuid())
+  employeeId  String
+  grantDate   DateTime
+  grantedDays Float
+  grantType   LeaveGrantType
+  note        String?
+  createdAt   DateTime       @default(now())
+  employee    Employee       @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@index([employeeId])
+  @@index([grantDate])
+}
+
+model LeaveBalance {
+  id          String   @id @default(uuid())
+  employeeId  String   @unique
+  grantedDays Float    @default(0)
+  usedDays    Float    @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  employee    Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+}
+
+model EmployeeRequest {
+  id              String              @id @default(uuid())
+  title           String
+  employeeId      String?
+  createdAt       DateTime            @default(now())
+  comment         String?
+  approvalComment String?
+  rejectionReason String?
+  type            RequestType
+  userId          String?
+  status          RequestStatus       @default(PENDING)
+  leaveDays       Float?
+  leaveEndDate    DateTime?
+  leaveStartDate  DateTime?
+  employee        Employee?           @relation(fields: [employeeId], references: [id])
+  user            User?               @relation(fields: [userId], references: [id])
+  attachments     RequestAttachment[]
+  histories       RequestHistory[]
+}
+
+model RequestAttachment {
+  id        String          @id @default(uuid())
+  fileName  String
+  filePath  String
+  fileSize  Int?
+  mimeType  String?
+  requestId String
+  createdAt DateTime        @default(now())
+  request   EmployeeRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+}
+
+model RequestHistory {
+  id        String               @id @default(uuid())
+  action    RequestHistoryAction
+  comment   String?
+  actor     String?
+  requestId String
+  createdAt DateTime             @default(now())
+  request   EmployeeRequest      @relation(fields: [requestId], references: [id], onDelete: Cascade)
+}
+
+model AuditLog {
+  id          String   @id @default(uuid())
+  userId      String?
+  userName    String?
+  action      String
+  targetType  String
+  targetId    String?
+  description String?
+  createdAt   DateTime @default(now())
+  afterData   Json?
+  beforeData  Json?
+
+  @@index([createdAt])
+  @@index([targetType])
+  @@index([userId])
+}
+
+model Certification {
+  id                     String                  @id @default(uuid())
+  name                   String                  @unique
+  createdAt              DateTime                @default(now())
+  employeeCertifications EmployeeCertification[]
+}
+
+model EmployeeCertification {
+  id                               String                            @id @default(uuid())
+  employeeId                       String
+  certificationId                  String
+  acquiredDate                     DateTime?
+  expiryDate                       DateTime?
+  createdAt                        DateTime                          @default(now())
+  reviewedAt                       DateTime?
+  reviewedBy                       String?
+  status                           CertificationStatus               @default(PENDING)
+  certification                    Certification                     @relation(fields: [certificationId], references: [id], onDelete: Cascade)
+  employee                         Employee                          @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  employeeCertificationAttachments EmployeeCertificationAttachment[]
+
+  @@unique([employeeId, certificationId])
+}
+
+model EmployeeCertificationAttachment {
+  id                      String                @id @default(uuid())
+  employeeCertificationId String
+  fileName                String
+  filePath                String
+  fileType                String?
+  fileSize                Int?
+  createdAt               DateTime              @default(now())
+  userInvitationId        String?
+  employeeCertification   EmployeeCertification @relation(fields: [employeeCertificationId], references: [id], onDelete: Cascade)
+  userInvitation          UserInvitation?       @relation(fields: [userInvitationId], references: [id])
+
+  @@index([employeeCertificationId])
+}
+
+model EmployeeBankAccount {
+  id         String @id @default(uuid())
+  employeeId String @unique
+
+  bankName      String
+  branchName    String
+  accountType   String
+  accountNumber String
+  accountHolder String
+
+  bankType    String  @default("BANK")
+  yuchoSymbol String?
+  yuchoNumber String?
+
+  verifiedAt DateTime?
+  verifiedBy String?
+
+  status        String  @default("PENDING")
+  reviewComment String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  attachments EmployeeBankAttachment[]
+
+  @@index([employeeId])
+}
+
+model EmployeeBankAttachment {
+  id            String @id @default(uuid())
+  bankAccountId String
+
+  fileName String
+  filePath String
+  fileType String?
+  fileSize Int?
+
+  createdAt DateTime @default(now())
+
+  bankAccount EmployeeBankAccount @relation(fields: [bankAccountId], references: [id], onDelete: Cascade)
+
+  @@index([bankAccountId])
+}
+
+model DependentRequest {
+  id         String @id @default(uuid())
+  employeeId String
+
+  name         String
+  nameKana     String?
+  relationship String
 
   birthDate DateTime?
 
-  phoneNumber String?
+  annualIncome Int?
 
-  address          String?
-  emergencyContact String?
+  cohabiting Boolean @default(true)
 
-  email String @unique
+  healthInsuranceDependent Boolean @default(true)
 
-  departmentId String?
-  department   Department? @relation(fields: [departmentId], references: [id], onDelete: SetNull)
+  encryptedMyNumber String?
 
-  occupation String?
+  note String?
 
-  position String?
+  status RequestStatus @default(PENDING)
 
-  hireDate DateTime?
+  reviewedAt DateTime?
+  reviewedBy String?
 
-  employmentType EmploymentType?
+  reviewComment String?
 
-  commutingType String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  status EmployeeStatus @default(ACTIVE)
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
 
-  retirementDate DateTime?
+  attachments DependentRequestAttachment[]
 
-  healthInsuranceNo String?
+  @@index([employeeId])
+  @@index([status])
+}
 
-  employmentInsuranceNo String?
+model DependentRequestAttachment {
+  id                 String @id @default(uuid())
+  dependentRequestId String
 
-  photoPath String?
+  fileName String
+  filePath String
+  fileType String?
+  fileSize Int?
 
-  userId String? @unique
+  createdAt DateTime @default(now())
 
-  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+  dependentRequest DependentRequest @relation(fields: [dependentRequestId], references: [id], onDelete: Cascade)
 
-  requests EmployeeRequest[]
+  @@index([dependentRequestId])
+}
 
-  createdAt             DateTime                @default(now())
-  employeeMyNumber      EmployeeMyNumber?
-  employeeSalary        EmployeeSalary?
-  salaryHistories       SalaryHistory[]
-  leaveBalance          LeaveBalance?
-  employmentHistories   EmploymentHistory[]
-  leaveGrantHistories   LeaveGrantHistory[]
-  profileChangeRequests ProfileChangeRequest[]
-  certifications        EmployeeCertification[]
+model ProfileChangeRequest {
+  id                      String              @id @default(uuid())
+  employeeId              String
+  currentAddress          String?
+  newAddress              String?
+  currentPhoneNumber      String?
+  newPhoneNumber          String?
+  currentEmail            String?
+  newEmail                String?
+  currentEmergencyContact String?
+  newEmergencyContact     String?
+  status                  ProfileChangeStatus @default(PENDING)
+  reviewedAt              DateTime?
+  reviewedBy              String?
+  createdAt               DateTime            @default(now())
+  updatedAt               DateTime            @updatedAt
+  employee                Employee            @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@index([employeeId])
+  @@index([status])
+}
+
+enum UserRole {
+  ADMIN
+  USER
+  HR_MANAGER
+  MANAGER
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
 }
 
 enum RequestType {
   ONBOARDING
   DEPARTMENT_CHANGE
-  PAID_LEAVE
   OTHER
+  PAID_LEAVE
 }
 
 enum RequestStatus {
@@ -147,162 +441,6 @@ enum RequestHistoryAction {
   UPDATED
   APPROVED
   REJECTED
-}
-
-model EmploymentHistory {
-  id String @id @default(uuid())
-
-  employeeId String
-
-  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
-
-  action EmploymentAction
-
-  effectiveDate DateTime
-
-  reason String?
-
-  createdAt DateTime @default(now())
-
-  @@index([employeeId])
-  @@index([effectiveDate])
-}
-
-model EmployeeMyNumber {
-  id String @id @default(uuid())
-
-  employeeId String @unique
-
-  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
-
-  encryptedNumber String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model EmployeeSalary {
-  id String @id @default(uuid())
-
-  employeeId String @unique
-
-  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
-
-  baseSalary Int
-
-  allowance Int @default(0)
-
-  bonus Int @default(0)
-
-  effectiveFrom DateTime
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model SalaryHistory {
-  id String @id @default(uuid())
-
-  employeeId String
-
-  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
-
-  baseSalary Int
-  allowance  Int @default(0)
-  bonus      Int @default(0)
-
-  effectiveFrom DateTime
-
-  createdAt DateTime @default(now())
-
-  @@index([employeeId])
-  @@index([effectiveFrom])
-}
-
-model LeaveGrantHistory {
-  id String @id @default(uuid())
-
-  employeeId String
-
-  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
-
-  grantDate DateTime
-
-  grantedDays Float
-
-  grantType LeaveGrantType
-
-  note String?
-
-  createdAt DateTime @default(now())
-
-  @@index([employeeId])
-  @@index([grantDate])
-}
-
-model LeaveBalance {
-  id String @id @default(uuid())
-
-  employeeId String @unique
-
-  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
-
-  grantedDays Float @default(0)
-
-  usedDays Float @default(0)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model EmployeeRequest {
-  id              String        @id @default(uuid())
-  title           String
-  comment         String?
-  type            RequestType
-  status          RequestStatus @default(PENDING)
-  approvalComment String?
-  rejectionReason String?
-
-  // 申請作成者（User）との紐付け
-  userId String?
-  user   User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
-
-  // 対象社員（Employee）との紐付け
-  employeeId String?
-  employee   Employee? @relation(fields: [employeeId], references: [id], onDelete: SetNull)
-
-  leaveStartDate DateTime?
-  leaveEndDate   DateTime?
-  leaveDays      Float?
-
-  histories   RequestHistory[]
-  attachments RequestAttachment[]
-
-  createdAt DateTime @default(now())
-}
-
-model RequestAttachment {
-  id       String  @id @default(uuid())
-  fileName String
-  filePath String
-  fileSize Int?
-  mimeType String?
-
-  requestId String
-  request   EmployeeRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now())
-}
-
-model RequestHistory {
-  id        String               @id @default(uuid())
-  action    RequestHistoryAction
-  comment   String?
-  actor     String? // セッションから取得した名前を格納する用
-  requestId String
-  request   EmployeeRequest      @relation(fields: [requestId], references: [id], onDelete: Cascade)
-  createdAt DateTime             @default(now())
 }
 
 enum EmploymentType {
@@ -326,6 +464,8 @@ enum EmploymentAction {
   LEAVE_STARTED
   RETURNED
   RETIRED
+  TRANSFER
+  POSITION_CHANGE
 }
 
 enum EmployeeStatus {
@@ -334,107 +474,10 @@ enum EmployeeStatus {
   RETIRED
 }
 
-model AuditLog {
-  id          String  @id @default(uuid())
-  userId      String?
-  userName    String?
-  action      String
-  targetType  String
-  targetId    String?
-  description String?
-
-  beforeData Json?
-  afterData  Json?
-
-  createdAt DateTime @default(now())
-
-  @@index([createdAt])
-  @@index([targetType])
-  @@index([userId])
-}
-
-model Certification {
-  id        String   @id @default(uuid())
-  name      String   @unique
-  createdAt DateTime @default(now())
-
-  employeeCertifications EmployeeCertification[]
-}
-
-model EmployeeCertification {
-  id String @id @default(uuid())
-
-  employeeId String
-  employee   Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
-
-  certificationId String
-  certification   Certification @relation(fields: [certificationId], references: [id], onDelete: Cascade)
-
-  acquiredDate DateTime?
-  expiryDate   DateTime?
-
-  status     CertificationStatus @default(PENDING)
-  reviewedAt DateTime?
-  reviewedBy String?
-
-  createdAt                        DateTime                          @default(now())
-  employeeCertificationAttachments EmployeeCertificationAttachment[]
-
-  @@unique([employeeId, certificationId])
-}
-
-model EmployeeCertificationAttachment {
-  id String @id @default(uuid())
-
-  employeeCertificationId String
-  employeeCertification   EmployeeCertification @relation(fields: [employeeCertificationId], references: [id], onDelete: Cascade)
-
-  fileName String
-  filePath String
-  fileType String?
-  fileSize Int?
-
-  createdAt        DateTime        @default(now())
-  userInvitation   UserInvitation? @relation(fields: [userInvitationId], references: [id])
-  userInvitationId String?
-
-  @@index([employeeCertificationId])
-}
-
 enum ProfileChangeStatus {
   PENDING
   APPROVED
   REJECTED
-}
-
-model ProfileChangeRequest {
-  id String @id @default(uuid())
-
-  employeeId String
-  employee   Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
-
-  currentAddress String?
-  newAddress     String?
-
-  currentPhoneNumber String?
-  newPhoneNumber     String?
-
-  currentEmail String?
-  newEmail     String?
-
-  currentEmergencyContact String?
-  newEmergencyContact     String?
-
-  status ProfileChangeStatus @default(PENDING)
-
-  reviewedAt DateTime?
-  reviewedBy String?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([employeeId])
-  @@index([status])
 }
 
 enum CertificationStatus {

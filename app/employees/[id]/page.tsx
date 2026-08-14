@@ -100,6 +100,25 @@ function formatGrantDays(type: string, days: number) {
   return `+${days}日`;
 }
 
+function formatEmploymentAction(action: string) {
+  switch (action) {
+    case "HIRED":
+      return "入職";
+    case "LEAVE_STARTED":
+      return "休職開始";
+    case "RETURNED":
+      return "復職";
+    case "RETIRED":
+      return "退職";
+    case "TRANSFER":
+      return "異動";
+    case "POSITION_CHANGE":
+      return "役職変更";
+    default:
+      return action;
+  }
+}
+
 export default async function EmployeeDetailPage({ params }: Props) {
   const { id } = await params;
 
@@ -142,11 +161,88 @@ export default async function EmployeeDetailPage({ params }: Props) {
         },
         take: 20,
       },
+      employmentHistories: {
+        orderBy: {
+          effectiveDate: "desc",
+        },
+      },
+      dependents: {
+        where: {
+          isActive: true,
+        },
+        orderBy: {
+          createdAt: "asc",
+        },
+      },
     },
   });
 
   if (!employee) {
     notFound();
+  }
+
+  const inactiveDependents =
+    await prisma.dependent.findMany({
+      where: {
+        employeeId: employee.id,
+        isActive: false,
+      },
+      orderBy: {
+        endedAt: "desc",
+      },
+    });
+
+  async function endDependent(formData: FormData) {
+    "use server";
+
+    const currentSession = await requireHRManager();
+
+    const dependentId = String(
+      formData.get("dependentId") ?? "",
+    ).trim();
+
+    if (!dependentId) {
+      return;
+    }
+
+    const dependent = await prisma.dependent.findUnique({
+      where: {
+        id: dependentId,
+      },
+      include: {
+        employee: true,
+      },
+    });
+
+    if (!dependent || !dependent.isActive) {
+      return;
+    }
+
+    await prisma.dependent.update({
+      where: {
+        id: dependentId,
+      },
+      data: {
+        isActive: false,
+        endedAt: new Date(),
+      },
+    });
+
+    await logAudit({
+      userId: currentSession.user.id,
+      userName: currentSession.user.name,
+      action: "DEPENDENT_ENDED",
+      targetType: "Dependent",
+      targetId: dependentId,
+      description: `${dependent.employee.employeeNo} の扶養家族（${dependent.name}）を扶養解除`,
+      afterData: {
+        employeeId: dependent.employeeId,
+        name: dependent.name,
+      },
+    });
+
+    revalidatePath(`/employees/${dependent.employeeId}`);
+    revalidatePath("/");
   }
 
   const maskedMyNumber = employee.employeeMyNumber
@@ -533,6 +629,212 @@ export default async function EmployeeDetailPage({ params }: Props) {
             />
           </div>
         </section>
+
+
+        {canManageMyNumber && (
+          <section className="rounded-lg border bg-white p-5">
+            <div className="mb-4 flex items-center justify-between border-b pb-2">
+              <h2 className="text-lg font-semibold text-gray-800">
+                扶養家族
+              </h2>
+
+              <Link
+                href={`/employees/${employee.id}/dependents/new`}
+                className="rounded bg-blue-600 px-3 py-1 text-sm font-medium text-white hover:bg-blue-700"
+              >
+                扶養家族を追加
+              </Link>
+            </div>
+
+            {employee.dependents.length === 0 ? (
+              <p className="text-sm text-gray-500">
+                扶養家族は登録されていません。
+              </p>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="min-w-full text-sm">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="border p-2 text-left">氏名</th>
+                      <th className="border p-2 text-left">続柄</th>
+                      <th className="border p-2 text-left">生年月日</th>
+                      <th className="border p-2 text-center">同居</th>
+                      <th className="border p-2 text-right">年収</th>
+                      <th className="border p-2 text-center">操作</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    {employee.dependents.map((dependent) => (
+                      <tr key={dependent.id}>
+                        <td className="border p-2">
+                          {dependent.name}
+                        </td>
+
+                        <td className="border p-2">
+                          {dependent.relationship}
+                        </td>
+
+                        <td className="border p-2">
+                          {dependent.birthDate
+                            ? new Date(
+                                dependent.birthDate,
+                              ).toLocaleDateString("ja-JP")
+                            : "-"}
+                        </td>
+
+                        <td className="border p-2 text-center">
+                          {dependent.cohabiting ? "○" : "×"}
+                        </td>
+
+                        <td className="border p-2 text-right">
+                          {dependent.annualIncome != null
+                            ? dependent.annualIncome.toLocaleString("ja-JP")
+                            : "-"}
+                        </td>
+
+                        <td className="border p-2 text-center">
+                          <div className="flex items-center justify-center gap-2">
+                            <Link
+                              href={`/employees/${employee.id}/dependents/${dependent.id}/edit`}
+                              className="rounded border border-gray-300 bg-white px-2 py-1 text-xs font-medium text-gray-700 hover:bg-gray-50"
+                            >
+                              編集
+                            </Link>
+
+                            <form action={endDependent}>
+                              <input
+                                type="hidden"
+                                name="dependentId"
+                                value={dependent.id}
+                              />
+                              <button
+                                type="submit"
+                                className="rounded bg-red-600 px-2 py-1 text-xs font-medium text-white hover:bg-red-700"
+                              >
+                                扶養解除
+                              </button>
+                            </form>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </section>
+        )}
+
+        {canManageMyNumber && (
+          <section className="rounded-lg border bg-white p-5">
+            <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
+              扶養履歴
+            </h2>
+
+            {inactiveDependents.length === 0 ? (
+              <p className="text-sm text-gray-500">
+                扶養履歴はありません。
+              </p>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="min-w-full text-sm">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="border p-2 text-left">氏名</th>
+                      <th className="border p-2 text-left">続柄</th>
+                      <th className="border p-2 text-left">生年月日</th>
+                      <th className="border p-2 text-center">同居</th>
+                      <th className="border p-2 text-right">年収</th>
+                      <th className="border p-2 text-left">解除日</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    {inactiveDependents.map((dependent) => (
+                      <tr key={dependent.id}>
+                        <td className="border p-2">
+                          {dependent.name}
+                        </td>
+
+                        <td className="border p-2">
+                          {dependent.relationship}
+                        </td>
+
+                        <td className="border p-2">
+                          {dependent.birthDate
+                            ? new Date(
+                                dependent.birthDate,
+                              ).toLocaleDateString("ja-JP")
+                            : "-"}
+                        </td>
+
+                        <td className="border p-2 text-center">
+                          {dependent.cohabiting ? "○" : "×"}
+                        </td>
+
+                        <td className="border p-2 text-right">
+                          {dependent.annualIncome != null
+                            ? dependent.annualIncome.toLocaleString("ja-JP")
+                            : "-"}
+                        </td>
+
+                        <td className="border p-2">
+                          {dependent.endedAt
+                            ? new Date(
+                                dependent.endedAt,
+                              ).toLocaleDateString("ja-JP")
+                            : "-"}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </section>
+        )}
+
+        {canManageMyNumber && (
+          <section className="rounded-lg border bg-white p-5">
+            <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
+              雇用履歴
+            </h2>
+
+            {employee.employmentHistories.length === 0 ? (
+              <p className="text-sm text-gray-500">
+                雇用履歴はありません。
+              </p>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="min-w-full text-sm">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="border p-2 text-left font-medium text-gray-700">区分</th>
+                      <th className="border p-2 text-left font-medium text-gray-700">適用日</th>
+                      <th className="border p-2 text-left font-medium text-gray-700">備考</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {employee.employmentHistories.map((history) => (
+                      <tr key={history.id} className="hover:bg-gray-50">
+                        <td className="border p-2 font-medium">
+                          {formatEmploymentAction(history.action)}
+                        </td>
+                        <td className="border p-2 text-gray-600">
+                          {new Date(history.effectiveDate).toLocaleDateString("ja-JP")}
+                        </td>
+                        <td className="border p-2 text-gray-600">
+                          {history.reason ?? "-"}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </section>
+        )}
 
         {canManageMyNumber && (
           <section className="rounded-lg border bg-white p-5">
