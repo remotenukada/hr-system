@@ -216,7 +216,7 @@ export default async function NewDependentRequestPage() {
         </p>
       </div>
 
-      <form action={createDependentRequest} encType="multipart/form-data" className="space-y-6">
+      <form action={createDependentRequest} className="space-y-6">
         <section className="rounded-lg border bg-white p-6 shadow-sm">
           <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
             基本情報

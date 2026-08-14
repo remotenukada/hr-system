@@ -415,6 +415,33 @@ exports.Prisma.ProfileChangeRequestScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.EmploymentContractScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  contractType: 'contractType',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  workplace: 'workplace',
+  jobDescription: 'jobDescription',
+  workStartTime: 'workStartTime',
+  workEndTime: 'workEndTime',
+  breakMinutes: 'breakMinutes',
+  holidayRule: 'holidayRule',
+  leaveRule: 'leaveRule',
+  wageType: 'wageType',
+  baseSalary: 'baseSalary',
+  allowanceNote: 'allowanceNote',
+  payClosingDay: 'payClosingDay',
+  payDate: 'payDate',
+  bonusRule: 'bonusRule',
+  raiseRule: 'raiseRule',
+  probationPeriod: 'probationPeriod',
+  retirementRule: 'retirementRule',
+  remarks: 'remarks',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -545,7 +572,8 @@ exports.Prisma.ModelName = {
   EmployeeBankAttachment: 'EmployeeBankAttachment',
   DependentRequest: 'DependentRequest',
   DependentRequestAttachment: 'DependentRequestAttachment',
-  ProfileChangeRequest: 'ProfileChangeRequest'
+  ProfileChangeRequest: 'ProfileChangeRequest',
+  EmploymentContract: 'EmploymentContract'
 };
 
 /**

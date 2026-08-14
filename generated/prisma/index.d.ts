@@ -128,6 +128,11 @@ export type DependentRequestAttachment = $Result.DefaultSelection<Prisma.$Depend
  * 
  */
 export type ProfileChangeRequest = $Result.DefaultSelection<Prisma.$ProfileChangeRequestPayload>
+/**
+ * Model EmploymentContract
+ * 
+ */
+export type EmploymentContract = $Result.DefaultSelection<Prisma.$EmploymentContractPayload>
 
 /**
  * Enums
@@ -650,6 +655,16 @@ export class PrismaClient<
     * ```
     */
   get profileChangeRequest(): Prisma.ProfileChangeRequestDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.employmentContract`: Exposes CRUD operations for the **EmploymentContract** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EmploymentContracts
+    * const employmentContracts = await prisma.employmentContract.findMany()
+    * ```
+    */
+  get employmentContract(): Prisma.EmploymentContractDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1106,7 +1121,8 @@ export namespace Prisma {
     EmployeeBankAttachment: 'EmployeeBankAttachment',
     DependentRequest: 'DependentRequest',
     DependentRequestAttachment: 'DependentRequestAttachment',
-    ProfileChangeRequest: 'ProfileChangeRequest'
+    ProfileChangeRequest: 'ProfileChangeRequest',
+    EmploymentContract: 'EmploymentContract'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1122,7 +1138,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "userInvitation" | "department" | "employee" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest"
+      modelProps: "user" | "userInvitation" | "department" | "employee" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2828,6 +2844,80 @@ export namespace Prisma {
           }
         }
       }
+      EmploymentContract: {
+        payload: Prisma.$EmploymentContractPayload<ExtArgs>
+        fields: Prisma.EmploymentContractFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EmploymentContractFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EmploymentContractFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractPayload>
+          }
+          findFirst: {
+            args: Prisma.EmploymentContractFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EmploymentContractFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractPayload>
+          }
+          findMany: {
+            args: Prisma.EmploymentContractFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractPayload>[]
+          }
+          create: {
+            args: Prisma.EmploymentContractCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractPayload>
+          }
+          createMany: {
+            args: Prisma.EmploymentContractCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EmploymentContractCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractPayload>[]
+          }
+          delete: {
+            args: Prisma.EmploymentContractDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractPayload>
+          }
+          update: {
+            args: Prisma.EmploymentContractUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractPayload>
+          }
+          deleteMany: {
+            args: Prisma.EmploymentContractDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EmploymentContractUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EmploymentContractUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractPayload>[]
+          }
+          upsert: {
+            args: Prisma.EmploymentContractUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractPayload>
+          }
+          aggregate: {
+            args: Prisma.EmploymentContractAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEmploymentContract>
+          }
+          groupBy: {
+            args: Prisma.EmploymentContractGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EmploymentContractGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EmploymentContractCountArgs<ExtArgs>
+            result: $Utils.Optional<EmploymentContractCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2959,6 +3049,7 @@ export namespace Prisma {
     dependentRequest?: DependentRequestOmit
     dependentRequestAttachment?: DependentRequestAttachmentOmit
     profileChangeRequest?: ProfileChangeRequestOmit
+    employmentContract?: EmploymentContractOmit
   }
 
   /* Types for Logging */
@@ -3140,6 +3231,7 @@ export namespace Prisma {
     salaryHistories: number
     dependents: number
     dependentRequests: number
+    employmentContracts: number
   }
 
   export type EmployeeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3151,6 +3243,7 @@ export namespace Prisma {
     salaryHistories?: boolean | EmployeeCountOutputTypeCountSalaryHistoriesArgs
     dependents?: boolean | EmployeeCountOutputTypeCountDependentsArgs
     dependentRequests?: boolean | EmployeeCountOutputTypeCountDependentRequestsArgs
+    employmentContracts?: boolean | EmployeeCountOutputTypeCountEmploymentContractsArgs
   }
 
   // Custom InputTypes
@@ -3218,6 +3311,13 @@ export namespace Prisma {
    */
   export type EmployeeCountOutputTypeCountDependentRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: DependentRequestWhereInput
+  }
+
+  /**
+   * EmployeeCountOutputType without action
+   */
+  export type EmployeeCountOutputTypeCountEmploymentContractsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmploymentContractWhereInput
   }
 
 
@@ -7079,6 +7179,7 @@ export namespace Prisma {
     salaryHistories?: boolean | Employee$salaryHistoriesArgs<ExtArgs>
     dependents?: boolean | Employee$dependentsArgs<ExtArgs>
     dependentRequests?: boolean | Employee$dependentRequestsArgs<ExtArgs>
+    employmentContracts?: boolean | Employee$employmentContractsArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["employee"]>
 
@@ -7186,6 +7287,7 @@ export namespace Prisma {
     salaryHistories?: boolean | Employee$salaryHistoriesArgs<ExtArgs>
     dependents?: boolean | Employee$dependentsArgs<ExtArgs>
     dependentRequests?: boolean | Employee$dependentRequestsArgs<ExtArgs>
+    employmentContracts?: boolean | Employee$employmentContractsArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EmployeeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7214,6 +7316,7 @@ export namespace Prisma {
       salaryHistories: Prisma.$SalaryHistoryPayload<ExtArgs>[]
       dependents: Prisma.$DependentPayload<ExtArgs>[]
       dependentRequests: Prisma.$DependentRequestPayload<ExtArgs>[]
+      employmentContracts: Prisma.$EmploymentContractPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7649,6 +7752,7 @@ export namespace Prisma {
     salaryHistories<T extends Employee$salaryHistoriesArgs<ExtArgs> = {}>(args?: Subset<T, Employee$salaryHistoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SalaryHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     dependents<T extends Employee$dependentsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$dependentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DependentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     dependentRequests<T extends Employee$dependentRequestsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$dependentRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DependentRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    employmentContracts<T extends Employee$employmentContractsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$employmentContractsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentContractPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8407,6 +8511,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: DependentRequestScalarFieldEnum | DependentRequestScalarFieldEnum[]
+  }
+
+  /**
+   * Employee.employmentContracts
+   */
+  export type Employee$employmentContractsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContract
+     */
+    select?: EmploymentContractSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContract
+     */
+    omit?: EmploymentContractOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractInclude<ExtArgs> | null
+    where?: EmploymentContractWhereInput
+    orderBy?: EmploymentContractOrderByWithRelationInput | EmploymentContractOrderByWithRelationInput[]
+    cursor?: EmploymentContractWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmploymentContractScalarFieldEnum | EmploymentContractScalarFieldEnum[]
   }
 
   /**
@@ -30269,6 +30397,1354 @@ export namespace Prisma {
 
 
   /**
+   * Model EmploymentContract
+   */
+
+  export type AggregateEmploymentContract = {
+    _count: EmploymentContractCountAggregateOutputType | null
+    _avg: EmploymentContractAvgAggregateOutputType | null
+    _sum: EmploymentContractSumAggregateOutputType | null
+    _min: EmploymentContractMinAggregateOutputType | null
+    _max: EmploymentContractMaxAggregateOutputType | null
+  }
+
+  export type EmploymentContractAvgAggregateOutputType = {
+    breakMinutes: number | null
+    baseSalary: number | null
+  }
+
+  export type EmploymentContractSumAggregateOutputType = {
+    breakMinutes: number | null
+    baseSalary: number | null
+  }
+
+  export type EmploymentContractMinAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    contractType: string | null
+    startDate: Date | null
+    endDate: Date | null
+    workplace: string | null
+    jobDescription: string | null
+    workStartTime: string | null
+    workEndTime: string | null
+    breakMinutes: number | null
+    holidayRule: string | null
+    leaveRule: string | null
+    wageType: string | null
+    baseSalary: number | null
+    allowanceNote: string | null
+    payClosingDay: string | null
+    payDate: string | null
+    bonusRule: string | null
+    raiseRule: string | null
+    probationPeriod: string | null
+    retirementRule: string | null
+    remarks: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type EmploymentContractMaxAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    contractType: string | null
+    startDate: Date | null
+    endDate: Date | null
+    workplace: string | null
+    jobDescription: string | null
+    workStartTime: string | null
+    workEndTime: string | null
+    breakMinutes: number | null
+    holidayRule: string | null
+    leaveRule: string | null
+    wageType: string | null
+    baseSalary: number | null
+    allowanceNote: string | null
+    payClosingDay: string | null
+    payDate: string | null
+    bonusRule: string | null
+    raiseRule: string | null
+    probationPeriod: string | null
+    retirementRule: string | null
+    remarks: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type EmploymentContractCountAggregateOutputType = {
+    id: number
+    employeeId: number
+    contractType: number
+    startDate: number
+    endDate: number
+    workplace: number
+    jobDescription: number
+    workStartTime: number
+    workEndTime: number
+    breakMinutes: number
+    holidayRule: number
+    leaveRule: number
+    wageType: number
+    baseSalary: number
+    allowanceNote: number
+    payClosingDay: number
+    payDate: number
+    bonusRule: number
+    raiseRule: number
+    probationPeriod: number
+    retirementRule: number
+    remarks: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type EmploymentContractAvgAggregateInputType = {
+    breakMinutes?: true
+    baseSalary?: true
+  }
+
+  export type EmploymentContractSumAggregateInputType = {
+    breakMinutes?: true
+    baseSalary?: true
+  }
+
+  export type EmploymentContractMinAggregateInputType = {
+    id?: true
+    employeeId?: true
+    contractType?: true
+    startDate?: true
+    endDate?: true
+    workplace?: true
+    jobDescription?: true
+    workStartTime?: true
+    workEndTime?: true
+    breakMinutes?: true
+    holidayRule?: true
+    leaveRule?: true
+    wageType?: true
+    baseSalary?: true
+    allowanceNote?: true
+    payClosingDay?: true
+    payDate?: true
+    bonusRule?: true
+    raiseRule?: true
+    probationPeriod?: true
+    retirementRule?: true
+    remarks?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type EmploymentContractMaxAggregateInputType = {
+    id?: true
+    employeeId?: true
+    contractType?: true
+    startDate?: true
+    endDate?: true
+    workplace?: true
+    jobDescription?: true
+    workStartTime?: true
+    workEndTime?: true
+    breakMinutes?: true
+    holidayRule?: true
+    leaveRule?: true
+    wageType?: true
+    baseSalary?: true
+    allowanceNote?: true
+    payClosingDay?: true
+    payDate?: true
+    bonusRule?: true
+    raiseRule?: true
+    probationPeriod?: true
+    retirementRule?: true
+    remarks?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type EmploymentContractCountAggregateInputType = {
+    id?: true
+    employeeId?: true
+    contractType?: true
+    startDate?: true
+    endDate?: true
+    workplace?: true
+    jobDescription?: true
+    workStartTime?: true
+    workEndTime?: true
+    breakMinutes?: true
+    holidayRule?: true
+    leaveRule?: true
+    wageType?: true
+    baseSalary?: true
+    allowanceNote?: true
+    payClosingDay?: true
+    payDate?: true
+    bonusRule?: true
+    raiseRule?: true
+    probationPeriod?: true
+    retirementRule?: true
+    remarks?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type EmploymentContractAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmploymentContract to aggregate.
+     */
+    where?: EmploymentContractWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmploymentContracts to fetch.
+     */
+    orderBy?: EmploymentContractOrderByWithRelationInput | EmploymentContractOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EmploymentContractWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmploymentContracts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmploymentContracts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EmploymentContracts
+    **/
+    _count?: true | EmploymentContractCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: EmploymentContractAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: EmploymentContractSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EmploymentContractMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EmploymentContractMaxAggregateInputType
+  }
+
+  export type GetEmploymentContractAggregateType<T extends EmploymentContractAggregateArgs> = {
+        [P in keyof T & keyof AggregateEmploymentContract]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEmploymentContract[P]>
+      : GetScalarType<T[P], AggregateEmploymentContract[P]>
+  }
+
+
+
+
+  export type EmploymentContractGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmploymentContractWhereInput
+    orderBy?: EmploymentContractOrderByWithAggregationInput | EmploymentContractOrderByWithAggregationInput[]
+    by: EmploymentContractScalarFieldEnum[] | EmploymentContractScalarFieldEnum
+    having?: EmploymentContractScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EmploymentContractCountAggregateInputType | true
+    _avg?: EmploymentContractAvgAggregateInputType
+    _sum?: EmploymentContractSumAggregateInputType
+    _min?: EmploymentContractMinAggregateInputType
+    _max?: EmploymentContractMaxAggregateInputType
+  }
+
+  export type EmploymentContractGroupByOutputType = {
+    id: string
+    employeeId: string
+    contractType: string
+    startDate: Date
+    endDate: Date | null
+    workplace: string
+    jobDescription: string
+    workStartTime: string
+    workEndTime: string
+    breakMinutes: number
+    holidayRule: string
+    leaveRule: string | null
+    wageType: string
+    baseSalary: number
+    allowanceNote: string | null
+    payClosingDay: string | null
+    payDate: string | null
+    bonusRule: string | null
+    raiseRule: string | null
+    probationPeriod: string | null
+    retirementRule: string | null
+    remarks: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: EmploymentContractCountAggregateOutputType | null
+    _avg: EmploymentContractAvgAggregateOutputType | null
+    _sum: EmploymentContractSumAggregateOutputType | null
+    _min: EmploymentContractMinAggregateOutputType | null
+    _max: EmploymentContractMaxAggregateOutputType | null
+  }
+
+  type GetEmploymentContractGroupByPayload<T extends EmploymentContractGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EmploymentContractGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EmploymentContractGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EmploymentContractGroupByOutputType[P]>
+            : GetScalarType<T[P], EmploymentContractGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EmploymentContractSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    contractType?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    workplace?: boolean
+    jobDescription?: boolean
+    workStartTime?: boolean
+    workEndTime?: boolean
+    breakMinutes?: boolean
+    holidayRule?: boolean
+    leaveRule?: boolean
+    wageType?: boolean
+    baseSalary?: boolean
+    allowanceNote?: boolean
+    payClosingDay?: boolean
+    payDate?: boolean
+    bonusRule?: boolean
+    raiseRule?: boolean
+    probationPeriod?: boolean
+    retirementRule?: boolean
+    remarks?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["employmentContract"]>
+
+  export type EmploymentContractSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    contractType?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    workplace?: boolean
+    jobDescription?: boolean
+    workStartTime?: boolean
+    workEndTime?: boolean
+    breakMinutes?: boolean
+    holidayRule?: boolean
+    leaveRule?: boolean
+    wageType?: boolean
+    baseSalary?: boolean
+    allowanceNote?: boolean
+    payClosingDay?: boolean
+    payDate?: boolean
+    bonusRule?: boolean
+    raiseRule?: boolean
+    probationPeriod?: boolean
+    retirementRule?: boolean
+    remarks?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["employmentContract"]>
+
+  export type EmploymentContractSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    contractType?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    workplace?: boolean
+    jobDescription?: boolean
+    workStartTime?: boolean
+    workEndTime?: boolean
+    breakMinutes?: boolean
+    holidayRule?: boolean
+    leaveRule?: boolean
+    wageType?: boolean
+    baseSalary?: boolean
+    allowanceNote?: boolean
+    payClosingDay?: boolean
+    payDate?: boolean
+    bonusRule?: boolean
+    raiseRule?: boolean
+    probationPeriod?: boolean
+    retirementRule?: boolean
+    remarks?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["employmentContract"]>
+
+  export type EmploymentContractSelectScalar = {
+    id?: boolean
+    employeeId?: boolean
+    contractType?: boolean
+    startDate?: boolean
+    endDate?: boolean
+    workplace?: boolean
+    jobDescription?: boolean
+    workStartTime?: boolean
+    workEndTime?: boolean
+    breakMinutes?: boolean
+    holidayRule?: boolean
+    leaveRule?: boolean
+    wageType?: boolean
+    baseSalary?: boolean
+    allowanceNote?: boolean
+    payClosingDay?: boolean
+    payDate?: boolean
+    bonusRule?: boolean
+    raiseRule?: boolean
+    probationPeriod?: boolean
+    retirementRule?: boolean
+    remarks?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type EmploymentContractOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "contractType" | "startDate" | "endDate" | "workplace" | "jobDescription" | "workStartTime" | "workEndTime" | "breakMinutes" | "holidayRule" | "leaveRule" | "wageType" | "baseSalary" | "allowanceNote" | "payClosingDay" | "payDate" | "bonusRule" | "raiseRule" | "probationPeriod" | "retirementRule" | "remarks" | "createdAt" | "updatedAt", ExtArgs["result"]["employmentContract"]>
+  export type EmploymentContractInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+  export type EmploymentContractIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+  export type EmploymentContractIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+
+  export type $EmploymentContractPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EmploymentContract"
+    objects: {
+      employee: Prisma.$EmployeePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      employeeId: string
+      contractType: string
+      startDate: Date
+      endDate: Date | null
+      workplace: string
+      jobDescription: string
+      workStartTime: string
+      workEndTime: string
+      breakMinutes: number
+      holidayRule: string
+      leaveRule: string | null
+      wageType: string
+      baseSalary: number
+      allowanceNote: string | null
+      payClosingDay: string | null
+      payDate: string | null
+      bonusRule: string | null
+      raiseRule: string | null
+      probationPeriod: string | null
+      retirementRule: string | null
+      remarks: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["employmentContract"]>
+    composites: {}
+  }
+
+  type EmploymentContractGetPayload<S extends boolean | null | undefined | EmploymentContractDefaultArgs> = $Result.GetResult<Prisma.$EmploymentContractPayload, S>
+
+  type EmploymentContractCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EmploymentContractFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EmploymentContractCountAggregateInputType | true
+    }
+
+  export interface EmploymentContractDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EmploymentContract'], meta: { name: 'EmploymentContract' } }
+    /**
+     * Find zero or one EmploymentContract that matches the filter.
+     * @param {EmploymentContractFindUniqueArgs} args - Arguments to find a EmploymentContract
+     * @example
+     * // Get one EmploymentContract
+     * const employmentContract = await prisma.employmentContract.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EmploymentContractFindUniqueArgs>(args: SelectSubset<T, EmploymentContractFindUniqueArgs<ExtArgs>>): Prisma__EmploymentContractClient<$Result.GetResult<Prisma.$EmploymentContractPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EmploymentContract that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EmploymentContractFindUniqueOrThrowArgs} args - Arguments to find a EmploymentContract
+     * @example
+     * // Get one EmploymentContract
+     * const employmentContract = await prisma.employmentContract.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EmploymentContractFindUniqueOrThrowArgs>(args: SelectSubset<T, EmploymentContractFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EmploymentContractClient<$Result.GetResult<Prisma.$EmploymentContractPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmploymentContract that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentContractFindFirstArgs} args - Arguments to find a EmploymentContract
+     * @example
+     * // Get one EmploymentContract
+     * const employmentContract = await prisma.employmentContract.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EmploymentContractFindFirstArgs>(args?: SelectSubset<T, EmploymentContractFindFirstArgs<ExtArgs>>): Prisma__EmploymentContractClient<$Result.GetResult<Prisma.$EmploymentContractPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmploymentContract that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentContractFindFirstOrThrowArgs} args - Arguments to find a EmploymentContract
+     * @example
+     * // Get one EmploymentContract
+     * const employmentContract = await prisma.employmentContract.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EmploymentContractFindFirstOrThrowArgs>(args?: SelectSubset<T, EmploymentContractFindFirstOrThrowArgs<ExtArgs>>): Prisma__EmploymentContractClient<$Result.GetResult<Prisma.$EmploymentContractPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EmploymentContracts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentContractFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EmploymentContracts
+     * const employmentContracts = await prisma.employmentContract.findMany()
+     * 
+     * // Get first 10 EmploymentContracts
+     * const employmentContracts = await prisma.employmentContract.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const employmentContractWithIdOnly = await prisma.employmentContract.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EmploymentContractFindManyArgs>(args?: SelectSubset<T, EmploymentContractFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentContractPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EmploymentContract.
+     * @param {EmploymentContractCreateArgs} args - Arguments to create a EmploymentContract.
+     * @example
+     * // Create one EmploymentContract
+     * const EmploymentContract = await prisma.employmentContract.create({
+     *   data: {
+     *     // ... data to create a EmploymentContract
+     *   }
+     * })
+     * 
+     */
+    create<T extends EmploymentContractCreateArgs>(args: SelectSubset<T, EmploymentContractCreateArgs<ExtArgs>>): Prisma__EmploymentContractClient<$Result.GetResult<Prisma.$EmploymentContractPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EmploymentContracts.
+     * @param {EmploymentContractCreateManyArgs} args - Arguments to create many EmploymentContracts.
+     * @example
+     * // Create many EmploymentContracts
+     * const employmentContract = await prisma.employmentContract.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EmploymentContractCreateManyArgs>(args?: SelectSubset<T, EmploymentContractCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EmploymentContracts and returns the data saved in the database.
+     * @param {EmploymentContractCreateManyAndReturnArgs} args - Arguments to create many EmploymentContracts.
+     * @example
+     * // Create many EmploymentContracts
+     * const employmentContract = await prisma.employmentContract.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EmploymentContracts and only return the `id`
+     * const employmentContractWithIdOnly = await prisma.employmentContract.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EmploymentContractCreateManyAndReturnArgs>(args?: SelectSubset<T, EmploymentContractCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentContractPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EmploymentContract.
+     * @param {EmploymentContractDeleteArgs} args - Arguments to delete one EmploymentContract.
+     * @example
+     * // Delete one EmploymentContract
+     * const EmploymentContract = await prisma.employmentContract.delete({
+     *   where: {
+     *     // ... filter to delete one EmploymentContract
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EmploymentContractDeleteArgs>(args: SelectSubset<T, EmploymentContractDeleteArgs<ExtArgs>>): Prisma__EmploymentContractClient<$Result.GetResult<Prisma.$EmploymentContractPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EmploymentContract.
+     * @param {EmploymentContractUpdateArgs} args - Arguments to update one EmploymentContract.
+     * @example
+     * // Update one EmploymentContract
+     * const employmentContract = await prisma.employmentContract.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EmploymentContractUpdateArgs>(args: SelectSubset<T, EmploymentContractUpdateArgs<ExtArgs>>): Prisma__EmploymentContractClient<$Result.GetResult<Prisma.$EmploymentContractPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EmploymentContracts.
+     * @param {EmploymentContractDeleteManyArgs} args - Arguments to filter EmploymentContracts to delete.
+     * @example
+     * // Delete a few EmploymentContracts
+     * const { count } = await prisma.employmentContract.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EmploymentContractDeleteManyArgs>(args?: SelectSubset<T, EmploymentContractDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmploymentContracts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentContractUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EmploymentContracts
+     * const employmentContract = await prisma.employmentContract.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EmploymentContractUpdateManyArgs>(args: SelectSubset<T, EmploymentContractUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmploymentContracts and returns the data updated in the database.
+     * @param {EmploymentContractUpdateManyAndReturnArgs} args - Arguments to update many EmploymentContracts.
+     * @example
+     * // Update many EmploymentContracts
+     * const employmentContract = await prisma.employmentContract.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EmploymentContracts and only return the `id`
+     * const employmentContractWithIdOnly = await prisma.employmentContract.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EmploymentContractUpdateManyAndReturnArgs>(args: SelectSubset<T, EmploymentContractUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentContractPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EmploymentContract.
+     * @param {EmploymentContractUpsertArgs} args - Arguments to update or create a EmploymentContract.
+     * @example
+     * // Update or create a EmploymentContract
+     * const employmentContract = await prisma.employmentContract.upsert({
+     *   create: {
+     *     // ... data to create a EmploymentContract
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EmploymentContract we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EmploymentContractUpsertArgs>(args: SelectSubset<T, EmploymentContractUpsertArgs<ExtArgs>>): Prisma__EmploymentContractClient<$Result.GetResult<Prisma.$EmploymentContractPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EmploymentContracts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentContractCountArgs} args - Arguments to filter EmploymentContracts to count.
+     * @example
+     * // Count the number of EmploymentContracts
+     * const count = await prisma.employmentContract.count({
+     *   where: {
+     *     // ... the filter for the EmploymentContracts we want to count
+     *   }
+     * })
+    **/
+    count<T extends EmploymentContractCountArgs>(
+      args?: Subset<T, EmploymentContractCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EmploymentContractCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EmploymentContract.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentContractAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EmploymentContractAggregateArgs>(args: Subset<T, EmploymentContractAggregateArgs>): Prisma.PrismaPromise<GetEmploymentContractAggregateType<T>>
+
+    /**
+     * Group by EmploymentContract.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentContractGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EmploymentContractGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EmploymentContractGroupByArgs['orderBy'] }
+        : { orderBy?: EmploymentContractGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EmploymentContractGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEmploymentContractGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EmploymentContract model
+   */
+  readonly fields: EmploymentContractFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EmploymentContract.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EmploymentContractClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EmploymentContract model
+   */
+  interface EmploymentContractFieldRefs {
+    readonly id: FieldRef<"EmploymentContract", 'String'>
+    readonly employeeId: FieldRef<"EmploymentContract", 'String'>
+    readonly contractType: FieldRef<"EmploymentContract", 'String'>
+    readonly startDate: FieldRef<"EmploymentContract", 'DateTime'>
+    readonly endDate: FieldRef<"EmploymentContract", 'DateTime'>
+    readonly workplace: FieldRef<"EmploymentContract", 'String'>
+    readonly jobDescription: FieldRef<"EmploymentContract", 'String'>
+    readonly workStartTime: FieldRef<"EmploymentContract", 'String'>
+    readonly workEndTime: FieldRef<"EmploymentContract", 'String'>
+    readonly breakMinutes: FieldRef<"EmploymentContract", 'Int'>
+    readonly holidayRule: FieldRef<"EmploymentContract", 'String'>
+    readonly leaveRule: FieldRef<"EmploymentContract", 'String'>
+    readonly wageType: FieldRef<"EmploymentContract", 'String'>
+    readonly baseSalary: FieldRef<"EmploymentContract", 'Int'>
+    readonly allowanceNote: FieldRef<"EmploymentContract", 'String'>
+    readonly payClosingDay: FieldRef<"EmploymentContract", 'String'>
+    readonly payDate: FieldRef<"EmploymentContract", 'String'>
+    readonly bonusRule: FieldRef<"EmploymentContract", 'String'>
+    readonly raiseRule: FieldRef<"EmploymentContract", 'String'>
+    readonly probationPeriod: FieldRef<"EmploymentContract", 'String'>
+    readonly retirementRule: FieldRef<"EmploymentContract", 'String'>
+    readonly remarks: FieldRef<"EmploymentContract", 'String'>
+    readonly createdAt: FieldRef<"EmploymentContract", 'DateTime'>
+    readonly updatedAt: FieldRef<"EmploymentContract", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EmploymentContract findUnique
+   */
+  export type EmploymentContractFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContract
+     */
+    select?: EmploymentContractSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContract
+     */
+    omit?: EmploymentContractOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractInclude<ExtArgs> | null
+    /**
+     * Filter, which EmploymentContract to fetch.
+     */
+    where: EmploymentContractWhereUniqueInput
+  }
+
+  /**
+   * EmploymentContract findUniqueOrThrow
+   */
+  export type EmploymentContractFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContract
+     */
+    select?: EmploymentContractSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContract
+     */
+    omit?: EmploymentContractOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractInclude<ExtArgs> | null
+    /**
+     * Filter, which EmploymentContract to fetch.
+     */
+    where: EmploymentContractWhereUniqueInput
+  }
+
+  /**
+   * EmploymentContract findFirst
+   */
+  export type EmploymentContractFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContract
+     */
+    select?: EmploymentContractSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContract
+     */
+    omit?: EmploymentContractOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractInclude<ExtArgs> | null
+    /**
+     * Filter, which EmploymentContract to fetch.
+     */
+    where?: EmploymentContractWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmploymentContracts to fetch.
+     */
+    orderBy?: EmploymentContractOrderByWithRelationInput | EmploymentContractOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmploymentContracts.
+     */
+    cursor?: EmploymentContractWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmploymentContracts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmploymentContracts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmploymentContracts.
+     */
+    distinct?: EmploymentContractScalarFieldEnum | EmploymentContractScalarFieldEnum[]
+  }
+
+  /**
+   * EmploymentContract findFirstOrThrow
+   */
+  export type EmploymentContractFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContract
+     */
+    select?: EmploymentContractSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContract
+     */
+    omit?: EmploymentContractOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractInclude<ExtArgs> | null
+    /**
+     * Filter, which EmploymentContract to fetch.
+     */
+    where?: EmploymentContractWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmploymentContracts to fetch.
+     */
+    orderBy?: EmploymentContractOrderByWithRelationInput | EmploymentContractOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmploymentContracts.
+     */
+    cursor?: EmploymentContractWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmploymentContracts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmploymentContracts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmploymentContracts.
+     */
+    distinct?: EmploymentContractScalarFieldEnum | EmploymentContractScalarFieldEnum[]
+  }
+
+  /**
+   * EmploymentContract findMany
+   */
+  export type EmploymentContractFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContract
+     */
+    select?: EmploymentContractSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContract
+     */
+    omit?: EmploymentContractOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractInclude<ExtArgs> | null
+    /**
+     * Filter, which EmploymentContracts to fetch.
+     */
+    where?: EmploymentContractWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmploymentContracts to fetch.
+     */
+    orderBy?: EmploymentContractOrderByWithRelationInput | EmploymentContractOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EmploymentContracts.
+     */
+    cursor?: EmploymentContractWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmploymentContracts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmploymentContracts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmploymentContracts.
+     */
+    distinct?: EmploymentContractScalarFieldEnum | EmploymentContractScalarFieldEnum[]
+  }
+
+  /**
+   * EmploymentContract create
+   */
+  export type EmploymentContractCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContract
+     */
+    select?: EmploymentContractSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContract
+     */
+    omit?: EmploymentContractOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EmploymentContract.
+     */
+    data: XOR<EmploymentContractCreateInput, EmploymentContractUncheckedCreateInput>
+  }
+
+  /**
+   * EmploymentContract createMany
+   */
+  export type EmploymentContractCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EmploymentContracts.
+     */
+    data: EmploymentContractCreateManyInput | EmploymentContractCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EmploymentContract createManyAndReturn
+   */
+  export type EmploymentContractCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContract
+     */
+    select?: EmploymentContractSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContract
+     */
+    omit?: EmploymentContractOmit<ExtArgs> | null
+    /**
+     * The data used to create many EmploymentContracts.
+     */
+    data: EmploymentContractCreateManyInput | EmploymentContractCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EmploymentContract update
+   */
+  export type EmploymentContractUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContract
+     */
+    select?: EmploymentContractSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContract
+     */
+    omit?: EmploymentContractOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EmploymentContract.
+     */
+    data: XOR<EmploymentContractUpdateInput, EmploymentContractUncheckedUpdateInput>
+    /**
+     * Choose, which EmploymentContract to update.
+     */
+    where: EmploymentContractWhereUniqueInput
+  }
+
+  /**
+   * EmploymentContract updateMany
+   */
+  export type EmploymentContractUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EmploymentContracts.
+     */
+    data: XOR<EmploymentContractUpdateManyMutationInput, EmploymentContractUncheckedUpdateManyInput>
+    /**
+     * Filter which EmploymentContracts to update
+     */
+    where?: EmploymentContractWhereInput
+    /**
+     * Limit how many EmploymentContracts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmploymentContract updateManyAndReturn
+   */
+  export type EmploymentContractUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContract
+     */
+    select?: EmploymentContractSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContract
+     */
+    omit?: EmploymentContractOmit<ExtArgs> | null
+    /**
+     * The data used to update EmploymentContracts.
+     */
+    data: XOR<EmploymentContractUpdateManyMutationInput, EmploymentContractUncheckedUpdateManyInput>
+    /**
+     * Filter which EmploymentContracts to update
+     */
+    where?: EmploymentContractWhereInput
+    /**
+     * Limit how many EmploymentContracts to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EmploymentContract upsert
+   */
+  export type EmploymentContractUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContract
+     */
+    select?: EmploymentContractSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContract
+     */
+    omit?: EmploymentContractOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EmploymentContract to update in case it exists.
+     */
+    where: EmploymentContractWhereUniqueInput
+    /**
+     * In case the EmploymentContract found by the `where` argument doesn't exist, create a new EmploymentContract with this data.
+     */
+    create: XOR<EmploymentContractCreateInput, EmploymentContractUncheckedCreateInput>
+    /**
+     * In case the EmploymentContract was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EmploymentContractUpdateInput, EmploymentContractUncheckedUpdateInput>
+  }
+
+  /**
+   * EmploymentContract delete
+   */
+  export type EmploymentContractDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContract
+     */
+    select?: EmploymentContractSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContract
+     */
+    omit?: EmploymentContractOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractInclude<ExtArgs> | null
+    /**
+     * Filter which EmploymentContract to delete.
+     */
+    where: EmploymentContractWhereUniqueInput
+  }
+
+  /**
+   * EmploymentContract deleteMany
+   */
+  export type EmploymentContractDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmploymentContracts to delete
+     */
+    where?: EmploymentContractWhereInput
+    /**
+     * Limit how many EmploymentContracts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmploymentContract without action
+   */
+  export type EmploymentContractDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContract
+     */
+    select?: EmploymentContractSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContract
+     */
+    omit?: EmploymentContractOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -30644,6 +32120,36 @@ export namespace Prisma {
   };
 
   export type ProfileChangeRequestScalarFieldEnum = (typeof ProfileChangeRequestScalarFieldEnum)[keyof typeof ProfileChangeRequestScalarFieldEnum]
+
+
+  export const EmploymentContractScalarFieldEnum: {
+    id: 'id',
+    employeeId: 'employeeId',
+    contractType: 'contractType',
+    startDate: 'startDate',
+    endDate: 'endDate',
+    workplace: 'workplace',
+    jobDescription: 'jobDescription',
+    workStartTime: 'workStartTime',
+    workEndTime: 'workEndTime',
+    breakMinutes: 'breakMinutes',
+    holidayRule: 'holidayRule',
+    leaveRule: 'leaveRule',
+    wageType: 'wageType',
+    baseSalary: 'baseSalary',
+    allowanceNote: 'allowanceNote',
+    payClosingDay: 'payClosingDay',
+    payDate: 'payDate',
+    bonusRule: 'bonusRule',
+    raiseRule: 'raiseRule',
+    probationPeriod: 'probationPeriod',
+    retirementRule: 'retirementRule',
+    remarks: 'remarks',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type EmploymentContractScalarFieldEnum = (typeof EmploymentContractScalarFieldEnum)[keyof typeof EmploymentContractScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -31191,6 +32697,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryListRelationFilter
     dependents?: DependentListRelationFilter
     dependentRequests?: DependentRequestListRelationFilter
+    employmentContracts?: EmploymentContractListRelationFilter
   }
 
   export type EmployeeOrderByWithRelationInput = {
@@ -31233,6 +32740,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryOrderByRelationAggregateInput
     dependents?: DependentOrderByRelationAggregateInput
     dependentRequests?: DependentRequestOrderByRelationAggregateInput
+    employmentContracts?: EmploymentContractOrderByRelationAggregateInput
   }
 
   export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
@@ -31278,6 +32786,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryListRelationFilter
     dependents?: DependentListRelationFilter
     dependentRequests?: DependentRequestListRelationFilter
+    employmentContracts?: EmploymentContractListRelationFilter
   }, "id" | "employeeNo" | "email" | "userId">
 
   export type EmployeeOrderByWithAggregationInput = {
@@ -32846,6 +34355,158 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"ProfileChangeRequest"> | Date | string
   }
 
+  export type EmploymentContractWhereInput = {
+    AND?: EmploymentContractWhereInput | EmploymentContractWhereInput[]
+    OR?: EmploymentContractWhereInput[]
+    NOT?: EmploymentContractWhereInput | EmploymentContractWhereInput[]
+    id?: StringFilter<"EmploymentContract"> | string
+    employeeId?: StringFilter<"EmploymentContract"> | string
+    contractType?: StringFilter<"EmploymentContract"> | string
+    startDate?: DateTimeFilter<"EmploymentContract"> | Date | string
+    endDate?: DateTimeNullableFilter<"EmploymentContract"> | Date | string | null
+    workplace?: StringFilter<"EmploymentContract"> | string
+    jobDescription?: StringFilter<"EmploymentContract"> | string
+    workStartTime?: StringFilter<"EmploymentContract"> | string
+    workEndTime?: StringFilter<"EmploymentContract"> | string
+    breakMinutes?: IntFilter<"EmploymentContract"> | number
+    holidayRule?: StringFilter<"EmploymentContract"> | string
+    leaveRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    wageType?: StringFilter<"EmploymentContract"> | string
+    baseSalary?: IntFilter<"EmploymentContract"> | number
+    allowanceNote?: StringNullableFilter<"EmploymentContract"> | string | null
+    payClosingDay?: StringNullableFilter<"EmploymentContract"> | string | null
+    payDate?: StringNullableFilter<"EmploymentContract"> | string | null
+    bonusRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    raiseRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    probationPeriod?: StringNullableFilter<"EmploymentContract"> | string | null
+    retirementRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    remarks?: StringNullableFilter<"EmploymentContract"> | string | null
+    createdAt?: DateTimeFilter<"EmploymentContract"> | Date | string
+    updatedAt?: DateTimeFilter<"EmploymentContract"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+  }
+
+  export type EmploymentContractOrderByWithRelationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    contractType?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrderInput | SortOrder
+    workplace?: SortOrder
+    jobDescription?: SortOrder
+    workStartTime?: SortOrder
+    workEndTime?: SortOrder
+    breakMinutes?: SortOrder
+    holidayRule?: SortOrder
+    leaveRule?: SortOrderInput | SortOrder
+    wageType?: SortOrder
+    baseSalary?: SortOrder
+    allowanceNote?: SortOrderInput | SortOrder
+    payClosingDay?: SortOrderInput | SortOrder
+    payDate?: SortOrderInput | SortOrder
+    bonusRule?: SortOrderInput | SortOrder
+    raiseRule?: SortOrderInput | SortOrder
+    probationPeriod?: SortOrderInput | SortOrder
+    retirementRule?: SortOrderInput | SortOrder
+    remarks?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    employee?: EmployeeOrderByWithRelationInput
+  }
+
+  export type EmploymentContractWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: EmploymentContractWhereInput | EmploymentContractWhereInput[]
+    OR?: EmploymentContractWhereInput[]
+    NOT?: EmploymentContractWhereInput | EmploymentContractWhereInput[]
+    employeeId?: StringFilter<"EmploymentContract"> | string
+    contractType?: StringFilter<"EmploymentContract"> | string
+    startDate?: DateTimeFilter<"EmploymentContract"> | Date | string
+    endDate?: DateTimeNullableFilter<"EmploymentContract"> | Date | string | null
+    workplace?: StringFilter<"EmploymentContract"> | string
+    jobDescription?: StringFilter<"EmploymentContract"> | string
+    workStartTime?: StringFilter<"EmploymentContract"> | string
+    workEndTime?: StringFilter<"EmploymentContract"> | string
+    breakMinutes?: IntFilter<"EmploymentContract"> | number
+    holidayRule?: StringFilter<"EmploymentContract"> | string
+    leaveRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    wageType?: StringFilter<"EmploymentContract"> | string
+    baseSalary?: IntFilter<"EmploymentContract"> | number
+    allowanceNote?: StringNullableFilter<"EmploymentContract"> | string | null
+    payClosingDay?: StringNullableFilter<"EmploymentContract"> | string | null
+    payDate?: StringNullableFilter<"EmploymentContract"> | string | null
+    bonusRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    raiseRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    probationPeriod?: StringNullableFilter<"EmploymentContract"> | string | null
+    retirementRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    remarks?: StringNullableFilter<"EmploymentContract"> | string | null
+    createdAt?: DateTimeFilter<"EmploymentContract"> | Date | string
+    updatedAt?: DateTimeFilter<"EmploymentContract"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+  }, "id">
+
+  export type EmploymentContractOrderByWithAggregationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    contractType?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrderInput | SortOrder
+    workplace?: SortOrder
+    jobDescription?: SortOrder
+    workStartTime?: SortOrder
+    workEndTime?: SortOrder
+    breakMinutes?: SortOrder
+    holidayRule?: SortOrder
+    leaveRule?: SortOrderInput | SortOrder
+    wageType?: SortOrder
+    baseSalary?: SortOrder
+    allowanceNote?: SortOrderInput | SortOrder
+    payClosingDay?: SortOrderInput | SortOrder
+    payDate?: SortOrderInput | SortOrder
+    bonusRule?: SortOrderInput | SortOrder
+    raiseRule?: SortOrderInput | SortOrder
+    probationPeriod?: SortOrderInput | SortOrder
+    retirementRule?: SortOrderInput | SortOrder
+    remarks?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: EmploymentContractCountOrderByAggregateInput
+    _avg?: EmploymentContractAvgOrderByAggregateInput
+    _max?: EmploymentContractMaxOrderByAggregateInput
+    _min?: EmploymentContractMinOrderByAggregateInput
+    _sum?: EmploymentContractSumOrderByAggregateInput
+  }
+
+  export type EmploymentContractScalarWhereWithAggregatesInput = {
+    AND?: EmploymentContractScalarWhereWithAggregatesInput | EmploymentContractScalarWhereWithAggregatesInput[]
+    OR?: EmploymentContractScalarWhereWithAggregatesInput[]
+    NOT?: EmploymentContractScalarWhereWithAggregatesInput | EmploymentContractScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EmploymentContract"> | string
+    employeeId?: StringWithAggregatesFilter<"EmploymentContract"> | string
+    contractType?: StringWithAggregatesFilter<"EmploymentContract"> | string
+    startDate?: DateTimeWithAggregatesFilter<"EmploymentContract"> | Date | string
+    endDate?: DateTimeNullableWithAggregatesFilter<"EmploymentContract"> | Date | string | null
+    workplace?: StringWithAggregatesFilter<"EmploymentContract"> | string
+    jobDescription?: StringWithAggregatesFilter<"EmploymentContract"> | string
+    workStartTime?: StringWithAggregatesFilter<"EmploymentContract"> | string
+    workEndTime?: StringWithAggregatesFilter<"EmploymentContract"> | string
+    breakMinutes?: IntWithAggregatesFilter<"EmploymentContract"> | number
+    holidayRule?: StringWithAggregatesFilter<"EmploymentContract"> | string
+    leaveRule?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
+    wageType?: StringWithAggregatesFilter<"EmploymentContract"> | string
+    baseSalary?: IntWithAggregatesFilter<"EmploymentContract"> | number
+    allowanceNote?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
+    payClosingDay?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
+    payDate?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
+    bonusRule?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
+    raiseRule?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
+    probationPeriod?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
+    retirementRule?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
+    remarks?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"EmploymentContract"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"EmploymentContract"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     name: string
@@ -33124,6 +34785,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateInput = {
@@ -33164,6 +34826,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUpdateInput = {
@@ -33204,6 +34867,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateInput = {
@@ -33244,6 +34908,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateManyInput = {
@@ -34977,6 +36642,194 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type EmploymentContractCreateInput = {
+    id?: string
+    contractType: string
+    startDate: Date | string
+    endDate?: Date | string | null
+    workplace: string
+    jobDescription: string
+    workStartTime: string
+    workEndTime: string
+    breakMinutes: number
+    holidayRule: string
+    leaveRule?: string | null
+    wageType: string
+    baseSalary: number
+    allowanceNote?: string | null
+    payClosingDay?: string | null
+    payDate?: string | null
+    bonusRule?: string | null
+    raiseRule?: string | null
+    probationPeriod?: string | null
+    retirementRule?: string | null
+    remarks?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutEmploymentContractsInput
+  }
+
+  export type EmploymentContractUncheckedCreateInput = {
+    id?: string
+    employeeId: string
+    contractType: string
+    startDate: Date | string
+    endDate?: Date | string | null
+    workplace: string
+    jobDescription: string
+    workStartTime: string
+    workEndTime: string
+    breakMinutes: number
+    holidayRule: string
+    leaveRule?: string | null
+    wageType: string
+    baseSalary: number
+    allowanceNote?: string | null
+    payClosingDay?: string | null
+    payDate?: string | null
+    bonusRule?: string | null
+    raiseRule?: string | null
+    probationPeriod?: string | null
+    retirementRule?: string | null
+    remarks?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EmploymentContractUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    contractType?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    workplace?: StringFieldUpdateOperationsInput | string
+    jobDescription?: StringFieldUpdateOperationsInput | string
+    workStartTime?: StringFieldUpdateOperationsInput | string
+    workEndTime?: StringFieldUpdateOperationsInput | string
+    breakMinutes?: IntFieldUpdateOperationsInput | number
+    holidayRule?: StringFieldUpdateOperationsInput | string
+    leaveRule?: NullableStringFieldUpdateOperationsInput | string | null
+    wageType?: StringFieldUpdateOperationsInput | string
+    baseSalary?: IntFieldUpdateOperationsInput | number
+    allowanceNote?: NullableStringFieldUpdateOperationsInput | string | null
+    payClosingDay?: NullableStringFieldUpdateOperationsInput | string | null
+    payDate?: NullableStringFieldUpdateOperationsInput | string | null
+    bonusRule?: NullableStringFieldUpdateOperationsInput | string | null
+    raiseRule?: NullableStringFieldUpdateOperationsInput | string | null
+    probationPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementRule?: NullableStringFieldUpdateOperationsInput | string | null
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutEmploymentContractsNestedInput
+  }
+
+  export type EmploymentContractUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    contractType?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    workplace?: StringFieldUpdateOperationsInput | string
+    jobDescription?: StringFieldUpdateOperationsInput | string
+    workStartTime?: StringFieldUpdateOperationsInput | string
+    workEndTime?: StringFieldUpdateOperationsInput | string
+    breakMinutes?: IntFieldUpdateOperationsInput | number
+    holidayRule?: StringFieldUpdateOperationsInput | string
+    leaveRule?: NullableStringFieldUpdateOperationsInput | string | null
+    wageType?: StringFieldUpdateOperationsInput | string
+    baseSalary?: IntFieldUpdateOperationsInput | number
+    allowanceNote?: NullableStringFieldUpdateOperationsInput | string | null
+    payClosingDay?: NullableStringFieldUpdateOperationsInput | string | null
+    payDate?: NullableStringFieldUpdateOperationsInput | string | null
+    bonusRule?: NullableStringFieldUpdateOperationsInput | string | null
+    raiseRule?: NullableStringFieldUpdateOperationsInput | string | null
+    probationPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementRule?: NullableStringFieldUpdateOperationsInput | string | null
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmploymentContractCreateManyInput = {
+    id?: string
+    employeeId: string
+    contractType: string
+    startDate: Date | string
+    endDate?: Date | string | null
+    workplace: string
+    jobDescription: string
+    workStartTime: string
+    workEndTime: string
+    breakMinutes: number
+    holidayRule: string
+    leaveRule?: string | null
+    wageType: string
+    baseSalary: number
+    allowanceNote?: string | null
+    payClosingDay?: string | null
+    payDate?: string | null
+    bonusRule?: string | null
+    raiseRule?: string | null
+    probationPeriod?: string | null
+    retirementRule?: string | null
+    remarks?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EmploymentContractUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    contractType?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    workplace?: StringFieldUpdateOperationsInput | string
+    jobDescription?: StringFieldUpdateOperationsInput | string
+    workStartTime?: StringFieldUpdateOperationsInput | string
+    workEndTime?: StringFieldUpdateOperationsInput | string
+    breakMinutes?: IntFieldUpdateOperationsInput | number
+    holidayRule?: StringFieldUpdateOperationsInput | string
+    leaveRule?: NullableStringFieldUpdateOperationsInput | string | null
+    wageType?: StringFieldUpdateOperationsInput | string
+    baseSalary?: IntFieldUpdateOperationsInput | number
+    allowanceNote?: NullableStringFieldUpdateOperationsInput | string | null
+    payClosingDay?: NullableStringFieldUpdateOperationsInput | string | null
+    payDate?: NullableStringFieldUpdateOperationsInput | string | null
+    bonusRule?: NullableStringFieldUpdateOperationsInput | string | null
+    raiseRule?: NullableStringFieldUpdateOperationsInput | string | null
+    probationPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementRule?: NullableStringFieldUpdateOperationsInput | string | null
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmploymentContractUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    contractType?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    workplace?: StringFieldUpdateOperationsInput | string
+    jobDescription?: StringFieldUpdateOperationsInput | string
+    workStartTime?: StringFieldUpdateOperationsInput | string
+    workEndTime?: StringFieldUpdateOperationsInput | string
+    breakMinutes?: IntFieldUpdateOperationsInput | number
+    holidayRule?: StringFieldUpdateOperationsInput | string
+    leaveRule?: NullableStringFieldUpdateOperationsInput | string | null
+    wageType?: StringFieldUpdateOperationsInput | string
+    baseSalary?: IntFieldUpdateOperationsInput | number
+    allowanceNote?: NullableStringFieldUpdateOperationsInput | string | null
+    payClosingDay?: NullableStringFieldUpdateOperationsInput | string | null
+    payDate?: NullableStringFieldUpdateOperationsInput | string | null
+    bonusRule?: NullableStringFieldUpdateOperationsInput | string | null
+    raiseRule?: NullableStringFieldUpdateOperationsInput | string | null
+    probationPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementRule?: NullableStringFieldUpdateOperationsInput | string | null
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -35352,6 +37205,12 @@ export namespace Prisma {
     none?: DependentRequestWhereInput
   }
 
+  export type EmploymentContractListRelationFilter = {
+    every?: EmploymentContractWhereInput
+    some?: EmploymentContractWhereInput
+    none?: EmploymentContractWhereInput
+  }
+
   export type EmployeeCertificationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -35377,6 +37236,10 @@ export namespace Prisma {
   }
 
   export type DependentRequestOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EmploymentContractOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -36666,6 +38529,97 @@ export namespace Prisma {
     _max?: NestedEnumProfileChangeStatusFilter<$PrismaModel>
   }
 
+  export type EmploymentContractCountOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    contractType?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    workplace?: SortOrder
+    jobDescription?: SortOrder
+    workStartTime?: SortOrder
+    workEndTime?: SortOrder
+    breakMinutes?: SortOrder
+    holidayRule?: SortOrder
+    leaveRule?: SortOrder
+    wageType?: SortOrder
+    baseSalary?: SortOrder
+    allowanceNote?: SortOrder
+    payClosingDay?: SortOrder
+    payDate?: SortOrder
+    bonusRule?: SortOrder
+    raiseRule?: SortOrder
+    probationPeriod?: SortOrder
+    retirementRule?: SortOrder
+    remarks?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EmploymentContractAvgOrderByAggregateInput = {
+    breakMinutes?: SortOrder
+    baseSalary?: SortOrder
+  }
+
+  export type EmploymentContractMaxOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    contractType?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    workplace?: SortOrder
+    jobDescription?: SortOrder
+    workStartTime?: SortOrder
+    workEndTime?: SortOrder
+    breakMinutes?: SortOrder
+    holidayRule?: SortOrder
+    leaveRule?: SortOrder
+    wageType?: SortOrder
+    baseSalary?: SortOrder
+    allowanceNote?: SortOrder
+    payClosingDay?: SortOrder
+    payDate?: SortOrder
+    bonusRule?: SortOrder
+    raiseRule?: SortOrder
+    probationPeriod?: SortOrder
+    retirementRule?: SortOrder
+    remarks?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EmploymentContractMinOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    contractType?: SortOrder
+    startDate?: SortOrder
+    endDate?: SortOrder
+    workplace?: SortOrder
+    jobDescription?: SortOrder
+    workStartTime?: SortOrder
+    workEndTime?: SortOrder
+    breakMinutes?: SortOrder
+    holidayRule?: SortOrder
+    leaveRule?: SortOrder
+    wageType?: SortOrder
+    baseSalary?: SortOrder
+    allowanceNote?: SortOrder
+    payClosingDay?: SortOrder
+    payDate?: SortOrder
+    bonusRule?: SortOrder
+    raiseRule?: SortOrder
+    probationPeriod?: SortOrder
+    retirementRule?: SortOrder
+    remarks?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EmploymentContractSumOrderByAggregateInput = {
+    breakMinutes?: SortOrder
+    baseSalary?: SortOrder
+  }
+
   export type EmployeeCreateNestedOneWithoutUserInput = {
     create?: XOR<EmployeeCreateWithoutUserInput, EmployeeUncheckedCreateWithoutUserInput>
     connectOrCreate?: EmployeeCreateOrConnectWithoutUserInput
@@ -36940,6 +38894,13 @@ export namespace Prisma {
     connect?: DependentRequestWhereUniqueInput | DependentRequestWhereUniqueInput[]
   }
 
+  export type EmploymentContractCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<EmploymentContractCreateWithoutEmployeeInput, EmploymentContractUncheckedCreateWithoutEmployeeInput> | EmploymentContractCreateWithoutEmployeeInput[] | EmploymentContractUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EmploymentContractCreateOrConnectWithoutEmployeeInput | EmploymentContractCreateOrConnectWithoutEmployeeInput[]
+    createMany?: EmploymentContractCreateManyEmployeeInputEnvelope
+    connect?: EmploymentContractWhereUniqueInput | EmploymentContractWhereUniqueInput[]
+  }
+
   export type EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput = {
     create?: XOR<EmployeeCertificationCreateWithoutEmployeeInput, EmployeeCertificationUncheckedCreateWithoutEmployeeInput> | EmployeeCertificationCreateWithoutEmployeeInput[] | EmployeeCertificationUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutEmployeeInput | EmployeeCertificationCreateOrConnectWithoutEmployeeInput[]
@@ -37018,6 +38979,13 @@ export namespace Prisma {
     connectOrCreate?: DependentRequestCreateOrConnectWithoutEmployeeInput | DependentRequestCreateOrConnectWithoutEmployeeInput[]
     createMany?: DependentRequestCreateManyEmployeeInputEnvelope
     connect?: DependentRequestWhereUniqueInput | DependentRequestWhereUniqueInput[]
+  }
+
+  export type EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<EmploymentContractCreateWithoutEmployeeInput, EmploymentContractUncheckedCreateWithoutEmployeeInput> | EmploymentContractCreateWithoutEmployeeInput[] | EmploymentContractUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EmploymentContractCreateOrConnectWithoutEmployeeInput | EmploymentContractCreateOrConnectWithoutEmployeeInput[]
+    createMany?: EmploymentContractCreateManyEmployeeInputEnvelope
+    connect?: EmploymentContractWhereUniqueInput | EmploymentContractWhereUniqueInput[]
   }
 
   export type NullableEnumGenderFieldUpdateOperationsInput = {
@@ -37204,6 +39172,20 @@ export namespace Prisma {
     deleteMany?: DependentRequestScalarWhereInput | DependentRequestScalarWhereInput[]
   }
 
+  export type EmploymentContractUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<EmploymentContractCreateWithoutEmployeeInput, EmploymentContractUncheckedCreateWithoutEmployeeInput> | EmploymentContractCreateWithoutEmployeeInput[] | EmploymentContractUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EmploymentContractCreateOrConnectWithoutEmployeeInput | EmploymentContractCreateOrConnectWithoutEmployeeInput[]
+    upsert?: EmploymentContractUpsertWithWhereUniqueWithoutEmployeeInput | EmploymentContractUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: EmploymentContractCreateManyEmployeeInputEnvelope
+    set?: EmploymentContractWhereUniqueInput | EmploymentContractWhereUniqueInput[]
+    disconnect?: EmploymentContractWhereUniqueInput | EmploymentContractWhereUniqueInput[]
+    delete?: EmploymentContractWhereUniqueInput | EmploymentContractWhereUniqueInput[]
+    connect?: EmploymentContractWhereUniqueInput | EmploymentContractWhereUniqueInput[]
+    update?: EmploymentContractUpdateWithWhereUniqueWithoutEmployeeInput | EmploymentContractUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: EmploymentContractUpdateManyWithWhereWithoutEmployeeInput | EmploymentContractUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: EmploymentContractScalarWhereInput | EmploymentContractScalarWhereInput[]
+  }
+
   export type EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput = {
     create?: XOR<EmployeeCertificationCreateWithoutEmployeeInput, EmployeeCertificationUncheckedCreateWithoutEmployeeInput> | EmployeeCertificationCreateWithoutEmployeeInput[] | EmployeeCertificationUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutEmployeeInput | EmployeeCertificationCreateOrConnectWithoutEmployeeInput[]
@@ -37354,6 +39336,20 @@ export namespace Prisma {
     update?: DependentRequestUpdateWithWhereUniqueWithoutEmployeeInput | DependentRequestUpdateWithWhereUniqueWithoutEmployeeInput[]
     updateMany?: DependentRequestUpdateManyWithWhereWithoutEmployeeInput | DependentRequestUpdateManyWithWhereWithoutEmployeeInput[]
     deleteMany?: DependentRequestScalarWhereInput | DependentRequestScalarWhereInput[]
+  }
+
+  export type EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<EmploymentContractCreateWithoutEmployeeInput, EmploymentContractUncheckedCreateWithoutEmployeeInput> | EmploymentContractCreateWithoutEmployeeInput[] | EmploymentContractUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EmploymentContractCreateOrConnectWithoutEmployeeInput | EmploymentContractCreateOrConnectWithoutEmployeeInput[]
+    upsert?: EmploymentContractUpsertWithWhereUniqueWithoutEmployeeInput | EmploymentContractUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: EmploymentContractCreateManyEmployeeInputEnvelope
+    set?: EmploymentContractWhereUniqueInput | EmploymentContractWhereUniqueInput[]
+    disconnect?: EmploymentContractWhereUniqueInput | EmploymentContractWhereUniqueInput[]
+    delete?: EmploymentContractWhereUniqueInput | EmploymentContractWhereUniqueInput[]
+    connect?: EmploymentContractWhereUniqueInput | EmploymentContractWhereUniqueInput[]
+    update?: EmploymentContractUpdateWithWhereUniqueWithoutEmployeeInput | EmploymentContractUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: EmploymentContractUpdateManyWithWhereWithoutEmployeeInput | EmploymentContractUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: EmploymentContractScalarWhereInput | EmploymentContractScalarWhereInput[]
   }
 
   export type EmployeeCreateNestedOneWithoutDependentsInput = {
@@ -37958,6 +39954,20 @@ export namespace Prisma {
     update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutProfileChangeRequestsInput, EmployeeUpdateWithoutProfileChangeRequestsInput>, EmployeeUncheckedUpdateWithoutProfileChangeRequestsInput>
   }
 
+  export type EmployeeCreateNestedOneWithoutEmploymentContractsInput = {
+    create?: XOR<EmployeeCreateWithoutEmploymentContractsInput, EmployeeUncheckedCreateWithoutEmploymentContractsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutEmploymentContractsInput
+    connect?: EmployeeWhereUniqueInput
+  }
+
+  export type EmployeeUpdateOneRequiredWithoutEmploymentContractsNestedInput = {
+    create?: XOR<EmployeeCreateWithoutEmploymentContractsInput, EmployeeUncheckedCreateWithoutEmploymentContractsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutEmploymentContractsInput
+    upsert?: EmployeeUpsertWithoutEmploymentContractsInput
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutEmploymentContractsInput, EmployeeUpdateWithoutEmploymentContractsInput>, EmployeeUncheckedUpdateWithoutEmploymentContractsInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -38455,6 +40465,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutUserInput = {
@@ -38494,6 +40505,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutUserInput = {
@@ -38593,6 +40605,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutUserInput = {
@@ -38632,6 +40645,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeRequestUpsertWithWhereUniqueWithoutUserInput = {
@@ -38766,6 +40780,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDepartmentInput = {
@@ -38805,6 +40820,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDepartmentInput = {
@@ -39326,6 +41342,68 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type EmploymentContractCreateWithoutEmployeeInput = {
+    id?: string
+    contractType: string
+    startDate: Date | string
+    endDate?: Date | string | null
+    workplace: string
+    jobDescription: string
+    workStartTime: string
+    workEndTime: string
+    breakMinutes: number
+    holidayRule: string
+    leaveRule?: string | null
+    wageType: string
+    baseSalary: number
+    allowanceNote?: string | null
+    payClosingDay?: string | null
+    payDate?: string | null
+    bonusRule?: string | null
+    raiseRule?: string | null
+    probationPeriod?: string | null
+    retirementRule?: string | null
+    remarks?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EmploymentContractUncheckedCreateWithoutEmployeeInput = {
+    id?: string
+    contractType: string
+    startDate: Date | string
+    endDate?: Date | string | null
+    workplace: string
+    jobDescription: string
+    workStartTime: string
+    workEndTime: string
+    breakMinutes: number
+    holidayRule: string
+    leaveRule?: string | null
+    wageType: string
+    baseSalary: number
+    allowanceNote?: string | null
+    payClosingDay?: string | null
+    payDate?: string | null
+    bonusRule?: string | null
+    raiseRule?: string | null
+    probationPeriod?: string | null
+    retirementRule?: string | null
+    remarks?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EmploymentContractCreateOrConnectWithoutEmployeeInput = {
+    where: EmploymentContractWhereUniqueInput
+    create: XOR<EmploymentContractCreateWithoutEmployeeInput, EmploymentContractUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type EmploymentContractCreateManyEmployeeInputEnvelope = {
+    data: EmploymentContractCreateManyEmployeeInput | EmploymentContractCreateManyEmployeeInput[]
+    skipDuplicates?: boolean
+  }
+
   export type DepartmentUpsertWithoutEmployeesInput = {
     update: XOR<DepartmentUpdateWithoutEmployeesInput, DepartmentUncheckedUpdateWithoutEmployeesInput>
     create: XOR<DepartmentCreateWithoutEmployeesInput, DepartmentUncheckedCreateWithoutEmployeesInput>
@@ -39770,6 +41848,52 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"DependentRequest"> | Date | string
   }
 
+  export type EmploymentContractUpsertWithWhereUniqueWithoutEmployeeInput = {
+    where: EmploymentContractWhereUniqueInput
+    update: XOR<EmploymentContractUpdateWithoutEmployeeInput, EmploymentContractUncheckedUpdateWithoutEmployeeInput>
+    create: XOR<EmploymentContractCreateWithoutEmployeeInput, EmploymentContractUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type EmploymentContractUpdateWithWhereUniqueWithoutEmployeeInput = {
+    where: EmploymentContractWhereUniqueInput
+    data: XOR<EmploymentContractUpdateWithoutEmployeeInput, EmploymentContractUncheckedUpdateWithoutEmployeeInput>
+  }
+
+  export type EmploymentContractUpdateManyWithWhereWithoutEmployeeInput = {
+    where: EmploymentContractScalarWhereInput
+    data: XOR<EmploymentContractUpdateManyMutationInput, EmploymentContractUncheckedUpdateManyWithoutEmployeeInput>
+  }
+
+  export type EmploymentContractScalarWhereInput = {
+    AND?: EmploymentContractScalarWhereInput | EmploymentContractScalarWhereInput[]
+    OR?: EmploymentContractScalarWhereInput[]
+    NOT?: EmploymentContractScalarWhereInput | EmploymentContractScalarWhereInput[]
+    id?: StringFilter<"EmploymentContract"> | string
+    employeeId?: StringFilter<"EmploymentContract"> | string
+    contractType?: StringFilter<"EmploymentContract"> | string
+    startDate?: DateTimeFilter<"EmploymentContract"> | Date | string
+    endDate?: DateTimeNullableFilter<"EmploymentContract"> | Date | string | null
+    workplace?: StringFilter<"EmploymentContract"> | string
+    jobDescription?: StringFilter<"EmploymentContract"> | string
+    workStartTime?: StringFilter<"EmploymentContract"> | string
+    workEndTime?: StringFilter<"EmploymentContract"> | string
+    breakMinutes?: IntFilter<"EmploymentContract"> | number
+    holidayRule?: StringFilter<"EmploymentContract"> | string
+    leaveRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    wageType?: StringFilter<"EmploymentContract"> | string
+    baseSalary?: IntFilter<"EmploymentContract"> | number
+    allowanceNote?: StringNullableFilter<"EmploymentContract"> | string | null
+    payClosingDay?: StringNullableFilter<"EmploymentContract"> | string | null
+    payDate?: StringNullableFilter<"EmploymentContract"> | string | null
+    bonusRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    raiseRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    probationPeriod?: StringNullableFilter<"EmploymentContract"> | string | null
+    retirementRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    remarks?: StringNullableFilter<"EmploymentContract"> | string | null
+    createdAt?: DateTimeFilter<"EmploymentContract"> | Date | string
+    updatedAt?: DateTimeFilter<"EmploymentContract"> | Date | string
+  }
+
   export type EmployeeCreateWithoutDependentsInput = {
     id?: string
     employeeNo: string
@@ -39807,6 +41931,7 @@ export namespace Prisma {
     profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDependentsInput = {
@@ -39846,6 +41971,7 @@ export namespace Prisma {
     profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDependentsInput = {
@@ -39901,6 +42027,7 @@ export namespace Prisma {
     profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDependentsInput = {
@@ -39940,6 +42067,7 @@ export namespace Prisma {
     profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmploymentHistoriesInput = {
@@ -39979,6 +42107,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmploymentHistoriesInput = {
@@ -40018,6 +42147,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmploymentHistoriesInput = {
@@ -40073,6 +42203,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmploymentHistoriesInput = {
@@ -40112,6 +42243,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmployeeMyNumberInput = {
@@ -40151,6 +42283,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmployeeMyNumberInput = {
@@ -40190,6 +42323,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmployeeMyNumberInput = {
@@ -40245,6 +42379,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmployeeMyNumberInput = {
@@ -40284,6 +42419,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmployeeSalaryInput = {
@@ -40323,6 +42459,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmployeeSalaryInput = {
@@ -40362,6 +42499,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmployeeSalaryInput = {
@@ -40417,6 +42555,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmployeeSalaryInput = {
@@ -40456,6 +42595,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutSalaryHistoriesInput = {
@@ -40495,6 +42635,7 @@ export namespace Prisma {
     profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutSalaryHistoriesInput = {
@@ -40534,6 +42675,7 @@ export namespace Prisma {
     profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutSalaryHistoriesInput = {
@@ -40589,6 +42731,7 @@ export namespace Prisma {
     profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutSalaryHistoriesInput = {
@@ -40628,6 +42771,7 @@ export namespace Prisma {
     profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutLeaveGrantHistoriesInput = {
@@ -40667,6 +42811,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLeaveGrantHistoriesInput = {
@@ -40706,6 +42851,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLeaveGrantHistoriesInput = {
@@ -40761,6 +42907,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLeaveGrantHistoriesInput = {
@@ -40800,6 +42947,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutLeaveBalanceInput = {
@@ -40839,6 +42987,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLeaveBalanceInput = {
@@ -40878,6 +43027,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLeaveBalanceInput = {
@@ -40933,6 +43083,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLeaveBalanceInput = {
@@ -40972,6 +43123,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutRequestsInput = {
@@ -41011,6 +43163,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutRequestsInput = {
@@ -41050,6 +43203,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutRequestsInput = {
@@ -41186,6 +43340,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutRequestsInput = {
@@ -41225,6 +43380,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type UserUpsertWithoutRequestsInput = {
@@ -41589,6 +43745,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutCertificationsInput = {
@@ -41628,6 +43785,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutCertificationsInput = {
@@ -41736,6 +43894,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutCertificationsInput = {
@@ -41775,6 +43934,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCertificationAttachmentUpsertWithWhereUniqueWithoutEmployeeCertificationInput = {
@@ -41974,6 +44134,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutBankAccountInput = {
@@ -42013,6 +44174,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutBankAccountInput = {
@@ -42096,6 +44258,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutBankAccountInput = {
@@ -42135,6 +44298,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeBankAttachmentUpsertWithWhereUniqueWithoutBankAccountInput = {
@@ -42295,6 +44459,7 @@ export namespace Prisma {
     profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDependentRequestsInput = {
@@ -42334,6 +44499,7 @@ export namespace Prisma {
     profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDependentRequestsInput = {
@@ -42417,6 +44583,7 @@ export namespace Prisma {
     profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDependentRequestsInput = {
@@ -42456,6 +44623,7 @@ export namespace Prisma {
     profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type DependentRequestAttachmentUpsertWithWhereUniqueWithoutDependentRequestInput = {
@@ -42628,6 +44796,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutProfileChangeRequestsInput = {
@@ -42667,6 +44836,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutProfileChangeRequestsInput = {
@@ -42722,6 +44892,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutProfileChangeRequestsInput = {
@@ -42758,6 +44929,183 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
     bankAccount?: EmployeeBankAccountUncheckedUpdateOneWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeCreateWithoutEmploymentContractsInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    emergencyContact?: string | null
+    department?: DepartmentCreateNestedOneWithoutEmployeesInput
+    user?: UserCreateNestedOneWithoutEmployeeInput
+    certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeUncheckedCreateWithoutEmploymentContractsInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    departmentId?: string | null
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    userId?: string | null
+    emergencyContact?: string | null
+    certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeCreateOrConnectWithoutEmploymentContractsInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutEmploymentContractsInput, EmployeeUncheckedCreateWithoutEmploymentContractsInput>
+  }
+
+  export type EmployeeUpsertWithoutEmploymentContractsInput = {
+    update: XOR<EmployeeUpdateWithoutEmploymentContractsInput, EmployeeUncheckedUpdateWithoutEmploymentContractsInput>
+    create: XOR<EmployeeCreateWithoutEmploymentContractsInput, EmployeeUncheckedCreateWithoutEmploymentContractsInput>
+    where?: EmployeeWhereInput
+  }
+
+  export type EmployeeUpdateToOneWithWhereWithoutEmploymentContractsInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutEmploymentContractsInput, EmployeeUncheckedUpdateWithoutEmploymentContractsInput>
+  }
+
+  export type EmployeeUpdateWithoutEmploymentContractsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: DepartmentUpdateOneWithoutEmployeesNestedInput
+    user?: UserUpdateOneWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateWithoutEmploymentContractsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -42931,6 +45279,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDepartmentInput = {
@@ -42970,6 +45319,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateManyWithoutDepartmentInput = {
@@ -43102,6 +45452,32 @@ export namespace Prisma {
     reviewedAt?: Date | string | null
     reviewedBy?: string | null
     reviewComment?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EmploymentContractCreateManyEmployeeInput = {
+    id?: string
+    contractType: string
+    startDate: Date | string
+    endDate?: Date | string | null
+    workplace: string
+    jobDescription: string
+    workStartTime: string
+    workEndTime: string
+    breakMinutes: number
+    holidayRule: string
+    leaveRule?: string | null
+    wageType: string
+    baseSalary: number
+    allowanceNote?: string | null
+    payClosingDay?: string | null
+    payDate?: string | null
+    bonusRule?: string | null
+    raiseRule?: string | null
+    probationPeriod?: string | null
+    retirementRule?: string | null
+    remarks?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -43431,6 +45807,84 @@ export namespace Prisma {
     reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
     reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmploymentContractUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    contractType?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    workplace?: StringFieldUpdateOperationsInput | string
+    jobDescription?: StringFieldUpdateOperationsInput | string
+    workStartTime?: StringFieldUpdateOperationsInput | string
+    workEndTime?: StringFieldUpdateOperationsInput | string
+    breakMinutes?: IntFieldUpdateOperationsInput | number
+    holidayRule?: StringFieldUpdateOperationsInput | string
+    leaveRule?: NullableStringFieldUpdateOperationsInput | string | null
+    wageType?: StringFieldUpdateOperationsInput | string
+    baseSalary?: IntFieldUpdateOperationsInput | number
+    allowanceNote?: NullableStringFieldUpdateOperationsInput | string | null
+    payClosingDay?: NullableStringFieldUpdateOperationsInput | string | null
+    payDate?: NullableStringFieldUpdateOperationsInput | string | null
+    bonusRule?: NullableStringFieldUpdateOperationsInput | string | null
+    raiseRule?: NullableStringFieldUpdateOperationsInput | string | null
+    probationPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementRule?: NullableStringFieldUpdateOperationsInput | string | null
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmploymentContractUncheckedUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    contractType?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    workplace?: StringFieldUpdateOperationsInput | string
+    jobDescription?: StringFieldUpdateOperationsInput | string
+    workStartTime?: StringFieldUpdateOperationsInput | string
+    workEndTime?: StringFieldUpdateOperationsInput | string
+    breakMinutes?: IntFieldUpdateOperationsInput | number
+    holidayRule?: StringFieldUpdateOperationsInput | string
+    leaveRule?: NullableStringFieldUpdateOperationsInput | string | null
+    wageType?: StringFieldUpdateOperationsInput | string
+    baseSalary?: IntFieldUpdateOperationsInput | number
+    allowanceNote?: NullableStringFieldUpdateOperationsInput | string | null
+    payClosingDay?: NullableStringFieldUpdateOperationsInput | string | null
+    payDate?: NullableStringFieldUpdateOperationsInput | string | null
+    bonusRule?: NullableStringFieldUpdateOperationsInput | string | null
+    raiseRule?: NullableStringFieldUpdateOperationsInput | string | null
+    probationPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementRule?: NullableStringFieldUpdateOperationsInput | string | null
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmploymentContractUncheckedUpdateManyWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    contractType?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    workplace?: StringFieldUpdateOperationsInput | string
+    jobDescription?: StringFieldUpdateOperationsInput | string
+    workStartTime?: StringFieldUpdateOperationsInput | string
+    workEndTime?: StringFieldUpdateOperationsInput | string
+    breakMinutes?: IntFieldUpdateOperationsInput | number
+    holidayRule?: StringFieldUpdateOperationsInput | string
+    leaveRule?: NullableStringFieldUpdateOperationsInput | string | null
+    wageType?: StringFieldUpdateOperationsInput | string
+    baseSalary?: IntFieldUpdateOperationsInput | number
+    allowanceNote?: NullableStringFieldUpdateOperationsInput | string | null
+    payClosingDay?: NullableStringFieldUpdateOperationsInput | string | null
+    payDate?: NullableStringFieldUpdateOperationsInput | string | null
+    bonusRule?: NullableStringFieldUpdateOperationsInput | string | null
+    raiseRule?: NullableStringFieldUpdateOperationsInput | string | null
+    probationPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementRule?: NullableStringFieldUpdateOperationsInput | string | null
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

@@ -87,6 +87,7 @@ model Employee {
   salaryHistories       SalaryHistory[]
   dependents            Dependent[]
   dependentRequests     DependentRequest[]
+  employmentContracts   EmploymentContract[]
 }
 
 model Dependent {
@@ -495,4 +496,49 @@ enum CertificationStatus {
   PENDING
   APPROVED
   REJECTED
+}
+
+model EmploymentContract {
+  id String @id @default(uuid())
+
+  employeeId String
+
+  contractType String
+
+  startDate DateTime
+  endDate   DateTime?
+
+  workplace      String
+  jobDescription String
+
+  workStartTime String
+  workEndTime   String
+  breakMinutes  Int
+
+  holidayRule String
+  leaveRule   String?
+
+  wageType   String
+  baseSalary Int
+
+  allowanceNote String?
+
+  payClosingDay String?
+  payDate       String?
+
+  bonusRule String?
+  raiseRule String?
+
+  probationPeriod String?
+
+  retirementRule String?
+
+  remarks String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@index([employeeId])
 }

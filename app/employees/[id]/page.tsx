@@ -691,12 +691,15 @@ export default async function EmployeeDetailPage({ params }: Props) {
                 扶養家族
               </h2>
 
-              <Link
-                href={`/employees/${employee.id}/dependents/new`}
+              <div className="flex items-center gap-2">
+                <a href={`/employees/${employee.id}/dependents/export`} className="rounded border border-green-600 bg-white px-3 py-1.5 text-sm font-medium text-green-700 hover:bg-green-50">CSV出力</a>
+                <Link
+                  href={`/employees/${employee.id}/dependents/new`}
                 className="rounded bg-blue-600 px-3 py-1 text-sm font-medium text-white hover:bg-blue-700"
               >
                 扶養家族を追加
-              </Link>
+                </Link>
+              </div>
             </div>
 
             {employee.dependents.length === 0 ? (
