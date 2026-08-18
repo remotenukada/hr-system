@@ -52,7 +52,6 @@ function formatEmployeeStatus(status: string | null) {
   if (!status) return "-";
 
   const labels: Record<string, string> = {
-    PRE_HIRE: "採用予定者",
     ACTIVE: "在職",
     LEAVE: "休職",
     RETIRED: "退職",
@@ -297,63 +296,6 @@ export default async function EmployeeDetailPage({ params }: Props) {
 
     revalidatePath(`/employees/${dependent.employeeId}`);
     revalidatePath("/");
-  }
-
-    async function activateEmployee(formData: FormData) {
-    "use server";
-
-    const currentSession = await requireHRManager();
-
-    const employeeId = String(
-      formData.get("id") ?? "",
-    ).trim();
-
-    if (!employeeId) {
-      return;
-    }
-
-    const targetEmployee = await prisma.employee.findUnique({
-      where: {
-        id: employeeId,
-      },
-    });
-
-    if (!targetEmployee || targetEmployee.status !== "PRE_HIRE") {
-      return;
-    }
-
-    const hireDate = targetEmployee.hireDate ?? new Date();
-
-    await prisma.employee.update({
-      where: {
-        id: employeeId,
-      },
-      data: {
-        status: "ACTIVE",
-        hireDate,
-      },
-    });
-
-    await prisma.employmentHistory.create({
-      data: {
-        employeeId,
-        action: "HIRED",
-        effectiveDate: hireDate,
-        reason: "採用予定者から在職へ変更",
-      },
-    });
-
-    await logAudit({
-      userId: currentSession.user.id,
-      userName: currentSession.user.name,
-      action: "EMPLOYEE_ACTIVATED",
-      targetType: "Employee",
-      targetId: employeeId,
-      description: `${targetEmployee.employeeNo} を入社処理`,
-    });
-
-    revalidatePath(`/employees/${employeeId}`);
-    revalidatePath("/employees");
   }
 
   const maskedMyNumber = employee.employeeMyNumber
@@ -688,20 +630,6 @@ export default async function EmployeeDetailPage({ params }: Props) {
             <InfoItem label="性別" value={formatGender(employee.gender)} />
             <InfoItem label="生年月日" value={formatDate(employee.birthDate)} />
           </div>
-
-          {employee.status === "PRE_HIRE" && (
-            <div className="mt-4">
-              <form action={activateEmployee}>
-                <input type="hidden" name="id" value={employee.id} />
-                <button
-                  type="submit"
-                  className="rounded bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700"
-                >
-                  入社処理
-                </button>
-              </form>
-            </div>
-          )}
         </section>
 
         <section className="rounded-lg border bg-gray-50 p-5">

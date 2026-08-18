@@ -436,10 +436,76 @@ exports.Prisma.EmploymentContractScalarFieldEnum = {
   bonusRule: 'bonusRule',
   raiseRule: 'raiseRule',
   probationPeriod: 'probationPeriod',
+  contractRenewalRule: 'contractRenewalRule',
+  contractRenewalCriteria: 'contractRenewalCriteria',
   retirementRule: 'retirementRule',
+  retirementAllowanceRule: 'retirementAllowanceRule',
+  socialInsuranceRule: 'socialInsuranceRule',
+  employmentInsuranceRule: 'employmentInsuranceRule',
+  consultationDesk: 'consultationDesk',
+  workRuleLocation: 'workRuleLocation',
   remarks: 'remarks',
+  version: 'version',
+  isCurrent: 'isCurrent',
+  supersededAt: 'supersededAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CompanySettingScalarFieldEnum = {
+  id: 'id',
+  companyName: 'companyName',
+  postalCode: 'postalCode',
+  address: 'address',
+  phoneNumber: 'phoneNumber',
+  representativeName: 'representativeName',
+  consultationDesk: 'consultationDesk',
+  workRuleLocation: 'workRuleLocation',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.EmploymentContractTemplateScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  contractType: 'contractType',
+  workStartTime: 'workStartTime',
+  workEndTime: 'workEndTime',
+  breakMinutes: 'breakMinutes',
+  holidayRule: 'holidayRule',
+  leaveRule: 'leaveRule',
+  wageType: 'wageType',
+  baseSalary: 'baseSalary',
+  allowanceNote: 'allowanceNote',
+  payClosingDay: 'payClosingDay',
+  payDate: 'payDate',
+  bonusRule: 'bonusRule',
+  raiseRule: 'raiseRule',
+  probationPeriod: 'probationPeriod',
+  contractRenewalRule: 'contractRenewalRule',
+  contractRenewalCriteria: 'contractRenewalCriteria',
+  retirementRule: 'retirementRule',
+  retirementAllowanceRule: 'retirementAllowanceRule',
+  socialInsuranceRule: 'socialInsuranceRule',
+  employmentInsuranceRule: 'employmentInsuranceRule',
+  consultationDesk: 'consultationDesk',
+  workRuleLocation: 'workRuleLocation',
+  remarks: 'remarks',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.EmploymentContractConsentScalarFieldEnum = {
+  id: 'id',
+  employmentContractId: 'employmentContractId',
+  signerName: 'signerName',
+  consentedAt: 'consentedAt',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent',
+  createdAt: 'createdAt',
+  dependentId: 'dependentId'
 };
 
 exports.Prisma.SortOrder = {
@@ -488,6 +554,7 @@ exports.EmploymentType = exports.$Enums.EmploymentType = {
 };
 
 exports.EmployeeStatus = exports.$Enums.EmployeeStatus = {
+  PRE_HIRE: 'PRE_HIRE',
   ACTIVE: 'ACTIVE',
   LEAVE: 'LEAVE',
   RETIRED: 'RETIRED'
@@ -573,7 +640,10 @@ exports.Prisma.ModelName = {
   DependentRequest: 'DependentRequest',
   DependentRequestAttachment: 'DependentRequestAttachment',
   ProfileChangeRequest: 'ProfileChangeRequest',
-  EmploymentContract: 'EmploymentContract'
+  EmploymentContract: 'EmploymentContract',
+  CompanySetting: 'CompanySetting',
+  EmploymentContractTemplate: 'EmploymentContractTemplate',
+  EmploymentContractConsent: 'EmploymentContractConsent'
 };
 
 /**

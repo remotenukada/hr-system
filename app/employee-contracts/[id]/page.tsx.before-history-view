@@ -1,0 +1,240 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
+
+import { prisma } from "@/lib/prisma";
+
+type Props = {
+  params: Promise<{
+    id: string;
+  }>;
+};
+
+export default async function EmploymentContractDetailPage(
+  { params }: Props,
+) {
+  const { id } = await params;
+
+  const contract =
+    await prisma.employmentContract.findUnique({
+      where: {
+        id,
+      },
+      include: {
+        employee: true,
+      },
+    });
+
+  if (!contract) {
+    notFound();
+  }
+
+  const history =
+    await prisma.employmentContract.findMany({
+      where: {
+        employeeId: contract.employeeId,
+      },
+      orderBy: {
+        version: "desc",
+      },
+    });
+
+  return (
+    <main className="mx-auto max-w-4xl p-6">
+      <div className="mb-6 flex items-center justify-between">
+        <Link
+          href="/employee-contracts"
+          className="text-sm text-blue-600 hover:underline"
+        >
+          ← 雇用条件書一覧へ戻る
+        </Link>
+                <div className="flex items-center gap-2">
+          <a
+            href={`/employee-contracts/${contract.id}/pdf`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded border border-green-600 bg-white px-3 py-1.5 text-sm font-medium text-green-600 hover:bg-green-50"
+          >
+            PDFを出力
+          </a>
+          <Link
+            href={`/employee-contracts/${contract.id}/edit`}
+            className="rounded bg-blue-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-blue-700"
+          >
+            編集する
+          </Link>
+        </div>
+      </div>
+
+      <h1 className="mb-6 text-2xl font-bold">
+        雇用条件書詳細
+      </h1>
+
+      <div className="rounded-lg border bg-white p-6 shadow-sm">
+        <dl className="grid grid-cols-1 gap-6 md:grid-cols-2">
+
+          <div>
+            <dt className="text-sm text-gray-500">
+              社員番号
+            </dt>
+            <dd className="mt-1 font-medium text-gray-900">
+              {contract.employee.employeeNo}
+            </dd>
+          </div>
+
+          <div>
+            <dt className="text-sm text-gray-500">
+              氏名
+            </dt>
+            <dd className="mt-1 font-medium text-gray-900">
+              {contract.employee.lastName}
+              {" "}
+              {contract.employee.firstName}
+            </dd>
+          </div>
+
+          <div>
+            <dt className="text-sm text-gray-500">
+              契約区分
+            </dt>
+            <dd className="mt-1 font-medium text-gray-900">
+              {contract.contractType}
+            </dd>
+          </div>
+
+          <div>
+            <dt className="text-sm text-gray-500">
+              基本給
+            </dt>
+            <dd className="mt-1 font-medium text-gray-900">
+              {contract.baseSalary.toLocaleString("ja-JP")}円
+            </dd>
+          </div>
+
+          <div>
+            <dt className="text-sm text-gray-500">
+              契約開始日
+            </dt>
+            <dd className="mt-1 font-medium text-gray-900">
+              {new Date(
+                contract.startDate,
+              ).toLocaleDateString("ja-JP")}
+            </dd>
+          </div>
+
+          <div>
+            <dt className="text-sm text-gray-500">
+              契約終了日
+            </dt>
+            <dd className="mt-1 font-medium text-gray-900">
+              {contract.endDate
+                ? new Date(
+                    contract.endDate,
+                  ).toLocaleDateString("ja-JP")
+                : "-"}
+            </dd>
+          </div>
+
+          <div>
+            <dt className="text-sm text-gray-500">
+              就業場所
+            </dt>
+            <dd className="mt-1 font-medium text-gray-900">
+              {contract.workplace}
+            </dd>
+          </div>
+
+          <div>
+            <dt className="text-sm text-gray-500">
+              従事する業務
+            </dt>
+            <dd className="mt-1 font-medium text-gray-900">
+              {contract.jobDescription}
+            </dd>
+          </div>
+
+          <div>
+            <dt className="text-sm text-gray-500">
+              所定労働時間
+            </dt>
+            <dd className="mt-1 font-medium text-gray-900">
+              {contract.workStartTime} 〜 {contract.workEndTime}（休憩 {contract.breakMinutes} 分）
+            </dd>
+          </div>
+
+          <div>
+            <dt className="text-sm text-gray-500">
+              休日
+            </dt>
+            <dd className="mt-1 font-medium text-gray-900">
+              {contract.holidayRule}
+            </dd>
+          </div>
+
+          <div>
+            <dt className="text-sm text-gray-500">
+              休暇
+            </dt>
+            <dd className="mt-1 font-medium text-gray-900">
+              {contract.leaveRule ?? "-"}
+            </dd>
+          </div>
+
+          <div>
+            <dt className="text-sm text-gray-500">
+              賃金締切日
+            </dt>
+            <dd className="mt-1 font-medium text-gray-900">
+              {contract.payClosingDay ?? "-"}
+            </dd>
+          </div>
+
+          <div>
+            <dt className="text-sm text-gray-500">
+              賃金支払日
+            </dt>
+            <dd className="mt-1 font-medium text-gray-900">
+              {contract.payDate ?? "-"}
+            </dd>
+          </div>
+
+          <div>
+            <dt className="text-sm text-gray-500">
+              賞与
+            </dt>
+            <dd className="mt-1 font-medium text-gray-900">
+              {contract.bonusRule ?? "-"}
+            </dd>
+          </div>
+
+          <div>
+            <dt className="text-sm text-gray-500">
+              昇給
+            </dt>
+            <dd className="mt-1 font-medium text-gray-900">
+              {contract.raiseRule ?? "-"}
+            </dd>
+          </div>
+
+          <div>
+            <dt className="text-sm text-gray-500">
+              試用期間
+            </dt>
+            <dd className="mt-1 font-medium text-gray-900">
+              {contract.probationPeriod ?? "-"}
+            </dd>
+          </div>
+
+          <div className="md:col-span-2">
+            <dt className="text-sm text-gray-500">
+              備考
+            </dt>
+            <dd className="mt-1 font-medium text-gray-900">
+              {contract.remarks ?? "-"}
+            </dd>
+          </div>
+
+        </dl>
+      </div>
+    </main>
+  );
+}

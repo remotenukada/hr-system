@@ -248,6 +248,7 @@ export default async function NewEmployeePage() {
                 className="border p-2 w-full rounded focus:outline-indigo-500 bg-white"
                 defaultValue="ACTIVE"
               >
+                <option value="PRE_HIRE">採用予定者</option>
                 <option value="ACTIVE">在職</option>
                 <option value="LEAVE">休職</option>
                 <option value="RETIRED">退職</option>

@@ -34,11 +34,8 @@ export default async function EmploymentContractsPage() {
               <th className="border p-2 text-left">社員番号</th>
               <th className="border p-2 text-left">氏名</th>
               <th className="border p-2 text-left">契約区分</th>
-              <th className="border p-2 text-center">Version</th>
-              <th className="border p-2 text-center">状態</th>
               <th className="border p-2 text-left">開始日</th>
               <th className="border p-2 text-left">終了日</th>
-              <th className="border p-2 text-center">操作</th>
             </tr>
           </thead>
 
@@ -59,14 +56,6 @@ export default async function EmploymentContractsPage() {
                   {contract.contractType}
                 </td>
 
-                <td className="border p-2 text-center">
-                  v{contract.version}
-                </td>
-
-                <td className="border p-2 text-center">
-                  {contract.isCurrent ? "現行" : "履歴"}
-                </td>
-
                 <td className="border p-2">
                   {new Date(
                     contract.startDate,
@@ -80,16 +69,6 @@ export default async function EmploymentContractsPage() {
                       ).toLocaleDateString("ja-JP")
                     : "-"}
                 </td>
-
-                <td className="border p-2 text-center">
-                  <Link
-                    href={`/employee-contracts/${contract.id}`}
-                    className="rounded border border-blue-600 px-2 py-1 text-xs font-medium text-blue-600 hover:bg-blue-50"
-                  >
-                    詳細
-                  </Link>
-                </td>
-
               </tr>
             ))}
           </tbody>

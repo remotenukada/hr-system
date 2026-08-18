@@ -15,6 +15,7 @@ function formatStatus(status: string | null) {
   if (!status) return "-";
 
   const labels: Record<string, string> = {
+    PRE_HIRE: "採用予定者",
     ACTIVE: "在職",
     LEAVE: "休職",
     RETIRED: "退職",
@@ -24,6 +25,10 @@ function formatStatus(status: string | null) {
 }
 
 function getStatusClass(status: string | null) {
+  if (status === "PRE_HIRE") {
+    return "bg-blue-50 text-blue-700 border-blue-200";
+  }
+
   if (status === "ACTIVE") {
     return "bg-green-50 text-green-700 border-green-200";
   }
@@ -41,6 +46,10 @@ function getStatusClass(status: string | null) {
 
 function mapJapaneseStatusToEnum(q?: string) {
   if (!q) return undefined;
+
+  if (q.includes("採用予定")) {
+    return "PRE_HIRE";
+  }
 
   if (q.includes("在職")) {
     return "ACTIVE";
@@ -144,7 +153,11 @@ export default async function EmployeesPage({ searchParams }: Props) {
         : {}),
       ...(statusQuery
         ? {
-            status: statusQuery as "ACTIVE" | "LEAVE" | "RETIRED",
+            status: statusQuery as
+              | "PRE_HIRE"
+              | "ACTIVE"
+              | "LEAVE"
+              | "RETIRED",
           }
         : {}),
       ...(employmentType
@@ -227,6 +240,7 @@ export default async function EmployeesPage({ searchParams }: Props) {
           className="rounded border p-2"
         >
           <option value="">全状態</option>
+          <option value="PRE_HIRE">採用予定者</option>
           <option value="ACTIVE">在職</option>
           <option value="LEAVE">休職</option>
           <option value="RETIRED">退職</option>

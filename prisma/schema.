@@ -109,8 +109,6 @@ model Dependent {
 
   employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
 
-  consents EmploymentContractConsent[]
-
   @@index([employeeId])
   @@index([relationship])
 }
@@ -558,8 +556,7 @@ model EmploymentContract {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  employee                   Employee                    @relation(fields: [employeeId], references: [id], onDelete: Cascade)
-  employmentContractConsents EmploymentContractConsent[]
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
 
   @@index([employeeId])
 }
@@ -632,25 +629,4 @@ model EmploymentContractTemplate {
   updatedAt DateTime @updatedAt
 
   @@index([isActive])
-}
-
-model EmploymentContractConsent {
-  id String @id @default(uuid())
-
-  employmentContractId String
-
-  signerName String
-
-  consentedAt DateTime @default(now())
-
-  ipAddress String?
-  userAgent String?
-
-  createdAt DateTime @default(now())
-
-  employmentContract EmploymentContract @relation(fields: [employmentContractId], references: [id], onDelete: Cascade)
-  dependent          Dependent?         @relation(fields: [dependentId], references: [id])
-  dependentId        String?
-
-  @@index([employmentContractId])
 }

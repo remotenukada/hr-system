@@ -133,6 +133,21 @@ export type ProfileChangeRequest = $Result.DefaultSelection<Prisma.$ProfileChang
  * 
  */
 export type EmploymentContract = $Result.DefaultSelection<Prisma.$EmploymentContractPayload>
+/**
+ * Model CompanySetting
+ * 
+ */
+export type CompanySetting = $Result.DefaultSelection<Prisma.$CompanySettingPayload>
+/**
+ * Model EmploymentContractTemplate
+ * 
+ */
+export type EmploymentContractTemplate = $Result.DefaultSelection<Prisma.$EmploymentContractTemplatePayload>
+/**
+ * Model EmploymentContractConsent
+ * 
+ */
+export type EmploymentContractConsent = $Result.DefaultSelection<Prisma.$EmploymentContractConsentPayload>
 
 /**
  * Enums
@@ -230,6 +245,7 @@ export type EmploymentAction = (typeof EmploymentAction)[keyof typeof Employment
 
 
 export const EmployeeStatus: {
+  PRE_HIRE: 'PRE_HIRE',
   ACTIVE: 'ACTIVE',
   LEAVE: 'LEAVE',
   RETIRED: 'RETIRED'
@@ -665,6 +681,36 @@ export class PrismaClient<
     * ```
     */
   get employmentContract(): Prisma.EmploymentContractDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.companySetting`: Exposes CRUD operations for the **CompanySetting** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CompanySettings
+    * const companySettings = await prisma.companySetting.findMany()
+    * ```
+    */
+  get companySetting(): Prisma.CompanySettingDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.employmentContractTemplate`: Exposes CRUD operations for the **EmploymentContractTemplate** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EmploymentContractTemplates
+    * const employmentContractTemplates = await prisma.employmentContractTemplate.findMany()
+    * ```
+    */
+  get employmentContractTemplate(): Prisma.EmploymentContractTemplateDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.employmentContractConsent`: Exposes CRUD operations for the **EmploymentContractConsent** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EmploymentContractConsents
+    * const employmentContractConsents = await prisma.employmentContractConsent.findMany()
+    * ```
+    */
+  get employmentContractConsent(): Prisma.EmploymentContractConsentDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1122,7 +1168,10 @@ export namespace Prisma {
     DependentRequest: 'DependentRequest',
     DependentRequestAttachment: 'DependentRequestAttachment',
     ProfileChangeRequest: 'ProfileChangeRequest',
-    EmploymentContract: 'EmploymentContract'
+    EmploymentContract: 'EmploymentContract',
+    CompanySetting: 'CompanySetting',
+    EmploymentContractTemplate: 'EmploymentContractTemplate',
+    EmploymentContractConsent: 'EmploymentContractConsent'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1138,7 +1187,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "userInvitation" | "department" | "employee" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract"
+      modelProps: "user" | "userInvitation" | "department" | "employee" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2918,6 +2967,228 @@ export namespace Prisma {
           }
         }
       }
+      CompanySetting: {
+        payload: Prisma.$CompanySettingPayload<ExtArgs>
+        fields: Prisma.CompanySettingFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CompanySettingFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanySettingPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CompanySettingFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanySettingPayload>
+          }
+          findFirst: {
+            args: Prisma.CompanySettingFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanySettingPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CompanySettingFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanySettingPayload>
+          }
+          findMany: {
+            args: Prisma.CompanySettingFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanySettingPayload>[]
+          }
+          create: {
+            args: Prisma.CompanySettingCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanySettingPayload>
+          }
+          createMany: {
+            args: Prisma.CompanySettingCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CompanySettingCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanySettingPayload>[]
+          }
+          delete: {
+            args: Prisma.CompanySettingDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanySettingPayload>
+          }
+          update: {
+            args: Prisma.CompanySettingUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanySettingPayload>
+          }
+          deleteMany: {
+            args: Prisma.CompanySettingDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CompanySettingUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CompanySettingUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanySettingPayload>[]
+          }
+          upsert: {
+            args: Prisma.CompanySettingUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CompanySettingPayload>
+          }
+          aggregate: {
+            args: Prisma.CompanySettingAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCompanySetting>
+          }
+          groupBy: {
+            args: Prisma.CompanySettingGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CompanySettingGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CompanySettingCountArgs<ExtArgs>
+            result: $Utils.Optional<CompanySettingCountAggregateOutputType> | number
+          }
+        }
+      }
+      EmploymentContractTemplate: {
+        payload: Prisma.$EmploymentContractTemplatePayload<ExtArgs>
+        fields: Prisma.EmploymentContractTemplateFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EmploymentContractTemplateFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractTemplatePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EmploymentContractTemplateFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractTemplatePayload>
+          }
+          findFirst: {
+            args: Prisma.EmploymentContractTemplateFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractTemplatePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EmploymentContractTemplateFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractTemplatePayload>
+          }
+          findMany: {
+            args: Prisma.EmploymentContractTemplateFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractTemplatePayload>[]
+          }
+          create: {
+            args: Prisma.EmploymentContractTemplateCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractTemplatePayload>
+          }
+          createMany: {
+            args: Prisma.EmploymentContractTemplateCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EmploymentContractTemplateCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractTemplatePayload>[]
+          }
+          delete: {
+            args: Prisma.EmploymentContractTemplateDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractTemplatePayload>
+          }
+          update: {
+            args: Prisma.EmploymentContractTemplateUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractTemplatePayload>
+          }
+          deleteMany: {
+            args: Prisma.EmploymentContractTemplateDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EmploymentContractTemplateUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EmploymentContractTemplateUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractTemplatePayload>[]
+          }
+          upsert: {
+            args: Prisma.EmploymentContractTemplateUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractTemplatePayload>
+          }
+          aggregate: {
+            args: Prisma.EmploymentContractTemplateAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEmploymentContractTemplate>
+          }
+          groupBy: {
+            args: Prisma.EmploymentContractTemplateGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EmploymentContractTemplateGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EmploymentContractTemplateCountArgs<ExtArgs>
+            result: $Utils.Optional<EmploymentContractTemplateCountAggregateOutputType> | number
+          }
+        }
+      }
+      EmploymentContractConsent: {
+        payload: Prisma.$EmploymentContractConsentPayload<ExtArgs>
+        fields: Prisma.EmploymentContractConsentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EmploymentContractConsentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractConsentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EmploymentContractConsentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractConsentPayload>
+          }
+          findFirst: {
+            args: Prisma.EmploymentContractConsentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractConsentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EmploymentContractConsentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractConsentPayload>
+          }
+          findMany: {
+            args: Prisma.EmploymentContractConsentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractConsentPayload>[]
+          }
+          create: {
+            args: Prisma.EmploymentContractConsentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractConsentPayload>
+          }
+          createMany: {
+            args: Prisma.EmploymentContractConsentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EmploymentContractConsentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractConsentPayload>[]
+          }
+          delete: {
+            args: Prisma.EmploymentContractConsentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractConsentPayload>
+          }
+          update: {
+            args: Prisma.EmploymentContractConsentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractConsentPayload>
+          }
+          deleteMany: {
+            args: Prisma.EmploymentContractConsentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EmploymentContractConsentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EmploymentContractConsentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractConsentPayload>[]
+          }
+          upsert: {
+            args: Prisma.EmploymentContractConsentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentContractConsentPayload>
+          }
+          aggregate: {
+            args: Prisma.EmploymentContractConsentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEmploymentContractConsent>
+          }
+          groupBy: {
+            args: Prisma.EmploymentContractConsentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EmploymentContractConsentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EmploymentContractConsentCountArgs<ExtArgs>
+            result: $Utils.Optional<EmploymentContractConsentCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3050,6 +3321,9 @@ export namespace Prisma {
     dependentRequestAttachment?: DependentRequestAttachmentOmit
     profileChangeRequest?: ProfileChangeRequestOmit
     employmentContract?: EmploymentContractOmit
+    companySetting?: CompanySettingOmit
+    employmentContractTemplate?: EmploymentContractTemplateOmit
+    employmentContractConsent?: EmploymentContractConsentOmit
   }
 
   /* Types for Logging */
@@ -3322,6 +3596,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type DependentCountOutputType
+   */
+
+  export type DependentCountOutputType = {
+    consents: number
+  }
+
+  export type DependentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    consents?: boolean | DependentCountOutputTypeCountConsentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * DependentCountOutputType without action
+   */
+  export type DependentCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DependentCountOutputType
+     */
+    select?: DependentCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * DependentCountOutputType without action
+   */
+  export type DependentCountOutputTypeCountConsentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmploymentContractConsentWhereInput
+  }
+
+
+  /**
    * Count Type EmployeeRequestCountOutputType
    */
 
@@ -3482,6 +3787,37 @@ export namespace Prisma {
    */
   export type DependentRequestCountOutputTypeCountAttachmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: DependentRequestAttachmentWhereInput
+  }
+
+
+  /**
+   * Count Type EmploymentContractCountOutputType
+   */
+
+  export type EmploymentContractCountOutputType = {
+    employmentContractConsents: number
+  }
+
+  export type EmploymentContractCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employmentContractConsents?: boolean | EmploymentContractCountOutputTypeCountEmploymentContractConsentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * EmploymentContractCountOutputType without action
+   */
+  export type EmploymentContractCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractCountOutputType
+     */
+    select?: EmploymentContractCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * EmploymentContractCountOutputType without action
+   */
+  export type EmploymentContractCountOutputTypeCountEmploymentContractConsentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmploymentContractConsentWhereInput
   }
 
 
@@ -8835,6 +9171,8 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    consents?: boolean | Dependent$consentsArgs<ExtArgs>
+    _count?: boolean | DependentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["dependent"]>
 
   export type DependentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -8896,6 +9234,8 @@ export namespace Prisma {
   export type DependentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "name" | "nameKana" | "relationship" | "birthDate" | "cohabiting" | "annualIncome" | "healthInsuranceDependent" | "encryptedMyNumber" | "note" | "isActive" | "endedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["dependent"]>
   export type DependentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    consents?: boolean | Dependent$consentsArgs<ExtArgs>
+    _count?: boolean | DependentCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type DependentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
@@ -8908,6 +9248,7 @@ export namespace Prisma {
     name: "Dependent"
     objects: {
       employee: Prisma.$EmployeePayload<ExtArgs>
+      consents: Prisma.$EmploymentContractConsentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -9320,6 +9661,7 @@ export namespace Prisma {
   export interface Prisma__DependentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    consents<T extends Dependent$consentsArgs<ExtArgs> = {}>(args?: Subset<T, Dependent$consentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentContractConsentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9762,6 +10104,30 @@ export namespace Prisma {
      * Limit how many Dependents to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Dependent.consents
+   */
+  export type Dependent$consentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractConsent
+     */
+    select?: EmploymentContractConsentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContractConsent
+     */
+    omit?: EmploymentContractConsentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractConsentInclude<ExtArgs> | null
+    where?: EmploymentContractConsentWhereInput
+    orderBy?: EmploymentContractConsentOrderByWithRelationInput | EmploymentContractConsentOrderByWithRelationInput[]
+    cursor?: EmploymentContractConsentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmploymentContractConsentScalarFieldEnum | EmploymentContractConsentScalarFieldEnum[]
   }
 
   /**
@@ -30411,11 +30777,13 @@ export namespace Prisma {
   export type EmploymentContractAvgAggregateOutputType = {
     breakMinutes: number | null
     baseSalary: number | null
+    version: number | null
   }
 
   export type EmploymentContractSumAggregateOutputType = {
     breakMinutes: number | null
     baseSalary: number | null
+    version: number | null
   }
 
   export type EmploymentContractMinAggregateOutputType = {
@@ -30439,8 +30807,18 @@ export namespace Prisma {
     bonusRule: string | null
     raiseRule: string | null
     probationPeriod: string | null
+    contractRenewalRule: string | null
+    contractRenewalCriteria: string | null
     retirementRule: string | null
+    retirementAllowanceRule: string | null
+    socialInsuranceRule: string | null
+    employmentInsuranceRule: string | null
+    consultationDesk: string | null
+    workRuleLocation: string | null
     remarks: string | null
+    version: number | null
+    isCurrent: boolean | null
+    supersededAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -30466,8 +30844,18 @@ export namespace Prisma {
     bonusRule: string | null
     raiseRule: string | null
     probationPeriod: string | null
+    contractRenewalRule: string | null
+    contractRenewalCriteria: string | null
     retirementRule: string | null
+    retirementAllowanceRule: string | null
+    socialInsuranceRule: string | null
+    employmentInsuranceRule: string | null
+    consultationDesk: string | null
+    workRuleLocation: string | null
     remarks: string | null
+    version: number | null
+    isCurrent: boolean | null
+    supersededAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -30493,8 +30881,18 @@ export namespace Prisma {
     bonusRule: number
     raiseRule: number
     probationPeriod: number
+    contractRenewalRule: number
+    contractRenewalCriteria: number
     retirementRule: number
+    retirementAllowanceRule: number
+    socialInsuranceRule: number
+    employmentInsuranceRule: number
+    consultationDesk: number
+    workRuleLocation: number
     remarks: number
+    version: number
+    isCurrent: number
+    supersededAt: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -30504,11 +30902,13 @@ export namespace Prisma {
   export type EmploymentContractAvgAggregateInputType = {
     breakMinutes?: true
     baseSalary?: true
+    version?: true
   }
 
   export type EmploymentContractSumAggregateInputType = {
     breakMinutes?: true
     baseSalary?: true
+    version?: true
   }
 
   export type EmploymentContractMinAggregateInputType = {
@@ -30532,8 +30932,18 @@ export namespace Prisma {
     bonusRule?: true
     raiseRule?: true
     probationPeriod?: true
+    contractRenewalRule?: true
+    contractRenewalCriteria?: true
     retirementRule?: true
+    retirementAllowanceRule?: true
+    socialInsuranceRule?: true
+    employmentInsuranceRule?: true
+    consultationDesk?: true
+    workRuleLocation?: true
     remarks?: true
+    version?: true
+    isCurrent?: true
+    supersededAt?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -30559,8 +30969,18 @@ export namespace Prisma {
     bonusRule?: true
     raiseRule?: true
     probationPeriod?: true
+    contractRenewalRule?: true
+    contractRenewalCriteria?: true
     retirementRule?: true
+    retirementAllowanceRule?: true
+    socialInsuranceRule?: true
+    employmentInsuranceRule?: true
+    consultationDesk?: true
+    workRuleLocation?: true
     remarks?: true
+    version?: true
+    isCurrent?: true
+    supersededAt?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -30586,8 +31006,18 @@ export namespace Prisma {
     bonusRule?: true
     raiseRule?: true
     probationPeriod?: true
+    contractRenewalRule?: true
+    contractRenewalCriteria?: true
     retirementRule?: true
+    retirementAllowanceRule?: true
+    socialInsuranceRule?: true
+    employmentInsuranceRule?: true
+    consultationDesk?: true
+    workRuleLocation?: true
     remarks?: true
+    version?: true
+    isCurrent?: true
+    supersededAt?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -30700,8 +31130,18 @@ export namespace Prisma {
     bonusRule: string | null
     raiseRule: string | null
     probationPeriod: string | null
+    contractRenewalRule: string | null
+    contractRenewalCriteria: string | null
     retirementRule: string | null
+    retirementAllowanceRule: string | null
+    socialInsuranceRule: string | null
+    employmentInsuranceRule: string | null
+    consultationDesk: string | null
+    workRuleLocation: string | null
     remarks: string | null
+    version: number
+    isCurrent: boolean
+    supersededAt: Date | null
     createdAt: Date
     updatedAt: Date
     _count: EmploymentContractCountAggregateOutputType | null
@@ -30746,11 +31186,23 @@ export namespace Prisma {
     bonusRule?: boolean
     raiseRule?: boolean
     probationPeriod?: boolean
+    contractRenewalRule?: boolean
+    contractRenewalCriteria?: boolean
     retirementRule?: boolean
+    retirementAllowanceRule?: boolean
+    socialInsuranceRule?: boolean
+    employmentInsuranceRule?: boolean
+    consultationDesk?: boolean
+    workRuleLocation?: boolean
     remarks?: boolean
+    version?: boolean
+    isCurrent?: boolean
+    supersededAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    employmentContractConsents?: boolean | EmploymentContract$employmentContractConsentsArgs<ExtArgs>
+    _count?: boolean | EmploymentContractCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["employmentContract"]>
 
   export type EmploymentContractSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -30774,8 +31226,18 @@ export namespace Prisma {
     bonusRule?: boolean
     raiseRule?: boolean
     probationPeriod?: boolean
+    contractRenewalRule?: boolean
+    contractRenewalCriteria?: boolean
     retirementRule?: boolean
+    retirementAllowanceRule?: boolean
+    socialInsuranceRule?: boolean
+    employmentInsuranceRule?: boolean
+    consultationDesk?: boolean
+    workRuleLocation?: boolean
     remarks?: boolean
+    version?: boolean
+    isCurrent?: boolean
+    supersededAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
@@ -30802,8 +31264,18 @@ export namespace Prisma {
     bonusRule?: boolean
     raiseRule?: boolean
     probationPeriod?: boolean
+    contractRenewalRule?: boolean
+    contractRenewalCriteria?: boolean
     retirementRule?: boolean
+    retirementAllowanceRule?: boolean
+    socialInsuranceRule?: boolean
+    employmentInsuranceRule?: boolean
+    consultationDesk?: boolean
+    workRuleLocation?: boolean
     remarks?: boolean
+    version?: boolean
+    isCurrent?: boolean
+    supersededAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
@@ -30830,15 +31302,27 @@ export namespace Prisma {
     bonusRule?: boolean
     raiseRule?: boolean
     probationPeriod?: boolean
+    contractRenewalRule?: boolean
+    contractRenewalCriteria?: boolean
     retirementRule?: boolean
+    retirementAllowanceRule?: boolean
+    socialInsuranceRule?: boolean
+    employmentInsuranceRule?: boolean
+    consultationDesk?: boolean
+    workRuleLocation?: boolean
     remarks?: boolean
+    version?: boolean
+    isCurrent?: boolean
+    supersededAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type EmploymentContractOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "contractType" | "startDate" | "endDate" | "workplace" | "jobDescription" | "workStartTime" | "workEndTime" | "breakMinutes" | "holidayRule" | "leaveRule" | "wageType" | "baseSalary" | "allowanceNote" | "payClosingDay" | "payDate" | "bonusRule" | "raiseRule" | "probationPeriod" | "retirementRule" | "remarks" | "createdAt" | "updatedAt", ExtArgs["result"]["employmentContract"]>
+  export type EmploymentContractOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "contractType" | "startDate" | "endDate" | "workplace" | "jobDescription" | "workStartTime" | "workEndTime" | "breakMinutes" | "holidayRule" | "leaveRule" | "wageType" | "baseSalary" | "allowanceNote" | "payClosingDay" | "payDate" | "bonusRule" | "raiseRule" | "probationPeriod" | "contractRenewalRule" | "contractRenewalCriteria" | "retirementRule" | "retirementAllowanceRule" | "socialInsuranceRule" | "employmentInsuranceRule" | "consultationDesk" | "workRuleLocation" | "remarks" | "version" | "isCurrent" | "supersededAt" | "createdAt" | "updatedAt", ExtArgs["result"]["employmentContract"]>
   export type EmploymentContractInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    employmentContractConsents?: boolean | EmploymentContract$employmentContractConsentsArgs<ExtArgs>
+    _count?: boolean | EmploymentContractCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EmploymentContractIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
@@ -30851,6 +31335,7 @@ export namespace Prisma {
     name: "EmploymentContract"
     objects: {
       employee: Prisma.$EmployeePayload<ExtArgs>
+      employmentContractConsents: Prisma.$EmploymentContractConsentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -30873,8 +31358,18 @@ export namespace Prisma {
       bonusRule: string | null
       raiseRule: string | null
       probationPeriod: string | null
+      contractRenewalRule: string | null
+      contractRenewalCriteria: string | null
       retirementRule: string | null
+      retirementAllowanceRule: string | null
+      socialInsuranceRule: string | null
+      employmentInsuranceRule: string | null
+      consultationDesk: string | null
+      workRuleLocation: string | null
       remarks: string | null
+      version: number
+      isCurrent: boolean
+      supersededAt: Date | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["employmentContract"]>
@@ -31272,6 +31767,7 @@ export namespace Prisma {
   export interface Prisma__EmploymentContractClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    employmentContractConsents<T extends EmploymentContract$employmentContractConsentsArgs<ExtArgs> = {}>(args?: Subset<T, EmploymentContract$employmentContractConsentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentContractConsentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -31321,8 +31817,18 @@ export namespace Prisma {
     readonly bonusRule: FieldRef<"EmploymentContract", 'String'>
     readonly raiseRule: FieldRef<"EmploymentContract", 'String'>
     readonly probationPeriod: FieldRef<"EmploymentContract", 'String'>
+    readonly contractRenewalRule: FieldRef<"EmploymentContract", 'String'>
+    readonly contractRenewalCriteria: FieldRef<"EmploymentContract", 'String'>
     readonly retirementRule: FieldRef<"EmploymentContract", 'String'>
+    readonly retirementAllowanceRule: FieldRef<"EmploymentContract", 'String'>
+    readonly socialInsuranceRule: FieldRef<"EmploymentContract", 'String'>
+    readonly employmentInsuranceRule: FieldRef<"EmploymentContract", 'String'>
+    readonly consultationDesk: FieldRef<"EmploymentContract", 'String'>
+    readonly workRuleLocation: FieldRef<"EmploymentContract", 'String'>
     readonly remarks: FieldRef<"EmploymentContract", 'String'>
+    readonly version: FieldRef<"EmploymentContract", 'Int'>
+    readonly isCurrent: FieldRef<"EmploymentContract", 'Boolean'>
+    readonly supersededAt: FieldRef<"EmploymentContract", 'DateTime'>
     readonly createdAt: FieldRef<"EmploymentContract", 'DateTime'>
     readonly updatedAt: FieldRef<"EmploymentContract", 'DateTime'>
   }
@@ -31726,6 +32232,30 @@ export namespace Prisma {
   }
 
   /**
+   * EmploymentContract.employmentContractConsents
+   */
+  export type EmploymentContract$employmentContractConsentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractConsent
+     */
+    select?: EmploymentContractConsentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContractConsent
+     */
+    omit?: EmploymentContractConsentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractConsentInclude<ExtArgs> | null
+    where?: EmploymentContractConsentWhereInput
+    orderBy?: EmploymentContractConsentOrderByWithRelationInput | EmploymentContractConsentOrderByWithRelationInput[]
+    cursor?: EmploymentContractConsentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmploymentContractConsentScalarFieldEnum | EmploymentContractConsentScalarFieldEnum[]
+  }
+
+  /**
    * EmploymentContract without action
    */
   export type EmploymentContractDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -31741,6 +32271,3550 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: EmploymentContractInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CompanySetting
+   */
+
+  export type AggregateCompanySetting = {
+    _count: CompanySettingCountAggregateOutputType | null
+    _min: CompanySettingMinAggregateOutputType | null
+    _max: CompanySettingMaxAggregateOutputType | null
+  }
+
+  export type CompanySettingMinAggregateOutputType = {
+    id: string | null
+    companyName: string | null
+    postalCode: string | null
+    address: string | null
+    phoneNumber: string | null
+    representativeName: string | null
+    consultationDesk: string | null
+    workRuleLocation: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CompanySettingMaxAggregateOutputType = {
+    id: string | null
+    companyName: string | null
+    postalCode: string | null
+    address: string | null
+    phoneNumber: string | null
+    representativeName: string | null
+    consultationDesk: string | null
+    workRuleLocation: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CompanySettingCountAggregateOutputType = {
+    id: number
+    companyName: number
+    postalCode: number
+    address: number
+    phoneNumber: number
+    representativeName: number
+    consultationDesk: number
+    workRuleLocation: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type CompanySettingMinAggregateInputType = {
+    id?: true
+    companyName?: true
+    postalCode?: true
+    address?: true
+    phoneNumber?: true
+    representativeName?: true
+    consultationDesk?: true
+    workRuleLocation?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CompanySettingMaxAggregateInputType = {
+    id?: true
+    companyName?: true
+    postalCode?: true
+    address?: true
+    phoneNumber?: true
+    representativeName?: true
+    consultationDesk?: true
+    workRuleLocation?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CompanySettingCountAggregateInputType = {
+    id?: true
+    companyName?: true
+    postalCode?: true
+    address?: true
+    phoneNumber?: true
+    representativeName?: true
+    consultationDesk?: true
+    workRuleLocation?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type CompanySettingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CompanySetting to aggregate.
+     */
+    where?: CompanySettingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CompanySettings to fetch.
+     */
+    orderBy?: CompanySettingOrderByWithRelationInput | CompanySettingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CompanySettingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CompanySettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CompanySettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CompanySettings
+    **/
+    _count?: true | CompanySettingCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CompanySettingMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CompanySettingMaxAggregateInputType
+  }
+
+  export type GetCompanySettingAggregateType<T extends CompanySettingAggregateArgs> = {
+        [P in keyof T & keyof AggregateCompanySetting]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCompanySetting[P]>
+      : GetScalarType<T[P], AggregateCompanySetting[P]>
+  }
+
+
+
+
+  export type CompanySettingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CompanySettingWhereInput
+    orderBy?: CompanySettingOrderByWithAggregationInput | CompanySettingOrderByWithAggregationInput[]
+    by: CompanySettingScalarFieldEnum[] | CompanySettingScalarFieldEnum
+    having?: CompanySettingScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CompanySettingCountAggregateInputType | true
+    _min?: CompanySettingMinAggregateInputType
+    _max?: CompanySettingMaxAggregateInputType
+  }
+
+  export type CompanySettingGroupByOutputType = {
+    id: string
+    companyName: string
+    postalCode: string | null
+    address: string | null
+    phoneNumber: string | null
+    representativeName: string | null
+    consultationDesk: string | null
+    workRuleLocation: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: CompanySettingCountAggregateOutputType | null
+    _min: CompanySettingMinAggregateOutputType | null
+    _max: CompanySettingMaxAggregateOutputType | null
+  }
+
+  type GetCompanySettingGroupByPayload<T extends CompanySettingGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CompanySettingGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CompanySettingGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CompanySettingGroupByOutputType[P]>
+            : GetScalarType<T[P], CompanySettingGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CompanySettingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    companyName?: boolean
+    postalCode?: boolean
+    address?: boolean
+    phoneNumber?: boolean
+    representativeName?: boolean
+    consultationDesk?: boolean
+    workRuleLocation?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["companySetting"]>
+
+  export type CompanySettingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    companyName?: boolean
+    postalCode?: boolean
+    address?: boolean
+    phoneNumber?: boolean
+    representativeName?: boolean
+    consultationDesk?: boolean
+    workRuleLocation?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["companySetting"]>
+
+  export type CompanySettingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    companyName?: boolean
+    postalCode?: boolean
+    address?: boolean
+    phoneNumber?: boolean
+    representativeName?: boolean
+    consultationDesk?: boolean
+    workRuleLocation?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["companySetting"]>
+
+  export type CompanySettingSelectScalar = {
+    id?: boolean
+    companyName?: boolean
+    postalCode?: boolean
+    address?: boolean
+    phoneNumber?: boolean
+    representativeName?: boolean
+    consultationDesk?: boolean
+    workRuleLocation?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type CompanySettingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "companyName" | "postalCode" | "address" | "phoneNumber" | "representativeName" | "consultationDesk" | "workRuleLocation" | "createdAt" | "updatedAt", ExtArgs["result"]["companySetting"]>
+
+  export type $CompanySettingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CompanySetting"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      companyName: string
+      postalCode: string | null
+      address: string | null
+      phoneNumber: string | null
+      representativeName: string | null
+      consultationDesk: string | null
+      workRuleLocation: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["companySetting"]>
+    composites: {}
+  }
+
+  type CompanySettingGetPayload<S extends boolean | null | undefined | CompanySettingDefaultArgs> = $Result.GetResult<Prisma.$CompanySettingPayload, S>
+
+  type CompanySettingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CompanySettingFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CompanySettingCountAggregateInputType | true
+    }
+
+  export interface CompanySettingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CompanySetting'], meta: { name: 'CompanySetting' } }
+    /**
+     * Find zero or one CompanySetting that matches the filter.
+     * @param {CompanySettingFindUniqueArgs} args - Arguments to find a CompanySetting
+     * @example
+     * // Get one CompanySetting
+     * const companySetting = await prisma.companySetting.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CompanySettingFindUniqueArgs>(args: SelectSubset<T, CompanySettingFindUniqueArgs<ExtArgs>>): Prisma__CompanySettingClient<$Result.GetResult<Prisma.$CompanySettingPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CompanySetting that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CompanySettingFindUniqueOrThrowArgs} args - Arguments to find a CompanySetting
+     * @example
+     * // Get one CompanySetting
+     * const companySetting = await prisma.companySetting.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CompanySettingFindUniqueOrThrowArgs>(args: SelectSubset<T, CompanySettingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CompanySettingClient<$Result.GetResult<Prisma.$CompanySettingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CompanySetting that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanySettingFindFirstArgs} args - Arguments to find a CompanySetting
+     * @example
+     * // Get one CompanySetting
+     * const companySetting = await prisma.companySetting.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CompanySettingFindFirstArgs>(args?: SelectSubset<T, CompanySettingFindFirstArgs<ExtArgs>>): Prisma__CompanySettingClient<$Result.GetResult<Prisma.$CompanySettingPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CompanySetting that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanySettingFindFirstOrThrowArgs} args - Arguments to find a CompanySetting
+     * @example
+     * // Get one CompanySetting
+     * const companySetting = await prisma.companySetting.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CompanySettingFindFirstOrThrowArgs>(args?: SelectSubset<T, CompanySettingFindFirstOrThrowArgs<ExtArgs>>): Prisma__CompanySettingClient<$Result.GetResult<Prisma.$CompanySettingPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CompanySettings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanySettingFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CompanySettings
+     * const companySettings = await prisma.companySetting.findMany()
+     * 
+     * // Get first 10 CompanySettings
+     * const companySettings = await prisma.companySetting.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const companySettingWithIdOnly = await prisma.companySetting.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CompanySettingFindManyArgs>(args?: SelectSubset<T, CompanySettingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CompanySettingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CompanySetting.
+     * @param {CompanySettingCreateArgs} args - Arguments to create a CompanySetting.
+     * @example
+     * // Create one CompanySetting
+     * const CompanySetting = await prisma.companySetting.create({
+     *   data: {
+     *     // ... data to create a CompanySetting
+     *   }
+     * })
+     * 
+     */
+    create<T extends CompanySettingCreateArgs>(args: SelectSubset<T, CompanySettingCreateArgs<ExtArgs>>): Prisma__CompanySettingClient<$Result.GetResult<Prisma.$CompanySettingPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CompanySettings.
+     * @param {CompanySettingCreateManyArgs} args - Arguments to create many CompanySettings.
+     * @example
+     * // Create many CompanySettings
+     * const companySetting = await prisma.companySetting.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CompanySettingCreateManyArgs>(args?: SelectSubset<T, CompanySettingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CompanySettings and returns the data saved in the database.
+     * @param {CompanySettingCreateManyAndReturnArgs} args - Arguments to create many CompanySettings.
+     * @example
+     * // Create many CompanySettings
+     * const companySetting = await prisma.companySetting.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CompanySettings and only return the `id`
+     * const companySettingWithIdOnly = await prisma.companySetting.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CompanySettingCreateManyAndReturnArgs>(args?: SelectSubset<T, CompanySettingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CompanySettingPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CompanySetting.
+     * @param {CompanySettingDeleteArgs} args - Arguments to delete one CompanySetting.
+     * @example
+     * // Delete one CompanySetting
+     * const CompanySetting = await prisma.companySetting.delete({
+     *   where: {
+     *     // ... filter to delete one CompanySetting
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CompanySettingDeleteArgs>(args: SelectSubset<T, CompanySettingDeleteArgs<ExtArgs>>): Prisma__CompanySettingClient<$Result.GetResult<Prisma.$CompanySettingPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CompanySetting.
+     * @param {CompanySettingUpdateArgs} args - Arguments to update one CompanySetting.
+     * @example
+     * // Update one CompanySetting
+     * const companySetting = await prisma.companySetting.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CompanySettingUpdateArgs>(args: SelectSubset<T, CompanySettingUpdateArgs<ExtArgs>>): Prisma__CompanySettingClient<$Result.GetResult<Prisma.$CompanySettingPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CompanySettings.
+     * @param {CompanySettingDeleteManyArgs} args - Arguments to filter CompanySettings to delete.
+     * @example
+     * // Delete a few CompanySettings
+     * const { count } = await prisma.companySetting.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CompanySettingDeleteManyArgs>(args?: SelectSubset<T, CompanySettingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CompanySettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanySettingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CompanySettings
+     * const companySetting = await prisma.companySetting.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CompanySettingUpdateManyArgs>(args: SelectSubset<T, CompanySettingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CompanySettings and returns the data updated in the database.
+     * @param {CompanySettingUpdateManyAndReturnArgs} args - Arguments to update many CompanySettings.
+     * @example
+     * // Update many CompanySettings
+     * const companySetting = await prisma.companySetting.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CompanySettings and only return the `id`
+     * const companySettingWithIdOnly = await prisma.companySetting.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CompanySettingUpdateManyAndReturnArgs>(args: SelectSubset<T, CompanySettingUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CompanySettingPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CompanySetting.
+     * @param {CompanySettingUpsertArgs} args - Arguments to update or create a CompanySetting.
+     * @example
+     * // Update or create a CompanySetting
+     * const companySetting = await prisma.companySetting.upsert({
+     *   create: {
+     *     // ... data to create a CompanySetting
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CompanySetting we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CompanySettingUpsertArgs>(args: SelectSubset<T, CompanySettingUpsertArgs<ExtArgs>>): Prisma__CompanySettingClient<$Result.GetResult<Prisma.$CompanySettingPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CompanySettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanySettingCountArgs} args - Arguments to filter CompanySettings to count.
+     * @example
+     * // Count the number of CompanySettings
+     * const count = await prisma.companySetting.count({
+     *   where: {
+     *     // ... the filter for the CompanySettings we want to count
+     *   }
+     * })
+    **/
+    count<T extends CompanySettingCountArgs>(
+      args?: Subset<T, CompanySettingCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CompanySettingCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CompanySetting.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanySettingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CompanySettingAggregateArgs>(args: Subset<T, CompanySettingAggregateArgs>): Prisma.PrismaPromise<GetCompanySettingAggregateType<T>>
+
+    /**
+     * Group by CompanySetting.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CompanySettingGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CompanySettingGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CompanySettingGroupByArgs['orderBy'] }
+        : { orderBy?: CompanySettingGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CompanySettingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCompanySettingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CompanySetting model
+   */
+  readonly fields: CompanySettingFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CompanySetting.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CompanySettingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CompanySetting model
+   */
+  interface CompanySettingFieldRefs {
+    readonly id: FieldRef<"CompanySetting", 'String'>
+    readonly companyName: FieldRef<"CompanySetting", 'String'>
+    readonly postalCode: FieldRef<"CompanySetting", 'String'>
+    readonly address: FieldRef<"CompanySetting", 'String'>
+    readonly phoneNumber: FieldRef<"CompanySetting", 'String'>
+    readonly representativeName: FieldRef<"CompanySetting", 'String'>
+    readonly consultationDesk: FieldRef<"CompanySetting", 'String'>
+    readonly workRuleLocation: FieldRef<"CompanySetting", 'String'>
+    readonly createdAt: FieldRef<"CompanySetting", 'DateTime'>
+    readonly updatedAt: FieldRef<"CompanySetting", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CompanySetting findUnique
+   */
+  export type CompanySettingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanySetting
+     */
+    select?: CompanySettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanySetting
+     */
+    omit?: CompanySettingOmit<ExtArgs> | null
+    /**
+     * Filter, which CompanySetting to fetch.
+     */
+    where: CompanySettingWhereUniqueInput
+  }
+
+  /**
+   * CompanySetting findUniqueOrThrow
+   */
+  export type CompanySettingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanySetting
+     */
+    select?: CompanySettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanySetting
+     */
+    omit?: CompanySettingOmit<ExtArgs> | null
+    /**
+     * Filter, which CompanySetting to fetch.
+     */
+    where: CompanySettingWhereUniqueInput
+  }
+
+  /**
+   * CompanySetting findFirst
+   */
+  export type CompanySettingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanySetting
+     */
+    select?: CompanySettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanySetting
+     */
+    omit?: CompanySettingOmit<ExtArgs> | null
+    /**
+     * Filter, which CompanySetting to fetch.
+     */
+    where?: CompanySettingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CompanySettings to fetch.
+     */
+    orderBy?: CompanySettingOrderByWithRelationInput | CompanySettingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CompanySettings.
+     */
+    cursor?: CompanySettingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CompanySettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CompanySettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CompanySettings.
+     */
+    distinct?: CompanySettingScalarFieldEnum | CompanySettingScalarFieldEnum[]
+  }
+
+  /**
+   * CompanySetting findFirstOrThrow
+   */
+  export type CompanySettingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanySetting
+     */
+    select?: CompanySettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanySetting
+     */
+    omit?: CompanySettingOmit<ExtArgs> | null
+    /**
+     * Filter, which CompanySetting to fetch.
+     */
+    where?: CompanySettingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CompanySettings to fetch.
+     */
+    orderBy?: CompanySettingOrderByWithRelationInput | CompanySettingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CompanySettings.
+     */
+    cursor?: CompanySettingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CompanySettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CompanySettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CompanySettings.
+     */
+    distinct?: CompanySettingScalarFieldEnum | CompanySettingScalarFieldEnum[]
+  }
+
+  /**
+   * CompanySetting findMany
+   */
+  export type CompanySettingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanySetting
+     */
+    select?: CompanySettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanySetting
+     */
+    omit?: CompanySettingOmit<ExtArgs> | null
+    /**
+     * Filter, which CompanySettings to fetch.
+     */
+    where?: CompanySettingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CompanySettings to fetch.
+     */
+    orderBy?: CompanySettingOrderByWithRelationInput | CompanySettingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CompanySettings.
+     */
+    cursor?: CompanySettingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CompanySettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CompanySettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CompanySettings.
+     */
+    distinct?: CompanySettingScalarFieldEnum | CompanySettingScalarFieldEnum[]
+  }
+
+  /**
+   * CompanySetting create
+   */
+  export type CompanySettingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanySetting
+     */
+    select?: CompanySettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanySetting
+     */
+    omit?: CompanySettingOmit<ExtArgs> | null
+    /**
+     * The data needed to create a CompanySetting.
+     */
+    data: XOR<CompanySettingCreateInput, CompanySettingUncheckedCreateInput>
+  }
+
+  /**
+   * CompanySetting createMany
+   */
+  export type CompanySettingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CompanySettings.
+     */
+    data: CompanySettingCreateManyInput | CompanySettingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CompanySetting createManyAndReturn
+   */
+  export type CompanySettingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanySetting
+     */
+    select?: CompanySettingSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanySetting
+     */
+    omit?: CompanySettingOmit<ExtArgs> | null
+    /**
+     * The data used to create many CompanySettings.
+     */
+    data: CompanySettingCreateManyInput | CompanySettingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CompanySetting update
+   */
+  export type CompanySettingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanySetting
+     */
+    select?: CompanySettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanySetting
+     */
+    omit?: CompanySettingOmit<ExtArgs> | null
+    /**
+     * The data needed to update a CompanySetting.
+     */
+    data: XOR<CompanySettingUpdateInput, CompanySettingUncheckedUpdateInput>
+    /**
+     * Choose, which CompanySetting to update.
+     */
+    where: CompanySettingWhereUniqueInput
+  }
+
+  /**
+   * CompanySetting updateMany
+   */
+  export type CompanySettingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CompanySettings.
+     */
+    data: XOR<CompanySettingUpdateManyMutationInput, CompanySettingUncheckedUpdateManyInput>
+    /**
+     * Filter which CompanySettings to update
+     */
+    where?: CompanySettingWhereInput
+    /**
+     * Limit how many CompanySettings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CompanySetting updateManyAndReturn
+   */
+  export type CompanySettingUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanySetting
+     */
+    select?: CompanySettingSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanySetting
+     */
+    omit?: CompanySettingOmit<ExtArgs> | null
+    /**
+     * The data used to update CompanySettings.
+     */
+    data: XOR<CompanySettingUpdateManyMutationInput, CompanySettingUncheckedUpdateManyInput>
+    /**
+     * Filter which CompanySettings to update
+     */
+    where?: CompanySettingWhereInput
+    /**
+     * Limit how many CompanySettings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CompanySetting upsert
+   */
+  export type CompanySettingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanySetting
+     */
+    select?: CompanySettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanySetting
+     */
+    omit?: CompanySettingOmit<ExtArgs> | null
+    /**
+     * The filter to search for the CompanySetting to update in case it exists.
+     */
+    where: CompanySettingWhereUniqueInput
+    /**
+     * In case the CompanySetting found by the `where` argument doesn't exist, create a new CompanySetting with this data.
+     */
+    create: XOR<CompanySettingCreateInput, CompanySettingUncheckedCreateInput>
+    /**
+     * In case the CompanySetting was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CompanySettingUpdateInput, CompanySettingUncheckedUpdateInput>
+  }
+
+  /**
+   * CompanySetting delete
+   */
+  export type CompanySettingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanySetting
+     */
+    select?: CompanySettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanySetting
+     */
+    omit?: CompanySettingOmit<ExtArgs> | null
+    /**
+     * Filter which CompanySetting to delete.
+     */
+    where: CompanySettingWhereUniqueInput
+  }
+
+  /**
+   * CompanySetting deleteMany
+   */
+  export type CompanySettingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CompanySettings to delete
+     */
+    where?: CompanySettingWhereInput
+    /**
+     * Limit how many CompanySettings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CompanySetting without action
+   */
+  export type CompanySettingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CompanySetting
+     */
+    select?: CompanySettingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CompanySetting
+     */
+    omit?: CompanySettingOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model EmploymentContractTemplate
+   */
+
+  export type AggregateEmploymentContractTemplate = {
+    _count: EmploymentContractTemplateCountAggregateOutputType | null
+    _avg: EmploymentContractTemplateAvgAggregateOutputType | null
+    _sum: EmploymentContractTemplateSumAggregateOutputType | null
+    _min: EmploymentContractTemplateMinAggregateOutputType | null
+    _max: EmploymentContractTemplateMaxAggregateOutputType | null
+  }
+
+  export type EmploymentContractTemplateAvgAggregateOutputType = {
+    breakMinutes: number | null
+    baseSalary: number | null
+  }
+
+  export type EmploymentContractTemplateSumAggregateOutputType = {
+    breakMinutes: number | null
+    baseSalary: number | null
+  }
+
+  export type EmploymentContractTemplateMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    description: string | null
+    contractType: string | null
+    workStartTime: string | null
+    workEndTime: string | null
+    breakMinutes: number | null
+    holidayRule: string | null
+    leaveRule: string | null
+    wageType: string | null
+    baseSalary: number | null
+    allowanceNote: string | null
+    payClosingDay: string | null
+    payDate: string | null
+    bonusRule: string | null
+    raiseRule: string | null
+    probationPeriod: string | null
+    contractRenewalRule: string | null
+    contractRenewalCriteria: string | null
+    retirementRule: string | null
+    retirementAllowanceRule: string | null
+    socialInsuranceRule: string | null
+    employmentInsuranceRule: string | null
+    consultationDesk: string | null
+    workRuleLocation: string | null
+    remarks: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type EmploymentContractTemplateMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    description: string | null
+    contractType: string | null
+    workStartTime: string | null
+    workEndTime: string | null
+    breakMinutes: number | null
+    holidayRule: string | null
+    leaveRule: string | null
+    wageType: string | null
+    baseSalary: number | null
+    allowanceNote: string | null
+    payClosingDay: string | null
+    payDate: string | null
+    bonusRule: string | null
+    raiseRule: string | null
+    probationPeriod: string | null
+    contractRenewalRule: string | null
+    contractRenewalCriteria: string | null
+    retirementRule: string | null
+    retirementAllowanceRule: string | null
+    socialInsuranceRule: string | null
+    employmentInsuranceRule: string | null
+    consultationDesk: string | null
+    workRuleLocation: string | null
+    remarks: string | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type EmploymentContractTemplateCountAggregateOutputType = {
+    id: number
+    name: number
+    description: number
+    contractType: number
+    workStartTime: number
+    workEndTime: number
+    breakMinutes: number
+    holidayRule: number
+    leaveRule: number
+    wageType: number
+    baseSalary: number
+    allowanceNote: number
+    payClosingDay: number
+    payDate: number
+    bonusRule: number
+    raiseRule: number
+    probationPeriod: number
+    contractRenewalRule: number
+    contractRenewalCriteria: number
+    retirementRule: number
+    retirementAllowanceRule: number
+    socialInsuranceRule: number
+    employmentInsuranceRule: number
+    consultationDesk: number
+    workRuleLocation: number
+    remarks: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type EmploymentContractTemplateAvgAggregateInputType = {
+    breakMinutes?: true
+    baseSalary?: true
+  }
+
+  export type EmploymentContractTemplateSumAggregateInputType = {
+    breakMinutes?: true
+    baseSalary?: true
+  }
+
+  export type EmploymentContractTemplateMinAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    contractType?: true
+    workStartTime?: true
+    workEndTime?: true
+    breakMinutes?: true
+    holidayRule?: true
+    leaveRule?: true
+    wageType?: true
+    baseSalary?: true
+    allowanceNote?: true
+    payClosingDay?: true
+    payDate?: true
+    bonusRule?: true
+    raiseRule?: true
+    probationPeriod?: true
+    contractRenewalRule?: true
+    contractRenewalCriteria?: true
+    retirementRule?: true
+    retirementAllowanceRule?: true
+    socialInsuranceRule?: true
+    employmentInsuranceRule?: true
+    consultationDesk?: true
+    workRuleLocation?: true
+    remarks?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type EmploymentContractTemplateMaxAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    contractType?: true
+    workStartTime?: true
+    workEndTime?: true
+    breakMinutes?: true
+    holidayRule?: true
+    leaveRule?: true
+    wageType?: true
+    baseSalary?: true
+    allowanceNote?: true
+    payClosingDay?: true
+    payDate?: true
+    bonusRule?: true
+    raiseRule?: true
+    probationPeriod?: true
+    contractRenewalRule?: true
+    contractRenewalCriteria?: true
+    retirementRule?: true
+    retirementAllowanceRule?: true
+    socialInsuranceRule?: true
+    employmentInsuranceRule?: true
+    consultationDesk?: true
+    workRuleLocation?: true
+    remarks?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type EmploymentContractTemplateCountAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    contractType?: true
+    workStartTime?: true
+    workEndTime?: true
+    breakMinutes?: true
+    holidayRule?: true
+    leaveRule?: true
+    wageType?: true
+    baseSalary?: true
+    allowanceNote?: true
+    payClosingDay?: true
+    payDate?: true
+    bonusRule?: true
+    raiseRule?: true
+    probationPeriod?: true
+    contractRenewalRule?: true
+    contractRenewalCriteria?: true
+    retirementRule?: true
+    retirementAllowanceRule?: true
+    socialInsuranceRule?: true
+    employmentInsuranceRule?: true
+    consultationDesk?: true
+    workRuleLocation?: true
+    remarks?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type EmploymentContractTemplateAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmploymentContractTemplate to aggregate.
+     */
+    where?: EmploymentContractTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmploymentContractTemplates to fetch.
+     */
+    orderBy?: EmploymentContractTemplateOrderByWithRelationInput | EmploymentContractTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EmploymentContractTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmploymentContractTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmploymentContractTemplates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EmploymentContractTemplates
+    **/
+    _count?: true | EmploymentContractTemplateCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: EmploymentContractTemplateAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: EmploymentContractTemplateSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EmploymentContractTemplateMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EmploymentContractTemplateMaxAggregateInputType
+  }
+
+  export type GetEmploymentContractTemplateAggregateType<T extends EmploymentContractTemplateAggregateArgs> = {
+        [P in keyof T & keyof AggregateEmploymentContractTemplate]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEmploymentContractTemplate[P]>
+      : GetScalarType<T[P], AggregateEmploymentContractTemplate[P]>
+  }
+
+
+
+
+  export type EmploymentContractTemplateGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmploymentContractTemplateWhereInput
+    orderBy?: EmploymentContractTemplateOrderByWithAggregationInput | EmploymentContractTemplateOrderByWithAggregationInput[]
+    by: EmploymentContractTemplateScalarFieldEnum[] | EmploymentContractTemplateScalarFieldEnum
+    having?: EmploymentContractTemplateScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EmploymentContractTemplateCountAggregateInputType | true
+    _avg?: EmploymentContractTemplateAvgAggregateInputType
+    _sum?: EmploymentContractTemplateSumAggregateInputType
+    _min?: EmploymentContractTemplateMinAggregateInputType
+    _max?: EmploymentContractTemplateMaxAggregateInputType
+  }
+
+  export type EmploymentContractTemplateGroupByOutputType = {
+    id: string
+    name: string
+    description: string | null
+    contractType: string
+    workStartTime: string
+    workEndTime: string
+    breakMinutes: number
+    holidayRule: string
+    leaveRule: string | null
+    wageType: string
+    baseSalary: number | null
+    allowanceNote: string | null
+    payClosingDay: string | null
+    payDate: string | null
+    bonusRule: string | null
+    raiseRule: string | null
+    probationPeriod: string | null
+    contractRenewalRule: string | null
+    contractRenewalCriteria: string | null
+    retirementRule: string | null
+    retirementAllowanceRule: string | null
+    socialInsuranceRule: string | null
+    employmentInsuranceRule: string | null
+    consultationDesk: string | null
+    workRuleLocation: string | null
+    remarks: string | null
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: EmploymentContractTemplateCountAggregateOutputType | null
+    _avg: EmploymentContractTemplateAvgAggregateOutputType | null
+    _sum: EmploymentContractTemplateSumAggregateOutputType | null
+    _min: EmploymentContractTemplateMinAggregateOutputType | null
+    _max: EmploymentContractTemplateMaxAggregateOutputType | null
+  }
+
+  type GetEmploymentContractTemplateGroupByPayload<T extends EmploymentContractTemplateGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EmploymentContractTemplateGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EmploymentContractTemplateGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EmploymentContractTemplateGroupByOutputType[P]>
+            : GetScalarType<T[P], EmploymentContractTemplateGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EmploymentContractTemplateSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    contractType?: boolean
+    workStartTime?: boolean
+    workEndTime?: boolean
+    breakMinutes?: boolean
+    holidayRule?: boolean
+    leaveRule?: boolean
+    wageType?: boolean
+    baseSalary?: boolean
+    allowanceNote?: boolean
+    payClosingDay?: boolean
+    payDate?: boolean
+    bonusRule?: boolean
+    raiseRule?: boolean
+    probationPeriod?: boolean
+    contractRenewalRule?: boolean
+    contractRenewalCriteria?: boolean
+    retirementRule?: boolean
+    retirementAllowanceRule?: boolean
+    socialInsuranceRule?: boolean
+    employmentInsuranceRule?: boolean
+    consultationDesk?: boolean
+    workRuleLocation?: boolean
+    remarks?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["employmentContractTemplate"]>
+
+  export type EmploymentContractTemplateSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    contractType?: boolean
+    workStartTime?: boolean
+    workEndTime?: boolean
+    breakMinutes?: boolean
+    holidayRule?: boolean
+    leaveRule?: boolean
+    wageType?: boolean
+    baseSalary?: boolean
+    allowanceNote?: boolean
+    payClosingDay?: boolean
+    payDate?: boolean
+    bonusRule?: boolean
+    raiseRule?: boolean
+    probationPeriod?: boolean
+    contractRenewalRule?: boolean
+    contractRenewalCriteria?: boolean
+    retirementRule?: boolean
+    retirementAllowanceRule?: boolean
+    socialInsuranceRule?: boolean
+    employmentInsuranceRule?: boolean
+    consultationDesk?: boolean
+    workRuleLocation?: boolean
+    remarks?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["employmentContractTemplate"]>
+
+  export type EmploymentContractTemplateSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    contractType?: boolean
+    workStartTime?: boolean
+    workEndTime?: boolean
+    breakMinutes?: boolean
+    holidayRule?: boolean
+    leaveRule?: boolean
+    wageType?: boolean
+    baseSalary?: boolean
+    allowanceNote?: boolean
+    payClosingDay?: boolean
+    payDate?: boolean
+    bonusRule?: boolean
+    raiseRule?: boolean
+    probationPeriod?: boolean
+    contractRenewalRule?: boolean
+    contractRenewalCriteria?: boolean
+    retirementRule?: boolean
+    retirementAllowanceRule?: boolean
+    socialInsuranceRule?: boolean
+    employmentInsuranceRule?: boolean
+    consultationDesk?: boolean
+    workRuleLocation?: boolean
+    remarks?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["employmentContractTemplate"]>
+
+  export type EmploymentContractTemplateSelectScalar = {
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    contractType?: boolean
+    workStartTime?: boolean
+    workEndTime?: boolean
+    breakMinutes?: boolean
+    holidayRule?: boolean
+    leaveRule?: boolean
+    wageType?: boolean
+    baseSalary?: boolean
+    allowanceNote?: boolean
+    payClosingDay?: boolean
+    payDate?: boolean
+    bonusRule?: boolean
+    raiseRule?: boolean
+    probationPeriod?: boolean
+    contractRenewalRule?: boolean
+    contractRenewalCriteria?: boolean
+    retirementRule?: boolean
+    retirementAllowanceRule?: boolean
+    socialInsuranceRule?: boolean
+    employmentInsuranceRule?: boolean
+    consultationDesk?: boolean
+    workRuleLocation?: boolean
+    remarks?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type EmploymentContractTemplateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "contractType" | "workStartTime" | "workEndTime" | "breakMinutes" | "holidayRule" | "leaveRule" | "wageType" | "baseSalary" | "allowanceNote" | "payClosingDay" | "payDate" | "bonusRule" | "raiseRule" | "probationPeriod" | "contractRenewalRule" | "contractRenewalCriteria" | "retirementRule" | "retirementAllowanceRule" | "socialInsuranceRule" | "employmentInsuranceRule" | "consultationDesk" | "workRuleLocation" | "remarks" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["employmentContractTemplate"]>
+
+  export type $EmploymentContractTemplatePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EmploymentContractTemplate"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      description: string | null
+      contractType: string
+      workStartTime: string
+      workEndTime: string
+      breakMinutes: number
+      holidayRule: string
+      leaveRule: string | null
+      wageType: string
+      baseSalary: number | null
+      allowanceNote: string | null
+      payClosingDay: string | null
+      payDate: string | null
+      bonusRule: string | null
+      raiseRule: string | null
+      probationPeriod: string | null
+      contractRenewalRule: string | null
+      contractRenewalCriteria: string | null
+      retirementRule: string | null
+      retirementAllowanceRule: string | null
+      socialInsuranceRule: string | null
+      employmentInsuranceRule: string | null
+      consultationDesk: string | null
+      workRuleLocation: string | null
+      remarks: string | null
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["employmentContractTemplate"]>
+    composites: {}
+  }
+
+  type EmploymentContractTemplateGetPayload<S extends boolean | null | undefined | EmploymentContractTemplateDefaultArgs> = $Result.GetResult<Prisma.$EmploymentContractTemplatePayload, S>
+
+  type EmploymentContractTemplateCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EmploymentContractTemplateFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EmploymentContractTemplateCountAggregateInputType | true
+    }
+
+  export interface EmploymentContractTemplateDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EmploymentContractTemplate'], meta: { name: 'EmploymentContractTemplate' } }
+    /**
+     * Find zero or one EmploymentContractTemplate that matches the filter.
+     * @param {EmploymentContractTemplateFindUniqueArgs} args - Arguments to find a EmploymentContractTemplate
+     * @example
+     * // Get one EmploymentContractTemplate
+     * const employmentContractTemplate = await prisma.employmentContractTemplate.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EmploymentContractTemplateFindUniqueArgs>(args: SelectSubset<T, EmploymentContractTemplateFindUniqueArgs<ExtArgs>>): Prisma__EmploymentContractTemplateClient<$Result.GetResult<Prisma.$EmploymentContractTemplatePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EmploymentContractTemplate that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EmploymentContractTemplateFindUniqueOrThrowArgs} args - Arguments to find a EmploymentContractTemplate
+     * @example
+     * // Get one EmploymentContractTemplate
+     * const employmentContractTemplate = await prisma.employmentContractTemplate.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EmploymentContractTemplateFindUniqueOrThrowArgs>(args: SelectSubset<T, EmploymentContractTemplateFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EmploymentContractTemplateClient<$Result.GetResult<Prisma.$EmploymentContractTemplatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmploymentContractTemplate that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentContractTemplateFindFirstArgs} args - Arguments to find a EmploymentContractTemplate
+     * @example
+     * // Get one EmploymentContractTemplate
+     * const employmentContractTemplate = await prisma.employmentContractTemplate.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EmploymentContractTemplateFindFirstArgs>(args?: SelectSubset<T, EmploymentContractTemplateFindFirstArgs<ExtArgs>>): Prisma__EmploymentContractTemplateClient<$Result.GetResult<Prisma.$EmploymentContractTemplatePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmploymentContractTemplate that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentContractTemplateFindFirstOrThrowArgs} args - Arguments to find a EmploymentContractTemplate
+     * @example
+     * // Get one EmploymentContractTemplate
+     * const employmentContractTemplate = await prisma.employmentContractTemplate.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EmploymentContractTemplateFindFirstOrThrowArgs>(args?: SelectSubset<T, EmploymentContractTemplateFindFirstOrThrowArgs<ExtArgs>>): Prisma__EmploymentContractTemplateClient<$Result.GetResult<Prisma.$EmploymentContractTemplatePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EmploymentContractTemplates that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentContractTemplateFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EmploymentContractTemplates
+     * const employmentContractTemplates = await prisma.employmentContractTemplate.findMany()
+     * 
+     * // Get first 10 EmploymentContractTemplates
+     * const employmentContractTemplates = await prisma.employmentContractTemplate.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const employmentContractTemplateWithIdOnly = await prisma.employmentContractTemplate.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EmploymentContractTemplateFindManyArgs>(args?: SelectSubset<T, EmploymentContractTemplateFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentContractTemplatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EmploymentContractTemplate.
+     * @param {EmploymentContractTemplateCreateArgs} args - Arguments to create a EmploymentContractTemplate.
+     * @example
+     * // Create one EmploymentContractTemplate
+     * const EmploymentContractTemplate = await prisma.employmentContractTemplate.create({
+     *   data: {
+     *     // ... data to create a EmploymentContractTemplate
+     *   }
+     * })
+     * 
+     */
+    create<T extends EmploymentContractTemplateCreateArgs>(args: SelectSubset<T, EmploymentContractTemplateCreateArgs<ExtArgs>>): Prisma__EmploymentContractTemplateClient<$Result.GetResult<Prisma.$EmploymentContractTemplatePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EmploymentContractTemplates.
+     * @param {EmploymentContractTemplateCreateManyArgs} args - Arguments to create many EmploymentContractTemplates.
+     * @example
+     * // Create many EmploymentContractTemplates
+     * const employmentContractTemplate = await prisma.employmentContractTemplate.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EmploymentContractTemplateCreateManyArgs>(args?: SelectSubset<T, EmploymentContractTemplateCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EmploymentContractTemplates and returns the data saved in the database.
+     * @param {EmploymentContractTemplateCreateManyAndReturnArgs} args - Arguments to create many EmploymentContractTemplates.
+     * @example
+     * // Create many EmploymentContractTemplates
+     * const employmentContractTemplate = await prisma.employmentContractTemplate.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EmploymentContractTemplates and only return the `id`
+     * const employmentContractTemplateWithIdOnly = await prisma.employmentContractTemplate.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EmploymentContractTemplateCreateManyAndReturnArgs>(args?: SelectSubset<T, EmploymentContractTemplateCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentContractTemplatePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EmploymentContractTemplate.
+     * @param {EmploymentContractTemplateDeleteArgs} args - Arguments to delete one EmploymentContractTemplate.
+     * @example
+     * // Delete one EmploymentContractTemplate
+     * const EmploymentContractTemplate = await prisma.employmentContractTemplate.delete({
+     *   where: {
+     *     // ... filter to delete one EmploymentContractTemplate
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EmploymentContractTemplateDeleteArgs>(args: SelectSubset<T, EmploymentContractTemplateDeleteArgs<ExtArgs>>): Prisma__EmploymentContractTemplateClient<$Result.GetResult<Prisma.$EmploymentContractTemplatePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EmploymentContractTemplate.
+     * @param {EmploymentContractTemplateUpdateArgs} args - Arguments to update one EmploymentContractTemplate.
+     * @example
+     * // Update one EmploymentContractTemplate
+     * const employmentContractTemplate = await prisma.employmentContractTemplate.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EmploymentContractTemplateUpdateArgs>(args: SelectSubset<T, EmploymentContractTemplateUpdateArgs<ExtArgs>>): Prisma__EmploymentContractTemplateClient<$Result.GetResult<Prisma.$EmploymentContractTemplatePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EmploymentContractTemplates.
+     * @param {EmploymentContractTemplateDeleteManyArgs} args - Arguments to filter EmploymentContractTemplates to delete.
+     * @example
+     * // Delete a few EmploymentContractTemplates
+     * const { count } = await prisma.employmentContractTemplate.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EmploymentContractTemplateDeleteManyArgs>(args?: SelectSubset<T, EmploymentContractTemplateDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmploymentContractTemplates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentContractTemplateUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EmploymentContractTemplates
+     * const employmentContractTemplate = await prisma.employmentContractTemplate.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EmploymentContractTemplateUpdateManyArgs>(args: SelectSubset<T, EmploymentContractTemplateUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmploymentContractTemplates and returns the data updated in the database.
+     * @param {EmploymentContractTemplateUpdateManyAndReturnArgs} args - Arguments to update many EmploymentContractTemplates.
+     * @example
+     * // Update many EmploymentContractTemplates
+     * const employmentContractTemplate = await prisma.employmentContractTemplate.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EmploymentContractTemplates and only return the `id`
+     * const employmentContractTemplateWithIdOnly = await prisma.employmentContractTemplate.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EmploymentContractTemplateUpdateManyAndReturnArgs>(args: SelectSubset<T, EmploymentContractTemplateUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentContractTemplatePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EmploymentContractTemplate.
+     * @param {EmploymentContractTemplateUpsertArgs} args - Arguments to update or create a EmploymentContractTemplate.
+     * @example
+     * // Update or create a EmploymentContractTemplate
+     * const employmentContractTemplate = await prisma.employmentContractTemplate.upsert({
+     *   create: {
+     *     // ... data to create a EmploymentContractTemplate
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EmploymentContractTemplate we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EmploymentContractTemplateUpsertArgs>(args: SelectSubset<T, EmploymentContractTemplateUpsertArgs<ExtArgs>>): Prisma__EmploymentContractTemplateClient<$Result.GetResult<Prisma.$EmploymentContractTemplatePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EmploymentContractTemplates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentContractTemplateCountArgs} args - Arguments to filter EmploymentContractTemplates to count.
+     * @example
+     * // Count the number of EmploymentContractTemplates
+     * const count = await prisma.employmentContractTemplate.count({
+     *   where: {
+     *     // ... the filter for the EmploymentContractTemplates we want to count
+     *   }
+     * })
+    **/
+    count<T extends EmploymentContractTemplateCountArgs>(
+      args?: Subset<T, EmploymentContractTemplateCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EmploymentContractTemplateCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EmploymentContractTemplate.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentContractTemplateAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EmploymentContractTemplateAggregateArgs>(args: Subset<T, EmploymentContractTemplateAggregateArgs>): Prisma.PrismaPromise<GetEmploymentContractTemplateAggregateType<T>>
+
+    /**
+     * Group by EmploymentContractTemplate.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentContractTemplateGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EmploymentContractTemplateGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EmploymentContractTemplateGroupByArgs['orderBy'] }
+        : { orderBy?: EmploymentContractTemplateGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EmploymentContractTemplateGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEmploymentContractTemplateGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EmploymentContractTemplate model
+   */
+  readonly fields: EmploymentContractTemplateFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EmploymentContractTemplate.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EmploymentContractTemplateClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EmploymentContractTemplate model
+   */
+  interface EmploymentContractTemplateFieldRefs {
+    readonly id: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly name: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly description: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly contractType: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly workStartTime: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly workEndTime: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly breakMinutes: FieldRef<"EmploymentContractTemplate", 'Int'>
+    readonly holidayRule: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly leaveRule: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly wageType: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly baseSalary: FieldRef<"EmploymentContractTemplate", 'Int'>
+    readonly allowanceNote: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly payClosingDay: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly payDate: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly bonusRule: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly raiseRule: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly probationPeriod: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly contractRenewalRule: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly contractRenewalCriteria: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly retirementRule: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly retirementAllowanceRule: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly socialInsuranceRule: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly employmentInsuranceRule: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly consultationDesk: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly workRuleLocation: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly remarks: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly isActive: FieldRef<"EmploymentContractTemplate", 'Boolean'>
+    readonly createdAt: FieldRef<"EmploymentContractTemplate", 'DateTime'>
+    readonly updatedAt: FieldRef<"EmploymentContractTemplate", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EmploymentContractTemplate findUnique
+   */
+  export type EmploymentContractTemplateFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractTemplate
+     */
+    select?: EmploymentContractTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContractTemplate
+     */
+    omit?: EmploymentContractTemplateOmit<ExtArgs> | null
+    /**
+     * Filter, which EmploymentContractTemplate to fetch.
+     */
+    where: EmploymentContractTemplateWhereUniqueInput
+  }
+
+  /**
+   * EmploymentContractTemplate findUniqueOrThrow
+   */
+  export type EmploymentContractTemplateFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractTemplate
+     */
+    select?: EmploymentContractTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContractTemplate
+     */
+    omit?: EmploymentContractTemplateOmit<ExtArgs> | null
+    /**
+     * Filter, which EmploymentContractTemplate to fetch.
+     */
+    where: EmploymentContractTemplateWhereUniqueInput
+  }
+
+  /**
+   * EmploymentContractTemplate findFirst
+   */
+  export type EmploymentContractTemplateFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractTemplate
+     */
+    select?: EmploymentContractTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContractTemplate
+     */
+    omit?: EmploymentContractTemplateOmit<ExtArgs> | null
+    /**
+     * Filter, which EmploymentContractTemplate to fetch.
+     */
+    where?: EmploymentContractTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmploymentContractTemplates to fetch.
+     */
+    orderBy?: EmploymentContractTemplateOrderByWithRelationInput | EmploymentContractTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmploymentContractTemplates.
+     */
+    cursor?: EmploymentContractTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmploymentContractTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmploymentContractTemplates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmploymentContractTemplates.
+     */
+    distinct?: EmploymentContractTemplateScalarFieldEnum | EmploymentContractTemplateScalarFieldEnum[]
+  }
+
+  /**
+   * EmploymentContractTemplate findFirstOrThrow
+   */
+  export type EmploymentContractTemplateFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractTemplate
+     */
+    select?: EmploymentContractTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContractTemplate
+     */
+    omit?: EmploymentContractTemplateOmit<ExtArgs> | null
+    /**
+     * Filter, which EmploymentContractTemplate to fetch.
+     */
+    where?: EmploymentContractTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmploymentContractTemplates to fetch.
+     */
+    orderBy?: EmploymentContractTemplateOrderByWithRelationInput | EmploymentContractTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmploymentContractTemplates.
+     */
+    cursor?: EmploymentContractTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmploymentContractTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmploymentContractTemplates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmploymentContractTemplates.
+     */
+    distinct?: EmploymentContractTemplateScalarFieldEnum | EmploymentContractTemplateScalarFieldEnum[]
+  }
+
+  /**
+   * EmploymentContractTemplate findMany
+   */
+  export type EmploymentContractTemplateFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractTemplate
+     */
+    select?: EmploymentContractTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContractTemplate
+     */
+    omit?: EmploymentContractTemplateOmit<ExtArgs> | null
+    /**
+     * Filter, which EmploymentContractTemplates to fetch.
+     */
+    where?: EmploymentContractTemplateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmploymentContractTemplates to fetch.
+     */
+    orderBy?: EmploymentContractTemplateOrderByWithRelationInput | EmploymentContractTemplateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EmploymentContractTemplates.
+     */
+    cursor?: EmploymentContractTemplateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmploymentContractTemplates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmploymentContractTemplates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmploymentContractTemplates.
+     */
+    distinct?: EmploymentContractTemplateScalarFieldEnum | EmploymentContractTemplateScalarFieldEnum[]
+  }
+
+  /**
+   * EmploymentContractTemplate create
+   */
+  export type EmploymentContractTemplateCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractTemplate
+     */
+    select?: EmploymentContractTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContractTemplate
+     */
+    omit?: EmploymentContractTemplateOmit<ExtArgs> | null
+    /**
+     * The data needed to create a EmploymentContractTemplate.
+     */
+    data: XOR<EmploymentContractTemplateCreateInput, EmploymentContractTemplateUncheckedCreateInput>
+  }
+
+  /**
+   * EmploymentContractTemplate createMany
+   */
+  export type EmploymentContractTemplateCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EmploymentContractTemplates.
+     */
+    data: EmploymentContractTemplateCreateManyInput | EmploymentContractTemplateCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EmploymentContractTemplate createManyAndReturn
+   */
+  export type EmploymentContractTemplateCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractTemplate
+     */
+    select?: EmploymentContractTemplateSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContractTemplate
+     */
+    omit?: EmploymentContractTemplateOmit<ExtArgs> | null
+    /**
+     * The data used to create many EmploymentContractTemplates.
+     */
+    data: EmploymentContractTemplateCreateManyInput | EmploymentContractTemplateCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EmploymentContractTemplate update
+   */
+  export type EmploymentContractTemplateUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractTemplate
+     */
+    select?: EmploymentContractTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContractTemplate
+     */
+    omit?: EmploymentContractTemplateOmit<ExtArgs> | null
+    /**
+     * The data needed to update a EmploymentContractTemplate.
+     */
+    data: XOR<EmploymentContractTemplateUpdateInput, EmploymentContractTemplateUncheckedUpdateInput>
+    /**
+     * Choose, which EmploymentContractTemplate to update.
+     */
+    where: EmploymentContractTemplateWhereUniqueInput
+  }
+
+  /**
+   * EmploymentContractTemplate updateMany
+   */
+  export type EmploymentContractTemplateUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EmploymentContractTemplates.
+     */
+    data: XOR<EmploymentContractTemplateUpdateManyMutationInput, EmploymentContractTemplateUncheckedUpdateManyInput>
+    /**
+     * Filter which EmploymentContractTemplates to update
+     */
+    where?: EmploymentContractTemplateWhereInput
+    /**
+     * Limit how many EmploymentContractTemplates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmploymentContractTemplate updateManyAndReturn
+   */
+  export type EmploymentContractTemplateUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractTemplate
+     */
+    select?: EmploymentContractTemplateSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContractTemplate
+     */
+    omit?: EmploymentContractTemplateOmit<ExtArgs> | null
+    /**
+     * The data used to update EmploymentContractTemplates.
+     */
+    data: XOR<EmploymentContractTemplateUpdateManyMutationInput, EmploymentContractTemplateUncheckedUpdateManyInput>
+    /**
+     * Filter which EmploymentContractTemplates to update
+     */
+    where?: EmploymentContractTemplateWhereInput
+    /**
+     * Limit how many EmploymentContractTemplates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmploymentContractTemplate upsert
+   */
+  export type EmploymentContractTemplateUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractTemplate
+     */
+    select?: EmploymentContractTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContractTemplate
+     */
+    omit?: EmploymentContractTemplateOmit<ExtArgs> | null
+    /**
+     * The filter to search for the EmploymentContractTemplate to update in case it exists.
+     */
+    where: EmploymentContractTemplateWhereUniqueInput
+    /**
+     * In case the EmploymentContractTemplate found by the `where` argument doesn't exist, create a new EmploymentContractTemplate with this data.
+     */
+    create: XOR<EmploymentContractTemplateCreateInput, EmploymentContractTemplateUncheckedCreateInput>
+    /**
+     * In case the EmploymentContractTemplate was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EmploymentContractTemplateUpdateInput, EmploymentContractTemplateUncheckedUpdateInput>
+  }
+
+  /**
+   * EmploymentContractTemplate delete
+   */
+  export type EmploymentContractTemplateDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractTemplate
+     */
+    select?: EmploymentContractTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContractTemplate
+     */
+    omit?: EmploymentContractTemplateOmit<ExtArgs> | null
+    /**
+     * Filter which EmploymentContractTemplate to delete.
+     */
+    where: EmploymentContractTemplateWhereUniqueInput
+  }
+
+  /**
+   * EmploymentContractTemplate deleteMany
+   */
+  export type EmploymentContractTemplateDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmploymentContractTemplates to delete
+     */
+    where?: EmploymentContractTemplateWhereInput
+    /**
+     * Limit how many EmploymentContractTemplates to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmploymentContractTemplate without action
+   */
+  export type EmploymentContractTemplateDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractTemplate
+     */
+    select?: EmploymentContractTemplateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContractTemplate
+     */
+    omit?: EmploymentContractTemplateOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model EmploymentContractConsent
+   */
+
+  export type AggregateEmploymentContractConsent = {
+    _count: EmploymentContractConsentCountAggregateOutputType | null
+    _min: EmploymentContractConsentMinAggregateOutputType | null
+    _max: EmploymentContractConsentMaxAggregateOutputType | null
+  }
+
+  export type EmploymentContractConsentMinAggregateOutputType = {
+    id: string | null
+    employmentContractId: string | null
+    signerName: string | null
+    consentedAt: Date | null
+    ipAddress: string | null
+    userAgent: string | null
+    createdAt: Date | null
+    dependentId: string | null
+  }
+
+  export type EmploymentContractConsentMaxAggregateOutputType = {
+    id: string | null
+    employmentContractId: string | null
+    signerName: string | null
+    consentedAt: Date | null
+    ipAddress: string | null
+    userAgent: string | null
+    createdAt: Date | null
+    dependentId: string | null
+  }
+
+  export type EmploymentContractConsentCountAggregateOutputType = {
+    id: number
+    employmentContractId: number
+    signerName: number
+    consentedAt: number
+    ipAddress: number
+    userAgent: number
+    createdAt: number
+    dependentId: number
+    _all: number
+  }
+
+
+  export type EmploymentContractConsentMinAggregateInputType = {
+    id?: true
+    employmentContractId?: true
+    signerName?: true
+    consentedAt?: true
+    ipAddress?: true
+    userAgent?: true
+    createdAt?: true
+    dependentId?: true
+  }
+
+  export type EmploymentContractConsentMaxAggregateInputType = {
+    id?: true
+    employmentContractId?: true
+    signerName?: true
+    consentedAt?: true
+    ipAddress?: true
+    userAgent?: true
+    createdAt?: true
+    dependentId?: true
+  }
+
+  export type EmploymentContractConsentCountAggregateInputType = {
+    id?: true
+    employmentContractId?: true
+    signerName?: true
+    consentedAt?: true
+    ipAddress?: true
+    userAgent?: true
+    createdAt?: true
+    dependentId?: true
+    _all?: true
+  }
+
+  export type EmploymentContractConsentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmploymentContractConsent to aggregate.
+     */
+    where?: EmploymentContractConsentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmploymentContractConsents to fetch.
+     */
+    orderBy?: EmploymentContractConsentOrderByWithRelationInput | EmploymentContractConsentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EmploymentContractConsentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmploymentContractConsents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmploymentContractConsents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EmploymentContractConsents
+    **/
+    _count?: true | EmploymentContractConsentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EmploymentContractConsentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EmploymentContractConsentMaxAggregateInputType
+  }
+
+  export type GetEmploymentContractConsentAggregateType<T extends EmploymentContractConsentAggregateArgs> = {
+        [P in keyof T & keyof AggregateEmploymentContractConsent]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEmploymentContractConsent[P]>
+      : GetScalarType<T[P], AggregateEmploymentContractConsent[P]>
+  }
+
+
+
+
+  export type EmploymentContractConsentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmploymentContractConsentWhereInput
+    orderBy?: EmploymentContractConsentOrderByWithAggregationInput | EmploymentContractConsentOrderByWithAggregationInput[]
+    by: EmploymentContractConsentScalarFieldEnum[] | EmploymentContractConsentScalarFieldEnum
+    having?: EmploymentContractConsentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EmploymentContractConsentCountAggregateInputType | true
+    _min?: EmploymentContractConsentMinAggregateInputType
+    _max?: EmploymentContractConsentMaxAggregateInputType
+  }
+
+  export type EmploymentContractConsentGroupByOutputType = {
+    id: string
+    employmentContractId: string
+    signerName: string
+    consentedAt: Date
+    ipAddress: string | null
+    userAgent: string | null
+    createdAt: Date
+    dependentId: string | null
+    _count: EmploymentContractConsentCountAggregateOutputType | null
+    _min: EmploymentContractConsentMinAggregateOutputType | null
+    _max: EmploymentContractConsentMaxAggregateOutputType | null
+  }
+
+  type GetEmploymentContractConsentGroupByPayload<T extends EmploymentContractConsentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EmploymentContractConsentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EmploymentContractConsentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EmploymentContractConsentGroupByOutputType[P]>
+            : GetScalarType<T[P], EmploymentContractConsentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EmploymentContractConsentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employmentContractId?: boolean
+    signerName?: boolean
+    consentedAt?: boolean
+    ipAddress?: boolean
+    userAgent?: boolean
+    createdAt?: boolean
+    dependentId?: boolean
+    employmentContract?: boolean | EmploymentContractDefaultArgs<ExtArgs>
+    dependent?: boolean | EmploymentContractConsent$dependentArgs<ExtArgs>
+  }, ExtArgs["result"]["employmentContractConsent"]>
+
+  export type EmploymentContractConsentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employmentContractId?: boolean
+    signerName?: boolean
+    consentedAt?: boolean
+    ipAddress?: boolean
+    userAgent?: boolean
+    createdAt?: boolean
+    dependentId?: boolean
+    employmentContract?: boolean | EmploymentContractDefaultArgs<ExtArgs>
+    dependent?: boolean | EmploymentContractConsent$dependentArgs<ExtArgs>
+  }, ExtArgs["result"]["employmentContractConsent"]>
+
+  export type EmploymentContractConsentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employmentContractId?: boolean
+    signerName?: boolean
+    consentedAt?: boolean
+    ipAddress?: boolean
+    userAgent?: boolean
+    createdAt?: boolean
+    dependentId?: boolean
+    employmentContract?: boolean | EmploymentContractDefaultArgs<ExtArgs>
+    dependent?: boolean | EmploymentContractConsent$dependentArgs<ExtArgs>
+  }, ExtArgs["result"]["employmentContractConsent"]>
+
+  export type EmploymentContractConsentSelectScalar = {
+    id?: boolean
+    employmentContractId?: boolean
+    signerName?: boolean
+    consentedAt?: boolean
+    ipAddress?: boolean
+    userAgent?: boolean
+    createdAt?: boolean
+    dependentId?: boolean
+  }
+
+  export type EmploymentContractConsentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employmentContractId" | "signerName" | "consentedAt" | "ipAddress" | "userAgent" | "createdAt" | "dependentId", ExtArgs["result"]["employmentContractConsent"]>
+  export type EmploymentContractConsentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employmentContract?: boolean | EmploymentContractDefaultArgs<ExtArgs>
+    dependent?: boolean | EmploymentContractConsent$dependentArgs<ExtArgs>
+  }
+  export type EmploymentContractConsentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employmentContract?: boolean | EmploymentContractDefaultArgs<ExtArgs>
+    dependent?: boolean | EmploymentContractConsent$dependentArgs<ExtArgs>
+  }
+  export type EmploymentContractConsentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employmentContract?: boolean | EmploymentContractDefaultArgs<ExtArgs>
+    dependent?: boolean | EmploymentContractConsent$dependentArgs<ExtArgs>
+  }
+
+  export type $EmploymentContractConsentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EmploymentContractConsent"
+    objects: {
+      employmentContract: Prisma.$EmploymentContractPayload<ExtArgs>
+      dependent: Prisma.$DependentPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      employmentContractId: string
+      signerName: string
+      consentedAt: Date
+      ipAddress: string | null
+      userAgent: string | null
+      createdAt: Date
+      dependentId: string | null
+    }, ExtArgs["result"]["employmentContractConsent"]>
+    composites: {}
+  }
+
+  type EmploymentContractConsentGetPayload<S extends boolean | null | undefined | EmploymentContractConsentDefaultArgs> = $Result.GetResult<Prisma.$EmploymentContractConsentPayload, S>
+
+  type EmploymentContractConsentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EmploymentContractConsentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EmploymentContractConsentCountAggregateInputType | true
+    }
+
+  export interface EmploymentContractConsentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EmploymentContractConsent'], meta: { name: 'EmploymentContractConsent' } }
+    /**
+     * Find zero or one EmploymentContractConsent that matches the filter.
+     * @param {EmploymentContractConsentFindUniqueArgs} args - Arguments to find a EmploymentContractConsent
+     * @example
+     * // Get one EmploymentContractConsent
+     * const employmentContractConsent = await prisma.employmentContractConsent.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EmploymentContractConsentFindUniqueArgs>(args: SelectSubset<T, EmploymentContractConsentFindUniqueArgs<ExtArgs>>): Prisma__EmploymentContractConsentClient<$Result.GetResult<Prisma.$EmploymentContractConsentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EmploymentContractConsent that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EmploymentContractConsentFindUniqueOrThrowArgs} args - Arguments to find a EmploymentContractConsent
+     * @example
+     * // Get one EmploymentContractConsent
+     * const employmentContractConsent = await prisma.employmentContractConsent.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EmploymentContractConsentFindUniqueOrThrowArgs>(args: SelectSubset<T, EmploymentContractConsentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EmploymentContractConsentClient<$Result.GetResult<Prisma.$EmploymentContractConsentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmploymentContractConsent that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentContractConsentFindFirstArgs} args - Arguments to find a EmploymentContractConsent
+     * @example
+     * // Get one EmploymentContractConsent
+     * const employmentContractConsent = await prisma.employmentContractConsent.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EmploymentContractConsentFindFirstArgs>(args?: SelectSubset<T, EmploymentContractConsentFindFirstArgs<ExtArgs>>): Prisma__EmploymentContractConsentClient<$Result.GetResult<Prisma.$EmploymentContractConsentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmploymentContractConsent that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentContractConsentFindFirstOrThrowArgs} args - Arguments to find a EmploymentContractConsent
+     * @example
+     * // Get one EmploymentContractConsent
+     * const employmentContractConsent = await prisma.employmentContractConsent.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EmploymentContractConsentFindFirstOrThrowArgs>(args?: SelectSubset<T, EmploymentContractConsentFindFirstOrThrowArgs<ExtArgs>>): Prisma__EmploymentContractConsentClient<$Result.GetResult<Prisma.$EmploymentContractConsentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EmploymentContractConsents that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentContractConsentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EmploymentContractConsents
+     * const employmentContractConsents = await prisma.employmentContractConsent.findMany()
+     * 
+     * // Get first 10 EmploymentContractConsents
+     * const employmentContractConsents = await prisma.employmentContractConsent.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const employmentContractConsentWithIdOnly = await prisma.employmentContractConsent.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EmploymentContractConsentFindManyArgs>(args?: SelectSubset<T, EmploymentContractConsentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentContractConsentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EmploymentContractConsent.
+     * @param {EmploymentContractConsentCreateArgs} args - Arguments to create a EmploymentContractConsent.
+     * @example
+     * // Create one EmploymentContractConsent
+     * const EmploymentContractConsent = await prisma.employmentContractConsent.create({
+     *   data: {
+     *     // ... data to create a EmploymentContractConsent
+     *   }
+     * })
+     * 
+     */
+    create<T extends EmploymentContractConsentCreateArgs>(args: SelectSubset<T, EmploymentContractConsentCreateArgs<ExtArgs>>): Prisma__EmploymentContractConsentClient<$Result.GetResult<Prisma.$EmploymentContractConsentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EmploymentContractConsents.
+     * @param {EmploymentContractConsentCreateManyArgs} args - Arguments to create many EmploymentContractConsents.
+     * @example
+     * // Create many EmploymentContractConsents
+     * const employmentContractConsent = await prisma.employmentContractConsent.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EmploymentContractConsentCreateManyArgs>(args?: SelectSubset<T, EmploymentContractConsentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EmploymentContractConsents and returns the data saved in the database.
+     * @param {EmploymentContractConsentCreateManyAndReturnArgs} args - Arguments to create many EmploymentContractConsents.
+     * @example
+     * // Create many EmploymentContractConsents
+     * const employmentContractConsent = await prisma.employmentContractConsent.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EmploymentContractConsents and only return the `id`
+     * const employmentContractConsentWithIdOnly = await prisma.employmentContractConsent.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EmploymentContractConsentCreateManyAndReturnArgs>(args?: SelectSubset<T, EmploymentContractConsentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentContractConsentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EmploymentContractConsent.
+     * @param {EmploymentContractConsentDeleteArgs} args - Arguments to delete one EmploymentContractConsent.
+     * @example
+     * // Delete one EmploymentContractConsent
+     * const EmploymentContractConsent = await prisma.employmentContractConsent.delete({
+     *   where: {
+     *     // ... filter to delete one EmploymentContractConsent
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EmploymentContractConsentDeleteArgs>(args: SelectSubset<T, EmploymentContractConsentDeleteArgs<ExtArgs>>): Prisma__EmploymentContractConsentClient<$Result.GetResult<Prisma.$EmploymentContractConsentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EmploymentContractConsent.
+     * @param {EmploymentContractConsentUpdateArgs} args - Arguments to update one EmploymentContractConsent.
+     * @example
+     * // Update one EmploymentContractConsent
+     * const employmentContractConsent = await prisma.employmentContractConsent.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EmploymentContractConsentUpdateArgs>(args: SelectSubset<T, EmploymentContractConsentUpdateArgs<ExtArgs>>): Prisma__EmploymentContractConsentClient<$Result.GetResult<Prisma.$EmploymentContractConsentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EmploymentContractConsents.
+     * @param {EmploymentContractConsentDeleteManyArgs} args - Arguments to filter EmploymentContractConsents to delete.
+     * @example
+     * // Delete a few EmploymentContractConsents
+     * const { count } = await prisma.employmentContractConsent.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EmploymentContractConsentDeleteManyArgs>(args?: SelectSubset<T, EmploymentContractConsentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmploymentContractConsents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentContractConsentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EmploymentContractConsents
+     * const employmentContractConsent = await prisma.employmentContractConsent.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EmploymentContractConsentUpdateManyArgs>(args: SelectSubset<T, EmploymentContractConsentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmploymentContractConsents and returns the data updated in the database.
+     * @param {EmploymentContractConsentUpdateManyAndReturnArgs} args - Arguments to update many EmploymentContractConsents.
+     * @example
+     * // Update many EmploymentContractConsents
+     * const employmentContractConsent = await prisma.employmentContractConsent.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EmploymentContractConsents and only return the `id`
+     * const employmentContractConsentWithIdOnly = await prisma.employmentContractConsent.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EmploymentContractConsentUpdateManyAndReturnArgs>(args: SelectSubset<T, EmploymentContractConsentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentContractConsentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EmploymentContractConsent.
+     * @param {EmploymentContractConsentUpsertArgs} args - Arguments to update or create a EmploymentContractConsent.
+     * @example
+     * // Update or create a EmploymentContractConsent
+     * const employmentContractConsent = await prisma.employmentContractConsent.upsert({
+     *   create: {
+     *     // ... data to create a EmploymentContractConsent
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EmploymentContractConsent we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EmploymentContractConsentUpsertArgs>(args: SelectSubset<T, EmploymentContractConsentUpsertArgs<ExtArgs>>): Prisma__EmploymentContractConsentClient<$Result.GetResult<Prisma.$EmploymentContractConsentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EmploymentContractConsents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentContractConsentCountArgs} args - Arguments to filter EmploymentContractConsents to count.
+     * @example
+     * // Count the number of EmploymentContractConsents
+     * const count = await prisma.employmentContractConsent.count({
+     *   where: {
+     *     // ... the filter for the EmploymentContractConsents we want to count
+     *   }
+     * })
+    **/
+    count<T extends EmploymentContractConsentCountArgs>(
+      args?: Subset<T, EmploymentContractConsentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EmploymentContractConsentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EmploymentContractConsent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentContractConsentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EmploymentContractConsentAggregateArgs>(args: Subset<T, EmploymentContractConsentAggregateArgs>): Prisma.PrismaPromise<GetEmploymentContractConsentAggregateType<T>>
+
+    /**
+     * Group by EmploymentContractConsent.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentContractConsentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EmploymentContractConsentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EmploymentContractConsentGroupByArgs['orderBy'] }
+        : { orderBy?: EmploymentContractConsentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EmploymentContractConsentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEmploymentContractConsentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EmploymentContractConsent model
+   */
+  readonly fields: EmploymentContractConsentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EmploymentContractConsent.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EmploymentContractConsentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    employmentContract<T extends EmploymentContractDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmploymentContractDefaultArgs<ExtArgs>>): Prisma__EmploymentContractClient<$Result.GetResult<Prisma.$EmploymentContractPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    dependent<T extends EmploymentContractConsent$dependentArgs<ExtArgs> = {}>(args?: Subset<T, EmploymentContractConsent$dependentArgs<ExtArgs>>): Prisma__DependentClient<$Result.GetResult<Prisma.$DependentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EmploymentContractConsent model
+   */
+  interface EmploymentContractConsentFieldRefs {
+    readonly id: FieldRef<"EmploymentContractConsent", 'String'>
+    readonly employmentContractId: FieldRef<"EmploymentContractConsent", 'String'>
+    readonly signerName: FieldRef<"EmploymentContractConsent", 'String'>
+    readonly consentedAt: FieldRef<"EmploymentContractConsent", 'DateTime'>
+    readonly ipAddress: FieldRef<"EmploymentContractConsent", 'String'>
+    readonly userAgent: FieldRef<"EmploymentContractConsent", 'String'>
+    readonly createdAt: FieldRef<"EmploymentContractConsent", 'DateTime'>
+    readonly dependentId: FieldRef<"EmploymentContractConsent", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EmploymentContractConsent findUnique
+   */
+  export type EmploymentContractConsentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractConsent
+     */
+    select?: EmploymentContractConsentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContractConsent
+     */
+    omit?: EmploymentContractConsentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractConsentInclude<ExtArgs> | null
+    /**
+     * Filter, which EmploymentContractConsent to fetch.
+     */
+    where: EmploymentContractConsentWhereUniqueInput
+  }
+
+  /**
+   * EmploymentContractConsent findUniqueOrThrow
+   */
+  export type EmploymentContractConsentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractConsent
+     */
+    select?: EmploymentContractConsentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContractConsent
+     */
+    omit?: EmploymentContractConsentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractConsentInclude<ExtArgs> | null
+    /**
+     * Filter, which EmploymentContractConsent to fetch.
+     */
+    where: EmploymentContractConsentWhereUniqueInput
+  }
+
+  /**
+   * EmploymentContractConsent findFirst
+   */
+  export type EmploymentContractConsentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractConsent
+     */
+    select?: EmploymentContractConsentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContractConsent
+     */
+    omit?: EmploymentContractConsentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractConsentInclude<ExtArgs> | null
+    /**
+     * Filter, which EmploymentContractConsent to fetch.
+     */
+    where?: EmploymentContractConsentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmploymentContractConsents to fetch.
+     */
+    orderBy?: EmploymentContractConsentOrderByWithRelationInput | EmploymentContractConsentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmploymentContractConsents.
+     */
+    cursor?: EmploymentContractConsentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmploymentContractConsents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmploymentContractConsents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmploymentContractConsents.
+     */
+    distinct?: EmploymentContractConsentScalarFieldEnum | EmploymentContractConsentScalarFieldEnum[]
+  }
+
+  /**
+   * EmploymentContractConsent findFirstOrThrow
+   */
+  export type EmploymentContractConsentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractConsent
+     */
+    select?: EmploymentContractConsentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContractConsent
+     */
+    omit?: EmploymentContractConsentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractConsentInclude<ExtArgs> | null
+    /**
+     * Filter, which EmploymentContractConsent to fetch.
+     */
+    where?: EmploymentContractConsentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmploymentContractConsents to fetch.
+     */
+    orderBy?: EmploymentContractConsentOrderByWithRelationInput | EmploymentContractConsentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmploymentContractConsents.
+     */
+    cursor?: EmploymentContractConsentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmploymentContractConsents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmploymentContractConsents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmploymentContractConsents.
+     */
+    distinct?: EmploymentContractConsentScalarFieldEnum | EmploymentContractConsentScalarFieldEnum[]
+  }
+
+  /**
+   * EmploymentContractConsent findMany
+   */
+  export type EmploymentContractConsentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractConsent
+     */
+    select?: EmploymentContractConsentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContractConsent
+     */
+    omit?: EmploymentContractConsentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractConsentInclude<ExtArgs> | null
+    /**
+     * Filter, which EmploymentContractConsents to fetch.
+     */
+    where?: EmploymentContractConsentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmploymentContractConsents to fetch.
+     */
+    orderBy?: EmploymentContractConsentOrderByWithRelationInput | EmploymentContractConsentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EmploymentContractConsents.
+     */
+    cursor?: EmploymentContractConsentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmploymentContractConsents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmploymentContractConsents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmploymentContractConsents.
+     */
+    distinct?: EmploymentContractConsentScalarFieldEnum | EmploymentContractConsentScalarFieldEnum[]
+  }
+
+  /**
+   * EmploymentContractConsent create
+   */
+  export type EmploymentContractConsentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractConsent
+     */
+    select?: EmploymentContractConsentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContractConsent
+     */
+    omit?: EmploymentContractConsentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractConsentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EmploymentContractConsent.
+     */
+    data: XOR<EmploymentContractConsentCreateInput, EmploymentContractConsentUncheckedCreateInput>
+  }
+
+  /**
+   * EmploymentContractConsent createMany
+   */
+  export type EmploymentContractConsentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EmploymentContractConsents.
+     */
+    data: EmploymentContractConsentCreateManyInput | EmploymentContractConsentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EmploymentContractConsent createManyAndReturn
+   */
+  export type EmploymentContractConsentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractConsent
+     */
+    select?: EmploymentContractConsentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContractConsent
+     */
+    omit?: EmploymentContractConsentOmit<ExtArgs> | null
+    /**
+     * The data used to create many EmploymentContractConsents.
+     */
+    data: EmploymentContractConsentCreateManyInput | EmploymentContractConsentCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractConsentIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EmploymentContractConsent update
+   */
+  export type EmploymentContractConsentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractConsent
+     */
+    select?: EmploymentContractConsentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContractConsent
+     */
+    omit?: EmploymentContractConsentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractConsentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EmploymentContractConsent.
+     */
+    data: XOR<EmploymentContractConsentUpdateInput, EmploymentContractConsentUncheckedUpdateInput>
+    /**
+     * Choose, which EmploymentContractConsent to update.
+     */
+    where: EmploymentContractConsentWhereUniqueInput
+  }
+
+  /**
+   * EmploymentContractConsent updateMany
+   */
+  export type EmploymentContractConsentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EmploymentContractConsents.
+     */
+    data: XOR<EmploymentContractConsentUpdateManyMutationInput, EmploymentContractConsentUncheckedUpdateManyInput>
+    /**
+     * Filter which EmploymentContractConsents to update
+     */
+    where?: EmploymentContractConsentWhereInput
+    /**
+     * Limit how many EmploymentContractConsents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmploymentContractConsent updateManyAndReturn
+   */
+  export type EmploymentContractConsentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractConsent
+     */
+    select?: EmploymentContractConsentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContractConsent
+     */
+    omit?: EmploymentContractConsentOmit<ExtArgs> | null
+    /**
+     * The data used to update EmploymentContractConsents.
+     */
+    data: XOR<EmploymentContractConsentUpdateManyMutationInput, EmploymentContractConsentUncheckedUpdateManyInput>
+    /**
+     * Filter which EmploymentContractConsents to update
+     */
+    where?: EmploymentContractConsentWhereInput
+    /**
+     * Limit how many EmploymentContractConsents to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractConsentIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EmploymentContractConsent upsert
+   */
+  export type EmploymentContractConsentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractConsent
+     */
+    select?: EmploymentContractConsentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContractConsent
+     */
+    omit?: EmploymentContractConsentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractConsentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EmploymentContractConsent to update in case it exists.
+     */
+    where: EmploymentContractConsentWhereUniqueInput
+    /**
+     * In case the EmploymentContractConsent found by the `where` argument doesn't exist, create a new EmploymentContractConsent with this data.
+     */
+    create: XOR<EmploymentContractConsentCreateInput, EmploymentContractConsentUncheckedCreateInput>
+    /**
+     * In case the EmploymentContractConsent was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EmploymentContractConsentUpdateInput, EmploymentContractConsentUncheckedUpdateInput>
+  }
+
+  /**
+   * EmploymentContractConsent delete
+   */
+  export type EmploymentContractConsentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractConsent
+     */
+    select?: EmploymentContractConsentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContractConsent
+     */
+    omit?: EmploymentContractConsentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractConsentInclude<ExtArgs> | null
+    /**
+     * Filter which EmploymentContractConsent to delete.
+     */
+    where: EmploymentContractConsentWhereUniqueInput
+  }
+
+  /**
+   * EmploymentContractConsent deleteMany
+   */
+  export type EmploymentContractConsentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmploymentContractConsents to delete
+     */
+    where?: EmploymentContractConsentWhereInput
+    /**
+     * Limit how many EmploymentContractConsents to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmploymentContractConsent.dependent
+   */
+  export type EmploymentContractConsent$dependentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Dependent
+     */
+    select?: DependentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Dependent
+     */
+    omit?: DependentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DependentInclude<ExtArgs> | null
+    where?: DependentWhereInput
+  }
+
+  /**
+   * EmploymentContractConsent without action
+   */
+  export type EmploymentContractConsentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentContractConsent
+     */
+    select?: EmploymentContractConsentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentContractConsent
+     */
+    omit?: EmploymentContractConsentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmploymentContractConsentInclude<ExtArgs> | null
   }
 
 
@@ -32143,13 +36217,88 @@ export namespace Prisma {
     bonusRule: 'bonusRule',
     raiseRule: 'raiseRule',
     probationPeriod: 'probationPeriod',
+    contractRenewalRule: 'contractRenewalRule',
+    contractRenewalCriteria: 'contractRenewalCriteria',
     retirementRule: 'retirementRule',
+    retirementAllowanceRule: 'retirementAllowanceRule',
+    socialInsuranceRule: 'socialInsuranceRule',
+    employmentInsuranceRule: 'employmentInsuranceRule',
+    consultationDesk: 'consultationDesk',
+    workRuleLocation: 'workRuleLocation',
     remarks: 'remarks',
+    version: 'version',
+    isCurrent: 'isCurrent',
+    supersededAt: 'supersededAt',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
   export type EmploymentContractScalarFieldEnum = (typeof EmploymentContractScalarFieldEnum)[keyof typeof EmploymentContractScalarFieldEnum]
+
+
+  export const CompanySettingScalarFieldEnum: {
+    id: 'id',
+    companyName: 'companyName',
+    postalCode: 'postalCode',
+    address: 'address',
+    phoneNumber: 'phoneNumber',
+    representativeName: 'representativeName',
+    consultationDesk: 'consultationDesk',
+    workRuleLocation: 'workRuleLocation',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type CompanySettingScalarFieldEnum = (typeof CompanySettingScalarFieldEnum)[keyof typeof CompanySettingScalarFieldEnum]
+
+
+  export const EmploymentContractTemplateScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    description: 'description',
+    contractType: 'contractType',
+    workStartTime: 'workStartTime',
+    workEndTime: 'workEndTime',
+    breakMinutes: 'breakMinutes',
+    holidayRule: 'holidayRule',
+    leaveRule: 'leaveRule',
+    wageType: 'wageType',
+    baseSalary: 'baseSalary',
+    allowanceNote: 'allowanceNote',
+    payClosingDay: 'payClosingDay',
+    payDate: 'payDate',
+    bonusRule: 'bonusRule',
+    raiseRule: 'raiseRule',
+    probationPeriod: 'probationPeriod',
+    contractRenewalRule: 'contractRenewalRule',
+    contractRenewalCriteria: 'contractRenewalCriteria',
+    retirementRule: 'retirementRule',
+    retirementAllowanceRule: 'retirementAllowanceRule',
+    socialInsuranceRule: 'socialInsuranceRule',
+    employmentInsuranceRule: 'employmentInsuranceRule',
+    consultationDesk: 'consultationDesk',
+    workRuleLocation: 'workRuleLocation',
+    remarks: 'remarks',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type EmploymentContractTemplateScalarFieldEnum = (typeof EmploymentContractTemplateScalarFieldEnum)[keyof typeof EmploymentContractTemplateScalarFieldEnum]
+
+
+  export const EmploymentContractConsentScalarFieldEnum: {
+    id: 'id',
+    employmentContractId: 'employmentContractId',
+    signerName: 'signerName',
+    consentedAt: 'consentedAt',
+    ipAddress: 'ipAddress',
+    userAgent: 'userAgent',
+    createdAt: 'createdAt',
+    dependentId: 'dependentId'
+  };
+
+  export type EmploymentContractConsentScalarFieldEnum = (typeof EmploymentContractConsentScalarFieldEnum)[keyof typeof EmploymentContractConsentScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -32871,6 +37020,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Dependent"> | Date | string
     updatedAt?: DateTimeFilter<"Dependent"> | Date | string
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+    consents?: EmploymentContractConsentListRelationFilter
   }
 
   export type DependentOrderByWithRelationInput = {
@@ -32890,6 +37040,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     employee?: EmployeeOrderByWithRelationInput
+    consents?: EmploymentContractConsentOrderByRelationAggregateInput
   }
 
   export type DependentWhereUniqueInput = Prisma.AtLeast<{
@@ -32912,6 +37063,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Dependent"> | Date | string
     updatedAt?: DateTimeFilter<"Dependent"> | Date | string
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+    consents?: EmploymentContractConsentListRelationFilter
   }, "id">
 
   export type DependentOrderByWithAggregationInput = {
@@ -34379,11 +38531,22 @@ export namespace Prisma {
     bonusRule?: StringNullableFilter<"EmploymentContract"> | string | null
     raiseRule?: StringNullableFilter<"EmploymentContract"> | string | null
     probationPeriod?: StringNullableFilter<"EmploymentContract"> | string | null
+    contractRenewalRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    contractRenewalCriteria?: StringNullableFilter<"EmploymentContract"> | string | null
     retirementRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    retirementAllowanceRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    socialInsuranceRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    employmentInsuranceRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    consultationDesk?: StringNullableFilter<"EmploymentContract"> | string | null
+    workRuleLocation?: StringNullableFilter<"EmploymentContract"> | string | null
     remarks?: StringNullableFilter<"EmploymentContract"> | string | null
+    version?: IntFilter<"EmploymentContract"> | number
+    isCurrent?: BoolFilter<"EmploymentContract"> | boolean
+    supersededAt?: DateTimeNullableFilter<"EmploymentContract"> | Date | string | null
     createdAt?: DateTimeFilter<"EmploymentContract"> | Date | string
     updatedAt?: DateTimeFilter<"EmploymentContract"> | Date | string
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+    employmentContractConsents?: EmploymentContractConsentListRelationFilter
   }
 
   export type EmploymentContractOrderByWithRelationInput = {
@@ -34407,11 +38570,22 @@ export namespace Prisma {
     bonusRule?: SortOrderInput | SortOrder
     raiseRule?: SortOrderInput | SortOrder
     probationPeriod?: SortOrderInput | SortOrder
+    contractRenewalRule?: SortOrderInput | SortOrder
+    contractRenewalCriteria?: SortOrderInput | SortOrder
     retirementRule?: SortOrderInput | SortOrder
+    retirementAllowanceRule?: SortOrderInput | SortOrder
+    socialInsuranceRule?: SortOrderInput | SortOrder
+    employmentInsuranceRule?: SortOrderInput | SortOrder
+    consultationDesk?: SortOrderInput | SortOrder
+    workRuleLocation?: SortOrderInput | SortOrder
     remarks?: SortOrderInput | SortOrder
+    version?: SortOrder
+    isCurrent?: SortOrder
+    supersededAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     employee?: EmployeeOrderByWithRelationInput
+    employmentContractConsents?: EmploymentContractConsentOrderByRelationAggregateInput
   }
 
   export type EmploymentContractWhereUniqueInput = Prisma.AtLeast<{
@@ -34438,11 +38612,22 @@ export namespace Prisma {
     bonusRule?: StringNullableFilter<"EmploymentContract"> | string | null
     raiseRule?: StringNullableFilter<"EmploymentContract"> | string | null
     probationPeriod?: StringNullableFilter<"EmploymentContract"> | string | null
+    contractRenewalRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    contractRenewalCriteria?: StringNullableFilter<"EmploymentContract"> | string | null
     retirementRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    retirementAllowanceRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    socialInsuranceRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    employmentInsuranceRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    consultationDesk?: StringNullableFilter<"EmploymentContract"> | string | null
+    workRuleLocation?: StringNullableFilter<"EmploymentContract"> | string | null
     remarks?: StringNullableFilter<"EmploymentContract"> | string | null
+    version?: IntFilter<"EmploymentContract"> | number
+    isCurrent?: BoolFilter<"EmploymentContract"> | boolean
+    supersededAt?: DateTimeNullableFilter<"EmploymentContract"> | Date | string | null
     createdAt?: DateTimeFilter<"EmploymentContract"> | Date | string
     updatedAt?: DateTimeFilter<"EmploymentContract"> | Date | string
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+    employmentContractConsents?: EmploymentContractConsentListRelationFilter
   }, "id">
 
   export type EmploymentContractOrderByWithAggregationInput = {
@@ -34466,8 +38651,18 @@ export namespace Prisma {
     bonusRule?: SortOrderInput | SortOrder
     raiseRule?: SortOrderInput | SortOrder
     probationPeriod?: SortOrderInput | SortOrder
+    contractRenewalRule?: SortOrderInput | SortOrder
+    contractRenewalCriteria?: SortOrderInput | SortOrder
     retirementRule?: SortOrderInput | SortOrder
+    retirementAllowanceRule?: SortOrderInput | SortOrder
+    socialInsuranceRule?: SortOrderInput | SortOrder
+    employmentInsuranceRule?: SortOrderInput | SortOrder
+    consultationDesk?: SortOrderInput | SortOrder
+    workRuleLocation?: SortOrderInput | SortOrder
     remarks?: SortOrderInput | SortOrder
+    version?: SortOrder
+    isCurrent?: SortOrder
+    supersededAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: EmploymentContractCountOrderByAggregateInput
@@ -34501,10 +38696,344 @@ export namespace Prisma {
     bonusRule?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
     raiseRule?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
     probationPeriod?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
+    contractRenewalRule?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
+    contractRenewalCriteria?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
     retirementRule?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
+    retirementAllowanceRule?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
+    socialInsuranceRule?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
+    employmentInsuranceRule?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
+    consultationDesk?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
+    workRuleLocation?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
     remarks?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
+    version?: IntWithAggregatesFilter<"EmploymentContract"> | number
+    isCurrent?: BoolWithAggregatesFilter<"EmploymentContract"> | boolean
+    supersededAt?: DateTimeNullableWithAggregatesFilter<"EmploymentContract"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"EmploymentContract"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"EmploymentContract"> | Date | string
+  }
+
+  export type CompanySettingWhereInput = {
+    AND?: CompanySettingWhereInput | CompanySettingWhereInput[]
+    OR?: CompanySettingWhereInput[]
+    NOT?: CompanySettingWhereInput | CompanySettingWhereInput[]
+    id?: StringFilter<"CompanySetting"> | string
+    companyName?: StringFilter<"CompanySetting"> | string
+    postalCode?: StringNullableFilter<"CompanySetting"> | string | null
+    address?: StringNullableFilter<"CompanySetting"> | string | null
+    phoneNumber?: StringNullableFilter<"CompanySetting"> | string | null
+    representativeName?: StringNullableFilter<"CompanySetting"> | string | null
+    consultationDesk?: StringNullableFilter<"CompanySetting"> | string | null
+    workRuleLocation?: StringNullableFilter<"CompanySetting"> | string | null
+    createdAt?: DateTimeFilter<"CompanySetting"> | Date | string
+    updatedAt?: DateTimeFilter<"CompanySetting"> | Date | string
+  }
+
+  export type CompanySettingOrderByWithRelationInput = {
+    id?: SortOrder
+    companyName?: SortOrder
+    postalCode?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    representativeName?: SortOrderInput | SortOrder
+    consultationDesk?: SortOrderInput | SortOrder
+    workRuleLocation?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CompanySettingWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CompanySettingWhereInput | CompanySettingWhereInput[]
+    OR?: CompanySettingWhereInput[]
+    NOT?: CompanySettingWhereInput | CompanySettingWhereInput[]
+    companyName?: StringFilter<"CompanySetting"> | string
+    postalCode?: StringNullableFilter<"CompanySetting"> | string | null
+    address?: StringNullableFilter<"CompanySetting"> | string | null
+    phoneNumber?: StringNullableFilter<"CompanySetting"> | string | null
+    representativeName?: StringNullableFilter<"CompanySetting"> | string | null
+    consultationDesk?: StringNullableFilter<"CompanySetting"> | string | null
+    workRuleLocation?: StringNullableFilter<"CompanySetting"> | string | null
+    createdAt?: DateTimeFilter<"CompanySetting"> | Date | string
+    updatedAt?: DateTimeFilter<"CompanySetting"> | Date | string
+  }, "id">
+
+  export type CompanySettingOrderByWithAggregationInput = {
+    id?: SortOrder
+    companyName?: SortOrder
+    postalCode?: SortOrderInput | SortOrder
+    address?: SortOrderInput | SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    representativeName?: SortOrderInput | SortOrder
+    consultationDesk?: SortOrderInput | SortOrder
+    workRuleLocation?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: CompanySettingCountOrderByAggregateInput
+    _max?: CompanySettingMaxOrderByAggregateInput
+    _min?: CompanySettingMinOrderByAggregateInput
+  }
+
+  export type CompanySettingScalarWhereWithAggregatesInput = {
+    AND?: CompanySettingScalarWhereWithAggregatesInput | CompanySettingScalarWhereWithAggregatesInput[]
+    OR?: CompanySettingScalarWhereWithAggregatesInput[]
+    NOT?: CompanySettingScalarWhereWithAggregatesInput | CompanySettingScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CompanySetting"> | string
+    companyName?: StringWithAggregatesFilter<"CompanySetting"> | string
+    postalCode?: StringNullableWithAggregatesFilter<"CompanySetting"> | string | null
+    address?: StringNullableWithAggregatesFilter<"CompanySetting"> | string | null
+    phoneNumber?: StringNullableWithAggregatesFilter<"CompanySetting"> | string | null
+    representativeName?: StringNullableWithAggregatesFilter<"CompanySetting"> | string | null
+    consultationDesk?: StringNullableWithAggregatesFilter<"CompanySetting"> | string | null
+    workRuleLocation?: StringNullableWithAggregatesFilter<"CompanySetting"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"CompanySetting"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"CompanySetting"> | Date | string
+  }
+
+  export type EmploymentContractTemplateWhereInput = {
+    AND?: EmploymentContractTemplateWhereInput | EmploymentContractTemplateWhereInput[]
+    OR?: EmploymentContractTemplateWhereInput[]
+    NOT?: EmploymentContractTemplateWhereInput | EmploymentContractTemplateWhereInput[]
+    id?: StringFilter<"EmploymentContractTemplate"> | string
+    name?: StringFilter<"EmploymentContractTemplate"> | string
+    description?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    contractType?: StringFilter<"EmploymentContractTemplate"> | string
+    workStartTime?: StringFilter<"EmploymentContractTemplate"> | string
+    workEndTime?: StringFilter<"EmploymentContractTemplate"> | string
+    breakMinutes?: IntFilter<"EmploymentContractTemplate"> | number
+    holidayRule?: StringFilter<"EmploymentContractTemplate"> | string
+    leaveRule?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    wageType?: StringFilter<"EmploymentContractTemplate"> | string
+    baseSalary?: IntNullableFilter<"EmploymentContractTemplate"> | number | null
+    allowanceNote?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    payClosingDay?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    payDate?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    bonusRule?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    raiseRule?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    probationPeriod?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    contractRenewalRule?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    contractRenewalCriteria?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    retirementRule?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    retirementAllowanceRule?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    socialInsuranceRule?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    employmentInsuranceRule?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    consultationDesk?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    workRuleLocation?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    remarks?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    isActive?: BoolFilter<"EmploymentContractTemplate"> | boolean
+    createdAt?: DateTimeFilter<"EmploymentContractTemplate"> | Date | string
+    updatedAt?: DateTimeFilter<"EmploymentContractTemplate"> | Date | string
+  }
+
+  export type EmploymentContractTemplateOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    contractType?: SortOrder
+    workStartTime?: SortOrder
+    workEndTime?: SortOrder
+    breakMinutes?: SortOrder
+    holidayRule?: SortOrder
+    leaveRule?: SortOrderInput | SortOrder
+    wageType?: SortOrder
+    baseSalary?: SortOrderInput | SortOrder
+    allowanceNote?: SortOrderInput | SortOrder
+    payClosingDay?: SortOrderInput | SortOrder
+    payDate?: SortOrderInput | SortOrder
+    bonusRule?: SortOrderInput | SortOrder
+    raiseRule?: SortOrderInput | SortOrder
+    probationPeriod?: SortOrderInput | SortOrder
+    contractRenewalRule?: SortOrderInput | SortOrder
+    contractRenewalCriteria?: SortOrderInput | SortOrder
+    retirementRule?: SortOrderInput | SortOrder
+    retirementAllowanceRule?: SortOrderInput | SortOrder
+    socialInsuranceRule?: SortOrderInput | SortOrder
+    employmentInsuranceRule?: SortOrderInput | SortOrder
+    consultationDesk?: SortOrderInput | SortOrder
+    workRuleLocation?: SortOrderInput | SortOrder
+    remarks?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EmploymentContractTemplateWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: EmploymentContractTemplateWhereInput | EmploymentContractTemplateWhereInput[]
+    OR?: EmploymentContractTemplateWhereInput[]
+    NOT?: EmploymentContractTemplateWhereInput | EmploymentContractTemplateWhereInput[]
+    name?: StringFilter<"EmploymentContractTemplate"> | string
+    description?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    contractType?: StringFilter<"EmploymentContractTemplate"> | string
+    workStartTime?: StringFilter<"EmploymentContractTemplate"> | string
+    workEndTime?: StringFilter<"EmploymentContractTemplate"> | string
+    breakMinutes?: IntFilter<"EmploymentContractTemplate"> | number
+    holidayRule?: StringFilter<"EmploymentContractTemplate"> | string
+    leaveRule?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    wageType?: StringFilter<"EmploymentContractTemplate"> | string
+    baseSalary?: IntNullableFilter<"EmploymentContractTemplate"> | number | null
+    allowanceNote?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    payClosingDay?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    payDate?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    bonusRule?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    raiseRule?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    probationPeriod?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    contractRenewalRule?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    contractRenewalCriteria?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    retirementRule?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    retirementAllowanceRule?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    socialInsuranceRule?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    employmentInsuranceRule?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    consultationDesk?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    workRuleLocation?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    remarks?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    isActive?: BoolFilter<"EmploymentContractTemplate"> | boolean
+    createdAt?: DateTimeFilter<"EmploymentContractTemplate"> | Date | string
+    updatedAt?: DateTimeFilter<"EmploymentContractTemplate"> | Date | string
+  }, "id">
+
+  export type EmploymentContractTemplateOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    contractType?: SortOrder
+    workStartTime?: SortOrder
+    workEndTime?: SortOrder
+    breakMinutes?: SortOrder
+    holidayRule?: SortOrder
+    leaveRule?: SortOrderInput | SortOrder
+    wageType?: SortOrder
+    baseSalary?: SortOrderInput | SortOrder
+    allowanceNote?: SortOrderInput | SortOrder
+    payClosingDay?: SortOrderInput | SortOrder
+    payDate?: SortOrderInput | SortOrder
+    bonusRule?: SortOrderInput | SortOrder
+    raiseRule?: SortOrderInput | SortOrder
+    probationPeriod?: SortOrderInput | SortOrder
+    contractRenewalRule?: SortOrderInput | SortOrder
+    contractRenewalCriteria?: SortOrderInput | SortOrder
+    retirementRule?: SortOrderInput | SortOrder
+    retirementAllowanceRule?: SortOrderInput | SortOrder
+    socialInsuranceRule?: SortOrderInput | SortOrder
+    employmentInsuranceRule?: SortOrderInput | SortOrder
+    consultationDesk?: SortOrderInput | SortOrder
+    workRuleLocation?: SortOrderInput | SortOrder
+    remarks?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: EmploymentContractTemplateCountOrderByAggregateInput
+    _avg?: EmploymentContractTemplateAvgOrderByAggregateInput
+    _max?: EmploymentContractTemplateMaxOrderByAggregateInput
+    _min?: EmploymentContractTemplateMinOrderByAggregateInput
+    _sum?: EmploymentContractTemplateSumOrderByAggregateInput
+  }
+
+  export type EmploymentContractTemplateScalarWhereWithAggregatesInput = {
+    AND?: EmploymentContractTemplateScalarWhereWithAggregatesInput | EmploymentContractTemplateScalarWhereWithAggregatesInput[]
+    OR?: EmploymentContractTemplateScalarWhereWithAggregatesInput[]
+    NOT?: EmploymentContractTemplateScalarWhereWithAggregatesInput | EmploymentContractTemplateScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EmploymentContractTemplate"> | string
+    name?: StringWithAggregatesFilter<"EmploymentContractTemplate"> | string
+    description?: StringNullableWithAggregatesFilter<"EmploymentContractTemplate"> | string | null
+    contractType?: StringWithAggregatesFilter<"EmploymentContractTemplate"> | string
+    workStartTime?: StringWithAggregatesFilter<"EmploymentContractTemplate"> | string
+    workEndTime?: StringWithAggregatesFilter<"EmploymentContractTemplate"> | string
+    breakMinutes?: IntWithAggregatesFilter<"EmploymentContractTemplate"> | number
+    holidayRule?: StringWithAggregatesFilter<"EmploymentContractTemplate"> | string
+    leaveRule?: StringNullableWithAggregatesFilter<"EmploymentContractTemplate"> | string | null
+    wageType?: StringWithAggregatesFilter<"EmploymentContractTemplate"> | string
+    baseSalary?: IntNullableWithAggregatesFilter<"EmploymentContractTemplate"> | number | null
+    allowanceNote?: StringNullableWithAggregatesFilter<"EmploymentContractTemplate"> | string | null
+    payClosingDay?: StringNullableWithAggregatesFilter<"EmploymentContractTemplate"> | string | null
+    payDate?: StringNullableWithAggregatesFilter<"EmploymentContractTemplate"> | string | null
+    bonusRule?: StringNullableWithAggregatesFilter<"EmploymentContractTemplate"> | string | null
+    raiseRule?: StringNullableWithAggregatesFilter<"EmploymentContractTemplate"> | string | null
+    probationPeriod?: StringNullableWithAggregatesFilter<"EmploymentContractTemplate"> | string | null
+    contractRenewalRule?: StringNullableWithAggregatesFilter<"EmploymentContractTemplate"> | string | null
+    contractRenewalCriteria?: StringNullableWithAggregatesFilter<"EmploymentContractTemplate"> | string | null
+    retirementRule?: StringNullableWithAggregatesFilter<"EmploymentContractTemplate"> | string | null
+    retirementAllowanceRule?: StringNullableWithAggregatesFilter<"EmploymentContractTemplate"> | string | null
+    socialInsuranceRule?: StringNullableWithAggregatesFilter<"EmploymentContractTemplate"> | string | null
+    employmentInsuranceRule?: StringNullableWithAggregatesFilter<"EmploymentContractTemplate"> | string | null
+    consultationDesk?: StringNullableWithAggregatesFilter<"EmploymentContractTemplate"> | string | null
+    workRuleLocation?: StringNullableWithAggregatesFilter<"EmploymentContractTemplate"> | string | null
+    remarks?: StringNullableWithAggregatesFilter<"EmploymentContractTemplate"> | string | null
+    isActive?: BoolWithAggregatesFilter<"EmploymentContractTemplate"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"EmploymentContractTemplate"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"EmploymentContractTemplate"> | Date | string
+  }
+
+  export type EmploymentContractConsentWhereInput = {
+    AND?: EmploymentContractConsentWhereInput | EmploymentContractConsentWhereInput[]
+    OR?: EmploymentContractConsentWhereInput[]
+    NOT?: EmploymentContractConsentWhereInput | EmploymentContractConsentWhereInput[]
+    id?: StringFilter<"EmploymentContractConsent"> | string
+    employmentContractId?: StringFilter<"EmploymentContractConsent"> | string
+    signerName?: StringFilter<"EmploymentContractConsent"> | string
+    consentedAt?: DateTimeFilter<"EmploymentContractConsent"> | Date | string
+    ipAddress?: StringNullableFilter<"EmploymentContractConsent"> | string | null
+    userAgent?: StringNullableFilter<"EmploymentContractConsent"> | string | null
+    createdAt?: DateTimeFilter<"EmploymentContractConsent"> | Date | string
+    dependentId?: StringNullableFilter<"EmploymentContractConsent"> | string | null
+    employmentContract?: XOR<EmploymentContractScalarRelationFilter, EmploymentContractWhereInput>
+    dependent?: XOR<DependentNullableScalarRelationFilter, DependentWhereInput> | null
+  }
+
+  export type EmploymentContractConsentOrderByWithRelationInput = {
+    id?: SortOrder
+    employmentContractId?: SortOrder
+    signerName?: SortOrder
+    consentedAt?: SortOrder
+    ipAddress?: SortOrderInput | SortOrder
+    userAgent?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    dependentId?: SortOrderInput | SortOrder
+    employmentContract?: EmploymentContractOrderByWithRelationInput
+    dependent?: DependentOrderByWithRelationInput
+  }
+
+  export type EmploymentContractConsentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: EmploymentContractConsentWhereInput | EmploymentContractConsentWhereInput[]
+    OR?: EmploymentContractConsentWhereInput[]
+    NOT?: EmploymentContractConsentWhereInput | EmploymentContractConsentWhereInput[]
+    employmentContractId?: StringFilter<"EmploymentContractConsent"> | string
+    signerName?: StringFilter<"EmploymentContractConsent"> | string
+    consentedAt?: DateTimeFilter<"EmploymentContractConsent"> | Date | string
+    ipAddress?: StringNullableFilter<"EmploymentContractConsent"> | string | null
+    userAgent?: StringNullableFilter<"EmploymentContractConsent"> | string | null
+    createdAt?: DateTimeFilter<"EmploymentContractConsent"> | Date | string
+    dependentId?: StringNullableFilter<"EmploymentContractConsent"> | string | null
+    employmentContract?: XOR<EmploymentContractScalarRelationFilter, EmploymentContractWhereInput>
+    dependent?: XOR<DependentNullableScalarRelationFilter, DependentWhereInput> | null
+  }, "id">
+
+  export type EmploymentContractConsentOrderByWithAggregationInput = {
+    id?: SortOrder
+    employmentContractId?: SortOrder
+    signerName?: SortOrder
+    consentedAt?: SortOrder
+    ipAddress?: SortOrderInput | SortOrder
+    userAgent?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    dependentId?: SortOrderInput | SortOrder
+    _count?: EmploymentContractConsentCountOrderByAggregateInput
+    _max?: EmploymentContractConsentMaxOrderByAggregateInput
+    _min?: EmploymentContractConsentMinOrderByAggregateInput
+  }
+
+  export type EmploymentContractConsentScalarWhereWithAggregatesInput = {
+    AND?: EmploymentContractConsentScalarWhereWithAggregatesInput | EmploymentContractConsentScalarWhereWithAggregatesInput[]
+    OR?: EmploymentContractConsentScalarWhereWithAggregatesInput[]
+    NOT?: EmploymentContractConsentScalarWhereWithAggregatesInput | EmploymentContractConsentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EmploymentContractConsent"> | string
+    employmentContractId?: StringWithAggregatesFilter<"EmploymentContractConsent"> | string
+    signerName?: StringWithAggregatesFilter<"EmploymentContractConsent"> | string
+    consentedAt?: DateTimeWithAggregatesFilter<"EmploymentContractConsent"> | Date | string
+    ipAddress?: StringNullableWithAggregatesFilter<"EmploymentContractConsent"> | string | null
+    userAgent?: StringNullableWithAggregatesFilter<"EmploymentContractConsent"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"EmploymentContractConsent"> | Date | string
+    dependentId?: StringNullableWithAggregatesFilter<"EmploymentContractConsent"> | string | null
   }
 
   export type UserCreateInput = {
@@ -35009,6 +39538,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     employee: EmployeeCreateNestedOneWithoutDependentsInput
+    consents?: EmploymentContractConsentCreateNestedManyWithoutDependentInput
   }
 
   export type DependentUncheckedCreateInput = {
@@ -35027,6 +39557,7 @@ export namespace Prisma {
     endedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    consents?: EmploymentContractConsentUncheckedCreateNestedManyWithoutDependentInput
   }
 
   export type DependentUpdateInput = {
@@ -35045,6 +39576,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employee?: EmployeeUpdateOneRequiredWithoutDependentsNestedInput
+    consents?: EmploymentContractConsentUpdateManyWithoutDependentNestedInput
   }
 
   export type DependentUncheckedUpdateInput = {
@@ -35063,6 +39595,7 @@ export namespace Prisma {
     endedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    consents?: EmploymentContractConsentUncheckedUpdateManyWithoutDependentNestedInput
   }
 
   export type DependentCreateManyInput = {
@@ -36662,11 +41195,22 @@ export namespace Prisma {
     bonusRule?: string | null
     raiseRule?: string | null
     probationPeriod?: string | null
+    contractRenewalRule?: string | null
+    contractRenewalCriteria?: string | null
     retirementRule?: string | null
+    retirementAllowanceRule?: string | null
+    socialInsuranceRule?: string | null
+    employmentInsuranceRule?: string | null
+    consultationDesk?: string | null
+    workRuleLocation?: string | null
     remarks?: string | null
+    version?: number
+    isCurrent?: boolean
+    supersededAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     employee: EmployeeCreateNestedOneWithoutEmploymentContractsInput
+    employmentContractConsents?: EmploymentContractConsentCreateNestedManyWithoutEmploymentContractInput
   }
 
   export type EmploymentContractUncheckedCreateInput = {
@@ -36690,10 +41234,21 @@ export namespace Prisma {
     bonusRule?: string | null
     raiseRule?: string | null
     probationPeriod?: string | null
+    contractRenewalRule?: string | null
+    contractRenewalCriteria?: string | null
     retirementRule?: string | null
+    retirementAllowanceRule?: string | null
+    socialInsuranceRule?: string | null
+    employmentInsuranceRule?: string | null
+    consultationDesk?: string | null
+    workRuleLocation?: string | null
     remarks?: string | null
+    version?: number
+    isCurrent?: boolean
+    supersededAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    employmentContractConsents?: EmploymentContractConsentUncheckedCreateNestedManyWithoutEmploymentContractInput
   }
 
   export type EmploymentContractUpdateInput = {
@@ -36716,11 +41271,22 @@ export namespace Prisma {
     bonusRule?: NullableStringFieldUpdateOperationsInput | string | null
     raiseRule?: NullableStringFieldUpdateOperationsInput | string | null
     probationPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    contractRenewalRule?: NullableStringFieldUpdateOperationsInput | string | null
+    contractRenewalCriteria?: NullableStringFieldUpdateOperationsInput | string | null
     retirementRule?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementAllowanceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    version?: IntFieldUpdateOperationsInput | number
+    isCurrent?: BoolFieldUpdateOperationsInput | boolean
+    supersededAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employee?: EmployeeUpdateOneRequiredWithoutEmploymentContractsNestedInput
+    employmentContractConsents?: EmploymentContractConsentUpdateManyWithoutEmploymentContractNestedInput
   }
 
   export type EmploymentContractUncheckedUpdateInput = {
@@ -36744,10 +41310,21 @@ export namespace Prisma {
     bonusRule?: NullableStringFieldUpdateOperationsInput | string | null
     raiseRule?: NullableStringFieldUpdateOperationsInput | string | null
     probationPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    contractRenewalRule?: NullableStringFieldUpdateOperationsInput | string | null
+    contractRenewalCriteria?: NullableStringFieldUpdateOperationsInput | string | null
     retirementRule?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementAllowanceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    version?: IntFieldUpdateOperationsInput | number
+    isCurrent?: BoolFieldUpdateOperationsInput | boolean
+    supersededAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employmentContractConsents?: EmploymentContractConsentUncheckedUpdateManyWithoutEmploymentContractNestedInput
   }
 
   export type EmploymentContractCreateManyInput = {
@@ -36771,8 +41348,18 @@ export namespace Prisma {
     bonusRule?: string | null
     raiseRule?: string | null
     probationPeriod?: string | null
+    contractRenewalRule?: string | null
+    contractRenewalCriteria?: string | null
     retirementRule?: string | null
+    retirementAllowanceRule?: string | null
+    socialInsuranceRule?: string | null
+    employmentInsuranceRule?: string | null
+    consultationDesk?: string | null
+    workRuleLocation?: string | null
     remarks?: string | null
+    version?: number
+    isCurrent?: boolean
+    supersededAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -36797,8 +41384,18 @@ export namespace Prisma {
     bonusRule?: NullableStringFieldUpdateOperationsInput | string | null
     raiseRule?: NullableStringFieldUpdateOperationsInput | string | null
     probationPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    contractRenewalRule?: NullableStringFieldUpdateOperationsInput | string | null
+    contractRenewalCriteria?: NullableStringFieldUpdateOperationsInput | string | null
     retirementRule?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementAllowanceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    version?: IntFieldUpdateOperationsInput | number
+    isCurrent?: BoolFieldUpdateOperationsInput | boolean
+    supersededAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -36824,10 +41421,410 @@ export namespace Prisma {
     bonusRule?: NullableStringFieldUpdateOperationsInput | string | null
     raiseRule?: NullableStringFieldUpdateOperationsInput | string | null
     probationPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    contractRenewalRule?: NullableStringFieldUpdateOperationsInput | string | null
+    contractRenewalCriteria?: NullableStringFieldUpdateOperationsInput | string | null
     retirementRule?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementAllowanceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    version?: IntFieldUpdateOperationsInput | number
+    isCurrent?: BoolFieldUpdateOperationsInput | boolean
+    supersededAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CompanySettingCreateInput = {
+    id?: string
+    companyName: string
+    postalCode?: string | null
+    address?: string | null
+    phoneNumber?: string | null
+    representativeName?: string | null
+    consultationDesk?: string | null
+    workRuleLocation?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CompanySettingUncheckedCreateInput = {
+    id?: string
+    companyName: string
+    postalCode?: string | null
+    address?: string | null
+    phoneNumber?: string | null
+    representativeName?: string | null
+    consultationDesk?: string | null
+    workRuleLocation?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CompanySettingUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    companyName?: StringFieldUpdateOperationsInput | string
+    postalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    representativeName?: NullableStringFieldUpdateOperationsInput | string | null
+    consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CompanySettingUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    companyName?: StringFieldUpdateOperationsInput | string
+    postalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    representativeName?: NullableStringFieldUpdateOperationsInput | string | null
+    consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CompanySettingCreateManyInput = {
+    id?: string
+    companyName: string
+    postalCode?: string | null
+    address?: string | null
+    phoneNumber?: string | null
+    representativeName?: string | null
+    consultationDesk?: string | null
+    workRuleLocation?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CompanySettingUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    companyName?: StringFieldUpdateOperationsInput | string
+    postalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    representativeName?: NullableStringFieldUpdateOperationsInput | string | null
+    consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CompanySettingUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    companyName?: StringFieldUpdateOperationsInput | string
+    postalCode?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    representativeName?: NullableStringFieldUpdateOperationsInput | string | null
+    consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmploymentContractTemplateCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    contractType: string
+    workStartTime: string
+    workEndTime: string
+    breakMinutes: number
+    holidayRule: string
+    leaveRule?: string | null
+    wageType: string
+    baseSalary?: number | null
+    allowanceNote?: string | null
+    payClosingDay?: string | null
+    payDate?: string | null
+    bonusRule?: string | null
+    raiseRule?: string | null
+    probationPeriod?: string | null
+    contractRenewalRule?: string | null
+    contractRenewalCriteria?: string | null
+    retirementRule?: string | null
+    retirementAllowanceRule?: string | null
+    socialInsuranceRule?: string | null
+    employmentInsuranceRule?: string | null
+    consultationDesk?: string | null
+    workRuleLocation?: string | null
+    remarks?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EmploymentContractTemplateUncheckedCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    contractType: string
+    workStartTime: string
+    workEndTime: string
+    breakMinutes: number
+    holidayRule: string
+    leaveRule?: string | null
+    wageType: string
+    baseSalary?: number | null
+    allowanceNote?: string | null
+    payClosingDay?: string | null
+    payDate?: string | null
+    bonusRule?: string | null
+    raiseRule?: string | null
+    probationPeriod?: string | null
+    contractRenewalRule?: string | null
+    contractRenewalCriteria?: string | null
+    retirementRule?: string | null
+    retirementAllowanceRule?: string | null
+    socialInsuranceRule?: string | null
+    employmentInsuranceRule?: string | null
+    consultationDesk?: string | null
+    workRuleLocation?: string | null
+    remarks?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EmploymentContractTemplateUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    contractType?: StringFieldUpdateOperationsInput | string
+    workStartTime?: StringFieldUpdateOperationsInput | string
+    workEndTime?: StringFieldUpdateOperationsInput | string
+    breakMinutes?: IntFieldUpdateOperationsInput | number
+    holidayRule?: StringFieldUpdateOperationsInput | string
+    leaveRule?: NullableStringFieldUpdateOperationsInput | string | null
+    wageType?: StringFieldUpdateOperationsInput | string
+    baseSalary?: NullableIntFieldUpdateOperationsInput | number | null
+    allowanceNote?: NullableStringFieldUpdateOperationsInput | string | null
+    payClosingDay?: NullableStringFieldUpdateOperationsInput | string | null
+    payDate?: NullableStringFieldUpdateOperationsInput | string | null
+    bonusRule?: NullableStringFieldUpdateOperationsInput | string | null
+    raiseRule?: NullableStringFieldUpdateOperationsInput | string | null
+    probationPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    contractRenewalRule?: NullableStringFieldUpdateOperationsInput | string | null
+    contractRenewalCriteria?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementRule?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementAllowanceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmploymentContractTemplateUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    contractType?: StringFieldUpdateOperationsInput | string
+    workStartTime?: StringFieldUpdateOperationsInput | string
+    workEndTime?: StringFieldUpdateOperationsInput | string
+    breakMinutes?: IntFieldUpdateOperationsInput | number
+    holidayRule?: StringFieldUpdateOperationsInput | string
+    leaveRule?: NullableStringFieldUpdateOperationsInput | string | null
+    wageType?: StringFieldUpdateOperationsInput | string
+    baseSalary?: NullableIntFieldUpdateOperationsInput | number | null
+    allowanceNote?: NullableStringFieldUpdateOperationsInput | string | null
+    payClosingDay?: NullableStringFieldUpdateOperationsInput | string | null
+    payDate?: NullableStringFieldUpdateOperationsInput | string | null
+    bonusRule?: NullableStringFieldUpdateOperationsInput | string | null
+    raiseRule?: NullableStringFieldUpdateOperationsInput | string | null
+    probationPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    contractRenewalRule?: NullableStringFieldUpdateOperationsInput | string | null
+    contractRenewalCriteria?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementRule?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementAllowanceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmploymentContractTemplateCreateManyInput = {
+    id?: string
+    name: string
+    description?: string | null
+    contractType: string
+    workStartTime: string
+    workEndTime: string
+    breakMinutes: number
+    holidayRule: string
+    leaveRule?: string | null
+    wageType: string
+    baseSalary?: number | null
+    allowanceNote?: string | null
+    payClosingDay?: string | null
+    payDate?: string | null
+    bonusRule?: string | null
+    raiseRule?: string | null
+    probationPeriod?: string | null
+    contractRenewalRule?: string | null
+    contractRenewalCriteria?: string | null
+    retirementRule?: string | null
+    retirementAllowanceRule?: string | null
+    socialInsuranceRule?: string | null
+    employmentInsuranceRule?: string | null
+    consultationDesk?: string | null
+    workRuleLocation?: string | null
+    remarks?: string | null
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EmploymentContractTemplateUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    contractType?: StringFieldUpdateOperationsInput | string
+    workStartTime?: StringFieldUpdateOperationsInput | string
+    workEndTime?: StringFieldUpdateOperationsInput | string
+    breakMinutes?: IntFieldUpdateOperationsInput | number
+    holidayRule?: StringFieldUpdateOperationsInput | string
+    leaveRule?: NullableStringFieldUpdateOperationsInput | string | null
+    wageType?: StringFieldUpdateOperationsInput | string
+    baseSalary?: NullableIntFieldUpdateOperationsInput | number | null
+    allowanceNote?: NullableStringFieldUpdateOperationsInput | string | null
+    payClosingDay?: NullableStringFieldUpdateOperationsInput | string | null
+    payDate?: NullableStringFieldUpdateOperationsInput | string | null
+    bonusRule?: NullableStringFieldUpdateOperationsInput | string | null
+    raiseRule?: NullableStringFieldUpdateOperationsInput | string | null
+    probationPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    contractRenewalRule?: NullableStringFieldUpdateOperationsInput | string | null
+    contractRenewalCriteria?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementRule?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementAllowanceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmploymentContractTemplateUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    contractType?: StringFieldUpdateOperationsInput | string
+    workStartTime?: StringFieldUpdateOperationsInput | string
+    workEndTime?: StringFieldUpdateOperationsInput | string
+    breakMinutes?: IntFieldUpdateOperationsInput | number
+    holidayRule?: StringFieldUpdateOperationsInput | string
+    leaveRule?: NullableStringFieldUpdateOperationsInput | string | null
+    wageType?: StringFieldUpdateOperationsInput | string
+    baseSalary?: NullableIntFieldUpdateOperationsInput | number | null
+    allowanceNote?: NullableStringFieldUpdateOperationsInput | string | null
+    payClosingDay?: NullableStringFieldUpdateOperationsInput | string | null
+    payDate?: NullableStringFieldUpdateOperationsInput | string | null
+    bonusRule?: NullableStringFieldUpdateOperationsInput | string | null
+    raiseRule?: NullableStringFieldUpdateOperationsInput | string | null
+    probationPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    contractRenewalRule?: NullableStringFieldUpdateOperationsInput | string | null
+    contractRenewalCriteria?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementRule?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementAllowanceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmploymentContractConsentCreateInput = {
+    id?: string
+    signerName: string
+    consentedAt?: Date | string
+    ipAddress?: string | null
+    userAgent?: string | null
+    createdAt?: Date | string
+    employmentContract: EmploymentContractCreateNestedOneWithoutEmploymentContractConsentsInput
+    dependent?: DependentCreateNestedOneWithoutConsentsInput
+  }
+
+  export type EmploymentContractConsentUncheckedCreateInput = {
+    id?: string
+    employmentContractId: string
+    signerName: string
+    consentedAt?: Date | string
+    ipAddress?: string | null
+    userAgent?: string | null
+    createdAt?: Date | string
+    dependentId?: string | null
+  }
+
+  export type EmploymentContractConsentUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    signerName?: StringFieldUpdateOperationsInput | string
+    consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employmentContract?: EmploymentContractUpdateOneRequiredWithoutEmploymentContractConsentsNestedInput
+    dependent?: DependentUpdateOneWithoutConsentsNestedInput
+  }
+
+  export type EmploymentContractConsentUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employmentContractId?: StringFieldUpdateOperationsInput | string
+    signerName?: StringFieldUpdateOperationsInput | string
+    consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dependentId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EmploymentContractConsentCreateManyInput = {
+    id?: string
+    employmentContractId: string
+    signerName: string
+    consentedAt?: Date | string
+    ipAddress?: string | null
+    userAgent?: string | null
+    createdAt?: Date | string
+    dependentId?: string | null
+  }
+
+  export type EmploymentContractConsentUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    signerName?: StringFieldUpdateOperationsInput | string
+    consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmploymentContractConsentUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employmentContractId?: StringFieldUpdateOperationsInput | string
+    signerName?: StringFieldUpdateOperationsInput | string
+    consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dependentId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -37371,6 +42368,16 @@ export namespace Prisma {
   export type EmployeeScalarRelationFilter = {
     is?: EmployeeWhereInput
     isNot?: EmployeeWhereInput
+  }
+
+  export type EmploymentContractConsentListRelationFilter = {
+    every?: EmploymentContractConsentWhereInput
+    some?: EmploymentContractConsentWhereInput
+    none?: EmploymentContractConsentWhereInput
+  }
+
+  export type EmploymentContractConsentOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type DependentCountOrderByAggregateInput = {
@@ -38550,8 +43557,18 @@ export namespace Prisma {
     bonusRule?: SortOrder
     raiseRule?: SortOrder
     probationPeriod?: SortOrder
+    contractRenewalRule?: SortOrder
+    contractRenewalCriteria?: SortOrder
     retirementRule?: SortOrder
+    retirementAllowanceRule?: SortOrder
+    socialInsuranceRule?: SortOrder
+    employmentInsuranceRule?: SortOrder
+    consultationDesk?: SortOrder
+    workRuleLocation?: SortOrder
     remarks?: SortOrder
+    version?: SortOrder
+    isCurrent?: SortOrder
+    supersededAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -38559,6 +43576,7 @@ export namespace Prisma {
   export type EmploymentContractAvgOrderByAggregateInput = {
     breakMinutes?: SortOrder
     baseSalary?: SortOrder
+    version?: SortOrder
   }
 
   export type EmploymentContractMaxOrderByAggregateInput = {
@@ -38582,8 +43600,18 @@ export namespace Prisma {
     bonusRule?: SortOrder
     raiseRule?: SortOrder
     probationPeriod?: SortOrder
+    contractRenewalRule?: SortOrder
+    contractRenewalCriteria?: SortOrder
     retirementRule?: SortOrder
+    retirementAllowanceRule?: SortOrder
+    socialInsuranceRule?: SortOrder
+    employmentInsuranceRule?: SortOrder
+    consultationDesk?: SortOrder
+    workRuleLocation?: SortOrder
     remarks?: SortOrder
+    version?: SortOrder
+    isCurrent?: SortOrder
+    supersededAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -38609,8 +43637,18 @@ export namespace Prisma {
     bonusRule?: SortOrder
     raiseRule?: SortOrder
     probationPeriod?: SortOrder
+    contractRenewalRule?: SortOrder
+    contractRenewalCriteria?: SortOrder
     retirementRule?: SortOrder
+    retirementAllowanceRule?: SortOrder
+    socialInsuranceRule?: SortOrder
+    employmentInsuranceRule?: SortOrder
+    consultationDesk?: SortOrder
+    workRuleLocation?: SortOrder
     remarks?: SortOrder
+    version?: SortOrder
+    isCurrent?: SortOrder
+    supersededAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -38618,6 +43656,195 @@ export namespace Prisma {
   export type EmploymentContractSumOrderByAggregateInput = {
     breakMinutes?: SortOrder
     baseSalary?: SortOrder
+    version?: SortOrder
+  }
+
+  export type CompanySettingCountOrderByAggregateInput = {
+    id?: SortOrder
+    companyName?: SortOrder
+    postalCode?: SortOrder
+    address?: SortOrder
+    phoneNumber?: SortOrder
+    representativeName?: SortOrder
+    consultationDesk?: SortOrder
+    workRuleLocation?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CompanySettingMaxOrderByAggregateInput = {
+    id?: SortOrder
+    companyName?: SortOrder
+    postalCode?: SortOrder
+    address?: SortOrder
+    phoneNumber?: SortOrder
+    representativeName?: SortOrder
+    consultationDesk?: SortOrder
+    workRuleLocation?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CompanySettingMinOrderByAggregateInput = {
+    id?: SortOrder
+    companyName?: SortOrder
+    postalCode?: SortOrder
+    address?: SortOrder
+    phoneNumber?: SortOrder
+    representativeName?: SortOrder
+    consultationDesk?: SortOrder
+    workRuleLocation?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EmploymentContractTemplateCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    contractType?: SortOrder
+    workStartTime?: SortOrder
+    workEndTime?: SortOrder
+    breakMinutes?: SortOrder
+    holidayRule?: SortOrder
+    leaveRule?: SortOrder
+    wageType?: SortOrder
+    baseSalary?: SortOrder
+    allowanceNote?: SortOrder
+    payClosingDay?: SortOrder
+    payDate?: SortOrder
+    bonusRule?: SortOrder
+    raiseRule?: SortOrder
+    probationPeriod?: SortOrder
+    contractRenewalRule?: SortOrder
+    contractRenewalCriteria?: SortOrder
+    retirementRule?: SortOrder
+    retirementAllowanceRule?: SortOrder
+    socialInsuranceRule?: SortOrder
+    employmentInsuranceRule?: SortOrder
+    consultationDesk?: SortOrder
+    workRuleLocation?: SortOrder
+    remarks?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EmploymentContractTemplateAvgOrderByAggregateInput = {
+    breakMinutes?: SortOrder
+    baseSalary?: SortOrder
+  }
+
+  export type EmploymentContractTemplateMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    contractType?: SortOrder
+    workStartTime?: SortOrder
+    workEndTime?: SortOrder
+    breakMinutes?: SortOrder
+    holidayRule?: SortOrder
+    leaveRule?: SortOrder
+    wageType?: SortOrder
+    baseSalary?: SortOrder
+    allowanceNote?: SortOrder
+    payClosingDay?: SortOrder
+    payDate?: SortOrder
+    bonusRule?: SortOrder
+    raiseRule?: SortOrder
+    probationPeriod?: SortOrder
+    contractRenewalRule?: SortOrder
+    contractRenewalCriteria?: SortOrder
+    retirementRule?: SortOrder
+    retirementAllowanceRule?: SortOrder
+    socialInsuranceRule?: SortOrder
+    employmentInsuranceRule?: SortOrder
+    consultationDesk?: SortOrder
+    workRuleLocation?: SortOrder
+    remarks?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EmploymentContractTemplateMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    contractType?: SortOrder
+    workStartTime?: SortOrder
+    workEndTime?: SortOrder
+    breakMinutes?: SortOrder
+    holidayRule?: SortOrder
+    leaveRule?: SortOrder
+    wageType?: SortOrder
+    baseSalary?: SortOrder
+    allowanceNote?: SortOrder
+    payClosingDay?: SortOrder
+    payDate?: SortOrder
+    bonusRule?: SortOrder
+    raiseRule?: SortOrder
+    probationPeriod?: SortOrder
+    contractRenewalRule?: SortOrder
+    contractRenewalCriteria?: SortOrder
+    retirementRule?: SortOrder
+    retirementAllowanceRule?: SortOrder
+    socialInsuranceRule?: SortOrder
+    employmentInsuranceRule?: SortOrder
+    consultationDesk?: SortOrder
+    workRuleLocation?: SortOrder
+    remarks?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EmploymentContractTemplateSumOrderByAggregateInput = {
+    breakMinutes?: SortOrder
+    baseSalary?: SortOrder
+  }
+
+  export type EmploymentContractScalarRelationFilter = {
+    is?: EmploymentContractWhereInput
+    isNot?: EmploymentContractWhereInput
+  }
+
+  export type DependentNullableScalarRelationFilter = {
+    is?: DependentWhereInput | null
+    isNot?: DependentWhereInput | null
+  }
+
+  export type EmploymentContractConsentCountOrderByAggregateInput = {
+    id?: SortOrder
+    employmentContractId?: SortOrder
+    signerName?: SortOrder
+    consentedAt?: SortOrder
+    ipAddress?: SortOrder
+    userAgent?: SortOrder
+    createdAt?: SortOrder
+    dependentId?: SortOrder
+  }
+
+  export type EmploymentContractConsentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    employmentContractId?: SortOrder
+    signerName?: SortOrder
+    consentedAt?: SortOrder
+    ipAddress?: SortOrder
+    userAgent?: SortOrder
+    createdAt?: SortOrder
+    dependentId?: SortOrder
+  }
+
+  export type EmploymentContractConsentMinOrderByAggregateInput = {
+    id?: SortOrder
+    employmentContractId?: SortOrder
+    signerName?: SortOrder
+    consentedAt?: SortOrder
+    ipAddress?: SortOrder
+    userAgent?: SortOrder
+    createdAt?: SortOrder
+    dependentId?: SortOrder
   }
 
   export type EmployeeCreateNestedOneWithoutUserInput = {
@@ -39358,6 +44585,20 @@ export namespace Prisma {
     connect?: EmployeeWhereUniqueInput
   }
 
+  export type EmploymentContractConsentCreateNestedManyWithoutDependentInput = {
+    create?: XOR<EmploymentContractConsentCreateWithoutDependentInput, EmploymentContractConsentUncheckedCreateWithoutDependentInput> | EmploymentContractConsentCreateWithoutDependentInput[] | EmploymentContractConsentUncheckedCreateWithoutDependentInput[]
+    connectOrCreate?: EmploymentContractConsentCreateOrConnectWithoutDependentInput | EmploymentContractConsentCreateOrConnectWithoutDependentInput[]
+    createMany?: EmploymentContractConsentCreateManyDependentInputEnvelope
+    connect?: EmploymentContractConsentWhereUniqueInput | EmploymentContractConsentWhereUniqueInput[]
+  }
+
+  export type EmploymentContractConsentUncheckedCreateNestedManyWithoutDependentInput = {
+    create?: XOR<EmploymentContractConsentCreateWithoutDependentInput, EmploymentContractConsentUncheckedCreateWithoutDependentInput> | EmploymentContractConsentCreateWithoutDependentInput[] | EmploymentContractConsentUncheckedCreateWithoutDependentInput[]
+    connectOrCreate?: EmploymentContractConsentCreateOrConnectWithoutDependentInput | EmploymentContractConsentCreateOrConnectWithoutDependentInput[]
+    createMany?: EmploymentContractConsentCreateManyDependentInputEnvelope
+    connect?: EmploymentContractConsentWhereUniqueInput | EmploymentContractConsentWhereUniqueInput[]
+  }
+
   export type NullableIntFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
@@ -39372,6 +44613,34 @@ export namespace Prisma {
     upsert?: EmployeeUpsertWithoutDependentsInput
     connect?: EmployeeWhereUniqueInput
     update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutDependentsInput, EmployeeUpdateWithoutDependentsInput>, EmployeeUncheckedUpdateWithoutDependentsInput>
+  }
+
+  export type EmploymentContractConsentUpdateManyWithoutDependentNestedInput = {
+    create?: XOR<EmploymentContractConsentCreateWithoutDependentInput, EmploymentContractConsentUncheckedCreateWithoutDependentInput> | EmploymentContractConsentCreateWithoutDependentInput[] | EmploymentContractConsentUncheckedCreateWithoutDependentInput[]
+    connectOrCreate?: EmploymentContractConsentCreateOrConnectWithoutDependentInput | EmploymentContractConsentCreateOrConnectWithoutDependentInput[]
+    upsert?: EmploymentContractConsentUpsertWithWhereUniqueWithoutDependentInput | EmploymentContractConsentUpsertWithWhereUniqueWithoutDependentInput[]
+    createMany?: EmploymentContractConsentCreateManyDependentInputEnvelope
+    set?: EmploymentContractConsentWhereUniqueInput | EmploymentContractConsentWhereUniqueInput[]
+    disconnect?: EmploymentContractConsentWhereUniqueInput | EmploymentContractConsentWhereUniqueInput[]
+    delete?: EmploymentContractConsentWhereUniqueInput | EmploymentContractConsentWhereUniqueInput[]
+    connect?: EmploymentContractConsentWhereUniqueInput | EmploymentContractConsentWhereUniqueInput[]
+    update?: EmploymentContractConsentUpdateWithWhereUniqueWithoutDependentInput | EmploymentContractConsentUpdateWithWhereUniqueWithoutDependentInput[]
+    updateMany?: EmploymentContractConsentUpdateManyWithWhereWithoutDependentInput | EmploymentContractConsentUpdateManyWithWhereWithoutDependentInput[]
+    deleteMany?: EmploymentContractConsentScalarWhereInput | EmploymentContractConsentScalarWhereInput[]
+  }
+
+  export type EmploymentContractConsentUncheckedUpdateManyWithoutDependentNestedInput = {
+    create?: XOR<EmploymentContractConsentCreateWithoutDependentInput, EmploymentContractConsentUncheckedCreateWithoutDependentInput> | EmploymentContractConsentCreateWithoutDependentInput[] | EmploymentContractConsentUncheckedCreateWithoutDependentInput[]
+    connectOrCreate?: EmploymentContractConsentCreateOrConnectWithoutDependentInput | EmploymentContractConsentCreateOrConnectWithoutDependentInput[]
+    upsert?: EmploymentContractConsentUpsertWithWhereUniqueWithoutDependentInput | EmploymentContractConsentUpsertWithWhereUniqueWithoutDependentInput[]
+    createMany?: EmploymentContractConsentCreateManyDependentInputEnvelope
+    set?: EmploymentContractConsentWhereUniqueInput | EmploymentContractConsentWhereUniqueInput[]
+    disconnect?: EmploymentContractConsentWhereUniqueInput | EmploymentContractConsentWhereUniqueInput[]
+    delete?: EmploymentContractConsentWhereUniqueInput | EmploymentContractConsentWhereUniqueInput[]
+    connect?: EmploymentContractConsentWhereUniqueInput | EmploymentContractConsentWhereUniqueInput[]
+    update?: EmploymentContractConsentUpdateWithWhereUniqueWithoutDependentInput | EmploymentContractConsentUpdateWithWhereUniqueWithoutDependentInput[]
+    updateMany?: EmploymentContractConsentUpdateManyWithWhereWithoutDependentInput | EmploymentContractConsentUpdateManyWithWhereWithoutDependentInput[]
+    deleteMany?: EmploymentContractConsentScalarWhereInput | EmploymentContractConsentScalarWhereInput[]
   }
 
   export type EmployeeCreateNestedOneWithoutEmploymentHistoriesInput = {
@@ -39960,12 +45229,84 @@ export namespace Prisma {
     connect?: EmployeeWhereUniqueInput
   }
 
+  export type EmploymentContractConsentCreateNestedManyWithoutEmploymentContractInput = {
+    create?: XOR<EmploymentContractConsentCreateWithoutEmploymentContractInput, EmploymentContractConsentUncheckedCreateWithoutEmploymentContractInput> | EmploymentContractConsentCreateWithoutEmploymentContractInput[] | EmploymentContractConsentUncheckedCreateWithoutEmploymentContractInput[]
+    connectOrCreate?: EmploymentContractConsentCreateOrConnectWithoutEmploymentContractInput | EmploymentContractConsentCreateOrConnectWithoutEmploymentContractInput[]
+    createMany?: EmploymentContractConsentCreateManyEmploymentContractInputEnvelope
+    connect?: EmploymentContractConsentWhereUniqueInput | EmploymentContractConsentWhereUniqueInput[]
+  }
+
+  export type EmploymentContractConsentUncheckedCreateNestedManyWithoutEmploymentContractInput = {
+    create?: XOR<EmploymentContractConsentCreateWithoutEmploymentContractInput, EmploymentContractConsentUncheckedCreateWithoutEmploymentContractInput> | EmploymentContractConsentCreateWithoutEmploymentContractInput[] | EmploymentContractConsentUncheckedCreateWithoutEmploymentContractInput[]
+    connectOrCreate?: EmploymentContractConsentCreateOrConnectWithoutEmploymentContractInput | EmploymentContractConsentCreateOrConnectWithoutEmploymentContractInput[]
+    createMany?: EmploymentContractConsentCreateManyEmploymentContractInputEnvelope
+    connect?: EmploymentContractConsentWhereUniqueInput | EmploymentContractConsentWhereUniqueInput[]
+  }
+
   export type EmployeeUpdateOneRequiredWithoutEmploymentContractsNestedInput = {
     create?: XOR<EmployeeCreateWithoutEmploymentContractsInput, EmployeeUncheckedCreateWithoutEmploymentContractsInput>
     connectOrCreate?: EmployeeCreateOrConnectWithoutEmploymentContractsInput
     upsert?: EmployeeUpsertWithoutEmploymentContractsInput
     connect?: EmployeeWhereUniqueInput
     update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutEmploymentContractsInput, EmployeeUpdateWithoutEmploymentContractsInput>, EmployeeUncheckedUpdateWithoutEmploymentContractsInput>
+  }
+
+  export type EmploymentContractConsentUpdateManyWithoutEmploymentContractNestedInput = {
+    create?: XOR<EmploymentContractConsentCreateWithoutEmploymentContractInput, EmploymentContractConsentUncheckedCreateWithoutEmploymentContractInput> | EmploymentContractConsentCreateWithoutEmploymentContractInput[] | EmploymentContractConsentUncheckedCreateWithoutEmploymentContractInput[]
+    connectOrCreate?: EmploymentContractConsentCreateOrConnectWithoutEmploymentContractInput | EmploymentContractConsentCreateOrConnectWithoutEmploymentContractInput[]
+    upsert?: EmploymentContractConsentUpsertWithWhereUniqueWithoutEmploymentContractInput | EmploymentContractConsentUpsertWithWhereUniqueWithoutEmploymentContractInput[]
+    createMany?: EmploymentContractConsentCreateManyEmploymentContractInputEnvelope
+    set?: EmploymentContractConsentWhereUniqueInput | EmploymentContractConsentWhereUniqueInput[]
+    disconnect?: EmploymentContractConsentWhereUniqueInput | EmploymentContractConsentWhereUniqueInput[]
+    delete?: EmploymentContractConsentWhereUniqueInput | EmploymentContractConsentWhereUniqueInput[]
+    connect?: EmploymentContractConsentWhereUniqueInput | EmploymentContractConsentWhereUniqueInput[]
+    update?: EmploymentContractConsentUpdateWithWhereUniqueWithoutEmploymentContractInput | EmploymentContractConsentUpdateWithWhereUniqueWithoutEmploymentContractInput[]
+    updateMany?: EmploymentContractConsentUpdateManyWithWhereWithoutEmploymentContractInput | EmploymentContractConsentUpdateManyWithWhereWithoutEmploymentContractInput[]
+    deleteMany?: EmploymentContractConsentScalarWhereInput | EmploymentContractConsentScalarWhereInput[]
+  }
+
+  export type EmploymentContractConsentUncheckedUpdateManyWithoutEmploymentContractNestedInput = {
+    create?: XOR<EmploymentContractConsentCreateWithoutEmploymentContractInput, EmploymentContractConsentUncheckedCreateWithoutEmploymentContractInput> | EmploymentContractConsentCreateWithoutEmploymentContractInput[] | EmploymentContractConsentUncheckedCreateWithoutEmploymentContractInput[]
+    connectOrCreate?: EmploymentContractConsentCreateOrConnectWithoutEmploymentContractInput | EmploymentContractConsentCreateOrConnectWithoutEmploymentContractInput[]
+    upsert?: EmploymentContractConsentUpsertWithWhereUniqueWithoutEmploymentContractInput | EmploymentContractConsentUpsertWithWhereUniqueWithoutEmploymentContractInput[]
+    createMany?: EmploymentContractConsentCreateManyEmploymentContractInputEnvelope
+    set?: EmploymentContractConsentWhereUniqueInput | EmploymentContractConsentWhereUniqueInput[]
+    disconnect?: EmploymentContractConsentWhereUniqueInput | EmploymentContractConsentWhereUniqueInput[]
+    delete?: EmploymentContractConsentWhereUniqueInput | EmploymentContractConsentWhereUniqueInput[]
+    connect?: EmploymentContractConsentWhereUniqueInput | EmploymentContractConsentWhereUniqueInput[]
+    update?: EmploymentContractConsentUpdateWithWhereUniqueWithoutEmploymentContractInput | EmploymentContractConsentUpdateWithWhereUniqueWithoutEmploymentContractInput[]
+    updateMany?: EmploymentContractConsentUpdateManyWithWhereWithoutEmploymentContractInput | EmploymentContractConsentUpdateManyWithWhereWithoutEmploymentContractInput[]
+    deleteMany?: EmploymentContractConsentScalarWhereInput | EmploymentContractConsentScalarWhereInput[]
+  }
+
+  export type EmploymentContractCreateNestedOneWithoutEmploymentContractConsentsInput = {
+    create?: XOR<EmploymentContractCreateWithoutEmploymentContractConsentsInput, EmploymentContractUncheckedCreateWithoutEmploymentContractConsentsInput>
+    connectOrCreate?: EmploymentContractCreateOrConnectWithoutEmploymentContractConsentsInput
+    connect?: EmploymentContractWhereUniqueInput
+  }
+
+  export type DependentCreateNestedOneWithoutConsentsInput = {
+    create?: XOR<DependentCreateWithoutConsentsInput, DependentUncheckedCreateWithoutConsentsInput>
+    connectOrCreate?: DependentCreateOrConnectWithoutConsentsInput
+    connect?: DependentWhereUniqueInput
+  }
+
+  export type EmploymentContractUpdateOneRequiredWithoutEmploymentContractConsentsNestedInput = {
+    create?: XOR<EmploymentContractCreateWithoutEmploymentContractConsentsInput, EmploymentContractUncheckedCreateWithoutEmploymentContractConsentsInput>
+    connectOrCreate?: EmploymentContractCreateOrConnectWithoutEmploymentContractConsentsInput
+    upsert?: EmploymentContractUpsertWithoutEmploymentContractConsentsInput
+    connect?: EmploymentContractWhereUniqueInput
+    update?: XOR<XOR<EmploymentContractUpdateToOneWithWhereWithoutEmploymentContractConsentsInput, EmploymentContractUpdateWithoutEmploymentContractConsentsInput>, EmploymentContractUncheckedUpdateWithoutEmploymentContractConsentsInput>
+  }
+
+  export type DependentUpdateOneWithoutConsentsNestedInput = {
+    create?: XOR<DependentCreateWithoutConsentsInput, DependentUncheckedCreateWithoutConsentsInput>
+    connectOrCreate?: DependentCreateOrConnectWithoutConsentsInput
+    upsert?: DependentUpsertWithoutConsentsInput
+    disconnect?: DependentWhereInput | boolean
+    delete?: DependentWhereInput | boolean
+    connect?: DependentWhereUniqueInput
+    update?: XOR<XOR<DependentUpdateToOneWithWhereWithoutConsentsInput, DependentUpdateWithoutConsentsInput>, DependentUncheckedUpdateWithoutConsentsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -41259,6 +46600,7 @@ export namespace Prisma {
     endedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    consents?: EmploymentContractConsentCreateNestedManyWithoutDependentInput
   }
 
   export type DependentUncheckedCreateWithoutEmployeeInput = {
@@ -41276,6 +46618,7 @@ export namespace Prisma {
     endedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    consents?: EmploymentContractConsentUncheckedCreateNestedManyWithoutDependentInput
   }
 
   export type DependentCreateOrConnectWithoutEmployeeInput = {
@@ -41362,10 +46705,21 @@ export namespace Prisma {
     bonusRule?: string | null
     raiseRule?: string | null
     probationPeriod?: string | null
+    contractRenewalRule?: string | null
+    contractRenewalCriteria?: string | null
     retirementRule?: string | null
+    retirementAllowanceRule?: string | null
+    socialInsuranceRule?: string | null
+    employmentInsuranceRule?: string | null
+    consultationDesk?: string | null
+    workRuleLocation?: string | null
     remarks?: string | null
+    version?: number
+    isCurrent?: boolean
+    supersededAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    employmentContractConsents?: EmploymentContractConsentCreateNestedManyWithoutEmploymentContractInput
   }
 
   export type EmploymentContractUncheckedCreateWithoutEmployeeInput = {
@@ -41388,10 +46742,21 @@ export namespace Prisma {
     bonusRule?: string | null
     raiseRule?: string | null
     probationPeriod?: string | null
+    contractRenewalRule?: string | null
+    contractRenewalCriteria?: string | null
     retirementRule?: string | null
+    retirementAllowanceRule?: string | null
+    socialInsuranceRule?: string | null
+    employmentInsuranceRule?: string | null
+    consultationDesk?: string | null
+    workRuleLocation?: string | null
     remarks?: string | null
+    version?: number
+    isCurrent?: boolean
+    supersededAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    employmentContractConsents?: EmploymentContractConsentUncheckedCreateNestedManyWithoutEmploymentContractInput
   }
 
   export type EmploymentContractCreateOrConnectWithoutEmployeeInput = {
@@ -41888,8 +47253,18 @@ export namespace Prisma {
     bonusRule?: StringNullableFilter<"EmploymentContract"> | string | null
     raiseRule?: StringNullableFilter<"EmploymentContract"> | string | null
     probationPeriod?: StringNullableFilter<"EmploymentContract"> | string | null
+    contractRenewalRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    contractRenewalCriteria?: StringNullableFilter<"EmploymentContract"> | string | null
     retirementRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    retirementAllowanceRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    socialInsuranceRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    employmentInsuranceRule?: StringNullableFilter<"EmploymentContract"> | string | null
+    consultationDesk?: StringNullableFilter<"EmploymentContract"> | string | null
+    workRuleLocation?: StringNullableFilter<"EmploymentContract"> | string | null
     remarks?: StringNullableFilter<"EmploymentContract"> | string | null
+    version?: IntFilter<"EmploymentContract"> | number
+    isCurrent?: BoolFilter<"EmploymentContract"> | boolean
+    supersededAt?: DateTimeNullableFilter<"EmploymentContract"> | Date | string | null
     createdAt?: DateTimeFilter<"EmploymentContract"> | Date | string
     updatedAt?: DateTimeFilter<"EmploymentContract"> | Date | string
   }
@@ -41977,6 +47352,36 @@ export namespace Prisma {
   export type EmployeeCreateOrConnectWithoutDependentsInput = {
     where: EmployeeWhereUniqueInput
     create: XOR<EmployeeCreateWithoutDependentsInput, EmployeeUncheckedCreateWithoutDependentsInput>
+  }
+
+  export type EmploymentContractConsentCreateWithoutDependentInput = {
+    id?: string
+    signerName: string
+    consentedAt?: Date | string
+    ipAddress?: string | null
+    userAgent?: string | null
+    createdAt?: Date | string
+    employmentContract: EmploymentContractCreateNestedOneWithoutEmploymentContractConsentsInput
+  }
+
+  export type EmploymentContractConsentUncheckedCreateWithoutDependentInput = {
+    id?: string
+    employmentContractId: string
+    signerName: string
+    consentedAt?: Date | string
+    ipAddress?: string | null
+    userAgent?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmploymentContractConsentCreateOrConnectWithoutDependentInput = {
+    where: EmploymentContractConsentWhereUniqueInput
+    create: XOR<EmploymentContractConsentCreateWithoutDependentInput, EmploymentContractConsentUncheckedCreateWithoutDependentInput>
+  }
+
+  export type EmploymentContractConsentCreateManyDependentInputEnvelope = {
+    data: EmploymentContractConsentCreateManyDependentInput | EmploymentContractConsentCreateManyDependentInput[]
+    skipDuplicates?: boolean
   }
 
   export type EmployeeUpsertWithoutDependentsInput = {
@@ -42068,6 +47473,36 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmploymentContractConsentUpsertWithWhereUniqueWithoutDependentInput = {
+    where: EmploymentContractConsentWhereUniqueInput
+    update: XOR<EmploymentContractConsentUpdateWithoutDependentInput, EmploymentContractConsentUncheckedUpdateWithoutDependentInput>
+    create: XOR<EmploymentContractConsentCreateWithoutDependentInput, EmploymentContractConsentUncheckedCreateWithoutDependentInput>
+  }
+
+  export type EmploymentContractConsentUpdateWithWhereUniqueWithoutDependentInput = {
+    where: EmploymentContractConsentWhereUniqueInput
+    data: XOR<EmploymentContractConsentUpdateWithoutDependentInput, EmploymentContractConsentUncheckedUpdateWithoutDependentInput>
+  }
+
+  export type EmploymentContractConsentUpdateManyWithWhereWithoutDependentInput = {
+    where: EmploymentContractConsentScalarWhereInput
+    data: XOR<EmploymentContractConsentUpdateManyMutationInput, EmploymentContractConsentUncheckedUpdateManyWithoutDependentInput>
+  }
+
+  export type EmploymentContractConsentScalarWhereInput = {
+    AND?: EmploymentContractConsentScalarWhereInput | EmploymentContractConsentScalarWhereInput[]
+    OR?: EmploymentContractConsentScalarWhereInput[]
+    NOT?: EmploymentContractConsentScalarWhereInput | EmploymentContractConsentScalarWhereInput[]
+    id?: StringFilter<"EmploymentContractConsent"> | string
+    employmentContractId?: StringFilter<"EmploymentContractConsent"> | string
+    signerName?: StringFilter<"EmploymentContractConsent"> | string
+    consentedAt?: DateTimeFilter<"EmploymentContractConsent"> | Date | string
+    ipAddress?: StringNullableFilter<"EmploymentContractConsent"> | string | null
+    userAgent?: StringNullableFilter<"EmploymentContractConsent"> | string | null
+    createdAt?: DateTimeFilter<"EmploymentContractConsent"> | Date | string
+    dependentId?: StringNullableFilter<"EmploymentContractConsent"> | string | null
   }
 
   export type EmployeeCreateWithoutEmploymentHistoriesInput = {
@@ -45020,6 +50455,36 @@ export namespace Prisma {
     create: XOR<EmployeeCreateWithoutEmploymentContractsInput, EmployeeUncheckedCreateWithoutEmploymentContractsInput>
   }
 
+  export type EmploymentContractConsentCreateWithoutEmploymentContractInput = {
+    id?: string
+    signerName: string
+    consentedAt?: Date | string
+    ipAddress?: string | null
+    userAgent?: string | null
+    createdAt?: Date | string
+    dependent?: DependentCreateNestedOneWithoutConsentsInput
+  }
+
+  export type EmploymentContractConsentUncheckedCreateWithoutEmploymentContractInput = {
+    id?: string
+    signerName: string
+    consentedAt?: Date | string
+    ipAddress?: string | null
+    userAgent?: string | null
+    createdAt?: Date | string
+    dependentId?: string | null
+  }
+
+  export type EmploymentContractConsentCreateOrConnectWithoutEmploymentContractInput = {
+    where: EmploymentContractConsentWhereUniqueInput
+    create: XOR<EmploymentContractConsentCreateWithoutEmploymentContractInput, EmploymentContractConsentUncheckedCreateWithoutEmploymentContractInput>
+  }
+
+  export type EmploymentContractConsentCreateManyEmploymentContractInputEnvelope = {
+    data: EmploymentContractConsentCreateManyEmploymentContractInput | EmploymentContractConsentCreateManyEmploymentContractInput[]
+    skipDuplicates?: boolean
+  }
+
   export type EmployeeUpsertWithoutEmploymentContractsInput = {
     update: XOR<EmployeeUpdateWithoutEmploymentContractsInput, EmployeeUncheckedUpdateWithoutEmploymentContractsInput>
     create: XOR<EmployeeCreateWithoutEmploymentContractsInput, EmployeeUncheckedCreateWithoutEmploymentContractsInput>
@@ -45109,6 +50574,274 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmploymentContractConsentUpsertWithWhereUniqueWithoutEmploymentContractInput = {
+    where: EmploymentContractConsentWhereUniqueInput
+    update: XOR<EmploymentContractConsentUpdateWithoutEmploymentContractInput, EmploymentContractConsentUncheckedUpdateWithoutEmploymentContractInput>
+    create: XOR<EmploymentContractConsentCreateWithoutEmploymentContractInput, EmploymentContractConsentUncheckedCreateWithoutEmploymentContractInput>
+  }
+
+  export type EmploymentContractConsentUpdateWithWhereUniqueWithoutEmploymentContractInput = {
+    where: EmploymentContractConsentWhereUniqueInput
+    data: XOR<EmploymentContractConsentUpdateWithoutEmploymentContractInput, EmploymentContractConsentUncheckedUpdateWithoutEmploymentContractInput>
+  }
+
+  export type EmploymentContractConsentUpdateManyWithWhereWithoutEmploymentContractInput = {
+    where: EmploymentContractConsentScalarWhereInput
+    data: XOR<EmploymentContractConsentUpdateManyMutationInput, EmploymentContractConsentUncheckedUpdateManyWithoutEmploymentContractInput>
+  }
+
+  export type EmploymentContractCreateWithoutEmploymentContractConsentsInput = {
+    id?: string
+    contractType: string
+    startDate: Date | string
+    endDate?: Date | string | null
+    workplace: string
+    jobDescription: string
+    workStartTime: string
+    workEndTime: string
+    breakMinutes: number
+    holidayRule: string
+    leaveRule?: string | null
+    wageType: string
+    baseSalary: number
+    allowanceNote?: string | null
+    payClosingDay?: string | null
+    payDate?: string | null
+    bonusRule?: string | null
+    raiseRule?: string | null
+    probationPeriod?: string | null
+    contractRenewalRule?: string | null
+    contractRenewalCriteria?: string | null
+    retirementRule?: string | null
+    retirementAllowanceRule?: string | null
+    socialInsuranceRule?: string | null
+    employmentInsuranceRule?: string | null
+    consultationDesk?: string | null
+    workRuleLocation?: string | null
+    remarks?: string | null
+    version?: number
+    isCurrent?: boolean
+    supersededAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutEmploymentContractsInput
+  }
+
+  export type EmploymentContractUncheckedCreateWithoutEmploymentContractConsentsInput = {
+    id?: string
+    employeeId: string
+    contractType: string
+    startDate: Date | string
+    endDate?: Date | string | null
+    workplace: string
+    jobDescription: string
+    workStartTime: string
+    workEndTime: string
+    breakMinutes: number
+    holidayRule: string
+    leaveRule?: string | null
+    wageType: string
+    baseSalary: number
+    allowanceNote?: string | null
+    payClosingDay?: string | null
+    payDate?: string | null
+    bonusRule?: string | null
+    raiseRule?: string | null
+    probationPeriod?: string | null
+    contractRenewalRule?: string | null
+    contractRenewalCriteria?: string | null
+    retirementRule?: string | null
+    retirementAllowanceRule?: string | null
+    socialInsuranceRule?: string | null
+    employmentInsuranceRule?: string | null
+    consultationDesk?: string | null
+    workRuleLocation?: string | null
+    remarks?: string | null
+    version?: number
+    isCurrent?: boolean
+    supersededAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EmploymentContractCreateOrConnectWithoutEmploymentContractConsentsInput = {
+    where: EmploymentContractWhereUniqueInput
+    create: XOR<EmploymentContractCreateWithoutEmploymentContractConsentsInput, EmploymentContractUncheckedCreateWithoutEmploymentContractConsentsInput>
+  }
+
+  export type DependentCreateWithoutConsentsInput = {
+    id?: string
+    name: string
+    nameKana?: string | null
+    relationship: string
+    birthDate?: Date | string | null
+    cohabiting?: boolean
+    annualIncome?: number | null
+    healthInsuranceDependent?: boolean
+    encryptedMyNumber?: string | null
+    note?: string | null
+    isActive?: boolean
+    endedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutDependentsInput
+  }
+
+  export type DependentUncheckedCreateWithoutConsentsInput = {
+    id?: string
+    employeeId: string
+    name: string
+    nameKana?: string | null
+    relationship: string
+    birthDate?: Date | string | null
+    cohabiting?: boolean
+    annualIncome?: number | null
+    healthInsuranceDependent?: boolean
+    encryptedMyNumber?: string | null
+    note?: string | null
+    isActive?: boolean
+    endedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DependentCreateOrConnectWithoutConsentsInput = {
+    where: DependentWhereUniqueInput
+    create: XOR<DependentCreateWithoutConsentsInput, DependentUncheckedCreateWithoutConsentsInput>
+  }
+
+  export type EmploymentContractUpsertWithoutEmploymentContractConsentsInput = {
+    update: XOR<EmploymentContractUpdateWithoutEmploymentContractConsentsInput, EmploymentContractUncheckedUpdateWithoutEmploymentContractConsentsInput>
+    create: XOR<EmploymentContractCreateWithoutEmploymentContractConsentsInput, EmploymentContractUncheckedCreateWithoutEmploymentContractConsentsInput>
+    where?: EmploymentContractWhereInput
+  }
+
+  export type EmploymentContractUpdateToOneWithWhereWithoutEmploymentContractConsentsInput = {
+    where?: EmploymentContractWhereInput
+    data: XOR<EmploymentContractUpdateWithoutEmploymentContractConsentsInput, EmploymentContractUncheckedUpdateWithoutEmploymentContractConsentsInput>
+  }
+
+  export type EmploymentContractUpdateWithoutEmploymentContractConsentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    contractType?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    workplace?: StringFieldUpdateOperationsInput | string
+    jobDescription?: StringFieldUpdateOperationsInput | string
+    workStartTime?: StringFieldUpdateOperationsInput | string
+    workEndTime?: StringFieldUpdateOperationsInput | string
+    breakMinutes?: IntFieldUpdateOperationsInput | number
+    holidayRule?: StringFieldUpdateOperationsInput | string
+    leaveRule?: NullableStringFieldUpdateOperationsInput | string | null
+    wageType?: StringFieldUpdateOperationsInput | string
+    baseSalary?: IntFieldUpdateOperationsInput | number
+    allowanceNote?: NullableStringFieldUpdateOperationsInput | string | null
+    payClosingDay?: NullableStringFieldUpdateOperationsInput | string | null
+    payDate?: NullableStringFieldUpdateOperationsInput | string | null
+    bonusRule?: NullableStringFieldUpdateOperationsInput | string | null
+    raiseRule?: NullableStringFieldUpdateOperationsInput | string | null
+    probationPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    contractRenewalRule?: NullableStringFieldUpdateOperationsInput | string | null
+    contractRenewalCriteria?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementRule?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementAllowanceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    version?: IntFieldUpdateOperationsInput | number
+    isCurrent?: BoolFieldUpdateOperationsInput | boolean
+    supersededAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutEmploymentContractsNestedInput
+  }
+
+  export type EmploymentContractUncheckedUpdateWithoutEmploymentContractConsentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    contractType?: StringFieldUpdateOperationsInput | string
+    startDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    workplace?: StringFieldUpdateOperationsInput | string
+    jobDescription?: StringFieldUpdateOperationsInput | string
+    workStartTime?: StringFieldUpdateOperationsInput | string
+    workEndTime?: StringFieldUpdateOperationsInput | string
+    breakMinutes?: IntFieldUpdateOperationsInput | number
+    holidayRule?: StringFieldUpdateOperationsInput | string
+    leaveRule?: NullableStringFieldUpdateOperationsInput | string | null
+    wageType?: StringFieldUpdateOperationsInput | string
+    baseSalary?: IntFieldUpdateOperationsInput | number
+    allowanceNote?: NullableStringFieldUpdateOperationsInput | string | null
+    payClosingDay?: NullableStringFieldUpdateOperationsInput | string | null
+    payDate?: NullableStringFieldUpdateOperationsInput | string | null
+    bonusRule?: NullableStringFieldUpdateOperationsInput | string | null
+    raiseRule?: NullableStringFieldUpdateOperationsInput | string | null
+    probationPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    contractRenewalRule?: NullableStringFieldUpdateOperationsInput | string | null
+    contractRenewalCriteria?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementRule?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementAllowanceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    version?: IntFieldUpdateOperationsInput | number
+    isCurrent?: BoolFieldUpdateOperationsInput | boolean
+    supersededAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DependentUpsertWithoutConsentsInput = {
+    update: XOR<DependentUpdateWithoutConsentsInput, DependentUncheckedUpdateWithoutConsentsInput>
+    create: XOR<DependentCreateWithoutConsentsInput, DependentUncheckedCreateWithoutConsentsInput>
+    where?: DependentWhereInput
+  }
+
+  export type DependentUpdateToOneWithWhereWithoutConsentsInput = {
+    where?: DependentWhereInput
+    data: XOR<DependentUpdateWithoutConsentsInput, DependentUncheckedUpdateWithoutConsentsInput>
+  }
+
+  export type DependentUpdateWithoutConsentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    nameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    relationship?: StringFieldUpdateOperationsInput | string
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cohabiting?: BoolFieldUpdateOperationsInput | boolean
+    annualIncome?: NullableIntFieldUpdateOperationsInput | number | null
+    healthInsuranceDependent?: BoolFieldUpdateOperationsInput | boolean
+    encryptedMyNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    endedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutDependentsNestedInput
+  }
+
+  export type DependentUncheckedUpdateWithoutConsentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    nameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    relationship?: StringFieldUpdateOperationsInput | string
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    cohabiting?: BoolFieldUpdateOperationsInput | boolean
+    annualIncome?: NullableIntFieldUpdateOperationsInput | number | null
+    healthInsuranceDependent?: BoolFieldUpdateOperationsInput | boolean
+    encryptedMyNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    endedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EmployeeRequestCreateManyUserInput = {
@@ -45476,8 +51209,18 @@ export namespace Prisma {
     bonusRule?: string | null
     raiseRule?: string | null
     probationPeriod?: string | null
+    contractRenewalRule?: string | null
+    contractRenewalCriteria?: string | null
     retirementRule?: string | null
+    retirementAllowanceRule?: string | null
+    socialInsuranceRule?: string | null
+    employmentInsuranceRule?: string | null
+    consultationDesk?: string | null
+    workRuleLocation?: string | null
     remarks?: string | null
+    version?: number
+    isCurrent?: boolean
+    supersededAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -45710,6 +51453,7 @@ export namespace Prisma {
     endedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    consents?: EmploymentContractConsentUpdateManyWithoutDependentNestedInput
   }
 
   export type DependentUncheckedUpdateWithoutEmployeeInput = {
@@ -45727,6 +51471,7 @@ export namespace Prisma {
     endedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    consents?: EmploymentContractConsentUncheckedUpdateManyWithoutDependentNestedInput
   }
 
   export type DependentUncheckedUpdateManyWithoutEmployeeInput = {
@@ -45831,10 +51576,21 @@ export namespace Prisma {
     bonusRule?: NullableStringFieldUpdateOperationsInput | string | null
     raiseRule?: NullableStringFieldUpdateOperationsInput | string | null
     probationPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    contractRenewalRule?: NullableStringFieldUpdateOperationsInput | string | null
+    contractRenewalCriteria?: NullableStringFieldUpdateOperationsInput | string | null
     retirementRule?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementAllowanceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    version?: IntFieldUpdateOperationsInput | number
+    isCurrent?: BoolFieldUpdateOperationsInput | boolean
+    supersededAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employmentContractConsents?: EmploymentContractConsentUpdateManyWithoutEmploymentContractNestedInput
   }
 
   export type EmploymentContractUncheckedUpdateWithoutEmployeeInput = {
@@ -45857,10 +51613,21 @@ export namespace Prisma {
     bonusRule?: NullableStringFieldUpdateOperationsInput | string | null
     raiseRule?: NullableStringFieldUpdateOperationsInput | string | null
     probationPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    contractRenewalRule?: NullableStringFieldUpdateOperationsInput | string | null
+    contractRenewalCriteria?: NullableStringFieldUpdateOperationsInput | string | null
     retirementRule?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementAllowanceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    version?: IntFieldUpdateOperationsInput | number
+    isCurrent?: BoolFieldUpdateOperationsInput | boolean
+    supersededAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employmentContractConsents?: EmploymentContractConsentUncheckedUpdateManyWithoutEmploymentContractNestedInput
   }
 
   export type EmploymentContractUncheckedUpdateManyWithoutEmployeeInput = {
@@ -45883,10 +51650,60 @@ export namespace Prisma {
     bonusRule?: NullableStringFieldUpdateOperationsInput | string | null
     raiseRule?: NullableStringFieldUpdateOperationsInput | string | null
     probationPeriod?: NullableStringFieldUpdateOperationsInput | string | null
+    contractRenewalRule?: NullableStringFieldUpdateOperationsInput | string | null
+    contractRenewalCriteria?: NullableStringFieldUpdateOperationsInput | string | null
     retirementRule?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementAllowanceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
+    consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    version?: IntFieldUpdateOperationsInput | number
+    isCurrent?: BoolFieldUpdateOperationsInput | boolean
+    supersededAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmploymentContractConsentCreateManyDependentInput = {
+    id?: string
+    employmentContractId: string
+    signerName: string
+    consentedAt?: Date | string
+    ipAddress?: string | null
+    userAgent?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmploymentContractConsentUpdateWithoutDependentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    signerName?: StringFieldUpdateOperationsInput | string
+    consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employmentContract?: EmploymentContractUpdateOneRequiredWithoutEmploymentContractConsentsNestedInput
+  }
+
+  export type EmploymentContractConsentUncheckedUpdateWithoutDependentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employmentContractId?: StringFieldUpdateOperationsInput | string
+    signerName?: StringFieldUpdateOperationsInput | string
+    consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmploymentContractConsentUncheckedUpdateManyWithoutDependentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employmentContractId?: StringFieldUpdateOperationsInput | string
+    signerName?: StringFieldUpdateOperationsInput | string
+    consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type RequestAttachmentCreateManyRequestInput = {
@@ -46113,6 +51930,46 @@ export namespace Prisma {
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmploymentContractConsentCreateManyEmploymentContractInput = {
+    id?: string
+    signerName: string
+    consentedAt?: Date | string
+    ipAddress?: string | null
+    userAgent?: string | null
+    createdAt?: Date | string
+    dependentId?: string | null
+  }
+
+  export type EmploymentContractConsentUpdateWithoutEmploymentContractInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    signerName?: StringFieldUpdateOperationsInput | string
+    consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dependent?: DependentUpdateOneWithoutConsentsNestedInput
+  }
+
+  export type EmploymentContractConsentUncheckedUpdateWithoutEmploymentContractInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    signerName?: StringFieldUpdateOperationsInput | string
+    consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dependentId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EmploymentContractConsentUncheckedUpdateManyWithoutEmploymentContractInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    signerName?: StringFieldUpdateOperationsInput | string
+    consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    dependentId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

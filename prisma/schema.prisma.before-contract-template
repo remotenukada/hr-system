@@ -109,8 +109,6 @@ model Dependent {
 
   employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
 
-  consents EmploymentContractConsent[]
-
   @@index([employeeId])
   @@index([relationship])
 }
@@ -558,8 +556,7 @@ model EmploymentContract {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  employee                   Employee                    @relation(fields: [employeeId], references: [id], onDelete: Cascade)
-  employmentContractConsents EmploymentContractConsent[]
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
 
   @@index([employeeId])
 }
@@ -582,75 +579,4 @@ model CompanySetting {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-}
-
-model EmploymentContractTemplate {
-  id String @id @default(uuid())
-
-  name        String
-  description String?
-
-  contractType String
-
-  workStartTime String
-  workEndTime   String
-  breakMinutes  Int
-
-  holidayRule String
-  leaveRule   String?
-
-  wageType   String
-  baseSalary Int?
-
-  allowanceNote String?
-
-  payClosingDay String?
-  payDate       String?
-
-  bonusRule String?
-  raiseRule String?
-
-  probationPeriod String?
-
-  contractRenewalRule     String?
-  contractRenewalCriteria String?
-
-  retirementRule          String?
-  retirementAllowanceRule String?
-
-  socialInsuranceRule     String?
-  employmentInsuranceRule String?
-
-  consultationDesk String?
-  workRuleLocation String?
-
-  remarks String?
-
-  isActive Boolean @default(true)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([isActive])
-}
-
-model EmploymentContractConsent {
-  id String @id @default(uuid())
-
-  employmentContractId String
-
-  signerName String
-
-  consentedAt DateTime @default(now())
-
-  ipAddress String?
-  userAgent String?
-
-  createdAt DateTime @default(now())
-
-  employmentContract EmploymentContract @relation(fields: [employmentContractId], references: [id], onDelete: Cascade)
-  dependent          Dependent?         @relation(fields: [dependentId], references: [id])
-  dependentId        String?
-
-  @@index([employmentContractId])
 }

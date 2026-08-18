@@ -3,7 +3,6 @@ import Link from "next/link";
 import { requireHRManager } from "@/lib/auth-guard";
 import { prisma } from "@/lib/prisma";
 import { createEmploymentContract } from "@/app/actions/employment-contract";
-import { EmploymentContractTemplateSelector } from "@/components/EmploymentContractTemplateSelector";
 
 export default async function NewEmploymentContractPage() {
   await requireHRManager();
@@ -19,43 +18,6 @@ export default async function NewEmploymentContractPage() {
       firstName: true,
     },
   });
-
-  const templates =
-    await prisma.employmentContractTemplate.findMany({
-      where: {
-        isActive: true,
-      },
-      orderBy: {
-        name: "asc",
-      },
-      select: {
-        id: true,
-        name: true,
-        contractType: true,
-        workStartTime: true,
-        workEndTime: true,
-        breakMinutes: true,
-        holidayRule: true,
-        leaveRule: true,
-        wageType: true,
-        baseSalary: true,
-        allowanceNote: true,
-        payClosingDay: true,
-        payDate: true,
-        bonusRule: true,
-        raiseRule: true,
-        probationPeriod: true,
-        contractRenewalRule: true,
-        contractRenewalCriteria: true,
-        retirementRule: true,
-        retirementAllowanceRule: true,
-        socialInsuranceRule: true,
-        employmentInsuranceRule: true,
-        consultationDesk: true,
-        workRuleLocation: true,
-        remarks: true,
-      },
-    });
 
   return (
     <main className="mx-auto max-w-4xl p-6">
@@ -79,8 +41,6 @@ export default async function NewEmploymentContractPage() {
           </h2>
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <EmploymentContractTemplateSelector templates={templates} />
-
             <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">
                 対象社員 <span className="text-red-500">*</span>
@@ -174,23 +134,7 @@ export default async function NewEmploymentContractPage() {
               />
             </div>
 
-            <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700">
-                賃金形態
-              </label>
-              <select
-                name="wageType"
-                defaultValue="月給"
-                className="w-full rounded border p-2"
-              >
-                <option value="月給">月給</option>
-                <option value="日給">日給</option>
-                <option value="時給">時給</option>
-                <option value="その他">その他</option>
-              </select>
-            </div>
-
-            <div>
+            <div className="md:col-span-2">
               <label className="mb-1 block text-sm font-medium text-gray-700">
                 基本給（月額/円） <span className="text-red-500">*</span>
               </label>
