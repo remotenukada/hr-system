@@ -1,32 +1,6 @@
 'use server'
 
 import { prisma } from '@/lib/prisma'
-
-
-function getWorkSchedules(formData: FormData) {
-  const names = formData.getAll('workScheduleName') as string[]
-  const startTimes = formData.getAll('workScheduleStartTime') as string[]
-  const endTimes = formData.getAll('workScheduleEndTime') as string[]
-  const breaks = formData.getAll('workScheduleBreakMinutes') as string[]
-
-  return names
-    .map((name, index) => ({
-      name: name?.trim() || '',
-      startTime: startTimes[index] || '',
-      endTime: endTimes[index] || '',
-      breakMinutes: Number(breaks[index] || 0),
-      sortOrder: index,
-    }))
-    .filter((item) => item.name || item.startTime || item.endTime)
-    .map((item) => ({
-      name: item.name || '勤務',
-      startTime: item.startTime || '09:00',
-      endTime: item.endTime || '18:00',
-      breakMinutes: item.breakMinutes || 60,
-      sortOrder: item.sortOrder,
-    }))
-}
-
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
@@ -38,9 +12,6 @@ export async function createEmploymentContract(
 
   const contractType =
     formData.get('contractType') as string
-
-  const employmentCategory =
-    formData.get('employmentCategory') as string
 
   const startDate =
     formData.get('startDate') as string
@@ -67,8 +38,6 @@ export async function createEmploymentContract(
   const breakMinutes = Number(
     formData.get('breakMinutes') || 0,
   )
-
-  const workSchedules = getWorkSchedules(formData)
 
   const holidayRule =
     formData.get('holidayRule') as string
@@ -122,7 +91,6 @@ export async function createEmploymentContract(
     data: {
       employeeId,
       contractType,
-      employmentCategory: employmentCategory || null,
 
       startDate: new Date(startDate),
       endDate: endDate
@@ -136,9 +104,6 @@ export async function createEmploymentContract(
       workEndTime: workEndTime || '18:00',
 
       breakMinutes: breakMinutes || 60,
-      workSchedules: {
-        create: workSchedules,
-      },
 
       holidayRule: holidayRule || '土日祝',
 
@@ -195,9 +160,6 @@ export async function updateEmploymentContract(
   const contractType =
     formData.get('contractType') as string
 
-  const employmentCategory =
-    formData.get('employmentCategory') as string
-
   const startDate =
     formData.get('startDate') as string
 
@@ -226,8 +188,6 @@ export async function updateEmploymentContract(
   const breakMinutes = Number(
     formData.get('breakMinutes') || 0,
   )
-
-  const workSchedules = getWorkSchedules(formData)
 
   const holidayRule =
     formData.get('holidayRule') as string
@@ -308,7 +268,6 @@ export async function updateEmploymentContract(
         version: currentContract.version + 1,
         isCurrent: true,
         contractType,
-        employmentCategory: employmentCategory || null,
         startDate: new Date(startDate),
         endDate: endDate ? new Date(endDate) : null,
         workplace,
@@ -316,9 +275,6 @@ export async function updateEmploymentContract(
         workStartTime: workStartTime || '09:00',
         workEndTime: workEndTime || '18:00',
         breakMinutes: breakMinutes || 60,
-      workSchedules: {
-        create: workSchedules,
-      },
         holidayRule: holidayRule || '土日祝',
         leaveRule: leaveRule || null,
         wageType: wageType || '月給',

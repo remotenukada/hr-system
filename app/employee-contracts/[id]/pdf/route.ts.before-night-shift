@@ -38,24 +38,6 @@ function valueOrDash(value: string | null | undefined) {
   return value && value.trim() ? value : "-";
 }
 
-
-
-function formatEmploymentType(value: string | null | undefined) {
-  switch (value) {
-    case "FULL_TIME":
-      return "常勤"
-    case "PART_TIME":
-      return "非常勤"
-    case "CONTRACT":
-      return "契約社員"
-    case "TEMPORARY":
-      return "臨時職員"
-    default:
-      return value || "-"
-  }
-}
-
-
 function compactText(value: string, maxLength = 42) {
   const text = value.replace(/\s+/g, " ").trim();
 
@@ -337,9 +319,9 @@ export async function GET(
 
   page.drawRectangle({
     x: 40,
-    y: blockTopY - 132,
+    y: blockTopY - 118,
     width: 245,
-    height: 132,
+    height: 118,
     borderWidth: 0.5,
     borderColor: rgb(0.72, 0.72, 0.72),
   });
@@ -361,7 +343,7 @@ export async function GET(
   );
 
   drawText(
-    `雇用形態: ${formatEmploymentType(contract.employee.employmentType)}`,
+    `雇用形態: ${contract.employee.employmentType ?? "-"}`,
     50,
     blockTopY - 56,
     7,
@@ -390,9 +372,9 @@ export async function GET(
 
   page.drawRectangle({
     x: 310,
-    y: blockTopY - 132,
+    y: blockTopY - 118,
     width: 245,
-    height: 132,
+    height: 118,
     borderWidth: 0.5,
     borderColor: rgb(0.72, 0.72, 0.72),
   });
@@ -425,7 +407,7 @@ export async function GET(
 
   drawText("勤務時間", 320, blockTopY - 56, 7);
 
-  scheduleLines.slice(0, 4).forEach((line, index) => {
+  scheduleLines.slice(0, 3).forEach((line, index) => {
     drawText(
       `・${line}`,
       320,
@@ -437,11 +419,11 @@ export async function GET(
   drawText(
     `休日・休暇: ${valueOrDash(contract.holidayRule)} / ${valueOrDash(contract.leaveRule)}`,
     320,
-    blockTopY - 116,
+    blockTopY - 104,
     7,
   );
 
-  y = blockTopY - 152;
+  y = blockTopY - 138;
 
   sectionTitle("賃金・社会保険");
 

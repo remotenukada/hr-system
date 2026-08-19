@@ -77,26 +77,7 @@ export default async function EditEmploymentContractPage(
               />
             </div>
 
-                        <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700">
-                雇用形態
-              </label>
-              <select
-                name="employmentCategory"
-                defaultValue={contract.employmentCategory ?? "常勤"}
-                className="w-full rounded border p-2"
-              >
-                <option value="常勤">常勤</option>
-                <option value="非常勤">非常勤</option>
-                <option value="パート">パート</option>
-                <option value="アルバイト">アルバイト</option>
-                <option value="契約社員">契約社員</option>
-                <option value="嘱託">嘱託</option>
-                <option value="派遣">派遣</option>
-              </select>
-            </div>
-
-<div>
+            <div>
               <label className="mb-1 block text-sm font-medium text-gray-700">
                 契約区分 <span className="text-red-500">*</span>
               </label>
@@ -231,7 +212,6 @@ export default async function EditEmploymentContractPage(
                   ["早番", "07:00", "16:00", "60"],
                   ["日勤", contract.workStartTime, contract.workEndTime, String(contract.breakMinutes)],
                   ["遅番", "10:00", "19:00", "60"],
-                  ["夜勤", "16:00", "09:00", "120"],
                 ].map(([name, start, end, breakTime]) => (
                   <div key={name} className="grid grid-cols-4 gap-2">
                     <input

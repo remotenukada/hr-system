@@ -506,7 +506,8 @@ model EmploymentContract {
 
   employeeId String
 
-  contractType String
+  contractType       String
+  employmentCategory String?
 
   startDate DateTime
   endDate   DateTime?
@@ -558,8 +559,9 @@ model EmploymentContract {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  employee                   Employee                    @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  employee                   Employee                         @relation(fields: [employeeId], references: [id], onDelete: Cascade)
   employmentContractConsents EmploymentContractConsent[]
+  workSchedules              EmploymentContractWorkSchedule[]
 
   @@index([employeeId])
 }
@@ -639,7 +641,8 @@ model EmploymentContractConsent {
 
   employmentContractId String
 
-  signerName String
+  signerName         String
+  signatureImagePath String?
 
   consentedAt DateTime @default(now())
 
@@ -651,6 +654,26 @@ model EmploymentContractConsent {
   employmentContract EmploymentContract @relation(fields: [employmentContractId], references: [id], onDelete: Cascade)
   dependent          Dependent?         @relation(fields: [dependentId], references: [id])
   dependentId        String?
+
+  @@index([employmentContractId])
+}
+
+model EmploymentContractWorkSchedule {
+  id String @id @default(uuid())
+
+  employmentContractId String
+
+  name         String
+  startTime    String
+  endTime      String
+  breakMinutes Int    @default(0)
+
+  sortOrder Int @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  employmentContract EmploymentContract @relation(fields: [employmentContractId], references: [id], onDelete: Cascade)
 
   @@index([employmentContractId])
 }

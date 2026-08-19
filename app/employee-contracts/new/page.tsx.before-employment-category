@@ -99,27 +99,7 @@ export default async function NewEmploymentContractPage() {
               </select>
             </div>
 
-            
             <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700">
-                雇用形態
-              </label>
-              <select
-                name="employmentCategory"
-                defaultValue="常勤"
-                className="w-full rounded border p-2"
-              >
-                <option value="常勤">常勤</option>
-                <option value="非常勤">非常勤</option>
-                <option value="パート">パート</option>
-                <option value="アルバイト">アルバイト</option>
-                <option value="契約社員">契約社員</option>
-                <option value="嘱託">嘱託</option>
-                <option value="派遣">派遣</option>
-              </select>
-            </div>
-
-<div>
               <label className="mb-1 block text-sm font-medium text-gray-700">
                 契約区分 <span className="text-red-500">*</span>
               </label>

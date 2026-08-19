@@ -507,7 +507,6 @@ model EmploymentContract {
   employeeId String
 
   contractType String
-  employmentCategory String?
 
   startDate DateTime
   endDate   DateTime?

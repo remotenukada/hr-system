@@ -39,9 +39,6 @@ export async function createEmploymentContract(
   const contractType =
     formData.get('contractType') as string
 
-  const employmentCategory =
-    formData.get('employmentCategory') as string
-
   const startDate =
     formData.get('startDate') as string
 
@@ -122,7 +119,6 @@ export async function createEmploymentContract(
     data: {
       employeeId,
       contractType,
-      employmentCategory: employmentCategory || null,
 
       startDate: new Date(startDate),
       endDate: endDate
@@ -194,9 +190,6 @@ export async function updateEmploymentContract(
 
   const contractType =
     formData.get('contractType') as string
-
-  const employmentCategory =
-    formData.get('employmentCategory') as string
 
   const startDate =
     formData.get('startDate') as string
@@ -308,7 +301,6 @@ export async function updateEmploymentContract(
         version: currentContract.version + 1,
         isCurrent: true,
         contractType,
-        employmentCategory: employmentCategory || null,
         startDate: new Date(startDate),
         endDate: endDate ? new Date(endDate) : null,
         workplace,

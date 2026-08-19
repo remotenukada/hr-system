@@ -99,27 +99,7 @@ export default async function NewEmploymentContractPage() {
               </select>
             </div>
 
-            
             <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700">
-                雇用形態
-              </label>
-              <select
-                name="employmentCategory"
-                defaultValue="常勤"
-                className="w-full rounded border p-2"
-              >
-                <option value="常勤">常勤</option>
-                <option value="非常勤">非常勤</option>
-                <option value="パート">パート</option>
-                <option value="アルバイト">アルバイト</option>
-                <option value="契約社員">契約社員</option>
-                <option value="嘱託">嘱託</option>
-                <option value="派遣">派遣</option>
-              </select>
-            </div>
-
-<div>
               <label className="mb-1 block text-sm font-medium text-gray-700">
                 契約区分 <span className="text-red-500">*</span>
               </label>
@@ -224,57 +204,40 @@ export default async function NewEmploymentContractPage() {
               />
             </div>
 
-            <input type="hidden" name="workStartTime" value="08:30" />
-            <input type="hidden" name="workEndTime" value="17:30" />
-            <input type="hidden" name="breakMinutes" value="60" />
-
-            <div className="md:col-span-2">
-              <label className="mb-2 block text-sm font-medium text-gray-700">
-                勤務時間
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                始業時刻
               </label>
+              <input
+                type="time"
+                name="workStartTime"
+                defaultValue="09:00"
+                className="w-full rounded border p-2"
+              />
+            </div>
 
-              <div className="space-y-2 rounded border p-3">
-                <div className="grid grid-cols-4 gap-2 text-xs text-gray-500">
-                  <div>名称</div>
-                  <div>開始</div>
-                  <div>終了</div>
-                  <div>休憩（分）</div>
-                </div>
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                終業時刻
+              </label>
+              <input
+                type="time"
+                name="workEndTime"
+                defaultValue="18:00"
+                className="w-full rounded border p-2"
+              />
+            </div>
 
-                {[
-                  ["早番", "07:00", "16:00", "60"],
-                  ["日勤", "08:30", "17:30", "60"],
-                  ["遅番", "10:00", "19:00", "60"],
-                  ["夜勤", "16:00", "09:00", "120"],
-                ].map(([name, start, end, breakTime]) => (
-                  <div key={name} className="grid grid-cols-4 gap-2">
-                    <input
-                      name="workScheduleName"
-                      defaultValue={name}
-                      className="w-full rounded border p-2"
-                    />
-                    <input
-                      type="time"
-                      name="workScheduleStartTime"
-                      defaultValue={start}
-                      className="w-full rounded border p-2"
-                    />
-                    <input
-                      type="time"
-                      name="workScheduleEndTime"
-                      defaultValue={end}
-                      className="w-full rounded border p-2"
-                    />
-                    <input
-                      type="number"
-                      name="workScheduleBreakMinutes"
-                      defaultValue={breakTime}
-                      min="0"
-                      className="w-full rounded border p-2"
-                    />
-                  </div>
-                ))}
-              </div>
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                休憩時間（分）
+              </label>
+              <input
+                type="number"
+                name="breakMinutes"
+                defaultValue="60"
+                className="w-full rounded border p-2"
+              />
             </div>
 
             <div>

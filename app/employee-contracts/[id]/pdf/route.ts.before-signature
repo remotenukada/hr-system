@@ -1,0 +1,340 @@
+import { prisma } from "@/lib/prisma";
+import {
+  PDFDocument,
+  StandardFonts,
+  rgb,
+} from "pdf-lib";
+import fontkit from "@pdf-lib/fontkit";
+import fs from "fs";
+
+export const runtime = "nodejs";
+
+type RouteContext = {
+  params: Promise<{
+    id: string;
+  }>;
+};
+
+const FONT_PATH = "/usr/share/fonts/opentype/ipafont-gothic/ipag.ttf";
+const EXPORT_DIR = "/data/hr-system/exports/contracts";
+
+function formatDate(date: Date | null) {
+  if (!date) {
+    return "-";
+  }
+
+  return new Date(date).toLocaleDateString("ja-JP");
+}
+
+function formatCurrency(amount: number | null | undefined) {
+  if (amount == null) {
+    return "-";
+  }
+
+  return `${amount.toLocaleString("ja-JP")}円`;
+}
+
+function valueOrDash(value: string | null | undefined) {
+  return value && value.trim() ? value : "-";
+}
+
+export async function GET(
+  _request: Request,
+  { params }: RouteContext,
+) {
+  const { id } = await params;
+
+  const contract =
+    await prisma.employmentContract.findUnique({
+      where: {
+        id,
+      },
+      include: {
+        employee: true,
+      },
+    });
+
+  if (!contract) {
+    return new Response("Employment contract not found", {
+      status: 404,
+    });
+  }
+
+  const company =
+    await prisma.companySetting.findFirst();
+
+  const pdfDoc = await PDFDocument.create();
+  pdfDoc.registerFontkit(fontkit);
+
+  let font: Awaited<
+    ReturnType<typeof pdfDoc.embedFont>
+  >;
+  if (fs.existsSync(FONT_PATH)) {
+    const fontBytes = fs.readFileSync(FONT_PATH);
+    font = await pdfDoc.embedFont(fontBytes, {
+      subset: false,
+    });
+  } else {
+    // フォントが存在しない場合のフォールバック（標準フォント）
+    font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+  }
+
+  let page = pdfDoc.addPage([595.28, 841.89]);
+  const { height } = page.getSize();
+
+  let y = height - 60;
+
+  function drawText(
+    text: string,
+    x: number,
+    currentY: number,
+    size = 10,
+    color = rgb(0.1, 0.1, 0.1),
+  ) {
+    page.drawText(text, {
+      x,
+      y: currentY,
+      size,
+      font,
+      color,
+    });
+  }
+
+  function sectionTitle(title: string) {
+    y -= 25;
+
+    drawText(title, 50, y, 12, rgb(0.12, 0.32, 0.75));
+
+    page.drawLine({
+      start: {
+        x: 50,
+        y: y - 6,
+      },
+      end: {
+        x: 545,
+        y: y - 6,
+      },
+      thickness: 1,
+      color: rgb(0.82, 0.88, 1),
+    });
+
+    y -= 20;
+  }
+
+  function row(label: string, value: string) {
+    drawText(label, 65, y, 10, rgb(0.4, 0.4, 0.4));
+    drawText(value, 190, y, 10, rgb(0.05, 0.05, 0.05));
+    y -= 18;
+  }
+
+  function tableRow(
+    label: string,
+    value: string,
+  ) {
+    page.drawRectangle({
+      x: 50,
+      y: y - 6,
+      width: 120,
+      height: 24,
+      borderWidth: 1,
+      color: rgb(1, 1, 1),
+      borderColor: rgb(0.7, 0.7, 0.7),
+    });
+
+    page.drawRectangle({
+      x: 170,
+      y: y - 6,
+      width: 375,
+      height: 24,
+      borderWidth: 1,
+      color: rgb(1, 1, 1),
+      borderColor: rgb(0.7, 0.7, 0.7),
+    });
+
+    drawText(label, 58, y + 2, 9);
+    drawText(value, 178, y + 2, 9);
+
+    y -= 24;
+  }
+
+  function addContinuationPage() {
+    page = pdfDoc.addPage([595.28, 841.89]);
+    y = height - 60;
+
+    drawText(
+      "雇用条件通知書（続き）",
+      205,
+      y,
+      18,
+      rgb(0.07, 0.09, 0.15),
+    );
+
+    y -= 25;
+  }
+
+  if (company) {
+    drawText(
+      company.companyName,
+      50,
+      y,
+      16,
+      rgb(0.07, 0.09, 0.15),
+    );
+
+    y -= 20;
+
+    drawText(
+      `${company.postalCode ?? ""} ${company.address ?? ""}`.trim(),
+      50,
+      y,
+      9,
+      rgb(0.25, 0.25, 0.25),
+    );
+
+    y -= 15;
+
+    drawText(
+      `代表者: ${company.representativeName ?? "-"}`,
+      50,
+      y,
+      9,
+      rgb(0.25, 0.25, 0.25),
+    );
+
+    y -= 15;
+
+    drawText(
+      `電話番号: ${company.phoneNumber ?? "-"}`,
+      50,
+      y,
+      9,
+      rgb(0.25, 0.25, 0.25),
+    );
+
+    y -= 25;
+  }
+
+  drawText("雇用条件通知書", 215, y, 20, rgb(0.07, 0.09, 0.15));
+  y -= 15;
+
+  drawText(
+    `作成日: ${new Date().toLocaleDateString("ja-JP")}`,
+    400,
+    y,
+    9,
+    rgb(0.45, 0.45, 0.45),
+  );
+
+  sectionTitle("対象者");
+
+  tableRow("社員番号", contract.employee.employeeNo);
+  tableRow(
+    "氏名",
+    `${contract.employee.lastName} ${contract.employee.firstName}`,
+  );
+  tableRow("メール", contract.employee.email);
+
+  sectionTitle("契約期間");
+
+  tableRow("契約区分", contract.contractType);
+  tableRow("契約開始日", formatDate(contract.startDate));
+  tableRow("契約終了日", formatDate(contract.endDate));
+
+  sectionTitle("就業条件");
+
+  tableRow("就業場所", contract.workplace);
+  tableRow("従事する業務", contract.jobDescription);
+  tableRow("始業時刻", contract.workStartTime);
+  tableRow("終業時刻", contract.workEndTime);
+  tableRow("休憩時間", `${contract.breakMinutes}分`);
+  tableRow("休日", contract.holidayRule);
+  tableRow("休暇", valueOrDash(contract.leaveRule));
+
+  addContinuationPage();
+
+  sectionTitle("賃金条件");
+
+  tableRow("賃金形態", valueOrDash(contract.wageType));
+  tableRow("基本給", formatCurrency(contract.baseSalary));
+  tableRow("手当等", valueOrDash(contract.allowanceNote));
+  tableRow("締日", valueOrDash(contract.payClosingDay));
+  tableRow("支払日", valueOrDash(contract.payDate));
+
+  sectionTitle("その他");
+
+  tableRow("昇給", valueOrDash(contract.raiseRule));
+  tableRow("賞与", valueOrDash(contract.bonusRule));
+
+  row(
+    "契約更新有無",
+    valueOrDash(contract.contractRenewalRule),
+  );
+
+  row(
+    "契約更新基準",
+    valueOrDash(contract.contractRenewalCriteria),
+  );
+
+  tableRow("試用期間", valueOrDash(contract.probationPeriod));
+
+  row(
+    "退職金制度",
+    valueOrDash(contract.retirementAllowanceRule),
+  );
+
+  row(
+    "退職に関する事項",
+    valueOrDash(contract.retirementRule),
+  );
+
+  row(
+    "社会保険",
+    valueOrDash(contract.socialInsuranceRule),
+  );
+
+  row(
+    "雇用保険",
+    valueOrDash(contract.employmentInsuranceRule),
+  );
+
+  row(
+    "相談窓口",
+    valueOrDash(contract.consultationDesk),
+  );
+
+  row(
+    "就業規則確認方法",
+    valueOrDash(contract.workRuleLocation),
+  );
+
+  tableRow("備考", valueOrDash(contract.remarks));
+
+  const pdfBytes = await pdfDoc.save();
+  const pdfBuffer = Buffer.from(pdfBytes);
+
+  const contractDir = `${EXPORT_DIR}/${contract.id}`;
+
+  fs.mkdirSync(contractDir, {
+    recursive: true,
+  });
+
+  const safeEmployeeNo = contract.employee.employeeNo.replace(
+    /[^a-zA-Z0-9_-]/g,
+    "_",
+  );
+
+  const fileName =
+    `employment-contract-${safeEmployeeNo}-v${contract.version}.pdf`;
+
+  const filePath = `${contractDir}/${fileName}`;
+
+  fs.writeFileSync(filePath, pdfBuffer);
+
+  return new Response(pdfBuffer, {
+    status: 200,
+    headers: {
+      "Content-Type": "application/pdf",
+      "Content-Disposition": `inline; filename="employment-contract-${contract.employee.employeeNo}.pdf"`,
+    },
+  });
+}

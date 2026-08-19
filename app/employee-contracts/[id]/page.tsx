@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { prisma } from "@/lib/prisma";
-import { createEmploymentContractConsent } from "@/app/actions/employment-contract-consent";
+import ConsentForm from "@/components/employee-contracts/consent-form";
 
 type Props = {
   params: Promise<{
@@ -338,36 +338,10 @@ export default async function EmploymentContractDetailPage(
         </h2>
 
         {consents.length === 0 ? (
-          <form action={createEmploymentContractConsent} className="space-y-4">
-            <input
-              type="hidden"
-              name="employmentContractId"
-              value={contract.id}
-            />
-
-            <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700">
-                署名者名
-              </label>
-              <input
-                name="signerName"
-                required
-                defaultValue={`${contract.employee.lastName} ${contract.employee.firstName}`}
-                className="w-full rounded border p-2"
-              />
-            </div>
-
-            <p className="text-sm text-gray-600">
-              内容を確認し、本人が雇用条件通知書に同意した記録として保存します。
-            </p>
-
-            <button
-              type="submit"
-              className="rounded bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700"
-            >
-              同意する
-            </button>
-          </form>
+          <ConsentForm
+            employmentContractId={contract.id}
+            defaultSignerName={`${contract.employee.lastName} ${contract.employee.firstName}`}
+          />
         ) : (
           <div className="space-y-4">
             <p className="text-sm text-green-700">
@@ -385,6 +359,9 @@ export default async function EmploymentContractDetailPage(
                   </th>
                   <th className="border p-2 text-left">
                     IPアドレス
+                  </th>
+                  <th className="border p-2 text-left">
+                    署名
                   </th>
                 </tr>
               </thead>
@@ -404,6 +381,18 @@ export default async function EmploymentContractDetailPage(
 
                     <td className="border p-2">
                       {consent.ipAddress ?? "-"}
+                    </td>
+
+                    <td className="border p-2">
+                      {consent.signatureImagePath ? (
+                        <img
+                          src={consent.signatureImagePath}
+                          alt="署名画像"
+                          className="h-12 object-contain"
+                        />
+                      ) : (
+                        "-"
+                      )}
                     </td>
                   </tr>
                 ))}

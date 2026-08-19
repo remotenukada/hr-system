@@ -38,24 +38,6 @@ function valueOrDash(value: string | null | undefined) {
   return value && value.trim() ? value : "-";
 }
 
-
-
-function formatEmploymentType(value: string | null | undefined) {
-  switch (value) {
-    case "FULL_TIME":
-      return "常勤"
-    case "PART_TIME":
-      return "非常勤"
-    case "CONTRACT":
-      return "契約社員"
-    case "TEMPORARY":
-      return "臨時職員"
-    default:
-      return value || "-"
-  }
-}
-
-
 function compactText(value: string, maxLength = 42) {
   const text = value.replace(/\s+/g, " ").trim();
 
@@ -79,11 +61,6 @@ export async function GET(
       },
       include: {
         employee: true,
-        workSchedules: {
-          orderBy: {
-            sortOrder: "asc",
-          },
-        },
       },
     });
 
@@ -337,9 +314,9 @@ export async function GET(
 
   page.drawRectangle({
     x: 40,
-    y: blockTopY - 132,
+    y: blockTopY - 95,
     width: 245,
-    height: 132,
+    height: 95,
     borderWidth: 0.5,
     borderColor: rgb(0.72, 0.72, 0.72),
   });
@@ -361,16 +338,9 @@ export async function GET(
   );
 
   drawText(
-    `雇用形態: ${formatEmploymentType(contract.employee.employmentType)}`,
-    50,
-    blockTopY - 56,
-    7,
-  );
-
-  drawText(
     `契約区分: ${contract.contractType}`,
     50,
-    blockTopY - 70,
+    blockTopY - 56,
     7,
   );
 
@@ -390,9 +360,9 @@ export async function GET(
 
   page.drawRectangle({
     x: 310,
-    y: blockTopY - 132,
+    y: blockTopY - 95,
     width: 245,
-    height: 132,
+    height: 95,
     borderWidth: 0.5,
     borderColor: rgb(0.72, 0.72, 0.72),
   });
@@ -413,233 +383,72 @@ export async function GET(
     7,
   );
 
-  const scheduleLines =
-    contract.workSchedules.length > 0
-      ? contract.workSchedules.map(
-          (schedule) =>
-            `${schedule.name} ${schedule.startTime}～${schedule.endTime}（休憩${schedule.breakMinutes}分）`,
-        )
-      : [
-          `${contract.workStartTime}～${contract.workEndTime}（休憩${contract.breakMinutes}分）`,
-        ];
+  drawText(
+    `勤務時間: ${contract.workStartTime} ～ ${contract.workEndTime}`,
+    320,
+    blockTopY - 56,
+    7,
+  );
 
-  drawText("勤務時間", 320, blockTopY - 56, 7);
-
-  scheduleLines.slice(0, 4).forEach((line, index) => {
-    drawText(
-      `・${line}`,
-      320,
-      blockTopY - 68 - index * 12,
-      6.6,
-    );
-  });
+  drawText(
+    `休憩: ${contract.breakMinutes}分`,
+    320,
+    blockTopY - 70,
+    7,
+  );
 
   drawText(
     `休日・休暇: ${valueOrDash(contract.holidayRule)} / ${valueOrDash(contract.leaveRule)}`,
     320,
-    blockTopY - 116,
+    blockTopY - 84,
     7,
   );
 
-  y = blockTopY - 152;
+  y = blockTopY - 115;
 
   sectionTitle("賃金・社会保険");
 
-  const salaryRowHeight = 15;
-  const salaryX = 40;
-  const salaryWidth = 515;
-  const salaryHalfWidth = salaryWidth / 2;
-  const salaryLabelWidth = 72;
-
-  function salaryCell(
-    x: number,
-    currentY: number,
-    label: string,
-    value: string,
-    width = salaryHalfWidth,
-  ) {
-    page.drawRectangle({
-      x,
-      y: currentY - salaryRowHeight + 3,
-      width: salaryLabelWidth,
-      height: salaryRowHeight,
-      borderWidth: 0.5,
-      borderColor: rgb(0.72, 0.72, 0.72),
-      color: rgb(0.98, 0.98, 0.98),
-    });
-
-    page.drawRectangle({
-      x: x + salaryLabelWidth,
-      y: currentY - salaryRowHeight + 3,
-      width: width - salaryLabelWidth,
-      height: salaryRowHeight,
-      borderWidth: 0.5,
-      borderColor: rgb(0.72, 0.72, 0.72),
-      color: rgb(1, 1, 1),
-    });
-
-    drawText(
-      label,
-      x + 5,
-      currentY - 6,
-      6.8,
-      rgb(0.25, 0.25, 0.25),
-    );
-
-    drawText(
-      compactText(value, 24),
-      x + salaryLabelWidth + 5,
-      currentY - 6,
-      6.8,
-    );
-  }
-
-  salaryCell(
-    salaryX,
-    y,
+  twoColRow(
+    "賃金形態",
+    valueOrDash(contract.wageType),
     "基本給",
     formatCurrency(contract.baseSalary),
   );
 
-  salaryCell(
-    salaryX + salaryHalfWidth,
-    y,
-    "賃金支払",
-    `${valueOrDash(contract.payClosingDay)}締め ／ ${valueOrDash(contract.payDate)}支払`,
+  allowanceBlock(valueOrDash(contract.allowanceNote));
+
+  twoColRow(
+    "締日",
+    valueOrDash(contract.payClosingDay),
+    "支払日",
+    valueOrDash(contract.payDate),
   );
 
-  y -= salaryRowHeight;
-
-  const allowanceLines = valueOrDash(contract.allowanceNote)
-    .split(/\r?\n/)
-    .map((line) => line.trim())
-    .filter(Boolean);
-
-  const visibleAllowanceLines =
-    allowanceLines.length > 0
-      ? allowanceLines.slice(0, 4)
-      : ["-"];
-
-  const allowanceHeight =
-    Math.max(32, visibleAllowanceLines.length * 11 + 16);
-
-  page.drawRectangle({
-    x: salaryX,
-    y: y - allowanceHeight + 4,
-    width: salaryLabelWidth,
-    height: allowanceHeight,
-    borderWidth: 0.5,
-    borderColor: rgb(0.72, 0.72, 0.72),
-    color: rgb(0.98, 0.98, 0.98),
-  });
-
-  page.drawRectangle({
-    x: salaryX + salaryLabelWidth,
-    y: y - allowanceHeight + 4,
-    width: salaryWidth - salaryLabelWidth,
-    height: allowanceHeight,
-    borderWidth: 0.5,
-    borderColor: rgb(0.72, 0.72, 0.72),
-    color: rgb(1, 1, 1),
-  });
-
-  drawText(
-    "手当",
-    salaryX + 5,
-    y - 7,
-    6.8,
-    rgb(0.25, 0.25, 0.25),
-  );
-
-  let allowanceY = y - 7;
-
-  for (const line of visibleAllowanceLines) {
-    drawText(
-      `・${line}`,
-      salaryX + salaryLabelWidth + 5,
-      allowanceY,
-      6.8,
-    );
-
-    allowanceY -= 11;
-  }
-
-  if (allowanceLines.length > visibleAllowanceLines.length) {
-    drawText(
-      "・ほか",
-      salaryX + salaryLabelWidth + 5,
-      allowanceY,
-      6.8,
-    );
-  }
-
-  y -= allowanceHeight;
-
-  salaryCell(
-    salaryX,
-    y,
+  twoColRow(
     "昇給",
     valueOrDash(contract.raiseRule),
-  );
-
-  salaryCell(
-    salaryX + salaryHalfWidth,
-    y,
     "賞与",
     valueOrDash(contract.bonusRule),
   );
 
-  y -= salaryRowHeight;
-
-  salaryCell(
-    salaryX,
-    y,
+  twoColRow(
     "退職金",
     valueOrDash(contract.retirementAllowanceRule),
-  );
-
-  salaryCell(
-    salaryX + salaryHalfWidth,
-    y,
     "退職事項",
     valueOrDash(contract.retirementRule),
   );
 
-  y -= salaryRowHeight;
-
-  salaryCell(
-    salaryX,
-    y,
+  twoColRow(
     "社会保険",
     valueOrDash(contract.socialInsuranceRule),
-  );
-
-  salaryCell(
-    salaryX + salaryHalfWidth,
-    y,
     "雇用保険",
     valueOrDash(contract.employmentInsuranceRule),
   );
 
-  y -= salaryRowHeight;
+  row("相談窓口", valueOrDash(contract.consultationDesk));
+  row("就業規則", valueOrDash(contract.workRuleLocation));
 
-  salaryCell(
-    salaryX,
-    y,
-    "相談窓口",
-    valueOrDash(contract.consultationDesk),
-  );
-
-  salaryCell(
-    salaryX + salaryHalfWidth,
-    y,
-    "就業規則",
-    valueOrDash(contract.workRuleLocation),
-  );
-
-  y -= salaryRowHeight + 8;
-
-  const signatureY = 130;
+    const signatureY = 130;
 
   page.drawRectangle({
     x: 40,

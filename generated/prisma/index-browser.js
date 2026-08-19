@@ -419,6 +419,7 @@ exports.Prisma.EmploymentContractScalarFieldEnum = {
   id: 'id',
   employeeId: 'employeeId',
   contractType: 'contractType',
+  employmentCategory: 'employmentCategory',
   startDate: 'startDate',
   endDate: 'endDate',
   workplace: 'workplace',
@@ -501,11 +502,24 @@ exports.Prisma.EmploymentContractConsentScalarFieldEnum = {
   id: 'id',
   employmentContractId: 'employmentContractId',
   signerName: 'signerName',
+  signatureImagePath: 'signatureImagePath',
   consentedAt: 'consentedAt',
   ipAddress: 'ipAddress',
   userAgent: 'userAgent',
   createdAt: 'createdAt',
   dependentId: 'dependentId'
+};
+
+exports.Prisma.EmploymentContractWorkScheduleScalarFieldEnum = {
+  id: 'id',
+  employmentContractId: 'employmentContractId',
+  name: 'name',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  breakMinutes: 'breakMinutes',
+  sortOrder: 'sortOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -643,7 +657,8 @@ exports.Prisma.ModelName = {
   EmploymentContract: 'EmploymentContract',
   CompanySetting: 'CompanySetting',
   EmploymentContractTemplate: 'EmploymentContractTemplate',
-  EmploymentContractConsent: 'EmploymentContractConsent'
+  EmploymentContractConsent: 'EmploymentContractConsent',
+  EmploymentContractWorkSchedule: 'EmploymentContractWorkSchedule'
 };
 
 /**
