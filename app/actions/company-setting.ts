@@ -4,6 +4,10 @@ import { prisma } from '@/lib/prisma'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
+import path from 'path'
+import { mkdir, writeFile } from 'fs/promises'
+import { randomUUID } from 'crypto'
+
 export async function saveCompanySetting(
   formData: FormData,
 ) {
@@ -28,6 +32,43 @@ export async function saveCompanySetting(
   const workRuleLocation =
     formData.get('workRuleLocation') as string
 
+  const sealImage =
+    formData.get('sealImage')
+
+  let sealImagePath: string | null = null
+
+  if (
+    sealImage instanceof File &&
+    sealImage.size > 0
+  ) {
+    const uploadDir =
+      "/data/hr-system/seals"
+
+    await mkdir(uploadDir, {
+      recursive: true,
+    })
+
+    const extension =
+      path.extname(sealImage.name) || ".png"
+
+    const fileName =
+      `${randomUUID()}${extension}`
+
+    const fullPath =
+      path.join(uploadDir, fileName)
+
+    const bytes =
+      await sealImage.arrayBuffer()
+
+    await writeFile(
+      fullPath,
+      Buffer.from(bytes),
+    )
+
+    sealImagePath =
+      `/seals/${fileName}`
+  }
+
   const current =
     await prisma.companySetting.findFirst()
 
@@ -47,6 +88,10 @@ export async function saveCompanySetting(
           consultationDesk || null,
         workRuleLocation:
           workRuleLocation || null,
+        sealImagePath:
+          sealImagePath ||
+          current.sealImagePath ||
+          null,
       },
     })
   } else {
@@ -62,6 +107,8 @@ export async function saveCompanySetting(
           consultationDesk || null,
         workRuleLocation:
           workRuleLocation || null,
+        sealImagePath:
+          sealImagePath || null,
       },
     })
   }

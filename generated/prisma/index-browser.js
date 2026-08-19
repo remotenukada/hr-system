@@ -460,6 +460,7 @@ exports.Prisma.CompanySettingScalarFieldEnum = {
   address: 'address',
   phoneNumber: 'phoneNumber',
   representativeName: 'representativeName',
+  sealImagePath: 'sealImagePath',
   consultationDesk: 'consultationDesk',
   workRuleLocation: 'workRuleLocation',
   createdAt: 'createdAt',

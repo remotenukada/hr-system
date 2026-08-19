@@ -100,6 +100,19 @@ export default async function CompanySettingsPage() {
           />
         </div>
 
+
+        <div>
+          <label className="mb-1 block text-sm font-medium">
+            電子印鑑（PNG）
+          </label>
+          <input
+            name="sealImage"
+            type="file"
+            accept="image/png"
+            className="w-full rounded border p-2"
+          />
+        </div>
+
         <div className="flex justify-end">
           <DirtySubmitButton
             label="保存する"

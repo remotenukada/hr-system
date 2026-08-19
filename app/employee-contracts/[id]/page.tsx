@@ -123,7 +123,7 @@ export default async function EmploymentContractDetailPage(
 
           <div>
             <dt className="text-sm text-gray-500">
-              契約区分
+              雇用形態
             </dt>
             <dd className="mt-1 font-medium text-gray-900">
               {contract.contractType}
@@ -275,6 +275,7 @@ export default async function EmploymentContractDetailPage(
             <thead className="bg-gray-50">
               <tr>
                 <th className="border p-2 text-left">Version</th>
+                <th className="border p-2 text-left">雇用形態</th>
                 <th className="border p-2 text-left">契約区分</th>
                 <th className="border p-2 text-left">開始日</th>
                 <th className="border p-2 text-left">状態</th>
@@ -287,6 +288,10 @@ export default async function EmploymentContractDetailPage(
                 <tr key={item.id}>
                   <td className="border p-2">
                     v{item.version}
+                  </td>
+
+                  <td className="border p-2">
+                    {item.employmentCategory ?? "-"}
                   </td>
 
                   <td className="border p-2">

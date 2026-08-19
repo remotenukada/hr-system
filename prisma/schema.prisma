@@ -577,6 +577,7 @@ model CompanySetting {
   phoneNumber String?
 
   representativeName String?
+  sealImagePath String?
 
   consultationDesk String?
 

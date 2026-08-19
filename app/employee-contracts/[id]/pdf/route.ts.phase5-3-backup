@@ -685,7 +685,7 @@ sectionTitle("賃金・社会保険");
     x: 40,
     y: signatureY,
     width: 515,
-    height: 180,
+    height: 140,
     borderWidth: 0.5,
     borderColor: rgb(0.72, 0.72, 0.72),
     color: rgb(1, 1, 1),
@@ -695,7 +695,7 @@ sectionTitle("賃金・社会保険");
     x: 305,
     y: signatureY,
     width: 250,
-    height: 180,
+    height: 140,
     borderWidth: 0.5,
     borderColor: rgb(0.72, 0.72, 0.72),
     color: rgb(1, 1, 1),
@@ -725,13 +725,13 @@ sectionTitle("賃金・社会保険");
   drawText(
     `氏名\n${contract.employee.lastName} ${contract.employee.firstName}`,
     50,
-    signatureY + 145,
+    signatureY + 102,
     7.2,
   );
   drawText(
     `住所\n${valueOrDash(contract.employee.address)}`,
     50,
-    signatureY + 115,
+    signatureY + 82,
     6.8,
   );
 
@@ -739,7 +739,7 @@ sectionTitle("賃金・社会保険");
     drawText(
       `同意日時: ${new Date(consent.consentedAt).toLocaleString("ja-JP")}`,
       50,
-      signatureY + 35,
+      signatureY + 20,
       6.8,
       rgb(0.35, 0.35, 0.35),
     );

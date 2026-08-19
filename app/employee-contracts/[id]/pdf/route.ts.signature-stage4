@@ -194,10 +194,10 @@ export async function GET(
 function workScheduleBlock(value: string) {
   const lines = value
     ? value.split(/\r?\n/).filter(Boolean)
-    : ["________________"];
+    : ["-"];
 
   const boxHeight =
-    Math.max(85, lines.length * 14 + 24);
+    Math.max(40, lines.length * 12 + 12);
 
   page.drawRectangle({
     x: 40,
@@ -219,12 +219,12 @@ function workScheduleBlock(value: string) {
     color: rgb(1, 1, 1),
   });
 
-  drawText("勤務時間", 45, y - 6, 8, rgb(0.05, 0.18, 0.45));
+  drawText("勤務時間", 45, y - 4, 7.2);
 
   let lineY = y - 4;
 
   for (const line of lines) {
-    drawText(`・${line}`, 155, lineY, 7.5);
+    drawText(`・${line}`, 155, lineY, 7.2);
     lineY -= 12;
   }
 
@@ -268,7 +268,7 @@ function allowanceBlock(value: string) {
     let lineY = y - 4;
 
     for (const line of lines) {
-      drawText(`・${line}`, 155, lineY, 7.5);
+      drawText(`・${line}`, 155, lineY, 7.2);
       lineY -= 12;
     }
 
@@ -334,66 +334,25 @@ function allowanceBlock(value: string) {
       company.companyName,
       40,
       y,
-      14,
+      10,
       rgb(0.05, 0.05, 0.05),
     );
 
     drawText(
-      `〒${company.postalCode ?? ""}`,
+      `所在地: ${`${company.postalCode ?? ""} ${company.address ?? ""}`.trim()}`,
       40,
-      y - 18,
-      8,
+      y - 13,
+      7,
       rgb(0.25, 0.25, 0.25),
     );
 
     drawText(
-      company.address ?? "",
+      `代表者: ${company.representativeName ?? "-"}　電話: ${company.phoneNumber ?? "-"}`,
       40,
-      y - 32,
-      8,
+      y - 25,
+      7,
       rgb(0.25, 0.25, 0.25),
     );
-
-    drawText(
-      `TEL ${company.phoneNumber ?? ""}`,
-      40,
-      y - 46,
-      8,
-      rgb(0.25, 0.25, 0.25),
-    );
-
-    drawText(
-      `代表者 ${company.representativeName ?? ""}`,
-      40,
-      y - 60,
-      8,
-      rgb(0.25, 0.25, 0.25),
-    );
-
-    if (company.sealImagePath) {
-      const sealPath =
-        company.sealImagePath.replace(
-          /^\/seals/,
-          "/data/hr-system/seals",
-        );
-
-      if (fs.existsSync(sealPath)) {
-        const sealBytes =
-          fs.readFileSync(sealPath);
-
-        const sealImage =
-          await pdfDoc.embedPng(sealBytes);
-
-        page.drawImage(sealImage, {
-          x: 440,
-          y: y - 70,
-          width: 70,
-          height: 70,
-        });
-      }
-    }
-
-    y -= 40;
   }
 
   drawText(
@@ -433,9 +392,12 @@ function allowanceBlock(value: string) {
     contract.contractType,
   );
 
-  twoColRow(
+  row(
     "契約期間",
     `${formatDate(contract.startDate)} ～ ${formatDate(contract.endDate)}`,
+  );
+
+  row(
     "契約更新",
     valueOrDash(contract.contractRenewalRule),
   );
@@ -685,7 +647,7 @@ sectionTitle("賃金・社会保険");
     x: 40,
     y: signatureY,
     width: 515,
-    height: 180,
+    height: 140,
     borderWidth: 0.5,
     borderColor: rgb(0.72, 0.72, 0.72),
     color: rgb(1, 1, 1),
@@ -695,43 +657,23 @@ sectionTitle("賃金・社会保険");
     x: 305,
     y: signatureY,
     width: 250,
-    height: 180,
+    height: 140,
     borderWidth: 0.5,
     borderColor: rgb(0.72, 0.72, 0.72),
     color: rgb(1, 1, 1),
   });
 
+  drawText("労働者確認欄", 50, signatureY + 122, 8, rgb(0.05, 0.18, 0.45));
   drawText(
-    "労働者確認欄",
+    `氏名: ${contract.employee.lastName} ${contract.employee.firstName}`,
     50,
-    signatureY + 122,
-    8,
-    rgb(0.05, 0.18, 0.45),
-  );
-
-  page.drawLine({
-    start: { x: 50, y: signatureY + 94 },
-    end: { x: 250, y: signatureY + 94 },
-    thickness: 0.5,
-    color: rgb(0.5, 0.5, 0.5),
-  });
-
-  page.drawLine({
-    start: { x: 50, y: signatureY + 64 },
-    end: { x: 250, y: signatureY + 64 },
-    thickness: 0.5,
-    color: rgb(0.5, 0.5, 0.5),
-  });
-  drawText(
-    `氏名\n${contract.employee.lastName} ${contract.employee.firstName}`,
-    50,
-    signatureY + 145,
+    signatureY + 102,
     7.2,
   );
   drawText(
-    `住所\n${valueOrDash(contract.employee.address)}`,
+    `住所: ${valueOrDash(contract.employee.address)}`,
     50,
-    signatureY + 115,
+    signatureY + 82,
     6.8,
   );
 
@@ -739,7 +681,7 @@ sectionTitle("賃金・社会保険");
     drawText(
       `同意日時: ${new Date(consent.consentedAt).toLocaleString("ja-JP")}`,
       50,
-      signatureY + 35,
+      signatureY + 20,
       6.8,
       rgb(0.35, 0.35, 0.35),
     );

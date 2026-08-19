@@ -32432,6 +32432,7 @@ export namespace Prisma {
     address: string | null
     phoneNumber: string | null
     representativeName: string | null
+    sealImagePath: string | null
     consultationDesk: string | null
     workRuleLocation: string | null
     createdAt: Date | null
@@ -32445,6 +32446,7 @@ export namespace Prisma {
     address: string | null
     phoneNumber: string | null
     representativeName: string | null
+    sealImagePath: string | null
     consultationDesk: string | null
     workRuleLocation: string | null
     createdAt: Date | null
@@ -32458,6 +32460,7 @@ export namespace Prisma {
     address: number
     phoneNumber: number
     representativeName: number
+    sealImagePath: number
     consultationDesk: number
     workRuleLocation: number
     createdAt: number
@@ -32473,6 +32476,7 @@ export namespace Prisma {
     address?: true
     phoneNumber?: true
     representativeName?: true
+    sealImagePath?: true
     consultationDesk?: true
     workRuleLocation?: true
     createdAt?: true
@@ -32486,6 +32490,7 @@ export namespace Prisma {
     address?: true
     phoneNumber?: true
     representativeName?: true
+    sealImagePath?: true
     consultationDesk?: true
     workRuleLocation?: true
     createdAt?: true
@@ -32499,6 +32504,7 @@ export namespace Prisma {
     address?: true
     phoneNumber?: true
     representativeName?: true
+    sealImagePath?: true
     consultationDesk?: true
     workRuleLocation?: true
     createdAt?: true
@@ -32585,6 +32591,7 @@ export namespace Prisma {
     address: string | null
     phoneNumber: string | null
     representativeName: string | null
+    sealImagePath: string | null
     consultationDesk: string | null
     workRuleLocation: string | null
     createdAt: Date
@@ -32615,6 +32622,7 @@ export namespace Prisma {
     address?: boolean
     phoneNumber?: boolean
     representativeName?: boolean
+    sealImagePath?: boolean
     consultationDesk?: boolean
     workRuleLocation?: boolean
     createdAt?: boolean
@@ -32628,6 +32636,7 @@ export namespace Prisma {
     address?: boolean
     phoneNumber?: boolean
     representativeName?: boolean
+    sealImagePath?: boolean
     consultationDesk?: boolean
     workRuleLocation?: boolean
     createdAt?: boolean
@@ -32641,6 +32650,7 @@ export namespace Prisma {
     address?: boolean
     phoneNumber?: boolean
     representativeName?: boolean
+    sealImagePath?: boolean
     consultationDesk?: boolean
     workRuleLocation?: boolean
     createdAt?: boolean
@@ -32654,13 +32664,14 @@ export namespace Prisma {
     address?: boolean
     phoneNumber?: boolean
     representativeName?: boolean
+    sealImagePath?: boolean
     consultationDesk?: boolean
     workRuleLocation?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type CompanySettingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "companyName" | "postalCode" | "address" | "phoneNumber" | "representativeName" | "consultationDesk" | "workRuleLocation" | "createdAt" | "updatedAt", ExtArgs["result"]["companySetting"]>
+  export type CompanySettingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "companyName" | "postalCode" | "address" | "phoneNumber" | "representativeName" | "sealImagePath" | "consultationDesk" | "workRuleLocation" | "createdAt" | "updatedAt", ExtArgs["result"]["companySetting"]>
 
   export type $CompanySettingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "CompanySetting"
@@ -32672,6 +32683,7 @@ export namespace Prisma {
       address: string | null
       phoneNumber: string | null
       representativeName: string | null
+      sealImagePath: string | null
       consultationDesk: string | null
       workRuleLocation: string | null
       createdAt: Date
@@ -33105,6 +33117,7 @@ export namespace Prisma {
     readonly address: FieldRef<"CompanySetting", 'String'>
     readonly phoneNumber: FieldRef<"CompanySetting", 'String'>
     readonly representativeName: FieldRef<"CompanySetting", 'String'>
+    readonly sealImagePath: FieldRef<"CompanySetting", 'String'>
     readonly consultationDesk: FieldRef<"CompanySetting", 'String'>
     readonly workRuleLocation: FieldRef<"CompanySetting", 'String'>
     readonly createdAt: FieldRef<"CompanySetting", 'DateTime'>
@@ -37551,6 +37564,7 @@ export namespace Prisma {
     address: 'address',
     phoneNumber: 'phoneNumber',
     representativeName: 'representativeName',
+    sealImagePath: 'sealImagePath',
     consultationDesk: 'consultationDesk',
     workRuleLocation: 'workRuleLocation',
     createdAt: 'createdAt',
@@ -40054,6 +40068,7 @@ export namespace Prisma {
     address?: StringNullableFilter<"CompanySetting"> | string | null
     phoneNumber?: StringNullableFilter<"CompanySetting"> | string | null
     representativeName?: StringNullableFilter<"CompanySetting"> | string | null
+    sealImagePath?: StringNullableFilter<"CompanySetting"> | string | null
     consultationDesk?: StringNullableFilter<"CompanySetting"> | string | null
     workRuleLocation?: StringNullableFilter<"CompanySetting"> | string | null
     createdAt?: DateTimeFilter<"CompanySetting"> | Date | string
@@ -40067,6 +40082,7 @@ export namespace Prisma {
     address?: SortOrderInput | SortOrder
     phoneNumber?: SortOrderInput | SortOrder
     representativeName?: SortOrderInput | SortOrder
+    sealImagePath?: SortOrderInput | SortOrder
     consultationDesk?: SortOrderInput | SortOrder
     workRuleLocation?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -40083,6 +40099,7 @@ export namespace Prisma {
     address?: StringNullableFilter<"CompanySetting"> | string | null
     phoneNumber?: StringNullableFilter<"CompanySetting"> | string | null
     representativeName?: StringNullableFilter<"CompanySetting"> | string | null
+    sealImagePath?: StringNullableFilter<"CompanySetting"> | string | null
     consultationDesk?: StringNullableFilter<"CompanySetting"> | string | null
     workRuleLocation?: StringNullableFilter<"CompanySetting"> | string | null
     createdAt?: DateTimeFilter<"CompanySetting"> | Date | string
@@ -40096,6 +40113,7 @@ export namespace Prisma {
     address?: SortOrderInput | SortOrder
     phoneNumber?: SortOrderInput | SortOrder
     representativeName?: SortOrderInput | SortOrder
+    sealImagePath?: SortOrderInput | SortOrder
     consultationDesk?: SortOrderInput | SortOrder
     workRuleLocation?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -40115,6 +40133,7 @@ export namespace Prisma {
     address?: StringNullableWithAggregatesFilter<"CompanySetting"> | string | null
     phoneNumber?: StringNullableWithAggregatesFilter<"CompanySetting"> | string | null
     representativeName?: StringNullableWithAggregatesFilter<"CompanySetting"> | string | null
+    sealImagePath?: StringNullableWithAggregatesFilter<"CompanySetting"> | string | null
     consultationDesk?: StringNullableWithAggregatesFilter<"CompanySetting"> | string | null
     workRuleLocation?: StringNullableWithAggregatesFilter<"CompanySetting"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"CompanySetting"> | Date | string
@@ -42869,6 +42888,7 @@ export namespace Prisma {
     address?: string | null
     phoneNumber?: string | null
     representativeName?: string | null
+    sealImagePath?: string | null
     consultationDesk?: string | null
     workRuleLocation?: string | null
     createdAt?: Date | string
@@ -42882,6 +42902,7 @@ export namespace Prisma {
     address?: string | null
     phoneNumber?: string | null
     representativeName?: string | null
+    sealImagePath?: string | null
     consultationDesk?: string | null
     workRuleLocation?: string | null
     createdAt?: Date | string
@@ -42895,6 +42916,7 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     representativeName?: NullableStringFieldUpdateOperationsInput | string | null
+    sealImagePath?: NullableStringFieldUpdateOperationsInput | string | null
     consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
     workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -42908,6 +42930,7 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     representativeName?: NullableStringFieldUpdateOperationsInput | string | null
+    sealImagePath?: NullableStringFieldUpdateOperationsInput | string | null
     consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
     workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -42921,6 +42944,7 @@ export namespace Prisma {
     address?: string | null
     phoneNumber?: string | null
     representativeName?: string | null
+    sealImagePath?: string | null
     consultationDesk?: string | null
     workRuleLocation?: string | null
     createdAt?: Date | string
@@ -42934,6 +42958,7 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     representativeName?: NullableStringFieldUpdateOperationsInput | string | null
+    sealImagePath?: NullableStringFieldUpdateOperationsInput | string | null
     consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
     workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -42947,6 +42972,7 @@ export namespace Prisma {
     address?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
     representativeName?: NullableStringFieldUpdateOperationsInput | string | null
+    sealImagePath?: NullableStringFieldUpdateOperationsInput | string | null
     consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
     workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -45194,6 +45220,7 @@ export namespace Prisma {
     address?: SortOrder
     phoneNumber?: SortOrder
     representativeName?: SortOrder
+    sealImagePath?: SortOrder
     consultationDesk?: SortOrder
     workRuleLocation?: SortOrder
     createdAt?: SortOrder
@@ -45207,6 +45234,7 @@ export namespace Prisma {
     address?: SortOrder
     phoneNumber?: SortOrder
     representativeName?: SortOrder
+    sealImagePath?: SortOrder
     consultationDesk?: SortOrder
     workRuleLocation?: SortOrder
     createdAt?: SortOrder
@@ -45220,6 +45248,7 @@ export namespace Prisma {
     address?: SortOrder
     phoneNumber?: SortOrder
     representativeName?: SortOrder
+    sealImagePath?: SortOrder
     consultationDesk?: SortOrder
     workRuleLocation?: SortOrder
     createdAt?: SortOrder
