@@ -377,14 +377,14 @@ export async function GET(
   drawText(
     `契約期間: ${formatDate(contract.startDate)} ～ ${formatDate(contract.endDate)}`,
     50,
-    blockTopY - 70,
+    blockTopY - 84,
     7,
   );
 
   drawText(
     `契約更新: ${valueOrDash(contract.contractRenewalRule)}`,
     50,
-    blockTopY - 84,
+    blockTopY - 98,
     7,
   );
 
