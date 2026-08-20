@@ -31,12 +31,33 @@ export default async function EditEmploymentContractPage(
       },
       include: {
         employee: true,
+        workSchedules: {
+          orderBy: {
+            sortOrder: "asc",
+          },
+        },
       },
+    });
+
+  const workScheduleMasters =
+    await prisma.workScheduleMaster.findMany({
+      where: {
+        isActive: true,
+      },
+      orderBy: [
+        { sortOrder: "asc" },
+        { name: "asc" },
+      ],
     });
 
   if (!contract) {
     notFound();
   }
+
+  const editableWorkSchedules =
+    contract.workSchedules.length > 0
+      ? contract.workSchedules
+      : workScheduleMasters;
 
   return (
     <main className="mx-auto max-w-4xl p-6">
@@ -227,34 +248,32 @@ export default async function EditEmploymentContractPage(
                   <div>休憩（分）</div>
                 </div>
 
-                {[
-                  ["早番", "07:00", "16:00", "60"],
-                  ["日勤", contract.workStartTime, contract.workEndTime, String(contract.breakMinutes)],
-                  ["遅番", "10:00", "19:00", "60"],
-                  ["夜勤", "16:00", "09:00", "120"],
-                ].map(([name, start, end, breakTime]) => (
-                  <div key={name} className="grid grid-cols-4 gap-2">
+                {editableWorkSchedules.map((schedule) => (
+                  <div
+                    key={schedule.id}
+                    className="grid grid-cols-4 gap-2"
+                  >
                     <input
                       name="workScheduleName"
-                      defaultValue={name}
+                      defaultValue={schedule.name}
                       className="w-full rounded border p-2"
                     />
                     <input
                       type="time"
                       name="workScheduleStartTime"
-                      defaultValue={start}
+                      defaultValue={schedule.startTime}
                       className="w-full rounded border p-2"
                     />
                     <input
                       type="time"
                       name="workScheduleEndTime"
-                      defaultValue={end}
+                      defaultValue={schedule.endTime}
                       className="w-full rounded border p-2"
                     />
                     <input
                       type="number"
                       name="workScheduleBreakMinutes"
-                      defaultValue={breakTime}
+                      defaultValue={schedule.breakMinutes}
                       min="0"
                       className="w-full rounded border p-2"
                     />

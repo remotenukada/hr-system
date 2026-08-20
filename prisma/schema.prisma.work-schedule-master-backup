@@ -506,7 +506,7 @@ model EmploymentContract {
 
   employeeId String
 
-  contractType       String
+  contractType String
   employmentCategory String?
 
   startDate DateTime
@@ -559,11 +559,11 @@ model EmploymentContract {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  employee                   Employee                         @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  employee                   Employee                    @relation(fields: [employeeId], references: [id], onDelete: Cascade)
   employmentContractConsents EmploymentContractConsent[]
-  workSchedules              EmploymentContractWorkSchedule[]
 
   @@index([employeeId])
+  workSchedules EmploymentContractWorkSchedule[]
 }
 
 model CompanySetting {
@@ -577,7 +577,7 @@ model CompanySetting {
   phoneNumber String?
 
   representativeName String?
-  sealImagePath      String?
+  sealImagePath String?
 
   consultationDesk String?
 
@@ -642,7 +642,7 @@ model EmploymentContractConsent {
 
   employmentContractId String
 
-  signerName         String
+  signerName String
   signatureImagePath String?
 
   consentedAt DateTime @default(now())
@@ -659,15 +659,16 @@ model EmploymentContractConsent {
   @@index([employmentContractId])
 }
 
+
 model EmploymentContractWorkSchedule {
   id String @id @default(uuid())
 
   employmentContractId String
 
-  name         String
-  startTime    String
-  endTime      String
-  breakMinutes Int    @default(0)
+  name String
+  startTime String
+  endTime String
+  breakMinutes Int @default(0)
 
   sortOrder Int @default(0)
 
@@ -677,22 +678,4 @@ model EmploymentContractWorkSchedule {
   employmentContract EmploymentContract @relation(fields: [employmentContractId], references: [id], onDelete: Cascade)
 
   @@index([employmentContractId])
-}
-
-model WorkScheduleMaster {
-  id String @id @default(uuid())
-
-  name String
-
-  startTime String
-  endTime   String
-
-  breakMinutes Int @default(0)
-
-  sortOrder Int @default(0)
-
-  isActive Boolean @default(true)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
 }
