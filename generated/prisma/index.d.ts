@@ -158,6 +158,11 @@ export type EmploymentContractWorkSchedule = $Result.DefaultSelection<Prisma.$Em
  * 
  */
 export type WorkScheduleMaster = $Result.DefaultSelection<Prisma.$WorkScheduleMasterPayload>
+/**
+ * Model AllowanceMaster
+ * 
+ */
+export type AllowanceMaster = $Result.DefaultSelection<Prisma.$AllowanceMasterPayload>
 
 /**
  * Enums
@@ -741,6 +746,16 @@ export class PrismaClient<
     * ```
     */
   get workScheduleMaster(): Prisma.WorkScheduleMasterDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.allowanceMaster`: Exposes CRUD operations for the **AllowanceMaster** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AllowanceMasters
+    * const allowanceMasters = await prisma.allowanceMaster.findMany()
+    * ```
+    */
+  get allowanceMaster(): Prisma.AllowanceMasterDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1203,7 +1218,8 @@ export namespace Prisma {
     EmploymentContractTemplate: 'EmploymentContractTemplate',
     EmploymentContractConsent: 'EmploymentContractConsent',
     EmploymentContractWorkSchedule: 'EmploymentContractWorkSchedule',
-    WorkScheduleMaster: 'WorkScheduleMaster'
+    WorkScheduleMaster: 'WorkScheduleMaster',
+    AllowanceMaster: 'AllowanceMaster'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1219,7 +1235,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "userInvitation" | "department" | "employee" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster"
+      modelProps: "user" | "userInvitation" | "department" | "employee" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3369,6 +3385,80 @@ export namespace Prisma {
           }
         }
       }
+      AllowanceMaster: {
+        payload: Prisma.$AllowanceMasterPayload<ExtArgs>
+        fields: Prisma.AllowanceMasterFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AllowanceMasterFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AllowanceMasterPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AllowanceMasterFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AllowanceMasterPayload>
+          }
+          findFirst: {
+            args: Prisma.AllowanceMasterFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AllowanceMasterPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AllowanceMasterFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AllowanceMasterPayload>
+          }
+          findMany: {
+            args: Prisma.AllowanceMasterFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AllowanceMasterPayload>[]
+          }
+          create: {
+            args: Prisma.AllowanceMasterCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AllowanceMasterPayload>
+          }
+          createMany: {
+            args: Prisma.AllowanceMasterCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AllowanceMasterCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AllowanceMasterPayload>[]
+          }
+          delete: {
+            args: Prisma.AllowanceMasterDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AllowanceMasterPayload>
+          }
+          update: {
+            args: Prisma.AllowanceMasterUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AllowanceMasterPayload>
+          }
+          deleteMany: {
+            args: Prisma.AllowanceMasterDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AllowanceMasterUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AllowanceMasterUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AllowanceMasterPayload>[]
+          }
+          upsert: {
+            args: Prisma.AllowanceMasterUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AllowanceMasterPayload>
+          }
+          aggregate: {
+            args: Prisma.AllowanceMasterAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAllowanceMaster>
+          }
+          groupBy: {
+            args: Prisma.AllowanceMasterGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AllowanceMasterGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AllowanceMasterCountArgs<ExtArgs>
+            result: $Utils.Optional<AllowanceMasterCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3506,6 +3596,7 @@ export namespace Prisma {
     employmentContractConsent?: EmploymentContractConsentOmit
     employmentContractWorkSchedule?: EmploymentContractWorkScheduleOmit
     workScheduleMaster?: WorkScheduleMasterOmit
+    allowanceMaster?: AllowanceMasterOmit
   }
 
   /* Types for Logging */
@@ -38320,6 +38411,1053 @@ export namespace Prisma {
 
 
   /**
+   * Model AllowanceMaster
+   */
+
+  export type AggregateAllowanceMaster = {
+    _count: AllowanceMasterCountAggregateOutputType | null
+    _avg: AllowanceMasterAvgAggregateOutputType | null
+    _sum: AllowanceMasterSumAggregateOutputType | null
+    _min: AllowanceMasterMinAggregateOutputType | null
+    _max: AllowanceMasterMaxAggregateOutputType | null
+  }
+
+  export type AllowanceMasterAvgAggregateOutputType = {
+    sortOrder: number | null
+  }
+
+  export type AllowanceMasterSumAggregateOutputType = {
+    sortOrder: number | null
+  }
+
+  export type AllowanceMasterMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    sortOrder: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AllowanceMasterMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    sortOrder: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AllowanceMasterCountAggregateOutputType = {
+    id: number
+    name: number
+    sortOrder: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AllowanceMasterAvgAggregateInputType = {
+    sortOrder?: true
+  }
+
+  export type AllowanceMasterSumAggregateInputType = {
+    sortOrder?: true
+  }
+
+  export type AllowanceMasterMinAggregateInputType = {
+    id?: true
+    name?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AllowanceMasterMaxAggregateInputType = {
+    id?: true
+    name?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AllowanceMasterCountAggregateInputType = {
+    id?: true
+    name?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AllowanceMasterAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AllowanceMaster to aggregate.
+     */
+    where?: AllowanceMasterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AllowanceMasters to fetch.
+     */
+    orderBy?: AllowanceMasterOrderByWithRelationInput | AllowanceMasterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AllowanceMasterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AllowanceMasters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AllowanceMasters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AllowanceMasters
+    **/
+    _count?: true | AllowanceMasterCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AllowanceMasterAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AllowanceMasterSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AllowanceMasterMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AllowanceMasterMaxAggregateInputType
+  }
+
+  export type GetAllowanceMasterAggregateType<T extends AllowanceMasterAggregateArgs> = {
+        [P in keyof T & keyof AggregateAllowanceMaster]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAllowanceMaster[P]>
+      : GetScalarType<T[P], AggregateAllowanceMaster[P]>
+  }
+
+
+
+
+  export type AllowanceMasterGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AllowanceMasterWhereInput
+    orderBy?: AllowanceMasterOrderByWithAggregationInput | AllowanceMasterOrderByWithAggregationInput[]
+    by: AllowanceMasterScalarFieldEnum[] | AllowanceMasterScalarFieldEnum
+    having?: AllowanceMasterScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AllowanceMasterCountAggregateInputType | true
+    _avg?: AllowanceMasterAvgAggregateInputType
+    _sum?: AllowanceMasterSumAggregateInputType
+    _min?: AllowanceMasterMinAggregateInputType
+    _max?: AllowanceMasterMaxAggregateInputType
+  }
+
+  export type AllowanceMasterGroupByOutputType = {
+    id: string
+    name: string
+    sortOrder: number
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: AllowanceMasterCountAggregateOutputType | null
+    _avg: AllowanceMasterAvgAggregateOutputType | null
+    _sum: AllowanceMasterSumAggregateOutputType | null
+    _min: AllowanceMasterMinAggregateOutputType | null
+    _max: AllowanceMasterMaxAggregateOutputType | null
+  }
+
+  type GetAllowanceMasterGroupByPayload<T extends AllowanceMasterGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AllowanceMasterGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AllowanceMasterGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AllowanceMasterGroupByOutputType[P]>
+            : GetScalarType<T[P], AllowanceMasterGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AllowanceMasterSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["allowanceMaster"]>
+
+  export type AllowanceMasterSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["allowanceMaster"]>
+
+  export type AllowanceMasterSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["allowanceMaster"]>
+
+  export type AllowanceMasterSelectScalar = {
+    id?: boolean
+    name?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AllowanceMasterOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "sortOrder" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["allowanceMaster"]>
+
+  export type $AllowanceMasterPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AllowanceMaster"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      sortOrder: number
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["allowanceMaster"]>
+    composites: {}
+  }
+
+  type AllowanceMasterGetPayload<S extends boolean | null | undefined | AllowanceMasterDefaultArgs> = $Result.GetResult<Prisma.$AllowanceMasterPayload, S>
+
+  type AllowanceMasterCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AllowanceMasterFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AllowanceMasterCountAggregateInputType | true
+    }
+
+  export interface AllowanceMasterDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AllowanceMaster'], meta: { name: 'AllowanceMaster' } }
+    /**
+     * Find zero or one AllowanceMaster that matches the filter.
+     * @param {AllowanceMasterFindUniqueArgs} args - Arguments to find a AllowanceMaster
+     * @example
+     * // Get one AllowanceMaster
+     * const allowanceMaster = await prisma.allowanceMaster.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AllowanceMasterFindUniqueArgs>(args: SelectSubset<T, AllowanceMasterFindUniqueArgs<ExtArgs>>): Prisma__AllowanceMasterClient<$Result.GetResult<Prisma.$AllowanceMasterPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AllowanceMaster that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AllowanceMasterFindUniqueOrThrowArgs} args - Arguments to find a AllowanceMaster
+     * @example
+     * // Get one AllowanceMaster
+     * const allowanceMaster = await prisma.allowanceMaster.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AllowanceMasterFindUniqueOrThrowArgs>(args: SelectSubset<T, AllowanceMasterFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AllowanceMasterClient<$Result.GetResult<Prisma.$AllowanceMasterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AllowanceMaster that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AllowanceMasterFindFirstArgs} args - Arguments to find a AllowanceMaster
+     * @example
+     * // Get one AllowanceMaster
+     * const allowanceMaster = await prisma.allowanceMaster.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AllowanceMasterFindFirstArgs>(args?: SelectSubset<T, AllowanceMasterFindFirstArgs<ExtArgs>>): Prisma__AllowanceMasterClient<$Result.GetResult<Prisma.$AllowanceMasterPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AllowanceMaster that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AllowanceMasterFindFirstOrThrowArgs} args - Arguments to find a AllowanceMaster
+     * @example
+     * // Get one AllowanceMaster
+     * const allowanceMaster = await prisma.allowanceMaster.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AllowanceMasterFindFirstOrThrowArgs>(args?: SelectSubset<T, AllowanceMasterFindFirstOrThrowArgs<ExtArgs>>): Prisma__AllowanceMasterClient<$Result.GetResult<Prisma.$AllowanceMasterPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AllowanceMasters that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AllowanceMasterFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AllowanceMasters
+     * const allowanceMasters = await prisma.allowanceMaster.findMany()
+     * 
+     * // Get first 10 AllowanceMasters
+     * const allowanceMasters = await prisma.allowanceMaster.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const allowanceMasterWithIdOnly = await prisma.allowanceMaster.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AllowanceMasterFindManyArgs>(args?: SelectSubset<T, AllowanceMasterFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AllowanceMasterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AllowanceMaster.
+     * @param {AllowanceMasterCreateArgs} args - Arguments to create a AllowanceMaster.
+     * @example
+     * // Create one AllowanceMaster
+     * const AllowanceMaster = await prisma.allowanceMaster.create({
+     *   data: {
+     *     // ... data to create a AllowanceMaster
+     *   }
+     * })
+     * 
+     */
+    create<T extends AllowanceMasterCreateArgs>(args: SelectSubset<T, AllowanceMasterCreateArgs<ExtArgs>>): Prisma__AllowanceMasterClient<$Result.GetResult<Prisma.$AllowanceMasterPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AllowanceMasters.
+     * @param {AllowanceMasterCreateManyArgs} args - Arguments to create many AllowanceMasters.
+     * @example
+     * // Create many AllowanceMasters
+     * const allowanceMaster = await prisma.allowanceMaster.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AllowanceMasterCreateManyArgs>(args?: SelectSubset<T, AllowanceMasterCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AllowanceMasters and returns the data saved in the database.
+     * @param {AllowanceMasterCreateManyAndReturnArgs} args - Arguments to create many AllowanceMasters.
+     * @example
+     * // Create many AllowanceMasters
+     * const allowanceMaster = await prisma.allowanceMaster.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AllowanceMasters and only return the `id`
+     * const allowanceMasterWithIdOnly = await prisma.allowanceMaster.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AllowanceMasterCreateManyAndReturnArgs>(args?: SelectSubset<T, AllowanceMasterCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AllowanceMasterPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AllowanceMaster.
+     * @param {AllowanceMasterDeleteArgs} args - Arguments to delete one AllowanceMaster.
+     * @example
+     * // Delete one AllowanceMaster
+     * const AllowanceMaster = await prisma.allowanceMaster.delete({
+     *   where: {
+     *     // ... filter to delete one AllowanceMaster
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AllowanceMasterDeleteArgs>(args: SelectSubset<T, AllowanceMasterDeleteArgs<ExtArgs>>): Prisma__AllowanceMasterClient<$Result.GetResult<Prisma.$AllowanceMasterPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AllowanceMaster.
+     * @param {AllowanceMasterUpdateArgs} args - Arguments to update one AllowanceMaster.
+     * @example
+     * // Update one AllowanceMaster
+     * const allowanceMaster = await prisma.allowanceMaster.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AllowanceMasterUpdateArgs>(args: SelectSubset<T, AllowanceMasterUpdateArgs<ExtArgs>>): Prisma__AllowanceMasterClient<$Result.GetResult<Prisma.$AllowanceMasterPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AllowanceMasters.
+     * @param {AllowanceMasterDeleteManyArgs} args - Arguments to filter AllowanceMasters to delete.
+     * @example
+     * // Delete a few AllowanceMasters
+     * const { count } = await prisma.allowanceMaster.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AllowanceMasterDeleteManyArgs>(args?: SelectSubset<T, AllowanceMasterDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AllowanceMasters.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AllowanceMasterUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AllowanceMasters
+     * const allowanceMaster = await prisma.allowanceMaster.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AllowanceMasterUpdateManyArgs>(args: SelectSubset<T, AllowanceMasterUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AllowanceMasters and returns the data updated in the database.
+     * @param {AllowanceMasterUpdateManyAndReturnArgs} args - Arguments to update many AllowanceMasters.
+     * @example
+     * // Update many AllowanceMasters
+     * const allowanceMaster = await prisma.allowanceMaster.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AllowanceMasters and only return the `id`
+     * const allowanceMasterWithIdOnly = await prisma.allowanceMaster.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AllowanceMasterUpdateManyAndReturnArgs>(args: SelectSubset<T, AllowanceMasterUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AllowanceMasterPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AllowanceMaster.
+     * @param {AllowanceMasterUpsertArgs} args - Arguments to update or create a AllowanceMaster.
+     * @example
+     * // Update or create a AllowanceMaster
+     * const allowanceMaster = await prisma.allowanceMaster.upsert({
+     *   create: {
+     *     // ... data to create a AllowanceMaster
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AllowanceMaster we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AllowanceMasterUpsertArgs>(args: SelectSubset<T, AllowanceMasterUpsertArgs<ExtArgs>>): Prisma__AllowanceMasterClient<$Result.GetResult<Prisma.$AllowanceMasterPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AllowanceMasters.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AllowanceMasterCountArgs} args - Arguments to filter AllowanceMasters to count.
+     * @example
+     * // Count the number of AllowanceMasters
+     * const count = await prisma.allowanceMaster.count({
+     *   where: {
+     *     // ... the filter for the AllowanceMasters we want to count
+     *   }
+     * })
+    **/
+    count<T extends AllowanceMasterCountArgs>(
+      args?: Subset<T, AllowanceMasterCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AllowanceMasterCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AllowanceMaster.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AllowanceMasterAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AllowanceMasterAggregateArgs>(args: Subset<T, AllowanceMasterAggregateArgs>): Prisma.PrismaPromise<GetAllowanceMasterAggregateType<T>>
+
+    /**
+     * Group by AllowanceMaster.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AllowanceMasterGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AllowanceMasterGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AllowanceMasterGroupByArgs['orderBy'] }
+        : { orderBy?: AllowanceMasterGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AllowanceMasterGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAllowanceMasterGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AllowanceMaster model
+   */
+  readonly fields: AllowanceMasterFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AllowanceMaster.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AllowanceMasterClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AllowanceMaster model
+   */
+  interface AllowanceMasterFieldRefs {
+    readonly id: FieldRef<"AllowanceMaster", 'String'>
+    readonly name: FieldRef<"AllowanceMaster", 'String'>
+    readonly sortOrder: FieldRef<"AllowanceMaster", 'Int'>
+    readonly isActive: FieldRef<"AllowanceMaster", 'Boolean'>
+    readonly createdAt: FieldRef<"AllowanceMaster", 'DateTime'>
+    readonly updatedAt: FieldRef<"AllowanceMaster", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AllowanceMaster findUnique
+   */
+  export type AllowanceMasterFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AllowanceMaster
+     */
+    select?: AllowanceMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AllowanceMaster
+     */
+    omit?: AllowanceMasterOmit<ExtArgs> | null
+    /**
+     * Filter, which AllowanceMaster to fetch.
+     */
+    where: AllowanceMasterWhereUniqueInput
+  }
+
+  /**
+   * AllowanceMaster findUniqueOrThrow
+   */
+  export type AllowanceMasterFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AllowanceMaster
+     */
+    select?: AllowanceMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AllowanceMaster
+     */
+    omit?: AllowanceMasterOmit<ExtArgs> | null
+    /**
+     * Filter, which AllowanceMaster to fetch.
+     */
+    where: AllowanceMasterWhereUniqueInput
+  }
+
+  /**
+   * AllowanceMaster findFirst
+   */
+  export type AllowanceMasterFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AllowanceMaster
+     */
+    select?: AllowanceMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AllowanceMaster
+     */
+    omit?: AllowanceMasterOmit<ExtArgs> | null
+    /**
+     * Filter, which AllowanceMaster to fetch.
+     */
+    where?: AllowanceMasterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AllowanceMasters to fetch.
+     */
+    orderBy?: AllowanceMasterOrderByWithRelationInput | AllowanceMasterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AllowanceMasters.
+     */
+    cursor?: AllowanceMasterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AllowanceMasters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AllowanceMasters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AllowanceMasters.
+     */
+    distinct?: AllowanceMasterScalarFieldEnum | AllowanceMasterScalarFieldEnum[]
+  }
+
+  /**
+   * AllowanceMaster findFirstOrThrow
+   */
+  export type AllowanceMasterFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AllowanceMaster
+     */
+    select?: AllowanceMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AllowanceMaster
+     */
+    omit?: AllowanceMasterOmit<ExtArgs> | null
+    /**
+     * Filter, which AllowanceMaster to fetch.
+     */
+    where?: AllowanceMasterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AllowanceMasters to fetch.
+     */
+    orderBy?: AllowanceMasterOrderByWithRelationInput | AllowanceMasterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AllowanceMasters.
+     */
+    cursor?: AllowanceMasterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AllowanceMasters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AllowanceMasters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AllowanceMasters.
+     */
+    distinct?: AllowanceMasterScalarFieldEnum | AllowanceMasterScalarFieldEnum[]
+  }
+
+  /**
+   * AllowanceMaster findMany
+   */
+  export type AllowanceMasterFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AllowanceMaster
+     */
+    select?: AllowanceMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AllowanceMaster
+     */
+    omit?: AllowanceMasterOmit<ExtArgs> | null
+    /**
+     * Filter, which AllowanceMasters to fetch.
+     */
+    where?: AllowanceMasterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AllowanceMasters to fetch.
+     */
+    orderBy?: AllowanceMasterOrderByWithRelationInput | AllowanceMasterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AllowanceMasters.
+     */
+    cursor?: AllowanceMasterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AllowanceMasters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AllowanceMasters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AllowanceMasters.
+     */
+    distinct?: AllowanceMasterScalarFieldEnum | AllowanceMasterScalarFieldEnum[]
+  }
+
+  /**
+   * AllowanceMaster create
+   */
+  export type AllowanceMasterCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AllowanceMaster
+     */
+    select?: AllowanceMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AllowanceMaster
+     */
+    omit?: AllowanceMasterOmit<ExtArgs> | null
+    /**
+     * The data needed to create a AllowanceMaster.
+     */
+    data: XOR<AllowanceMasterCreateInput, AllowanceMasterUncheckedCreateInput>
+  }
+
+  /**
+   * AllowanceMaster createMany
+   */
+  export type AllowanceMasterCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AllowanceMasters.
+     */
+    data: AllowanceMasterCreateManyInput | AllowanceMasterCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AllowanceMaster createManyAndReturn
+   */
+  export type AllowanceMasterCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AllowanceMaster
+     */
+    select?: AllowanceMasterSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AllowanceMaster
+     */
+    omit?: AllowanceMasterOmit<ExtArgs> | null
+    /**
+     * The data used to create many AllowanceMasters.
+     */
+    data: AllowanceMasterCreateManyInput | AllowanceMasterCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AllowanceMaster update
+   */
+  export type AllowanceMasterUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AllowanceMaster
+     */
+    select?: AllowanceMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AllowanceMaster
+     */
+    omit?: AllowanceMasterOmit<ExtArgs> | null
+    /**
+     * The data needed to update a AllowanceMaster.
+     */
+    data: XOR<AllowanceMasterUpdateInput, AllowanceMasterUncheckedUpdateInput>
+    /**
+     * Choose, which AllowanceMaster to update.
+     */
+    where: AllowanceMasterWhereUniqueInput
+  }
+
+  /**
+   * AllowanceMaster updateMany
+   */
+  export type AllowanceMasterUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AllowanceMasters.
+     */
+    data: XOR<AllowanceMasterUpdateManyMutationInput, AllowanceMasterUncheckedUpdateManyInput>
+    /**
+     * Filter which AllowanceMasters to update
+     */
+    where?: AllowanceMasterWhereInput
+    /**
+     * Limit how many AllowanceMasters to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AllowanceMaster updateManyAndReturn
+   */
+  export type AllowanceMasterUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AllowanceMaster
+     */
+    select?: AllowanceMasterSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AllowanceMaster
+     */
+    omit?: AllowanceMasterOmit<ExtArgs> | null
+    /**
+     * The data used to update AllowanceMasters.
+     */
+    data: XOR<AllowanceMasterUpdateManyMutationInput, AllowanceMasterUncheckedUpdateManyInput>
+    /**
+     * Filter which AllowanceMasters to update
+     */
+    where?: AllowanceMasterWhereInput
+    /**
+     * Limit how many AllowanceMasters to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AllowanceMaster upsert
+   */
+  export type AllowanceMasterUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AllowanceMaster
+     */
+    select?: AllowanceMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AllowanceMaster
+     */
+    omit?: AllowanceMasterOmit<ExtArgs> | null
+    /**
+     * The filter to search for the AllowanceMaster to update in case it exists.
+     */
+    where: AllowanceMasterWhereUniqueInput
+    /**
+     * In case the AllowanceMaster found by the `where` argument doesn't exist, create a new AllowanceMaster with this data.
+     */
+    create: XOR<AllowanceMasterCreateInput, AllowanceMasterUncheckedCreateInput>
+    /**
+     * In case the AllowanceMaster was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AllowanceMasterUpdateInput, AllowanceMasterUncheckedUpdateInput>
+  }
+
+  /**
+   * AllowanceMaster delete
+   */
+  export type AllowanceMasterDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AllowanceMaster
+     */
+    select?: AllowanceMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AllowanceMaster
+     */
+    omit?: AllowanceMasterOmit<ExtArgs> | null
+    /**
+     * Filter which AllowanceMaster to delete.
+     */
+    where: AllowanceMasterWhereUniqueInput
+  }
+
+  /**
+   * AllowanceMaster deleteMany
+   */
+  export type AllowanceMasterDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AllowanceMasters to delete
+     */
+    where?: AllowanceMasterWhereInput
+    /**
+     * Limit how many AllowanceMasters to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AllowanceMaster without action
+   */
+  export type AllowanceMasterDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AllowanceMaster
+     */
+    select?: AllowanceMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AllowanceMaster
+     */
+    omit?: AllowanceMasterOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -38833,6 +39971,18 @@ export namespace Prisma {
   };
 
   export type WorkScheduleMasterScalarFieldEnum = (typeof WorkScheduleMasterScalarFieldEnum)[keyof typeof WorkScheduleMasterScalarFieldEnum]
+
+
+  export const AllowanceMasterScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    sortOrder: 'sortOrder',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AllowanceMasterScalarFieldEnum = (typeof AllowanceMasterScalarFieldEnum)[keyof typeof AllowanceMasterScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -41737,6 +42887,65 @@ export namespace Prisma {
     isActive?: BoolWithAggregatesFilter<"WorkScheduleMaster"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"WorkScheduleMaster"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"WorkScheduleMaster"> | Date | string
+  }
+
+  export type AllowanceMasterWhereInput = {
+    AND?: AllowanceMasterWhereInput | AllowanceMasterWhereInput[]
+    OR?: AllowanceMasterWhereInput[]
+    NOT?: AllowanceMasterWhereInput | AllowanceMasterWhereInput[]
+    id?: StringFilter<"AllowanceMaster"> | string
+    name?: StringFilter<"AllowanceMaster"> | string
+    sortOrder?: IntFilter<"AllowanceMaster"> | number
+    isActive?: BoolFilter<"AllowanceMaster"> | boolean
+    createdAt?: DateTimeFilter<"AllowanceMaster"> | Date | string
+    updatedAt?: DateTimeFilter<"AllowanceMaster"> | Date | string
+  }
+
+  export type AllowanceMasterOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AllowanceMasterWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AllowanceMasterWhereInput | AllowanceMasterWhereInput[]
+    OR?: AllowanceMasterWhereInput[]
+    NOT?: AllowanceMasterWhereInput | AllowanceMasterWhereInput[]
+    name?: StringFilter<"AllowanceMaster"> | string
+    sortOrder?: IntFilter<"AllowanceMaster"> | number
+    isActive?: BoolFilter<"AllowanceMaster"> | boolean
+    createdAt?: DateTimeFilter<"AllowanceMaster"> | Date | string
+    updatedAt?: DateTimeFilter<"AllowanceMaster"> | Date | string
+  }, "id">
+
+  export type AllowanceMasterOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AllowanceMasterCountOrderByAggregateInput
+    _avg?: AllowanceMasterAvgOrderByAggregateInput
+    _max?: AllowanceMasterMaxOrderByAggregateInput
+    _min?: AllowanceMasterMinOrderByAggregateInput
+    _sum?: AllowanceMasterSumOrderByAggregateInput
+  }
+
+  export type AllowanceMasterScalarWhereWithAggregatesInput = {
+    AND?: AllowanceMasterScalarWhereWithAggregatesInput | AllowanceMasterScalarWhereWithAggregatesInput[]
+    OR?: AllowanceMasterScalarWhereWithAggregatesInput[]
+    NOT?: AllowanceMasterScalarWhereWithAggregatesInput | AllowanceMasterScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AllowanceMaster"> | string
+    name?: StringWithAggregatesFilter<"AllowanceMaster"> | string
+    sortOrder?: IntWithAggregatesFilter<"AllowanceMaster"> | number
+    isActive?: BoolWithAggregatesFilter<"AllowanceMaster"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"AllowanceMaster"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"AllowanceMaster"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -44722,6 +45931,69 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type AllowanceMasterCreateInput = {
+    id?: string
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AllowanceMasterUncheckedCreateInput = {
+    id?: string
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AllowanceMasterUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AllowanceMasterUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AllowanceMasterCreateManyInput = {
+    id?: string
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AllowanceMasterUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AllowanceMasterUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -46850,6 +48122,41 @@ export namespace Prisma {
 
   export type WorkScheduleMasterSumOrderByAggregateInput = {
     breakMinutes?: SortOrder
+    sortOrder?: SortOrder
+  }
+
+  export type AllowanceMasterCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AllowanceMasterAvgOrderByAggregateInput = {
+    sortOrder?: SortOrder
+  }
+
+  export type AllowanceMasterMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AllowanceMasterMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AllowanceMasterSumOrderByAggregateInput = {
     sortOrder?: SortOrder
   }
 

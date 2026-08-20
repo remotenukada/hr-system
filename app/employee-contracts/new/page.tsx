@@ -68,6 +68,17 @@ export default async function NewEmploymentContractPage() {
       ],
     });
 
+  const allowanceMasters =
+    await prisma.allowanceMaster.findMany({
+      where: {
+        isActive: true,
+      },
+      orderBy: [
+        { sortOrder: "asc" },
+        { name: "asc" },
+      ],
+    });
+
   return (
     <main className="mx-auto max-w-4xl p-6">
       <div className="mb-6">
@@ -233,6 +244,37 @@ export default async function NewEmploymentContractPage() {
                 placeholder="300000"
                 className="w-full rounded border p-2"
               />
+            </div>
+
+            <div className="md:col-span-2">
+              <label className="mb-2 block text-sm font-medium text-gray-700">
+                手当
+              </label>
+
+              <div className="space-y-2 rounded border p-3">
+                {allowanceMasters.map((allowance) => (
+                  <div
+                    key={allowance.id}
+                    className="grid grid-cols-2 items-center gap-3"
+                  >
+                    <div className="text-sm">
+                      {allowance.name}
+                    </div>
+
+                    <input
+                      type="hidden"
+                      name="allowanceName"
+                      value={allowance.name}
+                    />
+
+                    <input
+                      name="allowanceValue"
+                      placeholder="例: 10,000円 / 実費支給"
+                      className="w-full rounded border p-2"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
 
             <input type="hidden" name="workStartTime" value="08:30" />

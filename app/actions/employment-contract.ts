@@ -119,6 +119,20 @@ export async function createEmploymentContract(
   const remarks =
     formData.get('remarks') as string
 
+  const allowanceNames =
+    formData.getAll('allowanceName').map(String)
+
+  const allowanceValues =
+    formData.getAll('allowanceValue').map(String)
+
+  const allowanceNote = allowanceNames
+    .map((name, index) => {
+      const value = allowanceValues[index]?.trim()
+      return value ? `${name}: ${value}` : null
+    })
+    .filter((line): line is string => Boolean(line))
+    .join('\n')
+
   const contract = await prisma.employmentContract.create({
     data: {
       employeeId,
@@ -148,7 +162,7 @@ export async function createEmploymentContract(
       baseSalary,
 
       leaveRule: leaveRule || null,
-      allowanceNote: null,
+      allowanceNote: allowanceNote || null,
       payClosingDay: payClosingDay || null,
       payDate: payDate || null,
       bonusRule: bonusRule || null,
@@ -247,8 +261,19 @@ export async function updateEmploymentContract(
   const leaveRule =
     formData.get('leaveRule') as string
 
-  const allowanceNote =
-    formData.get('allowanceNote') as string
+  const allowanceNames =
+    formData.getAll('allowanceName').map(String)
+
+  const allowanceValues =
+    formData.getAll('allowanceValue').map(String)
+
+  const allowanceNote = allowanceNames
+    .map((name, index) => {
+      const value = allowanceValues[index]?.trim()
+      return value ? `${name}: ${value}` : null
+    })
+    .filter((line): line is string => Boolean(line))
+    .join('\n')
 
   const payClosingDay =
     formData.get('payClosingDay') as string
