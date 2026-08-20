@@ -331,48 +331,48 @@ function allowanceBlock(value: string) {
 
   if (company) {
     drawText(
-      company?.companyName ?? "",
+      company.companyName,
       40,
-      y + 80,
+      y,
       14,
       rgb(0.05, 0.05, 0.05),
     );
 
     drawText(
-      `郵便番号 ${company?.postalCode ?? ""}`,
+      `郵便番号 ${company.postalCode ?? ""}`,
       40,
-      y + 62,
-      y + 46,
+      y - 18,
+      8,
       rgb(0.25, 0.25, 0.25),
     );
 
     drawText(
-      company?.address ?? "",
+      company.address ?? "",
       40,
-      y + 46,
-      y + 46,
+      y - 32,
+      8,
       rgb(0.25, 0.25, 0.25),
     );
 
     drawText(
-      `TEL ${company?.phoneNumber ?? ""}`,
+      `TEL ${company.phoneNumber ?? ""}`,
       40,
-      y + 30,
-      y + 46,
+      y - 46,
+      8,
       rgb(0.25, 0.25, 0.25),
     );
 
     drawText(
-      `代表者 ${company?.representativeName ?? ""}`,
+      `代表者 ${company.representativeName ?? ""}`,
       40,
-      y + 14,
-      y + 46,
+      y - 60,
+      8,
       rgb(0.25, 0.25, 0.25),
     );
 
-    if (company?.sealImagePath) {
+    if (company.sealImagePath) {
       const sealPath =
-        company?.sealImagePath.replace(
+        company.sealImagePath.replace(
           /^\/seals/,
           "/data/hr-system/seals",
         );
@@ -385,34 +385,46 @@ function allowanceBlock(value: string) {
           await pdfDoc.embedPng(sealBytes);
 
         page.drawImage(sealImage, {
-          x: 455,
-          y: y + 10,
+          x: 440,
+          y: y - 70,
           width: 70,
           height: 70,
         });
       }
     }
 
-    y -= 20;
+    y -= 40;
   }
 
-  // ヘッダー・タイトル
   drawText(
     "雇用条件通知書兼雇用契約書",
-    130,
-    780,
-    18,
+    205,
+    y,
+    14,
     rgb(0.05, 0.08, 0.18),
   );
 
   drawText(
-    `作成日: ${new Date().toLocaleDateString("ja-JP")}  Version: v${contract.version}`,
-    380,
-    780,
+    `作成日: ${new Date().toLocaleDateString("ja-JP")}　Version: v${contract.version}`,
+    390,
+    y - 25,
     7,
     rgb(0.35, 0.35, 0.35),
   );
-  y = 660;
+
+  y -= 42;
+
+      sectionTitle("契約情報");
+
+  row(
+    "氏名",
+    `${contract.employee.lastName} ${contract.employee.firstName}`,
+  );
+
+  row(
+    "住所",
+    valueOrDash(contract.employee.address),
+  );
 
   row(
     "雇用形態",
@@ -658,13 +670,10 @@ sectionTitle("賃金・社会保険");
   y -= salaryRowHeight + 8;
 
 
-  const signatureY = 55;
+  const signatureY = 50;
   const signatureX = 40;
   const signatureWidth = 515;
   const signatureHeight = 145;
-  const labelX = signatureX + 20;
-  const valueX = signatureX + 90;
-  const lineEndX = signatureX + 485;
 
   page.drawRectangle({
     x: signatureX,
@@ -694,69 +703,50 @@ sectionTitle("賃金・社会保険");
 
   drawText(
     "労働者確認欄",
-    labelX,
+    signatureX + 15,
     signatureY + 125,
     8,
     rgb(0.05, 0.18, 0.45),
   );
 
-  drawText("氏名", labelX, signatureY + 100, 7.2);
-
+  drawText("氏名", signatureX + 20, signatureY + 98, 7.2);
   drawText(
     `${contract.employee.lastName} ${contract.employee.firstName}`,
-    valueX,
-    signatureY + 100,
+    signatureX + 80,
+    signatureY + 98,
     7.2,
   );
 
   page.drawLine({
-    start: { x: valueX - 5, y: signatureY + 95 },
-    end: { x: lineEndX, y: signatureY + 95 },
+    start: { x: signatureX + 75, y: signatureY + 93 },
+    end: { x: signatureX + 485, y: signatureY + 93 },
     thickness: 0.5,
     color: rgb(0.5, 0.5, 0.5),
   });
 
-  drawText("住所", labelX, signatureY + 74, 7.2);
+  drawText("住所", signatureX + 20, signatureY + 72, 7.2);
 
   if (contract.employee.address?.trim()) {
     drawText(
       contract.employee.address,
-      valueX,
-      signatureY + 74,
+      signatureX + 80,
+      signatureY + 72,
       7.2,
     );
   }
 
   page.drawLine({
-    start: { x: valueX - 5, y: signatureY + 69 },
-    end: { x: lineEndX, y: signatureY + 69 },
+    start: { x: signatureX + 75, y: signatureY + 67 },
+    end: { x: signatureX + 485, y: signatureY + 67 },
     thickness: 0.5,
     color: rgb(0.5, 0.5, 0.5),
   });
 
-  drawText("署名日", labelX, signatureY + 48, 7.2);
-
-  drawText(
-    consent
-      ? new Date(consent.consentedAt).toLocaleDateString("ja-JP")
-      : "20____年 ____月 ____日",
-    valueX,
-    signatureY + 48,
-    7.2,
-  );
+  drawText("署名", signatureX + 20, signatureY + 46, 7.2);
 
   page.drawLine({
-    start: { x: valueX - 5, y: signatureY + 43 },
-    end: { x: lineEndX, y: signatureY + 43 },
-    thickness: 0.5,
-    color: rgb(0.5, 0.5, 0.5),
-  });
-
-  drawText("署名", labelX, signatureY + 22, 7.2);
-
-  page.drawLine({
-    start: { x: valueX - 5, y: signatureY + 17 },
-    end: { x: lineEndX, y: signatureY + 17 },
+    start: { x: signatureX + 75, y: signatureY + 41 },
+    end: { x: signatureX + 300, y: signatureY + 41 },
     thickness: 0.5,
     color: rgb(0.5, 0.5, 0.5),
   });
@@ -769,19 +759,46 @@ sectionTitle("賃金・社会保険");
       );
 
     if (fs.existsSync(signatureFilePath)) {
-      const signatureBytes =
-        fs.readFileSync(signatureFilePath);
-
-      const signatureImage =
-        await pdfDoc.embedPng(signatureBytes);
+      const signatureBytes = fs.readFileSync(signatureFilePath);
+      const signatureImage = await pdfDoc.embedPng(signatureBytes);
 
       page.drawImage(signatureImage, {
-        x: valueX + 10,
-        y: signatureY + 19,
-        width: 150,
-        height: 24,
+        x: signatureX + 85,
+        y: signatureY + 43,
+        width: 145,
+        height: 25,
       });
     }
+
+    drawText(
+      `署名 ${new Date(consent.consentedAt).toLocaleDateString("ja-JP")}`,
+      signatureX + 330,
+      signatureY + 47,
+      7,
+    );
+
+    drawText(
+      `同意日時 ${new Date(consent.consentedAt).toLocaleString("ja-JP")}`,
+      signatureX + 330,
+      signatureY + 27,
+      6.8,
+      rgb(0.35, 0.35, 0.35),
+    );
+  } else {
+    drawText(
+      "署名日  20____年 ____月 ____日",
+      signatureX + 330,
+      signatureY + 47,
+      7.2,
+    );
+
+    drawText(
+      "署名",
+      signatureX + 330,
+      signatureY + 27,
+      6.8,
+      rgb(0.35, 0.35, 0.35),
+    );
   }
 
   drawText(
