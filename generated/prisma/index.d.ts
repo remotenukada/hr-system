@@ -163,6 +163,11 @@ export type WorkScheduleMaster = $Result.DefaultSelection<Prisma.$WorkScheduleMa
  * 
  */
 export type AllowanceMaster = $Result.DefaultSelection<Prisma.$AllowanceMasterPayload>
+/**
+ * Model EmploymentCategoryMaster
+ * 
+ */
+export type EmploymentCategoryMaster = $Result.DefaultSelection<Prisma.$EmploymentCategoryMasterPayload>
 
 /**
  * Enums
@@ -756,6 +761,16 @@ export class PrismaClient<
     * ```
     */
   get allowanceMaster(): Prisma.AllowanceMasterDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.employmentCategoryMaster`: Exposes CRUD operations for the **EmploymentCategoryMaster** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EmploymentCategoryMasters
+    * const employmentCategoryMasters = await prisma.employmentCategoryMaster.findMany()
+    * ```
+    */
+  get employmentCategoryMaster(): Prisma.EmploymentCategoryMasterDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1219,7 +1234,8 @@ export namespace Prisma {
     EmploymentContractConsent: 'EmploymentContractConsent',
     EmploymentContractWorkSchedule: 'EmploymentContractWorkSchedule',
     WorkScheduleMaster: 'WorkScheduleMaster',
-    AllowanceMaster: 'AllowanceMaster'
+    AllowanceMaster: 'AllowanceMaster',
+    EmploymentCategoryMaster: 'EmploymentCategoryMaster'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1235,7 +1251,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "userInvitation" | "department" | "employee" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster"
+      modelProps: "user" | "userInvitation" | "department" | "employee" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3459,6 +3475,80 @@ export namespace Prisma {
           }
         }
       }
+      EmploymentCategoryMaster: {
+        payload: Prisma.$EmploymentCategoryMasterPayload<ExtArgs>
+        fields: Prisma.EmploymentCategoryMasterFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EmploymentCategoryMasterFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentCategoryMasterPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EmploymentCategoryMasterFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentCategoryMasterPayload>
+          }
+          findFirst: {
+            args: Prisma.EmploymentCategoryMasterFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentCategoryMasterPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EmploymentCategoryMasterFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentCategoryMasterPayload>
+          }
+          findMany: {
+            args: Prisma.EmploymentCategoryMasterFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentCategoryMasterPayload>[]
+          }
+          create: {
+            args: Prisma.EmploymentCategoryMasterCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentCategoryMasterPayload>
+          }
+          createMany: {
+            args: Prisma.EmploymentCategoryMasterCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EmploymentCategoryMasterCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentCategoryMasterPayload>[]
+          }
+          delete: {
+            args: Prisma.EmploymentCategoryMasterDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentCategoryMasterPayload>
+          }
+          update: {
+            args: Prisma.EmploymentCategoryMasterUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentCategoryMasterPayload>
+          }
+          deleteMany: {
+            args: Prisma.EmploymentCategoryMasterDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EmploymentCategoryMasterUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EmploymentCategoryMasterUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentCategoryMasterPayload>[]
+          }
+          upsert: {
+            args: Prisma.EmploymentCategoryMasterUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmploymentCategoryMasterPayload>
+          }
+          aggregate: {
+            args: Prisma.EmploymentCategoryMasterAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEmploymentCategoryMaster>
+          }
+          groupBy: {
+            args: Prisma.EmploymentCategoryMasterGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EmploymentCategoryMasterGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EmploymentCategoryMasterCountArgs<ExtArgs>
+            result: $Utils.Optional<EmploymentCategoryMasterCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3597,6 +3687,7 @@ export namespace Prisma {
     employmentContractWorkSchedule?: EmploymentContractWorkScheduleOmit
     workScheduleMaster?: WorkScheduleMasterOmit
     allowanceMaster?: AllowanceMasterOmit
+    employmentCategoryMaster?: EmploymentCategoryMasterOmit
   }
 
   /* Types for Logging */
@@ -39458,6 +39549,1053 @@ export namespace Prisma {
 
 
   /**
+   * Model EmploymentCategoryMaster
+   */
+
+  export type AggregateEmploymentCategoryMaster = {
+    _count: EmploymentCategoryMasterCountAggregateOutputType | null
+    _avg: EmploymentCategoryMasterAvgAggregateOutputType | null
+    _sum: EmploymentCategoryMasterSumAggregateOutputType | null
+    _min: EmploymentCategoryMasterMinAggregateOutputType | null
+    _max: EmploymentCategoryMasterMaxAggregateOutputType | null
+  }
+
+  export type EmploymentCategoryMasterAvgAggregateOutputType = {
+    sortOrder: number | null
+  }
+
+  export type EmploymentCategoryMasterSumAggregateOutputType = {
+    sortOrder: number | null
+  }
+
+  export type EmploymentCategoryMasterMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    sortOrder: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type EmploymentCategoryMasterMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    sortOrder: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type EmploymentCategoryMasterCountAggregateOutputType = {
+    id: number
+    name: number
+    sortOrder: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type EmploymentCategoryMasterAvgAggregateInputType = {
+    sortOrder?: true
+  }
+
+  export type EmploymentCategoryMasterSumAggregateInputType = {
+    sortOrder?: true
+  }
+
+  export type EmploymentCategoryMasterMinAggregateInputType = {
+    id?: true
+    name?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type EmploymentCategoryMasterMaxAggregateInputType = {
+    id?: true
+    name?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type EmploymentCategoryMasterCountAggregateInputType = {
+    id?: true
+    name?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type EmploymentCategoryMasterAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmploymentCategoryMaster to aggregate.
+     */
+    where?: EmploymentCategoryMasterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmploymentCategoryMasters to fetch.
+     */
+    orderBy?: EmploymentCategoryMasterOrderByWithRelationInput | EmploymentCategoryMasterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EmploymentCategoryMasterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmploymentCategoryMasters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmploymentCategoryMasters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EmploymentCategoryMasters
+    **/
+    _count?: true | EmploymentCategoryMasterCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: EmploymentCategoryMasterAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: EmploymentCategoryMasterSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EmploymentCategoryMasterMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EmploymentCategoryMasterMaxAggregateInputType
+  }
+
+  export type GetEmploymentCategoryMasterAggregateType<T extends EmploymentCategoryMasterAggregateArgs> = {
+        [P in keyof T & keyof AggregateEmploymentCategoryMaster]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEmploymentCategoryMaster[P]>
+      : GetScalarType<T[P], AggregateEmploymentCategoryMaster[P]>
+  }
+
+
+
+
+  export type EmploymentCategoryMasterGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmploymentCategoryMasterWhereInput
+    orderBy?: EmploymentCategoryMasterOrderByWithAggregationInput | EmploymentCategoryMasterOrderByWithAggregationInput[]
+    by: EmploymentCategoryMasterScalarFieldEnum[] | EmploymentCategoryMasterScalarFieldEnum
+    having?: EmploymentCategoryMasterScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EmploymentCategoryMasterCountAggregateInputType | true
+    _avg?: EmploymentCategoryMasterAvgAggregateInputType
+    _sum?: EmploymentCategoryMasterSumAggregateInputType
+    _min?: EmploymentCategoryMasterMinAggregateInputType
+    _max?: EmploymentCategoryMasterMaxAggregateInputType
+  }
+
+  export type EmploymentCategoryMasterGroupByOutputType = {
+    id: string
+    name: string
+    sortOrder: number
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: EmploymentCategoryMasterCountAggregateOutputType | null
+    _avg: EmploymentCategoryMasterAvgAggregateOutputType | null
+    _sum: EmploymentCategoryMasterSumAggregateOutputType | null
+    _min: EmploymentCategoryMasterMinAggregateOutputType | null
+    _max: EmploymentCategoryMasterMaxAggregateOutputType | null
+  }
+
+  type GetEmploymentCategoryMasterGroupByPayload<T extends EmploymentCategoryMasterGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EmploymentCategoryMasterGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EmploymentCategoryMasterGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EmploymentCategoryMasterGroupByOutputType[P]>
+            : GetScalarType<T[P], EmploymentCategoryMasterGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EmploymentCategoryMasterSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["employmentCategoryMaster"]>
+
+  export type EmploymentCategoryMasterSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["employmentCategoryMaster"]>
+
+  export type EmploymentCategoryMasterSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["employmentCategoryMaster"]>
+
+  export type EmploymentCategoryMasterSelectScalar = {
+    id?: boolean
+    name?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type EmploymentCategoryMasterOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "sortOrder" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["employmentCategoryMaster"]>
+
+  export type $EmploymentCategoryMasterPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EmploymentCategoryMaster"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      sortOrder: number
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["employmentCategoryMaster"]>
+    composites: {}
+  }
+
+  type EmploymentCategoryMasterGetPayload<S extends boolean | null | undefined | EmploymentCategoryMasterDefaultArgs> = $Result.GetResult<Prisma.$EmploymentCategoryMasterPayload, S>
+
+  type EmploymentCategoryMasterCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EmploymentCategoryMasterFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EmploymentCategoryMasterCountAggregateInputType | true
+    }
+
+  export interface EmploymentCategoryMasterDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EmploymentCategoryMaster'], meta: { name: 'EmploymentCategoryMaster' } }
+    /**
+     * Find zero or one EmploymentCategoryMaster that matches the filter.
+     * @param {EmploymentCategoryMasterFindUniqueArgs} args - Arguments to find a EmploymentCategoryMaster
+     * @example
+     * // Get one EmploymentCategoryMaster
+     * const employmentCategoryMaster = await prisma.employmentCategoryMaster.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EmploymentCategoryMasterFindUniqueArgs>(args: SelectSubset<T, EmploymentCategoryMasterFindUniqueArgs<ExtArgs>>): Prisma__EmploymentCategoryMasterClient<$Result.GetResult<Prisma.$EmploymentCategoryMasterPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EmploymentCategoryMaster that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EmploymentCategoryMasterFindUniqueOrThrowArgs} args - Arguments to find a EmploymentCategoryMaster
+     * @example
+     * // Get one EmploymentCategoryMaster
+     * const employmentCategoryMaster = await prisma.employmentCategoryMaster.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EmploymentCategoryMasterFindUniqueOrThrowArgs>(args: SelectSubset<T, EmploymentCategoryMasterFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EmploymentCategoryMasterClient<$Result.GetResult<Prisma.$EmploymentCategoryMasterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmploymentCategoryMaster that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentCategoryMasterFindFirstArgs} args - Arguments to find a EmploymentCategoryMaster
+     * @example
+     * // Get one EmploymentCategoryMaster
+     * const employmentCategoryMaster = await prisma.employmentCategoryMaster.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EmploymentCategoryMasterFindFirstArgs>(args?: SelectSubset<T, EmploymentCategoryMasterFindFirstArgs<ExtArgs>>): Prisma__EmploymentCategoryMasterClient<$Result.GetResult<Prisma.$EmploymentCategoryMasterPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmploymentCategoryMaster that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentCategoryMasterFindFirstOrThrowArgs} args - Arguments to find a EmploymentCategoryMaster
+     * @example
+     * // Get one EmploymentCategoryMaster
+     * const employmentCategoryMaster = await prisma.employmentCategoryMaster.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EmploymentCategoryMasterFindFirstOrThrowArgs>(args?: SelectSubset<T, EmploymentCategoryMasterFindFirstOrThrowArgs<ExtArgs>>): Prisma__EmploymentCategoryMasterClient<$Result.GetResult<Prisma.$EmploymentCategoryMasterPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EmploymentCategoryMasters that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentCategoryMasterFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EmploymentCategoryMasters
+     * const employmentCategoryMasters = await prisma.employmentCategoryMaster.findMany()
+     * 
+     * // Get first 10 EmploymentCategoryMasters
+     * const employmentCategoryMasters = await prisma.employmentCategoryMaster.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const employmentCategoryMasterWithIdOnly = await prisma.employmentCategoryMaster.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EmploymentCategoryMasterFindManyArgs>(args?: SelectSubset<T, EmploymentCategoryMasterFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentCategoryMasterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EmploymentCategoryMaster.
+     * @param {EmploymentCategoryMasterCreateArgs} args - Arguments to create a EmploymentCategoryMaster.
+     * @example
+     * // Create one EmploymentCategoryMaster
+     * const EmploymentCategoryMaster = await prisma.employmentCategoryMaster.create({
+     *   data: {
+     *     // ... data to create a EmploymentCategoryMaster
+     *   }
+     * })
+     * 
+     */
+    create<T extends EmploymentCategoryMasterCreateArgs>(args: SelectSubset<T, EmploymentCategoryMasterCreateArgs<ExtArgs>>): Prisma__EmploymentCategoryMasterClient<$Result.GetResult<Prisma.$EmploymentCategoryMasterPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EmploymentCategoryMasters.
+     * @param {EmploymentCategoryMasterCreateManyArgs} args - Arguments to create many EmploymentCategoryMasters.
+     * @example
+     * // Create many EmploymentCategoryMasters
+     * const employmentCategoryMaster = await prisma.employmentCategoryMaster.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EmploymentCategoryMasterCreateManyArgs>(args?: SelectSubset<T, EmploymentCategoryMasterCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EmploymentCategoryMasters and returns the data saved in the database.
+     * @param {EmploymentCategoryMasterCreateManyAndReturnArgs} args - Arguments to create many EmploymentCategoryMasters.
+     * @example
+     * // Create many EmploymentCategoryMasters
+     * const employmentCategoryMaster = await prisma.employmentCategoryMaster.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EmploymentCategoryMasters and only return the `id`
+     * const employmentCategoryMasterWithIdOnly = await prisma.employmentCategoryMaster.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EmploymentCategoryMasterCreateManyAndReturnArgs>(args?: SelectSubset<T, EmploymentCategoryMasterCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentCategoryMasterPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EmploymentCategoryMaster.
+     * @param {EmploymentCategoryMasterDeleteArgs} args - Arguments to delete one EmploymentCategoryMaster.
+     * @example
+     * // Delete one EmploymentCategoryMaster
+     * const EmploymentCategoryMaster = await prisma.employmentCategoryMaster.delete({
+     *   where: {
+     *     // ... filter to delete one EmploymentCategoryMaster
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EmploymentCategoryMasterDeleteArgs>(args: SelectSubset<T, EmploymentCategoryMasterDeleteArgs<ExtArgs>>): Prisma__EmploymentCategoryMasterClient<$Result.GetResult<Prisma.$EmploymentCategoryMasterPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EmploymentCategoryMaster.
+     * @param {EmploymentCategoryMasterUpdateArgs} args - Arguments to update one EmploymentCategoryMaster.
+     * @example
+     * // Update one EmploymentCategoryMaster
+     * const employmentCategoryMaster = await prisma.employmentCategoryMaster.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EmploymentCategoryMasterUpdateArgs>(args: SelectSubset<T, EmploymentCategoryMasterUpdateArgs<ExtArgs>>): Prisma__EmploymentCategoryMasterClient<$Result.GetResult<Prisma.$EmploymentCategoryMasterPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EmploymentCategoryMasters.
+     * @param {EmploymentCategoryMasterDeleteManyArgs} args - Arguments to filter EmploymentCategoryMasters to delete.
+     * @example
+     * // Delete a few EmploymentCategoryMasters
+     * const { count } = await prisma.employmentCategoryMaster.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EmploymentCategoryMasterDeleteManyArgs>(args?: SelectSubset<T, EmploymentCategoryMasterDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmploymentCategoryMasters.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentCategoryMasterUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EmploymentCategoryMasters
+     * const employmentCategoryMaster = await prisma.employmentCategoryMaster.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EmploymentCategoryMasterUpdateManyArgs>(args: SelectSubset<T, EmploymentCategoryMasterUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmploymentCategoryMasters and returns the data updated in the database.
+     * @param {EmploymentCategoryMasterUpdateManyAndReturnArgs} args - Arguments to update many EmploymentCategoryMasters.
+     * @example
+     * // Update many EmploymentCategoryMasters
+     * const employmentCategoryMaster = await prisma.employmentCategoryMaster.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EmploymentCategoryMasters and only return the `id`
+     * const employmentCategoryMasterWithIdOnly = await prisma.employmentCategoryMaster.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EmploymentCategoryMasterUpdateManyAndReturnArgs>(args: SelectSubset<T, EmploymentCategoryMasterUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentCategoryMasterPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EmploymentCategoryMaster.
+     * @param {EmploymentCategoryMasterUpsertArgs} args - Arguments to update or create a EmploymentCategoryMaster.
+     * @example
+     * // Update or create a EmploymentCategoryMaster
+     * const employmentCategoryMaster = await prisma.employmentCategoryMaster.upsert({
+     *   create: {
+     *     // ... data to create a EmploymentCategoryMaster
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EmploymentCategoryMaster we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EmploymentCategoryMasterUpsertArgs>(args: SelectSubset<T, EmploymentCategoryMasterUpsertArgs<ExtArgs>>): Prisma__EmploymentCategoryMasterClient<$Result.GetResult<Prisma.$EmploymentCategoryMasterPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EmploymentCategoryMasters.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentCategoryMasterCountArgs} args - Arguments to filter EmploymentCategoryMasters to count.
+     * @example
+     * // Count the number of EmploymentCategoryMasters
+     * const count = await prisma.employmentCategoryMaster.count({
+     *   where: {
+     *     // ... the filter for the EmploymentCategoryMasters we want to count
+     *   }
+     * })
+    **/
+    count<T extends EmploymentCategoryMasterCountArgs>(
+      args?: Subset<T, EmploymentCategoryMasterCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EmploymentCategoryMasterCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EmploymentCategoryMaster.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentCategoryMasterAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EmploymentCategoryMasterAggregateArgs>(args: Subset<T, EmploymentCategoryMasterAggregateArgs>): Prisma.PrismaPromise<GetEmploymentCategoryMasterAggregateType<T>>
+
+    /**
+     * Group by EmploymentCategoryMaster.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmploymentCategoryMasterGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EmploymentCategoryMasterGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EmploymentCategoryMasterGroupByArgs['orderBy'] }
+        : { orderBy?: EmploymentCategoryMasterGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EmploymentCategoryMasterGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEmploymentCategoryMasterGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EmploymentCategoryMaster model
+   */
+  readonly fields: EmploymentCategoryMasterFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EmploymentCategoryMaster.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EmploymentCategoryMasterClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EmploymentCategoryMaster model
+   */
+  interface EmploymentCategoryMasterFieldRefs {
+    readonly id: FieldRef<"EmploymentCategoryMaster", 'String'>
+    readonly name: FieldRef<"EmploymentCategoryMaster", 'String'>
+    readonly sortOrder: FieldRef<"EmploymentCategoryMaster", 'Int'>
+    readonly isActive: FieldRef<"EmploymentCategoryMaster", 'Boolean'>
+    readonly createdAt: FieldRef<"EmploymentCategoryMaster", 'DateTime'>
+    readonly updatedAt: FieldRef<"EmploymentCategoryMaster", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EmploymentCategoryMaster findUnique
+   */
+  export type EmploymentCategoryMasterFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentCategoryMaster
+     */
+    select?: EmploymentCategoryMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentCategoryMaster
+     */
+    omit?: EmploymentCategoryMasterOmit<ExtArgs> | null
+    /**
+     * Filter, which EmploymentCategoryMaster to fetch.
+     */
+    where: EmploymentCategoryMasterWhereUniqueInput
+  }
+
+  /**
+   * EmploymentCategoryMaster findUniqueOrThrow
+   */
+  export type EmploymentCategoryMasterFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentCategoryMaster
+     */
+    select?: EmploymentCategoryMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentCategoryMaster
+     */
+    omit?: EmploymentCategoryMasterOmit<ExtArgs> | null
+    /**
+     * Filter, which EmploymentCategoryMaster to fetch.
+     */
+    where: EmploymentCategoryMasterWhereUniqueInput
+  }
+
+  /**
+   * EmploymentCategoryMaster findFirst
+   */
+  export type EmploymentCategoryMasterFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentCategoryMaster
+     */
+    select?: EmploymentCategoryMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentCategoryMaster
+     */
+    omit?: EmploymentCategoryMasterOmit<ExtArgs> | null
+    /**
+     * Filter, which EmploymentCategoryMaster to fetch.
+     */
+    where?: EmploymentCategoryMasterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmploymentCategoryMasters to fetch.
+     */
+    orderBy?: EmploymentCategoryMasterOrderByWithRelationInput | EmploymentCategoryMasterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmploymentCategoryMasters.
+     */
+    cursor?: EmploymentCategoryMasterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmploymentCategoryMasters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmploymentCategoryMasters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmploymentCategoryMasters.
+     */
+    distinct?: EmploymentCategoryMasterScalarFieldEnum | EmploymentCategoryMasterScalarFieldEnum[]
+  }
+
+  /**
+   * EmploymentCategoryMaster findFirstOrThrow
+   */
+  export type EmploymentCategoryMasterFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentCategoryMaster
+     */
+    select?: EmploymentCategoryMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentCategoryMaster
+     */
+    omit?: EmploymentCategoryMasterOmit<ExtArgs> | null
+    /**
+     * Filter, which EmploymentCategoryMaster to fetch.
+     */
+    where?: EmploymentCategoryMasterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmploymentCategoryMasters to fetch.
+     */
+    orderBy?: EmploymentCategoryMasterOrderByWithRelationInput | EmploymentCategoryMasterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmploymentCategoryMasters.
+     */
+    cursor?: EmploymentCategoryMasterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmploymentCategoryMasters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmploymentCategoryMasters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmploymentCategoryMasters.
+     */
+    distinct?: EmploymentCategoryMasterScalarFieldEnum | EmploymentCategoryMasterScalarFieldEnum[]
+  }
+
+  /**
+   * EmploymentCategoryMaster findMany
+   */
+  export type EmploymentCategoryMasterFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentCategoryMaster
+     */
+    select?: EmploymentCategoryMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentCategoryMaster
+     */
+    omit?: EmploymentCategoryMasterOmit<ExtArgs> | null
+    /**
+     * Filter, which EmploymentCategoryMasters to fetch.
+     */
+    where?: EmploymentCategoryMasterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmploymentCategoryMasters to fetch.
+     */
+    orderBy?: EmploymentCategoryMasterOrderByWithRelationInput | EmploymentCategoryMasterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EmploymentCategoryMasters.
+     */
+    cursor?: EmploymentCategoryMasterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmploymentCategoryMasters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmploymentCategoryMasters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmploymentCategoryMasters.
+     */
+    distinct?: EmploymentCategoryMasterScalarFieldEnum | EmploymentCategoryMasterScalarFieldEnum[]
+  }
+
+  /**
+   * EmploymentCategoryMaster create
+   */
+  export type EmploymentCategoryMasterCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentCategoryMaster
+     */
+    select?: EmploymentCategoryMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentCategoryMaster
+     */
+    omit?: EmploymentCategoryMasterOmit<ExtArgs> | null
+    /**
+     * The data needed to create a EmploymentCategoryMaster.
+     */
+    data: XOR<EmploymentCategoryMasterCreateInput, EmploymentCategoryMasterUncheckedCreateInput>
+  }
+
+  /**
+   * EmploymentCategoryMaster createMany
+   */
+  export type EmploymentCategoryMasterCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EmploymentCategoryMasters.
+     */
+    data: EmploymentCategoryMasterCreateManyInput | EmploymentCategoryMasterCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EmploymentCategoryMaster createManyAndReturn
+   */
+  export type EmploymentCategoryMasterCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentCategoryMaster
+     */
+    select?: EmploymentCategoryMasterSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentCategoryMaster
+     */
+    omit?: EmploymentCategoryMasterOmit<ExtArgs> | null
+    /**
+     * The data used to create many EmploymentCategoryMasters.
+     */
+    data: EmploymentCategoryMasterCreateManyInput | EmploymentCategoryMasterCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EmploymentCategoryMaster update
+   */
+  export type EmploymentCategoryMasterUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentCategoryMaster
+     */
+    select?: EmploymentCategoryMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentCategoryMaster
+     */
+    omit?: EmploymentCategoryMasterOmit<ExtArgs> | null
+    /**
+     * The data needed to update a EmploymentCategoryMaster.
+     */
+    data: XOR<EmploymentCategoryMasterUpdateInput, EmploymentCategoryMasterUncheckedUpdateInput>
+    /**
+     * Choose, which EmploymentCategoryMaster to update.
+     */
+    where: EmploymentCategoryMasterWhereUniqueInput
+  }
+
+  /**
+   * EmploymentCategoryMaster updateMany
+   */
+  export type EmploymentCategoryMasterUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EmploymentCategoryMasters.
+     */
+    data: XOR<EmploymentCategoryMasterUpdateManyMutationInput, EmploymentCategoryMasterUncheckedUpdateManyInput>
+    /**
+     * Filter which EmploymentCategoryMasters to update
+     */
+    where?: EmploymentCategoryMasterWhereInput
+    /**
+     * Limit how many EmploymentCategoryMasters to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmploymentCategoryMaster updateManyAndReturn
+   */
+  export type EmploymentCategoryMasterUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentCategoryMaster
+     */
+    select?: EmploymentCategoryMasterSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentCategoryMaster
+     */
+    omit?: EmploymentCategoryMasterOmit<ExtArgs> | null
+    /**
+     * The data used to update EmploymentCategoryMasters.
+     */
+    data: XOR<EmploymentCategoryMasterUpdateManyMutationInput, EmploymentCategoryMasterUncheckedUpdateManyInput>
+    /**
+     * Filter which EmploymentCategoryMasters to update
+     */
+    where?: EmploymentCategoryMasterWhereInput
+    /**
+     * Limit how many EmploymentCategoryMasters to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmploymentCategoryMaster upsert
+   */
+  export type EmploymentCategoryMasterUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentCategoryMaster
+     */
+    select?: EmploymentCategoryMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentCategoryMaster
+     */
+    omit?: EmploymentCategoryMasterOmit<ExtArgs> | null
+    /**
+     * The filter to search for the EmploymentCategoryMaster to update in case it exists.
+     */
+    where: EmploymentCategoryMasterWhereUniqueInput
+    /**
+     * In case the EmploymentCategoryMaster found by the `where` argument doesn't exist, create a new EmploymentCategoryMaster with this data.
+     */
+    create: XOR<EmploymentCategoryMasterCreateInput, EmploymentCategoryMasterUncheckedCreateInput>
+    /**
+     * In case the EmploymentCategoryMaster was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EmploymentCategoryMasterUpdateInput, EmploymentCategoryMasterUncheckedUpdateInput>
+  }
+
+  /**
+   * EmploymentCategoryMaster delete
+   */
+  export type EmploymentCategoryMasterDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentCategoryMaster
+     */
+    select?: EmploymentCategoryMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentCategoryMaster
+     */
+    omit?: EmploymentCategoryMasterOmit<ExtArgs> | null
+    /**
+     * Filter which EmploymentCategoryMaster to delete.
+     */
+    where: EmploymentCategoryMasterWhereUniqueInput
+  }
+
+  /**
+   * EmploymentCategoryMaster deleteMany
+   */
+  export type EmploymentCategoryMasterDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmploymentCategoryMasters to delete
+     */
+    where?: EmploymentCategoryMasterWhereInput
+    /**
+     * Limit how many EmploymentCategoryMasters to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmploymentCategoryMaster without action
+   */
+  export type EmploymentCategoryMasterDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmploymentCategoryMaster
+     */
+    select?: EmploymentCategoryMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmploymentCategoryMaster
+     */
+    omit?: EmploymentCategoryMasterOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -39983,6 +41121,18 @@ export namespace Prisma {
   };
 
   export type AllowanceMasterScalarFieldEnum = (typeof AllowanceMasterScalarFieldEnum)[keyof typeof AllowanceMasterScalarFieldEnum]
+
+
+  export const EmploymentCategoryMasterScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    sortOrder: 'sortOrder',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type EmploymentCategoryMasterScalarFieldEnum = (typeof EmploymentCategoryMasterScalarFieldEnum)[keyof typeof EmploymentCategoryMasterScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -42946,6 +44096,65 @@ export namespace Prisma {
     isActive?: BoolWithAggregatesFilter<"AllowanceMaster"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"AllowanceMaster"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"AllowanceMaster"> | Date | string
+  }
+
+  export type EmploymentCategoryMasterWhereInput = {
+    AND?: EmploymentCategoryMasterWhereInput | EmploymentCategoryMasterWhereInput[]
+    OR?: EmploymentCategoryMasterWhereInput[]
+    NOT?: EmploymentCategoryMasterWhereInput | EmploymentCategoryMasterWhereInput[]
+    id?: StringFilter<"EmploymentCategoryMaster"> | string
+    name?: StringFilter<"EmploymentCategoryMaster"> | string
+    sortOrder?: IntFilter<"EmploymentCategoryMaster"> | number
+    isActive?: BoolFilter<"EmploymentCategoryMaster"> | boolean
+    createdAt?: DateTimeFilter<"EmploymentCategoryMaster"> | Date | string
+    updatedAt?: DateTimeFilter<"EmploymentCategoryMaster"> | Date | string
+  }
+
+  export type EmploymentCategoryMasterOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EmploymentCategoryMasterWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: EmploymentCategoryMasterWhereInput | EmploymentCategoryMasterWhereInput[]
+    OR?: EmploymentCategoryMasterWhereInput[]
+    NOT?: EmploymentCategoryMasterWhereInput | EmploymentCategoryMasterWhereInput[]
+    name?: StringFilter<"EmploymentCategoryMaster"> | string
+    sortOrder?: IntFilter<"EmploymentCategoryMaster"> | number
+    isActive?: BoolFilter<"EmploymentCategoryMaster"> | boolean
+    createdAt?: DateTimeFilter<"EmploymentCategoryMaster"> | Date | string
+    updatedAt?: DateTimeFilter<"EmploymentCategoryMaster"> | Date | string
+  }, "id">
+
+  export type EmploymentCategoryMasterOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: EmploymentCategoryMasterCountOrderByAggregateInput
+    _avg?: EmploymentCategoryMasterAvgOrderByAggregateInput
+    _max?: EmploymentCategoryMasterMaxOrderByAggregateInput
+    _min?: EmploymentCategoryMasterMinOrderByAggregateInput
+    _sum?: EmploymentCategoryMasterSumOrderByAggregateInput
+  }
+
+  export type EmploymentCategoryMasterScalarWhereWithAggregatesInput = {
+    AND?: EmploymentCategoryMasterScalarWhereWithAggregatesInput | EmploymentCategoryMasterScalarWhereWithAggregatesInput[]
+    OR?: EmploymentCategoryMasterScalarWhereWithAggregatesInput[]
+    NOT?: EmploymentCategoryMasterScalarWhereWithAggregatesInput | EmploymentCategoryMasterScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EmploymentCategoryMaster"> | string
+    name?: StringWithAggregatesFilter<"EmploymentCategoryMaster"> | string
+    sortOrder?: IntWithAggregatesFilter<"EmploymentCategoryMaster"> | number
+    isActive?: BoolWithAggregatesFilter<"EmploymentCategoryMaster"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"EmploymentCategoryMaster"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"EmploymentCategoryMaster"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -45994,6 +47203,69 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type EmploymentCategoryMasterCreateInput = {
+    id?: string
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EmploymentCategoryMasterUncheckedCreateInput = {
+    id?: string
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EmploymentCategoryMasterUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmploymentCategoryMasterUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmploymentCategoryMasterCreateManyInput = {
+    id?: string
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type EmploymentCategoryMasterUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmploymentCategoryMasterUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -48157,6 +49429,41 @@ export namespace Prisma {
   }
 
   export type AllowanceMasterSumOrderByAggregateInput = {
+    sortOrder?: SortOrder
+  }
+
+  export type EmploymentCategoryMasterCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EmploymentCategoryMasterAvgOrderByAggregateInput = {
+    sortOrder?: SortOrder
+  }
+
+  export type EmploymentCategoryMasterMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EmploymentCategoryMasterMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EmploymentCategoryMasterSumOrderByAggregateInput = {
     sortOrder?: SortOrder
   }
 

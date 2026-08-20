@@ -544,6 +544,15 @@ exports.Prisma.AllowanceMasterScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.EmploymentCategoryMasterScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  sortOrder: 'sortOrder',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -682,7 +691,8 @@ exports.Prisma.ModelName = {
   EmploymentContractConsent: 'EmploymentContractConsent',
   EmploymentContractWorkSchedule: 'EmploymentContractWorkSchedule',
   WorkScheduleMaster: 'WorkScheduleMaster',
-  AllowanceMaster: 'AllowanceMaster'
+  AllowanceMaster: 'AllowanceMaster',
+  EmploymentCategoryMaster: 'EmploymentCategoryMaster'
 };
 
 /**

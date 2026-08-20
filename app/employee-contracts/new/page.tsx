@@ -79,6 +79,18 @@ export default async function NewEmploymentContractPage() {
       ],
     });
 
+
+  const employmentCategoryMasters =
+    await prisma.employmentCategoryMaster.findMany({
+      where: {
+        isActive: true,
+      },
+      orderBy: [
+        { sortOrder: "asc" },
+        { name: "asc" },
+      ],
+    });
+
   return (
     <main className="mx-auto max-w-4xl p-6">
       <div className="mb-6">
@@ -131,13 +143,16 @@ export default async function NewEmploymentContractPage() {
                 defaultValue="常勤"
                 className="w-full rounded border p-2"
               >
-                <option value="常勤">常勤</option>
-                <option value="非常勤">非常勤</option>
-                <option value="パート">パート</option>
-                <option value="アルバイト">アルバイト</option>
-                <option value="契約社員">契約社員</option>
-                <option value="嘱託">嘱託</option>
-                <option value="派遣">派遣</option>
+                {employmentCategoryMasters.map(
+                  (item) => (
+                    <option
+                      key={item.id}
+                      value={item.name}
+                    >
+                      {item.name}
+                    </option>
+                  ),
+                )}
               </select>
             </div>
 
