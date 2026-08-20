@@ -15,7 +15,7 @@ type RouteContext = {
   }>;
 };
 
-const FONT_PATH = "/usr/share/fonts/opentype/ipafont-mincho/ipam.ttf";
+const FONT_PATH = "/usr/share/fonts/opentype/ipafont-gothic/ipag.ttf";
 const EXPORT_DIR = "/data/hr-system/exports/contracts";
 
 function formatDate(date: Date | null) {
@@ -166,7 +166,7 @@ export async function GET(
     page.drawRectangle({
       x: 40,
       y: y - 3,
-      width: 105,
+      width: 110,
       height: 13,
       borderWidth: 0.5,
       borderColor: rgb(0.72, 0.72, 0.72),
@@ -174,7 +174,7 @@ export async function GET(
     });
 
     page.drawRectangle({
-      x: 145,
+      x: 150,
       y: y - 3,
       width: 405,
       height: 13,
@@ -184,7 +184,7 @@ export async function GET(
     });
 
     drawText(label, 45, y + 1, 7.2, rgb(0.25, 0.25, 0.25));
-    drawText(compactText(value), 150, y + 1, 7.2);
+    drawText(compactText(value), 155, y + 1, 7.2);
 
     y -= 13;
   }
@@ -202,7 +202,7 @@ function workScheduleBlock(value: string) {
   page.drawRectangle({
     x: 40,
     y: y - boxHeight + 4,
-    width: 105,
+    width: 110,
     height: boxHeight,
     borderWidth: 0.5,
     borderColor: rgb(0.72, 0.72, 0.72),
@@ -210,7 +210,7 @@ function workScheduleBlock(value: string) {
   });
 
   page.drawRectangle({
-    x: 145,
+    x: 150,
     y: y - boxHeight + 4,
     width: 405,
     height: boxHeight,
@@ -224,7 +224,7 @@ function workScheduleBlock(value: string) {
   let lineY = y - 4;
 
   for (const line of lines) {
-    drawText(`・${line}`, 150, lineY, 7.5);
+    drawText(`・${line}`, 155, lineY, 7.5);
     lineY -= 12;
   }
 
@@ -246,7 +246,7 @@ function allowanceBlock(value: string) {
     page.drawRectangle({
       x: 40,
       y: y - boxHeight + 4,
-      width: 105,
+      width: 110,
       height: boxHeight,
       borderWidth: 0.5,
       borderColor: rgb(0.72, 0.72, 0.72),
@@ -254,7 +254,7 @@ function allowanceBlock(value: string) {
     });
 
     page.drawRectangle({
-      x: 145,
+      x: 150,
       y: y - boxHeight + 4,
       width: 405,
       height: boxHeight,
@@ -268,7 +268,7 @@ function allowanceBlock(value: string) {
     let lineY = y - 4;
 
     for (const line of lines) {
-      drawText(`・${line}`, 150, lineY, 7.5);
+      drawText(`・${line}`, 155, lineY, 7.5);
       lineY -= 12;
     }
 
@@ -329,98 +329,90 @@ function allowanceBlock(value: string) {
     y -= 13;
   }
 
-  // タイトル
+  if (company) {
+    drawText(
+      company?.companyName ?? "",
+      40,
+      y + 80,
+      14,
+      rgb(0.05, 0.05, 0.05),
+    );
+
+    drawText(
+      `〒${company?.postalCode ?? ""}`,
+      40,
+      y + 62,
+      8,
+      rgb(0.25, 0.25, 0.25),
+    );
+
+    drawText(
+      company?.address ?? "",
+      40,
+      y + 46,
+      8,
+      rgb(0.25, 0.25, 0.25),
+    );
+
+    drawText(
+      `TEL ${company?.phoneNumber ?? ""}`,
+      40,
+      y + 30,
+      8,
+      rgb(0.25, 0.25, 0.25),
+    );
+
+    drawText(
+      `代表者 ${company?.representativeName ?? ""}`,
+      40,
+      y + 14,
+      8,
+      rgb(0.25, 0.25, 0.25),
+    );
+
+    if (company?.sealImagePath) {
+      const sealPath =
+        company?.sealImagePath.replace(
+          /^\/seals/,
+          "/data/hr-system/seals",
+        );
+
+      if (fs.existsSync(sealPath)) {
+        const sealBytes =
+          fs.readFileSync(sealPath);
+
+        const sealImage =
+          await pdfDoc.embedPng(sealBytes);
+
+        page.drawImage(sealImage, {
+          x: 455,
+          y: y + 10,
+          width: 70,
+          height: 70,
+        });
+      }
+    }
+
+    y -= 20;
+  }
+
+  // ヘッダー・タイトル
   drawText(
     "雇用条件通知書兼雇用契約書",
-    145,
-    810,
+    130,
+    780,
     18,
     rgb(0.05, 0.08, 0.18),
   );
 
   drawText(
     `作成日: ${new Date().toLocaleDateString("ja-JP")}  Version: v${contract.version}`,
-    365,
-    790,
+    380,
+    780,
     7,
     rgb(0.35, 0.35, 0.35),
   );
-
-  // タイトル下の労働者名
-  drawText(
-    `${contract.employee.lastName} ${contract.employee.firstName} 殿`,
-    55,
-    755,
-    12,
-    rgb(0.05, 0.08, 0.18),
-  );
-
-  // タイトル下の事業主情報
-  if (company) {
-    const companyX = 335;
-
-    drawText(
-      company.companyName,
-      companyX,
-      765,
-      11,
-      rgb(0.05, 0.08, 0.18),
-    );
-
-    drawText(
-      `郵便番号 ${company.postalCode ?? ""}`,
-      companyX,
-      750,
-      7.5,
-      rgb(0.25, 0.25, 0.25),
-    );
-
-    drawText(
-      company.address ?? "",
-      companyX,
-      737,
-      7.5,
-      rgb(0.25, 0.25, 0.25),
-    );
-
-    drawText(
-      `TEL ${company.phoneNumber ?? ""}`,
-      companyX,
-      724,
-      7.5,
-      rgb(0.25, 0.25, 0.25),
-    );
-
-    drawText(
-      `代表者 ${company.representativeName ?? ""}`,
-      companyX,
-      711,
-      7.5,
-      rgb(0.25, 0.25, 0.25),
-    );
-
-    if (company.sealImagePath) {
-      const sealPath =
-        company.sealImagePath.replace(
-          /^\/seals/,
-          "/data/hr-system/seals",
-        );
-
-      if (fs.existsSync(sealPath)) {
-        const sealBytes = fs.readFileSync(sealPath);
-        const sealImage = await pdfDoc.embedPng(sealBytes);
-
-        page.drawImage(sealImage, {
-          x: 495,
-          y: 705,
-          width: 55,
-          height: 55,
-        });
-      }
-    }
-  }
-
-  y = 680;
+  y = 660;
 
   row(
     "雇用形態",
@@ -484,7 +476,7 @@ sectionTitle("賃金・社会保険");
   const salaryX = 40;
   const salaryWidth = 515;
   const salaryHalfWidth = salaryWidth / 2;
-  const salaryLabelWidth = 105;
+  const salaryLabelWidth = 72;
 
   function salaryCell(
     x: number,

@@ -6,6 +6,7 @@ import { redirect } from 'next/navigation'
 
 import { prisma } from '@/lib/prisma'
 import { saveSignature } from '@/lib/signature/saveSignature'
+import { logAudit } from '@/lib/audit-log'
 
 export async function createEmploymentContractConsent(
   formData: FormData,
@@ -62,6 +63,18 @@ export async function createEmploymentContractConsent(
         signatureImagePath,
         ipAddress,
         userAgent,
+      },
+    })
+
+    await logAudit({
+      action: 'EMPLOYMENT_CONTRACT_SIGNED',
+      targetType: 'EmploymentContract',
+      targetId: employmentContractId,
+      description: `${signerName} が電子署名`,
+      afterData: {
+        employmentContractId,
+        signerName,
+        signatureImagePath,
       },
     })
   }

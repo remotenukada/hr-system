@@ -1,6 +1,7 @@
 'use server'
 
 import { prisma } from '@/lib/prisma'
+import { logAudit } from '@/lib/audit-log'
 
 
 function getWorkSchedules(formData: FormData) {
@@ -118,7 +119,7 @@ export async function createEmploymentContract(
   const remarks =
     formData.get('remarks') as string
 
-  await prisma.employmentContract.create({
+  const contract = await prisma.employmentContract.create({
     data: {
       employeeId,
       contractType,
@@ -181,7 +182,18 @@ export async function createEmploymentContract(
     },
   })
 
+
+  await logAudit({
+    action: 'EMPLOYMENT_CONTRACT_CREATED',
+    targetType: 'EmploymentContract',
+    targetId: contract.id,
+    description: `雇用条件書 v${contract.version} を作成`,
+    afterData: contract,
+  })
+
   revalidatePath('/employee-contracts')
+
+
 
   redirect('/employee-contracts')
 }
@@ -340,6 +352,15 @@ export async function updateEmploymentContract(
         remarks: remarks || null,
       },
     })
+
+  await logAudit({
+    action: 'EMPLOYMENT_CONTRACT_UPDATED',
+    targetType: 'EmploymentContract',
+    targetId: newContract.id,
+    description: `雇用条件書 v${newContract.version} を更新`,
+    beforeData: currentContract,
+    afterData: newContract,
+  })
 
   revalidatePath('/employee-contracts')
   redirect(`/employee-contracts/${newContract.id}`)
