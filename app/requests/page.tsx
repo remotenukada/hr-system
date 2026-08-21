@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { auth } from "../../auth";
 import { prisma } from "../../lib/prisma";
 import { Prisma } from "../../generated/prisma";
 
@@ -38,6 +40,21 @@ function getRequestStatusDetails(status: string) {
 }
 
 export default async function RequestsPage({ searchParams }: Props) {
+  const session = await auth();
+
+  if (!session?.user) {
+    redirect("/login");
+  }
+
+  const canViewAll =
+    session.user.role === "ADMIN" ||
+    session.user.role === "HR_MANAGER" ||
+    session.user.role === "MANAGER";
+
+  if (!canViewAll) {
+    redirect("/requests/my");
+  }
+
   const { q, status } = await searchParams;
 
   // 日本語の検索ワードからEnumのキーワードを推測して検索条件を生成

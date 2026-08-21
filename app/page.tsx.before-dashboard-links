@@ -1004,13 +1004,6 @@ const myEmployee =
             >
               マイ申請
             </Link>
-
-            <Link
-              href="/mypage/employment-contracts"
-              className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-            >
-              雇用条件書
-            </Link>
           </div>
         </div>
 
@@ -1023,7 +1016,12 @@ const myEmployee =
           </p>
 
           <div className="mt-4 flex flex-wrap gap-3">
-            
+            <Link
+              href="/mypage"
+              className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            >
+              マイページトップ
+            </Link>
             <Link
               href="/mypage/certifications"
               className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"

@@ -426,6 +426,10 @@ export default async function EmploymentContractDetailPage(
                   <th className="border p-2 text-left">
                     署名済PDF
                   </th>
+
+                  <th className="border p-2 text-left">
+                    署名済PDF
+                  </th>
                 </tr>
               </thead>
 
