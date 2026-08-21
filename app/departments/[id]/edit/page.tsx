@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { prisma } from "../../../../lib/prisma";
@@ -76,6 +77,7 @@ export default async function DepartmentEditPage({
 
   return (
     <main className="p-8">
+      <BackLink href="/departments" label="部署一覧へ戻る" />
       <h1 className="text-3xl font-bold mb-6">
         部署編集
       </h1>

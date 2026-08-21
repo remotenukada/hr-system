@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { prisma } from "../../../lib/prisma";
@@ -24,6 +25,7 @@ async function createCertification(formData: FormData) {
 export default function NewCertificationPage() {
   return (
     <main className="p-8">
+      <BackLink href="/certifications" label="資格一覧へ戻る" />
       <h1 className="mb-6 text-3xl font-bold">資格登録</h1>
 
       <form action={createCertification} className="max-w-md space-y-4">

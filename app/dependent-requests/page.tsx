@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import Link from "next/link";
 import { revalidatePath } from "next/cache";
 
@@ -166,6 +167,7 @@ export default async function DependentRequestsPage() {
 
   return (
     <main className="mx-auto max-w-7xl p-8">
+      <BackLink href="/" label="ダッシュボードへ戻る" />
       <div className="mb-6 flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">
@@ -175,13 +177,6 @@ export default async function DependentRequestsPage() {
             社員本人から提出された扶養家族追加申請を確認します。
           </p>
         </div>
-
-        <Link
-          href="/"
-          className="text-sm text-blue-600 hover:underline"
-        >
-          ← ダッシュボードへ戻る
-        </Link>
       </div>
 
       <div className="overflow-x-auto rounded-lg border bg-white">

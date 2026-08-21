@@ -424,6 +424,8 @@ exports.Prisma.EmploymentContractScalarFieldEnum = {
   endDate: 'endDate',
   workplace: 'workplace',
   jobDescription: 'jobDescription',
+  occupation: 'occupation',
+  position: 'position',
   workStartTime: 'workStartTime',
   workEndTime: 'workEndTime',
   breakMinutes: 'breakMinutes',
@@ -556,6 +558,24 @@ exports.Prisma.EmploymentCategoryMasterScalarFieldEnum = {
 };
 
 exports.Prisma.ContractTypeMasterScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  sortOrder: 'sortOrder',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.JobTitleMasterScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  sortOrder: 'sortOrder',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.PositionMasterScalarFieldEnum = {
   id: 'id',
   name: 'name',
   sortOrder: 'sortOrder',
@@ -709,7 +729,9 @@ exports.Prisma.ModelName = {
   WorkScheduleMaster: 'WorkScheduleMaster',
   AllowanceMaster: 'AllowanceMaster',
   EmploymentCategoryMaster: 'EmploymentCategoryMaster',
-  ContractTypeMaster: 'ContractTypeMaster'
+  ContractTypeMaster: 'ContractTypeMaster',
+  JobTitleMaster: 'JobTitleMaster',
+  PositionMaster: 'PositionMaster'
 };
 
 /**

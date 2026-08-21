@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
@@ -118,9 +119,7 @@ export default async function AuditLogDetailPage({
 
   return (
     <main className="mx-auto max-w-6xl p-8">
-      <Link href="/audit-logs">
-        ← 監査ログ一覧へ戻る
-      </Link>
+      <BackLink href="/audit-logs" label="監査ログ一覧へ戻る" />
 
       <h1 className="mt-4 mb-6 text-3xl font-bold">
         監査ログ詳細

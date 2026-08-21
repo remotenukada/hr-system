@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import fs from "fs";
 import path from "path";
 import Link from "next/link";
@@ -70,13 +71,8 @@ export default async function EmploymentContractDetailPage(
 
   return (
     <main className="mx-auto max-w-4xl p-6">
+      <BackLink href="/employee-contracts" label="雇用条件書一覧へ戻る" />
       <div className="mb-6 flex items-center justify-between">
-        <Link
-          href="/employee-contracts"
-          className="text-sm text-blue-600 hover:underline"
-        >
-          ← 雇用条件書一覧へ戻る
-        </Link>
                 <div className="flex items-center gap-2">
           <a
             href={`/employee-contracts/${contract.id}/pdf`}
@@ -397,7 +393,7 @@ export default async function EmploymentContractDetailPage(
         ) : (
           <div className="space-y-4">
             <p className="text-sm text-green-700">
-              この雇用条件書は同意済みです。
+              {consents[0]?.consentMethod === "PAPER" ? "紙同意済" : "電子同意済"}
             </p>
 
             <table className="min-w-full text-sm">
@@ -423,13 +419,6 @@ export default async function EmploymentContractDetailPage(
                     署名済PDF
                   </th>
 
-                  <th className="border p-2 text-left">
-                    署名済PDF
-                  </th>
-
-                  <th className="border p-2 text-left">
-                    署名済PDF
-                  </th>
                 </tr>
               </thead>
 
@@ -463,6 +452,21 @@ export default async function EmploymentContractDetailPage(
                           alt="署名画像"
                           className="h-12 object-contain"
                         />
+                      ) : (
+                        "-"
+                      )}
+                    </td>
+
+                    <td className="border p-2">
+                      {consent.signedPdfPath ? (
+                        <a
+                          href={`/api/employment-contracts/${contract.id}/paper-consent`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-600 underline hover:text-blue-500"
+                        >
+                          PDFを見る
+                        </a>
                       ) : (
                         "-"
                       )}

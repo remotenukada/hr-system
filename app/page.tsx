@@ -1274,11 +1274,35 @@ const myEmployee =
                 組織変更履歴レポート
               </Link>
 
-              <Link
+                            <Link
                 href="/employee-transfers"
                 className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
               >
-                人事異動一覧
+                異動履歴一覧
+              </Link>
+              <Link
+                href="/masters"
+                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                マスタ管理
+              </Link>
+              <Link
+                href="/employee-contracts"
+                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                雇用契約書一覧
+              </Link>
+              <Link
+                href="/employee-contracts/new"
+                className="rounded border border-green-300 bg-green-50 px-4 py-2 text-sm font-medium text-green-700 hover:bg-green-100"
+              >
+                雇用契約書作成
+              </Link>
+              <Link
+                href="/employee-contract-templates"
+                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                雇用契約テンプレート
               </Link>
               <Link
                 href="/bank-accounts"

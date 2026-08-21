@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import Link from "next/link";
 import { prisma } from "../../lib/prisma";
 
@@ -10,6 +11,7 @@ export default async function CertificationsPage() {
 
   return (
     <main className="p-8">
+      <BackLink href="/" label="ダッシュボードへ戻る" />
       <div className="mb-6 flex items-center justify-between max-w-xl">
         <h1 className="text-3xl font-bold">資格一覧</h1>
 

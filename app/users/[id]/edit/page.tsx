@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import Link from "next/link";
 import bcrypt from "bcrypt";
 import { notFound, redirect } from "next/navigation";
@@ -220,6 +221,7 @@ export default async function EditUserPage({
 
   return (
     <main className="mx-auto max-w-2xl p-8">
+      <BackLink href="/users" label="ユーザー一覧へ戻る" />
       <div className="mb-6">
         <Link
           href="/users"

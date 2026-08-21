@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { requireHRManager } from "@/lib/auth-guard";
@@ -91,14 +92,7 @@ export default async function MyNumbersPage({
 
   return (
     <main className="mx-auto max-w-7xl p-8">
-      <div className="mb-4">
-        <Link
-          href="/"
-          className="text-sm text-blue-600 hover:underline"
-        >
-          ← ダッシュボードへ戻る
-        </Link>
-      </div>
+      <BackLink href="/" label="ダッシュボードへ戻る" />
 
       <h1 className="mb-6 text-3xl font-bold">
         マイナンバー確認一覧

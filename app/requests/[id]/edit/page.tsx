@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import Link from "next/link";
@@ -55,6 +56,7 @@ export default async function EditRequestPage({ params }: Props) {
 
   return (
     <main className="p-8 max-w-xl mx-auto space-y-6">
+      <BackLink href="/requests" label="申請一覧へ戻る" />
       <div>
         <h1 className="text-2xl font-bold text-gray-800">申請内容の編集</h1>
         <p className="text-sm text-gray-500 mt-1">既存の申請内容を修正します。</p>

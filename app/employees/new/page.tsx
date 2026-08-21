@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import { requireHRManager } from "@/lib/auth-guard";
 import Link from 'next/link'
 import { createEmployee } from '@/app/actions/employee'
@@ -10,8 +11,21 @@ export default async function NewEmployeePage() {
     orderBy: { name: 'asc' },
   })
 
+  const jobTitles =
+    await prisma.jobTitleMaster.findMany({
+      where: { isActive: true },
+      orderBy: { sortOrder: 'asc' },
+    })
+
+  const positions =
+    await prisma.positionMaster.findMany({
+      where: { isActive: true },
+      orderBy: { sortOrder: 'asc' },
+    })
+
   return (
     <main className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-sm border my-8">
+      <BackLink href="/employees" label="社員一覧へ戻る" />
       <h1 className="text-xl font-bold mb-6 text-slate-800">
         新規社員登録
       </h1>
@@ -172,22 +186,34 @@ export default async function NewEmployeePage() {
               <label className="block text-xs font-medium text-slate-700 mb-1">
                 職種
               </label>
-              <input
+              <select
                 name="occupation"
-                className="border p-2 w-full rounded focus:outline-indigo-500"
-                placeholder="例: エンジニア"
-              />
+                className="border p-2 w-full rounded focus:outline-indigo-500 bg-white"
+              >
+                <option value="">職種を選択</option>
+                {jobTitles.map((item) => (
+                  <option key={item.id} value={item.name}>
+                    {item.name}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div>
               <label className="block text-xs font-medium text-slate-700 mb-1">
                 役職
               </label>
-              <input
+              <select
                 name="position"
-                className="border p-2 w-full rounded focus:outline-indigo-500"
-                placeholder="例: マネージャー"
-              />
+                className="border p-2 w-full rounded focus:outline-indigo-500 bg-white"
+              >
+                <option value="">役職を選択</option>
+                {positions.map((item) => (
+                  <option key={item.id} value={item.name}>
+                    {item.name}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div>
@@ -296,15 +322,6 @@ export default async function NewEmployeePage() {
           </button>
         </div>
       </form>
-
-      <div className="mt-6 pt-4 border-t border-slate-100">
-        <Link
-          href="/"
-          className="text-sm text-indigo-600 hover:underline inline-flex items-center gap-1"
-        >
-          ← ダッシュボードに戻る
-        </Link>
-      </div>
     </main>
   )
 }

@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import Link from "next/link";
@@ -563,6 +564,7 @@ export default async function EmployeeDetailPage({ params }: Props) {
 
   return (
     <main className="mx-auto max-w-5xl p-8">
+      <BackLink href="/employees" label="社員一覧へ戻る" />
       <div className="mb-6 flex items-start justify-between gap-4">
         <div>
           <Link

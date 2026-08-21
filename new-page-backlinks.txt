@@ -1,0 +1,15 @@
+app/allowance-masters/new/page.tsx|/allowance-masters|手当マスタ一覧へ戻る
+app/certifications/new/page.tsx|/certifications|資格一覧へ戻る
+app/contract-type-masters/new/page.tsx|/contract-type-masters|契約区分マスタ一覧へ戻る
+app/departments/new/page.tsx|/departments|部署一覧へ戻る
+app/employee-contracts/new/page.tsx|/employee-contracts|雇用条件書一覧へ戻る
+app/employee-contract-templates/new/page.tsx|/employee-contract-templates|テンプレート一覧へ戻る
+app/employees/new/page.tsx|/employees|社員一覧へ戻る
+app/employment-category-masters/new/page.tsx|/employment-category-masters|雇用形態マスタ一覧へ戻る
+app/job-title-masters/new/page.tsx|/job-title-masters|職種マスタ一覧へ戻る
+app/mypage/dependent-requests/new/page.tsx|/mypage/dependent-requests|扶養家族申請一覧へ戻る
+app/position-masters/new/page.tsx|/position-masters|役職マスタ一覧へ戻る
+app/requests/new/page.tsx|/requests|申請一覧へ戻る
+app/user-invitations/new/page.tsx|/user-invitations|ユーザー招待一覧へ戻る
+app/users/new/page.tsx|/users|ユーザー一覧へ戻る
+app/work-schedule-masters/new/page.tsx|/work-schedule-masters|勤務帯マスタ一覧へ戻る

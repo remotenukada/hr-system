@@ -173,6 +173,16 @@ export type EmploymentCategoryMaster = $Result.DefaultSelection<Prisma.$Employme
  * 
  */
 export type ContractTypeMaster = $Result.DefaultSelection<Prisma.$ContractTypeMasterPayload>
+/**
+ * Model JobTitleMaster
+ * 
+ */
+export type JobTitleMaster = $Result.DefaultSelection<Prisma.$JobTitleMasterPayload>
+/**
+ * Model PositionMaster
+ * 
+ */
+export type PositionMaster = $Result.DefaultSelection<Prisma.$PositionMasterPayload>
 
 /**
  * Enums
@@ -798,6 +808,26 @@ export class PrismaClient<
     * ```
     */
   get contractTypeMaster(): Prisma.ContractTypeMasterDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.jobTitleMaster`: Exposes CRUD operations for the **JobTitleMaster** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more JobTitleMasters
+    * const jobTitleMasters = await prisma.jobTitleMaster.findMany()
+    * ```
+    */
+  get jobTitleMaster(): Prisma.JobTitleMasterDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.positionMaster`: Exposes CRUD operations for the **PositionMaster** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PositionMasters
+    * const positionMasters = await prisma.positionMaster.findMany()
+    * ```
+    */
+  get positionMaster(): Prisma.PositionMasterDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1263,7 +1293,9 @@ export namespace Prisma {
     WorkScheduleMaster: 'WorkScheduleMaster',
     AllowanceMaster: 'AllowanceMaster',
     EmploymentCategoryMaster: 'EmploymentCategoryMaster',
-    ContractTypeMaster: 'ContractTypeMaster'
+    ContractTypeMaster: 'ContractTypeMaster',
+    JobTitleMaster: 'JobTitleMaster',
+    PositionMaster: 'PositionMaster'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1279,7 +1311,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "userInvitation" | "department" | "employee" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster" | "contractTypeMaster"
+      modelProps: "user" | "userInvitation" | "department" | "employee" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster" | "contractTypeMaster" | "jobTitleMaster" | "positionMaster"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3651,6 +3683,154 @@ export namespace Prisma {
           }
         }
       }
+      JobTitleMaster: {
+        payload: Prisma.$JobTitleMasterPayload<ExtArgs>
+        fields: Prisma.JobTitleMasterFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.JobTitleMasterFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobTitleMasterPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.JobTitleMasterFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobTitleMasterPayload>
+          }
+          findFirst: {
+            args: Prisma.JobTitleMasterFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobTitleMasterPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.JobTitleMasterFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobTitleMasterPayload>
+          }
+          findMany: {
+            args: Prisma.JobTitleMasterFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobTitleMasterPayload>[]
+          }
+          create: {
+            args: Prisma.JobTitleMasterCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobTitleMasterPayload>
+          }
+          createMany: {
+            args: Prisma.JobTitleMasterCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.JobTitleMasterCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobTitleMasterPayload>[]
+          }
+          delete: {
+            args: Prisma.JobTitleMasterDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobTitleMasterPayload>
+          }
+          update: {
+            args: Prisma.JobTitleMasterUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobTitleMasterPayload>
+          }
+          deleteMany: {
+            args: Prisma.JobTitleMasterDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.JobTitleMasterUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.JobTitleMasterUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobTitleMasterPayload>[]
+          }
+          upsert: {
+            args: Prisma.JobTitleMasterUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JobTitleMasterPayload>
+          }
+          aggregate: {
+            args: Prisma.JobTitleMasterAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateJobTitleMaster>
+          }
+          groupBy: {
+            args: Prisma.JobTitleMasterGroupByArgs<ExtArgs>
+            result: $Utils.Optional<JobTitleMasterGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.JobTitleMasterCountArgs<ExtArgs>
+            result: $Utils.Optional<JobTitleMasterCountAggregateOutputType> | number
+          }
+        }
+      }
+      PositionMaster: {
+        payload: Prisma.$PositionMasterPayload<ExtArgs>
+        fields: Prisma.PositionMasterFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PositionMasterFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PositionMasterPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PositionMasterFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PositionMasterPayload>
+          }
+          findFirst: {
+            args: Prisma.PositionMasterFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PositionMasterPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PositionMasterFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PositionMasterPayload>
+          }
+          findMany: {
+            args: Prisma.PositionMasterFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PositionMasterPayload>[]
+          }
+          create: {
+            args: Prisma.PositionMasterCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PositionMasterPayload>
+          }
+          createMany: {
+            args: Prisma.PositionMasterCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PositionMasterCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PositionMasterPayload>[]
+          }
+          delete: {
+            args: Prisma.PositionMasterDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PositionMasterPayload>
+          }
+          update: {
+            args: Prisma.PositionMasterUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PositionMasterPayload>
+          }
+          deleteMany: {
+            args: Prisma.PositionMasterDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PositionMasterUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PositionMasterUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PositionMasterPayload>[]
+          }
+          upsert: {
+            args: Prisma.PositionMasterUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PositionMasterPayload>
+          }
+          aggregate: {
+            args: Prisma.PositionMasterAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePositionMaster>
+          }
+          groupBy: {
+            args: Prisma.PositionMasterGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PositionMasterGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PositionMasterCountArgs<ExtArgs>
+            result: $Utils.Optional<PositionMasterCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3791,6 +3971,8 @@ export namespace Prisma {
     allowanceMaster?: AllowanceMasterOmit
     employmentCategoryMaster?: EmploymentCategoryMasterOmit
     contractTypeMaster?: ContractTypeMasterOmit
+    jobTitleMaster?: JobTitleMasterOmit
+    positionMaster?: PositionMasterOmit
   }
 
   /* Types for Logging */
@@ -31271,6 +31453,8 @@ export namespace Prisma {
     endDate: Date | null
     workplace: string | null
     jobDescription: string | null
+    occupation: string | null
+    position: string | null
     workStartTime: string | null
     workEndTime: string | null
     breakMinutes: number | null
@@ -31309,6 +31493,8 @@ export namespace Prisma {
     endDate: Date | null
     workplace: string | null
     jobDescription: string | null
+    occupation: string | null
+    position: string | null
     workStartTime: string | null
     workEndTime: string | null
     breakMinutes: number | null
@@ -31347,6 +31533,8 @@ export namespace Prisma {
     endDate: number
     workplace: number
     jobDescription: number
+    occupation: number
+    position: number
     workStartTime: number
     workEndTime: number
     breakMinutes: number
@@ -31399,6 +31587,8 @@ export namespace Prisma {
     endDate?: true
     workplace?: true
     jobDescription?: true
+    occupation?: true
+    position?: true
     workStartTime?: true
     workEndTime?: true
     breakMinutes?: true
@@ -31437,6 +31627,8 @@ export namespace Prisma {
     endDate?: true
     workplace?: true
     jobDescription?: true
+    occupation?: true
+    position?: true
     workStartTime?: true
     workEndTime?: true
     breakMinutes?: true
@@ -31475,6 +31667,8 @@ export namespace Prisma {
     endDate?: true
     workplace?: true
     jobDescription?: true
+    occupation?: true
+    position?: true
     workStartTime?: true
     workEndTime?: true
     breakMinutes?: true
@@ -31600,6 +31794,8 @@ export namespace Prisma {
     endDate: Date | null
     workplace: string
     jobDescription: string
+    occupation: string | null
+    position: string | null
     workStartTime: string
     workEndTime: string
     breakMinutes: number
@@ -31657,6 +31853,8 @@ export namespace Prisma {
     endDate?: boolean
     workplace?: boolean
     jobDescription?: boolean
+    occupation?: boolean
+    position?: boolean
     workStartTime?: boolean
     workEndTime?: boolean
     breakMinutes?: boolean
@@ -31699,6 +31897,8 @@ export namespace Prisma {
     endDate?: boolean
     workplace?: boolean
     jobDescription?: boolean
+    occupation?: boolean
+    position?: boolean
     workStartTime?: boolean
     workEndTime?: boolean
     breakMinutes?: boolean
@@ -31738,6 +31938,8 @@ export namespace Prisma {
     endDate?: boolean
     workplace?: boolean
     jobDescription?: boolean
+    occupation?: boolean
+    position?: boolean
     workStartTime?: boolean
     workEndTime?: boolean
     breakMinutes?: boolean
@@ -31777,6 +31979,8 @@ export namespace Prisma {
     endDate?: boolean
     workplace?: boolean
     jobDescription?: boolean
+    occupation?: boolean
+    position?: boolean
     workStartTime?: boolean
     workEndTime?: boolean
     breakMinutes?: boolean
@@ -31806,7 +32010,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type EmploymentContractOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "contractType" | "employmentCategory" | "startDate" | "endDate" | "workplace" | "jobDescription" | "workStartTime" | "workEndTime" | "breakMinutes" | "holidayRule" | "leaveRule" | "wageType" | "baseSalary" | "allowanceNote" | "payClosingDay" | "payDate" | "bonusRule" | "raiseRule" | "probationPeriod" | "contractRenewalRule" | "contractRenewalCriteria" | "retirementRule" | "retirementAllowanceRule" | "socialInsuranceRule" | "employmentInsuranceRule" | "consultationDesk" | "workRuleLocation" | "remarks" | "version" | "isCurrent" | "supersededAt" | "createdAt" | "updatedAt", ExtArgs["result"]["employmentContract"]>
+  export type EmploymentContractOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "contractType" | "employmentCategory" | "startDate" | "endDate" | "workplace" | "jobDescription" | "occupation" | "position" | "workStartTime" | "workEndTime" | "breakMinutes" | "holidayRule" | "leaveRule" | "wageType" | "baseSalary" | "allowanceNote" | "payClosingDay" | "payDate" | "bonusRule" | "raiseRule" | "probationPeriod" | "contractRenewalRule" | "contractRenewalCriteria" | "retirementRule" | "retirementAllowanceRule" | "socialInsuranceRule" | "employmentInsuranceRule" | "consultationDesk" | "workRuleLocation" | "remarks" | "version" | "isCurrent" | "supersededAt" | "createdAt" | "updatedAt", ExtArgs["result"]["employmentContract"]>
   export type EmploymentContractInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     employmentContractConsents?: boolean | EmploymentContract$employmentContractConsentsArgs<ExtArgs>
@@ -31836,6 +32040,8 @@ export namespace Prisma {
       endDate: Date | null
       workplace: string
       jobDescription: string
+      occupation: string | null
+      position: string | null
       workStartTime: string
       workEndTime: string
       breakMinutes: number
@@ -32297,6 +32503,8 @@ export namespace Prisma {
     readonly endDate: FieldRef<"EmploymentContract", 'DateTime'>
     readonly workplace: FieldRef<"EmploymentContract", 'String'>
     readonly jobDescription: FieldRef<"EmploymentContract", 'String'>
+    readonly occupation: FieldRef<"EmploymentContract", 'String'>
+    readonly position: FieldRef<"EmploymentContract", 'String'>
     readonly workStartTime: FieldRef<"EmploymentContract", 'String'>
     readonly workEndTime: FieldRef<"EmploymentContract", 'String'>
     readonly breakMinutes: FieldRef<"EmploymentContract", 'Int'>
@@ -41772,6 +41980,2100 @@ export namespace Prisma {
 
 
   /**
+   * Model JobTitleMaster
+   */
+
+  export type AggregateJobTitleMaster = {
+    _count: JobTitleMasterCountAggregateOutputType | null
+    _avg: JobTitleMasterAvgAggregateOutputType | null
+    _sum: JobTitleMasterSumAggregateOutputType | null
+    _min: JobTitleMasterMinAggregateOutputType | null
+    _max: JobTitleMasterMaxAggregateOutputType | null
+  }
+
+  export type JobTitleMasterAvgAggregateOutputType = {
+    sortOrder: number | null
+  }
+
+  export type JobTitleMasterSumAggregateOutputType = {
+    sortOrder: number | null
+  }
+
+  export type JobTitleMasterMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    sortOrder: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type JobTitleMasterMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    sortOrder: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type JobTitleMasterCountAggregateOutputType = {
+    id: number
+    name: number
+    sortOrder: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type JobTitleMasterAvgAggregateInputType = {
+    sortOrder?: true
+  }
+
+  export type JobTitleMasterSumAggregateInputType = {
+    sortOrder?: true
+  }
+
+  export type JobTitleMasterMinAggregateInputType = {
+    id?: true
+    name?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type JobTitleMasterMaxAggregateInputType = {
+    id?: true
+    name?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type JobTitleMasterCountAggregateInputType = {
+    id?: true
+    name?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type JobTitleMasterAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which JobTitleMaster to aggregate.
+     */
+    where?: JobTitleMasterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JobTitleMasters to fetch.
+     */
+    orderBy?: JobTitleMasterOrderByWithRelationInput | JobTitleMasterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: JobTitleMasterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JobTitleMasters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JobTitleMasters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned JobTitleMasters
+    **/
+    _count?: true | JobTitleMasterCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: JobTitleMasterAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: JobTitleMasterSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: JobTitleMasterMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: JobTitleMasterMaxAggregateInputType
+  }
+
+  export type GetJobTitleMasterAggregateType<T extends JobTitleMasterAggregateArgs> = {
+        [P in keyof T & keyof AggregateJobTitleMaster]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateJobTitleMaster[P]>
+      : GetScalarType<T[P], AggregateJobTitleMaster[P]>
+  }
+
+
+
+
+  export type JobTitleMasterGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: JobTitleMasterWhereInput
+    orderBy?: JobTitleMasterOrderByWithAggregationInput | JobTitleMasterOrderByWithAggregationInput[]
+    by: JobTitleMasterScalarFieldEnum[] | JobTitleMasterScalarFieldEnum
+    having?: JobTitleMasterScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: JobTitleMasterCountAggregateInputType | true
+    _avg?: JobTitleMasterAvgAggregateInputType
+    _sum?: JobTitleMasterSumAggregateInputType
+    _min?: JobTitleMasterMinAggregateInputType
+    _max?: JobTitleMasterMaxAggregateInputType
+  }
+
+  export type JobTitleMasterGroupByOutputType = {
+    id: string
+    name: string
+    sortOrder: number
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: JobTitleMasterCountAggregateOutputType | null
+    _avg: JobTitleMasterAvgAggregateOutputType | null
+    _sum: JobTitleMasterSumAggregateOutputType | null
+    _min: JobTitleMasterMinAggregateOutputType | null
+    _max: JobTitleMasterMaxAggregateOutputType | null
+  }
+
+  type GetJobTitleMasterGroupByPayload<T extends JobTitleMasterGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<JobTitleMasterGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof JobTitleMasterGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], JobTitleMasterGroupByOutputType[P]>
+            : GetScalarType<T[P], JobTitleMasterGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type JobTitleMasterSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["jobTitleMaster"]>
+
+  export type JobTitleMasterSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["jobTitleMaster"]>
+
+  export type JobTitleMasterSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["jobTitleMaster"]>
+
+  export type JobTitleMasterSelectScalar = {
+    id?: boolean
+    name?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type JobTitleMasterOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "sortOrder" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["jobTitleMaster"]>
+
+  export type $JobTitleMasterPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "JobTitleMaster"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      sortOrder: number
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["jobTitleMaster"]>
+    composites: {}
+  }
+
+  type JobTitleMasterGetPayload<S extends boolean | null | undefined | JobTitleMasterDefaultArgs> = $Result.GetResult<Prisma.$JobTitleMasterPayload, S>
+
+  type JobTitleMasterCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<JobTitleMasterFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: JobTitleMasterCountAggregateInputType | true
+    }
+
+  export interface JobTitleMasterDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['JobTitleMaster'], meta: { name: 'JobTitleMaster' } }
+    /**
+     * Find zero or one JobTitleMaster that matches the filter.
+     * @param {JobTitleMasterFindUniqueArgs} args - Arguments to find a JobTitleMaster
+     * @example
+     * // Get one JobTitleMaster
+     * const jobTitleMaster = await prisma.jobTitleMaster.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends JobTitleMasterFindUniqueArgs>(args: SelectSubset<T, JobTitleMasterFindUniqueArgs<ExtArgs>>): Prisma__JobTitleMasterClient<$Result.GetResult<Prisma.$JobTitleMasterPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one JobTitleMaster that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {JobTitleMasterFindUniqueOrThrowArgs} args - Arguments to find a JobTitleMaster
+     * @example
+     * // Get one JobTitleMaster
+     * const jobTitleMaster = await prisma.jobTitleMaster.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends JobTitleMasterFindUniqueOrThrowArgs>(args: SelectSubset<T, JobTitleMasterFindUniqueOrThrowArgs<ExtArgs>>): Prisma__JobTitleMasterClient<$Result.GetResult<Prisma.$JobTitleMasterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first JobTitleMaster that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobTitleMasterFindFirstArgs} args - Arguments to find a JobTitleMaster
+     * @example
+     * // Get one JobTitleMaster
+     * const jobTitleMaster = await prisma.jobTitleMaster.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends JobTitleMasterFindFirstArgs>(args?: SelectSubset<T, JobTitleMasterFindFirstArgs<ExtArgs>>): Prisma__JobTitleMasterClient<$Result.GetResult<Prisma.$JobTitleMasterPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first JobTitleMaster that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobTitleMasterFindFirstOrThrowArgs} args - Arguments to find a JobTitleMaster
+     * @example
+     * // Get one JobTitleMaster
+     * const jobTitleMaster = await prisma.jobTitleMaster.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends JobTitleMasterFindFirstOrThrowArgs>(args?: SelectSubset<T, JobTitleMasterFindFirstOrThrowArgs<ExtArgs>>): Prisma__JobTitleMasterClient<$Result.GetResult<Prisma.$JobTitleMasterPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more JobTitleMasters that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobTitleMasterFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all JobTitleMasters
+     * const jobTitleMasters = await prisma.jobTitleMaster.findMany()
+     * 
+     * // Get first 10 JobTitleMasters
+     * const jobTitleMasters = await prisma.jobTitleMaster.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const jobTitleMasterWithIdOnly = await prisma.jobTitleMaster.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends JobTitleMasterFindManyArgs>(args?: SelectSubset<T, JobTitleMasterFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JobTitleMasterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a JobTitleMaster.
+     * @param {JobTitleMasterCreateArgs} args - Arguments to create a JobTitleMaster.
+     * @example
+     * // Create one JobTitleMaster
+     * const JobTitleMaster = await prisma.jobTitleMaster.create({
+     *   data: {
+     *     // ... data to create a JobTitleMaster
+     *   }
+     * })
+     * 
+     */
+    create<T extends JobTitleMasterCreateArgs>(args: SelectSubset<T, JobTitleMasterCreateArgs<ExtArgs>>): Prisma__JobTitleMasterClient<$Result.GetResult<Prisma.$JobTitleMasterPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many JobTitleMasters.
+     * @param {JobTitleMasterCreateManyArgs} args - Arguments to create many JobTitleMasters.
+     * @example
+     * // Create many JobTitleMasters
+     * const jobTitleMaster = await prisma.jobTitleMaster.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends JobTitleMasterCreateManyArgs>(args?: SelectSubset<T, JobTitleMasterCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many JobTitleMasters and returns the data saved in the database.
+     * @param {JobTitleMasterCreateManyAndReturnArgs} args - Arguments to create many JobTitleMasters.
+     * @example
+     * // Create many JobTitleMasters
+     * const jobTitleMaster = await prisma.jobTitleMaster.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many JobTitleMasters and only return the `id`
+     * const jobTitleMasterWithIdOnly = await prisma.jobTitleMaster.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends JobTitleMasterCreateManyAndReturnArgs>(args?: SelectSubset<T, JobTitleMasterCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JobTitleMasterPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a JobTitleMaster.
+     * @param {JobTitleMasterDeleteArgs} args - Arguments to delete one JobTitleMaster.
+     * @example
+     * // Delete one JobTitleMaster
+     * const JobTitleMaster = await prisma.jobTitleMaster.delete({
+     *   where: {
+     *     // ... filter to delete one JobTitleMaster
+     *   }
+     * })
+     * 
+     */
+    delete<T extends JobTitleMasterDeleteArgs>(args: SelectSubset<T, JobTitleMasterDeleteArgs<ExtArgs>>): Prisma__JobTitleMasterClient<$Result.GetResult<Prisma.$JobTitleMasterPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one JobTitleMaster.
+     * @param {JobTitleMasterUpdateArgs} args - Arguments to update one JobTitleMaster.
+     * @example
+     * // Update one JobTitleMaster
+     * const jobTitleMaster = await prisma.jobTitleMaster.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends JobTitleMasterUpdateArgs>(args: SelectSubset<T, JobTitleMasterUpdateArgs<ExtArgs>>): Prisma__JobTitleMasterClient<$Result.GetResult<Prisma.$JobTitleMasterPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more JobTitleMasters.
+     * @param {JobTitleMasterDeleteManyArgs} args - Arguments to filter JobTitleMasters to delete.
+     * @example
+     * // Delete a few JobTitleMasters
+     * const { count } = await prisma.jobTitleMaster.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends JobTitleMasterDeleteManyArgs>(args?: SelectSubset<T, JobTitleMasterDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more JobTitleMasters.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobTitleMasterUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many JobTitleMasters
+     * const jobTitleMaster = await prisma.jobTitleMaster.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends JobTitleMasterUpdateManyArgs>(args: SelectSubset<T, JobTitleMasterUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more JobTitleMasters and returns the data updated in the database.
+     * @param {JobTitleMasterUpdateManyAndReturnArgs} args - Arguments to update many JobTitleMasters.
+     * @example
+     * // Update many JobTitleMasters
+     * const jobTitleMaster = await prisma.jobTitleMaster.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more JobTitleMasters and only return the `id`
+     * const jobTitleMasterWithIdOnly = await prisma.jobTitleMaster.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends JobTitleMasterUpdateManyAndReturnArgs>(args: SelectSubset<T, JobTitleMasterUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JobTitleMasterPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one JobTitleMaster.
+     * @param {JobTitleMasterUpsertArgs} args - Arguments to update or create a JobTitleMaster.
+     * @example
+     * // Update or create a JobTitleMaster
+     * const jobTitleMaster = await prisma.jobTitleMaster.upsert({
+     *   create: {
+     *     // ... data to create a JobTitleMaster
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the JobTitleMaster we want to update
+     *   }
+     * })
+     */
+    upsert<T extends JobTitleMasterUpsertArgs>(args: SelectSubset<T, JobTitleMasterUpsertArgs<ExtArgs>>): Prisma__JobTitleMasterClient<$Result.GetResult<Prisma.$JobTitleMasterPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of JobTitleMasters.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobTitleMasterCountArgs} args - Arguments to filter JobTitleMasters to count.
+     * @example
+     * // Count the number of JobTitleMasters
+     * const count = await prisma.jobTitleMaster.count({
+     *   where: {
+     *     // ... the filter for the JobTitleMasters we want to count
+     *   }
+     * })
+    **/
+    count<T extends JobTitleMasterCountArgs>(
+      args?: Subset<T, JobTitleMasterCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], JobTitleMasterCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a JobTitleMaster.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobTitleMasterAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends JobTitleMasterAggregateArgs>(args: Subset<T, JobTitleMasterAggregateArgs>): Prisma.PrismaPromise<GetJobTitleMasterAggregateType<T>>
+
+    /**
+     * Group by JobTitleMaster.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JobTitleMasterGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends JobTitleMasterGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: JobTitleMasterGroupByArgs['orderBy'] }
+        : { orderBy?: JobTitleMasterGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, JobTitleMasterGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetJobTitleMasterGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the JobTitleMaster model
+   */
+  readonly fields: JobTitleMasterFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for JobTitleMaster.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__JobTitleMasterClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the JobTitleMaster model
+   */
+  interface JobTitleMasterFieldRefs {
+    readonly id: FieldRef<"JobTitleMaster", 'String'>
+    readonly name: FieldRef<"JobTitleMaster", 'String'>
+    readonly sortOrder: FieldRef<"JobTitleMaster", 'Int'>
+    readonly isActive: FieldRef<"JobTitleMaster", 'Boolean'>
+    readonly createdAt: FieldRef<"JobTitleMaster", 'DateTime'>
+    readonly updatedAt: FieldRef<"JobTitleMaster", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * JobTitleMaster findUnique
+   */
+  export type JobTitleMasterFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobTitleMaster
+     */
+    select?: JobTitleMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobTitleMaster
+     */
+    omit?: JobTitleMasterOmit<ExtArgs> | null
+    /**
+     * Filter, which JobTitleMaster to fetch.
+     */
+    where: JobTitleMasterWhereUniqueInput
+  }
+
+  /**
+   * JobTitleMaster findUniqueOrThrow
+   */
+  export type JobTitleMasterFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobTitleMaster
+     */
+    select?: JobTitleMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobTitleMaster
+     */
+    omit?: JobTitleMasterOmit<ExtArgs> | null
+    /**
+     * Filter, which JobTitleMaster to fetch.
+     */
+    where: JobTitleMasterWhereUniqueInput
+  }
+
+  /**
+   * JobTitleMaster findFirst
+   */
+  export type JobTitleMasterFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobTitleMaster
+     */
+    select?: JobTitleMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobTitleMaster
+     */
+    omit?: JobTitleMasterOmit<ExtArgs> | null
+    /**
+     * Filter, which JobTitleMaster to fetch.
+     */
+    where?: JobTitleMasterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JobTitleMasters to fetch.
+     */
+    orderBy?: JobTitleMasterOrderByWithRelationInput | JobTitleMasterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for JobTitleMasters.
+     */
+    cursor?: JobTitleMasterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JobTitleMasters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JobTitleMasters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of JobTitleMasters.
+     */
+    distinct?: JobTitleMasterScalarFieldEnum | JobTitleMasterScalarFieldEnum[]
+  }
+
+  /**
+   * JobTitleMaster findFirstOrThrow
+   */
+  export type JobTitleMasterFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobTitleMaster
+     */
+    select?: JobTitleMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobTitleMaster
+     */
+    omit?: JobTitleMasterOmit<ExtArgs> | null
+    /**
+     * Filter, which JobTitleMaster to fetch.
+     */
+    where?: JobTitleMasterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JobTitleMasters to fetch.
+     */
+    orderBy?: JobTitleMasterOrderByWithRelationInput | JobTitleMasterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for JobTitleMasters.
+     */
+    cursor?: JobTitleMasterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JobTitleMasters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JobTitleMasters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of JobTitleMasters.
+     */
+    distinct?: JobTitleMasterScalarFieldEnum | JobTitleMasterScalarFieldEnum[]
+  }
+
+  /**
+   * JobTitleMaster findMany
+   */
+  export type JobTitleMasterFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobTitleMaster
+     */
+    select?: JobTitleMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobTitleMaster
+     */
+    omit?: JobTitleMasterOmit<ExtArgs> | null
+    /**
+     * Filter, which JobTitleMasters to fetch.
+     */
+    where?: JobTitleMasterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of JobTitleMasters to fetch.
+     */
+    orderBy?: JobTitleMasterOrderByWithRelationInput | JobTitleMasterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing JobTitleMasters.
+     */
+    cursor?: JobTitleMasterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` JobTitleMasters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` JobTitleMasters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of JobTitleMasters.
+     */
+    distinct?: JobTitleMasterScalarFieldEnum | JobTitleMasterScalarFieldEnum[]
+  }
+
+  /**
+   * JobTitleMaster create
+   */
+  export type JobTitleMasterCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobTitleMaster
+     */
+    select?: JobTitleMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobTitleMaster
+     */
+    omit?: JobTitleMasterOmit<ExtArgs> | null
+    /**
+     * The data needed to create a JobTitleMaster.
+     */
+    data: XOR<JobTitleMasterCreateInput, JobTitleMasterUncheckedCreateInput>
+  }
+
+  /**
+   * JobTitleMaster createMany
+   */
+  export type JobTitleMasterCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many JobTitleMasters.
+     */
+    data: JobTitleMasterCreateManyInput | JobTitleMasterCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * JobTitleMaster createManyAndReturn
+   */
+  export type JobTitleMasterCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobTitleMaster
+     */
+    select?: JobTitleMasterSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobTitleMaster
+     */
+    omit?: JobTitleMasterOmit<ExtArgs> | null
+    /**
+     * The data used to create many JobTitleMasters.
+     */
+    data: JobTitleMasterCreateManyInput | JobTitleMasterCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * JobTitleMaster update
+   */
+  export type JobTitleMasterUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobTitleMaster
+     */
+    select?: JobTitleMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobTitleMaster
+     */
+    omit?: JobTitleMasterOmit<ExtArgs> | null
+    /**
+     * The data needed to update a JobTitleMaster.
+     */
+    data: XOR<JobTitleMasterUpdateInput, JobTitleMasterUncheckedUpdateInput>
+    /**
+     * Choose, which JobTitleMaster to update.
+     */
+    where: JobTitleMasterWhereUniqueInput
+  }
+
+  /**
+   * JobTitleMaster updateMany
+   */
+  export type JobTitleMasterUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update JobTitleMasters.
+     */
+    data: XOR<JobTitleMasterUpdateManyMutationInput, JobTitleMasterUncheckedUpdateManyInput>
+    /**
+     * Filter which JobTitleMasters to update
+     */
+    where?: JobTitleMasterWhereInput
+    /**
+     * Limit how many JobTitleMasters to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * JobTitleMaster updateManyAndReturn
+   */
+  export type JobTitleMasterUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobTitleMaster
+     */
+    select?: JobTitleMasterSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobTitleMaster
+     */
+    omit?: JobTitleMasterOmit<ExtArgs> | null
+    /**
+     * The data used to update JobTitleMasters.
+     */
+    data: XOR<JobTitleMasterUpdateManyMutationInput, JobTitleMasterUncheckedUpdateManyInput>
+    /**
+     * Filter which JobTitleMasters to update
+     */
+    where?: JobTitleMasterWhereInput
+    /**
+     * Limit how many JobTitleMasters to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * JobTitleMaster upsert
+   */
+  export type JobTitleMasterUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobTitleMaster
+     */
+    select?: JobTitleMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobTitleMaster
+     */
+    omit?: JobTitleMasterOmit<ExtArgs> | null
+    /**
+     * The filter to search for the JobTitleMaster to update in case it exists.
+     */
+    where: JobTitleMasterWhereUniqueInput
+    /**
+     * In case the JobTitleMaster found by the `where` argument doesn't exist, create a new JobTitleMaster with this data.
+     */
+    create: XOR<JobTitleMasterCreateInput, JobTitleMasterUncheckedCreateInput>
+    /**
+     * In case the JobTitleMaster was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<JobTitleMasterUpdateInput, JobTitleMasterUncheckedUpdateInput>
+  }
+
+  /**
+   * JobTitleMaster delete
+   */
+  export type JobTitleMasterDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobTitleMaster
+     */
+    select?: JobTitleMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobTitleMaster
+     */
+    omit?: JobTitleMasterOmit<ExtArgs> | null
+    /**
+     * Filter which JobTitleMaster to delete.
+     */
+    where: JobTitleMasterWhereUniqueInput
+  }
+
+  /**
+   * JobTitleMaster deleteMany
+   */
+  export type JobTitleMasterDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which JobTitleMasters to delete
+     */
+    where?: JobTitleMasterWhereInput
+    /**
+     * Limit how many JobTitleMasters to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * JobTitleMaster without action
+   */
+  export type JobTitleMasterDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the JobTitleMaster
+     */
+    select?: JobTitleMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the JobTitleMaster
+     */
+    omit?: JobTitleMasterOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model PositionMaster
+   */
+
+  export type AggregatePositionMaster = {
+    _count: PositionMasterCountAggregateOutputType | null
+    _avg: PositionMasterAvgAggregateOutputType | null
+    _sum: PositionMasterSumAggregateOutputType | null
+    _min: PositionMasterMinAggregateOutputType | null
+    _max: PositionMasterMaxAggregateOutputType | null
+  }
+
+  export type PositionMasterAvgAggregateOutputType = {
+    sortOrder: number | null
+  }
+
+  export type PositionMasterSumAggregateOutputType = {
+    sortOrder: number | null
+  }
+
+  export type PositionMasterMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    sortOrder: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PositionMasterMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    sortOrder: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PositionMasterCountAggregateOutputType = {
+    id: number
+    name: number
+    sortOrder: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type PositionMasterAvgAggregateInputType = {
+    sortOrder?: true
+  }
+
+  export type PositionMasterSumAggregateInputType = {
+    sortOrder?: true
+  }
+
+  export type PositionMasterMinAggregateInputType = {
+    id?: true
+    name?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PositionMasterMaxAggregateInputType = {
+    id?: true
+    name?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PositionMasterCountAggregateInputType = {
+    id?: true
+    name?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type PositionMasterAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PositionMaster to aggregate.
+     */
+    where?: PositionMasterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PositionMasters to fetch.
+     */
+    orderBy?: PositionMasterOrderByWithRelationInput | PositionMasterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PositionMasterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PositionMasters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PositionMasters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PositionMasters
+    **/
+    _count?: true | PositionMasterCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PositionMasterAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PositionMasterSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PositionMasterMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PositionMasterMaxAggregateInputType
+  }
+
+  export type GetPositionMasterAggregateType<T extends PositionMasterAggregateArgs> = {
+        [P in keyof T & keyof AggregatePositionMaster]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePositionMaster[P]>
+      : GetScalarType<T[P], AggregatePositionMaster[P]>
+  }
+
+
+
+
+  export type PositionMasterGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PositionMasterWhereInput
+    orderBy?: PositionMasterOrderByWithAggregationInput | PositionMasterOrderByWithAggregationInput[]
+    by: PositionMasterScalarFieldEnum[] | PositionMasterScalarFieldEnum
+    having?: PositionMasterScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PositionMasterCountAggregateInputType | true
+    _avg?: PositionMasterAvgAggregateInputType
+    _sum?: PositionMasterSumAggregateInputType
+    _min?: PositionMasterMinAggregateInputType
+    _max?: PositionMasterMaxAggregateInputType
+  }
+
+  export type PositionMasterGroupByOutputType = {
+    id: string
+    name: string
+    sortOrder: number
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: PositionMasterCountAggregateOutputType | null
+    _avg: PositionMasterAvgAggregateOutputType | null
+    _sum: PositionMasterSumAggregateOutputType | null
+    _min: PositionMasterMinAggregateOutputType | null
+    _max: PositionMasterMaxAggregateOutputType | null
+  }
+
+  type GetPositionMasterGroupByPayload<T extends PositionMasterGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PositionMasterGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PositionMasterGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PositionMasterGroupByOutputType[P]>
+            : GetScalarType<T[P], PositionMasterGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PositionMasterSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["positionMaster"]>
+
+  export type PositionMasterSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["positionMaster"]>
+
+  export type PositionMasterSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["positionMaster"]>
+
+  export type PositionMasterSelectScalar = {
+    id?: boolean
+    name?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type PositionMasterOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "sortOrder" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["positionMaster"]>
+
+  export type $PositionMasterPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PositionMaster"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      sortOrder: number
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["positionMaster"]>
+    composites: {}
+  }
+
+  type PositionMasterGetPayload<S extends boolean | null | undefined | PositionMasterDefaultArgs> = $Result.GetResult<Prisma.$PositionMasterPayload, S>
+
+  type PositionMasterCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PositionMasterFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PositionMasterCountAggregateInputType | true
+    }
+
+  export interface PositionMasterDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PositionMaster'], meta: { name: 'PositionMaster' } }
+    /**
+     * Find zero or one PositionMaster that matches the filter.
+     * @param {PositionMasterFindUniqueArgs} args - Arguments to find a PositionMaster
+     * @example
+     * // Get one PositionMaster
+     * const positionMaster = await prisma.positionMaster.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PositionMasterFindUniqueArgs>(args: SelectSubset<T, PositionMasterFindUniqueArgs<ExtArgs>>): Prisma__PositionMasterClient<$Result.GetResult<Prisma.$PositionMasterPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PositionMaster that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PositionMasterFindUniqueOrThrowArgs} args - Arguments to find a PositionMaster
+     * @example
+     * // Get one PositionMaster
+     * const positionMaster = await prisma.positionMaster.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PositionMasterFindUniqueOrThrowArgs>(args: SelectSubset<T, PositionMasterFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PositionMasterClient<$Result.GetResult<Prisma.$PositionMasterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PositionMaster that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PositionMasterFindFirstArgs} args - Arguments to find a PositionMaster
+     * @example
+     * // Get one PositionMaster
+     * const positionMaster = await prisma.positionMaster.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PositionMasterFindFirstArgs>(args?: SelectSubset<T, PositionMasterFindFirstArgs<ExtArgs>>): Prisma__PositionMasterClient<$Result.GetResult<Prisma.$PositionMasterPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PositionMaster that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PositionMasterFindFirstOrThrowArgs} args - Arguments to find a PositionMaster
+     * @example
+     * // Get one PositionMaster
+     * const positionMaster = await prisma.positionMaster.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PositionMasterFindFirstOrThrowArgs>(args?: SelectSubset<T, PositionMasterFindFirstOrThrowArgs<ExtArgs>>): Prisma__PositionMasterClient<$Result.GetResult<Prisma.$PositionMasterPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PositionMasters that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PositionMasterFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PositionMasters
+     * const positionMasters = await prisma.positionMaster.findMany()
+     * 
+     * // Get first 10 PositionMasters
+     * const positionMasters = await prisma.positionMaster.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const positionMasterWithIdOnly = await prisma.positionMaster.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PositionMasterFindManyArgs>(args?: SelectSubset<T, PositionMasterFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PositionMasterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PositionMaster.
+     * @param {PositionMasterCreateArgs} args - Arguments to create a PositionMaster.
+     * @example
+     * // Create one PositionMaster
+     * const PositionMaster = await prisma.positionMaster.create({
+     *   data: {
+     *     // ... data to create a PositionMaster
+     *   }
+     * })
+     * 
+     */
+    create<T extends PositionMasterCreateArgs>(args: SelectSubset<T, PositionMasterCreateArgs<ExtArgs>>): Prisma__PositionMasterClient<$Result.GetResult<Prisma.$PositionMasterPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PositionMasters.
+     * @param {PositionMasterCreateManyArgs} args - Arguments to create many PositionMasters.
+     * @example
+     * // Create many PositionMasters
+     * const positionMaster = await prisma.positionMaster.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PositionMasterCreateManyArgs>(args?: SelectSubset<T, PositionMasterCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PositionMasters and returns the data saved in the database.
+     * @param {PositionMasterCreateManyAndReturnArgs} args - Arguments to create many PositionMasters.
+     * @example
+     * // Create many PositionMasters
+     * const positionMaster = await prisma.positionMaster.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PositionMasters and only return the `id`
+     * const positionMasterWithIdOnly = await prisma.positionMaster.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PositionMasterCreateManyAndReturnArgs>(args?: SelectSubset<T, PositionMasterCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PositionMasterPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PositionMaster.
+     * @param {PositionMasterDeleteArgs} args - Arguments to delete one PositionMaster.
+     * @example
+     * // Delete one PositionMaster
+     * const PositionMaster = await prisma.positionMaster.delete({
+     *   where: {
+     *     // ... filter to delete one PositionMaster
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PositionMasterDeleteArgs>(args: SelectSubset<T, PositionMasterDeleteArgs<ExtArgs>>): Prisma__PositionMasterClient<$Result.GetResult<Prisma.$PositionMasterPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PositionMaster.
+     * @param {PositionMasterUpdateArgs} args - Arguments to update one PositionMaster.
+     * @example
+     * // Update one PositionMaster
+     * const positionMaster = await prisma.positionMaster.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PositionMasterUpdateArgs>(args: SelectSubset<T, PositionMasterUpdateArgs<ExtArgs>>): Prisma__PositionMasterClient<$Result.GetResult<Prisma.$PositionMasterPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PositionMasters.
+     * @param {PositionMasterDeleteManyArgs} args - Arguments to filter PositionMasters to delete.
+     * @example
+     * // Delete a few PositionMasters
+     * const { count } = await prisma.positionMaster.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PositionMasterDeleteManyArgs>(args?: SelectSubset<T, PositionMasterDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PositionMasters.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PositionMasterUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PositionMasters
+     * const positionMaster = await prisma.positionMaster.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PositionMasterUpdateManyArgs>(args: SelectSubset<T, PositionMasterUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PositionMasters and returns the data updated in the database.
+     * @param {PositionMasterUpdateManyAndReturnArgs} args - Arguments to update many PositionMasters.
+     * @example
+     * // Update many PositionMasters
+     * const positionMaster = await prisma.positionMaster.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PositionMasters and only return the `id`
+     * const positionMasterWithIdOnly = await prisma.positionMaster.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PositionMasterUpdateManyAndReturnArgs>(args: SelectSubset<T, PositionMasterUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PositionMasterPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PositionMaster.
+     * @param {PositionMasterUpsertArgs} args - Arguments to update or create a PositionMaster.
+     * @example
+     * // Update or create a PositionMaster
+     * const positionMaster = await prisma.positionMaster.upsert({
+     *   create: {
+     *     // ... data to create a PositionMaster
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PositionMaster we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PositionMasterUpsertArgs>(args: SelectSubset<T, PositionMasterUpsertArgs<ExtArgs>>): Prisma__PositionMasterClient<$Result.GetResult<Prisma.$PositionMasterPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PositionMasters.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PositionMasterCountArgs} args - Arguments to filter PositionMasters to count.
+     * @example
+     * // Count the number of PositionMasters
+     * const count = await prisma.positionMaster.count({
+     *   where: {
+     *     // ... the filter for the PositionMasters we want to count
+     *   }
+     * })
+    **/
+    count<T extends PositionMasterCountArgs>(
+      args?: Subset<T, PositionMasterCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PositionMasterCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PositionMaster.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PositionMasterAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PositionMasterAggregateArgs>(args: Subset<T, PositionMasterAggregateArgs>): Prisma.PrismaPromise<GetPositionMasterAggregateType<T>>
+
+    /**
+     * Group by PositionMaster.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PositionMasterGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PositionMasterGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PositionMasterGroupByArgs['orderBy'] }
+        : { orderBy?: PositionMasterGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PositionMasterGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPositionMasterGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PositionMaster model
+   */
+  readonly fields: PositionMasterFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PositionMaster.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PositionMasterClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PositionMaster model
+   */
+  interface PositionMasterFieldRefs {
+    readonly id: FieldRef<"PositionMaster", 'String'>
+    readonly name: FieldRef<"PositionMaster", 'String'>
+    readonly sortOrder: FieldRef<"PositionMaster", 'Int'>
+    readonly isActive: FieldRef<"PositionMaster", 'Boolean'>
+    readonly createdAt: FieldRef<"PositionMaster", 'DateTime'>
+    readonly updatedAt: FieldRef<"PositionMaster", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PositionMaster findUnique
+   */
+  export type PositionMasterFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PositionMaster
+     */
+    select?: PositionMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PositionMaster
+     */
+    omit?: PositionMasterOmit<ExtArgs> | null
+    /**
+     * Filter, which PositionMaster to fetch.
+     */
+    where: PositionMasterWhereUniqueInput
+  }
+
+  /**
+   * PositionMaster findUniqueOrThrow
+   */
+  export type PositionMasterFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PositionMaster
+     */
+    select?: PositionMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PositionMaster
+     */
+    omit?: PositionMasterOmit<ExtArgs> | null
+    /**
+     * Filter, which PositionMaster to fetch.
+     */
+    where: PositionMasterWhereUniqueInput
+  }
+
+  /**
+   * PositionMaster findFirst
+   */
+  export type PositionMasterFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PositionMaster
+     */
+    select?: PositionMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PositionMaster
+     */
+    omit?: PositionMasterOmit<ExtArgs> | null
+    /**
+     * Filter, which PositionMaster to fetch.
+     */
+    where?: PositionMasterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PositionMasters to fetch.
+     */
+    orderBy?: PositionMasterOrderByWithRelationInput | PositionMasterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PositionMasters.
+     */
+    cursor?: PositionMasterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PositionMasters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PositionMasters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PositionMasters.
+     */
+    distinct?: PositionMasterScalarFieldEnum | PositionMasterScalarFieldEnum[]
+  }
+
+  /**
+   * PositionMaster findFirstOrThrow
+   */
+  export type PositionMasterFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PositionMaster
+     */
+    select?: PositionMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PositionMaster
+     */
+    omit?: PositionMasterOmit<ExtArgs> | null
+    /**
+     * Filter, which PositionMaster to fetch.
+     */
+    where?: PositionMasterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PositionMasters to fetch.
+     */
+    orderBy?: PositionMasterOrderByWithRelationInput | PositionMasterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PositionMasters.
+     */
+    cursor?: PositionMasterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PositionMasters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PositionMasters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PositionMasters.
+     */
+    distinct?: PositionMasterScalarFieldEnum | PositionMasterScalarFieldEnum[]
+  }
+
+  /**
+   * PositionMaster findMany
+   */
+  export type PositionMasterFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PositionMaster
+     */
+    select?: PositionMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PositionMaster
+     */
+    omit?: PositionMasterOmit<ExtArgs> | null
+    /**
+     * Filter, which PositionMasters to fetch.
+     */
+    where?: PositionMasterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PositionMasters to fetch.
+     */
+    orderBy?: PositionMasterOrderByWithRelationInput | PositionMasterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PositionMasters.
+     */
+    cursor?: PositionMasterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PositionMasters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PositionMasters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PositionMasters.
+     */
+    distinct?: PositionMasterScalarFieldEnum | PositionMasterScalarFieldEnum[]
+  }
+
+  /**
+   * PositionMaster create
+   */
+  export type PositionMasterCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PositionMaster
+     */
+    select?: PositionMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PositionMaster
+     */
+    omit?: PositionMasterOmit<ExtArgs> | null
+    /**
+     * The data needed to create a PositionMaster.
+     */
+    data: XOR<PositionMasterCreateInput, PositionMasterUncheckedCreateInput>
+  }
+
+  /**
+   * PositionMaster createMany
+   */
+  export type PositionMasterCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PositionMasters.
+     */
+    data: PositionMasterCreateManyInput | PositionMasterCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PositionMaster createManyAndReturn
+   */
+  export type PositionMasterCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PositionMaster
+     */
+    select?: PositionMasterSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PositionMaster
+     */
+    omit?: PositionMasterOmit<ExtArgs> | null
+    /**
+     * The data used to create many PositionMasters.
+     */
+    data: PositionMasterCreateManyInput | PositionMasterCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PositionMaster update
+   */
+  export type PositionMasterUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PositionMaster
+     */
+    select?: PositionMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PositionMaster
+     */
+    omit?: PositionMasterOmit<ExtArgs> | null
+    /**
+     * The data needed to update a PositionMaster.
+     */
+    data: XOR<PositionMasterUpdateInput, PositionMasterUncheckedUpdateInput>
+    /**
+     * Choose, which PositionMaster to update.
+     */
+    where: PositionMasterWhereUniqueInput
+  }
+
+  /**
+   * PositionMaster updateMany
+   */
+  export type PositionMasterUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PositionMasters.
+     */
+    data: XOR<PositionMasterUpdateManyMutationInput, PositionMasterUncheckedUpdateManyInput>
+    /**
+     * Filter which PositionMasters to update
+     */
+    where?: PositionMasterWhereInput
+    /**
+     * Limit how many PositionMasters to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PositionMaster updateManyAndReturn
+   */
+  export type PositionMasterUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PositionMaster
+     */
+    select?: PositionMasterSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PositionMaster
+     */
+    omit?: PositionMasterOmit<ExtArgs> | null
+    /**
+     * The data used to update PositionMasters.
+     */
+    data: XOR<PositionMasterUpdateManyMutationInput, PositionMasterUncheckedUpdateManyInput>
+    /**
+     * Filter which PositionMasters to update
+     */
+    where?: PositionMasterWhereInput
+    /**
+     * Limit how many PositionMasters to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PositionMaster upsert
+   */
+  export type PositionMasterUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PositionMaster
+     */
+    select?: PositionMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PositionMaster
+     */
+    omit?: PositionMasterOmit<ExtArgs> | null
+    /**
+     * The filter to search for the PositionMaster to update in case it exists.
+     */
+    where: PositionMasterWhereUniqueInput
+    /**
+     * In case the PositionMaster found by the `where` argument doesn't exist, create a new PositionMaster with this data.
+     */
+    create: XOR<PositionMasterCreateInput, PositionMasterUncheckedCreateInput>
+    /**
+     * In case the PositionMaster was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PositionMasterUpdateInput, PositionMasterUncheckedUpdateInput>
+  }
+
+  /**
+   * PositionMaster delete
+   */
+  export type PositionMasterDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PositionMaster
+     */
+    select?: PositionMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PositionMaster
+     */
+    omit?: PositionMasterOmit<ExtArgs> | null
+    /**
+     * Filter which PositionMaster to delete.
+     */
+    where: PositionMasterWhereUniqueInput
+  }
+
+  /**
+   * PositionMaster deleteMany
+   */
+  export type PositionMasterDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PositionMasters to delete
+     */
+    where?: PositionMasterWhereInput
+    /**
+     * Limit how many PositionMasters to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PositionMaster without action
+   */
+  export type PositionMasterDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PositionMaster
+     */
+    select?: PositionMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PositionMaster
+     */
+    omit?: PositionMasterOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -42158,6 +44460,8 @@ export namespace Prisma {
     endDate: 'endDate',
     workplace: 'workplace',
     jobDescription: 'jobDescription',
+    occupation: 'occupation',
+    position: 'position',
     workStartTime: 'workStartTime',
     workEndTime: 'workEndTime',
     breakMinutes: 'breakMinutes',
@@ -42323,6 +44627,30 @@ export namespace Prisma {
   };
 
   export type ContractTypeMasterScalarFieldEnum = (typeof ContractTypeMasterScalarFieldEnum)[keyof typeof ContractTypeMasterScalarFieldEnum]
+
+
+  export const JobTitleMasterScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    sortOrder: 'sortOrder',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type JobTitleMasterScalarFieldEnum = (typeof JobTitleMasterScalarFieldEnum)[keyof typeof JobTitleMasterScalarFieldEnum]
+
+
+  export const PositionMasterScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    sortOrder: 'sortOrder',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type PositionMasterScalarFieldEnum = (typeof PositionMasterScalarFieldEnum)[keyof typeof PositionMasterScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -44557,6 +46885,8 @@ export namespace Prisma {
     endDate?: DateTimeNullableFilter<"EmploymentContract"> | Date | string | null
     workplace?: StringFilter<"EmploymentContract"> | string
     jobDescription?: StringFilter<"EmploymentContract"> | string
+    occupation?: StringNullableFilter<"EmploymentContract"> | string | null
+    position?: StringNullableFilter<"EmploymentContract"> | string | null
     workStartTime?: StringFilter<"EmploymentContract"> | string
     workEndTime?: StringFilter<"EmploymentContract"> | string
     breakMinutes?: IntFilter<"EmploymentContract"> | number
@@ -44598,6 +46928,8 @@ export namespace Prisma {
     endDate?: SortOrderInput | SortOrder
     workplace?: SortOrder
     jobDescription?: SortOrder
+    occupation?: SortOrderInput | SortOrder
+    position?: SortOrderInput | SortOrder
     workStartTime?: SortOrder
     workEndTime?: SortOrder
     breakMinutes?: SortOrder
@@ -44642,6 +46974,8 @@ export namespace Prisma {
     endDate?: DateTimeNullableFilter<"EmploymentContract"> | Date | string | null
     workplace?: StringFilter<"EmploymentContract"> | string
     jobDescription?: StringFilter<"EmploymentContract"> | string
+    occupation?: StringNullableFilter<"EmploymentContract"> | string | null
+    position?: StringNullableFilter<"EmploymentContract"> | string | null
     workStartTime?: StringFilter<"EmploymentContract"> | string
     workEndTime?: StringFilter<"EmploymentContract"> | string
     breakMinutes?: IntFilter<"EmploymentContract"> | number
@@ -44683,6 +47017,8 @@ export namespace Prisma {
     endDate?: SortOrderInput | SortOrder
     workplace?: SortOrder
     jobDescription?: SortOrder
+    occupation?: SortOrderInput | SortOrder
+    position?: SortOrderInput | SortOrder
     workStartTime?: SortOrder
     workEndTime?: SortOrder
     breakMinutes?: SortOrder
@@ -44729,6 +47065,8 @@ export namespace Prisma {
     endDate?: DateTimeNullableWithAggregatesFilter<"EmploymentContract"> | Date | string | null
     workplace?: StringWithAggregatesFilter<"EmploymentContract"> | string
     jobDescription?: StringWithAggregatesFilter<"EmploymentContract"> | string
+    occupation?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
+    position?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
     workStartTime?: StringWithAggregatesFilter<"EmploymentContract"> | string
     workEndTime?: StringWithAggregatesFilter<"EmploymentContract"> | string
     breakMinutes?: IntWithAggregatesFilter<"EmploymentContract"> | number
@@ -45428,6 +47766,124 @@ export namespace Prisma {
     isActive?: BoolWithAggregatesFilter<"ContractTypeMaster"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"ContractTypeMaster"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"ContractTypeMaster"> | Date | string
+  }
+
+  export type JobTitleMasterWhereInput = {
+    AND?: JobTitleMasterWhereInput | JobTitleMasterWhereInput[]
+    OR?: JobTitleMasterWhereInput[]
+    NOT?: JobTitleMasterWhereInput | JobTitleMasterWhereInput[]
+    id?: StringFilter<"JobTitleMaster"> | string
+    name?: StringFilter<"JobTitleMaster"> | string
+    sortOrder?: IntFilter<"JobTitleMaster"> | number
+    isActive?: BoolFilter<"JobTitleMaster"> | boolean
+    createdAt?: DateTimeFilter<"JobTitleMaster"> | Date | string
+    updatedAt?: DateTimeFilter<"JobTitleMaster"> | Date | string
+  }
+
+  export type JobTitleMasterOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type JobTitleMasterWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: JobTitleMasterWhereInput | JobTitleMasterWhereInput[]
+    OR?: JobTitleMasterWhereInput[]
+    NOT?: JobTitleMasterWhereInput | JobTitleMasterWhereInput[]
+    name?: StringFilter<"JobTitleMaster"> | string
+    sortOrder?: IntFilter<"JobTitleMaster"> | number
+    isActive?: BoolFilter<"JobTitleMaster"> | boolean
+    createdAt?: DateTimeFilter<"JobTitleMaster"> | Date | string
+    updatedAt?: DateTimeFilter<"JobTitleMaster"> | Date | string
+  }, "id">
+
+  export type JobTitleMasterOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: JobTitleMasterCountOrderByAggregateInput
+    _avg?: JobTitleMasterAvgOrderByAggregateInput
+    _max?: JobTitleMasterMaxOrderByAggregateInput
+    _min?: JobTitleMasterMinOrderByAggregateInput
+    _sum?: JobTitleMasterSumOrderByAggregateInput
+  }
+
+  export type JobTitleMasterScalarWhereWithAggregatesInput = {
+    AND?: JobTitleMasterScalarWhereWithAggregatesInput | JobTitleMasterScalarWhereWithAggregatesInput[]
+    OR?: JobTitleMasterScalarWhereWithAggregatesInput[]
+    NOT?: JobTitleMasterScalarWhereWithAggregatesInput | JobTitleMasterScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"JobTitleMaster"> | string
+    name?: StringWithAggregatesFilter<"JobTitleMaster"> | string
+    sortOrder?: IntWithAggregatesFilter<"JobTitleMaster"> | number
+    isActive?: BoolWithAggregatesFilter<"JobTitleMaster"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"JobTitleMaster"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"JobTitleMaster"> | Date | string
+  }
+
+  export type PositionMasterWhereInput = {
+    AND?: PositionMasterWhereInput | PositionMasterWhereInput[]
+    OR?: PositionMasterWhereInput[]
+    NOT?: PositionMasterWhereInput | PositionMasterWhereInput[]
+    id?: StringFilter<"PositionMaster"> | string
+    name?: StringFilter<"PositionMaster"> | string
+    sortOrder?: IntFilter<"PositionMaster"> | number
+    isActive?: BoolFilter<"PositionMaster"> | boolean
+    createdAt?: DateTimeFilter<"PositionMaster"> | Date | string
+    updatedAt?: DateTimeFilter<"PositionMaster"> | Date | string
+  }
+
+  export type PositionMasterOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PositionMasterWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: PositionMasterWhereInput | PositionMasterWhereInput[]
+    OR?: PositionMasterWhereInput[]
+    NOT?: PositionMasterWhereInput | PositionMasterWhereInput[]
+    name?: StringFilter<"PositionMaster"> | string
+    sortOrder?: IntFilter<"PositionMaster"> | number
+    isActive?: BoolFilter<"PositionMaster"> | boolean
+    createdAt?: DateTimeFilter<"PositionMaster"> | Date | string
+    updatedAt?: DateTimeFilter<"PositionMaster"> | Date | string
+  }, "id">
+
+  export type PositionMasterOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: PositionMasterCountOrderByAggregateInput
+    _avg?: PositionMasterAvgOrderByAggregateInput
+    _max?: PositionMasterMaxOrderByAggregateInput
+    _min?: PositionMasterMinOrderByAggregateInput
+    _sum?: PositionMasterSumOrderByAggregateInput
+  }
+
+  export type PositionMasterScalarWhereWithAggregatesInput = {
+    AND?: PositionMasterScalarWhereWithAggregatesInput | PositionMasterScalarWhereWithAggregatesInput[]
+    OR?: PositionMasterScalarWhereWithAggregatesInput[]
+    NOT?: PositionMasterScalarWhereWithAggregatesInput | PositionMasterScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PositionMaster"> | string
+    name?: StringWithAggregatesFilter<"PositionMaster"> | string
+    sortOrder?: IntWithAggregatesFilter<"PositionMaster"> | number
+    isActive?: BoolWithAggregatesFilter<"PositionMaster"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"PositionMaster"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"PositionMaster"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -47577,6 +50033,8 @@ export namespace Prisma {
     endDate?: Date | string | null
     workplace: string
     jobDescription: string
+    occupation?: string | null
+    position?: string | null
     workStartTime: string
     workEndTime: string
     breakMinutes: number
@@ -47618,6 +50076,8 @@ export namespace Prisma {
     endDate?: Date | string | null
     workplace: string
     jobDescription: string
+    occupation?: string | null
+    position?: string | null
     workStartTime: string
     workEndTime: string
     breakMinutes: number
@@ -47657,6 +50117,8 @@ export namespace Prisma {
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     workplace?: StringFieldUpdateOperationsInput | string
     jobDescription?: StringFieldUpdateOperationsInput | string
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
     workStartTime?: StringFieldUpdateOperationsInput | string
     workEndTime?: StringFieldUpdateOperationsInput | string
     breakMinutes?: IntFieldUpdateOperationsInput | number
@@ -47698,6 +50160,8 @@ export namespace Prisma {
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     workplace?: StringFieldUpdateOperationsInput | string
     jobDescription?: StringFieldUpdateOperationsInput | string
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
     workStartTime?: StringFieldUpdateOperationsInput | string
     workEndTime?: StringFieldUpdateOperationsInput | string
     breakMinutes?: IntFieldUpdateOperationsInput | number
@@ -47738,6 +50202,8 @@ export namespace Prisma {
     endDate?: Date | string | null
     workplace: string
     jobDescription: string
+    occupation?: string | null
+    position?: string | null
     workStartTime: string
     workEndTime: string
     breakMinutes: number
@@ -47775,6 +50241,8 @@ export namespace Prisma {
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     workplace?: StringFieldUpdateOperationsInput | string
     jobDescription?: StringFieldUpdateOperationsInput | string
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
     workStartTime?: StringFieldUpdateOperationsInput | string
     workEndTime?: StringFieldUpdateOperationsInput | string
     breakMinutes?: IntFieldUpdateOperationsInput | number
@@ -47813,6 +50281,8 @@ export namespace Prisma {
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     workplace?: StringFieldUpdateOperationsInput | string
     jobDescription?: StringFieldUpdateOperationsInput | string
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
     workStartTime?: StringFieldUpdateOperationsInput | string
     workEndTime?: StringFieldUpdateOperationsInput | string
     breakMinutes?: IntFieldUpdateOperationsInput | number
@@ -48608,6 +51078,132 @@ export namespace Prisma {
   }
 
   export type ContractTypeMasterUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JobTitleMasterCreateInput = {
+    id?: string
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type JobTitleMasterUncheckedCreateInput = {
+    id?: string
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type JobTitleMasterUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JobTitleMasterUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JobTitleMasterCreateManyInput = {
+    id?: string
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type JobTitleMasterUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JobTitleMasterUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PositionMasterCreateInput = {
+    id?: string
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PositionMasterUncheckedCreateInput = {
+    id?: string
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PositionMasterUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PositionMasterUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PositionMasterCreateManyInput = {
+    id?: string
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PositionMasterUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PositionMasterUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     sortOrder?: IntFieldUpdateOperationsInput | number
@@ -50344,6 +52940,8 @@ export namespace Prisma {
     endDate?: SortOrder
     workplace?: SortOrder
     jobDescription?: SortOrder
+    occupation?: SortOrder
+    position?: SortOrder
     workStartTime?: SortOrder
     workEndTime?: SortOrder
     breakMinutes?: SortOrder
@@ -50388,6 +52986,8 @@ export namespace Prisma {
     endDate?: SortOrder
     workplace?: SortOrder
     jobDescription?: SortOrder
+    occupation?: SortOrder
+    position?: SortOrder
     workStartTime?: SortOrder
     workEndTime?: SortOrder
     breakMinutes?: SortOrder
@@ -50426,6 +53026,8 @@ export namespace Prisma {
     endDate?: SortOrder
     workplace?: SortOrder
     jobDescription?: SortOrder
+    occupation?: SortOrder
+    position?: SortOrder
     workStartTime?: SortOrder
     workEndTime?: SortOrder
     breakMinutes?: SortOrder
@@ -50872,6 +53474,76 @@ export namespace Prisma {
   }
 
   export type ContractTypeMasterSumOrderByAggregateInput = {
+    sortOrder?: SortOrder
+  }
+
+  export type JobTitleMasterCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type JobTitleMasterAvgOrderByAggregateInput = {
+    sortOrder?: SortOrder
+  }
+
+  export type JobTitleMasterMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type JobTitleMasterMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type JobTitleMasterSumOrderByAggregateInput = {
+    sortOrder?: SortOrder
+  }
+
+  export type PositionMasterCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PositionMasterAvgOrderByAggregateInput = {
+    sortOrder?: SortOrder
+  }
+
+  export type PositionMasterMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PositionMasterMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PositionMasterSumOrderByAggregateInput = {
     sortOrder?: SortOrder
   }
 
@@ -53798,6 +56470,8 @@ export namespace Prisma {
     endDate?: Date | string | null
     workplace: string
     jobDescription: string
+    occupation?: string | null
+    position?: string | null
     workStartTime: string
     workEndTime: string
     breakMinutes: number
@@ -53837,6 +56511,8 @@ export namespace Prisma {
     endDate?: Date | string | null
     workplace: string
     jobDescription: string
+    occupation?: string | null
+    position?: string | null
     workStartTime: string
     workEndTime: string
     breakMinutes: number
@@ -54350,6 +57026,8 @@ export namespace Prisma {
     endDate?: DateTimeNullableFilter<"EmploymentContract"> | Date | string | null
     workplace?: StringFilter<"EmploymentContract"> | string
     jobDescription?: StringFilter<"EmploymentContract"> | string
+    occupation?: StringNullableFilter<"EmploymentContract"> | string | null
+    position?: StringNullableFilter<"EmploymentContract"> | string | null
     workStartTime?: StringFilter<"EmploymentContract"> | string
     workEndTime?: StringFilter<"EmploymentContract"> | string
     breakMinutes?: IntFilter<"EmploymentContract"> | number
@@ -57788,6 +60466,8 @@ export namespace Prisma {
     endDate?: Date | string | null
     workplace: string
     jobDescription: string
+    occupation?: string | null
+    position?: string | null
     workStartTime: string
     workEndTime: string
     breakMinutes: number
@@ -57828,6 +60508,8 @@ export namespace Prisma {
     endDate?: Date | string | null
     workplace: string
     jobDescription: string
+    occupation?: string | null
+    position?: string | null
     workStartTime: string
     workEndTime: string
     breakMinutes: number
@@ -57923,6 +60605,8 @@ export namespace Prisma {
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     workplace?: StringFieldUpdateOperationsInput | string
     jobDescription?: StringFieldUpdateOperationsInput | string
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
     workStartTime?: StringFieldUpdateOperationsInput | string
     workEndTime?: StringFieldUpdateOperationsInput | string
     breakMinutes?: IntFieldUpdateOperationsInput | number
@@ -57963,6 +60647,8 @@ export namespace Prisma {
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     workplace?: StringFieldUpdateOperationsInput | string
     jobDescription?: StringFieldUpdateOperationsInput | string
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
     workStartTime?: StringFieldUpdateOperationsInput | string
     workEndTime?: StringFieldUpdateOperationsInput | string
     breakMinutes?: IntFieldUpdateOperationsInput | number
@@ -58048,6 +60734,8 @@ export namespace Prisma {
     endDate?: Date | string | null
     workplace: string
     jobDescription: string
+    occupation?: string | null
+    position?: string | null
     workStartTime: string
     workEndTime: string
     breakMinutes: number
@@ -58088,6 +60776,8 @@ export namespace Prisma {
     endDate?: Date | string | null
     workplace: string
     jobDescription: string
+    occupation?: string | null
+    position?: string | null
     workStartTime: string
     workEndTime: string
     breakMinutes: number
@@ -58142,6 +60832,8 @@ export namespace Prisma {
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     workplace?: StringFieldUpdateOperationsInput | string
     jobDescription?: StringFieldUpdateOperationsInput | string
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
     workStartTime?: StringFieldUpdateOperationsInput | string
     workEndTime?: StringFieldUpdateOperationsInput | string
     breakMinutes?: IntFieldUpdateOperationsInput | number
@@ -58182,6 +60874,8 @@ export namespace Prisma {
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     workplace?: StringFieldUpdateOperationsInput | string
     jobDescription?: StringFieldUpdateOperationsInput | string
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
     workStartTime?: StringFieldUpdateOperationsInput | string
     workEndTime?: StringFieldUpdateOperationsInput | string
     breakMinutes?: IntFieldUpdateOperationsInput | number
@@ -58565,6 +61259,8 @@ export namespace Prisma {
     endDate?: Date | string | null
     workplace: string
     jobDescription: string
+    occupation?: string | null
+    position?: string | null
     workStartTime: string
     workEndTime: string
     breakMinutes: number
@@ -58933,6 +61629,8 @@ export namespace Prisma {
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     workplace?: StringFieldUpdateOperationsInput | string
     jobDescription?: StringFieldUpdateOperationsInput | string
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
     workStartTime?: StringFieldUpdateOperationsInput | string
     workEndTime?: StringFieldUpdateOperationsInput | string
     breakMinutes?: IntFieldUpdateOperationsInput | number
@@ -58972,6 +61670,8 @@ export namespace Prisma {
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     workplace?: StringFieldUpdateOperationsInput | string
     jobDescription?: StringFieldUpdateOperationsInput | string
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
     workStartTime?: StringFieldUpdateOperationsInput | string
     workEndTime?: StringFieldUpdateOperationsInput | string
     breakMinutes?: IntFieldUpdateOperationsInput | number
@@ -59011,6 +61711,8 @@ export namespace Prisma {
     endDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     workplace?: StringFieldUpdateOperationsInput | string
     jobDescription?: StringFieldUpdateOperationsInput | string
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
     workStartTime?: StringFieldUpdateOperationsInput | string
     workEndTime?: StringFieldUpdateOperationsInput | string
     breakMinutes?: IntFieldUpdateOperationsInput | number

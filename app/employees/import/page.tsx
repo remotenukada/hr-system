@@ -1,16 +1,12 @@
+import BackLink from "@/components/BackLink";
 import Link from "next/link";
 
 export default function EmployeeImportPage() {
   return (
     <main className="mx-auto max-w-2xl p-8">
+      <BackLink href="/" label="ダッシュボードへ戻る" />
       <div className="rounded-lg border bg-white p-6 shadow-sm">
         <div className="mb-6">
-          <Link
-            href="/employees"
-            className="text-sm font-medium text-blue-600 hover:underline"
-          >
-            ← 社員一覧に戻る
-          </Link>
 
           <h1 className="mt-3 text-2xl font-bold text-gray-900">
             社員CSVインポート

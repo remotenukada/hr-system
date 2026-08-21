@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import Link from "next/link";
 import { prisma } from "../../lib/prisma";
 
@@ -17,6 +18,7 @@ export default async function DepartmentsPage() {
 
   return (
     <main className="p-8">
+      <BackLink href="/" label="ダッシュボードへ戻る" />
       <h1 className="text-3xl font-bold mb-6">
         部署一覧
       </h1>

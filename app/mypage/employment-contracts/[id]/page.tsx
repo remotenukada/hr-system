@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 
@@ -56,14 +57,7 @@ export default async function MyEmploymentContractDetailPage(
 
   return (
     <main className="mx-auto max-w-4xl p-6">
-      <div className="mb-6">
-        <Link
-          href="/mypage/employment-contracts"
-          className="text-sm text-blue-600 hover:underline"
-        >
-          ← 一覧へ戻る
-        </Link>
-      </div>
+      <BackLink href="/mypage/employment-contracts" label="雇用条件書一覧へ戻る" />
 
       <h1 className="mb-6 text-2xl font-bold">
         雇用条件書確認

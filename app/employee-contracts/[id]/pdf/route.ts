@@ -450,6 +450,16 @@ function allowanceBlock(value: string) {
   );
 
   row(
+    "職種",
+    valueOrDash(contract.occupation),
+  );
+
+  row(
+    "役職",
+    valueOrDash(contract.position),
+  );
+
+  row(
     "業務内容",
     contract.jobDescription,
   );

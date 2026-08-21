@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import { notFound } from "next/navigation";
 
 import { updateContractTypeMaster } from "@/app/actions/contract-type-master";
@@ -24,6 +25,7 @@ export default async function EditContractTypeMasterPage({
 
   return (
     <main className="mx-auto max-w-2xl p-6">
+      <BackLink href="/contract-type-masters" label="契約区分マスタ一覧へ戻る" />
       <h1 className="mb-6 text-2xl font-bold">
         契約区分マスタ編集
       </h1>

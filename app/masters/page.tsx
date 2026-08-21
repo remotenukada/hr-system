@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import Link from "next/link";
 
 export default function MastersPage() {
@@ -18,10 +19,19 @@ export default function MastersPage() {
       href: "/contract-type-masters",
       name: "契約区分マスタ",
     },
+    {
+      href: "/job-title-masters",
+      name: "職種マスタ",
+    },
+    {
+      href: "/position-masters",
+      name: "役職マスタ",
+    },
   ];
 
   return (
     <main className="mx-auto max-w-4xl p-6">
+      <BackLink href="/" label="ダッシュボードへ戻る" />
       <h1 className="mb-6 text-2xl font-bold">
         マスタ管理
       </h1>

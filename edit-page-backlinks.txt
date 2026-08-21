@@ -1,0 +1,11 @@
+app/allowance-masters/[id]/edit/page.tsx|/allowance-masters|手当マスタ一覧へ戻る
+app/contract-type-masters/[id]/edit/page.tsx|/contract-type-masters|契約区分マスタ一覧へ戻る
+app/departments/[id]/edit/page.tsx|/departments|部署一覧へ戻る
+app/employee-contracts/[id]/edit/page.tsx|/employee-contracts|雇用条件書一覧へ戻る
+app/employee-contract-templates/[id]/edit/page.tsx|/employee-contract-templates|テンプレート一覧へ戻る
+app/employees/[id]/edit/page.tsx|/employees|社員一覧へ戻る
+app/job-title-masters/[id]/edit/page.tsx|/job-title-masters|職種マスタ一覧へ戻る
+app/position-masters/[id]/edit/page.tsx|/position-masters|役職マスタ一覧へ戻る
+app/requests/[id]/edit/page.tsx|/requests|申請一覧へ戻る
+app/users/[id]/edit/page.tsx|/users|ユーザー一覧へ戻る
+app/work-schedule-masters/[id]/edit/page.tsx|/work-schedule-masters|勤務帯マスタ一覧へ戻る

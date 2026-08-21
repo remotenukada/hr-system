@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import Link from "next/link";
 import { randomUUID } from "crypto";
 import { redirect } from "next/navigation";
@@ -121,6 +122,7 @@ export default async function NewUserInvitationPage({
 
   return (
     <main className="mx-auto max-w-2xl p-8">
+      <BackLink href="/user-invitations" label="ユーザー招待一覧へ戻る" />
       <div className="mb-6">
         <Link
           href="/user-invitations"

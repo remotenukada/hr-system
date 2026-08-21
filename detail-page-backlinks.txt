@@ -1,0 +1,8 @@
+app/audit-logs/[id]/page.tsx|/audit-logs|監査ログ一覧へ戻る
+app/bank-accounts/[id]/page.tsx|/bank-accounts|口座情報一覧へ戻る
+app/departments/[id]/page.tsx|/departments|部署一覧へ戻る
+app/employee-contracts/[id]/page.tsx|/employee-contracts|雇用条件書一覧へ戻る
+app/employees/[id]/page.tsx|/employees|社員一覧へ戻る
+app/my-numbers/[id]/page.tsx|/my-numbers|マイナンバー一覧へ戻る
+app/mypage/employment-contracts/[id]/page.tsx|/mypage/employment-contracts|雇用条件書一覧へ戻る
+app/requests/[id]/page.tsx|/requests|申請一覧へ戻る

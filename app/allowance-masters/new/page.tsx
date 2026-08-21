@@ -1,8 +1,10 @@
+import BackLink from "@/components/BackLink";
 import { createAllowanceMaster } from "@/app/actions/allowance-master";
 
 export default function NewAllowanceMasterPage() {
   return (
     <main className="mx-auto max-w-2xl p-6">
+      <BackLink href="/allowance-masters" label="手当マスタ一覧へ戻る" />
       <h1 className="mb-6 text-2xl font-bold">
         手当マスタ登録
       </h1>

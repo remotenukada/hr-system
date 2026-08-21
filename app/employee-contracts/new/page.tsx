@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import Link from "next/link";
 
 import { requireHRManager } from "@/lib/auth-guard";
@@ -103,16 +104,31 @@ export default async function NewEmploymentContractPage() {
       ],
     });
 
+  const jobTitleMasters =
+    await prisma.jobTitleMaster.findMany({
+      where: {
+        isActive: true,
+      },
+      orderBy: [
+        { sortOrder: "asc" },
+        { name: "asc" },
+      ],
+    });
+
+  const positionMasters =
+    await prisma.positionMaster.findMany({
+      where: {
+        isActive: true,
+      },
+      orderBy: [
+        { sortOrder: "asc" },
+        { name: "asc" },
+      ],
+    });
+
   return (
     <main className="mx-auto max-w-4xl p-6">
-      <div className="mb-6">
-        <Link
-          href="/employee-contracts"
-          className="text-sm text-blue-600 hover:underline"
-        >
-          ← 雇用条件書一覧へ戻る
-        </Link>
-      </div>
+      <BackLink href="/employee-contracts" label="雇用条件書一覧へ戻る" />
 
       <h1 className="mb-6 text-2xl font-bold">
         雇用条件書作成
@@ -191,6 +207,40 @@ export default async function NewEmploymentContractPage() {
                     </option>
                   ),
                 )}
+              </select>
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                職種
+              </label>
+              <select
+                name="occupation"
+                className="w-full rounded border p-2"
+              >
+                <option value="">選択してください</option>
+                {jobTitleMasters.map((item) => (
+                  <option key={item.id} value={item.name}>
+                    {item.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                役職
+              </label>
+              <select
+                name="position"
+                className="w-full rounded border p-2"
+              >
+                <option value="">選択してください</option>
+                {positionMasters.map((item) => (
+                  <option key={item.id} value={item.name}>
+                    {item.name}
+                  </option>
+                ))}
               </select>
             </div>
 

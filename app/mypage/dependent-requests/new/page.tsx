@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import Link from "next/link";
 import path from "path";
 import { randomUUID } from "crypto";
@@ -197,14 +198,7 @@ export default async function NewDependentRequestPage() {
 
   return (
     <main className="mx-auto max-w-4xl p-8">
-      <div className="mb-6">
-        <Link
-          href="/mypage"
-          className="text-sm text-blue-600 hover:underline"
-        >
-          ← マイページへ戻る
-        </Link>
-      </div>
+      <BackLink href="/mypage/dependent-requests" label="扶養家族申請一覧へ戻る" />
 
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-900">

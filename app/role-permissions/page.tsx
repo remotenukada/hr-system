@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import Link from "next/link";
 
 import { requireHRManager } from "@/lib/auth-guard";
@@ -26,6 +27,7 @@ export default async function RolePermissionsPage() {
 
   return (
     <main className="mx-auto max-w-7xl p-8">
+      <BackLink href="/" label="ダッシュボードへ戻る" />
       <div className="mb-6 flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">

@@ -15,6 +15,12 @@ export default async function ContractTypeMastersPage() {
 
   return (
     <main className="mx-auto max-w-4xl p-6">
+      <Link
+        href="/masters"
+        className="mb-4 inline-block text-sm text-blue-600 hover:underline"
+      >
+        ← マスタ管理へ戻る
+      </Link>
       <div className="mb-6 flex items-center justify-between">
         <h1 className="text-2xl font-bold">
           契約区分マスタ

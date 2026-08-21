@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import Image from "next/image";
 import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
@@ -43,6 +44,18 @@ export default async function EmployeeEditPage({ params }: Props) {
       name: "asc",
     },
   });
+
+  const jobTitles =
+    await prisma.jobTitleMaster.findMany({
+      where: { isActive: true },
+      orderBy: { sortOrder: "asc" },
+    });
+
+  const positions =
+    await prisma.positionMaster.findMany({
+      where: { isActive: true },
+      orderBy: { sortOrder: "asc" },
+    });
 
   async function updateEmployee(formData: FormData) {
     "use server";
@@ -257,6 +270,7 @@ export default async function EmployeeEditPage({ params }: Props) {
 
   return (
     <main className="mx-auto max-w-3xl p-8">
+      <BackLink href="/employees" label="社員一覧へ戻る" />
       <div className="rounded-lg border bg-white p-6 shadow-sm">
         <h1 className="mb-6 text-2xl font-bold text-slate-800">
           社員編集
@@ -425,22 +439,36 @@ export default async function EmployeeEditPage({ params }: Props) {
                 <label className="mb-1 block text-xs font-medium text-slate-700">
                   職種
                 </label>
-                <input
+                <select
                   name="occupation"
                   defaultValue={employee.occupation ?? ""}
-                  className="w-full rounded border p-2 focus:outline-indigo-500"
-                />
+                  className="w-full rounded border bg-white p-2 focus:outline-indigo-500"
+                >
+                  <option value="">職種を選択</option>
+                  {jobTitles.map((item) => (
+                    <option key={item.id} value={item.name}>
+                      {item.name}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               <div>
                 <label className="mb-1 block text-xs font-medium text-slate-700">
                   役職
                 </label>
-                <input
+                <select
                   name="position"
                   defaultValue={employee.position ?? ""}
-                  className="w-full rounded border p-2 focus:outline-indigo-500"
-                />
+                  className="w-full rounded border bg-white p-2 focus:outline-indigo-500"
+                >
+                  <option value="">役職を選択</option>
+                  {positions.map((item) => (
+                    <option key={item.id} value={item.name}>
+                      {item.name}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               <div>

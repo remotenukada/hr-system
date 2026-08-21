@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -122,16 +123,37 @@ export default async function EditEmploymentContractPage(
       ],
     });
 
+  const jobTitleMasters =
+    await prisma.jobTitleMaster.findMany({
+      where: {
+        OR: [
+          { isActive: true },
+          { name: contract.occupation ?? "" },
+        ],
+      },
+      orderBy: [
+        { sortOrder: "asc" },
+        { name: "asc" },
+      ],
+    });
+
+  const positionMasters =
+    await prisma.positionMaster.findMany({
+      where: {
+        OR: [
+          { isActive: true },
+          { name: contract.position ?? "" },
+        ],
+      },
+      orderBy: [
+        { sortOrder: "asc" },
+        { name: "asc" },
+      ],
+    });
+
   return (
     <main className="mx-auto max-w-4xl p-6">
-      <div className="mb-6">
-        <Link
-          href={`/employee-contracts/${contract.id}`}
-          className="text-blue-600 hover:underline"
-        >
-          ← 詳細へ戻る
-        </Link>
-      </div>
+      <BackLink href="/employee-contracts" label="雇用条件書一覧へ戻る" />
 
       <h1 className="mb-6 text-2xl font-bold">
         雇用条件書編集
@@ -203,6 +225,42 @@ export default async function EditEmploymentContractPage(
                     </option>
                   ),
                 )}
+              </select>
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                職種
+              </label>
+              <select
+                name="occupation"
+                defaultValue={contract.occupation ?? ""}
+                className="w-full rounded border p-2"
+              >
+                <option value="">選択してください</option>
+                {jobTitleMasters.map((item) => (
+                  <option key={item.id} value={item.name}>
+                    {item.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                役職
+              </label>
+              <select
+                name="position"
+                defaultValue={contract.position ?? ""}
+                className="w-full rounded border p-2"
+              >
+                <option value="">選択してください</option>
+                {positionMasters.map((item) => (
+                  <option key={item.id} value={item.name}>
+                    {item.name}
+                  </option>
+                ))}
               </select>
             </div>
 

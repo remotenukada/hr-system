@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 import { updateWorkScheduleMaster } from "@/app/actions/work-schedule-master";
@@ -24,6 +25,7 @@ export default async function EditWorkScheduleMasterPage(
 
   return (
     <main className="mx-auto max-w-2xl p-6">
+      <BackLink href="/work-schedule-masters" label="勤務帯マスタ一覧へ戻る" />
       <h1 className="mb-6 text-2xl font-bold">
         勤務帯編集
       </h1>

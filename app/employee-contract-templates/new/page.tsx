@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import Link from "next/link";
 
 import { createEmploymentContractTemplate } from "@/app/actions/employment-contract-template";
@@ -5,14 +6,7 @@ import { createEmploymentContractTemplate } from "@/app/actions/employment-contr
 export default function NewEmploymentContractTemplatePage() {
   return (
     <main className="mx-auto max-w-4xl p-6">
-      <div className="mb-6">
-        <Link
-          href="/employee-contract-templates"
-          className="text-blue-600 hover:underline"
-        >
-          ← テンプレート一覧へ戻る
-        </Link>
-      </div>
+      <BackLink href="/employee-contract-templates" label="テンプレート一覧へ戻る" />
 
       <h1 className="mb-6 text-2xl font-bold">
         雇用条件書テンプレート作成

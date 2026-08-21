@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
@@ -170,10 +171,8 @@ export default async function RequestDetailPage({ params }: PageProps) {
 
   return (
     <main className="p-8 max-w-4xl mx-auto">
+      <BackLink href="/requests" label="申請一覧へ戻る" />
       <div className="mb-6">
-        <Link href="/requests" className="text-blue-600 hover:underline">
-          ← 申請一覧に戻る
-        </Link>
         <h1 className="text-3xl font-bold mt-2">{request.title}</h1>
         <p className="text-gray-500 mt-1">
           ステータス: <span className="font-semibold text-black">{request.status}</span>

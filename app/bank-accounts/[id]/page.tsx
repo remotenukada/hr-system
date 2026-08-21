@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
@@ -135,14 +136,7 @@ export default async function BankAccountDetailPage({
 
   return (
     <main className="mx-auto max-w-5xl p-8">
-      <div className="mb-4">
-        <Link
-          href="/bank-accounts"
-          className="text-sm text-blue-600 hover:underline"
-        >
-          ← 口座情報一覧へ戻る
-        </Link>
-      </div>
+      <BackLink href="/bank-accounts" label="口座情報一覧へ戻る" />
 
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
         <div>

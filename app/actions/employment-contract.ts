@@ -55,6 +55,13 @@ export async function createEmploymentContract(
   const jobDescription =
     formData.get('jobDescription') as string
 
+  const occupation =
+    formData.get('occupation') as string
+
+  const position =
+    formData.get('position') as string
+
+
   const baseSalary = Number(
     formData.get('baseSalary') || 0,
   )
@@ -146,6 +153,8 @@ export async function createEmploymentContract(
 
       workplace,
       jobDescription,
+      occupation: occupation || null,
+      position: position || null,
 
       workStartTime: workStartTime || '09:00',
       workEndTime: workEndTime || '18:00',
@@ -235,6 +244,12 @@ export async function updateEmploymentContract(
 
   const jobDescription =
     formData.get('jobDescription') as string
+
+  const occupation =
+    formData.get('occupation') as string
+
+  const position =
+    formData.get('position') as string
 
   const wageType =
     formData.get('wageType') as string
@@ -350,6 +365,8 @@ export async function updateEmploymentContract(
         endDate: endDate ? new Date(endDate) : null,
         workplace,
         jobDescription,
+        occupation: occupation || null,
+        position: position || null,
         workStartTime: workStartTime || '09:00',
         workEndTime: workEndTime || '18:00',
         breakMinutes: breakMinutes || 60,

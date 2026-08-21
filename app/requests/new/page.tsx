@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { mkdir, writeFile } from "fs/promises";
@@ -190,6 +191,7 @@ export default async function NewRequestPage({
 
   return (
     <main className="p-8 max-w-2xl mx-auto">
+      <BackLink href="/requests" label="申請一覧へ戻る" />
       <h1 className="mb-6 text-3xl font-bold">
         新規申請作成
       </h1>

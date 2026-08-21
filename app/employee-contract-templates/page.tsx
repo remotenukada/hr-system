@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import Link from "next/link";
 
 import { prisma } from "@/lib/prisma";
@@ -42,6 +43,7 @@ export default async function EmploymentContractTemplatesPage() {
 
   return (
     <main className="mx-auto max-w-6xl p-6">
+      <BackLink href="/" label="ダッシュボードへ戻る" />
       <div className="mb-6 flex items-center justify-between">
         <h1 className="text-2xl font-bold">
           雇用条件書テンプレート

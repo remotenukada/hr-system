@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache"; // 💡 キャッシュ更新のために追加
 import { prisma } from "../../../lib/prisma";
@@ -22,6 +23,7 @@ async function createDepartment(formData: FormData) {
 export default function NewDepartmentPage() {
   return (
     <main className="p-8">
+      <BackLink href="/departments" label="部署一覧へ戻る" />
       <h1 className="text-3xl font-bold mb-6">
         部署登録
       </h1>

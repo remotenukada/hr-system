@@ -1,3 +1,4 @@
+import BackLink from "@/components/BackLink";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
@@ -156,10 +157,8 @@ export default async function CertificationRequestsPage({
 
   return (
     <main className="p-8">
+      <BackLink href="/" label="ダッシュボードへ戻る" />
       <div className="mb-6">
-        <Link href="/" className="text-sm text-blue-600 hover:underline">
-          ← ダッシュボードへ戻る
-        </Link>
 
         <h1 className="mt-2 text-3xl font-bold">
           資格・免許証確認

@@ -514,6 +514,8 @@ model EmploymentContract {
 
   workplace      String
   jobDescription String
+  occupation     String?
+  position       String?
 
   workStartTime String
   workEndTime   String
@@ -741,7 +743,36 @@ model ContractTypeMaster {
 }
 
 
+
+model JobTitleMaster {
+  id String @id @default(uuid())
+
+  name String
+
+  sortOrder Int @default(0)
+
+  isActive Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model PositionMaster {
+  id String @id @default(uuid())
+
+  name String
+
+  sortOrder Int @default(0)
+
+  isActive Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+
 enum ConsentMethod {
+
   ELECTRONIC
   PAPER
 }

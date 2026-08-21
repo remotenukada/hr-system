@@ -1,8 +1,10 @@
+import BackLink from "@/components/BackLink";
 import { createEmploymentCategoryMaster } from "@/app/actions/employment-category-master";
 
 export default function NewEmploymentCategoryMasterPage() {
   return (
     <main className="mx-auto max-w-2xl p-6">
+      <BackLink href="/employment-category-masters" label="雇用形態マスタ一覧へ戻る" />
       <h1 className="mb-6 text-2xl font-bold">
         雇用形態マスタ登録
       </h1>
