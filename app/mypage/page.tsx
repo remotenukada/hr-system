@@ -97,6 +97,13 @@ export default async function MyPage() {
           </Link>
 
           <Link
+            href="/mypage/employment-contracts"
+            className="rounded border border-gray-300 bg-white px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+          >
+            雇用契約書確認
+          </Link>
+
+          <Link
             href="/mypage/dependent-requests/new"
             className="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
           >

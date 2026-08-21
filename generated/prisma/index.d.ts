@@ -168,6 +168,11 @@ export type AllowanceMaster = $Result.DefaultSelection<Prisma.$AllowanceMasterPa
  * 
  */
 export type EmploymentCategoryMaster = $Result.DefaultSelection<Prisma.$EmploymentCategoryMasterPayload>
+/**
+ * Model ContractTypeMaster
+ * 
+ */
+export type ContractTypeMaster = $Result.DefaultSelection<Prisma.$ContractTypeMasterPayload>
 
 /**
  * Enums
@@ -291,6 +296,14 @@ export const CertificationStatus: {
 
 export type CertificationStatus = (typeof CertificationStatus)[keyof typeof CertificationStatus]
 
+
+export const ConsentMethod: {
+  ELECTRONIC: 'ELECTRONIC',
+  PAPER: 'PAPER'
+};
+
+export type ConsentMethod = (typeof ConsentMethod)[keyof typeof ConsentMethod]
+
 }
 
 export type UserRole = $Enums.UserRole
@@ -340,6 +353,10 @@ export const ProfileChangeStatus: typeof $Enums.ProfileChangeStatus
 export type CertificationStatus = $Enums.CertificationStatus
 
 export const CertificationStatus: typeof $Enums.CertificationStatus
+
+export type ConsentMethod = $Enums.ConsentMethod
+
+export const ConsentMethod: typeof $Enums.ConsentMethod
 
 /**
  * ##  Prisma Client ʲˢ
@@ -771,6 +788,16 @@ export class PrismaClient<
     * ```
     */
   get employmentCategoryMaster(): Prisma.EmploymentCategoryMasterDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.contractTypeMaster`: Exposes CRUD operations for the **ContractTypeMaster** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ContractTypeMasters
+    * const contractTypeMasters = await prisma.contractTypeMaster.findMany()
+    * ```
+    */
+  get contractTypeMaster(): Prisma.ContractTypeMasterDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1235,7 +1262,8 @@ export namespace Prisma {
     EmploymentContractWorkSchedule: 'EmploymentContractWorkSchedule',
     WorkScheduleMaster: 'WorkScheduleMaster',
     AllowanceMaster: 'AllowanceMaster',
-    EmploymentCategoryMaster: 'EmploymentCategoryMaster'
+    EmploymentCategoryMaster: 'EmploymentCategoryMaster',
+    ContractTypeMaster: 'ContractTypeMaster'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1251,7 +1279,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "userInvitation" | "department" | "employee" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster"
+      modelProps: "user" | "userInvitation" | "department" | "employee" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster" | "contractTypeMaster"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3549,6 +3577,80 @@ export namespace Prisma {
           }
         }
       }
+      ContractTypeMaster: {
+        payload: Prisma.$ContractTypeMasterPayload<ExtArgs>
+        fields: Prisma.ContractTypeMasterFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ContractTypeMasterFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractTypeMasterPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ContractTypeMasterFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractTypeMasterPayload>
+          }
+          findFirst: {
+            args: Prisma.ContractTypeMasterFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractTypeMasterPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ContractTypeMasterFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractTypeMasterPayload>
+          }
+          findMany: {
+            args: Prisma.ContractTypeMasterFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractTypeMasterPayload>[]
+          }
+          create: {
+            args: Prisma.ContractTypeMasterCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractTypeMasterPayload>
+          }
+          createMany: {
+            args: Prisma.ContractTypeMasterCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ContractTypeMasterCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractTypeMasterPayload>[]
+          }
+          delete: {
+            args: Prisma.ContractTypeMasterDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractTypeMasterPayload>
+          }
+          update: {
+            args: Prisma.ContractTypeMasterUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractTypeMasterPayload>
+          }
+          deleteMany: {
+            args: Prisma.ContractTypeMasterDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ContractTypeMasterUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ContractTypeMasterUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractTypeMasterPayload>[]
+          }
+          upsert: {
+            args: Prisma.ContractTypeMasterUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ContractTypeMasterPayload>
+          }
+          aggregate: {
+            args: Prisma.ContractTypeMasterAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateContractTypeMaster>
+          }
+          groupBy: {
+            args: Prisma.ContractTypeMasterGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ContractTypeMasterGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ContractTypeMasterCountArgs<ExtArgs>
+            result: $Utils.Optional<ContractTypeMasterCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3688,6 +3790,7 @@ export namespace Prisma {
     workScheduleMaster?: WorkScheduleMasterOmit
     allowanceMaster?: AllowanceMasterOmit
     employmentCategoryMaster?: EmploymentCategoryMasterOmit
+    contractTypeMaster?: ContractTypeMasterOmit
   }
 
   /* Types for Logging */
@@ -35134,6 +35237,7 @@ export namespace Prisma {
     consentedAt: Date | null
     ipAddress: string | null
     userAgent: string | null
+    consentMethod: $Enums.ConsentMethod | null
     createdAt: Date | null
     dependentId: string | null
   }
@@ -35146,6 +35250,7 @@ export namespace Prisma {
     consentedAt: Date | null
     ipAddress: string | null
     userAgent: string | null
+    consentMethod: $Enums.ConsentMethod | null
     createdAt: Date | null
     dependentId: string | null
   }
@@ -35158,6 +35263,7 @@ export namespace Prisma {
     consentedAt: number
     ipAddress: number
     userAgent: number
+    consentMethod: number
     createdAt: number
     dependentId: number
     _all: number
@@ -35172,6 +35278,7 @@ export namespace Prisma {
     consentedAt?: true
     ipAddress?: true
     userAgent?: true
+    consentMethod?: true
     createdAt?: true
     dependentId?: true
   }
@@ -35184,6 +35291,7 @@ export namespace Prisma {
     consentedAt?: true
     ipAddress?: true
     userAgent?: true
+    consentMethod?: true
     createdAt?: true
     dependentId?: true
   }
@@ -35196,6 +35304,7 @@ export namespace Prisma {
     consentedAt?: true
     ipAddress?: true
     userAgent?: true
+    consentMethod?: true
     createdAt?: true
     dependentId?: true
     _all?: true
@@ -35281,6 +35390,7 @@ export namespace Prisma {
     consentedAt: Date
     ipAddress: string | null
     userAgent: string | null
+    consentMethod: $Enums.ConsentMethod
     createdAt: Date
     dependentId: string | null
     _count: EmploymentContractConsentCountAggregateOutputType | null
@@ -35310,6 +35420,7 @@ export namespace Prisma {
     consentedAt?: boolean
     ipAddress?: boolean
     userAgent?: boolean
+    consentMethod?: boolean
     createdAt?: boolean
     dependentId?: boolean
     employmentContract?: boolean | EmploymentContractDefaultArgs<ExtArgs>
@@ -35324,6 +35435,7 @@ export namespace Prisma {
     consentedAt?: boolean
     ipAddress?: boolean
     userAgent?: boolean
+    consentMethod?: boolean
     createdAt?: boolean
     dependentId?: boolean
     employmentContract?: boolean | EmploymentContractDefaultArgs<ExtArgs>
@@ -35338,6 +35450,7 @@ export namespace Prisma {
     consentedAt?: boolean
     ipAddress?: boolean
     userAgent?: boolean
+    consentMethod?: boolean
     createdAt?: boolean
     dependentId?: boolean
     employmentContract?: boolean | EmploymentContractDefaultArgs<ExtArgs>
@@ -35352,11 +35465,12 @@ export namespace Prisma {
     consentedAt?: boolean
     ipAddress?: boolean
     userAgent?: boolean
+    consentMethod?: boolean
     createdAt?: boolean
     dependentId?: boolean
   }
 
-  export type EmploymentContractConsentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employmentContractId" | "signerName" | "signatureImagePath" | "consentedAt" | "ipAddress" | "userAgent" | "createdAt" | "dependentId", ExtArgs["result"]["employmentContractConsent"]>
+  export type EmploymentContractConsentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employmentContractId" | "signerName" | "signatureImagePath" | "consentedAt" | "ipAddress" | "userAgent" | "consentMethod" | "createdAt" | "dependentId", ExtArgs["result"]["employmentContractConsent"]>
   export type EmploymentContractConsentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employmentContract?: boolean | EmploymentContractDefaultArgs<ExtArgs>
     dependent?: boolean | EmploymentContractConsent$dependentArgs<ExtArgs>
@@ -35384,6 +35498,7 @@ export namespace Prisma {
       consentedAt: Date
       ipAddress: string | null
       userAgent: string | null
+      consentMethod: $Enums.ConsentMethod
       createdAt: Date
       dependentId: string | null
     }, ExtArgs["result"]["employmentContractConsent"]>
@@ -35818,6 +35933,7 @@ export namespace Prisma {
     readonly consentedAt: FieldRef<"EmploymentContractConsent", 'DateTime'>
     readonly ipAddress: FieldRef<"EmploymentContractConsent", 'String'>
     readonly userAgent: FieldRef<"EmploymentContractConsent", 'String'>
+    readonly consentMethod: FieldRef<"EmploymentContractConsent", 'ConsentMethod'>
     readonly createdAt: FieldRef<"EmploymentContractConsent", 'DateTime'>
     readonly dependentId: FieldRef<"EmploymentContractConsent", 'String'>
   }
@@ -40596,6 +40712,1053 @@ export namespace Prisma {
 
 
   /**
+   * Model ContractTypeMaster
+   */
+
+  export type AggregateContractTypeMaster = {
+    _count: ContractTypeMasterCountAggregateOutputType | null
+    _avg: ContractTypeMasterAvgAggregateOutputType | null
+    _sum: ContractTypeMasterSumAggregateOutputType | null
+    _min: ContractTypeMasterMinAggregateOutputType | null
+    _max: ContractTypeMasterMaxAggregateOutputType | null
+  }
+
+  export type ContractTypeMasterAvgAggregateOutputType = {
+    sortOrder: number | null
+  }
+
+  export type ContractTypeMasterSumAggregateOutputType = {
+    sortOrder: number | null
+  }
+
+  export type ContractTypeMasterMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    sortOrder: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ContractTypeMasterMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    sortOrder: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ContractTypeMasterCountAggregateOutputType = {
+    id: number
+    name: number
+    sortOrder: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ContractTypeMasterAvgAggregateInputType = {
+    sortOrder?: true
+  }
+
+  export type ContractTypeMasterSumAggregateInputType = {
+    sortOrder?: true
+  }
+
+  export type ContractTypeMasterMinAggregateInputType = {
+    id?: true
+    name?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ContractTypeMasterMaxAggregateInputType = {
+    id?: true
+    name?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ContractTypeMasterCountAggregateInputType = {
+    id?: true
+    name?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ContractTypeMasterAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ContractTypeMaster to aggregate.
+     */
+    where?: ContractTypeMasterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContractTypeMasters to fetch.
+     */
+    orderBy?: ContractTypeMasterOrderByWithRelationInput | ContractTypeMasterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ContractTypeMasterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContractTypeMasters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContractTypeMasters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ContractTypeMasters
+    **/
+    _count?: true | ContractTypeMasterCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ContractTypeMasterAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ContractTypeMasterSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ContractTypeMasterMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ContractTypeMasterMaxAggregateInputType
+  }
+
+  export type GetContractTypeMasterAggregateType<T extends ContractTypeMasterAggregateArgs> = {
+        [P in keyof T & keyof AggregateContractTypeMaster]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateContractTypeMaster[P]>
+      : GetScalarType<T[P], AggregateContractTypeMaster[P]>
+  }
+
+
+
+
+  export type ContractTypeMasterGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ContractTypeMasterWhereInput
+    orderBy?: ContractTypeMasterOrderByWithAggregationInput | ContractTypeMasterOrderByWithAggregationInput[]
+    by: ContractTypeMasterScalarFieldEnum[] | ContractTypeMasterScalarFieldEnum
+    having?: ContractTypeMasterScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ContractTypeMasterCountAggregateInputType | true
+    _avg?: ContractTypeMasterAvgAggregateInputType
+    _sum?: ContractTypeMasterSumAggregateInputType
+    _min?: ContractTypeMasterMinAggregateInputType
+    _max?: ContractTypeMasterMaxAggregateInputType
+  }
+
+  export type ContractTypeMasterGroupByOutputType = {
+    id: string
+    name: string
+    sortOrder: number
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: ContractTypeMasterCountAggregateOutputType | null
+    _avg: ContractTypeMasterAvgAggregateOutputType | null
+    _sum: ContractTypeMasterSumAggregateOutputType | null
+    _min: ContractTypeMasterMinAggregateOutputType | null
+    _max: ContractTypeMasterMaxAggregateOutputType | null
+  }
+
+  type GetContractTypeMasterGroupByPayload<T extends ContractTypeMasterGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ContractTypeMasterGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ContractTypeMasterGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ContractTypeMasterGroupByOutputType[P]>
+            : GetScalarType<T[P], ContractTypeMasterGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ContractTypeMasterSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["contractTypeMaster"]>
+
+  export type ContractTypeMasterSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["contractTypeMaster"]>
+
+  export type ContractTypeMasterSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["contractTypeMaster"]>
+
+  export type ContractTypeMasterSelectScalar = {
+    id?: boolean
+    name?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ContractTypeMasterOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "sortOrder" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["contractTypeMaster"]>
+
+  export type $ContractTypeMasterPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ContractTypeMaster"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      sortOrder: number
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["contractTypeMaster"]>
+    composites: {}
+  }
+
+  type ContractTypeMasterGetPayload<S extends boolean | null | undefined | ContractTypeMasterDefaultArgs> = $Result.GetResult<Prisma.$ContractTypeMasterPayload, S>
+
+  type ContractTypeMasterCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ContractTypeMasterFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ContractTypeMasterCountAggregateInputType | true
+    }
+
+  export interface ContractTypeMasterDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ContractTypeMaster'], meta: { name: 'ContractTypeMaster' } }
+    /**
+     * Find zero or one ContractTypeMaster that matches the filter.
+     * @param {ContractTypeMasterFindUniqueArgs} args - Arguments to find a ContractTypeMaster
+     * @example
+     * // Get one ContractTypeMaster
+     * const contractTypeMaster = await prisma.contractTypeMaster.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ContractTypeMasterFindUniqueArgs>(args: SelectSubset<T, ContractTypeMasterFindUniqueArgs<ExtArgs>>): Prisma__ContractTypeMasterClient<$Result.GetResult<Prisma.$ContractTypeMasterPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ContractTypeMaster that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ContractTypeMasterFindUniqueOrThrowArgs} args - Arguments to find a ContractTypeMaster
+     * @example
+     * // Get one ContractTypeMaster
+     * const contractTypeMaster = await prisma.contractTypeMaster.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ContractTypeMasterFindUniqueOrThrowArgs>(args: SelectSubset<T, ContractTypeMasterFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ContractTypeMasterClient<$Result.GetResult<Prisma.$ContractTypeMasterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ContractTypeMaster that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContractTypeMasterFindFirstArgs} args - Arguments to find a ContractTypeMaster
+     * @example
+     * // Get one ContractTypeMaster
+     * const contractTypeMaster = await prisma.contractTypeMaster.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ContractTypeMasterFindFirstArgs>(args?: SelectSubset<T, ContractTypeMasterFindFirstArgs<ExtArgs>>): Prisma__ContractTypeMasterClient<$Result.GetResult<Prisma.$ContractTypeMasterPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ContractTypeMaster that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContractTypeMasterFindFirstOrThrowArgs} args - Arguments to find a ContractTypeMaster
+     * @example
+     * // Get one ContractTypeMaster
+     * const contractTypeMaster = await prisma.contractTypeMaster.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ContractTypeMasterFindFirstOrThrowArgs>(args?: SelectSubset<T, ContractTypeMasterFindFirstOrThrowArgs<ExtArgs>>): Prisma__ContractTypeMasterClient<$Result.GetResult<Prisma.$ContractTypeMasterPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ContractTypeMasters that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContractTypeMasterFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ContractTypeMasters
+     * const contractTypeMasters = await prisma.contractTypeMaster.findMany()
+     * 
+     * // Get first 10 ContractTypeMasters
+     * const contractTypeMasters = await prisma.contractTypeMaster.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const contractTypeMasterWithIdOnly = await prisma.contractTypeMaster.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ContractTypeMasterFindManyArgs>(args?: SelectSubset<T, ContractTypeMasterFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractTypeMasterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ContractTypeMaster.
+     * @param {ContractTypeMasterCreateArgs} args - Arguments to create a ContractTypeMaster.
+     * @example
+     * // Create one ContractTypeMaster
+     * const ContractTypeMaster = await prisma.contractTypeMaster.create({
+     *   data: {
+     *     // ... data to create a ContractTypeMaster
+     *   }
+     * })
+     * 
+     */
+    create<T extends ContractTypeMasterCreateArgs>(args: SelectSubset<T, ContractTypeMasterCreateArgs<ExtArgs>>): Prisma__ContractTypeMasterClient<$Result.GetResult<Prisma.$ContractTypeMasterPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ContractTypeMasters.
+     * @param {ContractTypeMasterCreateManyArgs} args - Arguments to create many ContractTypeMasters.
+     * @example
+     * // Create many ContractTypeMasters
+     * const contractTypeMaster = await prisma.contractTypeMaster.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ContractTypeMasterCreateManyArgs>(args?: SelectSubset<T, ContractTypeMasterCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ContractTypeMasters and returns the data saved in the database.
+     * @param {ContractTypeMasterCreateManyAndReturnArgs} args - Arguments to create many ContractTypeMasters.
+     * @example
+     * // Create many ContractTypeMasters
+     * const contractTypeMaster = await prisma.contractTypeMaster.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ContractTypeMasters and only return the `id`
+     * const contractTypeMasterWithIdOnly = await prisma.contractTypeMaster.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ContractTypeMasterCreateManyAndReturnArgs>(args?: SelectSubset<T, ContractTypeMasterCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractTypeMasterPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ContractTypeMaster.
+     * @param {ContractTypeMasterDeleteArgs} args - Arguments to delete one ContractTypeMaster.
+     * @example
+     * // Delete one ContractTypeMaster
+     * const ContractTypeMaster = await prisma.contractTypeMaster.delete({
+     *   where: {
+     *     // ... filter to delete one ContractTypeMaster
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ContractTypeMasterDeleteArgs>(args: SelectSubset<T, ContractTypeMasterDeleteArgs<ExtArgs>>): Prisma__ContractTypeMasterClient<$Result.GetResult<Prisma.$ContractTypeMasterPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ContractTypeMaster.
+     * @param {ContractTypeMasterUpdateArgs} args - Arguments to update one ContractTypeMaster.
+     * @example
+     * // Update one ContractTypeMaster
+     * const contractTypeMaster = await prisma.contractTypeMaster.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ContractTypeMasterUpdateArgs>(args: SelectSubset<T, ContractTypeMasterUpdateArgs<ExtArgs>>): Prisma__ContractTypeMasterClient<$Result.GetResult<Prisma.$ContractTypeMasterPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ContractTypeMasters.
+     * @param {ContractTypeMasterDeleteManyArgs} args - Arguments to filter ContractTypeMasters to delete.
+     * @example
+     * // Delete a few ContractTypeMasters
+     * const { count } = await prisma.contractTypeMaster.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ContractTypeMasterDeleteManyArgs>(args?: SelectSubset<T, ContractTypeMasterDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ContractTypeMasters.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContractTypeMasterUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ContractTypeMasters
+     * const contractTypeMaster = await prisma.contractTypeMaster.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ContractTypeMasterUpdateManyArgs>(args: SelectSubset<T, ContractTypeMasterUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ContractTypeMasters and returns the data updated in the database.
+     * @param {ContractTypeMasterUpdateManyAndReturnArgs} args - Arguments to update many ContractTypeMasters.
+     * @example
+     * // Update many ContractTypeMasters
+     * const contractTypeMaster = await prisma.contractTypeMaster.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ContractTypeMasters and only return the `id`
+     * const contractTypeMasterWithIdOnly = await prisma.contractTypeMaster.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ContractTypeMasterUpdateManyAndReturnArgs>(args: SelectSubset<T, ContractTypeMasterUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ContractTypeMasterPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ContractTypeMaster.
+     * @param {ContractTypeMasterUpsertArgs} args - Arguments to update or create a ContractTypeMaster.
+     * @example
+     * // Update or create a ContractTypeMaster
+     * const contractTypeMaster = await prisma.contractTypeMaster.upsert({
+     *   create: {
+     *     // ... data to create a ContractTypeMaster
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ContractTypeMaster we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ContractTypeMasterUpsertArgs>(args: SelectSubset<T, ContractTypeMasterUpsertArgs<ExtArgs>>): Prisma__ContractTypeMasterClient<$Result.GetResult<Prisma.$ContractTypeMasterPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ContractTypeMasters.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContractTypeMasterCountArgs} args - Arguments to filter ContractTypeMasters to count.
+     * @example
+     * // Count the number of ContractTypeMasters
+     * const count = await prisma.contractTypeMaster.count({
+     *   where: {
+     *     // ... the filter for the ContractTypeMasters we want to count
+     *   }
+     * })
+    **/
+    count<T extends ContractTypeMasterCountArgs>(
+      args?: Subset<T, ContractTypeMasterCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ContractTypeMasterCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ContractTypeMaster.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContractTypeMasterAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ContractTypeMasterAggregateArgs>(args: Subset<T, ContractTypeMasterAggregateArgs>): Prisma.PrismaPromise<GetContractTypeMasterAggregateType<T>>
+
+    /**
+     * Group by ContractTypeMaster.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ContractTypeMasterGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ContractTypeMasterGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ContractTypeMasterGroupByArgs['orderBy'] }
+        : { orderBy?: ContractTypeMasterGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ContractTypeMasterGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetContractTypeMasterGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ContractTypeMaster model
+   */
+  readonly fields: ContractTypeMasterFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ContractTypeMaster.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ContractTypeMasterClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ContractTypeMaster model
+   */
+  interface ContractTypeMasterFieldRefs {
+    readonly id: FieldRef<"ContractTypeMaster", 'String'>
+    readonly name: FieldRef<"ContractTypeMaster", 'String'>
+    readonly sortOrder: FieldRef<"ContractTypeMaster", 'Int'>
+    readonly isActive: FieldRef<"ContractTypeMaster", 'Boolean'>
+    readonly createdAt: FieldRef<"ContractTypeMaster", 'DateTime'>
+    readonly updatedAt: FieldRef<"ContractTypeMaster", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ContractTypeMaster findUnique
+   */
+  export type ContractTypeMasterFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContractTypeMaster
+     */
+    select?: ContractTypeMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContractTypeMaster
+     */
+    omit?: ContractTypeMasterOmit<ExtArgs> | null
+    /**
+     * Filter, which ContractTypeMaster to fetch.
+     */
+    where: ContractTypeMasterWhereUniqueInput
+  }
+
+  /**
+   * ContractTypeMaster findUniqueOrThrow
+   */
+  export type ContractTypeMasterFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContractTypeMaster
+     */
+    select?: ContractTypeMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContractTypeMaster
+     */
+    omit?: ContractTypeMasterOmit<ExtArgs> | null
+    /**
+     * Filter, which ContractTypeMaster to fetch.
+     */
+    where: ContractTypeMasterWhereUniqueInput
+  }
+
+  /**
+   * ContractTypeMaster findFirst
+   */
+  export type ContractTypeMasterFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContractTypeMaster
+     */
+    select?: ContractTypeMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContractTypeMaster
+     */
+    omit?: ContractTypeMasterOmit<ExtArgs> | null
+    /**
+     * Filter, which ContractTypeMaster to fetch.
+     */
+    where?: ContractTypeMasterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContractTypeMasters to fetch.
+     */
+    orderBy?: ContractTypeMasterOrderByWithRelationInput | ContractTypeMasterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ContractTypeMasters.
+     */
+    cursor?: ContractTypeMasterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContractTypeMasters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContractTypeMasters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ContractTypeMasters.
+     */
+    distinct?: ContractTypeMasterScalarFieldEnum | ContractTypeMasterScalarFieldEnum[]
+  }
+
+  /**
+   * ContractTypeMaster findFirstOrThrow
+   */
+  export type ContractTypeMasterFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContractTypeMaster
+     */
+    select?: ContractTypeMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContractTypeMaster
+     */
+    omit?: ContractTypeMasterOmit<ExtArgs> | null
+    /**
+     * Filter, which ContractTypeMaster to fetch.
+     */
+    where?: ContractTypeMasterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContractTypeMasters to fetch.
+     */
+    orderBy?: ContractTypeMasterOrderByWithRelationInput | ContractTypeMasterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ContractTypeMasters.
+     */
+    cursor?: ContractTypeMasterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContractTypeMasters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContractTypeMasters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ContractTypeMasters.
+     */
+    distinct?: ContractTypeMasterScalarFieldEnum | ContractTypeMasterScalarFieldEnum[]
+  }
+
+  /**
+   * ContractTypeMaster findMany
+   */
+  export type ContractTypeMasterFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContractTypeMaster
+     */
+    select?: ContractTypeMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContractTypeMaster
+     */
+    omit?: ContractTypeMasterOmit<ExtArgs> | null
+    /**
+     * Filter, which ContractTypeMasters to fetch.
+     */
+    where?: ContractTypeMasterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ContractTypeMasters to fetch.
+     */
+    orderBy?: ContractTypeMasterOrderByWithRelationInput | ContractTypeMasterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ContractTypeMasters.
+     */
+    cursor?: ContractTypeMasterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ContractTypeMasters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ContractTypeMasters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ContractTypeMasters.
+     */
+    distinct?: ContractTypeMasterScalarFieldEnum | ContractTypeMasterScalarFieldEnum[]
+  }
+
+  /**
+   * ContractTypeMaster create
+   */
+  export type ContractTypeMasterCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContractTypeMaster
+     */
+    select?: ContractTypeMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContractTypeMaster
+     */
+    omit?: ContractTypeMasterOmit<ExtArgs> | null
+    /**
+     * The data needed to create a ContractTypeMaster.
+     */
+    data: XOR<ContractTypeMasterCreateInput, ContractTypeMasterUncheckedCreateInput>
+  }
+
+  /**
+   * ContractTypeMaster createMany
+   */
+  export type ContractTypeMasterCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ContractTypeMasters.
+     */
+    data: ContractTypeMasterCreateManyInput | ContractTypeMasterCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ContractTypeMaster createManyAndReturn
+   */
+  export type ContractTypeMasterCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContractTypeMaster
+     */
+    select?: ContractTypeMasterSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContractTypeMaster
+     */
+    omit?: ContractTypeMasterOmit<ExtArgs> | null
+    /**
+     * The data used to create many ContractTypeMasters.
+     */
+    data: ContractTypeMasterCreateManyInput | ContractTypeMasterCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ContractTypeMaster update
+   */
+  export type ContractTypeMasterUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContractTypeMaster
+     */
+    select?: ContractTypeMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContractTypeMaster
+     */
+    omit?: ContractTypeMasterOmit<ExtArgs> | null
+    /**
+     * The data needed to update a ContractTypeMaster.
+     */
+    data: XOR<ContractTypeMasterUpdateInput, ContractTypeMasterUncheckedUpdateInput>
+    /**
+     * Choose, which ContractTypeMaster to update.
+     */
+    where: ContractTypeMasterWhereUniqueInput
+  }
+
+  /**
+   * ContractTypeMaster updateMany
+   */
+  export type ContractTypeMasterUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ContractTypeMasters.
+     */
+    data: XOR<ContractTypeMasterUpdateManyMutationInput, ContractTypeMasterUncheckedUpdateManyInput>
+    /**
+     * Filter which ContractTypeMasters to update
+     */
+    where?: ContractTypeMasterWhereInput
+    /**
+     * Limit how many ContractTypeMasters to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContractTypeMaster updateManyAndReturn
+   */
+  export type ContractTypeMasterUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContractTypeMaster
+     */
+    select?: ContractTypeMasterSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContractTypeMaster
+     */
+    omit?: ContractTypeMasterOmit<ExtArgs> | null
+    /**
+     * The data used to update ContractTypeMasters.
+     */
+    data: XOR<ContractTypeMasterUpdateManyMutationInput, ContractTypeMasterUncheckedUpdateManyInput>
+    /**
+     * Filter which ContractTypeMasters to update
+     */
+    where?: ContractTypeMasterWhereInput
+    /**
+     * Limit how many ContractTypeMasters to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContractTypeMaster upsert
+   */
+  export type ContractTypeMasterUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContractTypeMaster
+     */
+    select?: ContractTypeMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContractTypeMaster
+     */
+    omit?: ContractTypeMasterOmit<ExtArgs> | null
+    /**
+     * The filter to search for the ContractTypeMaster to update in case it exists.
+     */
+    where: ContractTypeMasterWhereUniqueInput
+    /**
+     * In case the ContractTypeMaster found by the `where` argument doesn't exist, create a new ContractTypeMaster with this data.
+     */
+    create: XOR<ContractTypeMasterCreateInput, ContractTypeMasterUncheckedCreateInput>
+    /**
+     * In case the ContractTypeMaster was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ContractTypeMasterUpdateInput, ContractTypeMasterUncheckedUpdateInput>
+  }
+
+  /**
+   * ContractTypeMaster delete
+   */
+  export type ContractTypeMasterDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContractTypeMaster
+     */
+    select?: ContractTypeMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContractTypeMaster
+     */
+    omit?: ContractTypeMasterOmit<ExtArgs> | null
+    /**
+     * Filter which ContractTypeMaster to delete.
+     */
+    where: ContractTypeMasterWhereUniqueInput
+  }
+
+  /**
+   * ContractTypeMaster deleteMany
+   */
+  export type ContractTypeMasterDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ContractTypeMasters to delete
+     */
+    where?: ContractTypeMasterWhereInput
+    /**
+     * Limit how many ContractTypeMasters to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ContractTypeMaster without action
+   */
+  export type ContractTypeMasterDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ContractTypeMaster
+     */
+    select?: ContractTypeMasterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ContractTypeMaster
+     */
+    omit?: ContractTypeMasterOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -41074,6 +42237,7 @@ export namespace Prisma {
     consentedAt: 'consentedAt',
     ipAddress: 'ipAddress',
     userAgent: 'userAgent',
+    consentMethod: 'consentMethod',
     createdAt: 'createdAt',
     dependentId: 'dependentId'
   };
@@ -41133,6 +42297,18 @@ export namespace Prisma {
   };
 
   export type EmploymentCategoryMasterScalarFieldEnum = (typeof EmploymentCategoryMasterScalarFieldEnum)[keyof typeof EmploymentCategoryMasterScalarFieldEnum]
+
+
+  export const ContractTypeMasterScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    sortOrder: 'sortOrder',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ContractTypeMasterScalarFieldEnum = (typeof ContractTypeMasterScalarFieldEnum)[keyof typeof ContractTypeMasterScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -41423,6 +42599,20 @@ export namespace Prisma {
    * Reference to a field of type 'ProfileChangeStatus[]'
    */
   export type ListEnumProfileChangeStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProfileChangeStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'ConsentMethod'
+   */
+  export type EnumConsentMethodFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ConsentMethod'>
+    
+
+
+  /**
+   * Reference to a field of type 'ConsentMethod[]'
+   */
+  export type ListEnumConsentMethodFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ConsentMethod[]'>
     
   /**
    * Deep Input Types
@@ -43821,6 +45011,7 @@ export namespace Prisma {
     consentedAt?: DateTimeFilter<"EmploymentContractConsent"> | Date | string
     ipAddress?: StringNullableFilter<"EmploymentContractConsent"> | string | null
     userAgent?: StringNullableFilter<"EmploymentContractConsent"> | string | null
+    consentMethod?: EnumConsentMethodFilter<"EmploymentContractConsent"> | $Enums.ConsentMethod
     createdAt?: DateTimeFilter<"EmploymentContractConsent"> | Date | string
     dependentId?: StringNullableFilter<"EmploymentContractConsent"> | string | null
     employmentContract?: XOR<EmploymentContractScalarRelationFilter, EmploymentContractWhereInput>
@@ -43835,6 +45026,7 @@ export namespace Prisma {
     consentedAt?: SortOrder
     ipAddress?: SortOrderInput | SortOrder
     userAgent?: SortOrderInput | SortOrder
+    consentMethod?: SortOrder
     createdAt?: SortOrder
     dependentId?: SortOrderInput | SortOrder
     employmentContract?: EmploymentContractOrderByWithRelationInput
@@ -43852,6 +45044,7 @@ export namespace Prisma {
     consentedAt?: DateTimeFilter<"EmploymentContractConsent"> | Date | string
     ipAddress?: StringNullableFilter<"EmploymentContractConsent"> | string | null
     userAgent?: StringNullableFilter<"EmploymentContractConsent"> | string | null
+    consentMethod?: EnumConsentMethodFilter<"EmploymentContractConsent"> | $Enums.ConsentMethod
     createdAt?: DateTimeFilter<"EmploymentContractConsent"> | Date | string
     dependentId?: StringNullableFilter<"EmploymentContractConsent"> | string | null
     employmentContract?: XOR<EmploymentContractScalarRelationFilter, EmploymentContractWhereInput>
@@ -43866,6 +45059,7 @@ export namespace Prisma {
     consentedAt?: SortOrder
     ipAddress?: SortOrderInput | SortOrder
     userAgent?: SortOrderInput | SortOrder
+    consentMethod?: SortOrder
     createdAt?: SortOrder
     dependentId?: SortOrderInput | SortOrder
     _count?: EmploymentContractConsentCountOrderByAggregateInput
@@ -43884,6 +45078,7 @@ export namespace Prisma {
     consentedAt?: DateTimeWithAggregatesFilter<"EmploymentContractConsent"> | Date | string
     ipAddress?: StringNullableWithAggregatesFilter<"EmploymentContractConsent"> | string | null
     userAgent?: StringNullableWithAggregatesFilter<"EmploymentContractConsent"> | string | null
+    consentMethod?: EnumConsentMethodWithAggregatesFilter<"EmploymentContractConsent"> | $Enums.ConsentMethod
     createdAt?: DateTimeWithAggregatesFilter<"EmploymentContractConsent"> | Date | string
     dependentId?: StringNullableWithAggregatesFilter<"EmploymentContractConsent"> | string | null
   }
@@ -44155,6 +45350,65 @@ export namespace Prisma {
     isActive?: BoolWithAggregatesFilter<"EmploymentCategoryMaster"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"EmploymentCategoryMaster"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"EmploymentCategoryMaster"> | Date | string
+  }
+
+  export type ContractTypeMasterWhereInput = {
+    AND?: ContractTypeMasterWhereInput | ContractTypeMasterWhereInput[]
+    OR?: ContractTypeMasterWhereInput[]
+    NOT?: ContractTypeMasterWhereInput | ContractTypeMasterWhereInput[]
+    id?: StringFilter<"ContractTypeMaster"> | string
+    name?: StringFilter<"ContractTypeMaster"> | string
+    sortOrder?: IntFilter<"ContractTypeMaster"> | number
+    isActive?: BoolFilter<"ContractTypeMaster"> | boolean
+    createdAt?: DateTimeFilter<"ContractTypeMaster"> | Date | string
+    updatedAt?: DateTimeFilter<"ContractTypeMaster"> | Date | string
+  }
+
+  export type ContractTypeMasterOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContractTypeMasterWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ContractTypeMasterWhereInput | ContractTypeMasterWhereInput[]
+    OR?: ContractTypeMasterWhereInput[]
+    NOT?: ContractTypeMasterWhereInput | ContractTypeMasterWhereInput[]
+    name?: StringFilter<"ContractTypeMaster"> | string
+    sortOrder?: IntFilter<"ContractTypeMaster"> | number
+    isActive?: BoolFilter<"ContractTypeMaster"> | boolean
+    createdAt?: DateTimeFilter<"ContractTypeMaster"> | Date | string
+    updatedAt?: DateTimeFilter<"ContractTypeMaster"> | Date | string
+  }, "id">
+
+  export type ContractTypeMasterOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ContractTypeMasterCountOrderByAggregateInput
+    _avg?: ContractTypeMasterAvgOrderByAggregateInput
+    _max?: ContractTypeMasterMaxOrderByAggregateInput
+    _min?: ContractTypeMasterMinOrderByAggregateInput
+    _sum?: ContractTypeMasterSumOrderByAggregateInput
+  }
+
+  export type ContractTypeMasterScalarWhereWithAggregatesInput = {
+    AND?: ContractTypeMasterScalarWhereWithAggregatesInput | ContractTypeMasterScalarWhereWithAggregatesInput[]
+    OR?: ContractTypeMasterScalarWhereWithAggregatesInput[]
+    NOT?: ContractTypeMasterScalarWhereWithAggregatesInput | ContractTypeMasterScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ContractTypeMaster"> | string
+    name?: StringWithAggregatesFilter<"ContractTypeMaster"> | string
+    sortOrder?: IntWithAggregatesFilter<"ContractTypeMaster"> | number
+    isActive?: BoolWithAggregatesFilter<"ContractTypeMaster"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"ContractTypeMaster"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ContractTypeMaster"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -46898,6 +48152,7 @@ export namespace Prisma {
     consentedAt?: Date | string
     ipAddress?: string | null
     userAgent?: string | null
+    consentMethod?: $Enums.ConsentMethod
     createdAt?: Date | string
     employmentContract: EmploymentContractCreateNestedOneWithoutEmploymentContractConsentsInput
     dependent?: DependentCreateNestedOneWithoutConsentsInput
@@ -46911,6 +48166,7 @@ export namespace Prisma {
     consentedAt?: Date | string
     ipAddress?: string | null
     userAgent?: string | null
+    consentMethod?: $Enums.ConsentMethod
     createdAt?: Date | string
     dependentId?: string | null
   }
@@ -46922,6 +48178,7 @@ export namespace Prisma {
     consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    consentMethod?: EnumConsentMethodFieldUpdateOperationsInput | $Enums.ConsentMethod
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employmentContract?: EmploymentContractUpdateOneRequiredWithoutEmploymentContractConsentsNestedInput
     dependent?: DependentUpdateOneWithoutConsentsNestedInput
@@ -46935,6 +48192,7 @@ export namespace Prisma {
     consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    consentMethod?: EnumConsentMethodFieldUpdateOperationsInput | $Enums.ConsentMethod
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     dependentId?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -46947,6 +48205,7 @@ export namespace Prisma {
     consentedAt?: Date | string
     ipAddress?: string | null
     userAgent?: string | null
+    consentMethod?: $Enums.ConsentMethod
     createdAt?: Date | string
     dependentId?: string | null
   }
@@ -46958,6 +48217,7 @@ export namespace Prisma {
     consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    consentMethod?: EnumConsentMethodFieldUpdateOperationsInput | $Enums.ConsentMethod
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -46969,6 +48229,7 @@ export namespace Prisma {
     consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    consentMethod?: EnumConsentMethodFieldUpdateOperationsInput | $Enums.ConsentMethod
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     dependentId?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -47258,6 +48519,69 @@ export namespace Prisma {
   }
 
   export type EmploymentCategoryMasterUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContractTypeMasterCreateInput = {
+    id?: string
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContractTypeMasterUncheckedCreateInput = {
+    id?: string
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContractTypeMasterUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContractTypeMasterUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContractTypeMasterCreateManyInput = {
+    id?: string
+    name: string
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ContractTypeMasterUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ContractTypeMasterUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     sortOrder?: IntFieldUpdateOperationsInput | number
@@ -49259,6 +50583,13 @@ export namespace Prisma {
     baseSalary?: SortOrder
   }
 
+  export type EnumConsentMethodFilter<$PrismaModel = never> = {
+    equals?: $Enums.ConsentMethod | EnumConsentMethodFieldRefInput<$PrismaModel>
+    in?: $Enums.ConsentMethod[] | ListEnumConsentMethodFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ConsentMethod[] | ListEnumConsentMethodFieldRefInput<$PrismaModel>
+    not?: NestedEnumConsentMethodFilter<$PrismaModel> | $Enums.ConsentMethod
+  }
+
   export type EmploymentContractScalarRelationFilter = {
     is?: EmploymentContractWhereInput
     isNot?: EmploymentContractWhereInput
@@ -49277,6 +50608,7 @@ export namespace Prisma {
     consentedAt?: SortOrder
     ipAddress?: SortOrder
     userAgent?: SortOrder
+    consentMethod?: SortOrder
     createdAt?: SortOrder
     dependentId?: SortOrder
   }
@@ -49289,6 +50621,7 @@ export namespace Prisma {
     consentedAt?: SortOrder
     ipAddress?: SortOrder
     userAgent?: SortOrder
+    consentMethod?: SortOrder
     createdAt?: SortOrder
     dependentId?: SortOrder
   }
@@ -49301,8 +50634,19 @@ export namespace Prisma {
     consentedAt?: SortOrder
     ipAddress?: SortOrder
     userAgent?: SortOrder
+    consentMethod?: SortOrder
     createdAt?: SortOrder
     dependentId?: SortOrder
+  }
+
+  export type EnumConsentMethodWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ConsentMethod | EnumConsentMethodFieldRefInput<$PrismaModel>
+    in?: $Enums.ConsentMethod[] | ListEnumConsentMethodFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ConsentMethod[] | ListEnumConsentMethodFieldRefInput<$PrismaModel>
+    not?: NestedEnumConsentMethodWithAggregatesFilter<$PrismaModel> | $Enums.ConsentMethod
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumConsentMethodFilter<$PrismaModel>
+    _max?: NestedEnumConsentMethodFilter<$PrismaModel>
   }
 
   export type EmploymentContractWorkScheduleCountOrderByAggregateInput = {
@@ -49464,6 +50808,41 @@ export namespace Prisma {
   }
 
   export type EmploymentCategoryMasterSumOrderByAggregateInput = {
+    sortOrder?: SortOrder
+  }
+
+  export type ContractTypeMasterCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContractTypeMasterAvgOrderByAggregateInput = {
+    sortOrder?: SortOrder
+  }
+
+  export type ContractTypeMasterMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContractTypeMasterMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ContractTypeMasterSumOrderByAggregateInput = {
     sortOrder?: SortOrder
   }
 
@@ -50953,6 +52332,10 @@ export namespace Prisma {
     connect?: DependentWhereUniqueInput
   }
 
+  export type EnumConsentMethodFieldUpdateOperationsInput = {
+    set?: $Enums.ConsentMethod
+  }
+
   export type EmploymentContractUpdateOneRequiredWithoutEmploymentContractConsentsNestedInput = {
     create?: XOR<EmploymentContractCreateWithoutEmploymentContractConsentsInput, EmploymentContractUncheckedCreateWithoutEmploymentContractConsentsInput>
     connectOrCreate?: EmploymentContractCreateOrConnectWithoutEmploymentContractConsentsInput
@@ -51443,6 +52826,23 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumProfileChangeStatusFilter<$PrismaModel>
     _max?: NestedEnumProfileChangeStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumConsentMethodFilter<$PrismaModel = never> = {
+    equals?: $Enums.ConsentMethod | EnumConsentMethodFieldRefInput<$PrismaModel>
+    in?: $Enums.ConsentMethod[] | ListEnumConsentMethodFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ConsentMethod[] | ListEnumConsentMethodFieldRefInput<$PrismaModel>
+    not?: NestedEnumConsentMethodFilter<$PrismaModel> | $Enums.ConsentMethod
+  }
+
+  export type NestedEnumConsentMethodWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ConsentMethod | EnumConsentMethodFieldRefInput<$PrismaModel>
+    in?: $Enums.ConsentMethod[] | ListEnumConsentMethodFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ConsentMethod[] | ListEnumConsentMethodFieldRefInput<$PrismaModel>
+    not?: NestedEnumConsentMethodWithAggregatesFilter<$PrismaModel> | $Enums.ConsentMethod
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumConsentMethodFilter<$PrismaModel>
+    _max?: NestedEnumConsentMethodFilter<$PrismaModel>
   }
 
   export type EmployeeCreateWithoutUserInput = {
@@ -53042,6 +54442,7 @@ export namespace Prisma {
     consentedAt?: Date | string
     ipAddress?: string | null
     userAgent?: string | null
+    consentMethod?: $Enums.ConsentMethod
     createdAt?: Date | string
     employmentContract: EmploymentContractCreateNestedOneWithoutEmploymentContractConsentsInput
   }
@@ -53054,6 +54455,7 @@ export namespace Prisma {
     consentedAt?: Date | string
     ipAddress?: string | null
     userAgent?: string | null
+    consentMethod?: $Enums.ConsentMethod
     createdAt?: Date | string
   }
 
@@ -53185,6 +54587,7 @@ export namespace Prisma {
     consentedAt?: DateTimeFilter<"EmploymentContractConsent"> | Date | string
     ipAddress?: StringNullableFilter<"EmploymentContractConsent"> | string | null
     userAgent?: StringNullableFilter<"EmploymentContractConsent"> | string | null
+    consentMethod?: EnumConsentMethodFilter<"EmploymentContractConsent"> | $Enums.ConsentMethod
     createdAt?: DateTimeFilter<"EmploymentContractConsent"> | Date | string
     dependentId?: StringNullableFilter<"EmploymentContractConsent"> | string | null
   }
@@ -56146,6 +57549,7 @@ export namespace Prisma {
     consentedAt?: Date | string
     ipAddress?: string | null
     userAgent?: string | null
+    consentMethod?: $Enums.ConsentMethod
     createdAt?: Date | string
     dependent?: DependentCreateNestedOneWithoutConsentsInput
   }
@@ -56157,6 +57561,7 @@ export namespace Prisma {
     consentedAt?: Date | string
     ipAddress?: string | null
     userAgent?: string | null
+    consentMethod?: $Enums.ConsentMethod
     createdAt?: Date | string
     dependentId?: string | null
   }
@@ -57609,6 +59014,7 @@ export namespace Prisma {
     consentedAt?: Date | string
     ipAddress?: string | null
     userAgent?: string | null
+    consentMethod?: $Enums.ConsentMethod
     createdAt?: Date | string
   }
 
@@ -57619,6 +59025,7 @@ export namespace Prisma {
     consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    consentMethod?: EnumConsentMethodFieldUpdateOperationsInput | $Enums.ConsentMethod
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employmentContract?: EmploymentContractUpdateOneRequiredWithoutEmploymentContractConsentsNestedInput
   }
@@ -57631,6 +59038,7 @@ export namespace Prisma {
     consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    consentMethod?: EnumConsentMethodFieldUpdateOperationsInput | $Enums.ConsentMethod
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -57642,6 +59050,7 @@ export namespace Prisma {
     consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    consentMethod?: EnumConsentMethodFieldUpdateOperationsInput | $Enums.ConsentMethod
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -57878,6 +59287,7 @@ export namespace Prisma {
     consentedAt?: Date | string
     ipAddress?: string | null
     userAgent?: string | null
+    consentMethod?: $Enums.ConsentMethod
     createdAt?: Date | string
     dependentId?: string | null
   }
@@ -57900,6 +59310,7 @@ export namespace Prisma {
     consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    consentMethod?: EnumConsentMethodFieldUpdateOperationsInput | $Enums.ConsentMethod
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     dependent?: DependentUpdateOneWithoutConsentsNestedInput
   }
@@ -57911,6 +59322,7 @@ export namespace Prisma {
     consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    consentMethod?: EnumConsentMethodFieldUpdateOperationsInput | $Enums.ConsentMethod
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     dependentId?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -57922,6 +59334,7 @@ export namespace Prisma {
     consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    consentMethod?: EnumConsentMethodFieldUpdateOperationsInput | $Enums.ConsentMethod
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     dependentId?: NullableStringFieldUpdateOperationsInput | string | null
   }

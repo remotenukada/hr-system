@@ -650,6 +650,8 @@ model EmploymentContractConsent {
   ipAddress String?
   userAgent String?
 
+  consentMethod ConsentMethod @default(ELECTRONIC)
+
   createdAt DateTime @default(now())
 
   employmentContract EmploymentContract @relation(fields: [employmentContractId], references: [id], onDelete: Cascade)
@@ -721,4 +723,22 @@ model EmploymentCategoryMaster {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model ContractTypeMaster {
+  id String @id @default(uuid())
+
+  name String
+
+  sortOrder Int @default(0)
+
+  isActive Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum ConsentMethod {
+  ELECTRONIC
+  PAPER
 }

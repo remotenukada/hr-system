@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 
 import { prisma } from "@/lib/prisma";
 import ConsentForm from "@/components/employee-contracts/consent-form";
+import { createPaperConsent } from "@/app/actions/employment-contract-paper-consent";
 
 type Props = {
   params: Promise<{
@@ -343,14 +344,48 @@ export default async function EmploymentContractDetailPage(
         </h2>
 
         {consents.length === 0 ? (
-          <ConsentForm
-            employmentContractId={contract.id}
-            defaultSignerName={`${contract.employee.lastName} ${contract.employee.firstName}`}
-          />
+          <div className="space-y-6">
+            <ConsentForm
+              employmentContractId={contract.id}
+              defaultSignerName={`${contract.employee.lastName} ${contract.employee.firstName}`}
+            />
+
+            <div className="border-t pt-4">
+              <h3 className="mb-3 font-medium">
+                紙契約として登録
+              </h3>
+
+              <form action={createPaperConsent}>
+                <input
+                  type="hidden"
+                  name="employmentContractId"
+                  value={contract.id}
+                />
+
+                <label className="mb-1 block text-sm">
+                  署名者
+                </label>
+
+                <input
+                  name="signerName"
+                  defaultValue={`${contract.employee.lastName} ${contract.employee.firstName}`}
+                  required
+                  className="mb-3 w-full rounded border p-2"
+                />
+
+                <button
+                  type="submit"
+                  className="rounded bg-gray-700 px-4 py-2 text-sm text-white"
+                >
+                  紙契約済として登録
+                </button>
+              </form>
+            </div>
+          </div>
         ) : (
           <div className="space-y-4">
             <p className="text-sm text-green-700">
-              この雇用条件書は電子同意済みです。
+              この雇用条件書は同意済みです。
             </p>
 
             <table className="min-w-full text-sm">
@@ -358,6 +393,9 @@ export default async function EmploymentContractDetailPage(
                 <tr>
                   <th className="border p-2 text-left">
                     署名者
+                  </th>
+                  <th className="border p-2 text-left">
+                    同意方式
                   </th>
                   <th className="border p-2 text-left">
                     同意日時
@@ -376,6 +414,12 @@ export default async function EmploymentContractDetailPage(
                   <tr key={consent.id}>
                     <td className="border p-2">
                       {consent.signerName}
+                    </td>
+
+                    <td className="border p-2">
+                      {consent.consentMethod === "PAPER"
+                        ? "紙契約"
+                        : "電子同意"}
                     </td>
 
                     <td className="border p-2">

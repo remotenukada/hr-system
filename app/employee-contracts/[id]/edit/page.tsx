@@ -99,6 +99,24 @@ export default async function EditEmploymentContractPage(
       ],
     });
 
+
+  const contractTypeMasters =
+    await prisma.contractTypeMaster.findMany({
+      where: {
+        OR: [
+          { isActive: true },
+          {
+            name:
+              contract.contractType ?? "",
+          },
+        ],
+      },
+      orderBy: [
+        { sortOrder: "asc" },
+        { name: "asc" },
+      ],
+    });
+
   return (
     <main className="mx-auto max-w-4xl p-6">
       <div className="mb-6">
@@ -164,12 +182,23 @@ export default async function EditEmploymentContractPage(
               <label className="mb-1 block text-sm font-medium text-gray-700">
                 契約区分 <span className="text-red-500">*</span>
               </label>
-              <input
+              <select
                 name="contractType"
                 defaultValue={contract.contractType}
                 required
                 className="w-full rounded border p-2"
-              />
+              >
+                {contractTypeMasters.map(
+                  (item) => (
+                    <option
+                      key={item.id}
+                      value={item.name}
+                    >
+                      {item.name}
+                    </option>
+                  ),
+                )}
+              </select>
             </div>
 
             <div>

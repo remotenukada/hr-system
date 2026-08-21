@@ -507,6 +507,7 @@ exports.Prisma.EmploymentContractConsentScalarFieldEnum = {
   consentedAt: 'consentedAt',
   ipAddress: 'ipAddress',
   userAgent: 'userAgent',
+  consentMethod: 'consentMethod',
   createdAt: 'createdAt',
   dependentId: 'dependentId'
 };
@@ -545,6 +546,15 @@ exports.Prisma.AllowanceMasterScalarFieldEnum = {
 };
 
 exports.Prisma.EmploymentCategoryMasterScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  sortOrder: 'sortOrder',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ContractTypeMasterScalarFieldEnum = {
   id: 'id',
   name: 'name',
   sortOrder: 'sortOrder',
@@ -661,6 +671,11 @@ exports.ProfileChangeStatus = exports.$Enums.ProfileChangeStatus = {
   REJECTED: 'REJECTED'
 };
 
+exports.ConsentMethod = exports.$Enums.ConsentMethod = {
+  ELECTRONIC: 'ELECTRONIC',
+  PAPER: 'PAPER'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   UserInvitation: 'UserInvitation',
@@ -692,7 +707,8 @@ exports.Prisma.ModelName = {
   EmploymentContractWorkSchedule: 'EmploymentContractWorkSchedule',
   WorkScheduleMaster: 'WorkScheduleMaster',
   AllowanceMaster: 'AllowanceMaster',
-  EmploymentCategoryMaster: 'EmploymentCategoryMaster'
+  EmploymentCategoryMaster: 'EmploymentCategoryMaster',
+  ContractTypeMaster: 'ContractTypeMaster'
 };
 
 /**

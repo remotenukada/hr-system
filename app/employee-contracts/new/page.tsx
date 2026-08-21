@@ -91,6 +91,18 @@ export default async function NewEmploymentContractPage() {
       ],
     });
 
+
+  const contractTypeMasters =
+    await prisma.contractTypeMaster.findMany({
+      where: {
+        isActive: true,
+      },
+      orderBy: [
+        { sortOrder: "asc" },
+        { name: "asc" },
+      ],
+    });
+
   return (
     <main className="mx-auto max-w-4xl p-6">
       <div className="mb-6">
@@ -165,12 +177,20 @@ export default async function NewEmploymentContractPage() {
                 required
                 className="w-full rounded border p-2"
               >
-                <option value="">選択してください</option>
-                <option value="期間の定めなし">期間の定めなし</option>
-                <option value="期間の定めあり">期間の定めあり</option>
-                <option value="パートタイム">パートタイム</option>
-                <option value="アルバイト">アルバイト</option>
-                <option value="嘱託">嘱託</option>
+                <option value="">
+                  選択してください
+                </option>
+
+                {contractTypeMasters.map(
+                  (item) => (
+                    <option
+                      key={item.id}
+                      value={item.name}
+                    >
+                      {item.name}
+                    </option>
+                  ),
+                )}
               </select>
             </div>
 
