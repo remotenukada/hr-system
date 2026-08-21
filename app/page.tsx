@@ -984,12 +984,7 @@ const myEmployee =
           </p>
 
           <div className="mt-4 flex flex-wrap gap-3">
-            <Link
-              href="/requests"
-              className="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
-            >
-              申請一覧へ
-            </Link>
+            
 
             <Link
               href="/requests/new"

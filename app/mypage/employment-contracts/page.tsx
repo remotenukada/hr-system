@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
+import BackToDashboardLink from "@/components/common/BackToDashboardLink";
 
 export default async function MyEmploymentContractsPage() {
   const session = await auth();
@@ -37,6 +38,7 @@ export default async function MyEmploymentContractsPage() {
 
   return (
     <main className="mx-auto max-w-4xl p-6">
+      <BackToDashboardLink />
       <h1 className="mb-6 text-2xl font-bold">
         雇用条件書
       </h1>
