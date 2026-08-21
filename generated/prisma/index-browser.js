@@ -504,6 +504,7 @@ exports.Prisma.EmploymentContractConsentScalarFieldEnum = {
   employmentContractId: 'employmentContractId',
   signerName: 'signerName',
   signatureImagePath: 'signatureImagePath',
+  signedPdfPath: 'signedPdfPath',
   consentedAt: 'consentedAt',
   ipAddress: 'ipAddress',
   userAgent: 'userAgent',

@@ -35234,6 +35234,7 @@ export namespace Prisma {
     employmentContractId: string | null
     signerName: string | null
     signatureImagePath: string | null
+    signedPdfPath: string | null
     consentedAt: Date | null
     ipAddress: string | null
     userAgent: string | null
@@ -35247,6 +35248,7 @@ export namespace Prisma {
     employmentContractId: string | null
     signerName: string | null
     signatureImagePath: string | null
+    signedPdfPath: string | null
     consentedAt: Date | null
     ipAddress: string | null
     userAgent: string | null
@@ -35260,6 +35262,7 @@ export namespace Prisma {
     employmentContractId: number
     signerName: number
     signatureImagePath: number
+    signedPdfPath: number
     consentedAt: number
     ipAddress: number
     userAgent: number
@@ -35275,6 +35278,7 @@ export namespace Prisma {
     employmentContractId?: true
     signerName?: true
     signatureImagePath?: true
+    signedPdfPath?: true
     consentedAt?: true
     ipAddress?: true
     userAgent?: true
@@ -35288,6 +35292,7 @@ export namespace Prisma {
     employmentContractId?: true
     signerName?: true
     signatureImagePath?: true
+    signedPdfPath?: true
     consentedAt?: true
     ipAddress?: true
     userAgent?: true
@@ -35301,6 +35306,7 @@ export namespace Prisma {
     employmentContractId?: true
     signerName?: true
     signatureImagePath?: true
+    signedPdfPath?: true
     consentedAt?: true
     ipAddress?: true
     userAgent?: true
@@ -35387,6 +35393,7 @@ export namespace Prisma {
     employmentContractId: string
     signerName: string
     signatureImagePath: string | null
+    signedPdfPath: string | null
     consentedAt: Date
     ipAddress: string | null
     userAgent: string | null
@@ -35417,6 +35424,7 @@ export namespace Prisma {
     employmentContractId?: boolean
     signerName?: boolean
     signatureImagePath?: boolean
+    signedPdfPath?: boolean
     consentedAt?: boolean
     ipAddress?: boolean
     userAgent?: boolean
@@ -35432,6 +35440,7 @@ export namespace Prisma {
     employmentContractId?: boolean
     signerName?: boolean
     signatureImagePath?: boolean
+    signedPdfPath?: boolean
     consentedAt?: boolean
     ipAddress?: boolean
     userAgent?: boolean
@@ -35447,6 +35456,7 @@ export namespace Prisma {
     employmentContractId?: boolean
     signerName?: boolean
     signatureImagePath?: boolean
+    signedPdfPath?: boolean
     consentedAt?: boolean
     ipAddress?: boolean
     userAgent?: boolean
@@ -35462,6 +35472,7 @@ export namespace Prisma {
     employmentContractId?: boolean
     signerName?: boolean
     signatureImagePath?: boolean
+    signedPdfPath?: boolean
     consentedAt?: boolean
     ipAddress?: boolean
     userAgent?: boolean
@@ -35470,7 +35481,7 @@ export namespace Prisma {
     dependentId?: boolean
   }
 
-  export type EmploymentContractConsentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employmentContractId" | "signerName" | "signatureImagePath" | "consentedAt" | "ipAddress" | "userAgent" | "consentMethod" | "createdAt" | "dependentId", ExtArgs["result"]["employmentContractConsent"]>
+  export type EmploymentContractConsentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employmentContractId" | "signerName" | "signatureImagePath" | "signedPdfPath" | "consentedAt" | "ipAddress" | "userAgent" | "consentMethod" | "createdAt" | "dependentId", ExtArgs["result"]["employmentContractConsent"]>
   export type EmploymentContractConsentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employmentContract?: boolean | EmploymentContractDefaultArgs<ExtArgs>
     dependent?: boolean | EmploymentContractConsent$dependentArgs<ExtArgs>
@@ -35495,6 +35506,7 @@ export namespace Prisma {
       employmentContractId: string
       signerName: string
       signatureImagePath: string | null
+      signedPdfPath: string | null
       consentedAt: Date
       ipAddress: string | null
       userAgent: string | null
@@ -35930,6 +35942,7 @@ export namespace Prisma {
     readonly employmentContractId: FieldRef<"EmploymentContractConsent", 'String'>
     readonly signerName: FieldRef<"EmploymentContractConsent", 'String'>
     readonly signatureImagePath: FieldRef<"EmploymentContractConsent", 'String'>
+    readonly signedPdfPath: FieldRef<"EmploymentContractConsent", 'String'>
     readonly consentedAt: FieldRef<"EmploymentContractConsent", 'DateTime'>
     readonly ipAddress: FieldRef<"EmploymentContractConsent", 'String'>
     readonly userAgent: FieldRef<"EmploymentContractConsent", 'String'>
@@ -42234,6 +42247,7 @@ export namespace Prisma {
     employmentContractId: 'employmentContractId',
     signerName: 'signerName',
     signatureImagePath: 'signatureImagePath',
+    signedPdfPath: 'signedPdfPath',
     consentedAt: 'consentedAt',
     ipAddress: 'ipAddress',
     userAgent: 'userAgent',
@@ -45008,6 +45022,7 @@ export namespace Prisma {
     employmentContractId?: StringFilter<"EmploymentContractConsent"> | string
     signerName?: StringFilter<"EmploymentContractConsent"> | string
     signatureImagePath?: StringNullableFilter<"EmploymentContractConsent"> | string | null
+    signedPdfPath?: StringNullableFilter<"EmploymentContractConsent"> | string | null
     consentedAt?: DateTimeFilter<"EmploymentContractConsent"> | Date | string
     ipAddress?: StringNullableFilter<"EmploymentContractConsent"> | string | null
     userAgent?: StringNullableFilter<"EmploymentContractConsent"> | string | null
@@ -45023,6 +45038,7 @@ export namespace Prisma {
     employmentContractId?: SortOrder
     signerName?: SortOrder
     signatureImagePath?: SortOrderInput | SortOrder
+    signedPdfPath?: SortOrderInput | SortOrder
     consentedAt?: SortOrder
     ipAddress?: SortOrderInput | SortOrder
     userAgent?: SortOrderInput | SortOrder
@@ -45041,6 +45057,7 @@ export namespace Prisma {
     employmentContractId?: StringFilter<"EmploymentContractConsent"> | string
     signerName?: StringFilter<"EmploymentContractConsent"> | string
     signatureImagePath?: StringNullableFilter<"EmploymentContractConsent"> | string | null
+    signedPdfPath?: StringNullableFilter<"EmploymentContractConsent"> | string | null
     consentedAt?: DateTimeFilter<"EmploymentContractConsent"> | Date | string
     ipAddress?: StringNullableFilter<"EmploymentContractConsent"> | string | null
     userAgent?: StringNullableFilter<"EmploymentContractConsent"> | string | null
@@ -45056,6 +45073,7 @@ export namespace Prisma {
     employmentContractId?: SortOrder
     signerName?: SortOrder
     signatureImagePath?: SortOrderInput | SortOrder
+    signedPdfPath?: SortOrderInput | SortOrder
     consentedAt?: SortOrder
     ipAddress?: SortOrderInput | SortOrder
     userAgent?: SortOrderInput | SortOrder
@@ -45075,6 +45093,7 @@ export namespace Prisma {
     employmentContractId?: StringWithAggregatesFilter<"EmploymentContractConsent"> | string
     signerName?: StringWithAggregatesFilter<"EmploymentContractConsent"> | string
     signatureImagePath?: StringNullableWithAggregatesFilter<"EmploymentContractConsent"> | string | null
+    signedPdfPath?: StringNullableWithAggregatesFilter<"EmploymentContractConsent"> | string | null
     consentedAt?: DateTimeWithAggregatesFilter<"EmploymentContractConsent"> | Date | string
     ipAddress?: StringNullableWithAggregatesFilter<"EmploymentContractConsent"> | string | null
     userAgent?: StringNullableWithAggregatesFilter<"EmploymentContractConsent"> | string | null
@@ -48149,6 +48168,7 @@ export namespace Prisma {
     id?: string
     signerName: string
     signatureImagePath?: string | null
+    signedPdfPath?: string | null
     consentedAt?: Date | string
     ipAddress?: string | null
     userAgent?: string | null
@@ -48163,6 +48183,7 @@ export namespace Prisma {
     employmentContractId: string
     signerName: string
     signatureImagePath?: string | null
+    signedPdfPath?: string | null
     consentedAt?: Date | string
     ipAddress?: string | null
     userAgent?: string | null
@@ -48175,6 +48196,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     signerName?: StringFieldUpdateOperationsInput | string
     signatureImagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    signedPdfPath?: NullableStringFieldUpdateOperationsInput | string | null
     consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
@@ -48189,6 +48211,7 @@ export namespace Prisma {
     employmentContractId?: StringFieldUpdateOperationsInput | string
     signerName?: StringFieldUpdateOperationsInput | string
     signatureImagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    signedPdfPath?: NullableStringFieldUpdateOperationsInput | string | null
     consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
@@ -48202,6 +48225,7 @@ export namespace Prisma {
     employmentContractId: string
     signerName: string
     signatureImagePath?: string | null
+    signedPdfPath?: string | null
     consentedAt?: Date | string
     ipAddress?: string | null
     userAgent?: string | null
@@ -48214,6 +48238,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     signerName?: StringFieldUpdateOperationsInput | string
     signatureImagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    signedPdfPath?: NullableStringFieldUpdateOperationsInput | string | null
     consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
@@ -48226,6 +48251,7 @@ export namespace Prisma {
     employmentContractId?: StringFieldUpdateOperationsInput | string
     signerName?: StringFieldUpdateOperationsInput | string
     signatureImagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    signedPdfPath?: NullableStringFieldUpdateOperationsInput | string | null
     consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
@@ -50605,6 +50631,7 @@ export namespace Prisma {
     employmentContractId?: SortOrder
     signerName?: SortOrder
     signatureImagePath?: SortOrder
+    signedPdfPath?: SortOrder
     consentedAt?: SortOrder
     ipAddress?: SortOrder
     userAgent?: SortOrder
@@ -50618,6 +50645,7 @@ export namespace Prisma {
     employmentContractId?: SortOrder
     signerName?: SortOrder
     signatureImagePath?: SortOrder
+    signedPdfPath?: SortOrder
     consentedAt?: SortOrder
     ipAddress?: SortOrder
     userAgent?: SortOrder
@@ -50631,6 +50659,7 @@ export namespace Prisma {
     employmentContractId?: SortOrder
     signerName?: SortOrder
     signatureImagePath?: SortOrder
+    signedPdfPath?: SortOrder
     consentedAt?: SortOrder
     ipAddress?: SortOrder
     userAgent?: SortOrder
@@ -54439,6 +54468,7 @@ export namespace Prisma {
     id?: string
     signerName: string
     signatureImagePath?: string | null
+    signedPdfPath?: string | null
     consentedAt?: Date | string
     ipAddress?: string | null
     userAgent?: string | null
@@ -54452,6 +54482,7 @@ export namespace Prisma {
     employmentContractId: string
     signerName: string
     signatureImagePath?: string | null
+    signedPdfPath?: string | null
     consentedAt?: Date | string
     ipAddress?: string | null
     userAgent?: string | null
@@ -54584,6 +54615,7 @@ export namespace Prisma {
     employmentContractId?: StringFilter<"EmploymentContractConsent"> | string
     signerName?: StringFilter<"EmploymentContractConsent"> | string
     signatureImagePath?: StringNullableFilter<"EmploymentContractConsent"> | string | null
+    signedPdfPath?: StringNullableFilter<"EmploymentContractConsent"> | string | null
     consentedAt?: DateTimeFilter<"EmploymentContractConsent"> | Date | string
     ipAddress?: StringNullableFilter<"EmploymentContractConsent"> | string | null
     userAgent?: StringNullableFilter<"EmploymentContractConsent"> | string | null
@@ -57546,6 +57578,7 @@ export namespace Prisma {
     id?: string
     signerName: string
     signatureImagePath?: string | null
+    signedPdfPath?: string | null
     consentedAt?: Date | string
     ipAddress?: string | null
     userAgent?: string | null
@@ -57558,6 +57591,7 @@ export namespace Prisma {
     id?: string
     signerName: string
     signatureImagePath?: string | null
+    signedPdfPath?: string | null
     consentedAt?: Date | string
     ipAddress?: string | null
     userAgent?: string | null
@@ -59011,6 +59045,7 @@ export namespace Prisma {
     employmentContractId: string
     signerName: string
     signatureImagePath?: string | null
+    signedPdfPath?: string | null
     consentedAt?: Date | string
     ipAddress?: string | null
     userAgent?: string | null
@@ -59022,6 +59057,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     signerName?: StringFieldUpdateOperationsInput | string
     signatureImagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    signedPdfPath?: NullableStringFieldUpdateOperationsInput | string | null
     consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
@@ -59035,6 +59071,7 @@ export namespace Prisma {
     employmentContractId?: StringFieldUpdateOperationsInput | string
     signerName?: StringFieldUpdateOperationsInput | string
     signatureImagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    signedPdfPath?: NullableStringFieldUpdateOperationsInput | string | null
     consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
@@ -59047,6 +59084,7 @@ export namespace Prisma {
     employmentContractId?: StringFieldUpdateOperationsInput | string
     signerName?: StringFieldUpdateOperationsInput | string
     signatureImagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    signedPdfPath?: NullableStringFieldUpdateOperationsInput | string | null
     consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
@@ -59284,6 +59322,7 @@ export namespace Prisma {
     id?: string
     signerName: string
     signatureImagePath?: string | null
+    signedPdfPath?: string | null
     consentedAt?: Date | string
     ipAddress?: string | null
     userAgent?: string | null
@@ -59307,6 +59346,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     signerName?: StringFieldUpdateOperationsInput | string
     signatureImagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    signedPdfPath?: NullableStringFieldUpdateOperationsInput | string | null
     consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
@@ -59319,6 +59359,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     signerName?: StringFieldUpdateOperationsInput | string
     signatureImagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    signedPdfPath?: NullableStringFieldUpdateOperationsInput | string | null
     consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null
@@ -59331,6 +59372,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     signerName?: StringFieldUpdateOperationsInput | string
     signatureImagePath?: NullableStringFieldUpdateOperationsInput | string | null
+    signedPdfPath?: NullableStringFieldUpdateOperationsInput | string | null
     consentedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
     userAgent?: NullableStringFieldUpdateOperationsInput | string | null

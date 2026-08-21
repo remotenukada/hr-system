@@ -3,7 +3,7 @@ import { notFound, redirect } from "next/navigation";
 
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
-import { createEmploymentContractConsent } from "@/app/actions/employment-contract-consent";
+import ConsentForm from "@/components/employee-contracts/consent-form";
 
 type Props = {
   params: Promise<{
@@ -51,6 +51,9 @@ export default async function MyEmploymentContractDetailPage(
   const consented =
     contract.employmentContractConsents.length > 0;
 
+  const latestConsent =
+    contract.employmentContractConsents[0];
+
   return (
     <main className="mx-auto max-w-4xl p-6">
       <div className="mb-6">
@@ -94,19 +97,31 @@ export default async function MyEmploymentContractDetailPage(
           </a>
 
           {consented ? (
-            <span className="rounded bg-green-100 px-3 py-1.5 text-sm font-medium text-green-800">
-              同意済み
-            </span>
+            <div className="flex items-center gap-3">
+              <span className="rounded bg-green-100 px-3 py-1.5 text-sm font-medium text-green-800">
+                {latestConsent?.consentMethod === "PAPER"
+                  ? "紙同意済"
+                  : "電子同意済"}
+              </span>
+
+              {latestConsent?.signedPdfPath ? (
+                <a
+                  href={`/api/employment-contracts/${contract.id}/paper-consent`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 underline hover:text-blue-500"
+                >
+                  署名済PDFを見る
+                </a>
+              ) : null}
+            </div>
           ) : (
-            <form action={createEmploymentContractConsent}>
-              <input type="hidden" name="employmentContractId" value={contract.id} />
-              <button
-                type="submit"
-                className="rounded bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-500"
-              >
-                内容に同意する
-              </button>
-            </form>
+            <div className="w-full max-w-xl">
+              <ConsentForm
+                employmentContractId={contract.id}
+                defaultSignerName={`${employee.lastName} ${employee.firstName}`}
+              />
+            </div>
           )}
         </div>
       </div>

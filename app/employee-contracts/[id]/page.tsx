@@ -355,7 +355,7 @@ export default async function EmploymentContractDetailPage(
                 紙契約として登録
               </h3>
 
-              <form action={createPaperConsent}>
+              <form action={createPaperConsent} encType="multipart/form-data">
                 <input
                   type="hidden"
                   name="employmentContractId"
@@ -369,6 +369,18 @@ export default async function EmploymentContractDetailPage(
                 <input
                   name="signerName"
                   defaultValue={`${contract.employee.lastName} ${contract.employee.firstName}`}
+                  required
+                  className="mb-3 w-full rounded border p-2"
+                />
+
+                <label className="mb-1 block text-sm">
+                  署名済PDF
+                </label>
+
+                <input
+                  type="file"
+                  name="signedPdf"
+                  accept="application/pdf"
                   required
                   className="mb-3 w-full rounded border p-2"
                 />
@@ -405,6 +417,14 @@ export default async function EmploymentContractDetailPage(
                   </th>
                   <th className="border p-2 text-left">
                     署名
+                  </th>
+
+                  <th className="border p-2 text-left">
+                    署名済PDF
+                  </th>
+
+                  <th className="border p-2 text-left">
+                    署名済PDF
                   </th>
                 </tr>
               </thead>

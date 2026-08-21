@@ -644,6 +644,7 @@ model EmploymentContractConsent {
 
   signerName String
   signatureImagePath String?
+  signedPdfPath String?
 
   consentedAt DateTime @default(now())
 

@@ -101,17 +101,23 @@ export default async function MyEmploymentContractsPage() {
               
 
               <td className="border p-2">
+                {item.employmentContractConsents?.length > 0
+                  ? "同意済"
+                  : "未同意"}
+              </td>
+
+              <td className="border p-2">
                 {item.employmentContractConsents?.length > 0 ? (
                   <span className="text-green-600 font-medium">
-                    同意済
+                    完了
                   </span>
                 ) : (
-                  <a
-                    href={`/employee-contracts/${item.id}`}
+                  <Link
+                    href={`/mypage/employment-contracts/${item.id}`}
                     className="rounded bg-blue-600 px-3 py-1 text-xs text-white hover:bg-blue-500"
                   >
                     電子同意
-                  </a>
+                  </Link>
                 )}
               </td>
             </tr>

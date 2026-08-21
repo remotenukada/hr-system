@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { prisma } from "@/lib/prisma";
+import { requireHRManager } from "@/lib/auth-guard";
 import { updateEmploymentContract } from "@/app/actions/employment-contract";
 import { DirtySubmitButton } from "@/components/DirtySubmitButton";
 
@@ -22,6 +23,10 @@ function dateInputValue(date: Date | null) {
 export default async function EditEmploymentContractPage(
   { params }: Props,
 ) {
+  await requireHRManager();
+
+  await requireHRManager();
+
   const { id } = await params;
 
   const contract =
