@@ -922,31 +922,6 @@ const myEmployee =
               color="red"
               href="/leave-compliance"
             />
-
-            <StatCard
-              title="採用予定者数"
-              value={preHireEmployees}
-              description="入社前の職員"
-              color="blue"
-            />
-            <StatCard
-              title="職種数"
-              value={totalJobTitles}
-              description="登録済み職種マスタ"
-              color="purple"
-            />
-            <StatCard
-              title="役職数"
-              value={totalPositions}
-              description="登録済み役職マスタ"
-              color="purple"
-            />
-            <StatCard
-              title="雇用条件書数"
-              value={totalEmploymentContracts}
-              description="登録済み雇用条件書"
-              color="green"
-            />
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
