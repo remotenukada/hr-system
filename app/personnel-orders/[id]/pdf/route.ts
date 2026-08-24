@@ -51,6 +51,12 @@ export async function GET(
     });
   }
 
+  if (history.action === "RETIRED") {
+    return new Response("Retirement orders do not generate PDFs", {
+      status: 404,
+    });
+  }
+
   if (!fs.existsSync(FONT_PATH)) {
     return new Response("Japanese font not found", {
       status: 500,
@@ -138,7 +144,7 @@ export async function GET(
     font,
   });
 
-  page.drawText(`代表 ${representative}`, {
+  page.drawText(representative, {
     x: 330,
     y: 120,
     size: 11,

@@ -1463,6 +1463,13 @@ const myEmployee =
               >
                 人事発令管理
               </Link>
+
+              <Link
+                href="/retirement-management"
+                className="rounded border border-red-300 bg-red-50 px-4 py-2 text-sm font-medium text-red-700 hover:bg-red-100"
+              >
+                退職予定者管理
+              </Link>
               <Link
                 href="/masters"
                 className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
