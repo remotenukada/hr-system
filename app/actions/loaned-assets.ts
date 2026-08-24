@@ -40,6 +40,28 @@ export async function saveLoanedAssets(
     });
   }
 
+  const remaining = await prisma.loanedAsset.count({
+    where: {
+      employeeId,
+      returned: false,
+    },
+  });
+
+  if (remaining === 0) {
+    await prisma.retirementChecklist.upsert({
+      where: {
+        employeeId,
+      },
+      create: {
+        employeeId,
+        memo: "貸与物返却完了",
+      },
+      update: {
+        memo: "貸与物返却完了",
+      },
+    });
+  }
+
   revalidatePath(
     `/retirement-management/${employeeId}/assets`,
   );
