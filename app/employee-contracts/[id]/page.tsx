@@ -351,7 +351,7 @@ export default async function EmploymentContractDetailPage(
                 紙契約として登録
               </h3>
 
-              <form action={createPaperConsent} encType="multipart/form-data">
+              <form action={createPaperConsent}>
                 <input
                   type="hidden"
                   name="employmentContractId"
