@@ -1,4 +1,5 @@
 import BackLink from "@/components/BackLink";
+import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 
 
@@ -85,7 +86,12 @@ export default async function PersonnelOrdersPage() {
                 </td>
 
                 <td className="border p-2">
-                  {history.reason || "-"}
+                  <Link
+                    href={`/personnel-orders/${history.id}`}
+                    className="text-blue-600 hover:underline"
+                  >
+                    {history.reason || "-"}
+                  </Link>
                 </td>
               </tr>
             ))}
