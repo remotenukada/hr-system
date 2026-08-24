@@ -585,8 +585,7 @@ export default async function EmployeeDetailPage({ params }: Props) {
             PDF出力
           </a>
 
-
-        <section className="rounded-lg border bg-gray-50 p-5">
+          <section className="rounded-lg border bg-gray-50 p-5">
           <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
             保有資格
           </h2>
@@ -611,7 +610,7 @@ export default async function EmployeeDetailPage({ params }: Props) {
           <div className="mt-4">
             <Link
               href={`/employees/${employee.id}/certifications`}
-              className="inline-block text-sm text-blue-600 hover:underline"
+              className="text-sm text-blue-600 hover:underline"
             >
               資格管理へ →
             </Link>
