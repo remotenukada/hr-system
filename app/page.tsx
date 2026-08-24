@@ -180,6 +180,15 @@ export default async function DashboardPage() {
     user.role === "HR_MANAGER" ||
     user.role === "MANAGER";
 
+  const contractTodayStart = new Date();
+  contractTodayStart.setHours(0, 0, 0, 0);
+
+  const contractEnd30DaysLater = new Date(contractTodayStart);
+  contractEnd30DaysLater.setDate(
+    contractEnd30DaysLater.getDate() + 30,
+  );
+  contractEnd30DaysLater.setHours(23, 59, 59, 999);
+
   const [
     totalEmployees,
     activeEmployees,
@@ -205,6 +214,8 @@ export default async function DashboardPage() {
     totalJobTitles,
     totalPositions,
     totalEmploymentContracts,
+    employeesWithoutContract,
+    contractsEndingSoon,
   ] = await Promise.all([
     prisma.employee.count(),
     prisma.employee.count({
@@ -317,6 +328,27 @@ export default async function DashboardPage() {
     prisma.positionMaster.count(),
 
     prisma.employmentContract.count(),
+
+    prisma.employee.count({
+      where: {
+        status: {
+          not: "RETIRED",
+        },
+        employmentContracts: {
+          none: {},
+        },
+      },
+    }),
+
+    prisma.employmentContract.count({
+      where: {
+        isCurrent: true,
+        endDate: {
+          gte: contractTodayStart,
+          lte: contractEnd30DaysLater,
+        },
+      },
+    }),
 
   ]);
 
