@@ -25,6 +25,16 @@ export default async function LoanedAssetsPage({
     orderBy: { createdAt: "asc" },
   });
 
+  const returnedCount =
+    assets.filter((asset) => asset.returned).length;
+
+  const returnRate =
+    assets.length === 0
+      ? 0
+      : Math.round(
+          (returnedCount / assets.length) * 100,
+        );
+
   if (assets.length === 0) {
     await prisma.loanedAsset.createMany({
       data: DEFAULT_ASSETS.map((assetName) => ({
@@ -49,6 +59,20 @@ export default async function LoanedAssetsPage({
       <h1 className="mb-6 text-2xl font-bold">
         貸与物返却管理
       </h1>
+
+      <div className="mb-6 rounded-lg border bg-blue-50 p-4">
+        <div className="text-sm text-gray-600">
+          貸与物返却率
+        </div>
+
+        <div className="mt-1 text-2xl font-bold">
+          {returnedCount} / {assets.length}
+        </div>
+
+        <div className="text-blue-700">
+          {returnRate}%
+        </div>
+      </div>
 
       <form action={saveLoanedAssets}>
         <input
