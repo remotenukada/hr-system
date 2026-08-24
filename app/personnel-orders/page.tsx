@@ -1,6 +1,34 @@
 import BackLink from "@/components/BackLink";
 import { prisma } from "@/lib/prisma";
 
+
+function getActionColor(action: string) {
+  const colors: Record<string, string> = {
+    HIRED: "bg-green-100 text-green-700",
+    TRANSFER: "bg-blue-100 text-blue-700",
+    POSITION_CHANGE: "bg-purple-100 text-purple-700",
+    LEAVE_STARTED: "bg-yellow-100 text-yellow-700",
+    RETURNED: "bg-green-100 text-green-700",
+    RETIRED: "bg-red-100 text-red-700",
+  };
+
+  return colors[action] ?? "bg-gray-100 text-gray-700";
+}
+
+function getActionLabel(action: string) {
+  const labels: Record<string, string> = {
+    HIRED: "採用",
+    TRANSFER: "異動",
+    POSITION_CHANGE: "役職変更",
+    LEAVE_STARTED: "休職",
+    RETURNED: "復職",
+    RETIRED: "退職",
+  };
+
+  return labels[action] ?? action;
+}
+
+
 export default async function PersonnelOrdersPage() {
   const histories = await prisma.employmentHistory.findMany({
     include: {
@@ -49,7 +77,11 @@ export default async function PersonnelOrdersPage() {
                 </td>
 
                 <td className="border p-2">
-                  {history.action}
+                  <span
+                    className={`rounded-full px-2 py-1 text-xs font-medium ${getActionColor(history.action)}`}
+                  >
+                    {getActionLabel(history.action)}
+                  </span>
                 </td>
 
                 <td className="border p-2">

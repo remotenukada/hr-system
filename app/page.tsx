@@ -180,6 +180,20 @@ export default async function DashboardPage() {
     user.role === "HR_MANAGER" ||
     user.role === "MANAGER";
 
+  const currentMonthStart = new Date();
+  currentMonthStart.setDate(1);
+  currentMonthStart.setHours(0, 0, 0, 0);
+
+  const currentMonthEnd = new Date(
+    currentMonthStart.getFullYear(),
+    currentMonthStart.getMonth() + 1,
+    0,
+    23,
+    59,
+    59,
+    999,
+  );
+
   const contractTodayStart = new Date();
   contractTodayStart.setHours(0, 0, 0, 0);
 
@@ -216,6 +230,10 @@ export default async function DashboardPage() {
     totalEmploymentContracts,
     employeesWithoutContract,
     contractsEndingSoon,
+    monthlyTransfers,
+    monthlyPositionChanges,
+    monthlyLeaves,
+    monthlyRetirements,
   ] = await Promise.all([
     prisma.employee.count(),
     prisma.employee.count({
@@ -346,6 +364,46 @@ export default async function DashboardPage() {
         endDate: {
           gte: contractTodayStart,
           lte: contractEnd30DaysLater,
+        },
+      },
+    }),
+
+    prisma.employmentHistory.count({
+      where: {
+        action: "TRANSFER",
+        effectiveDate: {
+          gte: currentMonthStart,
+          lte: currentMonthEnd,
+        },
+      },
+    }),
+
+    prisma.employmentHistory.count({
+      where: {
+        action: "POSITION_CHANGE",
+        effectiveDate: {
+          gte: currentMonthStart,
+          lte: currentMonthEnd,
+        },
+      },
+    }),
+
+    prisma.employmentHistory.count({
+      where: {
+        action: "LEAVE_STARTED",
+        effectiveDate: {
+          gte: currentMonthStart,
+          lte: currentMonthEnd,
+        },
+      },
+    }),
+
+    prisma.employmentHistory.count({
+      where: {
+        action: "RETIRED",
+        effectiveDate: {
+          gte: currentMonthStart,
+          lte: currentMonthEnd,
         },
       },
     }),
@@ -953,6 +1011,34 @@ const myEmployee =
               description="期限30日以内の未達者"
               color="red"
               href="/leave-compliance"
+            />
+
+            <StatCard
+              title="今月の異動"
+              value={monthlyTransfers}
+              description="今月の部署異動"
+              color="blue"
+            />
+
+            <StatCard
+              title="今月の役職変更"
+              value={monthlyPositionChanges}
+              description="今月の昇進・昇格"
+              color="purple"
+            />
+
+            <StatCard
+              title="今月の休職"
+              value={monthlyLeaves}
+              description="休職開始"
+              color="yellow"
+            />
+
+            <StatCard
+              title="今月の退職"
+              value={monthlyRetirements}
+              description="退職処理"
+              color="red"
             />
 
             <StatCard
