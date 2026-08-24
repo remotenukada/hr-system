@@ -84,6 +84,32 @@ export default async function LoanedAssetsPage({
             ))}
           </div>
 
+          <div className="mt-6">
+            <label className="mb-2 block text-sm font-medium">
+              返却確認者
+            </label>
+
+            <input
+              type="text"
+              name="returnedBy"
+              className="w-full rounded border p-2"
+              placeholder="総務部 山田太郎"
+            />
+          </div>
+
+          <div className="mt-4">
+            <label className="mb-2 block text-sm font-medium">
+              備考
+            </label>
+
+            <textarea
+              name="memo"
+              rows={4}
+              className="w-full rounded border p-2"
+              placeholder="備考を入力"
+            />
+          </div>
+
           <button
             type="submit"
             className="mt-6 rounded bg-blue-600 px-5 py-2 text-white hover:bg-blue-700"

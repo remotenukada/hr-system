@@ -3,15 +3,6 @@
 import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 
-const DEFAULT_ASSETS = [
-  "ノートPC",
-  "社用スマホ",
-  "ICカード",
-  "ロッカー鍵",
-  "制服",
-  "名札",
-];
-
 export async function saveLoanedAssets(
   formData: FormData,
 ) {
@@ -19,20 +10,35 @@ export async function saveLoanedAssets(
     formData.get("employeeId") ?? "",
   );
 
-  await prisma.loanedAsset.deleteMany({
-    where: { employeeId },
+  const returnedBy = String(
+    formData.get("returnedBy") ?? "",
+  );
+
+  const memo = String(
+    formData.get("memo") ?? "",
+  );
+
+  const assets = await prisma.loanedAsset.findMany({
+    where: {
+      employeeId,
+    },
   });
 
-  await prisma.loanedAsset.createMany({
-    data: DEFAULT_ASSETS.map((assetName) => ({
-      employeeId,
-      assetName,
-      returned: formData.has(assetName),
-      returnedAt: formData.has(assetName)
-        ? new Date()
-        : null,
-    })),
-  });
+  for (const asset of assets) {
+    const returned = formData.has(asset.id);
+
+    await prisma.loanedAsset.update({
+      where: {
+        id: asset.id,
+      },
+      data: {
+        returned,
+        returnedAt: returned ? new Date() : null,
+        returnedBy: returned ? returnedBy : null,
+        memo: memo || null,
+      },
+    });
+  }
 
   revalidatePath(
     `/retirement-management/${employeeId}/assets`,
