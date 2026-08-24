@@ -599,6 +599,18 @@ exports.Prisma.RetirementChecklistScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.LoanedAssetScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  assetName: 'assetName',
+  returned: 'returned',
+  returnedAt: 'returnedAt',
+  returnedBy: 'returnedBy',
+  memo: 'memo',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -747,7 +759,8 @@ exports.Prisma.ModelName = {
   ContractTypeMaster: 'ContractTypeMaster',
   JobTitleMaster: 'JobTitleMaster',
   PositionMaster: 'PositionMaster',
-  RetirementChecklist: 'RetirementChecklist'
+  RetirementChecklist: 'RetirementChecklist',
+  LoanedAsset: 'LoanedAsset'
 };
 
 /**

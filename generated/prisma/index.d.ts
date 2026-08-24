@@ -188,6 +188,11 @@ export type PositionMaster = $Result.DefaultSelection<Prisma.$PositionMasterPayl
  * 
  */
 export type RetirementChecklist = $Result.DefaultSelection<Prisma.$RetirementChecklistPayload>
+/**
+ * Model LoanedAsset
+ * 
+ */
+export type LoanedAsset = $Result.DefaultSelection<Prisma.$LoanedAssetPayload>
 
 /**
  * Enums
@@ -843,6 +848,16 @@ export class PrismaClient<
     * ```
     */
   get retirementChecklist(): Prisma.RetirementChecklistDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.loanedAsset`: Exposes CRUD operations for the **LoanedAsset** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LoanedAssets
+    * const loanedAssets = await prisma.loanedAsset.findMany()
+    * ```
+    */
+  get loanedAsset(): Prisma.LoanedAssetDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1311,7 +1326,8 @@ export namespace Prisma {
     ContractTypeMaster: 'ContractTypeMaster',
     JobTitleMaster: 'JobTitleMaster',
     PositionMaster: 'PositionMaster',
-    RetirementChecklist: 'RetirementChecklist'
+    RetirementChecklist: 'RetirementChecklist',
+    LoanedAsset: 'LoanedAsset'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1327,7 +1343,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "userInvitation" | "department" | "employee" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster" | "contractTypeMaster" | "jobTitleMaster" | "positionMaster" | "retirementChecklist"
+      modelProps: "user" | "userInvitation" | "department" | "employee" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster" | "contractTypeMaster" | "jobTitleMaster" | "positionMaster" | "retirementChecklist" | "loanedAsset"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3921,6 +3937,80 @@ export namespace Prisma {
           }
         }
       }
+      LoanedAsset: {
+        payload: Prisma.$LoanedAssetPayload<ExtArgs>
+        fields: Prisma.LoanedAssetFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LoanedAssetFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LoanedAssetPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LoanedAssetFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LoanedAssetPayload>
+          }
+          findFirst: {
+            args: Prisma.LoanedAssetFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LoanedAssetPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LoanedAssetFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LoanedAssetPayload>
+          }
+          findMany: {
+            args: Prisma.LoanedAssetFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LoanedAssetPayload>[]
+          }
+          create: {
+            args: Prisma.LoanedAssetCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LoanedAssetPayload>
+          }
+          createMany: {
+            args: Prisma.LoanedAssetCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LoanedAssetCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LoanedAssetPayload>[]
+          }
+          delete: {
+            args: Prisma.LoanedAssetDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LoanedAssetPayload>
+          }
+          update: {
+            args: Prisma.LoanedAssetUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LoanedAssetPayload>
+          }
+          deleteMany: {
+            args: Prisma.LoanedAssetDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LoanedAssetUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LoanedAssetUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LoanedAssetPayload>[]
+          }
+          upsert: {
+            args: Prisma.LoanedAssetUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LoanedAssetPayload>
+          }
+          aggregate: {
+            args: Prisma.LoanedAssetAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLoanedAsset>
+          }
+          groupBy: {
+            args: Prisma.LoanedAssetGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LoanedAssetGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LoanedAssetCountArgs<ExtArgs>
+            result: $Utils.Optional<LoanedAssetCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -4064,6 +4154,7 @@ export namespace Prisma {
     jobTitleMaster?: JobTitleMasterOmit
     positionMaster?: PositionMasterOmit
     retirementChecklist?: RetirementChecklistOmit
+    loanedAsset?: LoanedAssetOmit
   }
 
   /* Types for Logging */
@@ -4246,6 +4337,7 @@ export namespace Prisma {
     dependents: number
     dependentRequests: number
     employmentContracts: number
+    loanedAssets: number
   }
 
   export type EmployeeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4258,6 +4350,7 @@ export namespace Prisma {
     dependents?: boolean | EmployeeCountOutputTypeCountDependentsArgs
     dependentRequests?: boolean | EmployeeCountOutputTypeCountDependentRequestsArgs
     employmentContracts?: boolean | EmployeeCountOutputTypeCountEmploymentContractsArgs
+    loanedAssets?: boolean | EmployeeCountOutputTypeCountLoanedAssetsArgs
   }
 
   // Custom InputTypes
@@ -4332,6 +4425,13 @@ export namespace Prisma {
    */
   export type EmployeeCountOutputTypeCountEmploymentContractsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: EmploymentContractWhereInput
+  }
+
+  /**
+   * EmployeeCountOutputType without action
+   */
+  export type EmployeeCountOutputTypeCountLoanedAssetsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LoanedAssetWhereInput
   }
 
 
@@ -8266,6 +8366,7 @@ export namespace Prisma {
     dependentRequests?: boolean | Employee$dependentRequestsArgs<ExtArgs>
     employmentContracts?: boolean | Employee$employmentContractsArgs<ExtArgs>
     retirementChecklist?: boolean | Employee$retirementChecklistArgs<ExtArgs>
+    loanedAssets?: boolean | Employee$loanedAssetsArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["employee"]>
 
@@ -8375,6 +8476,7 @@ export namespace Prisma {
     dependentRequests?: boolean | Employee$dependentRequestsArgs<ExtArgs>
     employmentContracts?: boolean | Employee$employmentContractsArgs<ExtArgs>
     retirementChecklist?: boolean | Employee$retirementChecklistArgs<ExtArgs>
+    loanedAssets?: boolean | Employee$loanedAssetsArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EmployeeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8405,6 +8507,7 @@ export namespace Prisma {
       dependentRequests: Prisma.$DependentRequestPayload<ExtArgs>[]
       employmentContracts: Prisma.$EmploymentContractPayload<ExtArgs>[]
       retirementChecklist: Prisma.$RetirementChecklistPayload<ExtArgs> | null
+      loanedAssets: Prisma.$LoanedAssetPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8842,6 +8945,7 @@ export namespace Prisma {
     dependentRequests<T extends Employee$dependentRequestsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$dependentRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DependentRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     employmentContracts<T extends Employee$employmentContractsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$employmentContractsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentContractPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     retirementChecklist<T extends Employee$retirementChecklistArgs<ExtArgs> = {}>(args?: Subset<T, Employee$retirementChecklistArgs<ExtArgs>>): Prisma__RetirementChecklistClient<$Result.GetResult<Prisma.$RetirementChecklistPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    loanedAssets<T extends Employee$loanedAssetsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$loanedAssetsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LoanedAssetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9643,6 +9747,30 @@ export namespace Prisma {
      */
     include?: RetirementChecklistInclude<ExtArgs> | null
     where?: RetirementChecklistWhereInput
+  }
+
+  /**
+   * Employee.loanedAssets
+   */
+  export type Employee$loanedAssetsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LoanedAsset
+     */
+    select?: LoanedAssetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LoanedAsset
+     */
+    omit?: LoanedAssetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LoanedAssetInclude<ExtArgs> | null
+    where?: LoanedAssetWhereInput
+    orderBy?: LoanedAssetOrderByWithRelationInput | LoanedAssetOrderByWithRelationInput[]
+    cursor?: LoanedAssetWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LoanedAssetScalarFieldEnum | LoanedAssetScalarFieldEnum[]
   }
 
   /**
@@ -45342,6 +45470,1121 @@ export namespace Prisma {
 
 
   /**
+   * Model LoanedAsset
+   */
+
+  export type AggregateLoanedAsset = {
+    _count: LoanedAssetCountAggregateOutputType | null
+    _min: LoanedAssetMinAggregateOutputType | null
+    _max: LoanedAssetMaxAggregateOutputType | null
+  }
+
+  export type LoanedAssetMinAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    assetName: string | null
+    returned: boolean | null
+    returnedAt: Date | null
+    returnedBy: string | null
+    memo: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type LoanedAssetMaxAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    assetName: string | null
+    returned: boolean | null
+    returnedAt: Date | null
+    returnedBy: string | null
+    memo: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type LoanedAssetCountAggregateOutputType = {
+    id: number
+    employeeId: number
+    assetName: number
+    returned: number
+    returnedAt: number
+    returnedBy: number
+    memo: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type LoanedAssetMinAggregateInputType = {
+    id?: true
+    employeeId?: true
+    assetName?: true
+    returned?: true
+    returnedAt?: true
+    returnedBy?: true
+    memo?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type LoanedAssetMaxAggregateInputType = {
+    id?: true
+    employeeId?: true
+    assetName?: true
+    returned?: true
+    returnedAt?: true
+    returnedBy?: true
+    memo?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type LoanedAssetCountAggregateInputType = {
+    id?: true
+    employeeId?: true
+    assetName?: true
+    returned?: true
+    returnedAt?: true
+    returnedBy?: true
+    memo?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type LoanedAssetAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LoanedAsset to aggregate.
+     */
+    where?: LoanedAssetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LoanedAssets to fetch.
+     */
+    orderBy?: LoanedAssetOrderByWithRelationInput | LoanedAssetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LoanedAssetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LoanedAssets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LoanedAssets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LoanedAssets
+    **/
+    _count?: true | LoanedAssetCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LoanedAssetMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LoanedAssetMaxAggregateInputType
+  }
+
+  export type GetLoanedAssetAggregateType<T extends LoanedAssetAggregateArgs> = {
+        [P in keyof T & keyof AggregateLoanedAsset]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLoanedAsset[P]>
+      : GetScalarType<T[P], AggregateLoanedAsset[P]>
+  }
+
+
+
+
+  export type LoanedAssetGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LoanedAssetWhereInput
+    orderBy?: LoanedAssetOrderByWithAggregationInput | LoanedAssetOrderByWithAggregationInput[]
+    by: LoanedAssetScalarFieldEnum[] | LoanedAssetScalarFieldEnum
+    having?: LoanedAssetScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LoanedAssetCountAggregateInputType | true
+    _min?: LoanedAssetMinAggregateInputType
+    _max?: LoanedAssetMaxAggregateInputType
+  }
+
+  export type LoanedAssetGroupByOutputType = {
+    id: string
+    employeeId: string
+    assetName: string
+    returned: boolean
+    returnedAt: Date | null
+    returnedBy: string | null
+    memo: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: LoanedAssetCountAggregateOutputType | null
+    _min: LoanedAssetMinAggregateOutputType | null
+    _max: LoanedAssetMaxAggregateOutputType | null
+  }
+
+  type GetLoanedAssetGroupByPayload<T extends LoanedAssetGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LoanedAssetGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LoanedAssetGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LoanedAssetGroupByOutputType[P]>
+            : GetScalarType<T[P], LoanedAssetGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LoanedAssetSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    assetName?: boolean
+    returned?: boolean
+    returnedAt?: boolean
+    returnedBy?: boolean
+    memo?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["loanedAsset"]>
+
+  export type LoanedAssetSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    assetName?: boolean
+    returned?: boolean
+    returnedAt?: boolean
+    returnedBy?: boolean
+    memo?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["loanedAsset"]>
+
+  export type LoanedAssetSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    assetName?: boolean
+    returned?: boolean
+    returnedAt?: boolean
+    returnedBy?: boolean
+    memo?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["loanedAsset"]>
+
+  export type LoanedAssetSelectScalar = {
+    id?: boolean
+    employeeId?: boolean
+    assetName?: boolean
+    returned?: boolean
+    returnedAt?: boolean
+    returnedBy?: boolean
+    memo?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type LoanedAssetOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "assetName" | "returned" | "returnedAt" | "returnedBy" | "memo" | "createdAt" | "updatedAt", ExtArgs["result"]["loanedAsset"]>
+  export type LoanedAssetInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+  export type LoanedAssetIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+  export type LoanedAssetIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+
+  export type $LoanedAssetPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LoanedAsset"
+    objects: {
+      employee: Prisma.$EmployeePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      employeeId: string
+      assetName: string
+      returned: boolean
+      returnedAt: Date | null
+      returnedBy: string | null
+      memo: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["loanedAsset"]>
+    composites: {}
+  }
+
+  type LoanedAssetGetPayload<S extends boolean | null | undefined | LoanedAssetDefaultArgs> = $Result.GetResult<Prisma.$LoanedAssetPayload, S>
+
+  type LoanedAssetCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LoanedAssetFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LoanedAssetCountAggregateInputType | true
+    }
+
+  export interface LoanedAssetDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LoanedAsset'], meta: { name: 'LoanedAsset' } }
+    /**
+     * Find zero or one LoanedAsset that matches the filter.
+     * @param {LoanedAssetFindUniqueArgs} args - Arguments to find a LoanedAsset
+     * @example
+     * // Get one LoanedAsset
+     * const loanedAsset = await prisma.loanedAsset.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LoanedAssetFindUniqueArgs>(args: SelectSubset<T, LoanedAssetFindUniqueArgs<ExtArgs>>): Prisma__LoanedAssetClient<$Result.GetResult<Prisma.$LoanedAssetPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LoanedAsset that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LoanedAssetFindUniqueOrThrowArgs} args - Arguments to find a LoanedAsset
+     * @example
+     * // Get one LoanedAsset
+     * const loanedAsset = await prisma.loanedAsset.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LoanedAssetFindUniqueOrThrowArgs>(args: SelectSubset<T, LoanedAssetFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LoanedAssetClient<$Result.GetResult<Prisma.$LoanedAssetPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LoanedAsset that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LoanedAssetFindFirstArgs} args - Arguments to find a LoanedAsset
+     * @example
+     * // Get one LoanedAsset
+     * const loanedAsset = await prisma.loanedAsset.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LoanedAssetFindFirstArgs>(args?: SelectSubset<T, LoanedAssetFindFirstArgs<ExtArgs>>): Prisma__LoanedAssetClient<$Result.GetResult<Prisma.$LoanedAssetPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LoanedAsset that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LoanedAssetFindFirstOrThrowArgs} args - Arguments to find a LoanedAsset
+     * @example
+     * // Get one LoanedAsset
+     * const loanedAsset = await prisma.loanedAsset.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LoanedAssetFindFirstOrThrowArgs>(args?: SelectSubset<T, LoanedAssetFindFirstOrThrowArgs<ExtArgs>>): Prisma__LoanedAssetClient<$Result.GetResult<Prisma.$LoanedAssetPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LoanedAssets that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LoanedAssetFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LoanedAssets
+     * const loanedAssets = await prisma.loanedAsset.findMany()
+     * 
+     * // Get first 10 LoanedAssets
+     * const loanedAssets = await prisma.loanedAsset.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const loanedAssetWithIdOnly = await prisma.loanedAsset.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends LoanedAssetFindManyArgs>(args?: SelectSubset<T, LoanedAssetFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LoanedAssetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LoanedAsset.
+     * @param {LoanedAssetCreateArgs} args - Arguments to create a LoanedAsset.
+     * @example
+     * // Create one LoanedAsset
+     * const LoanedAsset = await prisma.loanedAsset.create({
+     *   data: {
+     *     // ... data to create a LoanedAsset
+     *   }
+     * })
+     * 
+     */
+    create<T extends LoanedAssetCreateArgs>(args: SelectSubset<T, LoanedAssetCreateArgs<ExtArgs>>): Prisma__LoanedAssetClient<$Result.GetResult<Prisma.$LoanedAssetPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LoanedAssets.
+     * @param {LoanedAssetCreateManyArgs} args - Arguments to create many LoanedAssets.
+     * @example
+     * // Create many LoanedAssets
+     * const loanedAsset = await prisma.loanedAsset.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LoanedAssetCreateManyArgs>(args?: SelectSubset<T, LoanedAssetCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LoanedAssets and returns the data saved in the database.
+     * @param {LoanedAssetCreateManyAndReturnArgs} args - Arguments to create many LoanedAssets.
+     * @example
+     * // Create many LoanedAssets
+     * const loanedAsset = await prisma.loanedAsset.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LoanedAssets and only return the `id`
+     * const loanedAssetWithIdOnly = await prisma.loanedAsset.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LoanedAssetCreateManyAndReturnArgs>(args?: SelectSubset<T, LoanedAssetCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LoanedAssetPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LoanedAsset.
+     * @param {LoanedAssetDeleteArgs} args - Arguments to delete one LoanedAsset.
+     * @example
+     * // Delete one LoanedAsset
+     * const LoanedAsset = await prisma.loanedAsset.delete({
+     *   where: {
+     *     // ... filter to delete one LoanedAsset
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LoanedAssetDeleteArgs>(args: SelectSubset<T, LoanedAssetDeleteArgs<ExtArgs>>): Prisma__LoanedAssetClient<$Result.GetResult<Prisma.$LoanedAssetPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LoanedAsset.
+     * @param {LoanedAssetUpdateArgs} args - Arguments to update one LoanedAsset.
+     * @example
+     * // Update one LoanedAsset
+     * const loanedAsset = await prisma.loanedAsset.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LoanedAssetUpdateArgs>(args: SelectSubset<T, LoanedAssetUpdateArgs<ExtArgs>>): Prisma__LoanedAssetClient<$Result.GetResult<Prisma.$LoanedAssetPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LoanedAssets.
+     * @param {LoanedAssetDeleteManyArgs} args - Arguments to filter LoanedAssets to delete.
+     * @example
+     * // Delete a few LoanedAssets
+     * const { count } = await prisma.loanedAsset.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LoanedAssetDeleteManyArgs>(args?: SelectSubset<T, LoanedAssetDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LoanedAssets.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LoanedAssetUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LoanedAssets
+     * const loanedAsset = await prisma.loanedAsset.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LoanedAssetUpdateManyArgs>(args: SelectSubset<T, LoanedAssetUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LoanedAssets and returns the data updated in the database.
+     * @param {LoanedAssetUpdateManyAndReturnArgs} args - Arguments to update many LoanedAssets.
+     * @example
+     * // Update many LoanedAssets
+     * const loanedAsset = await prisma.loanedAsset.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LoanedAssets and only return the `id`
+     * const loanedAssetWithIdOnly = await prisma.loanedAsset.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LoanedAssetUpdateManyAndReturnArgs>(args: SelectSubset<T, LoanedAssetUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LoanedAssetPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LoanedAsset.
+     * @param {LoanedAssetUpsertArgs} args - Arguments to update or create a LoanedAsset.
+     * @example
+     * // Update or create a LoanedAsset
+     * const loanedAsset = await prisma.loanedAsset.upsert({
+     *   create: {
+     *     // ... data to create a LoanedAsset
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LoanedAsset we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LoanedAssetUpsertArgs>(args: SelectSubset<T, LoanedAssetUpsertArgs<ExtArgs>>): Prisma__LoanedAssetClient<$Result.GetResult<Prisma.$LoanedAssetPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LoanedAssets.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LoanedAssetCountArgs} args - Arguments to filter LoanedAssets to count.
+     * @example
+     * // Count the number of LoanedAssets
+     * const count = await prisma.loanedAsset.count({
+     *   where: {
+     *     // ... the filter for the LoanedAssets we want to count
+     *   }
+     * })
+    **/
+    count<T extends LoanedAssetCountArgs>(
+      args?: Subset<T, LoanedAssetCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LoanedAssetCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LoanedAsset.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LoanedAssetAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LoanedAssetAggregateArgs>(args: Subset<T, LoanedAssetAggregateArgs>): Prisma.PrismaPromise<GetLoanedAssetAggregateType<T>>
+
+    /**
+     * Group by LoanedAsset.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LoanedAssetGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LoanedAssetGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LoanedAssetGroupByArgs['orderBy'] }
+        : { orderBy?: LoanedAssetGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LoanedAssetGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLoanedAssetGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LoanedAsset model
+   */
+  readonly fields: LoanedAssetFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LoanedAsset.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LoanedAssetClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LoanedAsset model
+   */
+  interface LoanedAssetFieldRefs {
+    readonly id: FieldRef<"LoanedAsset", 'String'>
+    readonly employeeId: FieldRef<"LoanedAsset", 'String'>
+    readonly assetName: FieldRef<"LoanedAsset", 'String'>
+    readonly returned: FieldRef<"LoanedAsset", 'Boolean'>
+    readonly returnedAt: FieldRef<"LoanedAsset", 'DateTime'>
+    readonly returnedBy: FieldRef<"LoanedAsset", 'String'>
+    readonly memo: FieldRef<"LoanedAsset", 'String'>
+    readonly createdAt: FieldRef<"LoanedAsset", 'DateTime'>
+    readonly updatedAt: FieldRef<"LoanedAsset", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LoanedAsset findUnique
+   */
+  export type LoanedAssetFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LoanedAsset
+     */
+    select?: LoanedAssetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LoanedAsset
+     */
+    omit?: LoanedAssetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LoanedAssetInclude<ExtArgs> | null
+    /**
+     * Filter, which LoanedAsset to fetch.
+     */
+    where: LoanedAssetWhereUniqueInput
+  }
+
+  /**
+   * LoanedAsset findUniqueOrThrow
+   */
+  export type LoanedAssetFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LoanedAsset
+     */
+    select?: LoanedAssetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LoanedAsset
+     */
+    omit?: LoanedAssetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LoanedAssetInclude<ExtArgs> | null
+    /**
+     * Filter, which LoanedAsset to fetch.
+     */
+    where: LoanedAssetWhereUniqueInput
+  }
+
+  /**
+   * LoanedAsset findFirst
+   */
+  export type LoanedAssetFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LoanedAsset
+     */
+    select?: LoanedAssetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LoanedAsset
+     */
+    omit?: LoanedAssetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LoanedAssetInclude<ExtArgs> | null
+    /**
+     * Filter, which LoanedAsset to fetch.
+     */
+    where?: LoanedAssetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LoanedAssets to fetch.
+     */
+    orderBy?: LoanedAssetOrderByWithRelationInput | LoanedAssetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LoanedAssets.
+     */
+    cursor?: LoanedAssetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LoanedAssets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LoanedAssets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LoanedAssets.
+     */
+    distinct?: LoanedAssetScalarFieldEnum | LoanedAssetScalarFieldEnum[]
+  }
+
+  /**
+   * LoanedAsset findFirstOrThrow
+   */
+  export type LoanedAssetFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LoanedAsset
+     */
+    select?: LoanedAssetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LoanedAsset
+     */
+    omit?: LoanedAssetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LoanedAssetInclude<ExtArgs> | null
+    /**
+     * Filter, which LoanedAsset to fetch.
+     */
+    where?: LoanedAssetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LoanedAssets to fetch.
+     */
+    orderBy?: LoanedAssetOrderByWithRelationInput | LoanedAssetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LoanedAssets.
+     */
+    cursor?: LoanedAssetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LoanedAssets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LoanedAssets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LoanedAssets.
+     */
+    distinct?: LoanedAssetScalarFieldEnum | LoanedAssetScalarFieldEnum[]
+  }
+
+  /**
+   * LoanedAsset findMany
+   */
+  export type LoanedAssetFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LoanedAsset
+     */
+    select?: LoanedAssetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LoanedAsset
+     */
+    omit?: LoanedAssetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LoanedAssetInclude<ExtArgs> | null
+    /**
+     * Filter, which LoanedAssets to fetch.
+     */
+    where?: LoanedAssetWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LoanedAssets to fetch.
+     */
+    orderBy?: LoanedAssetOrderByWithRelationInput | LoanedAssetOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LoanedAssets.
+     */
+    cursor?: LoanedAssetWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LoanedAssets from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LoanedAssets.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LoanedAssets.
+     */
+    distinct?: LoanedAssetScalarFieldEnum | LoanedAssetScalarFieldEnum[]
+  }
+
+  /**
+   * LoanedAsset create
+   */
+  export type LoanedAssetCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LoanedAsset
+     */
+    select?: LoanedAssetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LoanedAsset
+     */
+    omit?: LoanedAssetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LoanedAssetInclude<ExtArgs> | null
+    /**
+     * The data needed to create a LoanedAsset.
+     */
+    data: XOR<LoanedAssetCreateInput, LoanedAssetUncheckedCreateInput>
+  }
+
+  /**
+   * LoanedAsset createMany
+   */
+  export type LoanedAssetCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LoanedAssets.
+     */
+    data: LoanedAssetCreateManyInput | LoanedAssetCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LoanedAsset createManyAndReturn
+   */
+  export type LoanedAssetCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LoanedAsset
+     */
+    select?: LoanedAssetSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LoanedAsset
+     */
+    omit?: LoanedAssetOmit<ExtArgs> | null
+    /**
+     * The data used to create many LoanedAssets.
+     */
+    data: LoanedAssetCreateManyInput | LoanedAssetCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LoanedAssetIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LoanedAsset update
+   */
+  export type LoanedAssetUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LoanedAsset
+     */
+    select?: LoanedAssetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LoanedAsset
+     */
+    omit?: LoanedAssetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LoanedAssetInclude<ExtArgs> | null
+    /**
+     * The data needed to update a LoanedAsset.
+     */
+    data: XOR<LoanedAssetUpdateInput, LoanedAssetUncheckedUpdateInput>
+    /**
+     * Choose, which LoanedAsset to update.
+     */
+    where: LoanedAssetWhereUniqueInput
+  }
+
+  /**
+   * LoanedAsset updateMany
+   */
+  export type LoanedAssetUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LoanedAssets.
+     */
+    data: XOR<LoanedAssetUpdateManyMutationInput, LoanedAssetUncheckedUpdateManyInput>
+    /**
+     * Filter which LoanedAssets to update
+     */
+    where?: LoanedAssetWhereInput
+    /**
+     * Limit how many LoanedAssets to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LoanedAsset updateManyAndReturn
+   */
+  export type LoanedAssetUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LoanedAsset
+     */
+    select?: LoanedAssetSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LoanedAsset
+     */
+    omit?: LoanedAssetOmit<ExtArgs> | null
+    /**
+     * The data used to update LoanedAssets.
+     */
+    data: XOR<LoanedAssetUpdateManyMutationInput, LoanedAssetUncheckedUpdateManyInput>
+    /**
+     * Filter which LoanedAssets to update
+     */
+    where?: LoanedAssetWhereInput
+    /**
+     * Limit how many LoanedAssets to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LoanedAssetIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LoanedAsset upsert
+   */
+  export type LoanedAssetUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LoanedAsset
+     */
+    select?: LoanedAssetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LoanedAsset
+     */
+    omit?: LoanedAssetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LoanedAssetInclude<ExtArgs> | null
+    /**
+     * The filter to search for the LoanedAsset to update in case it exists.
+     */
+    where: LoanedAssetWhereUniqueInput
+    /**
+     * In case the LoanedAsset found by the `where` argument doesn't exist, create a new LoanedAsset with this data.
+     */
+    create: XOR<LoanedAssetCreateInput, LoanedAssetUncheckedCreateInput>
+    /**
+     * In case the LoanedAsset was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LoanedAssetUpdateInput, LoanedAssetUncheckedUpdateInput>
+  }
+
+  /**
+   * LoanedAsset delete
+   */
+  export type LoanedAssetDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LoanedAsset
+     */
+    select?: LoanedAssetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LoanedAsset
+     */
+    omit?: LoanedAssetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LoanedAssetInclude<ExtArgs> | null
+    /**
+     * Filter which LoanedAsset to delete.
+     */
+    where: LoanedAssetWhereUniqueInput
+  }
+
+  /**
+   * LoanedAsset deleteMany
+   */
+  export type LoanedAssetDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LoanedAssets to delete
+     */
+    where?: LoanedAssetWhereInput
+    /**
+     * Limit how many LoanedAssets to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LoanedAsset without action
+   */
+  export type LoanedAssetDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LoanedAsset
+     */
+    select?: LoanedAssetSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LoanedAsset
+     */
+    omit?: LoanedAssetOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LoanedAssetInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -45939,6 +47182,21 @@ export namespace Prisma {
   export type RetirementChecklistScalarFieldEnum = (typeof RetirementChecklistScalarFieldEnum)[keyof typeof RetirementChecklistScalarFieldEnum]
 
 
+  export const LoanedAssetScalarFieldEnum: {
+    id: 'id',
+    employeeId: 'employeeId',
+    assetName: 'assetName',
+    returned: 'returned',
+    returnedAt: 'returnedAt',
+    returnedBy: 'returnedBy',
+    memo: 'memo',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type LoanedAssetScalarFieldEnum = (typeof LoanedAssetScalarFieldEnum)[keyof typeof LoanedAssetScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -46500,6 +47758,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestListRelationFilter
     employmentContracts?: EmploymentContractListRelationFilter
     retirementChecklist?: XOR<RetirementChecklistNullableScalarRelationFilter, RetirementChecklistWhereInput> | null
+    loanedAssets?: LoanedAssetListRelationFilter
   }
 
   export type EmployeeOrderByWithRelationInput = {
@@ -46544,6 +47803,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestOrderByRelationAggregateInput
     employmentContracts?: EmploymentContractOrderByRelationAggregateInput
     retirementChecklist?: RetirementChecklistOrderByWithRelationInput
+    loanedAssets?: LoanedAssetOrderByRelationAggregateInput
   }
 
   export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
@@ -46591,6 +47851,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestListRelationFilter
     employmentContracts?: EmploymentContractListRelationFilter
     retirementChecklist?: XOR<RetirementChecklistNullableScalarRelationFilter, RetirementChecklistWhereInput> | null
+    loanedAssets?: LoanedAssetListRelationFilter
   }, "id" | "employeeNo" | "email" | "userId">
 
   export type EmployeeOrderByWithAggregationInput = {
@@ -49265,6 +50526,81 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"RetirementChecklist"> | Date | string
   }
 
+  export type LoanedAssetWhereInput = {
+    AND?: LoanedAssetWhereInput | LoanedAssetWhereInput[]
+    OR?: LoanedAssetWhereInput[]
+    NOT?: LoanedAssetWhereInput | LoanedAssetWhereInput[]
+    id?: StringFilter<"LoanedAsset"> | string
+    employeeId?: StringFilter<"LoanedAsset"> | string
+    assetName?: StringFilter<"LoanedAsset"> | string
+    returned?: BoolFilter<"LoanedAsset"> | boolean
+    returnedAt?: DateTimeNullableFilter<"LoanedAsset"> | Date | string | null
+    returnedBy?: StringNullableFilter<"LoanedAsset"> | string | null
+    memo?: StringNullableFilter<"LoanedAsset"> | string | null
+    createdAt?: DateTimeFilter<"LoanedAsset"> | Date | string
+    updatedAt?: DateTimeFilter<"LoanedAsset"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+  }
+
+  export type LoanedAssetOrderByWithRelationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    assetName?: SortOrder
+    returned?: SortOrder
+    returnedAt?: SortOrderInput | SortOrder
+    returnedBy?: SortOrderInput | SortOrder
+    memo?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    employee?: EmployeeOrderByWithRelationInput
+  }
+
+  export type LoanedAssetWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: LoanedAssetWhereInput | LoanedAssetWhereInput[]
+    OR?: LoanedAssetWhereInput[]
+    NOT?: LoanedAssetWhereInput | LoanedAssetWhereInput[]
+    employeeId?: StringFilter<"LoanedAsset"> | string
+    assetName?: StringFilter<"LoanedAsset"> | string
+    returned?: BoolFilter<"LoanedAsset"> | boolean
+    returnedAt?: DateTimeNullableFilter<"LoanedAsset"> | Date | string | null
+    returnedBy?: StringNullableFilter<"LoanedAsset"> | string | null
+    memo?: StringNullableFilter<"LoanedAsset"> | string | null
+    createdAt?: DateTimeFilter<"LoanedAsset"> | Date | string
+    updatedAt?: DateTimeFilter<"LoanedAsset"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+  }, "id">
+
+  export type LoanedAssetOrderByWithAggregationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    assetName?: SortOrder
+    returned?: SortOrder
+    returnedAt?: SortOrderInput | SortOrder
+    returnedBy?: SortOrderInput | SortOrder
+    memo?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: LoanedAssetCountOrderByAggregateInput
+    _max?: LoanedAssetMaxOrderByAggregateInput
+    _min?: LoanedAssetMinOrderByAggregateInput
+  }
+
+  export type LoanedAssetScalarWhereWithAggregatesInput = {
+    AND?: LoanedAssetScalarWhereWithAggregatesInput | LoanedAssetScalarWhereWithAggregatesInput[]
+    OR?: LoanedAssetScalarWhereWithAggregatesInput[]
+    NOT?: LoanedAssetScalarWhereWithAggregatesInput | LoanedAssetScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"LoanedAsset"> | string
+    employeeId?: StringWithAggregatesFilter<"LoanedAsset"> | string
+    assetName?: StringWithAggregatesFilter<"LoanedAsset"> | string
+    returned?: BoolWithAggregatesFilter<"LoanedAsset"> | boolean
+    returnedAt?: DateTimeNullableWithAggregatesFilter<"LoanedAsset"> | Date | string | null
+    returnedBy?: StringNullableWithAggregatesFilter<"LoanedAsset"> | string | null
+    memo?: StringNullableWithAggregatesFilter<"LoanedAsset"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"LoanedAsset"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"LoanedAsset"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     name: string
@@ -49545,6 +50881,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateInput = {
@@ -49587,6 +50924,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUpdateInput = {
@@ -49629,6 +50967,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateInput = {
@@ -49671,6 +51010,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateManyInput = {
@@ -52699,6 +54039,89 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type LoanedAssetCreateInput = {
+    id?: string
+    assetName: string
+    returned?: boolean
+    returnedAt?: Date | string | null
+    returnedBy?: string | null
+    memo?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutLoanedAssetsInput
+  }
+
+  export type LoanedAssetUncheckedCreateInput = {
+    id?: string
+    employeeId: string
+    assetName: string
+    returned?: boolean
+    returnedAt?: Date | string | null
+    returnedBy?: string | null
+    memo?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LoanedAssetUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    assetName?: StringFieldUpdateOperationsInput | string
+    returned?: BoolFieldUpdateOperationsInput | boolean
+    returnedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    returnedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    memo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutLoanedAssetsNestedInput
+  }
+
+  export type LoanedAssetUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    assetName?: StringFieldUpdateOperationsInput | string
+    returned?: BoolFieldUpdateOperationsInput | boolean
+    returnedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    returnedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    memo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LoanedAssetCreateManyInput = {
+    id?: string
+    employeeId: string
+    assetName: string
+    returned?: boolean
+    returnedAt?: Date | string | null
+    returnedBy?: string | null
+    memo?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LoanedAssetUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    assetName?: StringFieldUpdateOperationsInput | string
+    returned?: BoolFieldUpdateOperationsInput | boolean
+    returnedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    returnedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    memo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LoanedAssetUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    assetName?: StringFieldUpdateOperationsInput | string
+    returned?: BoolFieldUpdateOperationsInput | boolean
+    returnedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    returnedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    memo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -53085,6 +54508,12 @@ export namespace Prisma {
     isNot?: RetirementChecklistWhereInput | null
   }
 
+  export type LoanedAssetListRelationFilter = {
+    every?: LoanedAssetWhereInput
+    some?: LoanedAssetWhereInput
+    none?: LoanedAssetWhereInput
+  }
+
   export type EmployeeCertificationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -53114,6 +54543,10 @@ export namespace Prisma {
   }
 
   export type EmploymentContractOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type LoanedAssetOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -55084,6 +56517,42 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type LoanedAssetCountOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    assetName?: SortOrder
+    returned?: SortOrder
+    returnedAt?: SortOrder
+    returnedBy?: SortOrder
+    memo?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type LoanedAssetMaxOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    assetName?: SortOrder
+    returned?: SortOrder
+    returnedAt?: SortOrder
+    returnedBy?: SortOrder
+    memo?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type LoanedAssetMinOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    assetName?: SortOrder
+    returned?: SortOrder
+    returnedAt?: SortOrder
+    returnedBy?: SortOrder
+    memo?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type EmployeeCreateNestedOneWithoutUserInput = {
     create?: XOR<EmployeeCreateWithoutUserInput, EmployeeUncheckedCreateWithoutUserInput>
     connectOrCreate?: EmployeeCreateOrConnectWithoutUserInput
@@ -55371,6 +56840,13 @@ export namespace Prisma {
     connect?: RetirementChecklistWhereUniqueInput
   }
 
+  export type LoanedAssetCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<LoanedAssetCreateWithoutEmployeeInput, LoanedAssetUncheckedCreateWithoutEmployeeInput> | LoanedAssetCreateWithoutEmployeeInput[] | LoanedAssetUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: LoanedAssetCreateOrConnectWithoutEmployeeInput | LoanedAssetCreateOrConnectWithoutEmployeeInput[]
+    createMany?: LoanedAssetCreateManyEmployeeInputEnvelope
+    connect?: LoanedAssetWhereUniqueInput | LoanedAssetWhereUniqueInput[]
+  }
+
   export type EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput = {
     create?: XOR<EmployeeCertificationCreateWithoutEmployeeInput, EmployeeCertificationUncheckedCreateWithoutEmployeeInput> | EmployeeCertificationCreateWithoutEmployeeInput[] | EmployeeCertificationUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutEmployeeInput | EmployeeCertificationCreateOrConnectWithoutEmployeeInput[]
@@ -55462,6 +56938,13 @@ export namespace Prisma {
     create?: XOR<RetirementChecklistCreateWithoutEmployeeInput, RetirementChecklistUncheckedCreateWithoutEmployeeInput>
     connectOrCreate?: RetirementChecklistCreateOrConnectWithoutEmployeeInput
     connect?: RetirementChecklistWhereUniqueInput
+  }
+
+  export type LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<LoanedAssetCreateWithoutEmployeeInput, LoanedAssetUncheckedCreateWithoutEmployeeInput> | LoanedAssetCreateWithoutEmployeeInput[] | LoanedAssetUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: LoanedAssetCreateOrConnectWithoutEmployeeInput | LoanedAssetCreateOrConnectWithoutEmployeeInput[]
+    createMany?: LoanedAssetCreateManyEmployeeInputEnvelope
+    connect?: LoanedAssetWhereUniqueInput | LoanedAssetWhereUniqueInput[]
   }
 
   export type NullableEnumGenderFieldUpdateOperationsInput = {
@@ -55672,6 +57155,20 @@ export namespace Prisma {
     update?: XOR<XOR<RetirementChecklistUpdateToOneWithWhereWithoutEmployeeInput, RetirementChecklistUpdateWithoutEmployeeInput>, RetirementChecklistUncheckedUpdateWithoutEmployeeInput>
   }
 
+  export type LoanedAssetUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<LoanedAssetCreateWithoutEmployeeInput, LoanedAssetUncheckedCreateWithoutEmployeeInput> | LoanedAssetCreateWithoutEmployeeInput[] | LoanedAssetUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: LoanedAssetCreateOrConnectWithoutEmployeeInput | LoanedAssetCreateOrConnectWithoutEmployeeInput[]
+    upsert?: LoanedAssetUpsertWithWhereUniqueWithoutEmployeeInput | LoanedAssetUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: LoanedAssetCreateManyEmployeeInputEnvelope
+    set?: LoanedAssetWhereUniqueInput | LoanedAssetWhereUniqueInput[]
+    disconnect?: LoanedAssetWhereUniqueInput | LoanedAssetWhereUniqueInput[]
+    delete?: LoanedAssetWhereUniqueInput | LoanedAssetWhereUniqueInput[]
+    connect?: LoanedAssetWhereUniqueInput | LoanedAssetWhereUniqueInput[]
+    update?: LoanedAssetUpdateWithWhereUniqueWithoutEmployeeInput | LoanedAssetUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: LoanedAssetUpdateManyWithWhereWithoutEmployeeInput | LoanedAssetUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: LoanedAssetScalarWhereInput | LoanedAssetScalarWhereInput[]
+  }
+
   export type EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput = {
     create?: XOR<EmployeeCertificationCreateWithoutEmployeeInput, EmployeeCertificationUncheckedCreateWithoutEmployeeInput> | EmployeeCertificationCreateWithoutEmployeeInput[] | EmployeeCertificationUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutEmployeeInput | EmployeeCertificationCreateOrConnectWithoutEmployeeInput[]
@@ -55846,6 +57343,20 @@ export namespace Prisma {
     delete?: RetirementChecklistWhereInput | boolean
     connect?: RetirementChecklistWhereUniqueInput
     update?: XOR<XOR<RetirementChecklistUpdateToOneWithWhereWithoutEmployeeInput, RetirementChecklistUpdateWithoutEmployeeInput>, RetirementChecklistUncheckedUpdateWithoutEmployeeInput>
+  }
+
+  export type LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<LoanedAssetCreateWithoutEmployeeInput, LoanedAssetUncheckedCreateWithoutEmployeeInput> | LoanedAssetCreateWithoutEmployeeInput[] | LoanedAssetUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: LoanedAssetCreateOrConnectWithoutEmployeeInput | LoanedAssetCreateOrConnectWithoutEmployeeInput[]
+    upsert?: LoanedAssetUpsertWithWhereUniqueWithoutEmployeeInput | LoanedAssetUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: LoanedAssetCreateManyEmployeeInputEnvelope
+    set?: LoanedAssetWhereUniqueInput | LoanedAssetWhereUniqueInput[]
+    disconnect?: LoanedAssetWhereUniqueInput | LoanedAssetWhereUniqueInput[]
+    delete?: LoanedAssetWhereUniqueInput | LoanedAssetWhereUniqueInput[]
+    connect?: LoanedAssetWhereUniqueInput | LoanedAssetWhereUniqueInput[]
+    update?: LoanedAssetUpdateWithWhereUniqueWithoutEmployeeInput | LoanedAssetUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: LoanedAssetUpdateManyWithWhereWithoutEmployeeInput | LoanedAssetUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: LoanedAssetScalarWhereInput | LoanedAssetScalarWhereInput[]
   }
 
   export type EmployeeCreateNestedOneWithoutDependentsInput = {
@@ -56652,6 +58163,20 @@ export namespace Prisma {
     update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutRetirementChecklistInput, EmployeeUpdateWithoutRetirementChecklistInput>, EmployeeUncheckedUpdateWithoutRetirementChecklistInput>
   }
 
+  export type EmployeeCreateNestedOneWithoutLoanedAssetsInput = {
+    create?: XOR<EmployeeCreateWithoutLoanedAssetsInput, EmployeeUncheckedCreateWithoutLoanedAssetsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutLoanedAssetsInput
+    connect?: EmployeeWhereUniqueInput
+  }
+
+  export type EmployeeUpdateOneRequiredWithoutLoanedAssetsNestedInput = {
+    create?: XOR<EmployeeCreateWithoutLoanedAssetsInput, EmployeeUncheckedCreateWithoutLoanedAssetsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutLoanedAssetsInput
+    upsert?: EmployeeUpsertWithoutLoanedAssetsInput
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutLoanedAssetsInput, EmployeeUpdateWithoutLoanedAssetsInput>, EmployeeUncheckedUpdateWithoutLoanedAssetsInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -57168,6 +58693,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutUserInput = {
@@ -57209,6 +58735,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutUserInput = {
@@ -57310,6 +58837,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutUserInput = {
@@ -57351,6 +58879,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeRequestUpsertWithWhereUniqueWithoutUserInput = {
@@ -57487,6 +59016,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDepartmentInput = {
@@ -57528,6 +59058,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDepartmentInput = {
@@ -58176,6 +59707,38 @@ export namespace Prisma {
     create: XOR<RetirementChecklistCreateWithoutEmployeeInput, RetirementChecklistUncheckedCreateWithoutEmployeeInput>
   }
 
+  export type LoanedAssetCreateWithoutEmployeeInput = {
+    id?: string
+    assetName: string
+    returned?: boolean
+    returnedAt?: Date | string | null
+    returnedBy?: string | null
+    memo?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LoanedAssetUncheckedCreateWithoutEmployeeInput = {
+    id?: string
+    assetName: string
+    returned?: boolean
+    returnedAt?: Date | string | null
+    returnedBy?: string | null
+    memo?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LoanedAssetCreateOrConnectWithoutEmployeeInput = {
+    where: LoanedAssetWhereUniqueInput
+    create: XOR<LoanedAssetCreateWithoutEmployeeInput, LoanedAssetUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type LoanedAssetCreateManyEmployeeInputEnvelope = {
+    data: LoanedAssetCreateManyEmployeeInput | LoanedAssetCreateManyEmployeeInput[]
+    skipDuplicates?: boolean
+  }
+
   export type DepartmentUpsertWithoutEmployeesInput = {
     update: XOR<DepartmentUpdateWithoutEmployeesInput, DepartmentUncheckedUpdateWithoutEmployeesInput>
     create: XOR<DepartmentCreateWithoutEmployeesInput, DepartmentUncheckedCreateWithoutEmployeesInput>
@@ -58718,6 +60281,37 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type LoanedAssetUpsertWithWhereUniqueWithoutEmployeeInput = {
+    where: LoanedAssetWhereUniqueInput
+    update: XOR<LoanedAssetUpdateWithoutEmployeeInput, LoanedAssetUncheckedUpdateWithoutEmployeeInput>
+    create: XOR<LoanedAssetCreateWithoutEmployeeInput, LoanedAssetUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type LoanedAssetUpdateWithWhereUniqueWithoutEmployeeInput = {
+    where: LoanedAssetWhereUniqueInput
+    data: XOR<LoanedAssetUpdateWithoutEmployeeInput, LoanedAssetUncheckedUpdateWithoutEmployeeInput>
+  }
+
+  export type LoanedAssetUpdateManyWithWhereWithoutEmployeeInput = {
+    where: LoanedAssetScalarWhereInput
+    data: XOR<LoanedAssetUpdateManyMutationInput, LoanedAssetUncheckedUpdateManyWithoutEmployeeInput>
+  }
+
+  export type LoanedAssetScalarWhereInput = {
+    AND?: LoanedAssetScalarWhereInput | LoanedAssetScalarWhereInput[]
+    OR?: LoanedAssetScalarWhereInput[]
+    NOT?: LoanedAssetScalarWhereInput | LoanedAssetScalarWhereInput[]
+    id?: StringFilter<"LoanedAsset"> | string
+    employeeId?: StringFilter<"LoanedAsset"> | string
+    assetName?: StringFilter<"LoanedAsset"> | string
+    returned?: BoolFilter<"LoanedAsset"> | boolean
+    returnedAt?: DateTimeNullableFilter<"LoanedAsset"> | Date | string | null
+    returnedBy?: StringNullableFilter<"LoanedAsset"> | string | null
+    memo?: StringNullableFilter<"LoanedAsset"> | string | null
+    createdAt?: DateTimeFilter<"LoanedAsset"> | Date | string
+    updatedAt?: DateTimeFilter<"LoanedAsset"> | Date | string
+  }
+
   export type EmployeeCreateWithoutDependentsInput = {
     id?: string
     employeeNo: string
@@ -58757,6 +60351,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDependentsInput = {
@@ -58798,6 +60393,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDependentsInput = {
@@ -58891,6 +60487,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDependentsInput = {
@@ -58932,6 +60529,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmploymentContractConsentUpsertWithWhereUniqueWithoutDependentInput = {
@@ -59006,6 +60604,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmploymentHistoriesInput = {
@@ -59047,6 +60646,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmploymentHistoriesInput = {
@@ -59104,6 +60704,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmploymentHistoriesInput = {
@@ -59145,6 +60746,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmployeeMyNumberInput = {
@@ -59186,6 +60788,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmployeeMyNumberInput = {
@@ -59227,6 +60830,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmployeeMyNumberInput = {
@@ -59284,6 +60888,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmployeeMyNumberInput = {
@@ -59325,6 +60930,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmployeeSalaryInput = {
@@ -59366,6 +60972,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmployeeSalaryInput = {
@@ -59407,6 +61014,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmployeeSalaryInput = {
@@ -59464,6 +61072,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmployeeSalaryInput = {
@@ -59505,6 +61114,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutSalaryHistoriesInput = {
@@ -59546,6 +61156,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutSalaryHistoriesInput = {
@@ -59587,6 +61198,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutSalaryHistoriesInput = {
@@ -59644,6 +61256,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutSalaryHistoriesInput = {
@@ -59685,6 +61298,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutLeaveGrantHistoriesInput = {
@@ -59726,6 +61340,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLeaveGrantHistoriesInput = {
@@ -59767,6 +61382,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLeaveGrantHistoriesInput = {
@@ -59824,6 +61440,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLeaveGrantHistoriesInput = {
@@ -59865,6 +61482,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutLeaveBalanceInput = {
@@ -59906,6 +61524,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLeaveBalanceInput = {
@@ -59947,6 +61566,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLeaveBalanceInput = {
@@ -60004,6 +61624,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLeaveBalanceInput = {
@@ -60045,6 +61666,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutRequestsInput = {
@@ -60086,6 +61708,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutRequestsInput = {
@@ -60127,6 +61750,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutRequestsInput = {
@@ -60265,6 +61889,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutRequestsInput = {
@@ -60306,6 +61931,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type UserUpsertWithoutRequestsInput = {
@@ -60672,6 +62298,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutCertificationsInput = {
@@ -60713,6 +62340,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutCertificationsInput = {
@@ -60823,6 +62451,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutCertificationsInput = {
@@ -60864,6 +62493,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCertificationAttachmentUpsertWithWhereUniqueWithoutEmployeeCertificationInput = {
@@ -61065,6 +62695,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutBankAccountInput = {
@@ -61106,6 +62737,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutBankAccountInput = {
@@ -61191,6 +62823,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutBankAccountInput = {
@@ -61232,6 +62865,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeBankAttachmentUpsertWithWhereUniqueWithoutBankAccountInput = {
@@ -61394,6 +63028,7 @@ export namespace Prisma {
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDependentRequestsInput = {
@@ -61435,6 +63070,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDependentRequestsInput = {
@@ -61520,6 +63156,7 @@ export namespace Prisma {
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDependentRequestsInput = {
@@ -61561,6 +63198,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type DependentRequestAttachmentUpsertWithWhereUniqueWithoutDependentRequestInput = {
@@ -61735,6 +63373,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutProfileChangeRequestsInput = {
@@ -61776,6 +63415,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutProfileChangeRequestsInput = {
@@ -61833,6 +63473,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutProfileChangeRequestsInput = {
@@ -61874,6 +63515,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmploymentContractsInput = {
@@ -61915,6 +63557,7 @@ export namespace Prisma {
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmploymentContractsInput = {
@@ -61956,6 +63599,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmploymentContractsInput = {
@@ -62081,6 +63725,7 @@ export namespace Prisma {
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmploymentContractsInput = {
@@ -62122,6 +63767,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmploymentContractConsentUpsertWithWhereUniqueWithoutEmploymentContractInput = {
@@ -62658,6 +64304,7 @@ export namespace Prisma {
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutRetirementChecklistInput = {
@@ -62699,6 +64346,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutRetirementChecklistInput = {
@@ -62756,6 +64404,7 @@ export namespace Prisma {
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutRetirementChecklistInput = {
@@ -62797,6 +64446,191 @@ export namespace Prisma {
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeCreateWithoutLoanedAssetsInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    emergencyContact?: string | null
+    department?: DepartmentCreateNestedOneWithoutEmployeesInput
+    user?: UserCreateNestedOneWithoutEmployeeInput
+    certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+  }
+
+  export type EmployeeUncheckedCreateWithoutLoanedAssetsInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    departmentId?: string | null
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    userId?: string | null
+    emergencyContact?: string | null
+    certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+  }
+
+  export type EmployeeCreateOrConnectWithoutLoanedAssetsInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutLoanedAssetsInput, EmployeeUncheckedCreateWithoutLoanedAssetsInput>
+  }
+
+  export type EmployeeUpsertWithoutLoanedAssetsInput = {
+    update: XOR<EmployeeUpdateWithoutLoanedAssetsInput, EmployeeUncheckedUpdateWithoutLoanedAssetsInput>
+    create: XOR<EmployeeCreateWithoutLoanedAssetsInput, EmployeeUncheckedCreateWithoutLoanedAssetsInput>
+    where?: EmployeeWhereInput
+  }
+
+  export type EmployeeUpdateToOneWithWhereWithoutLoanedAssetsInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutLoanedAssetsInput, EmployeeUncheckedUpdateWithoutLoanedAssetsInput>
+  }
+
+  export type EmployeeUpdateWithoutLoanedAssetsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: DepartmentUpdateOneWithoutEmployeesNestedInput
+    user?: UserUpdateOneWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateWithoutLoanedAssetsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeRequestCreateManyUserInput = {
@@ -62969,6 +64803,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDepartmentInput = {
@@ -63010,6 +64845,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateManyWithoutDepartmentInput = {
@@ -63181,6 +65017,17 @@ export namespace Prisma {
     version?: number
     isCurrent?: boolean
     supersededAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LoanedAssetCreateManyEmployeeInput = {
+    id?: string
+    assetName: string
+    returned?: boolean
+    returnedAt?: Date | string | null
+    returnedBy?: string | null
+    memo?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -63633,6 +65480,39 @@ export namespace Prisma {
     version?: IntFieldUpdateOperationsInput | number
     isCurrent?: BoolFieldUpdateOperationsInput | boolean
     supersededAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LoanedAssetUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    assetName?: StringFieldUpdateOperationsInput | string
+    returned?: BoolFieldUpdateOperationsInput | boolean
+    returnedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    returnedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    memo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LoanedAssetUncheckedUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    assetName?: StringFieldUpdateOperationsInput | string
+    returned?: BoolFieldUpdateOperationsInput | boolean
+    returnedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    returnedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    memo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LoanedAssetUncheckedUpdateManyWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    assetName?: StringFieldUpdateOperationsInput | string
+    returned?: BoolFieldUpdateOperationsInput | boolean
+    returnedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    returnedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    memo?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

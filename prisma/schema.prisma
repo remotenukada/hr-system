@@ -89,6 +89,7 @@ model Employee {
   dependentRequests     DependentRequest[]
   employmentContracts   EmploymentContract[]
   retirementChecklist   RetirementChecklist?
+  loanedAssets          LoanedAsset[]
 }
 
 model Dependent {
@@ -787,6 +788,26 @@ model RetirementChecklist {
   uniformReturned Boolean @default(false)
 
   retirementCertificateIssued Boolean @default(false)
+
+  memo String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+}
+
+model LoanedAsset {
+  id String @id @default(uuid())
+
+  employeeId String
+
+  assetName String
+
+  returned Boolean @default(false)
+
+  returnedAt DateTime?
+  returnedBy String?
 
   memo String?
 
