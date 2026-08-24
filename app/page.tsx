@@ -1018,6 +1018,7 @@ const myEmployee =
               value={monthlyTransfers}
               description="今月の部署異動"
               color="blue"
+              href="/personnel-orders"
             />
 
             <StatCard
@@ -1025,6 +1026,7 @@ const myEmployee =
               value={monthlyPositionChanges}
               description="今月の昇進・昇格"
               color="purple"
+              href="/personnel-orders"
             />
 
             <StatCard
@@ -1032,6 +1034,7 @@ const myEmployee =
               value={monthlyLeaves}
               description="休職開始"
               color="yellow"
+              href="/personnel-orders"
             />
 
             <StatCard
@@ -1039,6 +1042,7 @@ const myEmployee =
               value={monthlyRetirements}
               description="退職処理"
               color="red"
+              href="/personnel-orders"
             />
 
             <StatCard
@@ -1452,6 +1456,12 @@ const myEmployee =
                 className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
               >
                 異動履歴一覧
+              </Link>
+              <Link
+                href="/personnel-orders"
+                className="rounded border border-indigo-300 bg-indigo-50 px-4 py-2 text-sm font-medium text-indigo-700 hover:bg-indigo-100"
+              >
+                人事発令管理
               </Link>
               <Link
                 href="/masters"
