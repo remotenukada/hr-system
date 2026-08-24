@@ -187,31 +187,6 @@ export default async function EmployeeEditPage({ params }: Props) {
       });
     }
 
-    if ((employee?.occupation ?? "") !== (updatedEmployee.occupation ?? "")) {
-      await prisma.employmentHistory.create({
-        data: {
-          employeeId: updatedEmployee.id,
-          action: EmploymentAction.POSITION_CHANGE,
-          effectiveDate: new Date(),
-          reason: `職種変更: ${employee?.occupation || "未設定"} → ${updatedEmployee.occupation || "未設定"}`,
-        },
-      });
-    }
-
-    if (
-      (employee?.employmentType ?? "") !==
-      (updatedEmployee.employmentType ?? "")
-    ) {
-      await prisma.employmentHistory.create({
-        data: {
-          employeeId: updatedEmployee.id,
-          action: EmploymentAction.POSITION_CHANGE,
-          effectiveDate: new Date(),
-          reason: `雇用形態変更: ${employee?.employmentType || "未設定"} → ${updatedEmployee.employmentType || "未設定"}`,
-        },
-      });
-    }
-
     if (
       employee?.status !== "LEAVE" &&
       updatedEmployee.status === "LEAVE"

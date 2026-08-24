@@ -275,6 +275,8 @@ export default async function EmploymentContractDetailPage(
                 <th className="border p-2 text-left">雇用形態</th>
                 <th className="border p-2 text-left">契約区分</th>
                 <th className="border p-2 text-left">開始日</th>
+                <th className="border p-2 text-left">終了日</th>
+                <th className="border p-2 text-left">更新日時</th>
                 <th className="border p-2 text-left">状態</th>
                 <th className="border p-2 text-center">操作</th>
               </tr>
@@ -298,6 +300,20 @@ export default async function EmploymentContractDetailPage(
                   <td className="border p-2">
                     {new Date(
                       item.startDate,
+                    ).toLocaleDateString("ja-JP")}
+                  </td>
+
+                  <td className="border p-2">
+                    {item.endDate
+                      ? new Date(
+                          item.endDate,
+                        ).toLocaleDateString("ja-JP")
+                      : "-"}
+                  </td>
+
+                  <td className="border p-2">
+                    {new Date(
+                      item.updatedAt,
                     ).toLocaleDateString("ja-JP")}
                   </td>
 
