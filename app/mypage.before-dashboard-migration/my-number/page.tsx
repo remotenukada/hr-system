@@ -165,7 +165,7 @@ export default async function MyNumberPage({
         href="/mypage"
         className="text-sm text-blue-600 hover:underline"
       >
-        ← ダッシュボードへ戻る
+        ← マイページへ戻る
       </Link>
 
       <h1 className="mt-4 text-3xl font-bold">

@@ -275,7 +275,7 @@ export default async function MyCertificationsPage() {
     <main className="mx-auto max-w-5xl p-8">
       <div className="mb-6">
         <Link href="/mypage" className="text-sm text-blue-600 hover:underline">
-          ← ダッシュボードへ戻る
+          ← マイページへ戻る
         </Link>
 
         <h1 className="mt-2 text-3xl font-bold">

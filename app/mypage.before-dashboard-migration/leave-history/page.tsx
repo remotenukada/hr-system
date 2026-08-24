@@ -56,7 +56,7 @@ export default async function LeaveHistoryPage() {
           href="/mypage"
           className="text-sm text-blue-600 hover:underline"
         >
-          ← ダッシュボードへ戻る
+          ← マイページへ戻る
         </Link>
 
         <h1 className="mt-2 text-3xl font-bold">

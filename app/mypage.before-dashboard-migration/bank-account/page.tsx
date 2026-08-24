@@ -275,7 +275,7 @@ export default async function BankAccountPage() {
           href="/mypage"
           className="text-sm text-blue-600 hover:underline"
         >
-          ← ダッシュボードへ戻る
+          ← マイページへ戻る
         </Link>
       </div>
 
