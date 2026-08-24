@@ -1,6 +1,6 @@
 import BackLink from "@/components/BackLink";
-import { prisma } from "@/lib/prisma";
 import { saveLoanedAssets } from "@/app/actions/loaned-assets";
+import { prisma } from "@/lib/prisma";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -50,22 +50,48 @@ export default async function LoanedAssetsPage({
         貸与物返却管理
       </h1>
 
-      <div className="rounded-lg border bg-white p-6">
-        <div className="space-y-4">
-          {assets.map((asset) => (
-            <div
-              key={asset.id}
-              className="flex items-center justify-between border-b pb-2"
-            >
-              <div>
-                <div className="font-medium">
+      <form action={saveLoanedAssets}>
+        <input
+          type="hidden"
+          name="employeeId"
+          value={id}
+        />
+
+        <div className="rounded-lg border bg-white p-6">
+          <div className="space-y-4">
+            {assets.map((asset) => (
+              <label
+                key={asset.id}
+                className="flex items-center gap-3"
+              >
+                <input
+                  type="checkbox"
+                  name={asset.assetName}
+                  defaultChecked={asset.returned}
+                  className="h-5 w-5"
+                />
+
+                <span className="font-medium">
                   {asset.assetName}
-                </div>
-              </div>
-            </div>
-          ))}
+                </span>
+
+                {asset.returned && (
+                  <span className="text-sm text-green-600">
+                    返却済
+                  </span>
+                )}
+              </label>
+            ))}
+          </div>
+
+          <button
+            type="submit"
+            className="mt-6 rounded bg-blue-600 px-5 py-2 text-white hover:bg-blue-700"
+          >
+            保存
+          </button>
         </div>
-      </div>
+      </form>
     </main>
   );
 }
