@@ -26,6 +26,9 @@ export async function saveCompanySetting(
   const representativeName =
     formData.get('representativeName') as string
 
+  const mailFrom =
+    formData.get('mailFrom') as string
+
   const consultationDesk =
     formData.get('consultationDesk') as string
 
@@ -84,6 +87,7 @@ export async function saveCompanySetting(
         phoneNumber: phoneNumber || null,
         representativeName:
           representativeName || null,
+        mailFrom: mailFrom || null,
         consultationDesk:
           consultationDesk || null,
         workRuleLocation:
@@ -103,6 +107,7 @@ export async function saveCompanySetting(
         phoneNumber: phoneNumber || null,
         representativeName:
           representativeName || null,
+        mailFrom: mailFrom || null,
         consultationDesk:
           consultationDesk || null,
         workRuleLocation:

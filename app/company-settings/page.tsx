@@ -80,6 +80,18 @@ export default async function CompanySettingsPage() {
 
         <div>
           <label className="mb-1 block text-sm font-medium">
+            招待メール送信元
+          </label>
+          <input
+            name="mailFrom"
+            type="email"
+            defaultValue={current?.mailFrom ?? ""}
+            className="w-full rounded border p-2"
+          />
+        </div>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium">
             相談窓口
           </label>
           <input

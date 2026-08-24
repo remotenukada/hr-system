@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import { prisma } from "@/lib/prisma";
 
 export const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
@@ -15,8 +16,10 @@ export async function sendInvitationMail(
   name: string,
   invitationUrl: string,
 ) {
+  const company = await prisma.companySetting.findFirst();
+
   await transporter.sendMail({
-    from: process.env.MAIL_FROM,
+    from: company?.mailFrom || process.env.MAIL_FROM,
     to: email,
     subject: "職員登録のご案内",
     text: `${name} 様
