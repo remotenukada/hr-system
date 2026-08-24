@@ -75,6 +75,32 @@ export default async function LoanedAssetsPage({
                   {asset.assetName}
                 </span>
 
+                {asset.returnedAt && (
+                  <div className="text-sm text-gray-500">
+                    返却日：
+                    {" "}
+                    {new Date(
+                      asset.returnedAt
+                    ).toLocaleDateString("ja-JP")}
+                  </div>
+                )}
+
+                {asset.returnedAt && (
+                  <div className="text-sm text-gray-500">
+                    返却日：
+                    {new Date(
+                      asset.returnedAt,
+                    ).toLocaleDateString("ja-JP")}
+                  </div>
+                )}
+
+                {asset.returnedBy && (
+                  <div className="text-sm text-gray-500">
+                    確認者：
+                    {asset.returnedBy}
+                  </div>
+                )}
+
                 {asset.returned && (
                   <span className="text-sm text-green-600">
                     返却済
