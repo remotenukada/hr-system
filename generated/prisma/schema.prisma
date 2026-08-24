@@ -88,6 +88,7 @@ model Employee {
   dependents            Dependent[]
   dependentRequests     DependentRequest[]
   employmentContracts   EmploymentContract[]
+  retirementChecklist   RetirementChecklist?
 }
 
 model Dependent {
@@ -770,4 +771,27 @@ model PositionMaster {
 enum ConsentMethod {
   ELECTRONIC
   PAPER
+}
+
+model RetirementChecklist {
+  id String @id @default(uuid())
+
+  employeeId String @unique
+
+  healthInsuranceReturned      Boolean @default(false)
+  employmentInsuranceCompleted Boolean @default(false)
+
+  pcReturned      Boolean @default(false)
+  lockerReturned  Boolean @default(false)
+  nameTagReturned Boolean @default(false)
+  uniformReturned Boolean @default(false)
+
+  retirementCertificateIssued Boolean @default(false)
+
+  memo String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
 }

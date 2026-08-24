@@ -1,0 +1,56 @@
+import BackLink from "@/components/BackLink";
+
+export default async function RetirementChecklistPage() {
+  return (
+    <main className="mx-auto max-w-4xl p-6">
+      <BackLink
+        href="/retirement-management"
+        label="退職予定者管理に戻る"
+      />
+      <h1 className="mb-6 text-2xl font-bold">
+        退職手続チェックリスト
+      </h1>
+
+      <div className="rounded-lg border bg-white p-6">
+        <div className="space-y-4">
+
+          <label className="flex gap-3">
+            <input type="checkbox" />
+            健康保険手続
+          </label>
+
+          <label className="flex gap-3">
+            <input type="checkbox" />
+            雇用保険手続
+          </label>
+
+          <label className="flex gap-3">
+            <input type="checkbox" />
+            PC返却
+          </label>
+
+          <label className="flex gap-3">
+            <input type="checkbox" />
+            ロッカー返却
+          </label>
+
+          <label className="flex gap-3">
+            <input type="checkbox" />
+            名札返却
+          </label>
+
+          <label className="flex gap-3">
+            <input type="checkbox" />
+            制服返却
+          </label>
+
+          <label className="flex gap-3">
+            <input type="checkbox" />
+            退職証明書発行
+          </label>
+
+        </div>
+      </div>
+    </main>
+  );
+}

@@ -183,6 +183,11 @@ export type JobTitleMaster = $Result.DefaultSelection<Prisma.$JobTitleMasterPayl
  * 
  */
 export type PositionMaster = $Result.DefaultSelection<Prisma.$PositionMasterPayload>
+/**
+ * Model RetirementChecklist
+ * 
+ */
+export type RetirementChecklist = $Result.DefaultSelection<Prisma.$RetirementChecklistPayload>
 
 /**
  * Enums
@@ -828,6 +833,16 @@ export class PrismaClient<
     * ```
     */
   get positionMaster(): Prisma.PositionMasterDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.retirementChecklist`: Exposes CRUD operations for the **RetirementChecklist** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RetirementChecklists
+    * const retirementChecklists = await prisma.retirementChecklist.findMany()
+    * ```
+    */
+  get retirementChecklist(): Prisma.RetirementChecklistDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1295,7 +1310,8 @@ export namespace Prisma {
     EmploymentCategoryMaster: 'EmploymentCategoryMaster',
     ContractTypeMaster: 'ContractTypeMaster',
     JobTitleMaster: 'JobTitleMaster',
-    PositionMaster: 'PositionMaster'
+    PositionMaster: 'PositionMaster',
+    RetirementChecklist: 'RetirementChecklist'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1311,7 +1327,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "userInvitation" | "department" | "employee" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster" | "contractTypeMaster" | "jobTitleMaster" | "positionMaster"
+      modelProps: "user" | "userInvitation" | "department" | "employee" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster" | "contractTypeMaster" | "jobTitleMaster" | "positionMaster" | "retirementChecklist"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3831,6 +3847,80 @@ export namespace Prisma {
           }
         }
       }
+      RetirementChecklist: {
+        payload: Prisma.$RetirementChecklistPayload<ExtArgs>
+        fields: Prisma.RetirementChecklistFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RetirementChecklistFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetirementChecklistPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RetirementChecklistFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetirementChecklistPayload>
+          }
+          findFirst: {
+            args: Prisma.RetirementChecklistFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetirementChecklistPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RetirementChecklistFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetirementChecklistPayload>
+          }
+          findMany: {
+            args: Prisma.RetirementChecklistFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetirementChecklistPayload>[]
+          }
+          create: {
+            args: Prisma.RetirementChecklistCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetirementChecklistPayload>
+          }
+          createMany: {
+            args: Prisma.RetirementChecklistCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RetirementChecklistCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetirementChecklistPayload>[]
+          }
+          delete: {
+            args: Prisma.RetirementChecklistDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetirementChecklistPayload>
+          }
+          update: {
+            args: Prisma.RetirementChecklistUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetirementChecklistPayload>
+          }
+          deleteMany: {
+            args: Prisma.RetirementChecklistDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RetirementChecklistUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RetirementChecklistUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetirementChecklistPayload>[]
+          }
+          upsert: {
+            args: Prisma.RetirementChecklistUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetirementChecklistPayload>
+          }
+          aggregate: {
+            args: Prisma.RetirementChecklistAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRetirementChecklist>
+          }
+          groupBy: {
+            args: Prisma.RetirementChecklistGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RetirementChecklistGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RetirementChecklistCountArgs<ExtArgs>
+            result: $Utils.Optional<RetirementChecklistCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -3973,6 +4063,7 @@ export namespace Prisma {
     contractTypeMaster?: ContractTypeMasterOmit
     jobTitleMaster?: JobTitleMasterOmit
     positionMaster?: PositionMasterOmit
+    retirementChecklist?: RetirementChecklistOmit
   }
 
   /* Types for Logging */
@@ -8174,6 +8265,7 @@ export namespace Prisma {
     dependents?: boolean | Employee$dependentsArgs<ExtArgs>
     dependentRequests?: boolean | Employee$dependentRequestsArgs<ExtArgs>
     employmentContracts?: boolean | Employee$employmentContractsArgs<ExtArgs>
+    retirementChecklist?: boolean | Employee$retirementChecklistArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["employee"]>
 
@@ -8282,6 +8374,7 @@ export namespace Prisma {
     dependents?: boolean | Employee$dependentsArgs<ExtArgs>
     dependentRequests?: boolean | Employee$dependentRequestsArgs<ExtArgs>
     employmentContracts?: boolean | Employee$employmentContractsArgs<ExtArgs>
+    retirementChecklist?: boolean | Employee$retirementChecklistArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EmployeeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8311,6 +8404,7 @@ export namespace Prisma {
       dependents: Prisma.$DependentPayload<ExtArgs>[]
       dependentRequests: Prisma.$DependentRequestPayload<ExtArgs>[]
       employmentContracts: Prisma.$EmploymentContractPayload<ExtArgs>[]
+      retirementChecklist: Prisma.$RetirementChecklistPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8747,6 +8841,7 @@ export namespace Prisma {
     dependents<T extends Employee$dependentsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$dependentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DependentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     dependentRequests<T extends Employee$dependentRequestsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$dependentRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DependentRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     employmentContracts<T extends Employee$employmentContractsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$employmentContractsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentContractPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    retirementChecklist<T extends Employee$retirementChecklistArgs<ExtArgs> = {}>(args?: Subset<T, Employee$retirementChecklistArgs<ExtArgs>>): Prisma__RetirementChecklistClient<$Result.GetResult<Prisma.$RetirementChecklistPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9529,6 +9624,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: EmploymentContractScalarFieldEnum | EmploymentContractScalarFieldEnum[]
+  }
+
+  /**
+   * Employee.retirementChecklist
+   */
+  export type Employee$retirementChecklistArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetirementChecklist
+     */
+    select?: RetirementChecklistSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetirementChecklist
+     */
+    omit?: RetirementChecklistOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetirementChecklistInclude<ExtArgs> | null
+    where?: RetirementChecklistWhereInput
   }
 
   /**
@@ -44074,6 +44188,1160 @@ export namespace Prisma {
 
 
   /**
+   * Model RetirementChecklist
+   */
+
+  export type AggregateRetirementChecklist = {
+    _count: RetirementChecklistCountAggregateOutputType | null
+    _min: RetirementChecklistMinAggregateOutputType | null
+    _max: RetirementChecklistMaxAggregateOutputType | null
+  }
+
+  export type RetirementChecklistMinAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    healthInsuranceReturned: boolean | null
+    employmentInsuranceCompleted: boolean | null
+    pcReturned: boolean | null
+    lockerReturned: boolean | null
+    nameTagReturned: boolean | null
+    uniformReturned: boolean | null
+    retirementCertificateIssued: boolean | null
+    memo: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RetirementChecklistMaxAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    healthInsuranceReturned: boolean | null
+    employmentInsuranceCompleted: boolean | null
+    pcReturned: boolean | null
+    lockerReturned: boolean | null
+    nameTagReturned: boolean | null
+    uniformReturned: boolean | null
+    retirementCertificateIssued: boolean | null
+    memo: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RetirementChecklistCountAggregateOutputType = {
+    id: number
+    employeeId: number
+    healthInsuranceReturned: number
+    employmentInsuranceCompleted: number
+    pcReturned: number
+    lockerReturned: number
+    nameTagReturned: number
+    uniformReturned: number
+    retirementCertificateIssued: number
+    memo: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type RetirementChecklistMinAggregateInputType = {
+    id?: true
+    employeeId?: true
+    healthInsuranceReturned?: true
+    employmentInsuranceCompleted?: true
+    pcReturned?: true
+    lockerReturned?: true
+    nameTagReturned?: true
+    uniformReturned?: true
+    retirementCertificateIssued?: true
+    memo?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RetirementChecklistMaxAggregateInputType = {
+    id?: true
+    employeeId?: true
+    healthInsuranceReturned?: true
+    employmentInsuranceCompleted?: true
+    pcReturned?: true
+    lockerReturned?: true
+    nameTagReturned?: true
+    uniformReturned?: true
+    retirementCertificateIssued?: true
+    memo?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RetirementChecklistCountAggregateInputType = {
+    id?: true
+    employeeId?: true
+    healthInsuranceReturned?: true
+    employmentInsuranceCompleted?: true
+    pcReturned?: true
+    lockerReturned?: true
+    nameTagReturned?: true
+    uniformReturned?: true
+    retirementCertificateIssued?: true
+    memo?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type RetirementChecklistAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RetirementChecklist to aggregate.
+     */
+    where?: RetirementChecklistWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RetirementChecklists to fetch.
+     */
+    orderBy?: RetirementChecklistOrderByWithRelationInput | RetirementChecklistOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RetirementChecklistWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RetirementChecklists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RetirementChecklists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RetirementChecklists
+    **/
+    _count?: true | RetirementChecklistCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RetirementChecklistMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RetirementChecklistMaxAggregateInputType
+  }
+
+  export type GetRetirementChecklistAggregateType<T extends RetirementChecklistAggregateArgs> = {
+        [P in keyof T & keyof AggregateRetirementChecklist]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRetirementChecklist[P]>
+      : GetScalarType<T[P], AggregateRetirementChecklist[P]>
+  }
+
+
+
+
+  export type RetirementChecklistGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RetirementChecklistWhereInput
+    orderBy?: RetirementChecklistOrderByWithAggregationInput | RetirementChecklistOrderByWithAggregationInput[]
+    by: RetirementChecklistScalarFieldEnum[] | RetirementChecklistScalarFieldEnum
+    having?: RetirementChecklistScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RetirementChecklistCountAggregateInputType | true
+    _min?: RetirementChecklistMinAggregateInputType
+    _max?: RetirementChecklistMaxAggregateInputType
+  }
+
+  export type RetirementChecklistGroupByOutputType = {
+    id: string
+    employeeId: string
+    healthInsuranceReturned: boolean
+    employmentInsuranceCompleted: boolean
+    pcReturned: boolean
+    lockerReturned: boolean
+    nameTagReturned: boolean
+    uniformReturned: boolean
+    retirementCertificateIssued: boolean
+    memo: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: RetirementChecklistCountAggregateOutputType | null
+    _min: RetirementChecklistMinAggregateOutputType | null
+    _max: RetirementChecklistMaxAggregateOutputType | null
+  }
+
+  type GetRetirementChecklistGroupByPayload<T extends RetirementChecklistGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RetirementChecklistGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RetirementChecklistGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RetirementChecklistGroupByOutputType[P]>
+            : GetScalarType<T[P], RetirementChecklistGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RetirementChecklistSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    healthInsuranceReturned?: boolean
+    employmentInsuranceCompleted?: boolean
+    pcReturned?: boolean
+    lockerReturned?: boolean
+    nameTagReturned?: boolean
+    uniformReturned?: boolean
+    retirementCertificateIssued?: boolean
+    memo?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["retirementChecklist"]>
+
+  export type RetirementChecklistSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    healthInsuranceReturned?: boolean
+    employmentInsuranceCompleted?: boolean
+    pcReturned?: boolean
+    lockerReturned?: boolean
+    nameTagReturned?: boolean
+    uniformReturned?: boolean
+    retirementCertificateIssued?: boolean
+    memo?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["retirementChecklist"]>
+
+  export type RetirementChecklistSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    healthInsuranceReturned?: boolean
+    employmentInsuranceCompleted?: boolean
+    pcReturned?: boolean
+    lockerReturned?: boolean
+    nameTagReturned?: boolean
+    uniformReturned?: boolean
+    retirementCertificateIssued?: boolean
+    memo?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["retirementChecklist"]>
+
+  export type RetirementChecklistSelectScalar = {
+    id?: boolean
+    employeeId?: boolean
+    healthInsuranceReturned?: boolean
+    employmentInsuranceCompleted?: boolean
+    pcReturned?: boolean
+    lockerReturned?: boolean
+    nameTagReturned?: boolean
+    uniformReturned?: boolean
+    retirementCertificateIssued?: boolean
+    memo?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type RetirementChecklistOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "healthInsuranceReturned" | "employmentInsuranceCompleted" | "pcReturned" | "lockerReturned" | "nameTagReturned" | "uniformReturned" | "retirementCertificateIssued" | "memo" | "createdAt" | "updatedAt", ExtArgs["result"]["retirementChecklist"]>
+  export type RetirementChecklistInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+  export type RetirementChecklistIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+  export type RetirementChecklistIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+
+  export type $RetirementChecklistPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RetirementChecklist"
+    objects: {
+      employee: Prisma.$EmployeePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      employeeId: string
+      healthInsuranceReturned: boolean
+      employmentInsuranceCompleted: boolean
+      pcReturned: boolean
+      lockerReturned: boolean
+      nameTagReturned: boolean
+      uniformReturned: boolean
+      retirementCertificateIssued: boolean
+      memo: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["retirementChecklist"]>
+    composites: {}
+  }
+
+  type RetirementChecklistGetPayload<S extends boolean | null | undefined | RetirementChecklistDefaultArgs> = $Result.GetResult<Prisma.$RetirementChecklistPayload, S>
+
+  type RetirementChecklistCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RetirementChecklistFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RetirementChecklistCountAggregateInputType | true
+    }
+
+  export interface RetirementChecklistDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RetirementChecklist'], meta: { name: 'RetirementChecklist' } }
+    /**
+     * Find zero or one RetirementChecklist that matches the filter.
+     * @param {RetirementChecklistFindUniqueArgs} args - Arguments to find a RetirementChecklist
+     * @example
+     * // Get one RetirementChecklist
+     * const retirementChecklist = await prisma.retirementChecklist.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RetirementChecklistFindUniqueArgs>(args: SelectSubset<T, RetirementChecklistFindUniqueArgs<ExtArgs>>): Prisma__RetirementChecklistClient<$Result.GetResult<Prisma.$RetirementChecklistPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RetirementChecklist that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RetirementChecklistFindUniqueOrThrowArgs} args - Arguments to find a RetirementChecklist
+     * @example
+     * // Get one RetirementChecklist
+     * const retirementChecklist = await prisma.retirementChecklist.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RetirementChecklistFindUniqueOrThrowArgs>(args: SelectSubset<T, RetirementChecklistFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RetirementChecklistClient<$Result.GetResult<Prisma.$RetirementChecklistPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RetirementChecklist that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RetirementChecklistFindFirstArgs} args - Arguments to find a RetirementChecklist
+     * @example
+     * // Get one RetirementChecklist
+     * const retirementChecklist = await prisma.retirementChecklist.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RetirementChecklistFindFirstArgs>(args?: SelectSubset<T, RetirementChecklistFindFirstArgs<ExtArgs>>): Prisma__RetirementChecklistClient<$Result.GetResult<Prisma.$RetirementChecklistPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RetirementChecklist that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RetirementChecklistFindFirstOrThrowArgs} args - Arguments to find a RetirementChecklist
+     * @example
+     * // Get one RetirementChecklist
+     * const retirementChecklist = await prisma.retirementChecklist.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RetirementChecklistFindFirstOrThrowArgs>(args?: SelectSubset<T, RetirementChecklistFindFirstOrThrowArgs<ExtArgs>>): Prisma__RetirementChecklistClient<$Result.GetResult<Prisma.$RetirementChecklistPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RetirementChecklists that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RetirementChecklistFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RetirementChecklists
+     * const retirementChecklists = await prisma.retirementChecklist.findMany()
+     * 
+     * // Get first 10 RetirementChecklists
+     * const retirementChecklists = await prisma.retirementChecklist.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const retirementChecklistWithIdOnly = await prisma.retirementChecklist.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RetirementChecklistFindManyArgs>(args?: SelectSubset<T, RetirementChecklistFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RetirementChecklistPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RetirementChecklist.
+     * @param {RetirementChecklistCreateArgs} args - Arguments to create a RetirementChecklist.
+     * @example
+     * // Create one RetirementChecklist
+     * const RetirementChecklist = await prisma.retirementChecklist.create({
+     *   data: {
+     *     // ... data to create a RetirementChecklist
+     *   }
+     * })
+     * 
+     */
+    create<T extends RetirementChecklistCreateArgs>(args: SelectSubset<T, RetirementChecklistCreateArgs<ExtArgs>>): Prisma__RetirementChecklistClient<$Result.GetResult<Prisma.$RetirementChecklistPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RetirementChecklists.
+     * @param {RetirementChecklistCreateManyArgs} args - Arguments to create many RetirementChecklists.
+     * @example
+     * // Create many RetirementChecklists
+     * const retirementChecklist = await prisma.retirementChecklist.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RetirementChecklistCreateManyArgs>(args?: SelectSubset<T, RetirementChecklistCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RetirementChecklists and returns the data saved in the database.
+     * @param {RetirementChecklistCreateManyAndReturnArgs} args - Arguments to create many RetirementChecklists.
+     * @example
+     * // Create many RetirementChecklists
+     * const retirementChecklist = await prisma.retirementChecklist.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RetirementChecklists and only return the `id`
+     * const retirementChecklistWithIdOnly = await prisma.retirementChecklist.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RetirementChecklistCreateManyAndReturnArgs>(args?: SelectSubset<T, RetirementChecklistCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RetirementChecklistPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RetirementChecklist.
+     * @param {RetirementChecklistDeleteArgs} args - Arguments to delete one RetirementChecklist.
+     * @example
+     * // Delete one RetirementChecklist
+     * const RetirementChecklist = await prisma.retirementChecklist.delete({
+     *   where: {
+     *     // ... filter to delete one RetirementChecklist
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RetirementChecklistDeleteArgs>(args: SelectSubset<T, RetirementChecklistDeleteArgs<ExtArgs>>): Prisma__RetirementChecklistClient<$Result.GetResult<Prisma.$RetirementChecklistPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RetirementChecklist.
+     * @param {RetirementChecklistUpdateArgs} args - Arguments to update one RetirementChecklist.
+     * @example
+     * // Update one RetirementChecklist
+     * const retirementChecklist = await prisma.retirementChecklist.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RetirementChecklistUpdateArgs>(args: SelectSubset<T, RetirementChecklistUpdateArgs<ExtArgs>>): Prisma__RetirementChecklistClient<$Result.GetResult<Prisma.$RetirementChecklistPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RetirementChecklists.
+     * @param {RetirementChecklistDeleteManyArgs} args - Arguments to filter RetirementChecklists to delete.
+     * @example
+     * // Delete a few RetirementChecklists
+     * const { count } = await prisma.retirementChecklist.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RetirementChecklistDeleteManyArgs>(args?: SelectSubset<T, RetirementChecklistDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RetirementChecklists.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RetirementChecklistUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RetirementChecklists
+     * const retirementChecklist = await prisma.retirementChecklist.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RetirementChecklistUpdateManyArgs>(args: SelectSubset<T, RetirementChecklistUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RetirementChecklists and returns the data updated in the database.
+     * @param {RetirementChecklistUpdateManyAndReturnArgs} args - Arguments to update many RetirementChecklists.
+     * @example
+     * // Update many RetirementChecklists
+     * const retirementChecklist = await prisma.retirementChecklist.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RetirementChecklists and only return the `id`
+     * const retirementChecklistWithIdOnly = await prisma.retirementChecklist.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RetirementChecklistUpdateManyAndReturnArgs>(args: SelectSubset<T, RetirementChecklistUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RetirementChecklistPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RetirementChecklist.
+     * @param {RetirementChecklistUpsertArgs} args - Arguments to update or create a RetirementChecklist.
+     * @example
+     * // Update or create a RetirementChecklist
+     * const retirementChecklist = await prisma.retirementChecklist.upsert({
+     *   create: {
+     *     // ... data to create a RetirementChecklist
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RetirementChecklist we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RetirementChecklistUpsertArgs>(args: SelectSubset<T, RetirementChecklistUpsertArgs<ExtArgs>>): Prisma__RetirementChecklistClient<$Result.GetResult<Prisma.$RetirementChecklistPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RetirementChecklists.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RetirementChecklistCountArgs} args - Arguments to filter RetirementChecklists to count.
+     * @example
+     * // Count the number of RetirementChecklists
+     * const count = await prisma.retirementChecklist.count({
+     *   where: {
+     *     // ... the filter for the RetirementChecklists we want to count
+     *   }
+     * })
+    **/
+    count<T extends RetirementChecklistCountArgs>(
+      args?: Subset<T, RetirementChecklistCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RetirementChecklistCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RetirementChecklist.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RetirementChecklistAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RetirementChecklistAggregateArgs>(args: Subset<T, RetirementChecklistAggregateArgs>): Prisma.PrismaPromise<GetRetirementChecklistAggregateType<T>>
+
+    /**
+     * Group by RetirementChecklist.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RetirementChecklistGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RetirementChecklistGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RetirementChecklistGroupByArgs['orderBy'] }
+        : { orderBy?: RetirementChecklistGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RetirementChecklistGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRetirementChecklistGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RetirementChecklist model
+   */
+  readonly fields: RetirementChecklistFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RetirementChecklist.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RetirementChecklistClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RetirementChecklist model
+   */
+  interface RetirementChecklistFieldRefs {
+    readonly id: FieldRef<"RetirementChecklist", 'String'>
+    readonly employeeId: FieldRef<"RetirementChecklist", 'String'>
+    readonly healthInsuranceReturned: FieldRef<"RetirementChecklist", 'Boolean'>
+    readonly employmentInsuranceCompleted: FieldRef<"RetirementChecklist", 'Boolean'>
+    readonly pcReturned: FieldRef<"RetirementChecklist", 'Boolean'>
+    readonly lockerReturned: FieldRef<"RetirementChecklist", 'Boolean'>
+    readonly nameTagReturned: FieldRef<"RetirementChecklist", 'Boolean'>
+    readonly uniformReturned: FieldRef<"RetirementChecklist", 'Boolean'>
+    readonly retirementCertificateIssued: FieldRef<"RetirementChecklist", 'Boolean'>
+    readonly memo: FieldRef<"RetirementChecklist", 'String'>
+    readonly createdAt: FieldRef<"RetirementChecklist", 'DateTime'>
+    readonly updatedAt: FieldRef<"RetirementChecklist", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RetirementChecklist findUnique
+   */
+  export type RetirementChecklistFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetirementChecklist
+     */
+    select?: RetirementChecklistSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetirementChecklist
+     */
+    omit?: RetirementChecklistOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetirementChecklistInclude<ExtArgs> | null
+    /**
+     * Filter, which RetirementChecklist to fetch.
+     */
+    where: RetirementChecklistWhereUniqueInput
+  }
+
+  /**
+   * RetirementChecklist findUniqueOrThrow
+   */
+  export type RetirementChecklistFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetirementChecklist
+     */
+    select?: RetirementChecklistSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetirementChecklist
+     */
+    omit?: RetirementChecklistOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetirementChecklistInclude<ExtArgs> | null
+    /**
+     * Filter, which RetirementChecklist to fetch.
+     */
+    where: RetirementChecklistWhereUniqueInput
+  }
+
+  /**
+   * RetirementChecklist findFirst
+   */
+  export type RetirementChecklistFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetirementChecklist
+     */
+    select?: RetirementChecklistSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetirementChecklist
+     */
+    omit?: RetirementChecklistOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetirementChecklistInclude<ExtArgs> | null
+    /**
+     * Filter, which RetirementChecklist to fetch.
+     */
+    where?: RetirementChecklistWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RetirementChecklists to fetch.
+     */
+    orderBy?: RetirementChecklistOrderByWithRelationInput | RetirementChecklistOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RetirementChecklists.
+     */
+    cursor?: RetirementChecklistWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RetirementChecklists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RetirementChecklists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RetirementChecklists.
+     */
+    distinct?: RetirementChecklistScalarFieldEnum | RetirementChecklistScalarFieldEnum[]
+  }
+
+  /**
+   * RetirementChecklist findFirstOrThrow
+   */
+  export type RetirementChecklistFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetirementChecklist
+     */
+    select?: RetirementChecklistSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetirementChecklist
+     */
+    omit?: RetirementChecklistOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetirementChecklistInclude<ExtArgs> | null
+    /**
+     * Filter, which RetirementChecklist to fetch.
+     */
+    where?: RetirementChecklistWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RetirementChecklists to fetch.
+     */
+    orderBy?: RetirementChecklistOrderByWithRelationInput | RetirementChecklistOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RetirementChecklists.
+     */
+    cursor?: RetirementChecklistWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RetirementChecklists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RetirementChecklists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RetirementChecklists.
+     */
+    distinct?: RetirementChecklistScalarFieldEnum | RetirementChecklistScalarFieldEnum[]
+  }
+
+  /**
+   * RetirementChecklist findMany
+   */
+  export type RetirementChecklistFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetirementChecklist
+     */
+    select?: RetirementChecklistSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetirementChecklist
+     */
+    omit?: RetirementChecklistOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetirementChecklistInclude<ExtArgs> | null
+    /**
+     * Filter, which RetirementChecklists to fetch.
+     */
+    where?: RetirementChecklistWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RetirementChecklists to fetch.
+     */
+    orderBy?: RetirementChecklistOrderByWithRelationInput | RetirementChecklistOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RetirementChecklists.
+     */
+    cursor?: RetirementChecklistWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RetirementChecklists from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RetirementChecklists.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RetirementChecklists.
+     */
+    distinct?: RetirementChecklistScalarFieldEnum | RetirementChecklistScalarFieldEnum[]
+  }
+
+  /**
+   * RetirementChecklist create
+   */
+  export type RetirementChecklistCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetirementChecklist
+     */
+    select?: RetirementChecklistSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetirementChecklist
+     */
+    omit?: RetirementChecklistOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetirementChecklistInclude<ExtArgs> | null
+    /**
+     * The data needed to create a RetirementChecklist.
+     */
+    data: XOR<RetirementChecklistCreateInput, RetirementChecklistUncheckedCreateInput>
+  }
+
+  /**
+   * RetirementChecklist createMany
+   */
+  export type RetirementChecklistCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RetirementChecklists.
+     */
+    data: RetirementChecklistCreateManyInput | RetirementChecklistCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RetirementChecklist createManyAndReturn
+   */
+  export type RetirementChecklistCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetirementChecklist
+     */
+    select?: RetirementChecklistSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetirementChecklist
+     */
+    omit?: RetirementChecklistOmit<ExtArgs> | null
+    /**
+     * The data used to create many RetirementChecklists.
+     */
+    data: RetirementChecklistCreateManyInput | RetirementChecklistCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetirementChecklistIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RetirementChecklist update
+   */
+  export type RetirementChecklistUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetirementChecklist
+     */
+    select?: RetirementChecklistSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetirementChecklist
+     */
+    omit?: RetirementChecklistOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetirementChecklistInclude<ExtArgs> | null
+    /**
+     * The data needed to update a RetirementChecklist.
+     */
+    data: XOR<RetirementChecklistUpdateInput, RetirementChecklistUncheckedUpdateInput>
+    /**
+     * Choose, which RetirementChecklist to update.
+     */
+    where: RetirementChecklistWhereUniqueInput
+  }
+
+  /**
+   * RetirementChecklist updateMany
+   */
+  export type RetirementChecklistUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RetirementChecklists.
+     */
+    data: XOR<RetirementChecklistUpdateManyMutationInput, RetirementChecklistUncheckedUpdateManyInput>
+    /**
+     * Filter which RetirementChecklists to update
+     */
+    where?: RetirementChecklistWhereInput
+    /**
+     * Limit how many RetirementChecklists to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RetirementChecklist updateManyAndReturn
+   */
+  export type RetirementChecklistUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetirementChecklist
+     */
+    select?: RetirementChecklistSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetirementChecklist
+     */
+    omit?: RetirementChecklistOmit<ExtArgs> | null
+    /**
+     * The data used to update RetirementChecklists.
+     */
+    data: XOR<RetirementChecklistUpdateManyMutationInput, RetirementChecklistUncheckedUpdateManyInput>
+    /**
+     * Filter which RetirementChecklists to update
+     */
+    where?: RetirementChecklistWhereInput
+    /**
+     * Limit how many RetirementChecklists to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetirementChecklistIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RetirementChecklist upsert
+   */
+  export type RetirementChecklistUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetirementChecklist
+     */
+    select?: RetirementChecklistSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetirementChecklist
+     */
+    omit?: RetirementChecklistOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetirementChecklistInclude<ExtArgs> | null
+    /**
+     * The filter to search for the RetirementChecklist to update in case it exists.
+     */
+    where: RetirementChecklistWhereUniqueInput
+    /**
+     * In case the RetirementChecklist found by the `where` argument doesn't exist, create a new RetirementChecklist with this data.
+     */
+    create: XOR<RetirementChecklistCreateInput, RetirementChecklistUncheckedCreateInput>
+    /**
+     * In case the RetirementChecklist was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RetirementChecklistUpdateInput, RetirementChecklistUncheckedUpdateInput>
+  }
+
+  /**
+   * RetirementChecklist delete
+   */
+  export type RetirementChecklistDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetirementChecklist
+     */
+    select?: RetirementChecklistSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetirementChecklist
+     */
+    omit?: RetirementChecklistOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetirementChecklistInclude<ExtArgs> | null
+    /**
+     * Filter which RetirementChecklist to delete.
+     */
+    where: RetirementChecklistWhereUniqueInput
+  }
+
+  /**
+   * RetirementChecklist deleteMany
+   */
+  export type RetirementChecklistDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RetirementChecklists to delete
+     */
+    where?: RetirementChecklistWhereInput
+    /**
+     * Limit how many RetirementChecklists to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RetirementChecklist without action
+   */
+  export type RetirementChecklistDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetirementChecklist
+     */
+    select?: RetirementChecklistSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetirementChecklist
+     */
+    omit?: RetirementChecklistOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetirementChecklistInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -44653,6 +45921,24 @@ export namespace Prisma {
   export type PositionMasterScalarFieldEnum = (typeof PositionMasterScalarFieldEnum)[keyof typeof PositionMasterScalarFieldEnum]
 
 
+  export const RetirementChecklistScalarFieldEnum: {
+    id: 'id',
+    employeeId: 'employeeId',
+    healthInsuranceReturned: 'healthInsuranceReturned',
+    employmentInsuranceCompleted: 'employmentInsuranceCompleted',
+    pcReturned: 'pcReturned',
+    lockerReturned: 'lockerReturned',
+    nameTagReturned: 'nameTagReturned',
+    uniformReturned: 'uniformReturned',
+    retirementCertificateIssued: 'retirementCertificateIssued',
+    memo: 'memo',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type RetirementChecklistScalarFieldEnum = (typeof RetirementChecklistScalarFieldEnum)[keyof typeof RetirementChecklistScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -45213,6 +46499,7 @@ export namespace Prisma {
     dependents?: DependentListRelationFilter
     dependentRequests?: DependentRequestListRelationFilter
     employmentContracts?: EmploymentContractListRelationFilter
+    retirementChecklist?: XOR<RetirementChecklistNullableScalarRelationFilter, RetirementChecklistWhereInput> | null
   }
 
   export type EmployeeOrderByWithRelationInput = {
@@ -45256,6 +46543,7 @@ export namespace Prisma {
     dependents?: DependentOrderByRelationAggregateInput
     dependentRequests?: DependentRequestOrderByRelationAggregateInput
     employmentContracts?: EmploymentContractOrderByRelationAggregateInput
+    retirementChecklist?: RetirementChecklistOrderByWithRelationInput
   }
 
   export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
@@ -45302,6 +46590,7 @@ export namespace Prisma {
     dependents?: DependentListRelationFilter
     dependentRequests?: DependentRequestListRelationFilter
     employmentContracts?: EmploymentContractListRelationFilter
+    retirementChecklist?: XOR<RetirementChecklistNullableScalarRelationFilter, RetirementChecklistWhereInput> | null
   }, "id" | "employeeNo" | "email" | "userId">
 
   export type EmployeeOrderByWithAggregationInput = {
@@ -47886,6 +49175,96 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"PositionMaster"> | Date | string
   }
 
+  export type RetirementChecklistWhereInput = {
+    AND?: RetirementChecklistWhereInput | RetirementChecklistWhereInput[]
+    OR?: RetirementChecklistWhereInput[]
+    NOT?: RetirementChecklistWhereInput | RetirementChecklistWhereInput[]
+    id?: StringFilter<"RetirementChecklist"> | string
+    employeeId?: StringFilter<"RetirementChecklist"> | string
+    healthInsuranceReturned?: BoolFilter<"RetirementChecklist"> | boolean
+    employmentInsuranceCompleted?: BoolFilter<"RetirementChecklist"> | boolean
+    pcReturned?: BoolFilter<"RetirementChecklist"> | boolean
+    lockerReturned?: BoolFilter<"RetirementChecklist"> | boolean
+    nameTagReturned?: BoolFilter<"RetirementChecklist"> | boolean
+    uniformReturned?: BoolFilter<"RetirementChecklist"> | boolean
+    retirementCertificateIssued?: BoolFilter<"RetirementChecklist"> | boolean
+    memo?: StringNullableFilter<"RetirementChecklist"> | string | null
+    createdAt?: DateTimeFilter<"RetirementChecklist"> | Date | string
+    updatedAt?: DateTimeFilter<"RetirementChecklist"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+  }
+
+  export type RetirementChecklistOrderByWithRelationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    healthInsuranceReturned?: SortOrder
+    employmentInsuranceCompleted?: SortOrder
+    pcReturned?: SortOrder
+    lockerReturned?: SortOrder
+    nameTagReturned?: SortOrder
+    uniformReturned?: SortOrder
+    retirementCertificateIssued?: SortOrder
+    memo?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    employee?: EmployeeOrderByWithRelationInput
+  }
+
+  export type RetirementChecklistWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    employeeId?: string
+    AND?: RetirementChecklistWhereInput | RetirementChecklistWhereInput[]
+    OR?: RetirementChecklistWhereInput[]
+    NOT?: RetirementChecklistWhereInput | RetirementChecklistWhereInput[]
+    healthInsuranceReturned?: BoolFilter<"RetirementChecklist"> | boolean
+    employmentInsuranceCompleted?: BoolFilter<"RetirementChecklist"> | boolean
+    pcReturned?: BoolFilter<"RetirementChecklist"> | boolean
+    lockerReturned?: BoolFilter<"RetirementChecklist"> | boolean
+    nameTagReturned?: BoolFilter<"RetirementChecklist"> | boolean
+    uniformReturned?: BoolFilter<"RetirementChecklist"> | boolean
+    retirementCertificateIssued?: BoolFilter<"RetirementChecklist"> | boolean
+    memo?: StringNullableFilter<"RetirementChecklist"> | string | null
+    createdAt?: DateTimeFilter<"RetirementChecklist"> | Date | string
+    updatedAt?: DateTimeFilter<"RetirementChecklist"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+  }, "id" | "employeeId">
+
+  export type RetirementChecklistOrderByWithAggregationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    healthInsuranceReturned?: SortOrder
+    employmentInsuranceCompleted?: SortOrder
+    pcReturned?: SortOrder
+    lockerReturned?: SortOrder
+    nameTagReturned?: SortOrder
+    uniformReturned?: SortOrder
+    retirementCertificateIssued?: SortOrder
+    memo?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: RetirementChecklistCountOrderByAggregateInput
+    _max?: RetirementChecklistMaxOrderByAggregateInput
+    _min?: RetirementChecklistMinOrderByAggregateInput
+  }
+
+  export type RetirementChecklistScalarWhereWithAggregatesInput = {
+    AND?: RetirementChecklistScalarWhereWithAggregatesInput | RetirementChecklistScalarWhereWithAggregatesInput[]
+    OR?: RetirementChecklistScalarWhereWithAggregatesInput[]
+    NOT?: RetirementChecklistScalarWhereWithAggregatesInput | RetirementChecklistScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"RetirementChecklist"> | string
+    employeeId?: StringWithAggregatesFilter<"RetirementChecklist"> | string
+    healthInsuranceReturned?: BoolWithAggregatesFilter<"RetirementChecklist"> | boolean
+    employmentInsuranceCompleted?: BoolWithAggregatesFilter<"RetirementChecklist"> | boolean
+    pcReturned?: BoolWithAggregatesFilter<"RetirementChecklist"> | boolean
+    lockerReturned?: BoolWithAggregatesFilter<"RetirementChecklist"> | boolean
+    nameTagReturned?: BoolWithAggregatesFilter<"RetirementChecklist"> | boolean
+    uniformReturned?: BoolWithAggregatesFilter<"RetirementChecklist"> | boolean
+    retirementCertificateIssued?: BoolWithAggregatesFilter<"RetirementChecklist"> | boolean
+    memo?: StringNullableWithAggregatesFilter<"RetirementChecklist"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"RetirementChecklist"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"RetirementChecklist"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     name: string
@@ -48165,6 +49544,7 @@ export namespace Prisma {
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateInput = {
@@ -48206,6 +49586,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUpdateInput = {
@@ -48247,6 +49628,7 @@ export namespace Prisma {
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateInput = {
@@ -48288,6 +49670,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateManyInput = {
@@ -51212,6 +52595,110 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type RetirementChecklistCreateInput = {
+    id?: string
+    healthInsuranceReturned?: boolean
+    employmentInsuranceCompleted?: boolean
+    pcReturned?: boolean
+    lockerReturned?: boolean
+    nameTagReturned?: boolean
+    uniformReturned?: boolean
+    retirementCertificateIssued?: boolean
+    memo?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutRetirementChecklistInput
+  }
+
+  export type RetirementChecklistUncheckedCreateInput = {
+    id?: string
+    employeeId: string
+    healthInsuranceReturned?: boolean
+    employmentInsuranceCompleted?: boolean
+    pcReturned?: boolean
+    lockerReturned?: boolean
+    nameTagReturned?: boolean
+    uniformReturned?: boolean
+    retirementCertificateIssued?: boolean
+    memo?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RetirementChecklistUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    healthInsuranceReturned?: BoolFieldUpdateOperationsInput | boolean
+    employmentInsuranceCompleted?: BoolFieldUpdateOperationsInput | boolean
+    pcReturned?: BoolFieldUpdateOperationsInput | boolean
+    lockerReturned?: BoolFieldUpdateOperationsInput | boolean
+    nameTagReturned?: BoolFieldUpdateOperationsInput | boolean
+    uniformReturned?: BoolFieldUpdateOperationsInput | boolean
+    retirementCertificateIssued?: BoolFieldUpdateOperationsInput | boolean
+    memo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutRetirementChecklistNestedInput
+  }
+
+  export type RetirementChecklistUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    healthInsuranceReturned?: BoolFieldUpdateOperationsInput | boolean
+    employmentInsuranceCompleted?: BoolFieldUpdateOperationsInput | boolean
+    pcReturned?: BoolFieldUpdateOperationsInput | boolean
+    lockerReturned?: BoolFieldUpdateOperationsInput | boolean
+    nameTagReturned?: BoolFieldUpdateOperationsInput | boolean
+    uniformReturned?: BoolFieldUpdateOperationsInput | boolean
+    retirementCertificateIssued?: BoolFieldUpdateOperationsInput | boolean
+    memo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RetirementChecklistCreateManyInput = {
+    id?: string
+    employeeId: string
+    healthInsuranceReturned?: boolean
+    employmentInsuranceCompleted?: boolean
+    pcReturned?: boolean
+    lockerReturned?: boolean
+    nameTagReturned?: boolean
+    uniformReturned?: boolean
+    retirementCertificateIssued?: boolean
+    memo?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RetirementChecklistUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    healthInsuranceReturned?: BoolFieldUpdateOperationsInput | boolean
+    employmentInsuranceCompleted?: BoolFieldUpdateOperationsInput | boolean
+    pcReturned?: BoolFieldUpdateOperationsInput | boolean
+    lockerReturned?: BoolFieldUpdateOperationsInput | boolean
+    nameTagReturned?: BoolFieldUpdateOperationsInput | boolean
+    uniformReturned?: BoolFieldUpdateOperationsInput | boolean
+    retirementCertificateIssued?: BoolFieldUpdateOperationsInput | boolean
+    memo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RetirementChecklistUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    healthInsuranceReturned?: BoolFieldUpdateOperationsInput | boolean
+    employmentInsuranceCompleted?: BoolFieldUpdateOperationsInput | boolean
+    pcReturned?: BoolFieldUpdateOperationsInput | boolean
+    lockerReturned?: BoolFieldUpdateOperationsInput | boolean
+    nameTagReturned?: BoolFieldUpdateOperationsInput | boolean
+    uniformReturned?: BoolFieldUpdateOperationsInput | boolean
+    retirementCertificateIssued?: BoolFieldUpdateOperationsInput | boolean
+    memo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -51591,6 +53078,11 @@ export namespace Prisma {
     every?: EmploymentContractWhereInput
     some?: EmploymentContractWhereInput
     none?: EmploymentContractWhereInput
+  }
+
+  export type RetirementChecklistNullableScalarRelationFilter = {
+    is?: RetirementChecklistWhereInput | null
+    isNot?: RetirementChecklistWhereInput | null
   }
 
   export type EmployeeCertificationOrderByRelationAggregateInput = {
@@ -53547,6 +55039,51 @@ export namespace Prisma {
     sortOrder?: SortOrder
   }
 
+  export type RetirementChecklistCountOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    healthInsuranceReturned?: SortOrder
+    employmentInsuranceCompleted?: SortOrder
+    pcReturned?: SortOrder
+    lockerReturned?: SortOrder
+    nameTagReturned?: SortOrder
+    uniformReturned?: SortOrder
+    retirementCertificateIssued?: SortOrder
+    memo?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RetirementChecklistMaxOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    healthInsuranceReturned?: SortOrder
+    employmentInsuranceCompleted?: SortOrder
+    pcReturned?: SortOrder
+    lockerReturned?: SortOrder
+    nameTagReturned?: SortOrder
+    uniformReturned?: SortOrder
+    retirementCertificateIssued?: SortOrder
+    memo?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RetirementChecklistMinOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    healthInsuranceReturned?: SortOrder
+    employmentInsuranceCompleted?: SortOrder
+    pcReturned?: SortOrder
+    lockerReturned?: SortOrder
+    nameTagReturned?: SortOrder
+    uniformReturned?: SortOrder
+    retirementCertificateIssued?: SortOrder
+    memo?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type EmployeeCreateNestedOneWithoutUserInput = {
     create?: XOR<EmployeeCreateWithoutUserInput, EmployeeUncheckedCreateWithoutUserInput>
     connectOrCreate?: EmployeeCreateOrConnectWithoutUserInput
@@ -53828,6 +55365,12 @@ export namespace Prisma {
     connect?: EmploymentContractWhereUniqueInput | EmploymentContractWhereUniqueInput[]
   }
 
+  export type RetirementChecklistCreateNestedOneWithoutEmployeeInput = {
+    create?: XOR<RetirementChecklistCreateWithoutEmployeeInput, RetirementChecklistUncheckedCreateWithoutEmployeeInput>
+    connectOrCreate?: RetirementChecklistCreateOrConnectWithoutEmployeeInput
+    connect?: RetirementChecklistWhereUniqueInput
+  }
+
   export type EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput = {
     create?: XOR<EmployeeCertificationCreateWithoutEmployeeInput, EmployeeCertificationUncheckedCreateWithoutEmployeeInput> | EmployeeCertificationCreateWithoutEmployeeInput[] | EmployeeCertificationUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutEmployeeInput | EmployeeCertificationCreateOrConnectWithoutEmployeeInput[]
@@ -53913,6 +55456,12 @@ export namespace Prisma {
     connectOrCreate?: EmploymentContractCreateOrConnectWithoutEmployeeInput | EmploymentContractCreateOrConnectWithoutEmployeeInput[]
     createMany?: EmploymentContractCreateManyEmployeeInputEnvelope
     connect?: EmploymentContractWhereUniqueInput | EmploymentContractWhereUniqueInput[]
+  }
+
+  export type RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput = {
+    create?: XOR<RetirementChecklistCreateWithoutEmployeeInput, RetirementChecklistUncheckedCreateWithoutEmployeeInput>
+    connectOrCreate?: RetirementChecklistCreateOrConnectWithoutEmployeeInput
+    connect?: RetirementChecklistWhereUniqueInput
   }
 
   export type NullableEnumGenderFieldUpdateOperationsInput = {
@@ -54113,6 +55662,16 @@ export namespace Prisma {
     deleteMany?: EmploymentContractScalarWhereInput | EmploymentContractScalarWhereInput[]
   }
 
+  export type RetirementChecklistUpdateOneWithoutEmployeeNestedInput = {
+    create?: XOR<RetirementChecklistCreateWithoutEmployeeInput, RetirementChecklistUncheckedCreateWithoutEmployeeInput>
+    connectOrCreate?: RetirementChecklistCreateOrConnectWithoutEmployeeInput
+    upsert?: RetirementChecklistUpsertWithoutEmployeeInput
+    disconnect?: RetirementChecklistWhereInput | boolean
+    delete?: RetirementChecklistWhereInput | boolean
+    connect?: RetirementChecklistWhereUniqueInput
+    update?: XOR<XOR<RetirementChecklistUpdateToOneWithWhereWithoutEmployeeInput, RetirementChecklistUpdateWithoutEmployeeInput>, RetirementChecklistUncheckedUpdateWithoutEmployeeInput>
+  }
+
   export type EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput = {
     create?: XOR<EmployeeCertificationCreateWithoutEmployeeInput, EmployeeCertificationUncheckedCreateWithoutEmployeeInput> | EmployeeCertificationCreateWithoutEmployeeInput[] | EmployeeCertificationUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutEmployeeInput | EmployeeCertificationCreateOrConnectWithoutEmployeeInput[]
@@ -54277,6 +55836,16 @@ export namespace Prisma {
     update?: EmploymentContractUpdateWithWhereUniqueWithoutEmployeeInput | EmploymentContractUpdateWithWhereUniqueWithoutEmployeeInput[]
     updateMany?: EmploymentContractUpdateManyWithWhereWithoutEmployeeInput | EmploymentContractUpdateManyWithWhereWithoutEmployeeInput[]
     deleteMany?: EmploymentContractScalarWhereInput | EmploymentContractScalarWhereInput[]
+  }
+
+  export type RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput = {
+    create?: XOR<RetirementChecklistCreateWithoutEmployeeInput, RetirementChecklistUncheckedCreateWithoutEmployeeInput>
+    connectOrCreate?: RetirementChecklistCreateOrConnectWithoutEmployeeInput
+    upsert?: RetirementChecklistUpsertWithoutEmployeeInput
+    disconnect?: RetirementChecklistWhereInput | boolean
+    delete?: RetirementChecklistWhereInput | boolean
+    connect?: RetirementChecklistWhereUniqueInput
+    update?: XOR<XOR<RetirementChecklistUpdateToOneWithWhereWithoutEmployeeInput, RetirementChecklistUpdateWithoutEmployeeInput>, RetirementChecklistUncheckedUpdateWithoutEmployeeInput>
   }
 
   export type EmployeeCreateNestedOneWithoutDependentsInput = {
@@ -55069,6 +56638,20 @@ export namespace Prisma {
     update?: XOR<XOR<EmploymentContractUpdateToOneWithWhereWithoutWorkSchedulesInput, EmploymentContractUpdateWithoutWorkSchedulesInput>, EmploymentContractUncheckedUpdateWithoutWorkSchedulesInput>
   }
 
+  export type EmployeeCreateNestedOneWithoutRetirementChecklistInput = {
+    create?: XOR<EmployeeCreateWithoutRetirementChecklistInput, EmployeeUncheckedCreateWithoutRetirementChecklistInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutRetirementChecklistInput
+    connect?: EmployeeWhereUniqueInput
+  }
+
+  export type EmployeeUpdateOneRequiredWithoutRetirementChecklistNestedInput = {
+    create?: XOR<EmployeeCreateWithoutRetirementChecklistInput, EmployeeUncheckedCreateWithoutRetirementChecklistInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutRetirementChecklistInput
+    upsert?: EmployeeUpsertWithoutRetirementChecklistInput
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutRetirementChecklistInput, EmployeeUpdateWithoutRetirementChecklistInput>, EmployeeUncheckedUpdateWithoutRetirementChecklistInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -55584,6 +57167,7 @@ export namespace Prisma {
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutUserInput = {
@@ -55624,6 +57208,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutUserInput = {
@@ -55724,6 +57309,7 @@ export namespace Prisma {
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutUserInput = {
@@ -55764,6 +57350,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeRequestUpsertWithWhereUniqueWithoutUserInput = {
@@ -55899,6 +57486,7 @@ export namespace Prisma {
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDepartmentInput = {
@@ -55939,6 +57527,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDepartmentInput = {
@@ -56554,6 +58143,39 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type RetirementChecklistCreateWithoutEmployeeInput = {
+    id?: string
+    healthInsuranceReturned?: boolean
+    employmentInsuranceCompleted?: boolean
+    pcReturned?: boolean
+    lockerReturned?: boolean
+    nameTagReturned?: boolean
+    uniformReturned?: boolean
+    retirementCertificateIssued?: boolean
+    memo?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RetirementChecklistUncheckedCreateWithoutEmployeeInput = {
+    id?: string
+    healthInsuranceReturned?: boolean
+    employmentInsuranceCompleted?: boolean
+    pcReturned?: boolean
+    lockerReturned?: boolean
+    nameTagReturned?: boolean
+    uniformReturned?: boolean
+    retirementCertificateIssued?: boolean
+    memo?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RetirementChecklistCreateOrConnectWithoutEmployeeInput = {
+    where: RetirementChecklistWhereUniqueInput
+    create: XOR<RetirementChecklistCreateWithoutEmployeeInput, RetirementChecklistUncheckedCreateWithoutEmployeeInput>
+  }
+
   export type DepartmentUpsertWithoutEmployeesInput = {
     update: XOR<DepartmentUpdateWithoutEmployeesInput, DepartmentUncheckedUpdateWithoutEmployeesInput>
     create: XOR<DepartmentCreateWithoutEmployeesInput, DepartmentUncheckedCreateWithoutEmployeesInput>
@@ -57057,6 +58679,45 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"EmploymentContract"> | Date | string
   }
 
+  export type RetirementChecklistUpsertWithoutEmployeeInput = {
+    update: XOR<RetirementChecklistUpdateWithoutEmployeeInput, RetirementChecklistUncheckedUpdateWithoutEmployeeInput>
+    create: XOR<RetirementChecklistCreateWithoutEmployeeInput, RetirementChecklistUncheckedCreateWithoutEmployeeInput>
+    where?: RetirementChecklistWhereInput
+  }
+
+  export type RetirementChecklistUpdateToOneWithWhereWithoutEmployeeInput = {
+    where?: RetirementChecklistWhereInput
+    data: XOR<RetirementChecklistUpdateWithoutEmployeeInput, RetirementChecklistUncheckedUpdateWithoutEmployeeInput>
+  }
+
+  export type RetirementChecklistUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    healthInsuranceReturned?: BoolFieldUpdateOperationsInput | boolean
+    employmentInsuranceCompleted?: BoolFieldUpdateOperationsInput | boolean
+    pcReturned?: BoolFieldUpdateOperationsInput | boolean
+    lockerReturned?: BoolFieldUpdateOperationsInput | boolean
+    nameTagReturned?: BoolFieldUpdateOperationsInput | boolean
+    uniformReturned?: BoolFieldUpdateOperationsInput | boolean
+    retirementCertificateIssued?: BoolFieldUpdateOperationsInput | boolean
+    memo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RetirementChecklistUncheckedUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    healthInsuranceReturned?: BoolFieldUpdateOperationsInput | boolean
+    employmentInsuranceCompleted?: BoolFieldUpdateOperationsInput | boolean
+    pcReturned?: BoolFieldUpdateOperationsInput | boolean
+    lockerReturned?: BoolFieldUpdateOperationsInput | boolean
+    nameTagReturned?: BoolFieldUpdateOperationsInput | boolean
+    uniformReturned?: BoolFieldUpdateOperationsInput | boolean
+    retirementCertificateIssued?: BoolFieldUpdateOperationsInput | boolean
+    memo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type EmployeeCreateWithoutDependentsInput = {
     id?: string
     employeeNo: string
@@ -57095,6 +58756,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDependentsInput = {
@@ -57135,6 +58797,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDependentsInput = {
@@ -57227,6 +58890,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDependentsInput = {
@@ -57267,6 +58931,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmploymentContractConsentUpsertWithWhereUniqueWithoutDependentInput = {
@@ -57340,6 +59005,7 @@ export namespace Prisma {
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmploymentHistoriesInput = {
@@ -57380,6 +59046,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmploymentHistoriesInput = {
@@ -57436,6 +59103,7 @@ export namespace Prisma {
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmploymentHistoriesInput = {
@@ -57476,6 +59144,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmployeeMyNumberInput = {
@@ -57516,6 +59185,7 @@ export namespace Prisma {
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmployeeMyNumberInput = {
@@ -57556,6 +59226,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmployeeMyNumberInput = {
@@ -57612,6 +59283,7 @@ export namespace Prisma {
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmployeeMyNumberInput = {
@@ -57652,6 +59324,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmployeeSalaryInput = {
@@ -57692,6 +59365,7 @@ export namespace Prisma {
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmployeeSalaryInput = {
@@ -57732,6 +59406,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmployeeSalaryInput = {
@@ -57788,6 +59463,7 @@ export namespace Prisma {
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmployeeSalaryInput = {
@@ -57828,6 +59504,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutSalaryHistoriesInput = {
@@ -57868,6 +59545,7 @@ export namespace Prisma {
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutSalaryHistoriesInput = {
@@ -57908,6 +59586,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutSalaryHistoriesInput = {
@@ -57964,6 +59643,7 @@ export namespace Prisma {
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutSalaryHistoriesInput = {
@@ -58004,6 +59684,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutLeaveGrantHistoriesInput = {
@@ -58044,6 +59725,7 @@ export namespace Prisma {
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLeaveGrantHistoriesInput = {
@@ -58084,6 +59766,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLeaveGrantHistoriesInput = {
@@ -58140,6 +59823,7 @@ export namespace Prisma {
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLeaveGrantHistoriesInput = {
@@ -58180,6 +59864,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutLeaveBalanceInput = {
@@ -58220,6 +59905,7 @@ export namespace Prisma {
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLeaveBalanceInput = {
@@ -58260,6 +59946,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLeaveBalanceInput = {
@@ -58316,6 +60003,7 @@ export namespace Prisma {
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLeaveBalanceInput = {
@@ -58356,6 +60044,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutRequestsInput = {
@@ -58396,6 +60085,7 @@ export namespace Prisma {
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutRequestsInput = {
@@ -58436,6 +60126,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutRequestsInput = {
@@ -58573,6 +60264,7 @@ export namespace Prisma {
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutRequestsInput = {
@@ -58613,6 +60305,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type UserUpsertWithoutRequestsInput = {
@@ -58978,6 +60671,7 @@ export namespace Prisma {
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutCertificationsInput = {
@@ -59018,6 +60712,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutCertificationsInput = {
@@ -59127,6 +60822,7 @@ export namespace Prisma {
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutCertificationsInput = {
@@ -59167,6 +60863,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeCertificationAttachmentUpsertWithWhereUniqueWithoutEmployeeCertificationInput = {
@@ -59367,6 +61064,7 @@ export namespace Prisma {
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutBankAccountInput = {
@@ -59407,6 +61105,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutBankAccountInput = {
@@ -59491,6 +61190,7 @@ export namespace Prisma {
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutBankAccountInput = {
@@ -59531,6 +61231,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeBankAttachmentUpsertWithWhereUniqueWithoutBankAccountInput = {
@@ -59692,6 +61393,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDependentRequestsInput = {
@@ -59732,6 +61434,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDependentRequestsInput = {
@@ -59816,6 +61519,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDependentRequestsInput = {
@@ -59856,6 +61560,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type DependentRequestAttachmentUpsertWithWhereUniqueWithoutDependentRequestInput = {
@@ -60029,6 +61734,7 @@ export namespace Prisma {
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutProfileChangeRequestsInput = {
@@ -60069,6 +61775,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutProfileChangeRequestsInput = {
@@ -60125,6 +61832,7 @@ export namespace Prisma {
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutProfileChangeRequestsInput = {
@@ -60165,6 +61873,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmploymentContractsInput = {
@@ -60205,6 +61914,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmploymentContractsInput = {
@@ -60245,6 +61955,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmploymentContractsInput = {
@@ -60369,6 +62080,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmploymentContractsInput = {
@@ -60409,6 +62121,7 @@ export namespace Prisma {
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmploymentContractConsentUpsertWithWhereUniqueWithoutEmploymentContractInput = {
@@ -60906,6 +62619,186 @@ export namespace Prisma {
     employmentContractConsents?: EmploymentContractConsentUncheckedUpdateManyWithoutEmploymentContractNestedInput
   }
 
+  export type EmployeeCreateWithoutRetirementChecklistInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    emergencyContact?: string | null
+    department?: DepartmentCreateNestedOneWithoutEmployeesInput
+    user?: UserCreateNestedOneWithoutEmployeeInput
+    certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeUncheckedCreateWithoutRetirementChecklistInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    departmentId?: string | null
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    userId?: string | null
+    emergencyContact?: string | null
+    certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeCreateOrConnectWithoutRetirementChecklistInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutRetirementChecklistInput, EmployeeUncheckedCreateWithoutRetirementChecklistInput>
+  }
+
+  export type EmployeeUpsertWithoutRetirementChecklistInput = {
+    update: XOR<EmployeeUpdateWithoutRetirementChecklistInput, EmployeeUncheckedUpdateWithoutRetirementChecklistInput>
+    create: XOR<EmployeeCreateWithoutRetirementChecklistInput, EmployeeUncheckedCreateWithoutRetirementChecklistInput>
+    where?: EmployeeWhereInput
+  }
+
+  export type EmployeeUpdateToOneWithWhereWithoutRetirementChecklistInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutRetirementChecklistInput, EmployeeUncheckedUpdateWithoutRetirementChecklistInput>
+  }
+
+  export type EmployeeUpdateWithoutRetirementChecklistInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: DepartmentUpdateOneWithoutEmployeesNestedInput
+    user?: UserUpdateOneWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateWithoutRetirementChecklistInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+  }
+
   export type EmployeeRequestCreateManyUserInput = {
     id?: string
     title: string
@@ -61075,6 +62968,7 @@ export namespace Prisma {
     dependents?: DependentUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDepartmentInput = {
@@ -61115,6 +63009,7 @@ export namespace Prisma {
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateManyWithoutDepartmentInput = {
