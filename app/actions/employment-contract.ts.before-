@@ -332,87 +332,67 @@ export async function updateEmploymentContract(
   const remarks =
     formData.get('remarks') as string
 
-  const { currentContract, newContract } =
-    await prisma.$transaction(async (tx) => {
-      const currentContract =
-        await tx.employmentContract.findUnique({
-          where: { id },
-        })
+  const currentContract =
+    await prisma.employmentContract.findUnique({
+      where: {
+        id,
+      },
+    })
 
-      if (!currentContract) {
-        throw new Error('雇用条件書が見つかりません')
-      }
+  if (!currentContract) {
+    throw new Error('雇用条件書が見つかりません')
+  }
 
-      if (!currentContract.isCurrent) {
-        throw new Error('履歴契約は更新できません')
-      }
+  await prisma.employmentContract.update({
+    where: {
+      id,
+    },
+    data: {
+      isCurrent: false,
+      supersededAt: new Date(),
+    },
+  })
 
-      const result =
-        await tx.employmentContract.updateMany({
-          where: {
-            id,
-            isCurrent: true,
-          },
-          data: {
-            isCurrent: false,
-            supersededAt: new Date(),
-          },
-        })
-
-      if (result.count !== 1) {
-        throw new Error('契約は既に更新されています')
-      }
-
-      const newContract =
-        await tx.employmentContract.create({
-          data: {
-            employeeId: currentContract.employeeId,
-            version: currentContract.version + 1,
-            isCurrent: true,
-            contractType,
-            employmentCategory: employmentCategory || null,
-            startDate: new Date(startDate),
-            endDate: endDate ? new Date(endDate) : null,
-            workplace,
-            jobDescription,
-            occupation: occupation || null,
-            position: position || null,
-            workStartTime: workStartTime || '09:00',
-            workEndTime: workEndTime || '18:00',
-            breakMinutes: breakMinutes || 60,
-            workSchedules: {
-              create: workSchedules,
-            },
-            holidayRule: holidayRule || '土日祝',
-            leaveRule: leaveRule || null,
-            wageType: wageType || '月給',
-            baseSalary,
-            allowanceNote: allowanceNote || null,
-            payClosingDay: payClosingDay || null,
-            payDate: payDate || null,
-            bonusRule: bonusRule || null,
-            raiseRule: raiseRule || null,
-            probationPeriod: probationPeriod || null,
-            contractRenewalRule: contractRenewalRule || null,
-            contractRenewalCriteria:
-              contractRenewalCriteria || null,
-            retirementRule: retirementRule || null,
-            retirementAllowanceRule:
-              retirementAllowanceRule || null,
-            socialInsuranceRule:
-              socialInsuranceRule || null,
-            employmentInsuranceRule:
-              employmentInsuranceRule || null,
-            consultationDesk: consultationDesk || null,
-            workRuleLocation: workRuleLocation || null,
-            remarks: remarks || null,
-          },
-        })
-
-      return {
-        currentContract,
-        newContract,
-      }
+  const newContract =
+    await prisma.employmentContract.create({
+      data: {
+        employeeId: currentContract.employeeId,
+        version: currentContract.version + 1,
+        isCurrent: true,
+        contractType,
+        employmentCategory: employmentCategory || null,
+        startDate: new Date(startDate),
+        endDate: endDate ? new Date(endDate) : null,
+        workplace,
+        jobDescription,
+        occupation: occupation || null,
+        position: position || null,
+        workStartTime: workStartTime || '09:00',
+        workEndTime: workEndTime || '18:00',
+        breakMinutes: breakMinutes || 60,
+      workSchedules: {
+        create: workSchedules,
+      },
+        holidayRule: holidayRule || '土日祝',
+        leaveRule: leaveRule || null,
+        wageType: wageType || '月給',
+        baseSalary,
+        allowanceNote: allowanceNote || null,
+        payClosingDay: payClosingDay || null,
+        payDate: payDate || null,
+        bonusRule: bonusRule || null,
+        raiseRule: raiseRule || null,
+        probationPeriod: probationPeriod || null,
+        contractRenewalRule: contractRenewalRule || null,
+        contractRenewalCriteria: contractRenewalCriteria || null,
+        retirementRule: retirementRule || null,
+        retirementAllowanceRule: retirementAllowanceRule || null,
+        socialInsuranceRule: socialInsuranceRule || null,
+        employmentInsuranceRule: employmentInsuranceRule || null,
+        consultationDesk: consultationDesk || null,
+        workRuleLocation: workRuleLocation || null,
+        remarks: remarks || null,
+      },
     })
 
   await logAudit({
@@ -425,6 +405,5 @@ export async function updateEmploymentContract(
   })
 
   revalidatePath('/employee-contracts')
-  revalidatePath('/employee-contracts/renewals')
   redirect(`/employee-contracts/${newContract.id}`)
 }
