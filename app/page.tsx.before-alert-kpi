@@ -979,20 +979,6 @@ const myEmployee =
               description="登録済み雇用条件書"
               color="green"
             />
-            <StatCard
-              title="契約終了30日以内"
-              value={contractsEndingSoon}
-              description="30日以内に契約更新が必要"
-              color="yellow"
-              href="/employees"
-            />
-            <StatCard
-              title="雇用条件書未作成者"
-              value={employeesWithoutContract}
-              description="雇用条件書が登録されていない職員"
-              color="red"
-              href="/employees"
-            />
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
