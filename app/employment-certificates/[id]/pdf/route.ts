@@ -39,6 +39,7 @@ export async function GET(
     where: { id },
     include: {
       retirementCertificate: true,
+      department: true,
     },
   });
 
@@ -149,7 +150,44 @@ export async function GET(
     690,
   );
 
-  let y = 630;
+  line(
+    `社員番号：${employee.employeeNo}`,
+    660,
+  );
+
+  let y = 620;
+
+  if (employee.hireDate) {
+    line(
+      `入職日：${formatDate(employee.hireDate)}`,
+      y,
+    );
+    y -= 35;
+  }
+
+  if (employee.department?.name) {
+    line(
+      `所属部署：${employee.department.name}`,
+      y,
+    );
+    y -= 35;
+  }
+
+  if (employee.occupation) {
+    line(
+      `職種：${employee.occupation}`,
+      y,
+    );
+    y -= 35;
+  }
+
+  if (employee.employmentType) {
+    line(
+      `雇用形態：${employee.employmentType}`,
+      y,
+    );
+    y -= 35;
+  }
 
   if (
     certificate.showEmploymentPeriod &&
