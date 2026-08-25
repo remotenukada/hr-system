@@ -134,6 +134,36 @@ export default async function AuditLogsPage({
         </div>
       </div>
 
+      <div className="mb-4 flex flex-wrap gap-2">
+        <Link
+          href="/audit-logs"
+          className="rounded border bg-white px-3 py-2 text-sm hover:bg-gray-50"
+        >
+          全て
+        </Link>
+
+        <Link
+          href="/audit-logs?action=CERTIFICATE_ISSUED"
+          className="rounded border bg-white px-3 py-2 text-sm hover:bg-gray-50"
+        >
+          証明書発行
+        </Link>
+
+        <Link
+          href="/audit-logs?action=CERTIFICATE_ISSUED&targetType=EMPLOYMENT_CERTIFICATE"
+          className="rounded border bg-white px-3 py-2 text-sm hover:bg-gray-50"
+        >
+          在職証明書
+        </Link>
+
+        <Link
+          href="/audit-logs?action=CERTIFICATE_ISSUED&targetType=RETIREMENT_CERTIFICATE"
+          className="rounded border bg-white px-3 py-2 text-sm hover:bg-gray-50"
+        >
+          退職証明書
+        </Link>
+      </div>
+
       <form className="mb-6 rounded-lg border bg-white p-4">
         <div className="grid gap-3 md:grid-cols-6">
           <input

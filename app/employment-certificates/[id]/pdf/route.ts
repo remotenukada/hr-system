@@ -3,6 +3,7 @@ import fontkit from "@pdf-lib/fontkit";
 import fs from "fs";
 import { PDFDocument } from "pdf-lib";
 
+import { logAudit } from "@/lib/audit-log";
 import { prisma } from "@/lib/prisma";
 
 export const runtime = "nodejs";
@@ -289,6 +290,19 @@ export async function GET(
   }
 
   const pdfBytes = await pdfDoc.save();
+
+  await logAudit({
+    userName: issuedBy,
+    action: "CERTIFICATE_ISSUED",
+    targetType: "EMPLOYMENT_CERTIFICATE",
+    targetId: employee.id,
+    description: `在職証明書を発行: ${employee.employeeNo} ${employee.lastName} ${employee.firstName}`,
+    afterData: {
+      employeeId: employee.id,
+      employeeNo: employee.employeeNo,
+      certificateNo: certificate.certificateNo ?? null,
+    },
+  });
 
   return new Response(Buffer.from(pdfBytes), {
     headers: {
