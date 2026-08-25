@@ -1,0 +1,148 @@
+import { PDFDocument } from "pdf-lib";
+import fontkit from "@pdf-lib/fontkit";
+import fs from "fs";
+import { NextRequest } from "next/server";
+
+import { prisma } from "@/lib/prisma";
+
+export const runtime = "nodejs";
+
+const FONT_PATH =
+  "/usr/share/fonts/opentype/ipafont-mincho/ipam.ttf";
+
+export async function GET(
+  _request: NextRequest,
+  context: {
+    params: Promise<{
+      id: string;
+    }>;
+  },
+) {
+  const { id } = await context.params;
+
+  const employee = await prisma.employee.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      retirementCertificate: true,
+    },
+  });
+
+  const certificate =
+    employee?.retirementCertificate;
+
+  if (!employee) {
+    return new Response("Employee not found", {
+      status: 404,
+    });
+  }
+
+  const company =
+    await prisma.companySetting.findFirst();
+
+  const pdfDoc = await PDFDocument.create();
+  pdfDoc.registerFontkit(fontkit);
+
+  const fontBytes = fs.readFileSync(FONT_PATH);
+  const font = await pdfDoc.embedFont(fontBytes);
+
+  const page = pdfDoc.addPage([595, 842]);
+
+  page.drawText("退職証明書", {
+    x: 180,
+    y: 770,
+    size: 20,
+    font,
+  });
+
+  page.drawText(
+    `社員番号：${employee.employeeNo}`,
+    {
+      x: 80,
+      y: 680,
+      size: 12,
+      font,
+    },
+  );
+
+  page.drawText(
+    `氏名：${employee.lastName} ${employee.firstName}`,
+    {
+      x: 80,
+      y: 650,
+      size: 12,
+      font,
+    },
+  );
+
+  page.drawText(
+    `Retirement Date: ${
+      employee.retirementDate
+        ? employee.retirementDate
+            .toISOString()
+            .slice(0, 10)
+        : "-"
+    }`,
+    {
+      x: 80,
+      y: 620,
+      size: 12,
+      font,
+    },
+  );
+
+  page.drawText(
+    `発行日：${new Date()
+      .toISOString()
+      .slice(0, 10)}`,
+    {
+      x: 80,
+      y: 500,
+      size: 12,
+      font,
+    },
+  );
+
+  page.drawText(
+    "上記の者は当法人を退職したことを証明します。",
+    {
+      x: 80,
+      y: 550,
+      size: 12,
+      font,
+    },
+  );
+
+  page.drawText(
+    company?.companyName ?? "",
+    {
+      x: 320,
+      y: 200,
+      size: 12,
+      font,
+    },
+  );
+
+  page.drawText(
+    company?.representativeName ?? "",
+    {
+      x: 320,
+      y: 175,
+      size: 12,
+      font,
+    },
+  );
+
+  const pdfBytes =
+    await pdfDoc.save();
+
+  return new Response(Buffer.from(pdfBytes), {
+    headers: {
+      "Content-Type":
+        "application/pdf",
+      "Content-Disposition":
+        `inline; filename="retirement-certificate-${employee.employeeNo}.pdf"`,
+    },
+  });
+}

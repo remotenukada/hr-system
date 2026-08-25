@@ -829,6 +829,21 @@ model RetirementCertificate {
 
   reason String?
 
+  showEmploymentPeriod Boolean @default(true)
+  showJobType          Boolean @default(false)
+  showPosition         Boolean @default(false)
+  showWage             Boolean @default(false)
+  showRetirementReason Boolean @default(false)
+
+  jobType          String?
+  wageInfo         String?
+  retirementReason String?
+
+  certificateNo String? @unique
+
+  issuedAt DateTime?
+  issuedBy String?
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

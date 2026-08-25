@@ -612,6 +612,27 @@ exports.Prisma.LoanedAssetScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.RetirementCertificateScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  certificateDate: 'certificateDate',
+  retirementDate: 'retirementDate',
+  reason: 'reason',
+  showEmploymentPeriod: 'showEmploymentPeriod',
+  showJobType: 'showJobType',
+  showPosition: 'showPosition',
+  showWage: 'showWage',
+  showRetirementReason: 'showRetirementReason',
+  jobType: 'jobType',
+  wageInfo: 'wageInfo',
+  retirementReason: 'retirementReason',
+  certificateNo: 'certificateNo',
+  issuedAt: 'issuedAt',
+  issuedBy: 'issuedBy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -761,7 +782,8 @@ exports.Prisma.ModelName = {
   JobTitleMaster: 'JobTitleMaster',
   PositionMaster: 'PositionMaster',
   RetirementChecklist: 'RetirementChecklist',
-  LoanedAsset: 'LoanedAsset'
+  LoanedAsset: 'LoanedAsset',
+  RetirementCertificate: 'RetirementCertificate'
 };
 
 /**

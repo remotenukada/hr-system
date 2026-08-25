@@ -46,27 +46,6 @@ export default async function RetirementCertificatePage({
         {employee.firstName}
       </p>
 
-      {certificate && (
-        <div className="mb-6 rounded border bg-gray-50 p-4 text-sm">
-          <div>
-            <strong>証明番号：</strong>
-            {certificate.certificateNo ?? "-"}
-          </div>
-
-          <div>
-            <strong>最終発行日時：</strong>
-            {certificate.issuedAt
-              ? certificate.issuedAt.toLocaleString("ja-JP")
-              : "-"}
-          </div>
-
-          <div>
-            <strong>最終発行者：</strong>
-            {certificate.issuedBy ?? "-"}
-          </div>
-        </div>
-      )}
-
       <form action={saveRetirementCertificate} className="space-y-6">
         <input
           type="hidden"
@@ -104,57 +83,17 @@ export default async function RetirementCertificatePage({
           </label>
         </div>
 
-        <fieldset className="space-y-5">
-          <legend className="font-semibold">本人が記載を求めた項目</legend>
-
-          <label className="flex gap-3">
-            <input type="checkbox" name="showEmploymentPeriod"
-              defaultChecked={certificate?.showEmploymentPeriod ?? false} />
-            雇用期間
+        <div className="space-y-2">
+          <label className="block text-sm font-medium">
+            退職理由
           </label>
-
-          <label className="block">
-            <span className="flex gap-3">
-              <input type="checkbox" name="showJobType"
-                defaultChecked={certificate?.showJobType ?? false} />
-              業務の種類
-            </span>
-            <input name="jobType"
-              defaultValue={certificate?.jobType ?? employee.occupation ?? ""}
-              placeholder="例：介護職員"
-              className="mt-2 w-full rounded border p-2" />
-          </label>
-
-          <label className="flex gap-3">
-            <input type="checkbox" name="showPosition"
-              defaultChecked={certificate?.showPosition ?? false} />
-            その事業における地位（{employee.position ?? "未設定"}）
-          </label>
-
-          <label className="block">
-            <span className="flex gap-3">
-              <input type="checkbox" name="showWage"
-                defaultChecked={certificate?.showWage ?? false} />
-              賃金
-            </span>
-            <input name="wageInfo"
-              defaultValue={certificate?.wageInfo ?? ""}
-              placeholder="例：基本給 月額 xxx,xxx円"
-              className="mt-2 w-full rounded border p-2" />
-          </label>
-
-          <label className="block">
-            <span className="flex gap-3">
-              <input type="checkbox" name="showRetirementReason"
-                defaultChecked={certificate?.showRetirementReason ?? false} />
-              退職の事由（自己都合・会社都合等）
-            </span>
-            <textarea name="retirementReason" rows={3}
-              defaultValue={certificate?.reason ?? ""}
-              placeholder="例：自己都合による退職"
-              className="mt-2 w-full rounded border p-2" />
-          </label>
-        </fieldset>
+          <textarea
+            name="reason"
+            rows={3}
+            defaultValue={certificate?.reason ?? ""}
+            className="w-full rounded border p-2"
+          />
+        </div>
 
         <div className="flex gap-4">
           <button

@@ -193,6 +193,11 @@ export type RetirementChecklist = $Result.DefaultSelection<Prisma.$RetirementChe
  * 
  */
 export type LoanedAsset = $Result.DefaultSelection<Prisma.$LoanedAssetPayload>
+/**
+ * Model RetirementCertificate
+ * 
+ */
+export type RetirementCertificate = $Result.DefaultSelection<Prisma.$RetirementCertificatePayload>
 
 /**
  * Enums
@@ -858,6 +863,16 @@ export class PrismaClient<
     * ```
     */
   get loanedAsset(): Prisma.LoanedAssetDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.retirementCertificate`: Exposes CRUD operations for the **RetirementCertificate** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RetirementCertificates
+    * const retirementCertificates = await prisma.retirementCertificate.findMany()
+    * ```
+    */
+  get retirementCertificate(): Prisma.RetirementCertificateDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1327,7 +1342,8 @@ export namespace Prisma {
     JobTitleMaster: 'JobTitleMaster',
     PositionMaster: 'PositionMaster',
     RetirementChecklist: 'RetirementChecklist',
-    LoanedAsset: 'LoanedAsset'
+    LoanedAsset: 'LoanedAsset',
+    RetirementCertificate: 'RetirementCertificate'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1343,7 +1359,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "userInvitation" | "department" | "employee" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster" | "contractTypeMaster" | "jobTitleMaster" | "positionMaster" | "retirementChecklist" | "loanedAsset"
+      modelProps: "user" | "userInvitation" | "department" | "employee" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster" | "contractTypeMaster" | "jobTitleMaster" | "positionMaster" | "retirementChecklist" | "loanedAsset" | "retirementCertificate"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -4011,6 +4027,80 @@ export namespace Prisma {
           }
         }
       }
+      RetirementCertificate: {
+        payload: Prisma.$RetirementCertificatePayload<ExtArgs>
+        fields: Prisma.RetirementCertificateFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RetirementCertificateFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetirementCertificatePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RetirementCertificateFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetirementCertificatePayload>
+          }
+          findFirst: {
+            args: Prisma.RetirementCertificateFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetirementCertificatePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RetirementCertificateFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetirementCertificatePayload>
+          }
+          findMany: {
+            args: Prisma.RetirementCertificateFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetirementCertificatePayload>[]
+          }
+          create: {
+            args: Prisma.RetirementCertificateCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetirementCertificatePayload>
+          }
+          createMany: {
+            args: Prisma.RetirementCertificateCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RetirementCertificateCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetirementCertificatePayload>[]
+          }
+          delete: {
+            args: Prisma.RetirementCertificateDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetirementCertificatePayload>
+          }
+          update: {
+            args: Prisma.RetirementCertificateUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetirementCertificatePayload>
+          }
+          deleteMany: {
+            args: Prisma.RetirementCertificateDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RetirementCertificateUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RetirementCertificateUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetirementCertificatePayload>[]
+          }
+          upsert: {
+            args: Prisma.RetirementCertificateUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RetirementCertificatePayload>
+          }
+          aggregate: {
+            args: Prisma.RetirementCertificateAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRetirementCertificate>
+          }
+          groupBy: {
+            args: Prisma.RetirementCertificateGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RetirementCertificateGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RetirementCertificateCountArgs<ExtArgs>
+            result: $Utils.Optional<RetirementCertificateCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -4155,6 +4245,7 @@ export namespace Prisma {
     positionMaster?: PositionMasterOmit
     retirementChecklist?: RetirementChecklistOmit
     loanedAsset?: LoanedAssetOmit
+    retirementCertificate?: RetirementCertificateOmit
   }
 
   /* Types for Logging */
@@ -8367,6 +8458,7 @@ export namespace Prisma {
     employmentContracts?: boolean | Employee$employmentContractsArgs<ExtArgs>
     retirementChecklist?: boolean | Employee$retirementChecklistArgs<ExtArgs>
     loanedAssets?: boolean | Employee$loanedAssetsArgs<ExtArgs>
+    retirementCertificate?: boolean | Employee$retirementCertificateArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["employee"]>
 
@@ -8477,6 +8569,7 @@ export namespace Prisma {
     employmentContracts?: boolean | Employee$employmentContractsArgs<ExtArgs>
     retirementChecklist?: boolean | Employee$retirementChecklistArgs<ExtArgs>
     loanedAssets?: boolean | Employee$loanedAssetsArgs<ExtArgs>
+    retirementCertificate?: boolean | Employee$retirementCertificateArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EmployeeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8508,6 +8601,7 @@ export namespace Prisma {
       employmentContracts: Prisma.$EmploymentContractPayload<ExtArgs>[]
       retirementChecklist: Prisma.$RetirementChecklistPayload<ExtArgs> | null
       loanedAssets: Prisma.$LoanedAssetPayload<ExtArgs>[]
+      retirementCertificate: Prisma.$RetirementCertificatePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8946,6 +9040,7 @@ export namespace Prisma {
     employmentContracts<T extends Employee$employmentContractsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$employmentContractsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentContractPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     retirementChecklist<T extends Employee$retirementChecklistArgs<ExtArgs> = {}>(args?: Subset<T, Employee$retirementChecklistArgs<ExtArgs>>): Prisma__RetirementChecklistClient<$Result.GetResult<Prisma.$RetirementChecklistPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     loanedAssets<T extends Employee$loanedAssetsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$loanedAssetsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LoanedAssetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    retirementCertificate<T extends Employee$retirementCertificateArgs<ExtArgs> = {}>(args?: Subset<T, Employee$retirementCertificateArgs<ExtArgs>>): Prisma__RetirementCertificateClient<$Result.GetResult<Prisma.$RetirementCertificatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9771,6 +9866,25 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: LoanedAssetScalarFieldEnum | LoanedAssetScalarFieldEnum[]
+  }
+
+  /**
+   * Employee.retirementCertificate
+   */
+  export type Employee$retirementCertificateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetirementCertificate
+     */
+    select?: RetirementCertificateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetirementCertificate
+     */
+    omit?: RetirementCertificateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetirementCertificateInclude<ExtArgs> | null
+    where?: RetirementCertificateWhereInput
   }
 
   /**
@@ -46598,6 +46712,1238 @@ export namespace Prisma {
 
 
   /**
+   * Model RetirementCertificate
+   */
+
+  export type AggregateRetirementCertificate = {
+    _count: RetirementCertificateCountAggregateOutputType | null
+    _min: RetirementCertificateMinAggregateOutputType | null
+    _max: RetirementCertificateMaxAggregateOutputType | null
+  }
+
+  export type RetirementCertificateMinAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    certificateDate: Date | null
+    retirementDate: Date | null
+    reason: string | null
+    showEmploymentPeriod: boolean | null
+    showJobType: boolean | null
+    showPosition: boolean | null
+    showWage: boolean | null
+    showRetirementReason: boolean | null
+    jobType: string | null
+    wageInfo: string | null
+    retirementReason: string | null
+    certificateNo: string | null
+    issuedAt: Date | null
+    issuedBy: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RetirementCertificateMaxAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    certificateDate: Date | null
+    retirementDate: Date | null
+    reason: string | null
+    showEmploymentPeriod: boolean | null
+    showJobType: boolean | null
+    showPosition: boolean | null
+    showWage: boolean | null
+    showRetirementReason: boolean | null
+    jobType: string | null
+    wageInfo: string | null
+    retirementReason: string | null
+    certificateNo: string | null
+    issuedAt: Date | null
+    issuedBy: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type RetirementCertificateCountAggregateOutputType = {
+    id: number
+    employeeId: number
+    certificateDate: number
+    retirementDate: number
+    reason: number
+    showEmploymentPeriod: number
+    showJobType: number
+    showPosition: number
+    showWage: number
+    showRetirementReason: number
+    jobType: number
+    wageInfo: number
+    retirementReason: number
+    certificateNo: number
+    issuedAt: number
+    issuedBy: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type RetirementCertificateMinAggregateInputType = {
+    id?: true
+    employeeId?: true
+    certificateDate?: true
+    retirementDate?: true
+    reason?: true
+    showEmploymentPeriod?: true
+    showJobType?: true
+    showPosition?: true
+    showWage?: true
+    showRetirementReason?: true
+    jobType?: true
+    wageInfo?: true
+    retirementReason?: true
+    certificateNo?: true
+    issuedAt?: true
+    issuedBy?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RetirementCertificateMaxAggregateInputType = {
+    id?: true
+    employeeId?: true
+    certificateDate?: true
+    retirementDate?: true
+    reason?: true
+    showEmploymentPeriod?: true
+    showJobType?: true
+    showPosition?: true
+    showWage?: true
+    showRetirementReason?: true
+    jobType?: true
+    wageInfo?: true
+    retirementReason?: true
+    certificateNo?: true
+    issuedAt?: true
+    issuedBy?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type RetirementCertificateCountAggregateInputType = {
+    id?: true
+    employeeId?: true
+    certificateDate?: true
+    retirementDate?: true
+    reason?: true
+    showEmploymentPeriod?: true
+    showJobType?: true
+    showPosition?: true
+    showWage?: true
+    showRetirementReason?: true
+    jobType?: true
+    wageInfo?: true
+    retirementReason?: true
+    certificateNo?: true
+    issuedAt?: true
+    issuedBy?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type RetirementCertificateAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RetirementCertificate to aggregate.
+     */
+    where?: RetirementCertificateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RetirementCertificates to fetch.
+     */
+    orderBy?: RetirementCertificateOrderByWithRelationInput | RetirementCertificateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RetirementCertificateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RetirementCertificates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RetirementCertificates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RetirementCertificates
+    **/
+    _count?: true | RetirementCertificateCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RetirementCertificateMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RetirementCertificateMaxAggregateInputType
+  }
+
+  export type GetRetirementCertificateAggregateType<T extends RetirementCertificateAggregateArgs> = {
+        [P in keyof T & keyof AggregateRetirementCertificate]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRetirementCertificate[P]>
+      : GetScalarType<T[P], AggregateRetirementCertificate[P]>
+  }
+
+
+
+
+  export type RetirementCertificateGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RetirementCertificateWhereInput
+    orderBy?: RetirementCertificateOrderByWithAggregationInput | RetirementCertificateOrderByWithAggregationInput[]
+    by: RetirementCertificateScalarFieldEnum[] | RetirementCertificateScalarFieldEnum
+    having?: RetirementCertificateScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RetirementCertificateCountAggregateInputType | true
+    _min?: RetirementCertificateMinAggregateInputType
+    _max?: RetirementCertificateMaxAggregateInputType
+  }
+
+  export type RetirementCertificateGroupByOutputType = {
+    id: string
+    employeeId: string
+    certificateDate: Date
+    retirementDate: Date
+    reason: string | null
+    showEmploymentPeriod: boolean
+    showJobType: boolean
+    showPosition: boolean
+    showWage: boolean
+    showRetirementReason: boolean
+    jobType: string | null
+    wageInfo: string | null
+    retirementReason: string | null
+    certificateNo: string | null
+    issuedAt: Date | null
+    issuedBy: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: RetirementCertificateCountAggregateOutputType | null
+    _min: RetirementCertificateMinAggregateOutputType | null
+    _max: RetirementCertificateMaxAggregateOutputType | null
+  }
+
+  type GetRetirementCertificateGroupByPayload<T extends RetirementCertificateGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RetirementCertificateGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RetirementCertificateGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RetirementCertificateGroupByOutputType[P]>
+            : GetScalarType<T[P], RetirementCertificateGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RetirementCertificateSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    certificateDate?: boolean
+    retirementDate?: boolean
+    reason?: boolean
+    showEmploymentPeriod?: boolean
+    showJobType?: boolean
+    showPosition?: boolean
+    showWage?: boolean
+    showRetirementReason?: boolean
+    jobType?: boolean
+    wageInfo?: boolean
+    retirementReason?: boolean
+    certificateNo?: boolean
+    issuedAt?: boolean
+    issuedBy?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["retirementCertificate"]>
+
+  export type RetirementCertificateSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    certificateDate?: boolean
+    retirementDate?: boolean
+    reason?: boolean
+    showEmploymentPeriod?: boolean
+    showJobType?: boolean
+    showPosition?: boolean
+    showWage?: boolean
+    showRetirementReason?: boolean
+    jobType?: boolean
+    wageInfo?: boolean
+    retirementReason?: boolean
+    certificateNo?: boolean
+    issuedAt?: boolean
+    issuedBy?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["retirementCertificate"]>
+
+  export type RetirementCertificateSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    certificateDate?: boolean
+    retirementDate?: boolean
+    reason?: boolean
+    showEmploymentPeriod?: boolean
+    showJobType?: boolean
+    showPosition?: boolean
+    showWage?: boolean
+    showRetirementReason?: boolean
+    jobType?: boolean
+    wageInfo?: boolean
+    retirementReason?: boolean
+    certificateNo?: boolean
+    issuedAt?: boolean
+    issuedBy?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["retirementCertificate"]>
+
+  export type RetirementCertificateSelectScalar = {
+    id?: boolean
+    employeeId?: boolean
+    certificateDate?: boolean
+    retirementDate?: boolean
+    reason?: boolean
+    showEmploymentPeriod?: boolean
+    showJobType?: boolean
+    showPosition?: boolean
+    showWage?: boolean
+    showRetirementReason?: boolean
+    jobType?: boolean
+    wageInfo?: boolean
+    retirementReason?: boolean
+    certificateNo?: boolean
+    issuedAt?: boolean
+    issuedBy?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type RetirementCertificateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "certificateDate" | "retirementDate" | "reason" | "showEmploymentPeriod" | "showJobType" | "showPosition" | "showWage" | "showRetirementReason" | "jobType" | "wageInfo" | "retirementReason" | "certificateNo" | "issuedAt" | "issuedBy" | "createdAt" | "updatedAt", ExtArgs["result"]["retirementCertificate"]>
+  export type RetirementCertificateInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+  export type RetirementCertificateIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+  export type RetirementCertificateIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+
+  export type $RetirementCertificatePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RetirementCertificate"
+    objects: {
+      employee: Prisma.$EmployeePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      employeeId: string
+      certificateDate: Date
+      retirementDate: Date
+      reason: string | null
+      showEmploymentPeriod: boolean
+      showJobType: boolean
+      showPosition: boolean
+      showWage: boolean
+      showRetirementReason: boolean
+      jobType: string | null
+      wageInfo: string | null
+      retirementReason: string | null
+      certificateNo: string | null
+      issuedAt: Date | null
+      issuedBy: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["retirementCertificate"]>
+    composites: {}
+  }
+
+  type RetirementCertificateGetPayload<S extends boolean | null | undefined | RetirementCertificateDefaultArgs> = $Result.GetResult<Prisma.$RetirementCertificatePayload, S>
+
+  type RetirementCertificateCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RetirementCertificateFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RetirementCertificateCountAggregateInputType | true
+    }
+
+  export interface RetirementCertificateDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RetirementCertificate'], meta: { name: 'RetirementCertificate' } }
+    /**
+     * Find zero or one RetirementCertificate that matches the filter.
+     * @param {RetirementCertificateFindUniqueArgs} args - Arguments to find a RetirementCertificate
+     * @example
+     * // Get one RetirementCertificate
+     * const retirementCertificate = await prisma.retirementCertificate.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RetirementCertificateFindUniqueArgs>(args: SelectSubset<T, RetirementCertificateFindUniqueArgs<ExtArgs>>): Prisma__RetirementCertificateClient<$Result.GetResult<Prisma.$RetirementCertificatePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RetirementCertificate that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RetirementCertificateFindUniqueOrThrowArgs} args - Arguments to find a RetirementCertificate
+     * @example
+     * // Get one RetirementCertificate
+     * const retirementCertificate = await prisma.retirementCertificate.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RetirementCertificateFindUniqueOrThrowArgs>(args: SelectSubset<T, RetirementCertificateFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RetirementCertificateClient<$Result.GetResult<Prisma.$RetirementCertificatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RetirementCertificate that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RetirementCertificateFindFirstArgs} args - Arguments to find a RetirementCertificate
+     * @example
+     * // Get one RetirementCertificate
+     * const retirementCertificate = await prisma.retirementCertificate.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RetirementCertificateFindFirstArgs>(args?: SelectSubset<T, RetirementCertificateFindFirstArgs<ExtArgs>>): Prisma__RetirementCertificateClient<$Result.GetResult<Prisma.$RetirementCertificatePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RetirementCertificate that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RetirementCertificateFindFirstOrThrowArgs} args - Arguments to find a RetirementCertificate
+     * @example
+     * // Get one RetirementCertificate
+     * const retirementCertificate = await prisma.retirementCertificate.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RetirementCertificateFindFirstOrThrowArgs>(args?: SelectSubset<T, RetirementCertificateFindFirstOrThrowArgs<ExtArgs>>): Prisma__RetirementCertificateClient<$Result.GetResult<Prisma.$RetirementCertificatePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RetirementCertificates that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RetirementCertificateFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RetirementCertificates
+     * const retirementCertificates = await prisma.retirementCertificate.findMany()
+     * 
+     * // Get first 10 RetirementCertificates
+     * const retirementCertificates = await prisma.retirementCertificate.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const retirementCertificateWithIdOnly = await prisma.retirementCertificate.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RetirementCertificateFindManyArgs>(args?: SelectSubset<T, RetirementCertificateFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RetirementCertificatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RetirementCertificate.
+     * @param {RetirementCertificateCreateArgs} args - Arguments to create a RetirementCertificate.
+     * @example
+     * // Create one RetirementCertificate
+     * const RetirementCertificate = await prisma.retirementCertificate.create({
+     *   data: {
+     *     // ... data to create a RetirementCertificate
+     *   }
+     * })
+     * 
+     */
+    create<T extends RetirementCertificateCreateArgs>(args: SelectSubset<T, RetirementCertificateCreateArgs<ExtArgs>>): Prisma__RetirementCertificateClient<$Result.GetResult<Prisma.$RetirementCertificatePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RetirementCertificates.
+     * @param {RetirementCertificateCreateManyArgs} args - Arguments to create many RetirementCertificates.
+     * @example
+     * // Create many RetirementCertificates
+     * const retirementCertificate = await prisma.retirementCertificate.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RetirementCertificateCreateManyArgs>(args?: SelectSubset<T, RetirementCertificateCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RetirementCertificates and returns the data saved in the database.
+     * @param {RetirementCertificateCreateManyAndReturnArgs} args - Arguments to create many RetirementCertificates.
+     * @example
+     * // Create many RetirementCertificates
+     * const retirementCertificate = await prisma.retirementCertificate.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RetirementCertificates and only return the `id`
+     * const retirementCertificateWithIdOnly = await prisma.retirementCertificate.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RetirementCertificateCreateManyAndReturnArgs>(args?: SelectSubset<T, RetirementCertificateCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RetirementCertificatePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RetirementCertificate.
+     * @param {RetirementCertificateDeleteArgs} args - Arguments to delete one RetirementCertificate.
+     * @example
+     * // Delete one RetirementCertificate
+     * const RetirementCertificate = await prisma.retirementCertificate.delete({
+     *   where: {
+     *     // ... filter to delete one RetirementCertificate
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RetirementCertificateDeleteArgs>(args: SelectSubset<T, RetirementCertificateDeleteArgs<ExtArgs>>): Prisma__RetirementCertificateClient<$Result.GetResult<Prisma.$RetirementCertificatePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RetirementCertificate.
+     * @param {RetirementCertificateUpdateArgs} args - Arguments to update one RetirementCertificate.
+     * @example
+     * // Update one RetirementCertificate
+     * const retirementCertificate = await prisma.retirementCertificate.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RetirementCertificateUpdateArgs>(args: SelectSubset<T, RetirementCertificateUpdateArgs<ExtArgs>>): Prisma__RetirementCertificateClient<$Result.GetResult<Prisma.$RetirementCertificatePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RetirementCertificates.
+     * @param {RetirementCertificateDeleteManyArgs} args - Arguments to filter RetirementCertificates to delete.
+     * @example
+     * // Delete a few RetirementCertificates
+     * const { count } = await prisma.retirementCertificate.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RetirementCertificateDeleteManyArgs>(args?: SelectSubset<T, RetirementCertificateDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RetirementCertificates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RetirementCertificateUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RetirementCertificates
+     * const retirementCertificate = await prisma.retirementCertificate.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RetirementCertificateUpdateManyArgs>(args: SelectSubset<T, RetirementCertificateUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RetirementCertificates and returns the data updated in the database.
+     * @param {RetirementCertificateUpdateManyAndReturnArgs} args - Arguments to update many RetirementCertificates.
+     * @example
+     * // Update many RetirementCertificates
+     * const retirementCertificate = await prisma.retirementCertificate.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RetirementCertificates and only return the `id`
+     * const retirementCertificateWithIdOnly = await prisma.retirementCertificate.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RetirementCertificateUpdateManyAndReturnArgs>(args: SelectSubset<T, RetirementCertificateUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RetirementCertificatePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RetirementCertificate.
+     * @param {RetirementCertificateUpsertArgs} args - Arguments to update or create a RetirementCertificate.
+     * @example
+     * // Update or create a RetirementCertificate
+     * const retirementCertificate = await prisma.retirementCertificate.upsert({
+     *   create: {
+     *     // ... data to create a RetirementCertificate
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RetirementCertificate we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RetirementCertificateUpsertArgs>(args: SelectSubset<T, RetirementCertificateUpsertArgs<ExtArgs>>): Prisma__RetirementCertificateClient<$Result.GetResult<Prisma.$RetirementCertificatePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RetirementCertificates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RetirementCertificateCountArgs} args - Arguments to filter RetirementCertificates to count.
+     * @example
+     * // Count the number of RetirementCertificates
+     * const count = await prisma.retirementCertificate.count({
+     *   where: {
+     *     // ... the filter for the RetirementCertificates we want to count
+     *   }
+     * })
+    **/
+    count<T extends RetirementCertificateCountArgs>(
+      args?: Subset<T, RetirementCertificateCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RetirementCertificateCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RetirementCertificate.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RetirementCertificateAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RetirementCertificateAggregateArgs>(args: Subset<T, RetirementCertificateAggregateArgs>): Prisma.PrismaPromise<GetRetirementCertificateAggregateType<T>>
+
+    /**
+     * Group by RetirementCertificate.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RetirementCertificateGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RetirementCertificateGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RetirementCertificateGroupByArgs['orderBy'] }
+        : { orderBy?: RetirementCertificateGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RetirementCertificateGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRetirementCertificateGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RetirementCertificate model
+   */
+  readonly fields: RetirementCertificateFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RetirementCertificate.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RetirementCertificateClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RetirementCertificate model
+   */
+  interface RetirementCertificateFieldRefs {
+    readonly id: FieldRef<"RetirementCertificate", 'String'>
+    readonly employeeId: FieldRef<"RetirementCertificate", 'String'>
+    readonly certificateDate: FieldRef<"RetirementCertificate", 'DateTime'>
+    readonly retirementDate: FieldRef<"RetirementCertificate", 'DateTime'>
+    readonly reason: FieldRef<"RetirementCertificate", 'String'>
+    readonly showEmploymentPeriod: FieldRef<"RetirementCertificate", 'Boolean'>
+    readonly showJobType: FieldRef<"RetirementCertificate", 'Boolean'>
+    readonly showPosition: FieldRef<"RetirementCertificate", 'Boolean'>
+    readonly showWage: FieldRef<"RetirementCertificate", 'Boolean'>
+    readonly showRetirementReason: FieldRef<"RetirementCertificate", 'Boolean'>
+    readonly jobType: FieldRef<"RetirementCertificate", 'String'>
+    readonly wageInfo: FieldRef<"RetirementCertificate", 'String'>
+    readonly retirementReason: FieldRef<"RetirementCertificate", 'String'>
+    readonly certificateNo: FieldRef<"RetirementCertificate", 'String'>
+    readonly issuedAt: FieldRef<"RetirementCertificate", 'DateTime'>
+    readonly issuedBy: FieldRef<"RetirementCertificate", 'String'>
+    readonly createdAt: FieldRef<"RetirementCertificate", 'DateTime'>
+    readonly updatedAt: FieldRef<"RetirementCertificate", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RetirementCertificate findUnique
+   */
+  export type RetirementCertificateFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetirementCertificate
+     */
+    select?: RetirementCertificateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetirementCertificate
+     */
+    omit?: RetirementCertificateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetirementCertificateInclude<ExtArgs> | null
+    /**
+     * Filter, which RetirementCertificate to fetch.
+     */
+    where: RetirementCertificateWhereUniqueInput
+  }
+
+  /**
+   * RetirementCertificate findUniqueOrThrow
+   */
+  export type RetirementCertificateFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetirementCertificate
+     */
+    select?: RetirementCertificateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetirementCertificate
+     */
+    omit?: RetirementCertificateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetirementCertificateInclude<ExtArgs> | null
+    /**
+     * Filter, which RetirementCertificate to fetch.
+     */
+    where: RetirementCertificateWhereUniqueInput
+  }
+
+  /**
+   * RetirementCertificate findFirst
+   */
+  export type RetirementCertificateFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetirementCertificate
+     */
+    select?: RetirementCertificateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetirementCertificate
+     */
+    omit?: RetirementCertificateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetirementCertificateInclude<ExtArgs> | null
+    /**
+     * Filter, which RetirementCertificate to fetch.
+     */
+    where?: RetirementCertificateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RetirementCertificates to fetch.
+     */
+    orderBy?: RetirementCertificateOrderByWithRelationInput | RetirementCertificateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RetirementCertificates.
+     */
+    cursor?: RetirementCertificateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RetirementCertificates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RetirementCertificates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RetirementCertificates.
+     */
+    distinct?: RetirementCertificateScalarFieldEnum | RetirementCertificateScalarFieldEnum[]
+  }
+
+  /**
+   * RetirementCertificate findFirstOrThrow
+   */
+  export type RetirementCertificateFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetirementCertificate
+     */
+    select?: RetirementCertificateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetirementCertificate
+     */
+    omit?: RetirementCertificateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetirementCertificateInclude<ExtArgs> | null
+    /**
+     * Filter, which RetirementCertificate to fetch.
+     */
+    where?: RetirementCertificateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RetirementCertificates to fetch.
+     */
+    orderBy?: RetirementCertificateOrderByWithRelationInput | RetirementCertificateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RetirementCertificates.
+     */
+    cursor?: RetirementCertificateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RetirementCertificates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RetirementCertificates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RetirementCertificates.
+     */
+    distinct?: RetirementCertificateScalarFieldEnum | RetirementCertificateScalarFieldEnum[]
+  }
+
+  /**
+   * RetirementCertificate findMany
+   */
+  export type RetirementCertificateFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetirementCertificate
+     */
+    select?: RetirementCertificateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetirementCertificate
+     */
+    omit?: RetirementCertificateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetirementCertificateInclude<ExtArgs> | null
+    /**
+     * Filter, which RetirementCertificates to fetch.
+     */
+    where?: RetirementCertificateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RetirementCertificates to fetch.
+     */
+    orderBy?: RetirementCertificateOrderByWithRelationInput | RetirementCertificateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RetirementCertificates.
+     */
+    cursor?: RetirementCertificateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RetirementCertificates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RetirementCertificates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RetirementCertificates.
+     */
+    distinct?: RetirementCertificateScalarFieldEnum | RetirementCertificateScalarFieldEnum[]
+  }
+
+  /**
+   * RetirementCertificate create
+   */
+  export type RetirementCertificateCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetirementCertificate
+     */
+    select?: RetirementCertificateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetirementCertificate
+     */
+    omit?: RetirementCertificateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetirementCertificateInclude<ExtArgs> | null
+    /**
+     * The data needed to create a RetirementCertificate.
+     */
+    data: XOR<RetirementCertificateCreateInput, RetirementCertificateUncheckedCreateInput>
+  }
+
+  /**
+   * RetirementCertificate createMany
+   */
+  export type RetirementCertificateCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RetirementCertificates.
+     */
+    data: RetirementCertificateCreateManyInput | RetirementCertificateCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RetirementCertificate createManyAndReturn
+   */
+  export type RetirementCertificateCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetirementCertificate
+     */
+    select?: RetirementCertificateSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetirementCertificate
+     */
+    omit?: RetirementCertificateOmit<ExtArgs> | null
+    /**
+     * The data used to create many RetirementCertificates.
+     */
+    data: RetirementCertificateCreateManyInput | RetirementCertificateCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetirementCertificateIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RetirementCertificate update
+   */
+  export type RetirementCertificateUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetirementCertificate
+     */
+    select?: RetirementCertificateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetirementCertificate
+     */
+    omit?: RetirementCertificateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetirementCertificateInclude<ExtArgs> | null
+    /**
+     * The data needed to update a RetirementCertificate.
+     */
+    data: XOR<RetirementCertificateUpdateInput, RetirementCertificateUncheckedUpdateInput>
+    /**
+     * Choose, which RetirementCertificate to update.
+     */
+    where: RetirementCertificateWhereUniqueInput
+  }
+
+  /**
+   * RetirementCertificate updateMany
+   */
+  export type RetirementCertificateUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RetirementCertificates.
+     */
+    data: XOR<RetirementCertificateUpdateManyMutationInput, RetirementCertificateUncheckedUpdateManyInput>
+    /**
+     * Filter which RetirementCertificates to update
+     */
+    where?: RetirementCertificateWhereInput
+    /**
+     * Limit how many RetirementCertificates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RetirementCertificate updateManyAndReturn
+   */
+  export type RetirementCertificateUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetirementCertificate
+     */
+    select?: RetirementCertificateSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetirementCertificate
+     */
+    omit?: RetirementCertificateOmit<ExtArgs> | null
+    /**
+     * The data used to update RetirementCertificates.
+     */
+    data: XOR<RetirementCertificateUpdateManyMutationInput, RetirementCertificateUncheckedUpdateManyInput>
+    /**
+     * Filter which RetirementCertificates to update
+     */
+    where?: RetirementCertificateWhereInput
+    /**
+     * Limit how many RetirementCertificates to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetirementCertificateIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RetirementCertificate upsert
+   */
+  export type RetirementCertificateUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetirementCertificate
+     */
+    select?: RetirementCertificateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetirementCertificate
+     */
+    omit?: RetirementCertificateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetirementCertificateInclude<ExtArgs> | null
+    /**
+     * The filter to search for the RetirementCertificate to update in case it exists.
+     */
+    where: RetirementCertificateWhereUniqueInput
+    /**
+     * In case the RetirementCertificate found by the `where` argument doesn't exist, create a new RetirementCertificate with this data.
+     */
+    create: XOR<RetirementCertificateCreateInput, RetirementCertificateUncheckedCreateInput>
+    /**
+     * In case the RetirementCertificate was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RetirementCertificateUpdateInput, RetirementCertificateUncheckedUpdateInput>
+  }
+
+  /**
+   * RetirementCertificate delete
+   */
+  export type RetirementCertificateDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetirementCertificate
+     */
+    select?: RetirementCertificateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetirementCertificate
+     */
+    omit?: RetirementCertificateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetirementCertificateInclude<ExtArgs> | null
+    /**
+     * Filter which RetirementCertificate to delete.
+     */
+    where: RetirementCertificateWhereUniqueInput
+  }
+
+  /**
+   * RetirementCertificate deleteMany
+   */
+  export type RetirementCertificateDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RetirementCertificates to delete
+     */
+    where?: RetirementCertificateWhereInput
+    /**
+     * Limit how many RetirementCertificates to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RetirementCertificate without action
+   */
+  export type RetirementCertificateDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RetirementCertificate
+     */
+    select?: RetirementCertificateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RetirementCertificate
+     */
+    omit?: RetirementCertificateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RetirementCertificateInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -47211,6 +48557,30 @@ export namespace Prisma {
   export type LoanedAssetScalarFieldEnum = (typeof LoanedAssetScalarFieldEnum)[keyof typeof LoanedAssetScalarFieldEnum]
 
 
+  export const RetirementCertificateScalarFieldEnum: {
+    id: 'id',
+    employeeId: 'employeeId',
+    certificateDate: 'certificateDate',
+    retirementDate: 'retirementDate',
+    reason: 'reason',
+    showEmploymentPeriod: 'showEmploymentPeriod',
+    showJobType: 'showJobType',
+    showPosition: 'showPosition',
+    showWage: 'showWage',
+    showRetirementReason: 'showRetirementReason',
+    jobType: 'jobType',
+    wageInfo: 'wageInfo',
+    retirementReason: 'retirementReason',
+    certificateNo: 'certificateNo',
+    issuedAt: 'issuedAt',
+    issuedBy: 'issuedBy',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type RetirementCertificateScalarFieldEnum = (typeof RetirementCertificateScalarFieldEnum)[keyof typeof RetirementCertificateScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -47773,6 +49143,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractListRelationFilter
     retirementChecklist?: XOR<RetirementChecklistNullableScalarRelationFilter, RetirementChecklistWhereInput> | null
     loanedAssets?: LoanedAssetListRelationFilter
+    retirementCertificate?: XOR<RetirementCertificateNullableScalarRelationFilter, RetirementCertificateWhereInput> | null
   }
 
   export type EmployeeOrderByWithRelationInput = {
@@ -47818,6 +49189,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractOrderByRelationAggregateInput
     retirementChecklist?: RetirementChecklistOrderByWithRelationInput
     loanedAssets?: LoanedAssetOrderByRelationAggregateInput
+    retirementCertificate?: RetirementCertificateOrderByWithRelationInput
   }
 
   export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
@@ -47866,6 +49238,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractListRelationFilter
     retirementChecklist?: XOR<RetirementChecklistNullableScalarRelationFilter, RetirementChecklistWhereInput> | null
     loanedAssets?: LoanedAssetListRelationFilter
+    retirementCertificate?: XOR<RetirementCertificateNullableScalarRelationFilter, RetirementCertificateWhereInput> | null
   }, "id" | "employeeNo" | "email" | "userId">
 
   export type EmployeeOrderByWithAggregationInput = {
@@ -50620,6 +51993,126 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"LoanedAsset"> | Date | string
   }
 
+  export type RetirementCertificateWhereInput = {
+    AND?: RetirementCertificateWhereInput | RetirementCertificateWhereInput[]
+    OR?: RetirementCertificateWhereInput[]
+    NOT?: RetirementCertificateWhereInput | RetirementCertificateWhereInput[]
+    id?: StringFilter<"RetirementCertificate"> | string
+    employeeId?: StringFilter<"RetirementCertificate"> | string
+    certificateDate?: DateTimeFilter<"RetirementCertificate"> | Date | string
+    retirementDate?: DateTimeFilter<"RetirementCertificate"> | Date | string
+    reason?: StringNullableFilter<"RetirementCertificate"> | string | null
+    showEmploymentPeriod?: BoolFilter<"RetirementCertificate"> | boolean
+    showJobType?: BoolFilter<"RetirementCertificate"> | boolean
+    showPosition?: BoolFilter<"RetirementCertificate"> | boolean
+    showWage?: BoolFilter<"RetirementCertificate"> | boolean
+    showRetirementReason?: BoolFilter<"RetirementCertificate"> | boolean
+    jobType?: StringNullableFilter<"RetirementCertificate"> | string | null
+    wageInfo?: StringNullableFilter<"RetirementCertificate"> | string | null
+    retirementReason?: StringNullableFilter<"RetirementCertificate"> | string | null
+    certificateNo?: StringNullableFilter<"RetirementCertificate"> | string | null
+    issuedAt?: DateTimeNullableFilter<"RetirementCertificate"> | Date | string | null
+    issuedBy?: StringNullableFilter<"RetirementCertificate"> | string | null
+    createdAt?: DateTimeFilter<"RetirementCertificate"> | Date | string
+    updatedAt?: DateTimeFilter<"RetirementCertificate"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+  }
+
+  export type RetirementCertificateOrderByWithRelationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    certificateDate?: SortOrder
+    retirementDate?: SortOrder
+    reason?: SortOrderInput | SortOrder
+    showEmploymentPeriod?: SortOrder
+    showJobType?: SortOrder
+    showPosition?: SortOrder
+    showWage?: SortOrder
+    showRetirementReason?: SortOrder
+    jobType?: SortOrderInput | SortOrder
+    wageInfo?: SortOrderInput | SortOrder
+    retirementReason?: SortOrderInput | SortOrder
+    certificateNo?: SortOrderInput | SortOrder
+    issuedAt?: SortOrderInput | SortOrder
+    issuedBy?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    employee?: EmployeeOrderByWithRelationInput
+  }
+
+  export type RetirementCertificateWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    employeeId?: string
+    certificateNo?: string
+    AND?: RetirementCertificateWhereInput | RetirementCertificateWhereInput[]
+    OR?: RetirementCertificateWhereInput[]
+    NOT?: RetirementCertificateWhereInput | RetirementCertificateWhereInput[]
+    certificateDate?: DateTimeFilter<"RetirementCertificate"> | Date | string
+    retirementDate?: DateTimeFilter<"RetirementCertificate"> | Date | string
+    reason?: StringNullableFilter<"RetirementCertificate"> | string | null
+    showEmploymentPeriod?: BoolFilter<"RetirementCertificate"> | boolean
+    showJobType?: BoolFilter<"RetirementCertificate"> | boolean
+    showPosition?: BoolFilter<"RetirementCertificate"> | boolean
+    showWage?: BoolFilter<"RetirementCertificate"> | boolean
+    showRetirementReason?: BoolFilter<"RetirementCertificate"> | boolean
+    jobType?: StringNullableFilter<"RetirementCertificate"> | string | null
+    wageInfo?: StringNullableFilter<"RetirementCertificate"> | string | null
+    retirementReason?: StringNullableFilter<"RetirementCertificate"> | string | null
+    issuedAt?: DateTimeNullableFilter<"RetirementCertificate"> | Date | string | null
+    issuedBy?: StringNullableFilter<"RetirementCertificate"> | string | null
+    createdAt?: DateTimeFilter<"RetirementCertificate"> | Date | string
+    updatedAt?: DateTimeFilter<"RetirementCertificate"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+  }, "id" | "employeeId" | "certificateNo">
+
+  export type RetirementCertificateOrderByWithAggregationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    certificateDate?: SortOrder
+    retirementDate?: SortOrder
+    reason?: SortOrderInput | SortOrder
+    showEmploymentPeriod?: SortOrder
+    showJobType?: SortOrder
+    showPosition?: SortOrder
+    showWage?: SortOrder
+    showRetirementReason?: SortOrder
+    jobType?: SortOrderInput | SortOrder
+    wageInfo?: SortOrderInput | SortOrder
+    retirementReason?: SortOrderInput | SortOrder
+    certificateNo?: SortOrderInput | SortOrder
+    issuedAt?: SortOrderInput | SortOrder
+    issuedBy?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: RetirementCertificateCountOrderByAggregateInput
+    _max?: RetirementCertificateMaxOrderByAggregateInput
+    _min?: RetirementCertificateMinOrderByAggregateInput
+  }
+
+  export type RetirementCertificateScalarWhereWithAggregatesInput = {
+    AND?: RetirementCertificateScalarWhereWithAggregatesInput | RetirementCertificateScalarWhereWithAggregatesInput[]
+    OR?: RetirementCertificateScalarWhereWithAggregatesInput[]
+    NOT?: RetirementCertificateScalarWhereWithAggregatesInput | RetirementCertificateScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"RetirementCertificate"> | string
+    employeeId?: StringWithAggregatesFilter<"RetirementCertificate"> | string
+    certificateDate?: DateTimeWithAggregatesFilter<"RetirementCertificate"> | Date | string
+    retirementDate?: DateTimeWithAggregatesFilter<"RetirementCertificate"> | Date | string
+    reason?: StringNullableWithAggregatesFilter<"RetirementCertificate"> | string | null
+    showEmploymentPeriod?: BoolWithAggregatesFilter<"RetirementCertificate"> | boolean
+    showJobType?: BoolWithAggregatesFilter<"RetirementCertificate"> | boolean
+    showPosition?: BoolWithAggregatesFilter<"RetirementCertificate"> | boolean
+    showWage?: BoolWithAggregatesFilter<"RetirementCertificate"> | boolean
+    showRetirementReason?: BoolWithAggregatesFilter<"RetirementCertificate"> | boolean
+    jobType?: StringNullableWithAggregatesFilter<"RetirementCertificate"> | string | null
+    wageInfo?: StringNullableWithAggregatesFilter<"RetirementCertificate"> | string | null
+    retirementReason?: StringNullableWithAggregatesFilter<"RetirementCertificate"> | string | null
+    certificateNo?: StringNullableWithAggregatesFilter<"RetirementCertificate"> | string | null
+    issuedAt?: DateTimeNullableWithAggregatesFilter<"RetirementCertificate"> | Date | string | null
+    issuedBy?: StringNullableWithAggregatesFilter<"RetirementCertificate"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"RetirementCertificate"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"RetirementCertificate"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     name: string
@@ -50901,6 +52394,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateInput = {
@@ -50944,6 +52438,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUpdateInput = {
@@ -50987,6 +52482,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateInput = {
@@ -51030,6 +52526,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateManyInput = {
@@ -54148,6 +55645,152 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type RetirementCertificateCreateInput = {
+    id?: string
+    certificateDate: Date | string
+    retirementDate: Date | string
+    reason?: string | null
+    showEmploymentPeriod?: boolean
+    showJobType?: boolean
+    showPosition?: boolean
+    showWage?: boolean
+    showRetirementReason?: boolean
+    jobType?: string | null
+    wageInfo?: string | null
+    retirementReason?: string | null
+    certificateNo?: string | null
+    issuedAt?: Date | string | null
+    issuedBy?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutRetirementCertificateInput
+  }
+
+  export type RetirementCertificateUncheckedCreateInput = {
+    id?: string
+    employeeId: string
+    certificateDate: Date | string
+    retirementDate: Date | string
+    reason?: string | null
+    showEmploymentPeriod?: boolean
+    showJobType?: boolean
+    showPosition?: boolean
+    showWage?: boolean
+    showRetirementReason?: boolean
+    jobType?: string | null
+    wageInfo?: string | null
+    retirementReason?: string | null
+    certificateNo?: string | null
+    issuedAt?: Date | string | null
+    issuedBy?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RetirementCertificateUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    certificateDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    retirementDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    showEmploymentPeriod?: BoolFieldUpdateOperationsInput | boolean
+    showJobType?: BoolFieldUpdateOperationsInput | boolean
+    showPosition?: BoolFieldUpdateOperationsInput | boolean
+    showWage?: BoolFieldUpdateOperationsInput | boolean
+    showRetirementReason?: BoolFieldUpdateOperationsInput | boolean
+    jobType?: NullableStringFieldUpdateOperationsInput | string | null
+    wageInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementReason?: NullableStringFieldUpdateOperationsInput | string | null
+    certificateNo?: NullableStringFieldUpdateOperationsInput | string | null
+    issuedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    issuedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutRetirementCertificateNestedInput
+  }
+
+  export type RetirementCertificateUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    certificateDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    retirementDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    showEmploymentPeriod?: BoolFieldUpdateOperationsInput | boolean
+    showJobType?: BoolFieldUpdateOperationsInput | boolean
+    showPosition?: BoolFieldUpdateOperationsInput | boolean
+    showWage?: BoolFieldUpdateOperationsInput | boolean
+    showRetirementReason?: BoolFieldUpdateOperationsInput | boolean
+    jobType?: NullableStringFieldUpdateOperationsInput | string | null
+    wageInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementReason?: NullableStringFieldUpdateOperationsInput | string | null
+    certificateNo?: NullableStringFieldUpdateOperationsInput | string | null
+    issuedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    issuedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RetirementCertificateCreateManyInput = {
+    id?: string
+    employeeId: string
+    certificateDate: Date | string
+    retirementDate: Date | string
+    reason?: string | null
+    showEmploymentPeriod?: boolean
+    showJobType?: boolean
+    showPosition?: boolean
+    showWage?: boolean
+    showRetirementReason?: boolean
+    jobType?: string | null
+    wageInfo?: string | null
+    retirementReason?: string | null
+    certificateNo?: string | null
+    issuedAt?: Date | string | null
+    issuedBy?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RetirementCertificateUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    certificateDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    retirementDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    showEmploymentPeriod?: BoolFieldUpdateOperationsInput | boolean
+    showJobType?: BoolFieldUpdateOperationsInput | boolean
+    showPosition?: BoolFieldUpdateOperationsInput | boolean
+    showWage?: BoolFieldUpdateOperationsInput | boolean
+    showRetirementReason?: BoolFieldUpdateOperationsInput | boolean
+    jobType?: NullableStringFieldUpdateOperationsInput | string | null
+    wageInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementReason?: NullableStringFieldUpdateOperationsInput | string | null
+    certificateNo?: NullableStringFieldUpdateOperationsInput | string | null
+    issuedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    issuedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RetirementCertificateUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    certificateDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    retirementDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    showEmploymentPeriod?: BoolFieldUpdateOperationsInput | boolean
+    showJobType?: BoolFieldUpdateOperationsInput | boolean
+    showPosition?: BoolFieldUpdateOperationsInput | boolean
+    showWage?: BoolFieldUpdateOperationsInput | boolean
+    showRetirementReason?: BoolFieldUpdateOperationsInput | boolean
+    jobType?: NullableStringFieldUpdateOperationsInput | string | null
+    wageInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementReason?: NullableStringFieldUpdateOperationsInput | string | null
+    certificateNo?: NullableStringFieldUpdateOperationsInput | string | null
+    issuedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    issuedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -54538,6 +56181,11 @@ export namespace Prisma {
     every?: LoanedAssetWhereInput
     some?: LoanedAssetWhereInput
     none?: LoanedAssetWhereInput
+  }
+
+  export type RetirementCertificateNullableScalarRelationFilter = {
+    is?: RetirementCertificateWhereInput | null
+    isNot?: RetirementCertificateWhereInput | null
   }
 
   export type EmployeeCertificationOrderByRelationAggregateInput = {
@@ -56582,6 +58230,69 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type RetirementCertificateCountOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    certificateDate?: SortOrder
+    retirementDate?: SortOrder
+    reason?: SortOrder
+    showEmploymentPeriod?: SortOrder
+    showJobType?: SortOrder
+    showPosition?: SortOrder
+    showWage?: SortOrder
+    showRetirementReason?: SortOrder
+    jobType?: SortOrder
+    wageInfo?: SortOrder
+    retirementReason?: SortOrder
+    certificateNo?: SortOrder
+    issuedAt?: SortOrder
+    issuedBy?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RetirementCertificateMaxOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    certificateDate?: SortOrder
+    retirementDate?: SortOrder
+    reason?: SortOrder
+    showEmploymentPeriod?: SortOrder
+    showJobType?: SortOrder
+    showPosition?: SortOrder
+    showWage?: SortOrder
+    showRetirementReason?: SortOrder
+    jobType?: SortOrder
+    wageInfo?: SortOrder
+    retirementReason?: SortOrder
+    certificateNo?: SortOrder
+    issuedAt?: SortOrder
+    issuedBy?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type RetirementCertificateMinOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    certificateDate?: SortOrder
+    retirementDate?: SortOrder
+    reason?: SortOrder
+    showEmploymentPeriod?: SortOrder
+    showJobType?: SortOrder
+    showPosition?: SortOrder
+    showWage?: SortOrder
+    showRetirementReason?: SortOrder
+    jobType?: SortOrder
+    wageInfo?: SortOrder
+    retirementReason?: SortOrder
+    certificateNo?: SortOrder
+    issuedAt?: SortOrder
+    issuedBy?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type EmployeeCreateNestedOneWithoutUserInput = {
     create?: XOR<EmployeeCreateWithoutUserInput, EmployeeUncheckedCreateWithoutUserInput>
     connectOrCreate?: EmployeeCreateOrConnectWithoutUserInput
@@ -56876,6 +58587,12 @@ export namespace Prisma {
     connect?: LoanedAssetWhereUniqueInput | LoanedAssetWhereUniqueInput[]
   }
 
+  export type RetirementCertificateCreateNestedOneWithoutEmployeeInput = {
+    create?: XOR<RetirementCertificateCreateWithoutEmployeeInput, RetirementCertificateUncheckedCreateWithoutEmployeeInput>
+    connectOrCreate?: RetirementCertificateCreateOrConnectWithoutEmployeeInput
+    connect?: RetirementCertificateWhereUniqueInput
+  }
+
   export type EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput = {
     create?: XOR<EmployeeCertificationCreateWithoutEmployeeInput, EmployeeCertificationUncheckedCreateWithoutEmployeeInput> | EmployeeCertificationCreateWithoutEmployeeInput[] | EmployeeCertificationUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutEmployeeInput | EmployeeCertificationCreateOrConnectWithoutEmployeeInput[]
@@ -56974,6 +58691,12 @@ export namespace Prisma {
     connectOrCreate?: LoanedAssetCreateOrConnectWithoutEmployeeInput | LoanedAssetCreateOrConnectWithoutEmployeeInput[]
     createMany?: LoanedAssetCreateManyEmployeeInputEnvelope
     connect?: LoanedAssetWhereUniqueInput | LoanedAssetWhereUniqueInput[]
+  }
+
+  export type RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput = {
+    create?: XOR<RetirementCertificateCreateWithoutEmployeeInput, RetirementCertificateUncheckedCreateWithoutEmployeeInput>
+    connectOrCreate?: RetirementCertificateCreateOrConnectWithoutEmployeeInput
+    connect?: RetirementCertificateWhereUniqueInput
   }
 
   export type NullableEnumGenderFieldUpdateOperationsInput = {
@@ -57198,6 +58921,16 @@ export namespace Prisma {
     deleteMany?: LoanedAssetScalarWhereInput | LoanedAssetScalarWhereInput[]
   }
 
+  export type RetirementCertificateUpdateOneWithoutEmployeeNestedInput = {
+    create?: XOR<RetirementCertificateCreateWithoutEmployeeInput, RetirementCertificateUncheckedCreateWithoutEmployeeInput>
+    connectOrCreate?: RetirementCertificateCreateOrConnectWithoutEmployeeInput
+    upsert?: RetirementCertificateUpsertWithoutEmployeeInput
+    disconnect?: RetirementCertificateWhereInput | boolean
+    delete?: RetirementCertificateWhereInput | boolean
+    connect?: RetirementCertificateWhereUniqueInput
+    update?: XOR<XOR<RetirementCertificateUpdateToOneWithWhereWithoutEmployeeInput, RetirementCertificateUpdateWithoutEmployeeInput>, RetirementCertificateUncheckedUpdateWithoutEmployeeInput>
+  }
+
   export type EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput = {
     create?: XOR<EmployeeCertificationCreateWithoutEmployeeInput, EmployeeCertificationUncheckedCreateWithoutEmployeeInput> | EmployeeCertificationCreateWithoutEmployeeInput[] | EmployeeCertificationUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutEmployeeInput | EmployeeCertificationCreateOrConnectWithoutEmployeeInput[]
@@ -57386,6 +59119,16 @@ export namespace Prisma {
     update?: LoanedAssetUpdateWithWhereUniqueWithoutEmployeeInput | LoanedAssetUpdateWithWhereUniqueWithoutEmployeeInput[]
     updateMany?: LoanedAssetUpdateManyWithWhereWithoutEmployeeInput | LoanedAssetUpdateManyWithWhereWithoutEmployeeInput[]
     deleteMany?: LoanedAssetScalarWhereInput | LoanedAssetScalarWhereInput[]
+  }
+
+  export type RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput = {
+    create?: XOR<RetirementCertificateCreateWithoutEmployeeInput, RetirementCertificateUncheckedCreateWithoutEmployeeInput>
+    connectOrCreate?: RetirementCertificateCreateOrConnectWithoutEmployeeInput
+    upsert?: RetirementCertificateUpsertWithoutEmployeeInput
+    disconnect?: RetirementCertificateWhereInput | boolean
+    delete?: RetirementCertificateWhereInput | boolean
+    connect?: RetirementCertificateWhereUniqueInput
+    update?: XOR<XOR<RetirementCertificateUpdateToOneWithWhereWithoutEmployeeInput, RetirementCertificateUpdateWithoutEmployeeInput>, RetirementCertificateUncheckedUpdateWithoutEmployeeInput>
   }
 
   export type EmployeeCreateNestedOneWithoutDependentsInput = {
@@ -58206,6 +59949,20 @@ export namespace Prisma {
     update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutLoanedAssetsInput, EmployeeUpdateWithoutLoanedAssetsInput>, EmployeeUncheckedUpdateWithoutLoanedAssetsInput>
   }
 
+  export type EmployeeCreateNestedOneWithoutRetirementCertificateInput = {
+    create?: XOR<EmployeeCreateWithoutRetirementCertificateInput, EmployeeUncheckedCreateWithoutRetirementCertificateInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutRetirementCertificateInput
+    connect?: EmployeeWhereUniqueInput
+  }
+
+  export type EmployeeUpdateOneRequiredWithoutRetirementCertificateNestedInput = {
+    create?: XOR<EmployeeCreateWithoutRetirementCertificateInput, EmployeeUncheckedCreateWithoutRetirementCertificateInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutRetirementCertificateInput
+    upsert?: EmployeeUpsertWithoutRetirementCertificateInput
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutRetirementCertificateInput, EmployeeUpdateWithoutRetirementCertificateInput>, EmployeeUncheckedUpdateWithoutRetirementCertificateInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -58723,6 +60480,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutUserInput = {
@@ -58765,6 +60523,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutUserInput = {
@@ -58867,6 +60626,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutUserInput = {
@@ -58909,6 +60669,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeRequestUpsertWithWhereUniqueWithoutUserInput = {
@@ -59046,6 +60807,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDepartmentInput = {
@@ -59088,6 +60850,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDepartmentInput = {
@@ -59768,6 +61531,51 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type RetirementCertificateCreateWithoutEmployeeInput = {
+    id?: string
+    certificateDate: Date | string
+    retirementDate: Date | string
+    reason?: string | null
+    showEmploymentPeriod?: boolean
+    showJobType?: boolean
+    showPosition?: boolean
+    showWage?: boolean
+    showRetirementReason?: boolean
+    jobType?: string | null
+    wageInfo?: string | null
+    retirementReason?: string | null
+    certificateNo?: string | null
+    issuedAt?: Date | string | null
+    issuedBy?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RetirementCertificateUncheckedCreateWithoutEmployeeInput = {
+    id?: string
+    certificateDate: Date | string
+    retirementDate: Date | string
+    reason?: string | null
+    showEmploymentPeriod?: boolean
+    showJobType?: boolean
+    showPosition?: boolean
+    showWage?: boolean
+    showRetirementReason?: boolean
+    jobType?: string | null
+    wageInfo?: string | null
+    retirementReason?: string | null
+    certificateNo?: string | null
+    issuedAt?: Date | string | null
+    issuedBy?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type RetirementCertificateCreateOrConnectWithoutEmployeeInput = {
+    where: RetirementCertificateWhereUniqueInput
+    create: XOR<RetirementCertificateCreateWithoutEmployeeInput, RetirementCertificateUncheckedCreateWithoutEmployeeInput>
+  }
+
   export type DepartmentUpsertWithoutEmployeesInput = {
     update: XOR<DepartmentUpdateWithoutEmployeesInput, DepartmentUncheckedUpdateWithoutEmployeesInput>
     create: XOR<DepartmentCreateWithoutEmployeesInput, DepartmentUncheckedCreateWithoutEmployeesInput>
@@ -60341,6 +62149,57 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"LoanedAsset"> | Date | string
   }
 
+  export type RetirementCertificateUpsertWithoutEmployeeInput = {
+    update: XOR<RetirementCertificateUpdateWithoutEmployeeInput, RetirementCertificateUncheckedUpdateWithoutEmployeeInput>
+    create: XOR<RetirementCertificateCreateWithoutEmployeeInput, RetirementCertificateUncheckedCreateWithoutEmployeeInput>
+    where?: RetirementCertificateWhereInput
+  }
+
+  export type RetirementCertificateUpdateToOneWithWhereWithoutEmployeeInput = {
+    where?: RetirementCertificateWhereInput
+    data: XOR<RetirementCertificateUpdateWithoutEmployeeInput, RetirementCertificateUncheckedUpdateWithoutEmployeeInput>
+  }
+
+  export type RetirementCertificateUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    certificateDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    retirementDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    showEmploymentPeriod?: BoolFieldUpdateOperationsInput | boolean
+    showJobType?: BoolFieldUpdateOperationsInput | boolean
+    showPosition?: BoolFieldUpdateOperationsInput | boolean
+    showWage?: BoolFieldUpdateOperationsInput | boolean
+    showRetirementReason?: BoolFieldUpdateOperationsInput | boolean
+    jobType?: NullableStringFieldUpdateOperationsInput | string | null
+    wageInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementReason?: NullableStringFieldUpdateOperationsInput | string | null
+    certificateNo?: NullableStringFieldUpdateOperationsInput | string | null
+    issuedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    issuedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RetirementCertificateUncheckedUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    certificateDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    retirementDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    showEmploymentPeriod?: BoolFieldUpdateOperationsInput | boolean
+    showJobType?: BoolFieldUpdateOperationsInput | boolean
+    showPosition?: BoolFieldUpdateOperationsInput | boolean
+    showWage?: BoolFieldUpdateOperationsInput | boolean
+    showRetirementReason?: BoolFieldUpdateOperationsInput | boolean
+    jobType?: NullableStringFieldUpdateOperationsInput | string | null
+    wageInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementReason?: NullableStringFieldUpdateOperationsInput | string | null
+    certificateNo?: NullableStringFieldUpdateOperationsInput | string | null
+    issuedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    issuedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type EmployeeCreateWithoutDependentsInput = {
     id?: string
     employeeNo: string
@@ -60381,6 +62240,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDependentsInput = {
@@ -60423,6 +62283,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDependentsInput = {
@@ -60517,6 +62378,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDependentsInput = {
@@ -60559,6 +62421,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmploymentContractConsentUpsertWithWhereUniqueWithoutDependentInput = {
@@ -60634,6 +62497,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmploymentHistoriesInput = {
@@ -60676,6 +62540,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmploymentHistoriesInput = {
@@ -60734,6 +62599,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmploymentHistoriesInput = {
@@ -60776,6 +62642,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmployeeMyNumberInput = {
@@ -60818,6 +62685,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmployeeMyNumberInput = {
@@ -60860,6 +62728,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmployeeMyNumberInput = {
@@ -60918,6 +62787,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmployeeMyNumberInput = {
@@ -60960,6 +62830,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmployeeSalaryInput = {
@@ -61002,6 +62873,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmployeeSalaryInput = {
@@ -61044,6 +62916,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmployeeSalaryInput = {
@@ -61102,6 +62975,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmployeeSalaryInput = {
@@ -61144,6 +63018,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutSalaryHistoriesInput = {
@@ -61186,6 +63061,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutSalaryHistoriesInput = {
@@ -61228,6 +63104,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutSalaryHistoriesInput = {
@@ -61286,6 +63163,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutSalaryHistoriesInput = {
@@ -61328,6 +63206,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutLeaveGrantHistoriesInput = {
@@ -61370,6 +63249,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLeaveGrantHistoriesInput = {
@@ -61412,6 +63292,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLeaveGrantHistoriesInput = {
@@ -61470,6 +63351,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLeaveGrantHistoriesInput = {
@@ -61512,6 +63394,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutLeaveBalanceInput = {
@@ -61554,6 +63437,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLeaveBalanceInput = {
@@ -61596,6 +63480,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLeaveBalanceInput = {
@@ -61654,6 +63539,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLeaveBalanceInput = {
@@ -61696,6 +63582,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutRequestsInput = {
@@ -61738,6 +63625,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutRequestsInput = {
@@ -61780,6 +63668,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutRequestsInput = {
@@ -61919,6 +63808,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutRequestsInput = {
@@ -61961,6 +63851,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type UserUpsertWithoutRequestsInput = {
@@ -62328,6 +64219,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutCertificationsInput = {
@@ -62370,6 +64262,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutCertificationsInput = {
@@ -62481,6 +64374,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutCertificationsInput = {
@@ -62523,6 +64417,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeCertificationAttachmentUpsertWithWhereUniqueWithoutEmployeeCertificationInput = {
@@ -62725,6 +64620,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutBankAccountInput = {
@@ -62767,6 +64663,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutBankAccountInput = {
@@ -62853,6 +64750,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutBankAccountInput = {
@@ -62895,6 +64793,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeBankAttachmentUpsertWithWhereUniqueWithoutBankAccountInput = {
@@ -63058,6 +64957,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDependentRequestsInput = {
@@ -63100,6 +65000,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDependentRequestsInput = {
@@ -63186,6 +65087,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDependentRequestsInput = {
@@ -63228,6 +65130,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type DependentRequestAttachmentUpsertWithWhereUniqueWithoutDependentRequestInput = {
@@ -63403,6 +65306,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutProfileChangeRequestsInput = {
@@ -63445,6 +65349,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutProfileChangeRequestsInput = {
@@ -63503,6 +65408,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutProfileChangeRequestsInput = {
@@ -63545,6 +65451,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmploymentContractsInput = {
@@ -63587,6 +65494,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmploymentContractsInput = {
@@ -63629,6 +65537,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmploymentContractsInput = {
@@ -63755,6 +65664,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmploymentContractsInput = {
@@ -63797,6 +65707,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmploymentContractConsentUpsertWithWhereUniqueWithoutEmploymentContractInput = {
@@ -64334,6 +66245,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutRetirementChecklistInput = {
@@ -64376,6 +66288,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutRetirementChecklistInput = {
@@ -64434,6 +66347,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutRetirementChecklistInput = {
@@ -64476,6 +66390,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutLoanedAssetsInput = {
@@ -64518,6 +66433,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLoanedAssetsInput = {
@@ -64560,6 +66476,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLoanedAssetsInput = {
@@ -64618,6 +66535,7 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLoanedAssetsInput = {
@@ -64660,6 +66578,195 @@ export namespace Prisma {
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeCreateWithoutRetirementCertificateInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    emergencyContact?: string | null
+    department?: DepartmentCreateNestedOneWithoutEmployeesInput
+    user?: UserCreateNestedOneWithoutEmployeeInput
+    certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeUncheckedCreateWithoutRetirementCertificateInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    departmentId?: string | null
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    userId?: string | null
+    emergencyContact?: string | null
+    certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeCreateOrConnectWithoutRetirementCertificateInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutRetirementCertificateInput, EmployeeUncheckedCreateWithoutRetirementCertificateInput>
+  }
+
+  export type EmployeeUpsertWithoutRetirementCertificateInput = {
+    update: XOR<EmployeeUpdateWithoutRetirementCertificateInput, EmployeeUncheckedUpdateWithoutRetirementCertificateInput>
+    create: XOR<EmployeeCreateWithoutRetirementCertificateInput, EmployeeUncheckedCreateWithoutRetirementCertificateInput>
+    where?: EmployeeWhereInput
+  }
+
+  export type EmployeeUpdateToOneWithWhereWithoutRetirementCertificateInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutRetirementCertificateInput, EmployeeUncheckedUpdateWithoutRetirementCertificateInput>
+  }
+
+  export type EmployeeUpdateWithoutRetirementCertificateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: DepartmentUpdateOneWithoutEmployeesNestedInput
+    user?: UserUpdateOneWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateWithoutRetirementCertificateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeRequestCreateManyUserInput = {
@@ -64833,6 +66940,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDepartmentInput = {
@@ -64875,6 +66983,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateManyWithoutDepartmentInput = {
