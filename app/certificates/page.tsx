@@ -8,6 +8,7 @@ export default function CertificateCenterPage() {
       </h1>
 
       <div className="grid gap-4 md:grid-cols-2">
+
         <div className="rounded-lg border p-6">
           <h2 className="mb-3 text-xl font-semibold">
             在職証明書
@@ -17,7 +18,10 @@ export default function CertificateCenterPage() {
             在職証明書の発行
           </p>
 
-          <Link href="/employees"></Link>
+          <Link
+            href="/employees"
+            className="inline-block rounded bg-blue-"
+          ></Link>
         </div>
 
         <div className="rounded-lg border p-6">
@@ -29,8 +33,12 @@ export default function CertificateCenterPage() {
             退職証明書の発行
           </p>
 
-          <Link href="/retirement-management"></Link>
+          <Link
+            href="/retirement-management"
+            className="inline-block rounded"
+          ></Link>
         </div>
+
       </div>
     </main>
   );
