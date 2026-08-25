@@ -20,11 +20,7 @@ function getTodayOnly() {
   const todayEnd = new Date(today);
   todayEnd.setHours(23, 59, 59, 999);
 
-  return new Date(
-    today.getFullYear(),
-    today.getMonth(),
-    today.getDate(),
-  );
+  return new Date(today.getFullYear(), today.getMonth(), today.getDate());
 }
 
 function getDaysUntil(date: Date) {
@@ -36,9 +32,7 @@ function getDaysUntil(date: Date) {
     date.getDate(),
   );
 
-  return Math.ceil(
-    (targetOnly.getTime() - todayOnly.getTime()) / DAY_MS,
-  );
+  return Math.ceil((targetOnly.getTime() - todayOnly.getTime()) / DAY_MS);
 }
 
 function getExpiredSourceId(note: string | null) {
@@ -48,7 +42,6 @@ function getExpiredSourceId(note: string | null) {
 
   return note.split("失効元:")[1]?.split(" ")[0] ?? null;
 }
-
 
 function getAlertClass(count: number) {
   if (count >= 5) {
@@ -92,11 +85,7 @@ function StatCard({
     >
       <p className="text-sm font-medium">{title}</p>
       <p className="mt-2 text-3xl font-bold">{value}</p>
-      {description && (
-        <p className="mt-1 text-xs opacity-80">
-          {description}
-        </p>
-      )}
+      {description && <p className="mt-1 text-xs opacity-80">{description}</p>}
     </div>
   );
 
@@ -121,9 +110,7 @@ function SimpleBarChart({
 
   return (
     <div className="rounded-lg border bg-white p-6 shadow-sm">
-      <h3 className="mb-4 text-lg font-semibold text-gray-800">
-        {title}
-      </h3>
+      <h3 className="mb-4 text-lg font-semibold text-gray-800">{title}</h3>
 
       {items.length === 0 ? (
         <p className="text-sm text-gray-500">データがありません。</p>
@@ -138,9 +125,7 @@ function SimpleBarChart({
                   <span className="font-medium text-gray-700">
                     {item.label}
                   </span>
-                  <span className="text-gray-500">
-                    {item.value}件
-                  </span>
+                  <span className="text-gray-500">{item.value}件</span>
                 </div>
 
                 <div className="h-3 overflow-hidden rounded-full bg-gray-100">
@@ -166,9 +151,7 @@ export default async function DashboardPage() {
   }
 
   const user = session.user;
-  const isHRManager =
-    user.role === "ADMIN" ||
-    user.role === "HR_MANAGER";
+  const isHRManager = user.role === "ADMIN" || user.role === "HR_MANAGER";
 
   const canApprove =
     user.role === "ADMIN" ||
@@ -198,9 +181,7 @@ export default async function DashboardPage() {
   contractTodayStart.setHours(0, 0, 0, 0);
 
   const contractEnd30DaysLater = new Date(contractTodayStart);
-  contractEnd30DaysLater.setDate(
-    contractEnd30DaysLater.getDate() + 30,
-  );
+  contractEnd30DaysLater.setDate(contractEnd30DaysLater.getDate() + 30);
   contractEnd30DaysLater.setHours(23, 59, 59, 999);
 
   const [
@@ -407,7 +388,6 @@ export default async function DashboardPage() {
         },
       },
     }),
-
   ]);
 
   const retirementAlerts = await prisma.employee.findMany({
@@ -428,32 +408,26 @@ export default async function DashboardPage() {
     take: 5,
   });
 
+  const recentEmploymentHistories = await prisma.employmentHistory.findMany({
+    include: {
+      employee: true,
+    },
+    orderBy: {
+      effectiveDate: "desc",
+    },
+    take: 10,
+  });
 
+  const myEmployee = await prisma.employee.findUnique({
+    where: {
+      userId: user.id,
+    },
+    include: {
+      department: true,
+    },
+  });
 
-  
-  const recentEmploymentHistories =
-    await prisma.employmentHistory.findMany({
-      include: {
-        employee: true,
-      },
-      orderBy: {
-        effectiveDate: "desc",
-      },
-      take: 10,
-    });
-
-const myEmployee =
-    await prisma.employee.findUnique({
-      where: {
-        userId: user.id,
-      },
-      include: {
-        department: true,
-      },
-    });
-
-  const leaveBalances =
-    await prisma.leaveBalance.findMany();
+  const leaveBalances = await prisma.leaveBalance.findMany();
 
   const totalGrantedLeaveDays = leaveBalances.reduce(
     (sum, item) => sum + item.grantedDays,
@@ -466,28 +440,26 @@ const myEmployee =
   );
 
   const totalRemainingLeaveDays = leaveBalances.reduce(
-    (sum, item) =>
-      sum + (item.grantedDays - item.usedDays),
+    (sum, item) => sum + (item.grantedDays - item.usedDays),
     0,
   );
 
-  const leaveExpirationGrants =
-    await prisma.leaveGrantHistory.findMany({
-      where: {
-        grantType: {
-          in: ["LEGAL", "SPECIAL", "MANUAL", "EXPIRED"],
-        },
-        employee: {
-          status: "ACTIVE",
-        },
+  const leaveExpirationGrants = await prisma.leaveGrantHistory.findMany({
+    where: {
+      grantType: {
+        in: ["LEGAL", "SPECIAL", "MANUAL", "EXPIRED"],
       },
-      select: {
-        id: true,
-        grantDate: true,
-        grantType: true,
-        note: true,
+      employee: {
+        status: "ACTIVE",
       },
-    });
+    },
+    select: {
+      id: true,
+      grantDate: true,
+      grantType: true,
+      note: true,
+    },
+  });
 
   const expiredSourceIds = new Set(
     leaveExpirationGrants
@@ -497,14 +469,9 @@ const myEmployee =
   );
 
   const expirationRows = leaveExpirationGrants
-    .filter((grant) =>
-      ["LEGAL", "SPECIAL", "MANUAL"].includes(grant.grantType),
-    )
+    .filter((grant) => ["LEGAL", "SPECIAL", "MANUAL"].includes(grant.grantType))
     .map((grant) => {
-      const expirationDate = addYears(
-        new Date(grant.grantDate),
-        2,
-      );
+      const expirationDate = addYears(new Date(grant.grantDate), 2);
 
       return {
         id: grant.id,
@@ -514,10 +481,7 @@ const myEmployee =
     });
 
   const soonExpiringLeaveCount = expirationRows.filter(
-    (row) =>
-      !row.alreadyExpired &&
-      row.daysUntil >= 0 &&
-      row.daysUntil <= 30,
+    (row) => !row.alreadyExpired && row.daysUntil >= 0 && row.daysUntil <= 30,
   ).length;
 
   const expiredLeaveTargetCount = expirationRows.filter(
@@ -526,61 +490,50 @@ const myEmployee =
 
   const myNextLeaveExpiration =
     expirationRows
-      .filter(
-        (row) =>
-          !row.alreadyExpired &&
-          row.daysUntil >= 0,
-      )
-      .sort(
-        (a, b) => a.daysUntil - b.daysUntil,
-      )[0] ?? null;
-
+      .filter((row) => !row.alreadyExpired && row.daysUntil >= 0)
+      .sort((a, b) => a.daysUntil - b.daysUntil)[0] ?? null;
 
   const complianceToday = getTodayOnly();
 
-  const leaveComplianceGrants =
-    await prisma.leaveGrantHistory.findMany({
-      where: {
-        grantedDays: {
-          gte: 10,
-        },
-        grantType: {
-          in: ["LEGAL", "MANUAL"],
-        },
-        grantDate: {
-          lte: complianceToday,
-        },
-        employee: {
-          status: "ACTIVE",
-        },
+  const leaveComplianceGrants = await prisma.leaveGrantHistory.findMany({
+    where: {
+      grantedDays: {
+        gte: 10,
       },
-      select: {
-        employeeId: true,
-        grantDate: true,
+      grantType: {
+        in: ["LEGAL", "MANUAL"],
       },
-    });
+      grantDate: {
+        lte: complianceToday,
+      },
+      employee: {
+        status: "ACTIVE",
+      },
+    },
+    select: {
+      employeeId: true,
+      grantDate: true,
+    },
+  });
 
   const leaveComplianceEmployeeIds = Array.from(
-    new Set(
-      leaveComplianceGrants.map((grant) => grant.employeeId),
-    ),
+    new Set(leaveComplianceGrants.map((grant) => grant.employeeId)),
   );
 
-  const leaveComplianceRequests =
-    await prisma.employeeRequest.findMany({
-      where: {
-        type: "PAID_LEAVE",
-        status: "APPROVED",
-        employeeId: {
-          in: leaveComplianceEmployeeIds,
-        },
+  const leaveComplianceRequests = await prisma.employeeRequest.findMany({
+    where: {
+      type: "PAID_LEAVE",
+      status: "APPROVED",
+      employeeId: {
+        in: leaveComplianceEmployeeIds,
       },
-      select: {
-        employeeId: true,
-        leaveStartDate: true,
-        leaveDays: true,
-      },
-    });
+    },
+    select: {
+      employeeId: true,
+      leaveStartDate: true,
+      leaveDays: true,
+    },
+  });
 
   const leaveComplianceNotCompletedEmployeeIds = new Set(
     leaveComplianceGrants
@@ -603,10 +556,7 @@ const myEmployee =
               request.leaveStartDate < dueDate
             );
           })
-          .reduce(
-            (sum, request) => sum + (request.leaveDays ?? 0),
-            0,
-          );
+          .reduce((sum, request) => sum + (request.leaveDays ?? 0), 0);
 
         return acquiredDays < 5;
       })
@@ -616,46 +566,44 @@ const myEmployee =
   const leaveComplianceNotCompletedCount =
     leaveComplianceNotCompletedEmployeeIds.size;
 
-  const leaveComplianceWarningRows =
-    leaveComplianceGrants.filter((grant) => {
-      const dueDate = addYears(grant.grantDate, 1);
-      const daysUntilDue = getDaysUntil(dueDate);
+  const leaveComplianceWarningRows = leaveComplianceGrants.filter((grant) => {
+    const dueDate = addYears(grant.grantDate, 1);
+    const daysUntilDue = getDaysUntil(dueDate);
 
-      const acquiredDays = leaveComplianceRequests
-        .filter((request) => {
-          if (
-            !request.employeeId ||
-            !request.leaveStartDate ||
-            !request.leaveDays
-          ) {
-            return false;
-          }
+    const acquiredDays = leaveComplianceRequests
+      .filter((request) => {
+        if (
+          !request.employeeId ||
+          !request.leaveStartDate ||
+          !request.leaveDays
+        ) {
+          return false;
+        }
 
-          return (
-            request.employeeId === grant.employeeId &&
-            request.leaveStartDate >= grant.grantDate &&
-            request.leaveStartDate < dueDate
-          );
-        })
-        .reduce(
-          (sum, request) => sum + (request.leaveDays ?? 0),
-          0,
+        return (
+          request.employeeId === grant.employeeId &&
+          request.leaveStartDate >= grant.grantDate &&
+          request.leaveStartDate < dueDate
         );
+      })
+      .reduce((sum, request) => sum + (request.leaveDays ?? 0), 0);
 
-      return acquiredDays < 5 && daysUntilDue >= 0;
-    });
+    return acquiredDays < 5 && daysUntilDue >= 0;
+  });
 
-  const leaveComplianceWarning90Count =
-    leaveComplianceWarningRows.filter((grant) => {
+  const leaveComplianceWarning90Count = leaveComplianceWarningRows.filter(
+    (grant) => {
       const dueDate = addYears(grant.grantDate, 1);
       return getDaysUntil(dueDate) <= 90;
-    }).length;
+    },
+  ).length;
 
-  const leaveComplianceWarning30Count =
-    leaveComplianceWarningRows.filter((grant) => {
+  const leaveComplianceWarning30Count = leaveComplianceWarningRows.filter(
+    (grant) => {
       const dueDate = addYears(grant.grantDate, 1);
       return getDaysUntil(dueDate) <= 30;
-    }).length;
+    },
+  ).length;
 
   const today = new Date();
 
@@ -665,23 +613,22 @@ const myEmployee =
   const todayEnd = new Date(today);
   todayEnd.setHours(23, 59, 59, 999);
 
-  const todayLeaveRequests =
-    await prisma.employeeRequest.findMany({
-      where: {
-        type: "PAID_LEAVE",
-        status: "APPROVED",
-        leaveStartDate: {
-          lte: todayEnd,
-        },
-        leaveEndDate: {
-          gte: todayStart,
-        },
+  const todayLeaveRequests = await prisma.employeeRequest.findMany({
+    where: {
+      type: "PAID_LEAVE",
+      status: "APPROVED",
+      leaveStartDate: {
+        lte: todayEnd,
       },
-      include: {
-        employee: true,
+      leaveEndDate: {
+        gte: todayStart,
       },
-      take: 10,
-    });
+    },
+    include: {
+      employee: true,
+    },
+    take: 10,
+  });
 
   const weekStart = new Date(today);
   weekStart.setDate(today.getDate() - today.getDay());
@@ -689,23 +636,22 @@ const myEmployee =
   const weekEnd = new Date(weekStart);
   weekEnd.setDate(weekStart.getDate() + 6);
 
-  const thisWeekLeaveRequests =
-    await prisma.employeeRequest.findMany({
-      where: {
-        type: "PAID_LEAVE",
-        status: "APPROVED",
-        leaveStartDate: {
-          lte: weekEnd,
-        },
-        leaveEndDate: {
-          gte: weekStart,
-        },
+  const thisWeekLeaveRequests = await prisma.employeeRequest.findMany({
+    where: {
+      type: "PAID_LEAVE",
+      status: "APPROVED",
+      leaveStartDate: {
+        lte: weekEnd,
       },
-      include: {
-        employee: true,
+      leaveEndDate: {
+        gte: weekStart,
       },
-      take: 20,
-    });
+    },
+    include: {
+      employee: true,
+    },
+    take: 20,
+  });
 
   const recentRequests = await prisma.employeeRequest.findMany({
     include: {
@@ -770,7 +716,7 @@ const myEmployee =
 
   const employmentTypeChartItems = employmentTypeCounts.map((item) => ({
     label: item.employmentType
-      ? employmentTypeLabels[item.employmentType] ?? item.employmentType
+      ? (employmentTypeLabels[item.employmentType] ?? item.employmentType)
       : "未設定",
     value: item._count._all,
   }));
@@ -838,9 +784,7 @@ const myEmployee =
     <main className="min-h-screen bg-gray-50 p-8">
       <header className="mb-8 flex items-start justify-between border-b pb-6">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">
-            人事管理システム
-          </h1>
+          <h1 className="text-3xl font-bold text-gray-900">人事管理システム</h1>
           <p className="mt-2 text-sm text-gray-600">
             ようこそ、{user.name} さん（権限: {user.role}）
           </p>
@@ -868,7 +812,6 @@ const myEmployee =
           ダッシュボード
         </h2>
 
-
         {isHRManager && retirementAlerts.length > 0 && (
           <div className="mb-6 rounded-lg border border-red-200 bg-red-50 p-4">
             <h3 className="mb-3 font-semibold text-red-800">
@@ -890,12 +833,11 @@ const myEmployee =
                   </div>
 
                   <div className="text-red-700">
-                    退職予定日:
-                    {" "}
+                    退職予定日:{" "}
                     {employee.retirementDate
-                      ? new Date(
-                          employee.retirementDate,
-                        ).toLocaleDateString("ja-JP")
+                      ? new Date(employee.retirementDate).toLocaleDateString(
+                          "ja-JP",
+                        )
                       : "-"}
                   </div>
                 </div>
@@ -905,7 +847,6 @@ const myEmployee =
         )}
 
         {isHRManager ? (
-
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
             <StatCard
               title="総職員数"
@@ -1121,8 +1062,7 @@ const myEmployee =
               value={
                 myLeaveBalance
                   ? (
-                      myLeaveBalance.grantedDays -
-                      myLeaveBalance.usedDays
+                      myLeaveBalance.grantedDays - myLeaveBalance.usedDays
                     ).toFixed(1)
                   : "0"
               }
@@ -1147,22 +1087,17 @@ const myEmployee =
               color="yellow"
             />
           </div>
-
         )}
       </section>
 
       <section className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div className="rounded-lg border bg-white p-6 shadow-sm">
-          <h3 className="mb-3 text-lg font-semibold text-gray-800">
-            申請管理
-          </h3>
+          <h3 className="mb-3 text-lg font-semibold text-gray-800">申請管理</h3>
           <p className="text-sm text-gray-600">
             各種申請の作成、確認、承認状況の確認を行います。
           </p>
 
           <div className="mt-4 flex flex-wrap gap-3">
-            
-
             <Link
               href="/requests/new"
               className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
@@ -1195,7 +1130,6 @@ const myEmployee =
           </p>
 
           <div className="mt-4 flex flex-wrap gap-3">
-            
             <Link
               href="/mypage/certifications"
               className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
@@ -1221,19 +1155,17 @@ const myEmployee =
             >
               マイナンバー管理
             </Link>
-              <Link
-                href="/mypage/dependent-requests/new"
-                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                扶養家族申請
-              </Link>
+            <Link
+              href="/mypage/dependent-requests/new"
+              className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            >
+              扶養家族申請
+            </Link>
           </div>
         </div>
 
         <div className="rounded-lg border bg-white p-6 shadow-sm">
-          <h3 className="mb-3 text-lg font-semibold text-gray-800">
-            自分情報
-          </h3>
+          <h3 className="mb-3 text-lg font-semibold text-gray-800">自分情報</h3>
 
           <div className="space-y-2 text-sm text-gray-700">
             <div>
@@ -1249,9 +1181,7 @@ const myEmployee =
             <div>
               <span className="font-medium">入社日:</span>{" "}
               {myEmployee?.hireDate
-                ? new Date(
-                    myEmployee.hireDate,
-                  ).toLocaleDateString("ja-JP")
+                ? new Date(myEmployee.hireDate).toLocaleDateString("ja-JP")
                 : "-"}
             </div>
 
@@ -1263,39 +1193,29 @@ const myEmployee =
         </div>
 
         <div className="rounded-lg border bg-white p-6 shadow-sm">
-          <h3 className="mb-3 text-lg font-semibold text-gray-800">
-            お知らせ
-          </h3>
+          <h3 className="mb-3 text-lg font-semibold text-gray-800">お知らせ</h3>
 
           <ul className="space-y-2 text-sm text-gray-700">
             {myPendingRequests > 0 && (
-              <li>
-                ・承認待ちの申請が {myPendingRequests} 件あります
-              </li>
+              <li>・承認待ちの申請が {myPendingRequests} 件あります</li>
             )}
 
             {myPendingProfileChanges > 0 && (
-              <li>
-                ・プロフィール変更申請が承認待ちです
-              </li>
+              <li>・プロフィール変更申請が承認待ちです</li>
             )}
 
-            {myNextLeaveExpiration &&
-              myNextLeaveExpiration.daysUntil <= 30 && (
-                <li>
-                  ・有給失効まで残り{" "}
-                  {myNextLeaveExpiration.daysUntil}
-                  日です
-                </li>
-              )}
+            {myNextLeaveExpiration && myNextLeaveExpiration.daysUntil <= 30 && (
+              <li>
+                ・有給失効まで残り {myNextLeaveExpiration.daysUntil}
+                日です
+              </li>
+            )}
 
             {myPendingRequests === 0 &&
               myPendingProfileChanges === 0 &&
               (!myNextLeaveExpiration ||
                 myNextLeaveExpiration.daysUntil > 30) && (
-                <li>
-                  現在お知らせはありません。
-                </li>
+                <li>現在お知らせはありません。</li>
               )}
           </ul>
         </div>
@@ -1317,7 +1237,10 @@ const myEmployee =
                 承認待ち申請
               </Link>
 
-              <Link href="/profile-change-requests" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+              <Link
+                href="/profile-change-requests"
+                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
                 プロフィール変更申請 ({pendingProfileChanges})
               </Link>
               <Link
@@ -1349,9 +1272,7 @@ const myEmployee =
             <h3 className="mb-3 text-lg font-semibold text-gray-800">
               職員閲覧メニュー
             </h3>
-            <p className="text-sm text-gray-600">
-              職員情報の閲覧を行います。
-            </p>
+            <p className="text-sm text-gray-600">職員情報の閲覧を行います。</p>
 
             <div className="mt-4 flex flex-wrap gap-3">
               <Link
@@ -1379,10 +1300,18 @@ const myEmployee =
               </h4>
 
               <ul className="mt-2 space-y-1 text-sm text-amber-800">
-                <li className={getAlertClass(pendingProfileChanges)}>プロフィール変更申請: {pendingProfileChanges}件</li>
-                <li className={getAlertClass(pendingCertificationRequests)}>資格承認: {pendingCertificationRequests}件</li>
-                <li className={getAlertClass(pendingBankAccounts)}>口座情報確認: {pendingBankAccounts}件</li>
-                <li className={getAlertClass(pendingMyNumbers ?? 0)}>マイナンバー確認: {pendingMyNumbers ?? 0}件</li>
+                <li className={getAlertClass(pendingProfileChanges)}>
+                  プロフィール変更申請: {pendingProfileChanges}件
+                </li>
+                <li className={getAlertClass(pendingCertificationRequests)}>
+                  資格承認: {pendingCertificationRequests}件
+                </li>
+                <li className={getAlertClass(pendingBankAccounts)}>
+                  口座情報確認: {pendingBankAccounts}件
+                </li>
+                <li className={getAlertClass(pendingMyNumbers ?? 0)}>
+                  マイナンバー確認: {pendingMyNumbers ?? 0}件
+                </li>
               </ul>
             </div>
 
@@ -1451,7 +1380,7 @@ const myEmployee =
                 組織変更履歴レポート
               </Link>
 
-                            <Link
+              <Link
                 href="/employee-transfers"
                 className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
               >
@@ -1539,21 +1468,15 @@ const myEmployee =
               )}
             </div>
           </div>
-
         )}
       </section>
 
       {isHRManager && (
         <section className="mt-8">
-          <h2 className="mb-4 text-xl font-semibold text-gray-800">
-            グラフ
-          </h2>
+          <h2 className="mb-4 text-xl font-semibold text-gray-800">グラフ</h2>
 
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-            <SimpleBarChart
-              title="部署別人数"
-              items={departmentChartItems}
-            />
+            <SimpleBarChart title="部署別人数" items={departmentChartItems} />
             <SimpleBarChart
               title="雇用形態別人数"
               items={employmentTypeChartItems}
@@ -1586,14 +1509,10 @@ const myEmployee =
           ) : (
             <div className="space-y-2">
               {todayLeaveRequests.map((request) => (
-                <div
-                  key={request.id}
-                  className="rounded border p-3"
-                >
+                <div key={request.id} className="rounded border p-3">
                   {request.employee
                     ? `${request.employee.lastName} ${request.employee.firstName}`
-                    : "-"}
-                  {" "}
+                    : "-"}{" "}
                   ({request.leaveDays ?? 0}日)
                 </div>
               ))}
@@ -1615,10 +1534,7 @@ const myEmployee =
           ) : (
             <div className="space-y-2">
               {thisWeekLeaveRequests.map((request) => (
-                <div
-                  key={request.id}
-                  className="rounded border p-3"
-                >
+                <div key={request.id} className="rounded border p-3">
                   <div className="font-medium text-gray-800">
                     {request.employee
                       ? `${request.employee.lastName} ${request.employee.firstName}`
@@ -1645,9 +1561,7 @@ const myEmployee =
           </h3>
 
           {recentRequests.length === 0 ? (
-            <p className="text-sm text-gray-500">
-              最近の申請はありません。
-            </p>
+            <p className="text-sm text-gray-500">最近の申請はありません。</p>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
@@ -1672,19 +1586,17 @@ const myEmployee =
                           {request.title}
                         </Link>
                       </td>
-                      <td className="p-3">
-                        {request.user?.name ?? "-"}
-                      </td>
+                      <td className="p-3">{request.user?.name ?? "-"}</td>
                       <td className="p-3">
                         {request.employee
                           ? `${request.employee.lastName} ${request.employee.firstName}`
                           : "-"}
                       </td>
+                      <td className="p-3">{request.status}</td>
                       <td className="p-3">
-                        {request.status}
-                      </td>
-                      <td className="p-3">
-                        {new Date(request.createdAt).toLocaleDateString("ja-JP")}
+                        {new Date(request.createdAt).toLocaleDateString(
+                          "ja-JP",
+                        )}
                       </td>
                     </tr>
                   ))}
