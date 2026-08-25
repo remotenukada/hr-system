@@ -130,7 +130,7 @@ export async function GET(
     });
   }
 
-  centered("退職証明書", 760, 22);
+  centered("在職証明書", 760, 22);
 
   if (certificate?.certificateNo) {
     page.drawText(
@@ -192,19 +192,9 @@ export async function GET(
     y -= 35;
   }
 
-  if (
-    certificate.showRetirementReason &&
-    certificate.retirementReason?.trim()
-  ) {
-    line(
-      `退職の事由：${certificate.retirementReason}`,
-      y,
-    );
-    y -= 35;
-  }
 
   centered(
-    "上記のとおり証明します。",
+    "上記の者は現在当法人に在職していることを証明します。",
     Math.min(y - 45, 430),
     12,
   );
