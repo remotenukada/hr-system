@@ -2,6 +2,7 @@ import { auth, signOut } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import HRManagementMenu from "@/components/dashboard/HRManagementMenu";
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -1315,157 +1316,12 @@ export default async function DashboardPage() {
               </ul>
             </div>
 
-            <div className="mt-4 flex flex-wrap gap-3">
-              <Link
-                href="/employees"
-                className="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
-              >
-                社員一覧へ
-              </Link>
-              <Link
-                href="/employees/new"
-                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50"
-              >
-                新規社員登録
-              </Link>
-              <Link
-                href="/departments"
-                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50"
-              >
-                部署一覧
-              </Link>
-              <Link
-                href="/leave-balances"
-                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50"
-              >
-                有給管理一覧
-              </Link>
-              <Link
-                href="/leave-grants"
-                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50"
-              >
-                有給付与履歴
-              </Link>
-              <Link
-                href="/leave-grants/pending"
-                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50"
-              >
-                有給付与対象者一覧
-              </Link>
-
-              <Link
-                href="/leave-expiration"
-                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50"
-              >
-                有給失効管理
-              </Link>
-              <Link
-                href="/employee-leaves"
-                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                休職・復職管理
-              </Link>
-
-              <Link
-                href="/employee-retirements"
-                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                退職管理
-              </Link>
-
-              <Link
-                href="/organization-history"
-                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                組織変更履歴レポート
-              </Link>
-
-              <Link
-                href="/employee-transfers"
-                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                異動履歴一覧
-              </Link>
-              <Link
-                href="/personnel-orders"
-                className="rounded border border-indigo-300 bg-indigo-50 px-4 py-2 text-sm font-medium text-indigo-700 hover:bg-indigo-100"
-              >
-                人事発令管理
-              </Link>
-
-              <Link
-                href="/retirement-management"
-                className="rounded border border-red-300 bg-red-50 px-4 py-2 text-sm font-medium text-red-700 hover:bg-red-100"
-              >
-                退職予定者管理
-              </Link>
-              <Link
-                href="/masters"
-                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                マスタ管理
-              </Link>
-              <Link
-                href="/employee-contracts"
-                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                雇用契約書一覧
-              </Link>
-              <Link
-                href="/employee-contracts/new"
-                className="rounded border border-green-300 bg-green-50 px-4 py-2 text-sm font-medium text-green-700 hover:bg-green-100"
-              >
-                雇用契約書作成
-              </Link>
-              <Link
-                href="/employee-contract-templates"
-                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                雇用契約テンプレート
-              </Link>
-              <Link
-                href="/bank-accounts"
-                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                口座情報確認 ({pendingBankAccounts})
-              </Link>
-
-              <Link
-                href="/my-numbers"
-                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                マイナンバー確認 ({pendingMyNumbers ?? 0})
-              </Link>
-              <Link
-                href="/audit-logs"
-                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50"
-              >
-                監査ログ一覧
-              </Link>
-
-              <Link
-                href="/role-permissions"
-                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                権限マトリクス
-              </Link>
-
-              {user.role === "ADMIN" && (
-                <>
-                  <Link
-                    href="/users"
-                    className="rounded bg-purple-600 px-4 py-2 text-sm text-white hover:bg-purple-700"
-                  >
-                    ユーザー管理
-                  </Link>
-                  <Link
-                    href="/user-invitations"
-                    className="rounded border border-purple-300 bg-white px-4 py-2 text-sm font-medium text-purple-700 hover:bg-purple-50"
-                  >
-                    ユーザー招待
-                  </Link>
-                </>
-              )}
+            <div className="mt-6">
+              <HRManagementMenu
+                pendingBankAccounts={pendingBankAccounts}
+                pendingMyNumbers={pendingMyNumbers ?? 0}
+                userRole={user.role}
+              />
             </div>
           </div>
         )}
