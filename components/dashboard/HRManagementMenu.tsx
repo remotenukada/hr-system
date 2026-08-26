@@ -76,6 +76,7 @@ export default function HRManagementMenu({
           <Link href="/audit-logs">監査ログ一覧</Link>
           <Link href="/role-permissions">権限マトリクス</Link>
           <Link href="/masters">マスタ管理</Link>
+          <Link href="/company-settings">会社設定</Link>
 
           {userRole === "ADMIN" && (
             <>
