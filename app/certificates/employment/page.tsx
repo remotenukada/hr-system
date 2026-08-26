@@ -12,26 +12,27 @@ export default async function EmploymentCertificateSelectPage() {
 
   return (
     <main className="mx-auto max-w-4xl p-6">
-      /certificates
+      <BackLink href="/certificates" label="戻る" />
+      <h1 className="mb-2 text-2xl font-bold">在職証明書</h1>
 
-      <h1 className="mb-2 mt-6 text-2xl font-bold">
-        在職証明書
-      </h1>
       <p className="mb-6 text-gray-600">
         証明書を発行する職員を選択してください。
       </p>
 
-      <div className="overflow-hidden rounded-xl border bg-white">
+      <div className="space-y-2">
         {employees.map((employee) => (
-          <Link key={employee.id} href={`/employment-certificates/${employee.id}`}>
-            <span>
-              <span className="mr-4 text-sm text-gray-500">
-                {employee.employeeNo}
-              </span>
-              <span className="font-medium">
+          <Link
+            key={employee.id}
+            href={`/employment-certificates/${employee.id}`}
+            className="flex items-center justify-between rounded-lg border p-4 hover:bg-gray-50"
+          >
+            <div className="flex items-center space-x-4">
+              <div className="text-sm text-gray-500">{employee.employeeNo}</div>
+              <div className="font-medium">
                 {employee.lastName} {employee.firstName}
-              </span>
-            </span>
+              </div>
+            </div>
+
             <span className="text-blue-600">選択 →</span>
           </Link>
         ))}
