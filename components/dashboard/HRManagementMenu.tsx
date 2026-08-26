@@ -13,7 +13,7 @@ export default function HRManagementMenu({
 }: Props) {
   return (
     <div className="space-y-6">
-      <section>
+      <section className="rounded-lg border bg-gray-50 p-4">
         <h4 className="mb-2 font-semibold">職員管理</h4>
         <div className="flex flex-wrap gap-3">
           <Link href="/employees">社員一覧</Link>
@@ -22,7 +22,7 @@ export default function HRManagementMenu({
         </div>
       </section>
 
-      <section>
+      <section className="rounded-lg border bg-gray-50 p-4">
         <h4 className="mb-2 font-semibold">人事異動・組織</h4>
         <div className="flex flex-wrap gap-3">
           <Link href="/personnel-orders">人事発令管理</Link>
@@ -31,7 +31,7 @@ export default function HRManagementMenu({
         </div>
       </section>
 
-      <section>
+      <section className="rounded-lg border bg-gray-50 p-4">
         <h4 className="mb-2 font-semibold">労務管理</h4>
         <div className="flex flex-wrap gap-3">
           <Link href="/employee-leaves">休職・復職管理</Link>
@@ -40,7 +40,7 @@ export default function HRManagementMenu({
         </div>
       </section>
 
-      <section>
+      <section className="rounded-lg border bg-gray-50 p-4">
         <h4 className="mb-2 font-semibold">有給管理</h4>
         <div className="flex flex-wrap gap-3">
           <Link href="/leave-balances">有給管理一覧</Link>
@@ -50,7 +50,7 @@ export default function HRManagementMenu({
         </div>
       </section>
 
-      <section>
+      <section className="rounded-lg border bg-gray-50 p-4">
         <h4 className="mb-2 font-semibold">雇用契約・証明書</h4>
         <div className="flex flex-wrap gap-3">
           <Link href="/employee-contracts/new">雇用契約書作成</Link>
@@ -60,19 +60,17 @@ export default function HRManagementMenu({
         </div>
       </section>
 
-      <section>
+      <section className="rounded-lg border bg-gray-50 p-4">
         <h4 className="mb-2 font-semibold">申請・本人確認</h4>
         <div className="flex flex-wrap gap-3">
           <Link href="/bank-accounts">
             口座情報確認 ({pendingBankAccounts})
           </Link>
-          <Link href="/my-numbers">
-            マイナンバー確認 ({pendingMyNumbers})
-          </Link>
+          <Link href="/my-numbers">マイナンバー確認 ({pendingMyNumbers})</Link>
         </div>
       </section>
 
-      <section>
+      <section className="rounded-lg border bg-gray-50 p-4">
         <h4 className="mb-2 font-semibold">システム管理</h4>
         <div className="flex flex-wrap gap-3">
           <Link href="/audit-logs">監査ログ一覧</Link>
