@@ -243,6 +243,7 @@ exports.Prisma.SalaryHistoryScalarFieldEnum = {
 exports.Prisma.LeaveGrantHistoryScalarFieldEnum = {
   id: 'id',
   employeeId: 'employeeId',
+  leaveTypeId: 'leaveTypeId',
   grantDate: 'grantDate',
   grantedDays: 'grantedDays',
   grantType: 'grantType',

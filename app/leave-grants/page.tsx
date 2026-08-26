@@ -66,9 +66,7 @@ async function grantInitialFullTimeLeave() {
         employeeId: employee.id,
       },
       update: {
-        grantedDays:
-          (currentBalance?.grantedDays ?? 0) +
-          totalGrantedDays,
+        grantedDays: (currentBalance?.grantedDays ?? 0) + totalGrantedDays,
       },
       create: {
         employeeId: employee.id,
@@ -93,109 +91,77 @@ async function grantInitialFullTimeLeave() {
   revalidatePath("/leave-balances");
 }
 
-
 async function grantManualLeave(formData: FormData) {
   "use server";
 
   const session = await requireHRManager();
 
-  const employeeId = String(
-    formData.get("employeeId") ?? "",
-  );
+  const employeeId = String(formData.get("employeeId") ?? "");
 
-  const days = Number(
-    formData.get("days") ?? 0,
-  );
+  const days = Number(formData.get("days") ?? 0);
 
-  const adjustType = String(
-    formData.get("adjustType") ?? "GRANT",
-  );
+  const adjustType = String(formData.get("adjustType") ?? "GRANT");
 
-  const note = String(
-    formData.get("note") ?? "",
-  );
+  const note = String(formData.get("note") ?? "");
 
-  const grantDate = String(
-    formData.get("grantDate") ?? "",
-  );
+  const grantDate = String(formData.get("grantDate") ?? "");
 
   if (!employeeId || days <= 0) {
     return;
   }
 
-  if (
-    adjustType === "DEDUCT" &&
-    !note.trim()
-  ) {
-    throw new Error(
-      "減算時は理由を入力してください。",
-    );
+  if (adjustType === "DEDUCT" && !note.trim()) {
+    throw new Error("減算時は理由を入力してください。");
   }
 
-  const employee =
-    await prisma.employee.findUnique({
-      where: {
-        id: employeeId,
-      },
-    });
+  const employee = await prisma.employee.findUnique({
+    where: {
+      id: employeeId,
+    },
+  });
 
   if (!employee) {
     return;
   }
 
-  const currentBalance =
-    await prisma.leaveBalance.findUnique({
-      where: {
-        employeeId,
-      },
-    });
+  const currentBalance = await prisma.leaveBalance.findUnique({
+    where: {
+      employeeId,
+    },
+  });
 
   await prisma.leaveGrantHistory.create({
     data: {
       employeeId,
       grantDate: grantDate ? new Date(grantDate) : new Date(),
       grantedDays: days,
-      grantType:
-        adjustType === "DEDUCT"
-          ? "MANUAL_DEDUCT"
-          : "MANUAL",
+      grantType: adjustType === "DEDUCT" ? "MANUAL_DEDUCT" : "MANUAL",
       note,
     },
   });
 
-  const updatedBalance =
-    await prisma.leaveBalance.upsert({
-      where: {
-        employeeId,
-      },
-      update: {
-        grantedDays:
-          adjustType === "DEDUCT"
-            ? Math.max(
-                0,
-                (currentBalance?.grantedDays ?? 0) -
-                  days,
-              )
-            : (currentBalance?.grantedDays ?? 0) +
-              days,
-      },
-      create: {
-        employeeId,
-        grantedDays:
-          adjustType === "DEDUCT"
-            ? 0
-            : days,
-        usedDays: 0,
-      },
-    });
+  const updatedBalance = await prisma.leaveBalance.upsert({
+    where: {
+      employeeId,
+    },
+    update: {
+      grantedDays:
+        adjustType === "DEDUCT"
+          ? Math.max(0, (currentBalance?.grantedDays ?? 0) - days)
+          : (currentBalance?.grantedDays ?? 0) + days,
+    },
+    create: {
+      employeeId,
+      grantedDays: adjustType === "DEDUCT" ? 0 : days,
+      usedDays: 0,
+    },
+  });
 
   await logAudit({
     userId: session.user.id,
     userName: session.user.name,
     action:
-      adjustType === "DEDUCT"
-        ? "LEAVE_DEDUCT_MANUAL"
-        : "LEAVE_GRANTED_MANUAL",
+      adjustType === "DEDUCT" ? "LEAVE_DEDUCT_MANUAL" : "LEAVE_GRANTED_MANUAL",
     targetType: "Employee",
     targetId: employeeId,
     description:
@@ -210,87 +176,73 @@ async function grantManualLeave(formData: FormData) {
   revalidatePath("/leave-balances");
 }
 
-
 async function cancelManualLeaveGrant(formData: FormData) {
   "use server";
 
   const session = await requireHRManager();
 
-  const grantId = String(
-    formData.get("grantId") ?? "",
-  );
+  const grantId = String(formData.get("grantId") ?? "");
 
   if (!grantId) {
     return;
   }
 
-  const grant =
-    await prisma.leaveGrantHistory.findUnique({
-      where: {
-        id: grantId,
-      },
-      include: {
-        employee: true,
-      },
-    });
+  const grant = await prisma.leaveGrantHistory.findUnique({
+    where: {
+      id: grantId,
+    },
+    include: {
+      employee: true,
+    },
+  });
 
   if (!grant) {
     return;
   }
 
-  if (
-    grant.grantType !== "MANUAL" &&
-    grant.grantType !== "MANUAL_DEDUCT"
-  ) {
+  if (grant.grantType !== "MANUAL" && grant.grantType !== "MANUAL_DEDUCT") {
     return;
   }
 
-  const alreadyCanceled =
-    await prisma.leaveGrantHistory.findFirst({
-      where: {
-        grantType: "MANUAL_CANCEL",
-        note: {
-          contains: `取消元:${grant.id}`,
-        },
+  const alreadyCanceled = await prisma.leaveGrantHistory.findFirst({
+    where: {
+      grantType: "MANUAL_CANCEL",
+      note: {
+        contains: `取消元:${grant.id}`,
       },
-    });
+    },
+  });
 
   if (alreadyCanceled) {
     return;
   }
 
-  const currentBalance =
-    await prisma.leaveBalance.findUnique({
-      where: {
-        employeeId: grant.employeeId,
-      },
-    });
+  const currentBalance = await prisma.leaveBalance.findUnique({
+    where: {
+      employeeId: grant.employeeId,
+    },
+  });
 
-  const currentGrantedDays =
-    currentBalance?.grantedDays ?? 0;
+  const currentGrantedDays = currentBalance?.grantedDays ?? 0;
 
   const nextGrantedDays =
     grant.grantType === "MANUAL"
-      ? Math.max(
-          0,
-          currentGrantedDays - grant.grantedDays,
-        )
+      ? Math.max(0, currentGrantedDays - grant.grantedDays)
       : currentGrantedDays + grant.grantedDays;
 
-  const updatedBalance =
-    await prisma.leaveBalance.upsert({
-      where: {
-        employeeId: grant.employeeId,
-      },
-      update: {
-        grantedDays: nextGrantedDays,
-      },
-      create: {
-        employeeId: grant.employeeId,
-        grantedDays: nextGrantedDays,
-        usedDays: 0,
-      },
-    });
+  const updatedBalance = await prisma.leaveBalance.upsert({
+    where: {
+      employeeId: grant.employeeId,
+    },
+    update: {
+      grantedDays: nextGrantedDays,
+    },
+    create: {
+      employeeId: grant.employeeId,
+      grantedDays: nextGrantedDays,
+      usedDays: 0,
+    },
+  });
 
   await prisma.leaveGrantHistory.create({
     data: {
@@ -320,22 +272,22 @@ async function cancelManualLeaveGrant(formData: FormData) {
 export default async function LeaveGrantHistoryPage() {
   await requireHRManager();
 
-  const employees =
-    await prisma.employee.findMany({
-      select: {
-        id: true,
-        employeeNo: true,
-        lastName: true,
-        firstName: true,
-      },
-      orderBy: {
-        employeeNo: "asc",
-      },
-    });
+  const employees = await prisma.employee.findMany({
+    select: {
+      id: true,
+      employeeNo: true,
+      lastName: true,
+      firstName: true,
+    },
+    orderBy: {
+      employeeNo: "asc",
+    },
+  });
 
   const grants = await prisma.leaveGrantHistory.findMany({
     include: {
       employee: true,
+      leaveType: true,
     },
     orderBy: {
       grantDate: "desc",
@@ -349,11 +301,7 @@ export default async function LeaveGrantHistoryPage() {
           grant.grantType === "MANUAL_CANCEL" &&
           grant.note?.includes("取消元:"),
       )
-      .map((grant) =>
-        grant.note
-          ?.split("取消元:")[1]
-          ?.split(" ")[0],
-      )
+      .map((grant) => grant.note?.split("取消元:")[1]?.split(" ")[0])
       .filter(Boolean),
   );
 
@@ -362,9 +310,7 @@ export default async function LeaveGrantHistoryPage() {
       <BackLink href="/" label="ダッシュボードへ戻る" />
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">
-            有給付与履歴
-          </h1>
+          <h1 className="text-3xl font-bold">有給付与履歴</h1>
           <p className="mt-1 text-sm text-gray-500">
             法定付与・特別休暇付与の履歴を確認します。
           </p>
@@ -380,35 +326,19 @@ export default async function LeaveGrantHistoryPage() {
         </form>
       </div>
 
-
       <form
         action={grantManualLeave}
         className="mb-6 rounded border bg-white p-4"
       >
-        <h2 className="mb-3 text-lg font-bold">
-          手動付与
-        </h2>
+        <h2 className="mb-3 text-lg font-bold">手動付与</h2>
 
         <div className="flex flex-wrap gap-3">
-          <select
-            name="employeeId"
-            className="rounded border p-2"
-            required
-          >
-            <option value="">
-              社員を選択
-            </option>
+          <select name="employeeId" className="rounded border p-2" required>
+            <option value="">社員を選択</option>
 
             {employees.map((employee) => (
-              <option
-                key={employee.id}
-                value={employee.id}
-              >
-                {employee.employeeNo}
-                {" "}
-                {employee.lastName}
-                {" "}
-                {employee.firstName}
+              <option key={employee.id} value={employee.id}>
+                {employee.employeeNo} {employee.lastName} {employee.firstName}
               </option>
             ))}
           </select>
@@ -420,17 +350,10 @@ export default async function LeaveGrantHistoryPage() {
             className="rounded border p-2"
           />
 
-          <select
-            name="adjustType"
-            className="rounded border p-2"
-          >
-            <option value="GRANT">
-              付与
-            </option>
+          <select name="adjustType" className="rounded border p-2">
+            <option value="GRANT">付与</option>
 
-            <option value="DEDUCT">
-              減算
-            </option>
+            <option value="DEDUCT">減算</option>
           </select>
 
           <input
@@ -465,6 +388,7 @@ export default async function LeaveGrantHistoryPage() {
             <tr className="bg-gray-50">
               <th className="p-3 text-left">社員番号</th>
               <th className="p-3 text-left">氏名</th>
+              <th className="p-3 text-left">休暇種別</th>
               <th className="p-3 text-left">付与日</th>
               <th className="p-3 text-left">日数</th>
               <th className="p-3 text-left">区分</th>
@@ -476,50 +400,37 @@ export default async function LeaveGrantHistoryPage() {
           <tbody>
             {grants.length === 0 ? (
               <tr>
-                <td
-                  colSpan={7}
-                  className="p-8 text-center text-gray-500"
-                >
+                <td colSpan={8} className="p-8 text-center text-gray-500">
                   有給付与履歴はありません。
                 </td>
               </tr>
             ) : (
               grants.map((x) => (
                 <tr key={x.id} className="border-t">
-                  <td className="p-3">
-                    {x.employee.employeeNo}
-                  </td>
+                  <td className="p-3">{x.employee.employeeNo}</td>
 
                   <td className="p-3">
                     {x.employee.lastName} {x.employee.firstName}
                   </td>
 
+                  <td className="p-3">{x.leaveType?.name ?? "年次有給休暇"}</td>
+
                   <td className="p-3">
                     {new Date(x.grantDate).toLocaleDateString("ja-JP")}
                   </td>
 
-                  <td className="p-3">
-                    {x.grantedDays}日
-                  </td>
+                  <td className="p-3">{x.grantedDays}日</td>
 
-                  <td className="p-3">
-                    {x.grantType}
-                  </td>
+                  <td className="p-3">{x.grantType}</td>
 
-                  <td className="p-3">
-                    {x.note ?? "-"}
-                  </td>
+                  <td className="p-3">{x.note ?? "-"}</td>
 
                   <td className="p-3">
                     {(x.grantType === "MANUAL" ||
                       x.grantType === "MANUAL_DEDUCT") &&
                     !canceledGrantIds.has(x.id) ? (
                       <form action={cancelManualLeaveGrant}>
-                        <input
-                          type="hidden"
-                          name="grantId"
-                          value={x.id}
-                        />
+                        <input type="hidden" name="grantId" value={x.id} />
 
                         <button
                           type="submit"
@@ -529,9 +440,7 @@ export default async function LeaveGrantHistoryPage() {
                         </button>
                       </form>
                     ) : (
-                      <span className="text-xs text-gray-400">
-                        -
-                      </span>
+                      <span className="text-xs text-gray-400">-</span>
                     )}
                   </td>
                 </tr>

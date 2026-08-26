@@ -4853,6 +4853,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type LeaveTypeCountOutputType
+   */
+
+  export type LeaveTypeCountOutputType = {
+    leaveGrantHistories: number
+  }
+
+  export type LeaveTypeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    leaveGrantHistories?: boolean | LeaveTypeCountOutputTypeCountLeaveGrantHistoriesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * LeaveTypeCountOutputType without action
+   */
+  export type LeaveTypeCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaveTypeCountOutputType
+     */
+    select?: LeaveTypeCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * LeaveTypeCountOutputType without action
+   */
+  export type LeaveTypeCountOutputTypeCountLeaveGrantHistoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LeaveGrantHistoryWhereInput
+  }
+
+
+  /**
    * Models
    */
 
@@ -15743,6 +15774,7 @@ export namespace Prisma {
   export type LeaveGrantHistoryMinAggregateOutputType = {
     id: string | null
     employeeId: string | null
+    leaveTypeId: string | null
     grantDate: Date | null
     grantedDays: number | null
     grantType: $Enums.LeaveGrantType | null
@@ -15753,6 +15785,7 @@ export namespace Prisma {
   export type LeaveGrantHistoryMaxAggregateOutputType = {
     id: string | null
     employeeId: string | null
+    leaveTypeId: string | null
     grantDate: Date | null
     grantedDays: number | null
     grantType: $Enums.LeaveGrantType | null
@@ -15763,6 +15796,7 @@ export namespace Prisma {
   export type LeaveGrantHistoryCountAggregateOutputType = {
     id: number
     employeeId: number
+    leaveTypeId: number
     grantDate: number
     grantedDays: number
     grantType: number
@@ -15783,6 +15817,7 @@ export namespace Prisma {
   export type LeaveGrantHistoryMinAggregateInputType = {
     id?: true
     employeeId?: true
+    leaveTypeId?: true
     grantDate?: true
     grantedDays?: true
     grantType?: true
@@ -15793,6 +15828,7 @@ export namespace Prisma {
   export type LeaveGrantHistoryMaxAggregateInputType = {
     id?: true
     employeeId?: true
+    leaveTypeId?: true
     grantDate?: true
     grantedDays?: true
     grantType?: true
@@ -15803,6 +15839,7 @@ export namespace Prisma {
   export type LeaveGrantHistoryCountAggregateInputType = {
     id?: true
     employeeId?: true
+    leaveTypeId?: true
     grantDate?: true
     grantedDays?: true
     grantType?: true
@@ -15900,6 +15937,7 @@ export namespace Prisma {
   export type LeaveGrantHistoryGroupByOutputType = {
     id: string
     employeeId: string
+    leaveTypeId: string | null
     grantDate: Date
     grantedDays: number
     grantType: $Enums.LeaveGrantType
@@ -15929,39 +15967,46 @@ export namespace Prisma {
   export type LeaveGrantHistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     employeeId?: boolean
+    leaveTypeId?: boolean
     grantDate?: boolean
     grantedDays?: boolean
     grantType?: boolean
     note?: boolean
     createdAt?: boolean
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    leaveType?: boolean | LeaveGrantHistory$leaveTypeArgs<ExtArgs>
   }, ExtArgs["result"]["leaveGrantHistory"]>
 
   export type LeaveGrantHistorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     employeeId?: boolean
+    leaveTypeId?: boolean
     grantDate?: boolean
     grantedDays?: boolean
     grantType?: boolean
     note?: boolean
     createdAt?: boolean
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    leaveType?: boolean | LeaveGrantHistory$leaveTypeArgs<ExtArgs>
   }, ExtArgs["result"]["leaveGrantHistory"]>
 
   export type LeaveGrantHistorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     employeeId?: boolean
+    leaveTypeId?: boolean
     grantDate?: boolean
     grantedDays?: boolean
     grantType?: boolean
     note?: boolean
     createdAt?: boolean
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    leaveType?: boolean | LeaveGrantHistory$leaveTypeArgs<ExtArgs>
   }, ExtArgs["result"]["leaveGrantHistory"]>
 
   export type LeaveGrantHistorySelectScalar = {
     id?: boolean
     employeeId?: boolean
+    leaveTypeId?: boolean
     grantDate?: boolean
     grantedDays?: boolean
     grantType?: boolean
@@ -15969,25 +16014,30 @@ export namespace Prisma {
     createdAt?: boolean
   }
 
-  export type LeaveGrantHistoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "grantDate" | "grantedDays" | "grantType" | "note" | "createdAt", ExtArgs["result"]["leaveGrantHistory"]>
+  export type LeaveGrantHistoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "leaveTypeId" | "grantDate" | "grantedDays" | "grantType" | "note" | "createdAt", ExtArgs["result"]["leaveGrantHistory"]>
   export type LeaveGrantHistoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    leaveType?: boolean | LeaveGrantHistory$leaveTypeArgs<ExtArgs>
   }
   export type LeaveGrantHistoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    leaveType?: boolean | LeaveGrantHistory$leaveTypeArgs<ExtArgs>
   }
   export type LeaveGrantHistoryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    leaveType?: boolean | LeaveGrantHistory$leaveTypeArgs<ExtArgs>
   }
 
   export type $LeaveGrantHistoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "LeaveGrantHistory"
     objects: {
       employee: Prisma.$EmployeePayload<ExtArgs>
+      leaveType: Prisma.$LeaveTypePayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       employeeId: string
+      leaveTypeId: string | null
       grantDate: Date
       grantedDays: number
       grantType: $Enums.LeaveGrantType
@@ -16388,6 +16438,7 @@ export namespace Prisma {
   export interface Prisma__LeaveGrantHistoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    leaveType<T extends LeaveGrantHistory$leaveTypeArgs<ExtArgs> = {}>(args?: Subset<T, LeaveGrantHistory$leaveTypeArgs<ExtArgs>>): Prisma__LeaveTypeClient<$Result.GetResult<Prisma.$LeaveTypePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -16419,6 +16470,7 @@ export namespace Prisma {
   interface LeaveGrantHistoryFieldRefs {
     readonly id: FieldRef<"LeaveGrantHistory", 'String'>
     readonly employeeId: FieldRef<"LeaveGrantHistory", 'String'>
+    readonly leaveTypeId: FieldRef<"LeaveGrantHistory", 'String'>
     readonly grantDate: FieldRef<"LeaveGrantHistory", 'DateTime'>
     readonly grantedDays: FieldRef<"LeaveGrantHistory", 'Float'>
     readonly grantType: FieldRef<"LeaveGrantHistory", 'LeaveGrantType'>
@@ -16822,6 +16874,25 @@ export namespace Prisma {
      * Limit how many LeaveGrantHistories to delete.
      */
     limit?: number
+  }
+
+  /**
+   * LeaveGrantHistory.leaveType
+   */
+  export type LeaveGrantHistory$leaveTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaveType
+     */
+    select?: LeaveTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaveType
+     */
+    omit?: LeaveTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveTypeInclude<ExtArgs> | null
+    where?: LeaveTypeWhereInput
   }
 
   /**
@@ -44841,6 +44912,8 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    leaveGrantHistories?: boolean | LeaveType$leaveGrantHistoriesArgs<ExtArgs>
+    _count?: boolean | LeaveTypeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["leaveType"]>
 
   export type LeaveTypeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -44877,10 +44950,18 @@ export namespace Prisma {
   }
 
   export type LeaveTypeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "name" | "isPaid" | "sortOrder" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["leaveType"]>
+  export type LeaveTypeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    leaveGrantHistories?: boolean | LeaveType$leaveGrantHistoriesArgs<ExtArgs>
+    _count?: boolean | LeaveTypeCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type LeaveTypeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type LeaveTypeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $LeaveTypePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "LeaveType"
-    objects: {}
+    objects: {
+      leaveGrantHistories: Prisma.$LeaveGrantHistoryPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       code: string
@@ -45284,6 +45365,7 @@ export namespace Prisma {
    */
   export interface Prisma__LeaveTypeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    leaveGrantHistories<T extends LeaveType$leaveGrantHistoriesArgs<ExtArgs> = {}>(args?: Subset<T, LeaveType$leaveGrantHistoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeaveGrantHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -45338,6 +45420,10 @@ export namespace Prisma {
      */
     omit?: LeaveTypeOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveTypeInclude<ExtArgs> | null
+    /**
      * Filter, which LeaveType to fetch.
      */
     where: LeaveTypeWhereUniqueInput
@@ -45356,6 +45442,10 @@ export namespace Prisma {
      */
     omit?: LeaveTypeOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveTypeInclude<ExtArgs> | null
+    /**
      * Filter, which LeaveType to fetch.
      */
     where: LeaveTypeWhereUniqueInput
@@ -45373,6 +45463,10 @@ export namespace Prisma {
      * Omit specific fields from the LeaveType
      */
     omit?: LeaveTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveTypeInclude<ExtArgs> | null
     /**
      * Filter, which LeaveType to fetch.
      */
@@ -45422,6 +45516,10 @@ export namespace Prisma {
      */
     omit?: LeaveTypeOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveTypeInclude<ExtArgs> | null
+    /**
      * Filter, which LeaveType to fetch.
      */
     where?: LeaveTypeWhereInput
@@ -45469,6 +45567,10 @@ export namespace Prisma {
      * Omit specific fields from the LeaveType
      */
     omit?: LeaveTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveTypeInclude<ExtArgs> | null
     /**
      * Filter, which LeaveTypes to fetch.
      */
@@ -45518,6 +45620,10 @@ export namespace Prisma {
      */
     omit?: LeaveTypeOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveTypeInclude<ExtArgs> | null
+    /**
      * The data needed to create a LeaveType.
      */
     data: XOR<LeaveTypeCreateInput, LeaveTypeUncheckedCreateInput>
@@ -45565,6 +45671,10 @@ export namespace Prisma {
      * Omit specific fields from the LeaveType
      */
     omit?: LeaveTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveTypeInclude<ExtArgs> | null
     /**
      * The data needed to update a LeaveType.
      */
@@ -45632,6 +45742,10 @@ export namespace Prisma {
      */
     omit?: LeaveTypeOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveTypeInclude<ExtArgs> | null
+    /**
      * The filter to search for the LeaveType to update in case it exists.
      */
     where: LeaveTypeWhereUniqueInput
@@ -45658,6 +45772,10 @@ export namespace Prisma {
      */
     omit?: LeaveTypeOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveTypeInclude<ExtArgs> | null
+    /**
      * Filter which LeaveType to delete.
      */
     where: LeaveTypeWhereUniqueInput
@@ -45678,6 +45796,30 @@ export namespace Prisma {
   }
 
   /**
+   * LeaveType.leaveGrantHistories
+   */
+  export type LeaveType$leaveGrantHistoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaveGrantHistory
+     */
+    select?: LeaveGrantHistorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaveGrantHistory
+     */
+    omit?: LeaveGrantHistoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveGrantHistoryInclude<ExtArgs> | null
+    where?: LeaveGrantHistoryWhereInput
+    orderBy?: LeaveGrantHistoryOrderByWithRelationInput | LeaveGrantHistoryOrderByWithRelationInput[]
+    cursor?: LeaveGrantHistoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LeaveGrantHistoryScalarFieldEnum | LeaveGrantHistoryScalarFieldEnum[]
+  }
+
+  /**
    * LeaveType without action
    */
   export type LeaveTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -45689,6 +45831,10 @@ export namespace Prisma {
      * Omit specific fields from the LeaveType
      */
     omit?: LeaveTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveTypeInclude<ExtArgs> | null
   }
 
 
@@ -49357,6 +49503,7 @@ export namespace Prisma {
   export const LeaveGrantHistoryScalarFieldEnum: {
     id: 'id',
     employeeId: 'employeeId',
+    leaveTypeId: 'leaveTypeId',
     grantDate: 'grantDate',
     grantedDays: 'grantedDays',
     grantType: 'grantType',
@@ -50961,23 +51108,27 @@ export namespace Prisma {
     NOT?: LeaveGrantHistoryWhereInput | LeaveGrantHistoryWhereInput[]
     id?: StringFilter<"LeaveGrantHistory"> | string
     employeeId?: StringFilter<"LeaveGrantHistory"> | string
+    leaveTypeId?: StringNullableFilter<"LeaveGrantHistory"> | string | null
     grantDate?: DateTimeFilter<"LeaveGrantHistory"> | Date | string
     grantedDays?: FloatFilter<"LeaveGrantHistory"> | number
     grantType?: EnumLeaveGrantTypeFilter<"LeaveGrantHistory"> | $Enums.LeaveGrantType
     note?: StringNullableFilter<"LeaveGrantHistory"> | string | null
     createdAt?: DateTimeFilter<"LeaveGrantHistory"> | Date | string
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+    leaveType?: XOR<LeaveTypeNullableScalarRelationFilter, LeaveTypeWhereInput> | null
   }
 
   export type LeaveGrantHistoryOrderByWithRelationInput = {
     id?: SortOrder
     employeeId?: SortOrder
+    leaveTypeId?: SortOrderInput | SortOrder
     grantDate?: SortOrder
     grantedDays?: SortOrder
     grantType?: SortOrder
     note?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     employee?: EmployeeOrderByWithRelationInput
+    leaveType?: LeaveTypeOrderByWithRelationInput
   }
 
   export type LeaveGrantHistoryWhereUniqueInput = Prisma.AtLeast<{
@@ -50986,17 +51137,20 @@ export namespace Prisma {
     OR?: LeaveGrantHistoryWhereInput[]
     NOT?: LeaveGrantHistoryWhereInput | LeaveGrantHistoryWhereInput[]
     employeeId?: StringFilter<"LeaveGrantHistory"> | string
+    leaveTypeId?: StringNullableFilter<"LeaveGrantHistory"> | string | null
     grantDate?: DateTimeFilter<"LeaveGrantHistory"> | Date | string
     grantedDays?: FloatFilter<"LeaveGrantHistory"> | number
     grantType?: EnumLeaveGrantTypeFilter<"LeaveGrantHistory"> | $Enums.LeaveGrantType
     note?: StringNullableFilter<"LeaveGrantHistory"> | string | null
     createdAt?: DateTimeFilter<"LeaveGrantHistory"> | Date | string
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+    leaveType?: XOR<LeaveTypeNullableScalarRelationFilter, LeaveTypeWhereInput> | null
   }, "id">
 
   export type LeaveGrantHistoryOrderByWithAggregationInput = {
     id?: SortOrder
     employeeId?: SortOrder
+    leaveTypeId?: SortOrderInput | SortOrder
     grantDate?: SortOrder
     grantedDays?: SortOrder
     grantType?: SortOrder
@@ -51015,6 +51169,7 @@ export namespace Prisma {
     NOT?: LeaveGrantHistoryScalarWhereWithAggregatesInput | LeaveGrantHistoryScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"LeaveGrantHistory"> | string
     employeeId?: StringWithAggregatesFilter<"LeaveGrantHistory"> | string
+    leaveTypeId?: StringNullableWithAggregatesFilter<"LeaveGrantHistory"> | string | null
     grantDate?: DateTimeWithAggregatesFilter<"LeaveGrantHistory"> | Date | string
     grantedDays?: FloatWithAggregatesFilter<"LeaveGrantHistory"> | number
     grantType?: EnumLeaveGrantTypeWithAggregatesFilter<"LeaveGrantHistory"> | $Enums.LeaveGrantType
@@ -53130,6 +53285,7 @@ export namespace Prisma {
     isActive?: BoolFilter<"LeaveType"> | boolean
     createdAt?: DateTimeFilter<"LeaveType"> | Date | string
     updatedAt?: DateTimeFilter<"LeaveType"> | Date | string
+    leaveGrantHistories?: LeaveGrantHistoryListRelationFilter
   }
 
   export type LeaveTypeOrderByWithRelationInput = {
@@ -53141,6 +53297,7 @@ export namespace Prisma {
     isActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    leaveGrantHistories?: LeaveGrantHistoryOrderByRelationAggregateInput
   }
 
   export type LeaveTypeWhereUniqueInput = Prisma.AtLeast<{
@@ -53155,6 +53312,7 @@ export namespace Prisma {
     isActive?: BoolFilter<"LeaveType"> | boolean
     createdAt?: DateTimeFilter<"LeaveType"> | Date | string
     updatedAt?: DateTimeFilter<"LeaveType"> | Date | string
+    leaveGrantHistories?: LeaveGrantHistoryListRelationFilter
   }, "id" | "code">
 
   export type LeaveTypeOrderByWithAggregationInput = {
@@ -54397,11 +54555,13 @@ export namespace Prisma {
     note?: string | null
     createdAt?: Date | string
     employee: EmployeeCreateNestedOneWithoutLeaveGrantHistoriesInput
+    leaveType?: LeaveTypeCreateNestedOneWithoutLeaveGrantHistoriesInput
   }
 
   export type LeaveGrantHistoryUncheckedCreateInput = {
     id?: string
     employeeId: string
+    leaveTypeId?: string | null
     grantDate: Date | string
     grantedDays: number
     grantType: $Enums.LeaveGrantType
@@ -54417,11 +54577,13 @@ export namespace Prisma {
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employee?: EmployeeUpdateOneRequiredWithoutLeaveGrantHistoriesNestedInput
+    leaveType?: LeaveTypeUpdateOneWithoutLeaveGrantHistoriesNestedInput
   }
 
   export type LeaveGrantHistoryUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
+    leaveTypeId?: NullableStringFieldUpdateOperationsInput | string | null
     grantDate?: DateTimeFieldUpdateOperationsInput | Date | string
     grantedDays?: FloatFieldUpdateOperationsInput | number
     grantType?: EnumLeaveGrantTypeFieldUpdateOperationsInput | $Enums.LeaveGrantType
@@ -54432,6 +54594,7 @@ export namespace Prisma {
   export type LeaveGrantHistoryCreateManyInput = {
     id?: string
     employeeId: string
+    leaveTypeId?: string | null
     grantDate: Date | string
     grantedDays: number
     grantType: $Enums.LeaveGrantType
@@ -54451,6 +54614,7 @@ export namespace Prisma {
   export type LeaveGrantHistoryUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
+    leaveTypeId?: NullableStringFieldUpdateOperationsInput | string | null
     grantDate?: DateTimeFieldUpdateOperationsInput | Date | string
     grantedDays?: FloatFieldUpdateOperationsInput | number
     grantType?: EnumLeaveGrantTypeFieldUpdateOperationsInput | $Enums.LeaveGrantType
@@ -56854,6 +57018,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutLeaveTypeInput
   }
 
   export type LeaveTypeUncheckedCreateInput = {
@@ -56865,6 +57030,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutLeaveTypeInput
   }
 
   export type LeaveTypeUpdateInput = {
@@ -56876,6 +57042,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutLeaveTypeNestedInput
   }
 
   export type LeaveTypeUncheckedUpdateInput = {
@@ -56887,6 +57054,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutLeaveTypeNestedInput
   }
 
   export type LeaveTypeCreateManyInput = {
@@ -58118,9 +58286,15 @@ export namespace Prisma {
     not?: NestedEnumLeaveGrantTypeFilter<$PrismaModel> | $Enums.LeaveGrantType
   }
 
+  export type LeaveTypeNullableScalarRelationFilter = {
+    is?: LeaveTypeWhereInput | null
+    isNot?: LeaveTypeWhereInput | null
+  }
+
   export type LeaveGrantHistoryCountOrderByAggregateInput = {
     id?: SortOrder
     employeeId?: SortOrder
+    leaveTypeId?: SortOrder
     grantDate?: SortOrder
     grantedDays?: SortOrder
     grantType?: SortOrder
@@ -58135,6 +58309,7 @@ export namespace Prisma {
   export type LeaveGrantHistoryMaxOrderByAggregateInput = {
     id?: SortOrder
     employeeId?: SortOrder
+    leaveTypeId?: SortOrder
     grantDate?: SortOrder
     grantedDays?: SortOrder
     grantType?: SortOrder
@@ -58145,6 +58320,7 @@ export namespace Prisma {
   export type LeaveGrantHistoryMinOrderByAggregateInput = {
     id?: SortOrder
     employeeId?: SortOrder
+    leaveTypeId?: SortOrder
     grantDate?: SortOrder
     grantedDays?: SortOrder
     grantType?: SortOrder
@@ -60794,6 +60970,12 @@ export namespace Prisma {
     connect?: EmployeeWhereUniqueInput
   }
 
+  export type LeaveTypeCreateNestedOneWithoutLeaveGrantHistoriesInput = {
+    create?: XOR<LeaveTypeCreateWithoutLeaveGrantHistoriesInput, LeaveTypeUncheckedCreateWithoutLeaveGrantHistoriesInput>
+    connectOrCreate?: LeaveTypeCreateOrConnectWithoutLeaveGrantHistoriesInput
+    connect?: LeaveTypeWhereUniqueInput
+  }
+
   export type FloatFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -60812,6 +60994,16 @@ export namespace Prisma {
     upsert?: EmployeeUpsertWithoutLeaveGrantHistoriesInput
     connect?: EmployeeWhereUniqueInput
     update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutLeaveGrantHistoriesInput, EmployeeUpdateWithoutLeaveGrantHistoriesInput>, EmployeeUncheckedUpdateWithoutLeaveGrantHistoriesInput>
+  }
+
+  export type LeaveTypeUpdateOneWithoutLeaveGrantHistoriesNestedInput = {
+    create?: XOR<LeaveTypeCreateWithoutLeaveGrantHistoriesInput, LeaveTypeUncheckedCreateWithoutLeaveGrantHistoriesInput>
+    connectOrCreate?: LeaveTypeCreateOrConnectWithoutLeaveGrantHistoriesInput
+    upsert?: LeaveTypeUpsertWithoutLeaveGrantHistoriesInput
+    disconnect?: LeaveTypeWhereInput | boolean
+    delete?: LeaveTypeWhereInput | boolean
+    connect?: LeaveTypeWhereUniqueInput
+    update?: XOR<XOR<LeaveTypeUpdateToOneWithWhereWithoutLeaveGrantHistoriesInput, LeaveTypeUpdateWithoutLeaveGrantHistoriesInput>, LeaveTypeUncheckedUpdateWithoutLeaveGrantHistoriesInput>
   }
 
   export type EmployeeCreateNestedOneWithoutLeaveBalanceInput = {
@@ -61444,6 +61636,48 @@ export namespace Prisma {
     upsert?: EmploymentContractUpsertWithoutWorkSchedulesInput
     connect?: EmploymentContractWhereUniqueInput
     update?: XOR<XOR<EmploymentContractUpdateToOneWithWhereWithoutWorkSchedulesInput, EmploymentContractUpdateWithoutWorkSchedulesInput>, EmploymentContractUncheckedUpdateWithoutWorkSchedulesInput>
+  }
+
+  export type LeaveGrantHistoryCreateNestedManyWithoutLeaveTypeInput = {
+    create?: XOR<LeaveGrantHistoryCreateWithoutLeaveTypeInput, LeaveGrantHistoryUncheckedCreateWithoutLeaveTypeInput> | LeaveGrantHistoryCreateWithoutLeaveTypeInput[] | LeaveGrantHistoryUncheckedCreateWithoutLeaveTypeInput[]
+    connectOrCreate?: LeaveGrantHistoryCreateOrConnectWithoutLeaveTypeInput | LeaveGrantHistoryCreateOrConnectWithoutLeaveTypeInput[]
+    createMany?: LeaveGrantHistoryCreateManyLeaveTypeInputEnvelope
+    connect?: LeaveGrantHistoryWhereUniqueInput | LeaveGrantHistoryWhereUniqueInput[]
+  }
+
+  export type LeaveGrantHistoryUncheckedCreateNestedManyWithoutLeaveTypeInput = {
+    create?: XOR<LeaveGrantHistoryCreateWithoutLeaveTypeInput, LeaveGrantHistoryUncheckedCreateWithoutLeaveTypeInput> | LeaveGrantHistoryCreateWithoutLeaveTypeInput[] | LeaveGrantHistoryUncheckedCreateWithoutLeaveTypeInput[]
+    connectOrCreate?: LeaveGrantHistoryCreateOrConnectWithoutLeaveTypeInput | LeaveGrantHistoryCreateOrConnectWithoutLeaveTypeInput[]
+    createMany?: LeaveGrantHistoryCreateManyLeaveTypeInputEnvelope
+    connect?: LeaveGrantHistoryWhereUniqueInput | LeaveGrantHistoryWhereUniqueInput[]
+  }
+
+  export type LeaveGrantHistoryUpdateManyWithoutLeaveTypeNestedInput = {
+    create?: XOR<LeaveGrantHistoryCreateWithoutLeaveTypeInput, LeaveGrantHistoryUncheckedCreateWithoutLeaveTypeInput> | LeaveGrantHistoryCreateWithoutLeaveTypeInput[] | LeaveGrantHistoryUncheckedCreateWithoutLeaveTypeInput[]
+    connectOrCreate?: LeaveGrantHistoryCreateOrConnectWithoutLeaveTypeInput | LeaveGrantHistoryCreateOrConnectWithoutLeaveTypeInput[]
+    upsert?: LeaveGrantHistoryUpsertWithWhereUniqueWithoutLeaveTypeInput | LeaveGrantHistoryUpsertWithWhereUniqueWithoutLeaveTypeInput[]
+    createMany?: LeaveGrantHistoryCreateManyLeaveTypeInputEnvelope
+    set?: LeaveGrantHistoryWhereUniqueInput | LeaveGrantHistoryWhereUniqueInput[]
+    disconnect?: LeaveGrantHistoryWhereUniqueInput | LeaveGrantHistoryWhereUniqueInput[]
+    delete?: LeaveGrantHistoryWhereUniqueInput | LeaveGrantHistoryWhereUniqueInput[]
+    connect?: LeaveGrantHistoryWhereUniqueInput | LeaveGrantHistoryWhereUniqueInput[]
+    update?: LeaveGrantHistoryUpdateWithWhereUniqueWithoutLeaveTypeInput | LeaveGrantHistoryUpdateWithWhereUniqueWithoutLeaveTypeInput[]
+    updateMany?: LeaveGrantHistoryUpdateManyWithWhereWithoutLeaveTypeInput | LeaveGrantHistoryUpdateManyWithWhereWithoutLeaveTypeInput[]
+    deleteMany?: LeaveGrantHistoryScalarWhereInput | LeaveGrantHistoryScalarWhereInput[]
+  }
+
+  export type LeaveGrantHistoryUncheckedUpdateManyWithoutLeaveTypeNestedInput = {
+    create?: XOR<LeaveGrantHistoryCreateWithoutLeaveTypeInput, LeaveGrantHistoryUncheckedCreateWithoutLeaveTypeInput> | LeaveGrantHistoryCreateWithoutLeaveTypeInput[] | LeaveGrantHistoryUncheckedCreateWithoutLeaveTypeInput[]
+    connectOrCreate?: LeaveGrantHistoryCreateOrConnectWithoutLeaveTypeInput | LeaveGrantHistoryCreateOrConnectWithoutLeaveTypeInput[]
+    upsert?: LeaveGrantHistoryUpsertWithWhereUniqueWithoutLeaveTypeInput | LeaveGrantHistoryUpsertWithWhereUniqueWithoutLeaveTypeInput[]
+    createMany?: LeaveGrantHistoryCreateManyLeaveTypeInputEnvelope
+    set?: LeaveGrantHistoryWhereUniqueInput | LeaveGrantHistoryWhereUniqueInput[]
+    disconnect?: LeaveGrantHistoryWhereUniqueInput | LeaveGrantHistoryWhereUniqueInput[]
+    delete?: LeaveGrantHistoryWhereUniqueInput | LeaveGrantHistoryWhereUniqueInput[]
+    connect?: LeaveGrantHistoryWhereUniqueInput | LeaveGrantHistoryWhereUniqueInput[]
+    update?: LeaveGrantHistoryUpdateWithWhereUniqueWithoutLeaveTypeInput | LeaveGrantHistoryUpdateWithWhereUniqueWithoutLeaveTypeInput[]
+    updateMany?: LeaveGrantHistoryUpdateManyWithWhereWithoutLeaveTypeInput | LeaveGrantHistoryUpdateManyWithWhereWithoutLeaveTypeInput[]
+    deleteMany?: LeaveGrantHistoryScalarWhereInput | LeaveGrantHistoryScalarWhereInput[]
   }
 
   export type EmployeeCreateNestedOneWithoutRetirementChecklistInput = {
@@ -62706,10 +62940,12 @@ export namespace Prisma {
     grantType: $Enums.LeaveGrantType
     note?: string | null
     createdAt?: Date | string
+    leaveType?: LeaveTypeCreateNestedOneWithoutLeaveGrantHistoriesInput
   }
 
   export type LeaveGrantHistoryUncheckedCreateWithoutEmployeeInput = {
     id?: string
+    leaveTypeId?: string | null
     grantDate: Date | string
     grantedDays: number
     grantType: $Enums.LeaveGrantType
@@ -63394,6 +63630,7 @@ export namespace Prisma {
     NOT?: LeaveGrantHistoryScalarWhereInput | LeaveGrantHistoryScalarWhereInput[]
     id?: StringFilter<"LeaveGrantHistory"> | string
     employeeId?: StringFilter<"LeaveGrantHistory"> | string
+    leaveTypeId?: StringNullableFilter<"LeaveGrantHistory"> | string | null
     grantDate?: DateTimeFilter<"LeaveGrantHistory"> | Date | string
     grantedDays?: FloatFilter<"LeaveGrantHistory"> | number
     grantType?: EnumLeaveGrantTypeFilter<"LeaveGrantHistory"> | $Enums.LeaveGrantType
@@ -64825,6 +65062,33 @@ export namespace Prisma {
     create: XOR<EmployeeCreateWithoutLeaveGrantHistoriesInput, EmployeeUncheckedCreateWithoutLeaveGrantHistoriesInput>
   }
 
+  export type LeaveTypeCreateWithoutLeaveGrantHistoriesInput = {
+    id?: string
+    code: string
+    name: string
+    isPaid?: boolean
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LeaveTypeUncheckedCreateWithoutLeaveGrantHistoriesInput = {
+    id?: string
+    code: string
+    name: string
+    isPaid?: boolean
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LeaveTypeCreateOrConnectWithoutLeaveGrantHistoriesInput = {
+    where: LeaveTypeWhereUniqueInput
+    create: XOR<LeaveTypeCreateWithoutLeaveGrantHistoriesInput, LeaveTypeUncheckedCreateWithoutLeaveGrantHistoriesInput>
+  }
+
   export type EmployeeUpsertWithoutLeaveGrantHistoriesInput = {
     update: XOR<EmployeeUpdateWithoutLeaveGrantHistoriesInput, EmployeeUncheckedUpdateWithoutLeaveGrantHistoriesInput>
     create: XOR<EmployeeCreateWithoutLeaveGrantHistoriesInput, EmployeeUncheckedCreateWithoutLeaveGrantHistoriesInput>
@@ -64920,6 +65184,39 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+  }
+
+  export type LeaveTypeUpsertWithoutLeaveGrantHistoriesInput = {
+    update: XOR<LeaveTypeUpdateWithoutLeaveGrantHistoriesInput, LeaveTypeUncheckedUpdateWithoutLeaveGrantHistoriesInput>
+    create: XOR<LeaveTypeCreateWithoutLeaveGrantHistoriesInput, LeaveTypeUncheckedCreateWithoutLeaveGrantHistoriesInput>
+    where?: LeaveTypeWhereInput
+  }
+
+  export type LeaveTypeUpdateToOneWithWhereWithoutLeaveGrantHistoriesInput = {
+    where?: LeaveTypeWhereInput
+    data: XOR<LeaveTypeUpdateWithoutLeaveGrantHistoriesInput, LeaveTypeUncheckedUpdateWithoutLeaveGrantHistoriesInput>
+  }
+
+  export type LeaveTypeUpdateWithoutLeaveGrantHistoriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isPaid?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LeaveTypeUncheckedUpdateWithoutLeaveGrantHistoriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isPaid?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EmployeeCreateWithoutLeaveBalanceInput = {
@@ -67730,6 +68027,52 @@ export namespace Prisma {
     employmentContractConsents?: EmploymentContractConsentUncheckedUpdateManyWithoutEmploymentContractNestedInput
   }
 
+  export type LeaveGrantHistoryCreateWithoutLeaveTypeInput = {
+    id?: string
+    grantDate: Date | string
+    grantedDays: number
+    grantType: $Enums.LeaveGrantType
+    note?: string | null
+    createdAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutLeaveGrantHistoriesInput
+  }
+
+  export type LeaveGrantHistoryUncheckedCreateWithoutLeaveTypeInput = {
+    id?: string
+    employeeId: string
+    grantDate: Date | string
+    grantedDays: number
+    grantType: $Enums.LeaveGrantType
+    note?: string | null
+    createdAt?: Date | string
+  }
+
+  export type LeaveGrantHistoryCreateOrConnectWithoutLeaveTypeInput = {
+    where: LeaveGrantHistoryWhereUniqueInput
+    create: XOR<LeaveGrantHistoryCreateWithoutLeaveTypeInput, LeaveGrantHistoryUncheckedCreateWithoutLeaveTypeInput>
+  }
+
+  export type LeaveGrantHistoryCreateManyLeaveTypeInputEnvelope = {
+    data: LeaveGrantHistoryCreateManyLeaveTypeInput | LeaveGrantHistoryCreateManyLeaveTypeInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type LeaveGrantHistoryUpsertWithWhereUniqueWithoutLeaveTypeInput = {
+    where: LeaveGrantHistoryWhereUniqueInput
+    update: XOR<LeaveGrantHistoryUpdateWithoutLeaveTypeInput, LeaveGrantHistoryUncheckedUpdateWithoutLeaveTypeInput>
+    create: XOR<LeaveGrantHistoryCreateWithoutLeaveTypeInput, LeaveGrantHistoryUncheckedCreateWithoutLeaveTypeInput>
+  }
+
+  export type LeaveGrantHistoryUpdateWithWhereUniqueWithoutLeaveTypeInput = {
+    where: LeaveGrantHistoryWhereUniqueInput
+    data: XOR<LeaveGrantHistoryUpdateWithoutLeaveTypeInput, LeaveGrantHistoryUncheckedUpdateWithoutLeaveTypeInput>
+  }
+
+  export type LeaveGrantHistoryUpdateManyWithWhereWithoutLeaveTypeInput = {
+    where: LeaveGrantHistoryScalarWhereInput
+    data: XOR<LeaveGrantHistoryUpdateManyMutationInput, LeaveGrantHistoryUncheckedUpdateManyWithoutLeaveTypeInput>
+  }
+
   export type EmployeeCreateWithoutRetirementChecklistInput = {
     id?: string
     employeeNo: string
@@ -68574,6 +68917,7 @@ export namespace Prisma {
 
   export type LeaveGrantHistoryCreateManyEmployeeInput = {
     id?: string
+    leaveTypeId?: string | null
     grantDate: Date | string
     grantedDays: number
     grantType: $Enums.LeaveGrantType
@@ -68810,10 +69154,12 @@ export namespace Prisma {
     grantType?: EnumLeaveGrantTypeFieldUpdateOperationsInput | $Enums.LeaveGrantType
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    leaveType?: LeaveTypeUpdateOneWithoutLeaveGrantHistoriesNestedInput
   }
 
   export type LeaveGrantHistoryUncheckedUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
+    leaveTypeId?: NullableStringFieldUpdateOperationsInput | string | null
     grantDate?: DateTimeFieldUpdateOperationsInput | Date | string
     grantedDays?: FloatFieldUpdateOperationsInput | number
     grantType?: EnumLeaveGrantTypeFieldUpdateOperationsInput | $Enums.LeaveGrantType
@@ -68823,6 +69169,7 @@ export namespace Prisma {
 
   export type LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
+    leaveTypeId?: NullableStringFieldUpdateOperationsInput | string | null
     grantDate?: DateTimeFieldUpdateOperationsInput | Date | string
     grantedDays?: FloatFieldUpdateOperationsInput | number
     grantType?: EnumLeaveGrantTypeFieldUpdateOperationsInput | $Enums.LeaveGrantType
@@ -69552,6 +69899,46 @@ export namespace Prisma {
     sortOrder?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LeaveGrantHistoryCreateManyLeaveTypeInput = {
+    id?: string
+    employeeId: string
+    grantDate: Date | string
+    grantedDays: number
+    grantType: $Enums.LeaveGrantType
+    note?: string | null
+    createdAt?: Date | string
+  }
+
+  export type LeaveGrantHistoryUpdateWithoutLeaveTypeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    grantDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    grantedDays?: FloatFieldUpdateOperationsInput | number
+    grantType?: EnumLeaveGrantTypeFieldUpdateOperationsInput | $Enums.LeaveGrantType
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutLeaveGrantHistoriesNestedInput
+  }
+
+  export type LeaveGrantHistoryUncheckedUpdateWithoutLeaveTypeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    grantDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    grantedDays?: FloatFieldUpdateOperationsInput | number
+    grantType?: EnumLeaveGrantTypeFieldUpdateOperationsInput | $Enums.LeaveGrantType
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LeaveGrantHistoryUncheckedUpdateManyWithoutLeaveTypeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    grantDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    grantedDays?: FloatFieldUpdateOperationsInput | number
+    grantType?: EnumLeaveGrantTypeFieldUpdateOperationsInput | $Enums.LeaveGrantType
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

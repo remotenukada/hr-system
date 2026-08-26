@@ -174,8 +174,10 @@ model SalaryHistory {
 }
 
 model LeaveGrantHistory {
-  id          String         @id @default(uuid())
-  employeeId  String
+  id         String @id @default(uuid())
+  employeeId String
+
+  leaveTypeId String?
   grantDate   DateTime
   grantedDays Float
   grantType   LeaveGrantType
@@ -183,7 +185,10 @@ model LeaveGrantHistory {
   createdAt   DateTime       @default(now())
   employee    Employee       @relation(fields: [employeeId], references: [id], onDelete: Cascade)
 
+  leaveType LeaveType? @relation(fields: [leaveTypeId], references: [id])
+
   @@index([employeeId])
+  @@index([leaveTypeId])
   @@index([grantDate])
 }
 
@@ -790,6 +795,8 @@ model LeaveType {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  leaveGrantHistories LeaveGrantHistory[]
 }
 
 enum ConsentMethod {
