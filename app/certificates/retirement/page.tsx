@@ -23,7 +23,7 @@ export default async function RetirementCertificateSelectPage() {
         {employees.map((employee) => (
           <Link
             key={employee.id}
-            href={`/retirement-management/${employee.id}`}
+            href={`/retirement-management/${employee.id}/certificate`}
             className="flex items-center justify-between rounded-lg border p-4 hover:bg-gray-50"
           >
             <div className="flex items-center space-x-4">
