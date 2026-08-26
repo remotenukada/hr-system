@@ -9,9 +9,7 @@ export default async function CompanySettingsPage() {
   return (
     <main className="mx-auto max-w-4xl p-6">
       <BackLink href="/" label="ダッシュボードへ戻る" />
-      <h1 className="mb-6 text-2xl font-bold">
-        会社設定
-      </h1>
+      <h1 className="mb-6 text-2xl font-bold">会社設定</h1>
 
       <form
         action={saveCompanySetting}
@@ -31,9 +29,7 @@ export default async function CompanySettingsPage() {
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-medium">
-            郵便番号
-          </label>
+          <label className="mb-1 block text-sm font-medium">郵便番号</label>
           <input
             name="postalCode"
             type="text"
@@ -43,9 +39,7 @@ export default async function CompanySettingsPage() {
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-medium">
-            所在地
-          </label>
+          <label className="mb-1 block text-sm font-medium">所在地</label>
           <input
             name="address"
             type="text"
@@ -55,9 +49,7 @@ export default async function CompanySettingsPage() {
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-medium">
-            電話番号
-          </label>
+          <label className="mb-1 block text-sm font-medium">電話番号</label>
           <input
             name="phoneNumber"
             type="text"
@@ -67,9 +59,7 @@ export default async function CompanySettingsPage() {
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-medium">
-            代表者名
-          </label>
+          <label className="mb-1 block text-sm font-medium">代表者名</label>
           <input
             name="representativeName"
             type="text"
@@ -90,10 +80,51 @@ export default async function CompanySettingsPage() {
           />
         </div>
 
+        <hr className="my-6" />
+
+        <h2 className="text-lg font-semibold">メール設定</h2>
+
         <div>
-          <label className="mb-1 block text-sm font-medium">
-            相談窓口
-          </label>
+          <label className="mb-1 block text-sm font-medium">SMTPホスト</label>
+          <input
+            name="smtpHost"
+            type="text"
+            defaultValue={current?.smtpHost ?? ""}
+            className="w-full rounded border p-2"
+          />
+        </div>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium">SMTPポート</label>
+          <input
+            name="smtpPort"
+            type="number"
+            defaultValue={current?.smtpPort ?? ""}
+            className="w-full rounded border p-2"
+          />
+        </div>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium">SMTPユーザー</label>
+          <input
+            name="smtpUser"
+            type="text"
+            defaultValue={current?.smtpUser ?? ""}
+            className="w-full rounded border p-2"
+          />
+        </div>
+
+        <label className="flex items-center gap-2">
+          <input
+            name="smtpSecure"
+            type="checkbox"
+            defaultChecked={current?.smtpSecure ?? false}
+          />
+          SSL/TLSを使用
+        </label>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium">相談窓口</label>
           <input
             name="consultationDesk"
             type="text"
@@ -114,7 +145,6 @@ export default async function CompanySettingsPage() {
           />
         </div>
 
-
         <div>
           <label className="mb-1 block text-sm font-medium">
             電子印鑑（PNG）
@@ -128,10 +158,7 @@ export default async function CompanySettingsPage() {
         </div>
 
         <div className="flex justify-end">
-          <DirtySubmitButton
-            label="保存する"
-            pendingLabel="保存中..."
-          />
+          <DirtySubmitButton label="保存する" pendingLabel="保存中..." />
         </div>
       </form>
     </main>
