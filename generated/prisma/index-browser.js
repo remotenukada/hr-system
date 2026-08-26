@@ -740,14 +740,16 @@ exports.RequestType = exports.$Enums.RequestType = {
 exports.RequestStatus = exports.$Enums.RequestStatus = {
   PENDING: 'PENDING',
   APPROVED: 'APPROVED',
-  REJECTED: 'REJECTED'
+  REJECTED: 'REJECTED',
+  CANCELLED: 'CANCELLED'
 };
 
 exports.RequestHistoryAction = exports.$Enums.RequestHistoryAction = {
   CREATED: 'CREATED',
   UPDATED: 'UPDATED',
   APPROVED: 'APPROVED',
-  REJECTED: 'REJECTED'
+  REJECTED: 'REJECTED',
+  CANCELLED: 'CANCELLED'
 };
 
 exports.CertificationStatus = exports.$Enums.CertificationStatus = {

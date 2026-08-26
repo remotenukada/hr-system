@@ -455,6 +455,7 @@ enum RequestStatus {
   PENDING
   APPROVED
   REJECTED
+  CANCELLED
 }
 
 enum DependentRequestType {
@@ -468,6 +469,7 @@ enum RequestHistoryAction {
   UPDATED
   APPROVED
   REJECTED
+  CANCELLED
 }
 
 enum EmploymentType {

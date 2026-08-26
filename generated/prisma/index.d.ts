@@ -245,7 +245,8 @@ export type RequestType = (typeof RequestType)[keyof typeof RequestType]
 export const RequestStatus: {
   PENDING: 'PENDING',
   APPROVED: 'APPROVED',
-  REJECTED: 'REJECTED'
+  REJECTED: 'REJECTED',
+  CANCELLED: 'CANCELLED'
 };
 
 export type RequestStatus = (typeof RequestStatus)[keyof typeof RequestStatus]
@@ -264,7 +265,8 @@ export const RequestHistoryAction: {
   CREATED: 'CREATED',
   UPDATED: 'UPDATED',
   APPROVED: 'APPROVED',
-  REJECTED: 'REJECTED'
+  REJECTED: 'REJECTED',
+  CANCELLED: 'CANCELLED'
 };
 
 export type RequestHistoryAction = (typeof RequestHistoryAction)[keyof typeof RequestHistoryAction]
