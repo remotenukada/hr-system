@@ -33,7 +33,7 @@ export default async function EmploymentCertificateSelectPage() {
               </div>
             </div>
 
-            <span className="text-blue-600">選択 →</span>
+            <span className="text-blue-600">PDF発行</span>
           </Link>
         ))}
       </div>
