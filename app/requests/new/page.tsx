@@ -63,15 +63,13 @@ async function createRequest(formData: FormData) {
   const comment = String(formData.get("comment") || "");
   const type = String(formData.get("type") || "");
   const employeeId = String(formData.get("employeeId") || "") || null;
+  const leaveTypeId = String(formData.get("leaveTypeId") || "") || null;
 
-  const leaveStartDate =
-    String(formData.get("leaveStartDate") || "") || null;
+  const leaveStartDate = String(formData.get("leaveStartDate") || "") || null;
 
-  const leaveEndDate =
-    String(formData.get("leaveEndDate") || "") || null;
+  const leaveEndDate = String(formData.get("leaveEndDate") || "") || null;
 
-  const leaveDays =
-    Number(formData.get("leaveDays") || 0) || null;
+  const leaveDays = Number(formData.get("leaveDays") || 0) || null;
 
   const currentUser = session.user.email
     ? await prisma.user.findUnique({
@@ -92,26 +90,45 @@ async function createRequest(formData: FormData) {
     attachments.push(attachment);
   }
 
-  if (
-    type === "PAID_LEAVE" &&
-    employeeId &&
-    leaveDays
-  ) {
-    const leaveBalance =
-      await prisma.leaveBalance.findUnique({
-        where: {
+  if (type === "PAID_LEAVE") {
+    if (!employeeId || !leaveTypeId || !leaveDays) {
+      redirect(
+        `/requests/new?error=${encodeURIComponent(
+          "対象職員、休暇種別、取得日数は必須です。",
+        )}`,
+      );
+    }
+
+    const leaveType = await prisma.leaveType.findUnique({
+      where: {
+        id: leaveTypeId,
+      },
+    });
+
+    if (!leaveType || !leaveType.isActive) {
+      redirect(
+        `/requests/new?error=${encodeURIComponent(
+          "選択した休暇種別は利用できません。",
+        )}`,
+      );
+    }
+
+    const typeBalance = await prisma.leaveTypeBalance.findUnique({
+      where: {
+        employeeId_leaveTypeId: {
           employeeId,
+          leaveTypeId,
         },
-      });
+      },
+    });
 
     const remainingDays =
-      (leaveBalance?.grantedDays ?? 0) -
-      (leaveBalance?.usedDays ?? 0);
+      (typeBalance?.grantedDays ?? 0) - (typeBalance?.usedDays ?? 0);
 
     if (remainingDays < leaveDays) {
       redirect(
         `/requests/new?error=${encodeURIComponent(
-          `有給残数不足（残数: ${remainingDays}日）`,
+          `${leaveType.name}の残数不足（残数: ${remainingDays}日）`,
         )}`,
       );
     }
@@ -121,21 +138,16 @@ async function createRequest(formData: FormData) {
     data: {
       title,
       comment,
-      type: type as
-        | "ONBOARDING"
-        | "DEPARTMENT_CHANGE"
-        | "PAID_LEAVE"
-        | "OTHER",
+      type: type as "ONBOARDING" | "DEPARTMENT_CHANGE" | "PAID_LEAVE" | "OTHER",
 
       userId: currentUser?.id ?? null,
 
       employeeId,
+      leaveTypeId: type === "PAID_LEAVE" ? leaveTypeId : null,
 
-      leaveStartDate:
-        leaveStartDate ? new Date(leaveStartDate) : null,
+      leaveStartDate: leaveStartDate ? new Date(leaveStartDate) : null,
 
-      leaveEndDate:
-        leaveEndDate ? new Date(leaveEndDate) : null,
+      leaveEndDate: leaveEndDate ? new Date(leaveEndDate) : null,
 
       leaveDays,
 
@@ -189,12 +201,24 @@ export default async function NewRequestPage({
     },
   });
 
+  const leaveTypes = await prisma.leaveType.findMany({
+    where: {
+      isActive: true,
+    },
+    orderBy: [
+      {
+        sortOrder: "asc",
+      },
+      {
+        name: "asc",
+      },
+    ],
+  });
+
   return (
     <main className="p-8 max-w-2xl mx-auto">
       <BackLink href="/requests" label="申請一覧へ戻る" />
-      <h1 className="mb-6 text-3xl font-bold">
-        新規申請作成
-      </h1>
+      <h1 className="mb-6 text-3xl font-bold">新規申請作成</h1>
 
       {error && (
         <div className="mb-4 rounded border border-red-200 bg-red-50 p-3 text-sm font-medium text-red-700">
@@ -214,23 +238,16 @@ export default async function NewRequestPage({
         </div>
 
         <div>
-          <label className="mb-1 block font-medium">
-            対象職員
-          </label>
+          <label className="mb-1 block font-medium">対象職員</label>
 
           <select
             name="employeeId"
             className="w-full rounded border bg-white p-2"
           >
-            <option value="">
-              対象職員を選択
-            </option>
+            <option value="">対象職員を選択</option>
 
             {employees.map((employee) => (
-              <option
-                key={employee.id}
-                value={employee.id}
-              >
+              <option key={employee.id} value={employee.id}>
                 {employee.employeeNo} {employee.lastName} {employee.firstName}
               </option>
             ))}
@@ -251,11 +268,29 @@ export default async function NewRequestPage({
           </select>
         </div>
 
+        <div>
+          <label className="mb-1 block font-medium">休暇種別</label>
+
+          <select
+            name="leaveTypeId"
+            className="w-full rounded border bg-white p-2"
+          >
+            <option value="">休暇種別を選択</option>
+
+            {leaveTypes.map((leaveType) => (
+              <option key={leaveType.id} value={leaveType.id}>
+                {leaveType.name}
+              </option>
+            ))}
+          </select>
+
+          <p className="mt-1 text-xs text-gray-500">
+            有給休暇申請の場合に選択してください。
+          </p>
+        </div>
 
         <div>
-          <label className="mb-1 block font-medium">
-            有給開始日
-          </label>
+          <label className="mb-1 block font-medium">有給開始日</label>
 
           <input
             type="date"
@@ -265,9 +300,7 @@ export default async function NewRequestPage({
         </div>
 
         <div>
-          <label className="mb-1 block font-medium">
-            有給終了日
-          </label>
+          <label className="mb-1 block font-medium">有給終了日</label>
 
           <input
             type="date"
@@ -277,9 +310,7 @@ export default async function NewRequestPage({
         </div>
 
         <div>
-          <label className="mb-1 block font-medium">
-            取得日数
-          </label>
+          <label className="mb-1 block font-medium">取得日数</label>
 
           <input
             type="number"
