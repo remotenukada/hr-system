@@ -922,6 +922,13 @@ export default async function DashboardPage() {
               color="green"
             />
             <StatCard
+              title="休暇別残高"
+              value="→"
+              description="夏季・冬季・慶弔休暇の残高一覧"
+              color="blue"
+              href="/leave-type-balances"
+            />
+            <StatCard
               title="30日以内失効件数"
               value={soonExpiringLeaveCount}
               description="30日以内に失効予定の付与履歴"
