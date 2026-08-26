@@ -168,6 +168,127 @@ export default async function RequestDetailPage({ params }: PageProps) {
     revalidatePath("/leave-type-balances");
   }
 
+  // --- 承認取消処理（Server Action） ---
+  async function cancelApprovalAction(formData: FormData) {
+    "use server";
+
+    await requireManager();
+
+    const currentSession = await auth();
+    const cancelReason =
+      formData.get("cancelReason")?.toString().trim() || null;
+
+    const actorName =
+      currentSession?.user?.name || currentSession?.user?.email || "管理者";
+
+    const latestRequest = await prisma.employeeRequest.findUnique({
+      where: { id },
+      include: {
+        leaveType: true,
+      },
+    });
+
+    if (!latestRequest || latestRequest.status !== "APPROVED") {
+      return;
+    }
+
+    let beforeBalance: unknown = null;
+    let afterBalance: unknown = null;
+
+    await prisma.$transaction(async (tx) => {
+      if (
+        latestRequest.type === "PAID_LEAVE" &&
+        latestRequest.employeeId &&
+        latestRequest.leaveTypeId &&
+        latestRequest.leaveDays
+      ) {
+        const typeBalance = await tx.leaveTypeBalance.findUnique({
+          where: {
+            employeeId_leaveTypeId: {
+              employeeId: latestRequest.employeeId,
+              leaveTypeId: latestRequest.leaveTypeId,
+            },
+          },
+        });
+
+        if (!typeBalance) {
+          throw new Error("休暇別残高が見つかりません。");
+        }
+
+        beforeBalance = typeBalance;
+
+        afterBalance = await tx.leaveTypeBalance.update({
+          where: {
+            employeeId_leaveTypeId: {
+              employeeId: latestRequest.employeeId,
+              leaveTypeId: latestRequest.leaveTypeId,
+            },
+          },
+          data: {
+            usedDays: Math.max(
+              0,
+              typeBalance.usedDays - latestRequest.leaveDays,
+            ),
+          },
+        });
+
+        if (latestRequest.leaveType?.code === "ANNUAL") {
+          const annualBalance = await tx.leaveBalance.findUnique({
+            where: {
+              employeeId: latestRequest.employeeId,
+            },
+          });
+
+          if (annualBalance) {
+            await tx.leaveBalance.update({
+              where: {
+                employeeId: latestRequest.employeeId,
+              },
+              data: {
+                usedDays: Math.max(
+                  0,
+                  annualBalance.usedDays - latestRequest.leaveDays,
+                ),
+              },
+            });
+          }
+        }
+      }
+
+      await tx.employeeRequest.update({
+        where: { id },
+        data: {
+          status: "CANCELLED",
+          histories: {
+            create: {
+              action: "CANCELLED",
+              actor: actorName,
+              comment: cancelReason || "承認を取り消しました",
+            },
+          },
+        },
+      });
+    });
+
+    await logAudit({
+      userId: currentSession?.user?.id,
+      userName: actorName,
+      action: "LEAVE_APPROVAL_CANCELLED",
+      targetType: "EmployeeRequest",
+      targetId: id,
+      description:
+        `${latestRequest.leaveType?.name ?? "休暇"}の承認を取消` +
+        ` ${latestRequest.leaveDays ?? 0}日`,
+      beforeData: beforeBalance,
+      afterData: afterBalance,
+    });
+
+    revalidatePath(`/requests/${id}`);
+    revalidatePath("/requests");
+    revalidatePath("/leave-balances");
+    revalidatePath("/leave-type-balances");
+  }
+
   // --- 却下処理（Server Action） ---
   async function rejectAction(formData: FormData) {
     "use server";
@@ -295,6 +416,30 @@ export default async function RequestDetailPage({ params }: PageProps) {
               className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 font-medium"
             >
               却下する
+            </button>
+          </form>
+        </div>
+      )}
+
+      {canApprove && request.status === "APPROVED" && (
+        <div className="mb-8 rounded border border-orange-200 bg-orange-50 p-6">
+          <h2 className="mb-3 text-xl font-bold">
+            承認取消
+          </h2>
+
+          <form action={cancelApprovalAction} className="space-y-4">
+            <input
+              type="text"
+              name="cancelReason"
+              placeholder="取消理由（任意）"
+              className="w-full rounded border p-2"
+            />
+
+            <button
+              type="submit"
+              className="rounded bg-orange-600 px-4 py-2 font-medium text-white hover:bg-orange-700"
+            >
+              承認を取り消す
             </button>
           </form>
         </div>
