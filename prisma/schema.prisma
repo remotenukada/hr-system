@@ -775,6 +775,24 @@ model PositionMaster {
   updatedAt DateTime @updatedAt
 }
 
+
+model LeaveType {
+  id String @id @default(uuid())
+
+  code String @unique
+
+  name String
+
+  isPaid Boolean @default(true)
+
+  sortOrder Int @default(0)
+
+  isActive Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 enum ConsentMethod {
   ELECTRONIC
   PAPER
