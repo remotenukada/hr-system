@@ -23,7 +23,7 @@ export default async function EmploymentCertificateSelectPage() {
         {employees.map((employee) => (
           <Link
             key={employee.id}
-            href={`/employment-certificates/${employee.id}`}
+            href={`/employment-certificates/${employee.id}/pdf`}
             className="flex items-center justify-between rounded-lg border p-4 hover:bg-gray-50"
           >
             <div className="flex items-center space-x-4">
