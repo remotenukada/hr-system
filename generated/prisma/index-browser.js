@@ -273,7 +273,8 @@ exports.Prisma.EmployeeRequestScalarFieldEnum = {
   status: 'status',
   leaveDays: 'leaveDays',
   leaveEndDate: 'leaveEndDate',
-  leaveStartDate: 'leaveStartDate'
+  leaveStartDate: 'leaveStartDate',
+  leaveTypeId: 'leaveTypeId'
 };
 
 exports.Prisma.RequestAttachmentScalarFieldEnum = {

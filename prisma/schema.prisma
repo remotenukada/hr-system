@@ -217,10 +217,14 @@ model EmployeeRequest {
   leaveDays       Float?
   leaveEndDate    DateTime?
   leaveStartDate  DateTime?
+  leaveTypeId     String?
   employee        Employee?           @relation(fields: [employeeId], references: [id])
+  leaveType       LeaveType?          @relation(fields: [leaveTypeId], references: [id])
   user            User?               @relation(fields: [userId], references: [id])
   attachments     RequestAttachment[]
   histories       RequestHistory[]
+
+  @@index([leaveTypeId])
 }
 
 model RequestAttachment {
@@ -819,6 +823,7 @@ model LeaveType {
   updatedAt DateTime @updatedAt
 
   leaveGrantHistories LeaveGrantHistory[]
+  employeeRequests    EmployeeRequest[]
   leaveTypeBalances   LeaveTypeBalance[]
 }
 

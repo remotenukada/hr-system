@@ -4958,11 +4958,13 @@ export namespace Prisma {
 
   export type LeaveTypeCountOutputType = {
     leaveGrantHistories: number
+    employeeRequests: number
     leaveTypeBalances: number
   }
 
   export type LeaveTypeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     leaveGrantHistories?: boolean | LeaveTypeCountOutputTypeCountLeaveGrantHistoriesArgs
+    employeeRequests?: boolean | LeaveTypeCountOutputTypeCountEmployeeRequestsArgs
     leaveTypeBalances?: boolean | LeaveTypeCountOutputTypeCountLeaveTypeBalancesArgs
   }
 
@@ -4982,6 +4984,13 @@ export namespace Prisma {
    */
   export type LeaveTypeCountOutputTypeCountLeaveGrantHistoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: LeaveGrantHistoryWhereInput
+  }
+
+  /**
+   * LeaveTypeCountOutputType without action
+   */
+  export type LeaveTypeCountOutputTypeCountEmployeeRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmployeeRequestWhereInput
   }
 
   /**
@@ -18199,6 +18208,7 @@ export namespace Prisma {
     leaveDays: number | null
     leaveEndDate: Date | null
     leaveStartDate: Date | null
+    leaveTypeId: string | null
   }
 
   export type EmployeeRequestMaxAggregateOutputType = {
@@ -18215,6 +18225,7 @@ export namespace Prisma {
     leaveDays: number | null
     leaveEndDate: Date | null
     leaveStartDate: Date | null
+    leaveTypeId: string | null
   }
 
   export type EmployeeRequestCountAggregateOutputType = {
@@ -18231,6 +18242,7 @@ export namespace Prisma {
     leaveDays: number
     leaveEndDate: number
     leaveStartDate: number
+    leaveTypeId: number
     _all: number
   }
 
@@ -18257,6 +18269,7 @@ export namespace Prisma {
     leaveDays?: true
     leaveEndDate?: true
     leaveStartDate?: true
+    leaveTypeId?: true
   }
 
   export type EmployeeRequestMaxAggregateInputType = {
@@ -18273,6 +18286,7 @@ export namespace Prisma {
     leaveDays?: true
     leaveEndDate?: true
     leaveStartDate?: true
+    leaveTypeId?: true
   }
 
   export type EmployeeRequestCountAggregateInputType = {
@@ -18289,6 +18303,7 @@ export namespace Prisma {
     leaveDays?: true
     leaveEndDate?: true
     leaveStartDate?: true
+    leaveTypeId?: true
     _all?: true
   }
 
@@ -18392,6 +18407,7 @@ export namespace Prisma {
     leaveDays: number | null
     leaveEndDate: Date | null
     leaveStartDate: Date | null
+    leaveTypeId: string | null
     _count: EmployeeRequestCountAggregateOutputType | null
     _avg: EmployeeRequestAvgAggregateOutputType | null
     _sum: EmployeeRequestSumAggregateOutputType | null
@@ -18427,7 +18443,9 @@ export namespace Prisma {
     leaveDays?: boolean
     leaveEndDate?: boolean
     leaveStartDate?: boolean
+    leaveTypeId?: boolean
     employee?: boolean | EmployeeRequest$employeeArgs<ExtArgs>
+    leaveType?: boolean | EmployeeRequest$leaveTypeArgs<ExtArgs>
     user?: boolean | EmployeeRequest$userArgs<ExtArgs>
     attachments?: boolean | EmployeeRequest$attachmentsArgs<ExtArgs>
     histories?: boolean | EmployeeRequest$historiesArgs<ExtArgs>
@@ -18448,7 +18466,9 @@ export namespace Prisma {
     leaveDays?: boolean
     leaveEndDate?: boolean
     leaveStartDate?: boolean
+    leaveTypeId?: boolean
     employee?: boolean | EmployeeRequest$employeeArgs<ExtArgs>
+    leaveType?: boolean | EmployeeRequest$leaveTypeArgs<ExtArgs>
     user?: boolean | EmployeeRequest$userArgs<ExtArgs>
   }, ExtArgs["result"]["employeeRequest"]>
 
@@ -18466,7 +18486,9 @@ export namespace Prisma {
     leaveDays?: boolean
     leaveEndDate?: boolean
     leaveStartDate?: boolean
+    leaveTypeId?: boolean
     employee?: boolean | EmployeeRequest$employeeArgs<ExtArgs>
+    leaveType?: boolean | EmployeeRequest$leaveTypeArgs<ExtArgs>
     user?: boolean | EmployeeRequest$userArgs<ExtArgs>
   }, ExtArgs["result"]["employeeRequest"]>
 
@@ -18484,11 +18506,13 @@ export namespace Prisma {
     leaveDays?: boolean
     leaveEndDate?: boolean
     leaveStartDate?: boolean
+    leaveTypeId?: boolean
   }
 
-  export type EmployeeRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "employeeId" | "createdAt" | "comment" | "approvalComment" | "rejectionReason" | "type" | "userId" | "status" | "leaveDays" | "leaveEndDate" | "leaveStartDate", ExtArgs["result"]["employeeRequest"]>
+  export type EmployeeRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "employeeId" | "createdAt" | "comment" | "approvalComment" | "rejectionReason" | "type" | "userId" | "status" | "leaveDays" | "leaveEndDate" | "leaveStartDate" | "leaveTypeId", ExtArgs["result"]["employeeRequest"]>
   export type EmployeeRequestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeRequest$employeeArgs<ExtArgs>
+    leaveType?: boolean | EmployeeRequest$leaveTypeArgs<ExtArgs>
     user?: boolean | EmployeeRequest$userArgs<ExtArgs>
     attachments?: boolean | EmployeeRequest$attachmentsArgs<ExtArgs>
     histories?: boolean | EmployeeRequest$historiesArgs<ExtArgs>
@@ -18496,10 +18520,12 @@ export namespace Prisma {
   }
   export type EmployeeRequestIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeRequest$employeeArgs<ExtArgs>
+    leaveType?: boolean | EmployeeRequest$leaveTypeArgs<ExtArgs>
     user?: boolean | EmployeeRequest$userArgs<ExtArgs>
   }
   export type EmployeeRequestIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeRequest$employeeArgs<ExtArgs>
+    leaveType?: boolean | EmployeeRequest$leaveTypeArgs<ExtArgs>
     user?: boolean | EmployeeRequest$userArgs<ExtArgs>
   }
 
@@ -18507,6 +18533,7 @@ export namespace Prisma {
     name: "EmployeeRequest"
     objects: {
       employee: Prisma.$EmployeePayload<ExtArgs> | null
+      leaveType: Prisma.$LeaveTypePayload<ExtArgs> | null
       user: Prisma.$UserPayload<ExtArgs> | null
       attachments: Prisma.$RequestAttachmentPayload<ExtArgs>[]
       histories: Prisma.$RequestHistoryPayload<ExtArgs>[]
@@ -18525,6 +18552,7 @@ export namespace Prisma {
       leaveDays: number | null
       leaveEndDate: Date | null
       leaveStartDate: Date | null
+      leaveTypeId: string | null
     }, ExtArgs["result"]["employeeRequest"]>
     composites: {}
   }
@@ -18920,6 +18948,7 @@ export namespace Prisma {
   export interface Prisma__EmployeeRequestClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     employee<T extends EmployeeRequest$employeeArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeRequest$employeeArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    leaveType<T extends EmployeeRequest$leaveTypeArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeRequest$leaveTypeArgs<ExtArgs>>): Prisma__LeaveTypeClient<$Result.GetResult<Prisma.$LeaveTypePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     user<T extends EmployeeRequest$userArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeRequest$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     attachments<T extends EmployeeRequest$attachmentsArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeRequest$attachmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RequestAttachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     histories<T extends EmployeeRequest$historiesArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeRequest$historiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RequestHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -18965,6 +18994,7 @@ export namespace Prisma {
     readonly leaveDays: FieldRef<"EmployeeRequest", 'Float'>
     readonly leaveEndDate: FieldRef<"EmployeeRequest", 'DateTime'>
     readonly leaveStartDate: FieldRef<"EmployeeRequest", 'DateTime'>
+    readonly leaveTypeId: FieldRef<"EmployeeRequest", 'String'>
   }
     
 
@@ -19382,6 +19412,25 @@ export namespace Prisma {
      */
     include?: EmployeeInclude<ExtArgs> | null
     where?: EmployeeWhereInput
+  }
+
+  /**
+   * EmployeeRequest.leaveType
+   */
+  export type EmployeeRequest$leaveTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaveType
+     */
+    select?: LeaveTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaveType
+     */
+    omit?: LeaveTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveTypeInclude<ExtArgs> | null
+    where?: LeaveTypeWhereInput
   }
 
   /**
@@ -46185,6 +46234,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     leaveGrantHistories?: boolean | LeaveType$leaveGrantHistoriesArgs<ExtArgs>
+    employeeRequests?: boolean | LeaveType$employeeRequestsArgs<ExtArgs>
     leaveTypeBalances?: boolean | LeaveType$leaveTypeBalancesArgs<ExtArgs>
     _count?: boolean | LeaveTypeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["leaveType"]>
@@ -46225,6 +46275,7 @@ export namespace Prisma {
   export type LeaveTypeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "name" | "isPaid" | "sortOrder" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["leaveType"]>
   export type LeaveTypeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     leaveGrantHistories?: boolean | LeaveType$leaveGrantHistoriesArgs<ExtArgs>
+    employeeRequests?: boolean | LeaveType$employeeRequestsArgs<ExtArgs>
     leaveTypeBalances?: boolean | LeaveType$leaveTypeBalancesArgs<ExtArgs>
     _count?: boolean | LeaveTypeCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -46235,6 +46286,7 @@ export namespace Prisma {
     name: "LeaveType"
     objects: {
       leaveGrantHistories: Prisma.$LeaveGrantHistoryPayload<ExtArgs>[]
+      employeeRequests: Prisma.$EmployeeRequestPayload<ExtArgs>[]
       leaveTypeBalances: Prisma.$LeaveTypeBalancePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -46641,6 +46693,7 @@ export namespace Prisma {
   export interface Prisma__LeaveTypeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     leaveGrantHistories<T extends LeaveType$leaveGrantHistoriesArgs<ExtArgs> = {}>(args?: Subset<T, LeaveType$leaveGrantHistoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeaveGrantHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    employeeRequests<T extends LeaveType$employeeRequestsArgs<ExtArgs> = {}>(args?: Subset<T, LeaveType$employeeRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     leaveTypeBalances<T extends LeaveType$leaveTypeBalancesArgs<ExtArgs> = {}>(args?: Subset<T, LeaveType$leaveTypeBalancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeaveTypeBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -47093,6 +47146,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: LeaveGrantHistoryScalarFieldEnum | LeaveGrantHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * LeaveType.employeeRequests
+   */
+  export type LeaveType$employeeRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeRequest
+     */
+    select?: EmployeeRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeRequest
+     */
+    omit?: EmployeeRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeRequestInclude<ExtArgs> | null
+    where?: EmployeeRequestWhereInput
+    orderBy?: EmployeeRequestOrderByWithRelationInput | EmployeeRequestOrderByWithRelationInput[]
+    cursor?: EmployeeRequestWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmployeeRequestScalarFieldEnum | EmployeeRequestScalarFieldEnum[]
   }
 
   /**
@@ -50839,7 +50916,8 @@ export namespace Prisma {
     status: 'status',
     leaveDays: 'leaveDays',
     leaveEndDate: 'leaveEndDate',
-    leaveStartDate: 'leaveStartDate'
+    leaveStartDate: 'leaveStartDate',
+    leaveTypeId: 'leaveTypeId'
   };
 
   export type EmployeeRequestScalarFieldEnum = (typeof EmployeeRequestScalarFieldEnum)[keyof typeof EmployeeRequestScalarFieldEnum]
@@ -52572,7 +52650,9 @@ export namespace Prisma {
     leaveDays?: FloatNullableFilter<"EmployeeRequest"> | number | null
     leaveEndDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
     leaveStartDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
+    leaveTypeId?: StringNullableFilter<"EmployeeRequest"> | string | null
     employee?: XOR<EmployeeNullableScalarRelationFilter, EmployeeWhereInput> | null
+    leaveType?: XOR<LeaveTypeNullableScalarRelationFilter, LeaveTypeWhereInput> | null
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     attachments?: RequestAttachmentListRelationFilter
     histories?: RequestHistoryListRelationFilter
@@ -52592,7 +52672,9 @@ export namespace Prisma {
     leaveDays?: SortOrderInput | SortOrder
     leaveEndDate?: SortOrderInput | SortOrder
     leaveStartDate?: SortOrderInput | SortOrder
+    leaveTypeId?: SortOrderInput | SortOrder
     employee?: EmployeeOrderByWithRelationInput
+    leaveType?: LeaveTypeOrderByWithRelationInput
     user?: UserOrderByWithRelationInput
     attachments?: RequestAttachmentOrderByRelationAggregateInput
     histories?: RequestHistoryOrderByRelationAggregateInput
@@ -52615,7 +52697,9 @@ export namespace Prisma {
     leaveDays?: FloatNullableFilter<"EmployeeRequest"> | number | null
     leaveEndDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
     leaveStartDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
+    leaveTypeId?: StringNullableFilter<"EmployeeRequest"> | string | null
     employee?: XOR<EmployeeNullableScalarRelationFilter, EmployeeWhereInput> | null
+    leaveType?: XOR<LeaveTypeNullableScalarRelationFilter, LeaveTypeWhereInput> | null
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     attachments?: RequestAttachmentListRelationFilter
     histories?: RequestHistoryListRelationFilter
@@ -52635,6 +52719,7 @@ export namespace Prisma {
     leaveDays?: SortOrderInput | SortOrder
     leaveEndDate?: SortOrderInput | SortOrder
     leaveStartDate?: SortOrderInput | SortOrder
+    leaveTypeId?: SortOrderInput | SortOrder
     _count?: EmployeeRequestCountOrderByAggregateInput
     _avg?: EmployeeRequestAvgOrderByAggregateInput
     _max?: EmployeeRequestMaxOrderByAggregateInput
@@ -52659,6 +52744,7 @@ export namespace Prisma {
     leaveDays?: FloatNullableWithAggregatesFilter<"EmployeeRequest"> | number | null
     leaveEndDate?: DateTimeNullableWithAggregatesFilter<"EmployeeRequest"> | Date | string | null
     leaveStartDate?: DateTimeNullableWithAggregatesFilter<"EmployeeRequest"> | Date | string | null
+    leaveTypeId?: StringNullableWithAggregatesFilter<"EmployeeRequest"> | string | null
   }
 
   export type RequestAttachmentWhereInput = {
@@ -54673,6 +54759,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"LeaveType"> | Date | string
     updatedAt?: DateTimeFilter<"LeaveType"> | Date | string
     leaveGrantHistories?: LeaveGrantHistoryListRelationFilter
+    employeeRequests?: EmployeeRequestListRelationFilter
     leaveTypeBalances?: LeaveTypeBalanceListRelationFilter
   }
 
@@ -54686,6 +54773,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     leaveGrantHistories?: LeaveGrantHistoryOrderByRelationAggregateInput
+    employeeRequests?: EmployeeRequestOrderByRelationAggregateInput
     leaveTypeBalances?: LeaveTypeBalanceOrderByRelationAggregateInput
   }
 
@@ -54702,6 +54790,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"LeaveType"> | Date | string
     updatedAt?: DateTimeFilter<"LeaveType"> | Date | string
     leaveGrantHistories?: LeaveGrantHistoryListRelationFilter
+    employeeRequests?: EmployeeRequestListRelationFilter
     leaveTypeBalances?: LeaveTypeBalanceListRelationFilter
   }, "id" | "code">
 
@@ -56091,6 +56180,7 @@ export namespace Prisma {
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
     employee?: EmployeeCreateNestedOneWithoutRequestsInput
+    leaveType?: LeaveTypeCreateNestedOneWithoutEmployeeRequestsInput
     user?: UserCreateNestedOneWithoutRequestsInput
     attachments?: RequestAttachmentCreateNestedManyWithoutRequestInput
     histories?: RequestHistoryCreateNestedManyWithoutRequestInput
@@ -56110,6 +56200,7 @@ export namespace Prisma {
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
+    leaveTypeId?: string | null
     attachments?: RequestAttachmentUncheckedCreateNestedManyWithoutRequestInput
     histories?: RequestHistoryUncheckedCreateNestedManyWithoutRequestInput
   }
@@ -56127,6 +56218,7 @@ export namespace Prisma {
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     employee?: EmployeeUpdateOneWithoutRequestsNestedInput
+    leaveType?: LeaveTypeUpdateOneWithoutEmployeeRequestsNestedInput
     user?: UserUpdateOneWithoutRequestsNestedInput
     attachments?: RequestAttachmentUpdateManyWithoutRequestNestedInput
     histories?: RequestHistoryUpdateManyWithoutRequestNestedInput
@@ -56146,6 +56238,7 @@ export namespace Prisma {
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveTypeId?: NullableStringFieldUpdateOperationsInput | string | null
     attachments?: RequestAttachmentUncheckedUpdateManyWithoutRequestNestedInput
     histories?: RequestHistoryUncheckedUpdateManyWithoutRequestNestedInput
   }
@@ -56164,6 +56257,7 @@ export namespace Prisma {
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
+    leaveTypeId?: string | null
   }
 
   export type EmployeeRequestUpdateManyMutationInput = {
@@ -56194,6 +56288,7 @@ export namespace Prisma {
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveTypeId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type RequestAttachmentCreateInput = {
@@ -58481,6 +58576,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutLeaveTypeInput
+    employeeRequests?: EmployeeRequestCreateNestedManyWithoutLeaveTypeInput
     leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutLeaveTypeInput
   }
 
@@ -58494,6 +58590,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutLeaveTypeInput
+    employeeRequests?: EmployeeRequestUncheckedCreateNestedManyWithoutLeaveTypeInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutLeaveTypeInput
   }
 
@@ -58507,6 +58604,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutLeaveTypeNestedInput
+    employeeRequests?: EmployeeRequestUpdateManyWithoutLeaveTypeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutLeaveTypeNestedInput
   }
 
@@ -58520,6 +58618,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutLeaveTypeNestedInput
+    employeeRequests?: EmployeeRequestUncheckedUpdateManyWithoutLeaveTypeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutLeaveTypeNestedInput
   }
 
@@ -59930,6 +60029,7 @@ export namespace Prisma {
     leaveDays?: SortOrder
     leaveEndDate?: SortOrder
     leaveStartDate?: SortOrder
+    leaveTypeId?: SortOrder
   }
 
   export type EmployeeRequestAvgOrderByAggregateInput = {
@@ -59950,6 +60050,7 @@ export namespace Prisma {
     leaveDays?: SortOrder
     leaveEndDate?: SortOrder
     leaveStartDate?: SortOrder
+    leaveTypeId?: SortOrder
   }
 
   export type EmployeeRequestMinOrderByAggregateInput = {
@@ -59966,6 +60067,7 @@ export namespace Prisma {
     leaveDays?: SortOrder
     leaveEndDate?: SortOrder
     leaveStartDate?: SortOrder
+    leaveTypeId?: SortOrder
   }
 
   export type EmployeeRequestSumOrderByAggregateInput = {
@@ -62594,6 +62696,12 @@ export namespace Prisma {
     connect?: EmployeeWhereUniqueInput
   }
 
+  export type LeaveTypeCreateNestedOneWithoutEmployeeRequestsInput = {
+    create?: XOR<LeaveTypeCreateWithoutEmployeeRequestsInput, LeaveTypeUncheckedCreateWithoutEmployeeRequestsInput>
+    connectOrCreate?: LeaveTypeCreateOrConnectWithoutEmployeeRequestsInput
+    connect?: LeaveTypeWhereUniqueInput
+  }
+
   export type UserCreateNestedOneWithoutRequestsInput = {
     create?: XOR<UserCreateWithoutRequestsInput, UserUncheckedCreateWithoutRequestsInput>
     connectOrCreate?: UserCreateOrConnectWithoutRequestsInput
@@ -62652,6 +62760,16 @@ export namespace Prisma {
     delete?: EmployeeWhereInput | boolean
     connect?: EmployeeWhereUniqueInput
     update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutRequestsInput, EmployeeUpdateWithoutRequestsInput>, EmployeeUncheckedUpdateWithoutRequestsInput>
+  }
+
+  export type LeaveTypeUpdateOneWithoutEmployeeRequestsNestedInput = {
+    create?: XOR<LeaveTypeCreateWithoutEmployeeRequestsInput, LeaveTypeUncheckedCreateWithoutEmployeeRequestsInput>
+    connectOrCreate?: LeaveTypeCreateOrConnectWithoutEmployeeRequestsInput
+    upsert?: LeaveTypeUpsertWithoutEmployeeRequestsInput
+    disconnect?: LeaveTypeWhereInput | boolean
+    delete?: LeaveTypeWhereInput | boolean
+    connect?: LeaveTypeWhereUniqueInput
+    update?: XOR<XOR<LeaveTypeUpdateToOneWithWhereWithoutEmployeeRequestsInput, LeaveTypeUpdateWithoutEmployeeRequestsInput>, LeaveTypeUncheckedUpdateWithoutEmployeeRequestsInput>
   }
 
   export type UserUpdateOneWithoutRequestsNestedInput = {
@@ -63241,6 +63359,13 @@ export namespace Prisma {
     connect?: LeaveGrantHistoryWhereUniqueInput | LeaveGrantHistoryWhereUniqueInput[]
   }
 
+  export type EmployeeRequestCreateNestedManyWithoutLeaveTypeInput = {
+    create?: XOR<EmployeeRequestCreateWithoutLeaveTypeInput, EmployeeRequestUncheckedCreateWithoutLeaveTypeInput> | EmployeeRequestCreateWithoutLeaveTypeInput[] | EmployeeRequestUncheckedCreateWithoutLeaveTypeInput[]
+    connectOrCreate?: EmployeeRequestCreateOrConnectWithoutLeaveTypeInput | EmployeeRequestCreateOrConnectWithoutLeaveTypeInput[]
+    createMany?: EmployeeRequestCreateManyLeaveTypeInputEnvelope
+    connect?: EmployeeRequestWhereUniqueInput | EmployeeRequestWhereUniqueInput[]
+  }
+
   export type LeaveTypeBalanceCreateNestedManyWithoutLeaveTypeInput = {
     create?: XOR<LeaveTypeBalanceCreateWithoutLeaveTypeInput, LeaveTypeBalanceUncheckedCreateWithoutLeaveTypeInput> | LeaveTypeBalanceCreateWithoutLeaveTypeInput[] | LeaveTypeBalanceUncheckedCreateWithoutLeaveTypeInput[]
     connectOrCreate?: LeaveTypeBalanceCreateOrConnectWithoutLeaveTypeInput | LeaveTypeBalanceCreateOrConnectWithoutLeaveTypeInput[]
@@ -63253,6 +63378,13 @@ export namespace Prisma {
     connectOrCreate?: LeaveGrantHistoryCreateOrConnectWithoutLeaveTypeInput | LeaveGrantHistoryCreateOrConnectWithoutLeaveTypeInput[]
     createMany?: LeaveGrantHistoryCreateManyLeaveTypeInputEnvelope
     connect?: LeaveGrantHistoryWhereUniqueInput | LeaveGrantHistoryWhereUniqueInput[]
+  }
+
+  export type EmployeeRequestUncheckedCreateNestedManyWithoutLeaveTypeInput = {
+    create?: XOR<EmployeeRequestCreateWithoutLeaveTypeInput, EmployeeRequestUncheckedCreateWithoutLeaveTypeInput> | EmployeeRequestCreateWithoutLeaveTypeInput[] | EmployeeRequestUncheckedCreateWithoutLeaveTypeInput[]
+    connectOrCreate?: EmployeeRequestCreateOrConnectWithoutLeaveTypeInput | EmployeeRequestCreateOrConnectWithoutLeaveTypeInput[]
+    createMany?: EmployeeRequestCreateManyLeaveTypeInputEnvelope
+    connect?: EmployeeRequestWhereUniqueInput | EmployeeRequestWhereUniqueInput[]
   }
 
   export type LeaveTypeBalanceUncheckedCreateNestedManyWithoutLeaveTypeInput = {
@@ -63274,6 +63406,20 @@ export namespace Prisma {
     update?: LeaveGrantHistoryUpdateWithWhereUniqueWithoutLeaveTypeInput | LeaveGrantHistoryUpdateWithWhereUniqueWithoutLeaveTypeInput[]
     updateMany?: LeaveGrantHistoryUpdateManyWithWhereWithoutLeaveTypeInput | LeaveGrantHistoryUpdateManyWithWhereWithoutLeaveTypeInput[]
     deleteMany?: LeaveGrantHistoryScalarWhereInput | LeaveGrantHistoryScalarWhereInput[]
+  }
+
+  export type EmployeeRequestUpdateManyWithoutLeaveTypeNestedInput = {
+    create?: XOR<EmployeeRequestCreateWithoutLeaveTypeInput, EmployeeRequestUncheckedCreateWithoutLeaveTypeInput> | EmployeeRequestCreateWithoutLeaveTypeInput[] | EmployeeRequestUncheckedCreateWithoutLeaveTypeInput[]
+    connectOrCreate?: EmployeeRequestCreateOrConnectWithoutLeaveTypeInput | EmployeeRequestCreateOrConnectWithoutLeaveTypeInput[]
+    upsert?: EmployeeRequestUpsertWithWhereUniqueWithoutLeaveTypeInput | EmployeeRequestUpsertWithWhereUniqueWithoutLeaveTypeInput[]
+    createMany?: EmployeeRequestCreateManyLeaveTypeInputEnvelope
+    set?: EmployeeRequestWhereUniqueInput | EmployeeRequestWhereUniqueInput[]
+    disconnect?: EmployeeRequestWhereUniqueInput | EmployeeRequestWhereUniqueInput[]
+    delete?: EmployeeRequestWhereUniqueInput | EmployeeRequestWhereUniqueInput[]
+    connect?: EmployeeRequestWhereUniqueInput | EmployeeRequestWhereUniqueInput[]
+    update?: EmployeeRequestUpdateWithWhereUniqueWithoutLeaveTypeInput | EmployeeRequestUpdateWithWhereUniqueWithoutLeaveTypeInput[]
+    updateMany?: EmployeeRequestUpdateManyWithWhereWithoutLeaveTypeInput | EmployeeRequestUpdateManyWithWhereWithoutLeaveTypeInput[]
+    deleteMany?: EmployeeRequestScalarWhereInput | EmployeeRequestScalarWhereInput[]
   }
 
   export type LeaveTypeBalanceUpdateManyWithoutLeaveTypeNestedInput = {
@@ -63302,6 +63448,20 @@ export namespace Prisma {
     update?: LeaveGrantHistoryUpdateWithWhereUniqueWithoutLeaveTypeInput | LeaveGrantHistoryUpdateWithWhereUniqueWithoutLeaveTypeInput[]
     updateMany?: LeaveGrantHistoryUpdateManyWithWhereWithoutLeaveTypeInput | LeaveGrantHistoryUpdateManyWithWhereWithoutLeaveTypeInput[]
     deleteMany?: LeaveGrantHistoryScalarWhereInput | LeaveGrantHistoryScalarWhereInput[]
+  }
+
+  export type EmployeeRequestUncheckedUpdateManyWithoutLeaveTypeNestedInput = {
+    create?: XOR<EmployeeRequestCreateWithoutLeaveTypeInput, EmployeeRequestUncheckedCreateWithoutLeaveTypeInput> | EmployeeRequestCreateWithoutLeaveTypeInput[] | EmployeeRequestUncheckedCreateWithoutLeaveTypeInput[]
+    connectOrCreate?: EmployeeRequestCreateOrConnectWithoutLeaveTypeInput | EmployeeRequestCreateOrConnectWithoutLeaveTypeInput[]
+    upsert?: EmployeeRequestUpsertWithWhereUniqueWithoutLeaveTypeInput | EmployeeRequestUpsertWithWhereUniqueWithoutLeaveTypeInput[]
+    createMany?: EmployeeRequestCreateManyLeaveTypeInputEnvelope
+    set?: EmployeeRequestWhereUniqueInput | EmployeeRequestWhereUniqueInput[]
+    disconnect?: EmployeeRequestWhereUniqueInput | EmployeeRequestWhereUniqueInput[]
+    delete?: EmployeeRequestWhereUniqueInput | EmployeeRequestWhereUniqueInput[]
+    connect?: EmployeeRequestWhereUniqueInput | EmployeeRequestWhereUniqueInput[]
+    update?: EmployeeRequestUpdateWithWhereUniqueWithoutLeaveTypeInput | EmployeeRequestUpdateWithWhereUniqueWithoutLeaveTypeInput[]
+    updateMany?: EmployeeRequestUpdateManyWithWhereWithoutLeaveTypeInput | EmployeeRequestUpdateManyWithWhereWithoutLeaveTypeInput[]
+    deleteMany?: EmployeeRequestScalarWhereInput | EmployeeRequestScalarWhereInput[]
   }
 
   export type LeaveTypeBalanceUncheckedUpdateManyWithoutLeaveTypeNestedInput = {
@@ -63943,6 +64103,7 @@ export namespace Prisma {
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
     employee?: EmployeeCreateNestedOneWithoutRequestsInput
+    leaveType?: LeaveTypeCreateNestedOneWithoutEmployeeRequestsInput
     attachments?: RequestAttachmentCreateNestedManyWithoutRequestInput
     histories?: RequestHistoryCreateNestedManyWithoutRequestInput
   }
@@ -63960,6 +64121,7 @@ export namespace Prisma {
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
+    leaveTypeId?: string | null
     attachments?: RequestAttachmentUncheckedCreateNestedManyWithoutRequestInput
     histories?: RequestHistoryUncheckedCreateNestedManyWithoutRequestInput
   }
@@ -64106,6 +64268,7 @@ export namespace Prisma {
     leaveDays?: FloatNullableFilter<"EmployeeRequest"> | number | null
     leaveEndDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
     leaveStartDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
+    leaveTypeId?: StringNullableFilter<"EmployeeRequest"> | string | null
   }
 
   export type EmployeeCertificationAttachmentCreateWithoutUserInvitationInput = {
@@ -64430,6 +64593,7 @@ export namespace Prisma {
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
+    leaveType?: LeaveTypeCreateNestedOneWithoutEmployeeRequestsInput
     user?: UserCreateNestedOneWithoutRequestsInput
     attachments?: RequestAttachmentCreateNestedManyWithoutRequestInput
     histories?: RequestHistoryCreateNestedManyWithoutRequestInput
@@ -64448,6 +64612,7 @@ export namespace Prisma {
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
+    leaveTypeId?: string | null
     attachments?: RequestAttachmentUncheckedCreateNestedManyWithoutRequestInput
     histories?: RequestHistoryUncheckedCreateNestedManyWithoutRequestInput
   }
@@ -66794,6 +66959,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    employeeRequests?: EmployeeRequestCreateNestedManyWithoutLeaveTypeInput
     leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutLeaveTypeInput
   }
 
@@ -66806,6 +66972,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    employeeRequests?: EmployeeRequestUncheckedCreateNestedManyWithoutLeaveTypeInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutLeaveTypeInput
   }
 
@@ -66933,6 +67100,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employeeRequests?: EmployeeRequestUpdateManyWithoutLeaveTypeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutLeaveTypeNestedInput
   }
 
@@ -66945,6 +67113,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employeeRequests?: EmployeeRequestUncheckedUpdateManyWithoutLeaveTypeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutLeaveTypeNestedInput
   }
 
@@ -67233,6 +67402,37 @@ export namespace Prisma {
     create: XOR<EmployeeCreateWithoutRequestsInput, EmployeeUncheckedCreateWithoutRequestsInput>
   }
 
+  export type LeaveTypeCreateWithoutEmployeeRequestsInput = {
+    id?: string
+    code: string
+    name: string
+    isPaid?: boolean
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutLeaveTypeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutLeaveTypeInput
+  }
+
+  export type LeaveTypeUncheckedCreateWithoutEmployeeRequestsInput = {
+    id?: string
+    code: string
+    name: string
+    isPaid?: boolean
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutLeaveTypeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutLeaveTypeInput
+  }
+
+  export type LeaveTypeCreateOrConnectWithoutEmployeeRequestsInput = {
+    where: LeaveTypeWhereUniqueInput
+    create: XOR<LeaveTypeCreateWithoutEmployeeRequestsInput, LeaveTypeUncheckedCreateWithoutEmployeeRequestsInput>
+  }
+
   export type UserCreateWithoutRequestsInput = {
     id?: string
     name: string
@@ -67413,6 +67613,43 @@ export namespace Prisma {
     leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
+  export type LeaveTypeUpsertWithoutEmployeeRequestsInput = {
+    update: XOR<LeaveTypeUpdateWithoutEmployeeRequestsInput, LeaveTypeUncheckedUpdateWithoutEmployeeRequestsInput>
+    create: XOR<LeaveTypeCreateWithoutEmployeeRequestsInput, LeaveTypeUncheckedCreateWithoutEmployeeRequestsInput>
+    where?: LeaveTypeWhereInput
+  }
+
+  export type LeaveTypeUpdateToOneWithWhereWithoutEmployeeRequestsInput = {
+    where?: LeaveTypeWhereInput
+    data: XOR<LeaveTypeUpdateWithoutEmployeeRequestsInput, LeaveTypeUncheckedUpdateWithoutEmployeeRequestsInput>
+  }
+
+  export type LeaveTypeUpdateWithoutEmployeeRequestsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isPaid?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutLeaveTypeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutLeaveTypeNestedInput
+  }
+
+  export type LeaveTypeUncheckedUpdateWithoutEmployeeRequestsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isPaid?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutLeaveTypeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutLeaveTypeNestedInput
+  }
+
   export type UserUpsertWithoutRequestsInput = {
     update: XOR<UserUpdateWithoutRequestsInput, UserUncheckedUpdateWithoutRequestsInput>
     create: XOR<UserCreateWithoutRequestsInput, UserUncheckedCreateWithoutRequestsInput>
@@ -67516,6 +67753,7 @@ export namespace Prisma {
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
     employee?: EmployeeCreateNestedOneWithoutRequestsInput
+    leaveType?: LeaveTypeCreateNestedOneWithoutEmployeeRequestsInput
     user?: UserCreateNestedOneWithoutRequestsInput
     histories?: RequestHistoryCreateNestedManyWithoutRequestInput
   }
@@ -67534,6 +67772,7 @@ export namespace Prisma {
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
+    leaveTypeId?: string | null
     histories?: RequestHistoryUncheckedCreateNestedManyWithoutRequestInput
   }
 
@@ -67566,6 +67805,7 @@ export namespace Prisma {
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     employee?: EmployeeUpdateOneWithoutRequestsNestedInput
+    leaveType?: LeaveTypeUpdateOneWithoutEmployeeRequestsNestedInput
     user?: UserUpdateOneWithoutRequestsNestedInput
     histories?: RequestHistoryUpdateManyWithoutRequestNestedInput
   }
@@ -67584,6 +67824,7 @@ export namespace Prisma {
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveTypeId?: NullableStringFieldUpdateOperationsInput | string | null
     histories?: RequestHistoryUncheckedUpdateManyWithoutRequestNestedInput
   }
 
@@ -67600,6 +67841,7 @@ export namespace Prisma {
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
     employee?: EmployeeCreateNestedOneWithoutRequestsInput
+    leaveType?: LeaveTypeCreateNestedOneWithoutEmployeeRequestsInput
     user?: UserCreateNestedOneWithoutRequestsInput
     attachments?: RequestAttachmentCreateNestedManyWithoutRequestInput
   }
@@ -67618,6 +67860,7 @@ export namespace Prisma {
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
+    leaveTypeId?: string | null
     attachments?: RequestAttachmentUncheckedCreateNestedManyWithoutRequestInput
   }
 
@@ -67650,6 +67893,7 @@ export namespace Prisma {
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     employee?: EmployeeUpdateOneWithoutRequestsNestedInput
+    leaveType?: LeaveTypeUpdateOneWithoutEmployeeRequestsNestedInput
     user?: UserUpdateOneWithoutRequestsNestedInput
     attachments?: RequestAttachmentUpdateManyWithoutRequestNestedInput
   }
@@ -67668,6 +67912,7 @@ export namespace Prisma {
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveTypeId?: NullableStringFieldUpdateOperationsInput | string | null
     attachments?: RequestAttachmentUncheckedUpdateManyWithoutRequestNestedInput
   }
 
@@ -69887,6 +70132,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutLeaveTypeInput
+    employeeRequests?: EmployeeRequestCreateNestedManyWithoutLeaveTypeInput
   }
 
   export type LeaveTypeUncheckedCreateWithoutLeaveTypeBalancesInput = {
@@ -69899,6 +70145,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutLeaveTypeInput
+    employeeRequests?: EmployeeRequestUncheckedCreateNestedManyWithoutLeaveTypeInput
   }
 
   export type LeaveTypeCreateOrConnectWithoutLeaveTypeBalancesInput = {
@@ -70026,6 +70273,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutLeaveTypeNestedInput
+    employeeRequests?: EmployeeRequestUpdateManyWithoutLeaveTypeNestedInput
   }
 
   export type LeaveTypeUncheckedUpdateWithoutLeaveTypeBalancesInput = {
@@ -70038,6 +70286,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutLeaveTypeNestedInput
+    employeeRequests?: EmployeeRequestUncheckedUpdateManyWithoutLeaveTypeNestedInput
   }
 
   export type LeaveGrantHistoryCreateWithoutLeaveTypeInput = {
@@ -70067,6 +70316,52 @@ export namespace Prisma {
 
   export type LeaveGrantHistoryCreateManyLeaveTypeInputEnvelope = {
     data: LeaveGrantHistoryCreateManyLeaveTypeInput | LeaveGrantHistoryCreateManyLeaveTypeInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EmployeeRequestCreateWithoutLeaveTypeInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    comment?: string | null
+    approvalComment?: string | null
+    rejectionReason?: string | null
+    type: $Enums.RequestType
+    status?: $Enums.RequestStatus
+    leaveDays?: number | null
+    leaveEndDate?: Date | string | null
+    leaveStartDate?: Date | string | null
+    employee?: EmployeeCreateNestedOneWithoutRequestsInput
+    user?: UserCreateNestedOneWithoutRequestsInput
+    attachments?: RequestAttachmentCreateNestedManyWithoutRequestInput
+    histories?: RequestHistoryCreateNestedManyWithoutRequestInput
+  }
+
+  export type EmployeeRequestUncheckedCreateWithoutLeaveTypeInput = {
+    id?: string
+    title: string
+    employeeId?: string | null
+    createdAt?: Date | string
+    comment?: string | null
+    approvalComment?: string | null
+    rejectionReason?: string | null
+    type: $Enums.RequestType
+    userId?: string | null
+    status?: $Enums.RequestStatus
+    leaveDays?: number | null
+    leaveEndDate?: Date | string | null
+    leaveStartDate?: Date | string | null
+    attachments?: RequestAttachmentUncheckedCreateNestedManyWithoutRequestInput
+    histories?: RequestHistoryUncheckedCreateNestedManyWithoutRequestInput
+  }
+
+  export type EmployeeRequestCreateOrConnectWithoutLeaveTypeInput = {
+    where: EmployeeRequestWhereUniqueInput
+    create: XOR<EmployeeRequestCreateWithoutLeaveTypeInput, EmployeeRequestUncheckedCreateWithoutLeaveTypeInput>
+  }
+
+  export type EmployeeRequestCreateManyLeaveTypeInputEnvelope = {
+    data: EmployeeRequestCreateManyLeaveTypeInput | EmployeeRequestCreateManyLeaveTypeInput[]
     skipDuplicates?: boolean
   }
 
@@ -70112,6 +70407,22 @@ export namespace Prisma {
   export type LeaveGrantHistoryUpdateManyWithWhereWithoutLeaveTypeInput = {
     where: LeaveGrantHistoryScalarWhereInput
     data: XOR<LeaveGrantHistoryUpdateManyMutationInput, LeaveGrantHistoryUncheckedUpdateManyWithoutLeaveTypeInput>
+  }
+
+  export type EmployeeRequestUpsertWithWhereUniqueWithoutLeaveTypeInput = {
+    where: EmployeeRequestWhereUniqueInput
+    update: XOR<EmployeeRequestUpdateWithoutLeaveTypeInput, EmployeeRequestUncheckedUpdateWithoutLeaveTypeInput>
+    create: XOR<EmployeeRequestCreateWithoutLeaveTypeInput, EmployeeRequestUncheckedCreateWithoutLeaveTypeInput>
+  }
+
+  export type EmployeeRequestUpdateWithWhereUniqueWithoutLeaveTypeInput = {
+    where: EmployeeRequestWhereUniqueInput
+    data: XOR<EmployeeRequestUpdateWithoutLeaveTypeInput, EmployeeRequestUncheckedUpdateWithoutLeaveTypeInput>
+  }
+
+  export type EmployeeRequestUpdateManyWithWhereWithoutLeaveTypeInput = {
+    where: EmployeeRequestScalarWhereInput
+    data: XOR<EmployeeRequestUpdateManyMutationInput, EmployeeRequestUncheckedUpdateManyWithoutLeaveTypeInput>
   }
 
   export type LeaveTypeBalanceUpsertWithWhereUniqueWithoutLeaveTypeInput = {
@@ -70719,6 +71030,7 @@ export namespace Prisma {
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
+    leaveTypeId?: string | null
   }
 
   export type EmployeeRequestUpdateWithoutUserInput = {
@@ -70734,6 +71046,7 @@ export namespace Prisma {
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     employee?: EmployeeUpdateOneWithoutRequestsNestedInput
+    leaveType?: LeaveTypeUpdateOneWithoutEmployeeRequestsNestedInput
     attachments?: RequestAttachmentUpdateManyWithoutRequestNestedInput
     histories?: RequestHistoryUpdateManyWithoutRequestNestedInput
   }
@@ -70751,6 +71064,7 @@ export namespace Prisma {
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveTypeId?: NullableStringFieldUpdateOperationsInput | string | null
     attachments?: RequestAttachmentUncheckedUpdateManyWithoutRequestNestedInput
     histories?: RequestHistoryUncheckedUpdateManyWithoutRequestNestedInput
   }
@@ -70768,6 +71082,7 @@ export namespace Prisma {
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveTypeId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type EmployeeCertificationAttachmentCreateManyUserInvitationInput = {
@@ -70976,6 +71291,7 @@ export namespace Prisma {
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
+    leaveTypeId?: string | null
   }
 
   export type EmploymentHistoryCreateManyEmployeeInput = {
@@ -71166,6 +71482,7 @@ export namespace Prisma {
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveType?: LeaveTypeUpdateOneWithoutEmployeeRequestsNestedInput
     user?: UserUpdateOneWithoutRequestsNestedInput
     attachments?: RequestAttachmentUpdateManyWithoutRequestNestedInput
     histories?: RequestHistoryUpdateManyWithoutRequestNestedInput
@@ -71184,6 +71501,7 @@ export namespace Prisma {
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveTypeId?: NullableStringFieldUpdateOperationsInput | string | null
     attachments?: RequestAttachmentUncheckedUpdateManyWithoutRequestNestedInput
     histories?: RequestHistoryUncheckedUpdateManyWithoutRequestNestedInput
   }
@@ -71201,6 +71519,7 @@ export namespace Prisma {
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveTypeId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type EmploymentHistoryUpdateWithoutEmployeeInput = {
@@ -72018,6 +72337,22 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
+  export type EmployeeRequestCreateManyLeaveTypeInput = {
+    id?: string
+    title: string
+    employeeId?: string | null
+    createdAt?: Date | string
+    comment?: string | null
+    approvalComment?: string | null
+    rejectionReason?: string | null
+    type: $Enums.RequestType
+    userId?: string | null
+    status?: $Enums.RequestStatus
+    leaveDays?: number | null
+    leaveEndDate?: Date | string | null
+    leaveStartDate?: Date | string | null
+  }
+
   export type LeaveTypeBalanceCreateManyLeaveTypeInput = {
     id?: string
     employeeId: string
@@ -72055,6 +72390,58 @@ export namespace Prisma {
     grantType?: EnumLeaveGrantTypeFieldUpdateOperationsInput | $Enums.LeaveGrantType
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeRequestUpdateWithoutLeaveTypeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalComment?: NullableStringFieldUpdateOperationsInput | string | null
+    rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    employee?: EmployeeUpdateOneWithoutRequestsNestedInput
+    user?: UserUpdateOneWithoutRequestsNestedInput
+    attachments?: RequestAttachmentUpdateManyWithoutRequestNestedInput
+    histories?: RequestHistoryUpdateManyWithoutRequestNestedInput
+  }
+
+  export type EmployeeRequestUncheckedUpdateWithoutLeaveTypeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalComment?: NullableStringFieldUpdateOperationsInput | string | null
+    rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    attachments?: RequestAttachmentUncheckedUpdateManyWithoutRequestNestedInput
+    histories?: RequestHistoryUncheckedUpdateManyWithoutRequestNestedInput
+  }
+
+  export type EmployeeRequestUncheckedUpdateManyWithoutLeaveTypeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalComment?: NullableStringFieldUpdateOperationsInput | string | null
+    rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type LeaveTypeBalanceUpdateWithoutLeaveTypeInput = {
