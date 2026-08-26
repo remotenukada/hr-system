@@ -44,17 +44,15 @@ export default async function RequestDetailPage({ params }: PageProps) {
     await requireManager();
 
     const currentSession = await auth();
-    const approvalComment =
-      formData.get("approvalComment")?.toString() || null;
+    const approvalComment = formData.get("approvalComment")?.toString() || null;
 
     const actorName =
-      currentSession?.user?.name ||
-      currentSession?.user?.email ||
-      "管理者";
+      currentSession?.user?.name || currentSession?.user?.email || "管理者";
 
     const latestRequest = await prisma.employeeRequest.findUnique({
-      where: {
-        id,
+      where: { id },
+      include: {
+        leaveType: true,
       },
     });
 
@@ -62,73 +60,112 @@ export default async function RequestDetailPage({ params }: PageProps) {
       return;
     }
 
-    const updatedRequest = await prisma.employeeRequest.update({
-      where: { id },
-      data: {
-        status: "APPROVED",
-        histories: {
-          create: {
-            action: "APPROVED",
-            actor: actorName,
-            comment: approvalComment || "申請を承認しました",
+    let beforeBalance: unknown = null;
+    let afterBalance: unknown = null;
+
+    await prisma.$transaction(async (tx) => {
+      if (
+        latestRequest.type === "PAID_LEAVE" &&
+        latestRequest.employeeId &&
+        latestRequest.leaveTypeId &&
+        latestRequest.leaveDays
+      ) {
+        const typeBalance = await tx.leaveTypeBalance.findUnique({
+          where: {
+            employeeId_leaveTypeId: {
+              employeeId: latestRequest.employeeId,
+              leaveTypeId: latestRequest.leaveTypeId,
+            },
+          },
+        });
+
+        const remainingDays =
+          (typeBalance?.grantedDays ?? 0) - (typeBalance?.usedDays ?? 0);
+
+        if (remainingDays < latestRequest.leaveDays) {
+          throw new Error(
+            `${latestRequest.leaveType?.name ?? "休暇"}の残数不足` +
+              `（残数: ${remainingDays}日）`,
+          );
+        }
+
+        beforeBalance = typeBalance;
+
+        afterBalance = await tx.leaveTypeBalance.update({
+          where: {
+            employeeId_leaveTypeId: {
+              employeeId: latestRequest.employeeId,
+              leaveTypeId: latestRequest.leaveTypeId,
+            },
+          },
+          data: {
+            usedDays: (typeBalance?.usedDays ?? 0) + latestRequest.leaveDays,
+          },
+        });
+
+        if (latestRequest.leaveType?.code === "ANNUAL") {
+          const annualBalance = await tx.leaveBalance.findUnique({
+            where: {
+              employeeId: latestRequest.employeeId,
+            },
+          });
+
+          await tx.leaveBalance.upsert({
+            where: {
+              employeeId: latestRequest.employeeId,
+            },
+            update: {
+              usedDays:
+                (annualBalance?.usedDays ?? 0) + latestRequest.leaveDays,
+            },
+            create: {
+              employeeId: latestRequest.employeeId,
+              grantedDays: 0,
+              usedDays: latestRequest.leaveDays,
+            },
+          });
+        }
+      }
+
+      await tx.employeeRequest.update({
+        where: { id },
+        data: {
+          status: "APPROVED",
+          approvalComment,
+          histories: {
+            create: {
+              action: "APPROVED",
+              actor: actorName,
+              comment: approvalComment || "申請を承認しました",
+            },
           },
         },
-      },
+      });
     });
 
     if (
-      updatedRequest.type === "PAID_LEAVE" &&
-      updatedRequest.employeeId &&
-      updatedRequest.leaveDays
+      latestRequest.type === "PAID_LEAVE" &&
+      latestRequest.employeeId &&
+      latestRequest.leaveDays
     ) {
-      const leaveBalance =
-        await prisma.leaveBalance.findUnique({
-          where: {
-            employeeId: updatedRequest.employeeId,
-          },
-        });
-
-      const remainingDays =
-        (leaveBalance?.grantedDays ?? 0) -
-        (leaveBalance?.usedDays ?? 0);
-
-      if (remainingDays < updatedRequest.leaveDays) {
-        throw new Error(
-          `有給残数不足（残数: ${remainingDays}日）`,
-        );
-      }
-
-      const updatedLeaveBalance =
-        await prisma.leaveBalance.upsert({
-          where: {
-            employeeId: updatedRequest.employeeId,
-          },
-          update: {
-            usedDays:
-              (leaveBalance?.usedDays ?? 0) +
-              updatedRequest.leaveDays,
-          },
-          create: {
-            employeeId: updatedRequest.employeeId,
-            grantedDays: 0,
-            usedDays: updatedRequest.leaveDays,
-          },
-        });
-
       await logAudit({
         userId: currentSession?.user?.id,
         userName: actorName,
         action: "PAID_LEAVE_APPROVED",
-        targetType: "Employee",
-        targetId: updatedRequest.employeeId,
-        description: `有給休暇申請を承認しました。取得日数: ${updatedRequest.leaveDays}日`,
-        beforeData: leaveBalance,
-        afterData: updatedLeaveBalance,
+        targetType: "LeaveTypeBalance",
+        targetId: latestRequest.employeeId,
+        description:
+          `${latestRequest.leaveType?.name ?? "休暇"}申請を承認しました。` +
+          `取得日数: ${latestRequest.leaveDays}日`,
+        beforeData: beforeBalance,
+        afterData: afterBalance,
       });
     }
 
     revalidatePath(`/requests/${id}`);
     revalidatePath("/requests");
+    revalidatePath("/leave-balances");
+    revalidatePath("/leave-type-balances");
   }
 
   // --- 却下処理（Server Action） ---
@@ -138,13 +175,10 @@ export default async function RequestDetailPage({ params }: PageProps) {
     await requireManager();
 
     const currentSession = await auth();
-    const rejectionReason =
-      formData.get("rejectionReason")?.toString() || null;
+    const rejectionReason = formData.get("rejectionReason")?.toString() || null;
 
     const actorName =
-      currentSession?.user?.name ||
-      currentSession?.user?.email ||
-      "管理者";
+      currentSession?.user?.name || currentSession?.user?.email || "管理者";
 
     await prisma.employeeRequest.update({
       where: { id },
@@ -175,13 +209,16 @@ export default async function RequestDetailPage({ params }: PageProps) {
       <div className="mb-6">
         <h1 className="text-3xl font-bold mt-2">{request.title}</h1>
         <p className="text-gray-500 mt-1">
-          ステータス: <span className="font-semibold text-black">{request.status}</span>
+          ステータス:{" "}
+          <span className="font-semibold text-black">{request.status}</span>
         </p>
       </div>
 
       <div className="bg-white p-6 rounded border mb-8">
         <h2 className="text-xl font-bold mb-2">申請内容</h2>
-        <p className="text-gray-700 whitespace-pre-wrap">{request.comment || "コメントなし"}</p>
+        <p className="text-gray-700 whitespace-pre-wrap">
+          {request.comment || "コメントなし"}
+        </p>
       </div>
 
       <div className="bg-white p-6 rounded border mb-8">
@@ -270,8 +307,12 @@ export default async function RequestDetailPage({ params }: PageProps) {
           {request.histories.map((h) => (
             <div key={h.id} className="p-4 bg-gray-50 rounded border">
               <div className="flex justify-between text-sm text-gray-600">
-                <span>アクション: <strong>{h.action}</strong></span>
-                <span>担当者: <strong>{h.actor}</strong></span>
+                <span>
+                  アクション: <strong>{h.action}</strong>
+                </span>
+                <span>
+                  担当者: <strong>{h.actor}</strong>
+                </span>
               </div>
               <p className="mt-2">{h.comment}</p>
               <span className="text-xs text-gray-400 mt-1 block">
