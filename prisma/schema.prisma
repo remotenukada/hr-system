@@ -583,6 +583,10 @@ model CompanySetting {
 
   representativeName String?
   mailFrom           String?
+  smtpHost           String?
+  smtpPort           Int?
+  smtpUser           String?
+  smtpSecure         Boolean @default(false)
   sealImagePath      String?
 
   consultationDesk String?
