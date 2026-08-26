@@ -184,6 +184,11 @@ export type JobTitleMaster = $Result.DefaultSelection<Prisma.$JobTitleMasterPayl
  */
 export type PositionMaster = $Result.DefaultSelection<Prisma.$PositionMasterPayload>
 /**
+ * Model LeaveTypeBalance
+ * 
+ */
+export type LeaveTypeBalance = $Result.DefaultSelection<Prisma.$LeaveTypeBalancePayload>
+/**
  * Model LeaveType
  * 
  */
@@ -850,6 +855,16 @@ export class PrismaClient<
   get positionMaster(): Prisma.PositionMasterDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.leaveTypeBalance`: Exposes CRUD operations for the **LeaveTypeBalance** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LeaveTypeBalances
+    * const leaveTypeBalances = await prisma.leaveTypeBalance.findMany()
+    * ```
+    */
+  get leaveTypeBalance(): Prisma.LeaveTypeBalanceDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.leaveType`: Exposes CRUD operations for the **LeaveType** model.
     * Example usage:
     * ```ts
@@ -1356,6 +1371,7 @@ export namespace Prisma {
     ContractTypeMaster: 'ContractTypeMaster',
     JobTitleMaster: 'JobTitleMaster',
     PositionMaster: 'PositionMaster',
+    LeaveTypeBalance: 'LeaveTypeBalance',
     LeaveType: 'LeaveType',
     RetirementChecklist: 'RetirementChecklist',
     LoanedAsset: 'LoanedAsset',
@@ -1375,7 +1391,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "userInvitation" | "department" | "employee" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster" | "contractTypeMaster" | "jobTitleMaster" | "positionMaster" | "leaveType" | "retirementChecklist" | "loanedAsset" | "retirementCertificate"
+      modelProps: "user" | "userInvitation" | "department" | "employee" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster" | "contractTypeMaster" | "jobTitleMaster" | "positionMaster" | "leaveTypeBalance" | "leaveType" | "retirementChecklist" | "loanedAsset" | "retirementCertificate"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3895,6 +3911,80 @@ export namespace Prisma {
           }
         }
       }
+      LeaveTypeBalance: {
+        payload: Prisma.$LeaveTypeBalancePayload<ExtArgs>
+        fields: Prisma.LeaveTypeBalanceFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LeaveTypeBalanceFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LeaveTypeBalancePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LeaveTypeBalanceFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LeaveTypeBalancePayload>
+          }
+          findFirst: {
+            args: Prisma.LeaveTypeBalanceFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LeaveTypeBalancePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LeaveTypeBalanceFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LeaveTypeBalancePayload>
+          }
+          findMany: {
+            args: Prisma.LeaveTypeBalanceFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LeaveTypeBalancePayload>[]
+          }
+          create: {
+            args: Prisma.LeaveTypeBalanceCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LeaveTypeBalancePayload>
+          }
+          createMany: {
+            args: Prisma.LeaveTypeBalanceCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LeaveTypeBalanceCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LeaveTypeBalancePayload>[]
+          }
+          delete: {
+            args: Prisma.LeaveTypeBalanceDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LeaveTypeBalancePayload>
+          }
+          update: {
+            args: Prisma.LeaveTypeBalanceUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LeaveTypeBalancePayload>
+          }
+          deleteMany: {
+            args: Prisma.LeaveTypeBalanceDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LeaveTypeBalanceUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LeaveTypeBalanceUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LeaveTypeBalancePayload>[]
+          }
+          upsert: {
+            args: Prisma.LeaveTypeBalanceUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LeaveTypeBalancePayload>
+          }
+          aggregate: {
+            args: Prisma.LeaveTypeBalanceAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLeaveTypeBalance>
+          }
+          groupBy: {
+            args: Prisma.LeaveTypeBalanceGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LeaveTypeBalanceGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LeaveTypeBalanceCountArgs<ExtArgs>
+            result: $Utils.Optional<LeaveTypeBalanceCountAggregateOutputType> | number
+          }
+        }
+      }
       LeaveType: {
         payload: Prisma.$LeaveTypePayload<ExtArgs>
         fields: Prisma.LeaveTypeFieldRefs
@@ -4333,6 +4423,7 @@ export namespace Prisma {
     contractTypeMaster?: ContractTypeMasterOmit
     jobTitleMaster?: JobTitleMasterOmit
     positionMaster?: PositionMasterOmit
+    leaveTypeBalance?: LeaveTypeBalanceOmit
     leaveType?: LeaveTypeOmit
     retirementChecklist?: RetirementChecklistOmit
     loanedAsset?: LoanedAssetOmit
@@ -4520,6 +4611,7 @@ export namespace Prisma {
     dependentRequests: number
     employmentContracts: number
     loanedAssets: number
+    leaveTypeBalances: number
   }
 
   export type EmployeeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4533,6 +4625,7 @@ export namespace Prisma {
     dependentRequests?: boolean | EmployeeCountOutputTypeCountDependentRequestsArgs
     employmentContracts?: boolean | EmployeeCountOutputTypeCountEmploymentContractsArgs
     loanedAssets?: boolean | EmployeeCountOutputTypeCountLoanedAssetsArgs
+    leaveTypeBalances?: boolean | EmployeeCountOutputTypeCountLeaveTypeBalancesArgs
   }
 
   // Custom InputTypes
@@ -4614,6 +4707,13 @@ export namespace Prisma {
    */
   export type EmployeeCountOutputTypeCountLoanedAssetsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: LoanedAssetWhereInput
+  }
+
+  /**
+   * EmployeeCountOutputType without action
+   */
+  export type EmployeeCountOutputTypeCountLeaveTypeBalancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LeaveTypeBalanceWhereInput
   }
 
 
@@ -4858,10 +4958,12 @@ export namespace Prisma {
 
   export type LeaveTypeCountOutputType = {
     leaveGrantHistories: number
+    leaveTypeBalances: number
   }
 
   export type LeaveTypeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     leaveGrantHistories?: boolean | LeaveTypeCountOutputTypeCountLeaveGrantHistoriesArgs
+    leaveTypeBalances?: boolean | LeaveTypeCountOutputTypeCountLeaveTypeBalancesArgs
   }
 
   // Custom InputTypes
@@ -4880,6 +4982,13 @@ export namespace Prisma {
    */
   export type LeaveTypeCountOutputTypeCountLeaveGrantHistoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: LeaveGrantHistoryWhereInput
+  }
+
+  /**
+   * LeaveTypeCountOutputType without action
+   */
+  export type LeaveTypeCountOutputTypeCountLeaveTypeBalancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LeaveTypeBalanceWhereInput
   }
 
 
@@ -8581,6 +8690,7 @@ export namespace Prisma {
     retirementChecklist?: boolean | Employee$retirementChecklistArgs<ExtArgs>
     loanedAssets?: boolean | Employee$loanedAssetsArgs<ExtArgs>
     retirementCertificate?: boolean | Employee$retirementCertificateArgs<ExtArgs>
+    leaveTypeBalances?: boolean | Employee$leaveTypeBalancesArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["employee"]>
 
@@ -8692,6 +8802,7 @@ export namespace Prisma {
     retirementChecklist?: boolean | Employee$retirementChecklistArgs<ExtArgs>
     loanedAssets?: boolean | Employee$loanedAssetsArgs<ExtArgs>
     retirementCertificate?: boolean | Employee$retirementCertificateArgs<ExtArgs>
+    leaveTypeBalances?: boolean | Employee$leaveTypeBalancesArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EmployeeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8724,6 +8835,7 @@ export namespace Prisma {
       retirementChecklist: Prisma.$RetirementChecklistPayload<ExtArgs> | null
       loanedAssets: Prisma.$LoanedAssetPayload<ExtArgs>[]
       retirementCertificate: Prisma.$RetirementCertificatePayload<ExtArgs> | null
+      leaveTypeBalances: Prisma.$LeaveTypeBalancePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -9163,6 +9275,7 @@ export namespace Prisma {
     retirementChecklist<T extends Employee$retirementChecklistArgs<ExtArgs> = {}>(args?: Subset<T, Employee$retirementChecklistArgs<ExtArgs>>): Prisma__RetirementChecklistClient<$Result.GetResult<Prisma.$RetirementChecklistPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     loanedAssets<T extends Employee$loanedAssetsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$loanedAssetsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LoanedAssetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     retirementCertificate<T extends Employee$retirementCertificateArgs<ExtArgs> = {}>(args?: Subset<T, Employee$retirementCertificateArgs<ExtArgs>>): Prisma__RetirementCertificateClient<$Result.GetResult<Prisma.$RetirementCertificatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    leaveTypeBalances<T extends Employee$leaveTypeBalancesArgs<ExtArgs> = {}>(args?: Subset<T, Employee$leaveTypeBalancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeaveTypeBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10007,6 +10120,30 @@ export namespace Prisma {
      */
     include?: RetirementCertificateInclude<ExtArgs> | null
     where?: RetirementCertificateWhereInput
+  }
+
+  /**
+   * Employee.leaveTypeBalances
+   */
+  export type Employee$leaveTypeBalancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaveTypeBalance
+     */
+    select?: LeaveTypeBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaveTypeBalance
+     */
+    omit?: LeaveTypeBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveTypeBalanceInclude<ExtArgs> | null
+    where?: LeaveTypeBalanceWhereInput
+    orderBy?: LeaveTypeBalanceOrderByWithRelationInput | LeaveTypeBalanceOrderByWithRelationInput[]
+    cursor?: LeaveTypeBalanceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LeaveTypeBalanceScalarFieldEnum | LeaveTypeBalanceScalarFieldEnum[]
   }
 
   /**
@@ -44691,6 +44828,1141 @@ export namespace Prisma {
 
 
   /**
+   * Model LeaveTypeBalance
+   */
+
+  export type AggregateLeaveTypeBalance = {
+    _count: LeaveTypeBalanceCountAggregateOutputType | null
+    _avg: LeaveTypeBalanceAvgAggregateOutputType | null
+    _sum: LeaveTypeBalanceSumAggregateOutputType | null
+    _min: LeaveTypeBalanceMinAggregateOutputType | null
+    _max: LeaveTypeBalanceMaxAggregateOutputType | null
+  }
+
+  export type LeaveTypeBalanceAvgAggregateOutputType = {
+    grantedDays: number | null
+    usedDays: number | null
+  }
+
+  export type LeaveTypeBalanceSumAggregateOutputType = {
+    grantedDays: number | null
+    usedDays: number | null
+  }
+
+  export type LeaveTypeBalanceMinAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    leaveTypeId: string | null
+    grantedDays: number | null
+    usedDays: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type LeaveTypeBalanceMaxAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    leaveTypeId: string | null
+    grantedDays: number | null
+    usedDays: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type LeaveTypeBalanceCountAggregateOutputType = {
+    id: number
+    employeeId: number
+    leaveTypeId: number
+    grantedDays: number
+    usedDays: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type LeaveTypeBalanceAvgAggregateInputType = {
+    grantedDays?: true
+    usedDays?: true
+  }
+
+  export type LeaveTypeBalanceSumAggregateInputType = {
+    grantedDays?: true
+    usedDays?: true
+  }
+
+  export type LeaveTypeBalanceMinAggregateInputType = {
+    id?: true
+    employeeId?: true
+    leaveTypeId?: true
+    grantedDays?: true
+    usedDays?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type LeaveTypeBalanceMaxAggregateInputType = {
+    id?: true
+    employeeId?: true
+    leaveTypeId?: true
+    grantedDays?: true
+    usedDays?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type LeaveTypeBalanceCountAggregateInputType = {
+    id?: true
+    employeeId?: true
+    leaveTypeId?: true
+    grantedDays?: true
+    usedDays?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type LeaveTypeBalanceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LeaveTypeBalance to aggregate.
+     */
+    where?: LeaveTypeBalanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LeaveTypeBalances to fetch.
+     */
+    orderBy?: LeaveTypeBalanceOrderByWithRelationInput | LeaveTypeBalanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LeaveTypeBalanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LeaveTypeBalances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LeaveTypeBalances.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LeaveTypeBalances
+    **/
+    _count?: true | LeaveTypeBalanceCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: LeaveTypeBalanceAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: LeaveTypeBalanceSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LeaveTypeBalanceMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LeaveTypeBalanceMaxAggregateInputType
+  }
+
+  export type GetLeaveTypeBalanceAggregateType<T extends LeaveTypeBalanceAggregateArgs> = {
+        [P in keyof T & keyof AggregateLeaveTypeBalance]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLeaveTypeBalance[P]>
+      : GetScalarType<T[P], AggregateLeaveTypeBalance[P]>
+  }
+
+
+
+
+  export type LeaveTypeBalanceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LeaveTypeBalanceWhereInput
+    orderBy?: LeaveTypeBalanceOrderByWithAggregationInput | LeaveTypeBalanceOrderByWithAggregationInput[]
+    by: LeaveTypeBalanceScalarFieldEnum[] | LeaveTypeBalanceScalarFieldEnum
+    having?: LeaveTypeBalanceScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LeaveTypeBalanceCountAggregateInputType | true
+    _avg?: LeaveTypeBalanceAvgAggregateInputType
+    _sum?: LeaveTypeBalanceSumAggregateInputType
+    _min?: LeaveTypeBalanceMinAggregateInputType
+    _max?: LeaveTypeBalanceMaxAggregateInputType
+  }
+
+  export type LeaveTypeBalanceGroupByOutputType = {
+    id: string
+    employeeId: string
+    leaveTypeId: string
+    grantedDays: number
+    usedDays: number
+    createdAt: Date
+    updatedAt: Date
+    _count: LeaveTypeBalanceCountAggregateOutputType | null
+    _avg: LeaveTypeBalanceAvgAggregateOutputType | null
+    _sum: LeaveTypeBalanceSumAggregateOutputType | null
+    _min: LeaveTypeBalanceMinAggregateOutputType | null
+    _max: LeaveTypeBalanceMaxAggregateOutputType | null
+  }
+
+  type GetLeaveTypeBalanceGroupByPayload<T extends LeaveTypeBalanceGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LeaveTypeBalanceGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LeaveTypeBalanceGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LeaveTypeBalanceGroupByOutputType[P]>
+            : GetScalarType<T[P], LeaveTypeBalanceGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LeaveTypeBalanceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    leaveTypeId?: boolean
+    grantedDays?: boolean
+    usedDays?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    leaveType?: boolean | LeaveTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["leaveTypeBalance"]>
+
+  export type LeaveTypeBalanceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    leaveTypeId?: boolean
+    grantedDays?: boolean
+    usedDays?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    leaveType?: boolean | LeaveTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["leaveTypeBalance"]>
+
+  export type LeaveTypeBalanceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    leaveTypeId?: boolean
+    grantedDays?: boolean
+    usedDays?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    leaveType?: boolean | LeaveTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["leaveTypeBalance"]>
+
+  export type LeaveTypeBalanceSelectScalar = {
+    id?: boolean
+    employeeId?: boolean
+    leaveTypeId?: boolean
+    grantedDays?: boolean
+    usedDays?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type LeaveTypeBalanceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "leaveTypeId" | "grantedDays" | "usedDays" | "createdAt" | "updatedAt", ExtArgs["result"]["leaveTypeBalance"]>
+  export type LeaveTypeBalanceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    leaveType?: boolean | LeaveTypeDefaultArgs<ExtArgs>
+  }
+  export type LeaveTypeBalanceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    leaveType?: boolean | LeaveTypeDefaultArgs<ExtArgs>
+  }
+  export type LeaveTypeBalanceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    leaveType?: boolean | LeaveTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $LeaveTypeBalancePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LeaveTypeBalance"
+    objects: {
+      employee: Prisma.$EmployeePayload<ExtArgs>
+      leaveType: Prisma.$LeaveTypePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      employeeId: string
+      leaveTypeId: string
+      grantedDays: number
+      usedDays: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["leaveTypeBalance"]>
+    composites: {}
+  }
+
+  type LeaveTypeBalanceGetPayload<S extends boolean | null | undefined | LeaveTypeBalanceDefaultArgs> = $Result.GetResult<Prisma.$LeaveTypeBalancePayload, S>
+
+  type LeaveTypeBalanceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LeaveTypeBalanceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LeaveTypeBalanceCountAggregateInputType | true
+    }
+
+  export interface LeaveTypeBalanceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LeaveTypeBalance'], meta: { name: 'LeaveTypeBalance' } }
+    /**
+     * Find zero or one LeaveTypeBalance that matches the filter.
+     * @param {LeaveTypeBalanceFindUniqueArgs} args - Arguments to find a LeaveTypeBalance
+     * @example
+     * // Get one LeaveTypeBalance
+     * const leaveTypeBalance = await prisma.leaveTypeBalance.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LeaveTypeBalanceFindUniqueArgs>(args: SelectSubset<T, LeaveTypeBalanceFindUniqueArgs<ExtArgs>>): Prisma__LeaveTypeBalanceClient<$Result.GetResult<Prisma.$LeaveTypeBalancePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LeaveTypeBalance that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LeaveTypeBalanceFindUniqueOrThrowArgs} args - Arguments to find a LeaveTypeBalance
+     * @example
+     * // Get one LeaveTypeBalance
+     * const leaveTypeBalance = await prisma.leaveTypeBalance.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LeaveTypeBalanceFindUniqueOrThrowArgs>(args: SelectSubset<T, LeaveTypeBalanceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LeaveTypeBalanceClient<$Result.GetResult<Prisma.$LeaveTypeBalancePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LeaveTypeBalance that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LeaveTypeBalanceFindFirstArgs} args - Arguments to find a LeaveTypeBalance
+     * @example
+     * // Get one LeaveTypeBalance
+     * const leaveTypeBalance = await prisma.leaveTypeBalance.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LeaveTypeBalanceFindFirstArgs>(args?: SelectSubset<T, LeaveTypeBalanceFindFirstArgs<ExtArgs>>): Prisma__LeaveTypeBalanceClient<$Result.GetResult<Prisma.$LeaveTypeBalancePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LeaveTypeBalance that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LeaveTypeBalanceFindFirstOrThrowArgs} args - Arguments to find a LeaveTypeBalance
+     * @example
+     * // Get one LeaveTypeBalance
+     * const leaveTypeBalance = await prisma.leaveTypeBalance.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LeaveTypeBalanceFindFirstOrThrowArgs>(args?: SelectSubset<T, LeaveTypeBalanceFindFirstOrThrowArgs<ExtArgs>>): Prisma__LeaveTypeBalanceClient<$Result.GetResult<Prisma.$LeaveTypeBalancePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LeaveTypeBalances that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LeaveTypeBalanceFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LeaveTypeBalances
+     * const leaveTypeBalances = await prisma.leaveTypeBalance.findMany()
+     * 
+     * // Get first 10 LeaveTypeBalances
+     * const leaveTypeBalances = await prisma.leaveTypeBalance.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const leaveTypeBalanceWithIdOnly = await prisma.leaveTypeBalance.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends LeaveTypeBalanceFindManyArgs>(args?: SelectSubset<T, LeaveTypeBalanceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeaveTypeBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LeaveTypeBalance.
+     * @param {LeaveTypeBalanceCreateArgs} args - Arguments to create a LeaveTypeBalance.
+     * @example
+     * // Create one LeaveTypeBalance
+     * const LeaveTypeBalance = await prisma.leaveTypeBalance.create({
+     *   data: {
+     *     // ... data to create a LeaveTypeBalance
+     *   }
+     * })
+     * 
+     */
+    create<T extends LeaveTypeBalanceCreateArgs>(args: SelectSubset<T, LeaveTypeBalanceCreateArgs<ExtArgs>>): Prisma__LeaveTypeBalanceClient<$Result.GetResult<Prisma.$LeaveTypeBalancePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LeaveTypeBalances.
+     * @param {LeaveTypeBalanceCreateManyArgs} args - Arguments to create many LeaveTypeBalances.
+     * @example
+     * // Create many LeaveTypeBalances
+     * const leaveTypeBalance = await prisma.leaveTypeBalance.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LeaveTypeBalanceCreateManyArgs>(args?: SelectSubset<T, LeaveTypeBalanceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LeaveTypeBalances and returns the data saved in the database.
+     * @param {LeaveTypeBalanceCreateManyAndReturnArgs} args - Arguments to create many LeaveTypeBalances.
+     * @example
+     * // Create many LeaveTypeBalances
+     * const leaveTypeBalance = await prisma.leaveTypeBalance.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LeaveTypeBalances and only return the `id`
+     * const leaveTypeBalanceWithIdOnly = await prisma.leaveTypeBalance.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LeaveTypeBalanceCreateManyAndReturnArgs>(args?: SelectSubset<T, LeaveTypeBalanceCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeaveTypeBalancePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LeaveTypeBalance.
+     * @param {LeaveTypeBalanceDeleteArgs} args - Arguments to delete one LeaveTypeBalance.
+     * @example
+     * // Delete one LeaveTypeBalance
+     * const LeaveTypeBalance = await prisma.leaveTypeBalance.delete({
+     *   where: {
+     *     // ... filter to delete one LeaveTypeBalance
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LeaveTypeBalanceDeleteArgs>(args: SelectSubset<T, LeaveTypeBalanceDeleteArgs<ExtArgs>>): Prisma__LeaveTypeBalanceClient<$Result.GetResult<Prisma.$LeaveTypeBalancePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LeaveTypeBalance.
+     * @param {LeaveTypeBalanceUpdateArgs} args - Arguments to update one LeaveTypeBalance.
+     * @example
+     * // Update one LeaveTypeBalance
+     * const leaveTypeBalance = await prisma.leaveTypeBalance.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LeaveTypeBalanceUpdateArgs>(args: SelectSubset<T, LeaveTypeBalanceUpdateArgs<ExtArgs>>): Prisma__LeaveTypeBalanceClient<$Result.GetResult<Prisma.$LeaveTypeBalancePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LeaveTypeBalances.
+     * @param {LeaveTypeBalanceDeleteManyArgs} args - Arguments to filter LeaveTypeBalances to delete.
+     * @example
+     * // Delete a few LeaveTypeBalances
+     * const { count } = await prisma.leaveTypeBalance.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LeaveTypeBalanceDeleteManyArgs>(args?: SelectSubset<T, LeaveTypeBalanceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LeaveTypeBalances.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LeaveTypeBalanceUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LeaveTypeBalances
+     * const leaveTypeBalance = await prisma.leaveTypeBalance.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LeaveTypeBalanceUpdateManyArgs>(args: SelectSubset<T, LeaveTypeBalanceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LeaveTypeBalances and returns the data updated in the database.
+     * @param {LeaveTypeBalanceUpdateManyAndReturnArgs} args - Arguments to update many LeaveTypeBalances.
+     * @example
+     * // Update many LeaveTypeBalances
+     * const leaveTypeBalance = await prisma.leaveTypeBalance.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LeaveTypeBalances and only return the `id`
+     * const leaveTypeBalanceWithIdOnly = await prisma.leaveTypeBalance.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LeaveTypeBalanceUpdateManyAndReturnArgs>(args: SelectSubset<T, LeaveTypeBalanceUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeaveTypeBalancePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LeaveTypeBalance.
+     * @param {LeaveTypeBalanceUpsertArgs} args - Arguments to update or create a LeaveTypeBalance.
+     * @example
+     * // Update or create a LeaveTypeBalance
+     * const leaveTypeBalance = await prisma.leaveTypeBalance.upsert({
+     *   create: {
+     *     // ... data to create a LeaveTypeBalance
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LeaveTypeBalance we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LeaveTypeBalanceUpsertArgs>(args: SelectSubset<T, LeaveTypeBalanceUpsertArgs<ExtArgs>>): Prisma__LeaveTypeBalanceClient<$Result.GetResult<Prisma.$LeaveTypeBalancePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LeaveTypeBalances.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LeaveTypeBalanceCountArgs} args - Arguments to filter LeaveTypeBalances to count.
+     * @example
+     * // Count the number of LeaveTypeBalances
+     * const count = await prisma.leaveTypeBalance.count({
+     *   where: {
+     *     // ... the filter for the LeaveTypeBalances we want to count
+     *   }
+     * })
+    **/
+    count<T extends LeaveTypeBalanceCountArgs>(
+      args?: Subset<T, LeaveTypeBalanceCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LeaveTypeBalanceCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LeaveTypeBalance.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LeaveTypeBalanceAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LeaveTypeBalanceAggregateArgs>(args: Subset<T, LeaveTypeBalanceAggregateArgs>): Prisma.PrismaPromise<GetLeaveTypeBalanceAggregateType<T>>
+
+    /**
+     * Group by LeaveTypeBalance.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LeaveTypeBalanceGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LeaveTypeBalanceGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LeaveTypeBalanceGroupByArgs['orderBy'] }
+        : { orderBy?: LeaveTypeBalanceGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LeaveTypeBalanceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLeaveTypeBalanceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LeaveTypeBalance model
+   */
+  readonly fields: LeaveTypeBalanceFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LeaveTypeBalance.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LeaveTypeBalanceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    leaveType<T extends LeaveTypeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LeaveTypeDefaultArgs<ExtArgs>>): Prisma__LeaveTypeClient<$Result.GetResult<Prisma.$LeaveTypePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LeaveTypeBalance model
+   */
+  interface LeaveTypeBalanceFieldRefs {
+    readonly id: FieldRef<"LeaveTypeBalance", 'String'>
+    readonly employeeId: FieldRef<"LeaveTypeBalance", 'String'>
+    readonly leaveTypeId: FieldRef<"LeaveTypeBalance", 'String'>
+    readonly grantedDays: FieldRef<"LeaveTypeBalance", 'Float'>
+    readonly usedDays: FieldRef<"LeaveTypeBalance", 'Float'>
+    readonly createdAt: FieldRef<"LeaveTypeBalance", 'DateTime'>
+    readonly updatedAt: FieldRef<"LeaveTypeBalance", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LeaveTypeBalance findUnique
+   */
+  export type LeaveTypeBalanceFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaveTypeBalance
+     */
+    select?: LeaveTypeBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaveTypeBalance
+     */
+    omit?: LeaveTypeBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveTypeBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which LeaveTypeBalance to fetch.
+     */
+    where: LeaveTypeBalanceWhereUniqueInput
+  }
+
+  /**
+   * LeaveTypeBalance findUniqueOrThrow
+   */
+  export type LeaveTypeBalanceFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaveTypeBalance
+     */
+    select?: LeaveTypeBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaveTypeBalance
+     */
+    omit?: LeaveTypeBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveTypeBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which LeaveTypeBalance to fetch.
+     */
+    where: LeaveTypeBalanceWhereUniqueInput
+  }
+
+  /**
+   * LeaveTypeBalance findFirst
+   */
+  export type LeaveTypeBalanceFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaveTypeBalance
+     */
+    select?: LeaveTypeBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaveTypeBalance
+     */
+    omit?: LeaveTypeBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveTypeBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which LeaveTypeBalance to fetch.
+     */
+    where?: LeaveTypeBalanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LeaveTypeBalances to fetch.
+     */
+    orderBy?: LeaveTypeBalanceOrderByWithRelationInput | LeaveTypeBalanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LeaveTypeBalances.
+     */
+    cursor?: LeaveTypeBalanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LeaveTypeBalances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LeaveTypeBalances.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LeaveTypeBalances.
+     */
+    distinct?: LeaveTypeBalanceScalarFieldEnum | LeaveTypeBalanceScalarFieldEnum[]
+  }
+
+  /**
+   * LeaveTypeBalance findFirstOrThrow
+   */
+  export type LeaveTypeBalanceFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaveTypeBalance
+     */
+    select?: LeaveTypeBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaveTypeBalance
+     */
+    omit?: LeaveTypeBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveTypeBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which LeaveTypeBalance to fetch.
+     */
+    where?: LeaveTypeBalanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LeaveTypeBalances to fetch.
+     */
+    orderBy?: LeaveTypeBalanceOrderByWithRelationInput | LeaveTypeBalanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LeaveTypeBalances.
+     */
+    cursor?: LeaveTypeBalanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LeaveTypeBalances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LeaveTypeBalances.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LeaveTypeBalances.
+     */
+    distinct?: LeaveTypeBalanceScalarFieldEnum | LeaveTypeBalanceScalarFieldEnum[]
+  }
+
+  /**
+   * LeaveTypeBalance findMany
+   */
+  export type LeaveTypeBalanceFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaveTypeBalance
+     */
+    select?: LeaveTypeBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaveTypeBalance
+     */
+    omit?: LeaveTypeBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveTypeBalanceInclude<ExtArgs> | null
+    /**
+     * Filter, which LeaveTypeBalances to fetch.
+     */
+    where?: LeaveTypeBalanceWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LeaveTypeBalances to fetch.
+     */
+    orderBy?: LeaveTypeBalanceOrderByWithRelationInput | LeaveTypeBalanceOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LeaveTypeBalances.
+     */
+    cursor?: LeaveTypeBalanceWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LeaveTypeBalances from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LeaveTypeBalances.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LeaveTypeBalances.
+     */
+    distinct?: LeaveTypeBalanceScalarFieldEnum | LeaveTypeBalanceScalarFieldEnum[]
+  }
+
+  /**
+   * LeaveTypeBalance create
+   */
+  export type LeaveTypeBalanceCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaveTypeBalance
+     */
+    select?: LeaveTypeBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaveTypeBalance
+     */
+    omit?: LeaveTypeBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveTypeBalanceInclude<ExtArgs> | null
+    /**
+     * The data needed to create a LeaveTypeBalance.
+     */
+    data: XOR<LeaveTypeBalanceCreateInput, LeaveTypeBalanceUncheckedCreateInput>
+  }
+
+  /**
+   * LeaveTypeBalance createMany
+   */
+  export type LeaveTypeBalanceCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LeaveTypeBalances.
+     */
+    data: LeaveTypeBalanceCreateManyInput | LeaveTypeBalanceCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LeaveTypeBalance createManyAndReturn
+   */
+  export type LeaveTypeBalanceCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaveTypeBalance
+     */
+    select?: LeaveTypeBalanceSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaveTypeBalance
+     */
+    omit?: LeaveTypeBalanceOmit<ExtArgs> | null
+    /**
+     * The data used to create many LeaveTypeBalances.
+     */
+    data: LeaveTypeBalanceCreateManyInput | LeaveTypeBalanceCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveTypeBalanceIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LeaveTypeBalance update
+   */
+  export type LeaveTypeBalanceUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaveTypeBalance
+     */
+    select?: LeaveTypeBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaveTypeBalance
+     */
+    omit?: LeaveTypeBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveTypeBalanceInclude<ExtArgs> | null
+    /**
+     * The data needed to update a LeaveTypeBalance.
+     */
+    data: XOR<LeaveTypeBalanceUpdateInput, LeaveTypeBalanceUncheckedUpdateInput>
+    /**
+     * Choose, which LeaveTypeBalance to update.
+     */
+    where: LeaveTypeBalanceWhereUniqueInput
+  }
+
+  /**
+   * LeaveTypeBalance updateMany
+   */
+  export type LeaveTypeBalanceUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LeaveTypeBalances.
+     */
+    data: XOR<LeaveTypeBalanceUpdateManyMutationInput, LeaveTypeBalanceUncheckedUpdateManyInput>
+    /**
+     * Filter which LeaveTypeBalances to update
+     */
+    where?: LeaveTypeBalanceWhereInput
+    /**
+     * Limit how many LeaveTypeBalances to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LeaveTypeBalance updateManyAndReturn
+   */
+  export type LeaveTypeBalanceUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaveTypeBalance
+     */
+    select?: LeaveTypeBalanceSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaveTypeBalance
+     */
+    omit?: LeaveTypeBalanceOmit<ExtArgs> | null
+    /**
+     * The data used to update LeaveTypeBalances.
+     */
+    data: XOR<LeaveTypeBalanceUpdateManyMutationInput, LeaveTypeBalanceUncheckedUpdateManyInput>
+    /**
+     * Filter which LeaveTypeBalances to update
+     */
+    where?: LeaveTypeBalanceWhereInput
+    /**
+     * Limit how many LeaveTypeBalances to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveTypeBalanceIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LeaveTypeBalance upsert
+   */
+  export type LeaveTypeBalanceUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaveTypeBalance
+     */
+    select?: LeaveTypeBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaveTypeBalance
+     */
+    omit?: LeaveTypeBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveTypeBalanceInclude<ExtArgs> | null
+    /**
+     * The filter to search for the LeaveTypeBalance to update in case it exists.
+     */
+    where: LeaveTypeBalanceWhereUniqueInput
+    /**
+     * In case the LeaveTypeBalance found by the `where` argument doesn't exist, create a new LeaveTypeBalance with this data.
+     */
+    create: XOR<LeaveTypeBalanceCreateInput, LeaveTypeBalanceUncheckedCreateInput>
+    /**
+     * In case the LeaveTypeBalance was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LeaveTypeBalanceUpdateInput, LeaveTypeBalanceUncheckedUpdateInput>
+  }
+
+  /**
+   * LeaveTypeBalance delete
+   */
+  export type LeaveTypeBalanceDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaveTypeBalance
+     */
+    select?: LeaveTypeBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaveTypeBalance
+     */
+    omit?: LeaveTypeBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveTypeBalanceInclude<ExtArgs> | null
+    /**
+     * Filter which LeaveTypeBalance to delete.
+     */
+    where: LeaveTypeBalanceWhereUniqueInput
+  }
+
+  /**
+   * LeaveTypeBalance deleteMany
+   */
+  export type LeaveTypeBalanceDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LeaveTypeBalances to delete
+     */
+    where?: LeaveTypeBalanceWhereInput
+    /**
+     * Limit how many LeaveTypeBalances to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LeaveTypeBalance without action
+   */
+  export type LeaveTypeBalanceDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaveTypeBalance
+     */
+    select?: LeaveTypeBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaveTypeBalance
+     */
+    omit?: LeaveTypeBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveTypeBalanceInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model LeaveType
    */
 
@@ -44913,6 +46185,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     leaveGrantHistories?: boolean | LeaveType$leaveGrantHistoriesArgs<ExtArgs>
+    leaveTypeBalances?: boolean | LeaveType$leaveTypeBalancesArgs<ExtArgs>
     _count?: boolean | LeaveTypeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["leaveType"]>
 
@@ -44952,6 +46225,7 @@ export namespace Prisma {
   export type LeaveTypeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "name" | "isPaid" | "sortOrder" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["leaveType"]>
   export type LeaveTypeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     leaveGrantHistories?: boolean | LeaveType$leaveGrantHistoriesArgs<ExtArgs>
+    leaveTypeBalances?: boolean | LeaveType$leaveTypeBalancesArgs<ExtArgs>
     _count?: boolean | LeaveTypeCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type LeaveTypeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -44961,6 +46235,7 @@ export namespace Prisma {
     name: "LeaveType"
     objects: {
       leaveGrantHistories: Prisma.$LeaveGrantHistoryPayload<ExtArgs>[]
+      leaveTypeBalances: Prisma.$LeaveTypeBalancePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -45366,6 +46641,7 @@ export namespace Prisma {
   export interface Prisma__LeaveTypeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     leaveGrantHistories<T extends LeaveType$leaveGrantHistoriesArgs<ExtArgs> = {}>(args?: Subset<T, LeaveType$leaveGrantHistoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeaveGrantHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    leaveTypeBalances<T extends LeaveType$leaveTypeBalancesArgs<ExtArgs> = {}>(args?: Subset<T, LeaveType$leaveTypeBalancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeaveTypeBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -45817,6 +47093,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: LeaveGrantHistoryScalarFieldEnum | LeaveGrantHistoryScalarFieldEnum[]
+  }
+
+  /**
+   * LeaveType.leaveTypeBalances
+   */
+  export type LeaveType$leaveTypeBalancesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LeaveTypeBalance
+     */
+    select?: LeaveTypeBalanceSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LeaveTypeBalance
+     */
+    omit?: LeaveTypeBalanceOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LeaveTypeBalanceInclude<ExtArgs> | null
+    where?: LeaveTypeBalanceWhereInput
+    orderBy?: LeaveTypeBalanceOrderByWithRelationInput | LeaveTypeBalanceOrderByWithRelationInput[]
+    cursor?: LeaveTypeBalanceWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LeaveTypeBalanceScalarFieldEnum | LeaveTypeBalanceScalarFieldEnum[]
   }
 
   /**
@@ -49925,6 +51225,19 @@ export namespace Prisma {
   export type PositionMasterScalarFieldEnum = (typeof PositionMasterScalarFieldEnum)[keyof typeof PositionMasterScalarFieldEnum]
 
 
+  export const LeaveTypeBalanceScalarFieldEnum: {
+    id: 'id',
+    employeeId: 'employeeId',
+    leaveTypeId: 'leaveTypeId',
+    grantedDays: 'grantedDays',
+    usedDays: 'usedDays',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type LeaveTypeBalanceScalarFieldEnum = (typeof LeaveTypeBalanceScalarFieldEnum)[keyof typeof LeaveTypeBalanceScalarFieldEnum]
+
+
   export const LeaveTypeScalarFieldEnum: {
     id: 'id',
     code: 'code',
@@ -50559,6 +51872,7 @@ export namespace Prisma {
     retirementChecklist?: XOR<RetirementChecklistNullableScalarRelationFilter, RetirementChecklistWhereInput> | null
     loanedAssets?: LoanedAssetListRelationFilter
     retirementCertificate?: XOR<RetirementCertificateNullableScalarRelationFilter, RetirementCertificateWhereInput> | null
+    leaveTypeBalances?: LeaveTypeBalanceListRelationFilter
   }
 
   export type EmployeeOrderByWithRelationInput = {
@@ -50605,6 +51919,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistOrderByWithRelationInput
     loanedAssets?: LoanedAssetOrderByRelationAggregateInput
     retirementCertificate?: RetirementCertificateOrderByWithRelationInput
+    leaveTypeBalances?: LeaveTypeBalanceOrderByRelationAggregateInput
   }
 
   export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
@@ -50654,6 +51969,7 @@ export namespace Prisma {
     retirementChecklist?: XOR<RetirementChecklistNullableScalarRelationFilter, RetirementChecklistWhereInput> | null
     loanedAssets?: LoanedAssetListRelationFilter
     retirementCertificate?: XOR<RetirementCertificateNullableScalarRelationFilter, RetirementCertificateWhereInput> | null
+    leaveTypeBalances?: LeaveTypeBalanceListRelationFilter
   }, "id" | "employeeNo" | "email" | "userId">
 
   export type EmployeeOrderByWithAggregationInput = {
@@ -53273,6 +54589,77 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"PositionMaster"> | Date | string
   }
 
+  export type LeaveTypeBalanceWhereInput = {
+    AND?: LeaveTypeBalanceWhereInput | LeaveTypeBalanceWhereInput[]
+    OR?: LeaveTypeBalanceWhereInput[]
+    NOT?: LeaveTypeBalanceWhereInput | LeaveTypeBalanceWhereInput[]
+    id?: StringFilter<"LeaveTypeBalance"> | string
+    employeeId?: StringFilter<"LeaveTypeBalance"> | string
+    leaveTypeId?: StringFilter<"LeaveTypeBalance"> | string
+    grantedDays?: FloatFilter<"LeaveTypeBalance"> | number
+    usedDays?: FloatFilter<"LeaveTypeBalance"> | number
+    createdAt?: DateTimeFilter<"LeaveTypeBalance"> | Date | string
+    updatedAt?: DateTimeFilter<"LeaveTypeBalance"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+    leaveType?: XOR<LeaveTypeScalarRelationFilter, LeaveTypeWhereInput>
+  }
+
+  export type LeaveTypeBalanceOrderByWithRelationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    leaveTypeId?: SortOrder
+    grantedDays?: SortOrder
+    usedDays?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    employee?: EmployeeOrderByWithRelationInput
+    leaveType?: LeaveTypeOrderByWithRelationInput
+  }
+
+  export type LeaveTypeBalanceWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    employeeId_leaveTypeId?: LeaveTypeBalanceEmployeeIdLeaveTypeIdCompoundUniqueInput
+    AND?: LeaveTypeBalanceWhereInput | LeaveTypeBalanceWhereInput[]
+    OR?: LeaveTypeBalanceWhereInput[]
+    NOT?: LeaveTypeBalanceWhereInput | LeaveTypeBalanceWhereInput[]
+    employeeId?: StringFilter<"LeaveTypeBalance"> | string
+    leaveTypeId?: StringFilter<"LeaveTypeBalance"> | string
+    grantedDays?: FloatFilter<"LeaveTypeBalance"> | number
+    usedDays?: FloatFilter<"LeaveTypeBalance"> | number
+    createdAt?: DateTimeFilter<"LeaveTypeBalance"> | Date | string
+    updatedAt?: DateTimeFilter<"LeaveTypeBalance"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+    leaveType?: XOR<LeaveTypeScalarRelationFilter, LeaveTypeWhereInput>
+  }, "id" | "employeeId_leaveTypeId">
+
+  export type LeaveTypeBalanceOrderByWithAggregationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    leaveTypeId?: SortOrder
+    grantedDays?: SortOrder
+    usedDays?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: LeaveTypeBalanceCountOrderByAggregateInput
+    _avg?: LeaveTypeBalanceAvgOrderByAggregateInput
+    _max?: LeaveTypeBalanceMaxOrderByAggregateInput
+    _min?: LeaveTypeBalanceMinOrderByAggregateInput
+    _sum?: LeaveTypeBalanceSumOrderByAggregateInput
+  }
+
+  export type LeaveTypeBalanceScalarWhereWithAggregatesInput = {
+    AND?: LeaveTypeBalanceScalarWhereWithAggregatesInput | LeaveTypeBalanceScalarWhereWithAggregatesInput[]
+    OR?: LeaveTypeBalanceScalarWhereWithAggregatesInput[]
+    NOT?: LeaveTypeBalanceScalarWhereWithAggregatesInput | LeaveTypeBalanceScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"LeaveTypeBalance"> | string
+    employeeId?: StringWithAggregatesFilter<"LeaveTypeBalance"> | string
+    leaveTypeId?: StringWithAggregatesFilter<"LeaveTypeBalance"> | string
+    grantedDays?: FloatWithAggregatesFilter<"LeaveTypeBalance"> | number
+    usedDays?: FloatWithAggregatesFilter<"LeaveTypeBalance"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"LeaveTypeBalance"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"LeaveTypeBalance"> | Date | string
+  }
+
   export type LeaveTypeWhereInput = {
     AND?: LeaveTypeWhereInput | LeaveTypeWhereInput[]
     OR?: LeaveTypeWhereInput[]
@@ -53286,6 +54673,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"LeaveType"> | Date | string
     updatedAt?: DateTimeFilter<"LeaveType"> | Date | string
     leaveGrantHistories?: LeaveGrantHistoryListRelationFilter
+    leaveTypeBalances?: LeaveTypeBalanceListRelationFilter
   }
 
   export type LeaveTypeOrderByWithRelationInput = {
@@ -53298,6 +54686,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     leaveGrantHistories?: LeaveGrantHistoryOrderByRelationAggregateInput
+    leaveTypeBalances?: LeaveTypeBalanceOrderByRelationAggregateInput
   }
 
   export type LeaveTypeWhereUniqueInput = Prisma.AtLeast<{
@@ -53313,6 +54702,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"LeaveType"> | Date | string
     updatedAt?: DateTimeFilter<"LeaveType"> | Date | string
     leaveGrantHistories?: LeaveGrantHistoryListRelationFilter
+    leaveTypeBalances?: LeaveTypeBalanceListRelationFilter
   }, "id" | "code">
 
   export type LeaveTypeOrderByWithAggregationInput = {
@@ -53912,6 +55302,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateInput = {
@@ -53956,6 +55347,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUpdateInput = {
@@ -54000,6 +55392,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateInput = {
@@ -54044,6 +55437,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateManyInput = {
@@ -57009,6 +58403,74 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type LeaveTypeBalanceCreateInput = {
+    id?: string
+    grantedDays?: number
+    usedDays?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutLeaveTypeBalancesInput
+    leaveType: LeaveTypeCreateNestedOneWithoutLeaveTypeBalancesInput
+  }
+
+  export type LeaveTypeBalanceUncheckedCreateInput = {
+    id?: string
+    employeeId: string
+    leaveTypeId: string
+    grantedDays?: number
+    usedDays?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LeaveTypeBalanceUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    grantedDays?: FloatFieldUpdateOperationsInput | number
+    usedDays?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutLeaveTypeBalancesNestedInput
+    leaveType?: LeaveTypeUpdateOneRequiredWithoutLeaveTypeBalancesNestedInput
+  }
+
+  export type LeaveTypeBalanceUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    leaveTypeId?: StringFieldUpdateOperationsInput | string
+    grantedDays?: FloatFieldUpdateOperationsInput | number
+    usedDays?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LeaveTypeBalanceCreateManyInput = {
+    id?: string
+    employeeId: string
+    leaveTypeId: string
+    grantedDays?: number
+    usedDays?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LeaveTypeBalanceUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    grantedDays?: FloatFieldUpdateOperationsInput | number
+    usedDays?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LeaveTypeBalanceUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    leaveTypeId?: StringFieldUpdateOperationsInput | string
+    grantedDays?: FloatFieldUpdateOperationsInput | number
+    usedDays?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type LeaveTypeCreateInput = {
     id?: string
     code: string
@@ -57019,6 +58481,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutLeaveTypeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutLeaveTypeInput
   }
 
   export type LeaveTypeUncheckedCreateInput = {
@@ -57031,6 +58494,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutLeaveTypeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutLeaveTypeInput
   }
 
   export type LeaveTypeUpdateInput = {
@@ -57043,6 +58507,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutLeaveTypeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutLeaveTypeNestedInput
   }
 
   export type LeaveTypeUncheckedUpdateInput = {
@@ -57055,6 +58520,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutLeaveTypeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutLeaveTypeNestedInput
   }
 
   export type LeaveTypeCreateManyInput = {
@@ -57820,6 +59286,12 @@ export namespace Prisma {
     isNot?: RetirementCertificateWhereInput | null
   }
 
+  export type LeaveTypeBalanceListRelationFilter = {
+    every?: LeaveTypeBalanceWhereInput
+    some?: LeaveTypeBalanceWhereInput
+    none?: LeaveTypeBalanceWhereInput
+  }
+
   export type EmployeeCertificationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -57853,6 +59325,10 @@ export namespace Prisma {
   }
 
   export type LoanedAssetOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type LeaveTypeBalanceOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -59809,6 +61285,56 @@ export namespace Prisma {
     sortOrder?: SortOrder
   }
 
+  export type LeaveTypeScalarRelationFilter = {
+    is?: LeaveTypeWhereInput
+    isNot?: LeaveTypeWhereInput
+  }
+
+  export type LeaveTypeBalanceEmployeeIdLeaveTypeIdCompoundUniqueInput = {
+    employeeId: string
+    leaveTypeId: string
+  }
+
+  export type LeaveTypeBalanceCountOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    leaveTypeId?: SortOrder
+    grantedDays?: SortOrder
+    usedDays?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type LeaveTypeBalanceAvgOrderByAggregateInput = {
+    grantedDays?: SortOrder
+    usedDays?: SortOrder
+  }
+
+  export type LeaveTypeBalanceMaxOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    leaveTypeId?: SortOrder
+    grantedDays?: SortOrder
+    usedDays?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type LeaveTypeBalanceMinOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    leaveTypeId?: SortOrder
+    grantedDays?: SortOrder
+    usedDays?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type LeaveTypeBalanceSumOrderByAggregateInput = {
+    grantedDays?: SortOrder
+    usedDays?: SortOrder
+  }
+
   export type LeaveTypeCountOrderByAggregateInput = {
     id?: SortOrder
     code?: SortOrder
@@ -60294,6 +61820,13 @@ export namespace Prisma {
     connect?: RetirementCertificateWhereUniqueInput
   }
 
+  export type LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<LeaveTypeBalanceCreateWithoutEmployeeInput, LeaveTypeBalanceUncheckedCreateWithoutEmployeeInput> | LeaveTypeBalanceCreateWithoutEmployeeInput[] | LeaveTypeBalanceUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: LeaveTypeBalanceCreateOrConnectWithoutEmployeeInput | LeaveTypeBalanceCreateOrConnectWithoutEmployeeInput[]
+    createMany?: LeaveTypeBalanceCreateManyEmployeeInputEnvelope
+    connect?: LeaveTypeBalanceWhereUniqueInput | LeaveTypeBalanceWhereUniqueInput[]
+  }
+
   export type EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput = {
     create?: XOR<EmployeeCertificationCreateWithoutEmployeeInput, EmployeeCertificationUncheckedCreateWithoutEmployeeInput> | EmployeeCertificationCreateWithoutEmployeeInput[] | EmployeeCertificationUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutEmployeeInput | EmployeeCertificationCreateOrConnectWithoutEmployeeInput[]
@@ -60398,6 +61931,13 @@ export namespace Prisma {
     create?: XOR<RetirementCertificateCreateWithoutEmployeeInput, RetirementCertificateUncheckedCreateWithoutEmployeeInput>
     connectOrCreate?: RetirementCertificateCreateOrConnectWithoutEmployeeInput
     connect?: RetirementCertificateWhereUniqueInput
+  }
+
+  export type LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<LeaveTypeBalanceCreateWithoutEmployeeInput, LeaveTypeBalanceUncheckedCreateWithoutEmployeeInput> | LeaveTypeBalanceCreateWithoutEmployeeInput[] | LeaveTypeBalanceUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: LeaveTypeBalanceCreateOrConnectWithoutEmployeeInput | LeaveTypeBalanceCreateOrConnectWithoutEmployeeInput[]
+    createMany?: LeaveTypeBalanceCreateManyEmployeeInputEnvelope
+    connect?: LeaveTypeBalanceWhereUniqueInput | LeaveTypeBalanceWhereUniqueInput[]
   }
 
   export type NullableEnumGenderFieldUpdateOperationsInput = {
@@ -60632,6 +62172,20 @@ export namespace Prisma {
     update?: XOR<XOR<RetirementCertificateUpdateToOneWithWhereWithoutEmployeeInput, RetirementCertificateUpdateWithoutEmployeeInput>, RetirementCertificateUncheckedUpdateWithoutEmployeeInput>
   }
 
+  export type LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<LeaveTypeBalanceCreateWithoutEmployeeInput, LeaveTypeBalanceUncheckedCreateWithoutEmployeeInput> | LeaveTypeBalanceCreateWithoutEmployeeInput[] | LeaveTypeBalanceUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: LeaveTypeBalanceCreateOrConnectWithoutEmployeeInput | LeaveTypeBalanceCreateOrConnectWithoutEmployeeInput[]
+    upsert?: LeaveTypeBalanceUpsertWithWhereUniqueWithoutEmployeeInput | LeaveTypeBalanceUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: LeaveTypeBalanceCreateManyEmployeeInputEnvelope
+    set?: LeaveTypeBalanceWhereUniqueInput | LeaveTypeBalanceWhereUniqueInput[]
+    disconnect?: LeaveTypeBalanceWhereUniqueInput | LeaveTypeBalanceWhereUniqueInput[]
+    delete?: LeaveTypeBalanceWhereUniqueInput | LeaveTypeBalanceWhereUniqueInput[]
+    connect?: LeaveTypeBalanceWhereUniqueInput | LeaveTypeBalanceWhereUniqueInput[]
+    update?: LeaveTypeBalanceUpdateWithWhereUniqueWithoutEmployeeInput | LeaveTypeBalanceUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: LeaveTypeBalanceUpdateManyWithWhereWithoutEmployeeInput | LeaveTypeBalanceUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: LeaveTypeBalanceScalarWhereInput | LeaveTypeBalanceScalarWhereInput[]
+  }
+
   export type EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput = {
     create?: XOR<EmployeeCertificationCreateWithoutEmployeeInput, EmployeeCertificationUncheckedCreateWithoutEmployeeInput> | EmployeeCertificationCreateWithoutEmployeeInput[] | EmployeeCertificationUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutEmployeeInput | EmployeeCertificationCreateOrConnectWithoutEmployeeInput[]
@@ -60830,6 +62384,20 @@ export namespace Prisma {
     delete?: RetirementCertificateWhereInput | boolean
     connect?: RetirementCertificateWhereUniqueInput
     update?: XOR<XOR<RetirementCertificateUpdateToOneWithWhereWithoutEmployeeInput, RetirementCertificateUpdateWithoutEmployeeInput>, RetirementCertificateUncheckedUpdateWithoutEmployeeInput>
+  }
+
+  export type LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<LeaveTypeBalanceCreateWithoutEmployeeInput, LeaveTypeBalanceUncheckedCreateWithoutEmployeeInput> | LeaveTypeBalanceCreateWithoutEmployeeInput[] | LeaveTypeBalanceUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: LeaveTypeBalanceCreateOrConnectWithoutEmployeeInput | LeaveTypeBalanceCreateOrConnectWithoutEmployeeInput[]
+    upsert?: LeaveTypeBalanceUpsertWithWhereUniqueWithoutEmployeeInput | LeaveTypeBalanceUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: LeaveTypeBalanceCreateManyEmployeeInputEnvelope
+    set?: LeaveTypeBalanceWhereUniqueInput | LeaveTypeBalanceWhereUniqueInput[]
+    disconnect?: LeaveTypeBalanceWhereUniqueInput | LeaveTypeBalanceWhereUniqueInput[]
+    delete?: LeaveTypeBalanceWhereUniqueInput | LeaveTypeBalanceWhereUniqueInput[]
+    connect?: LeaveTypeBalanceWhereUniqueInput | LeaveTypeBalanceWhereUniqueInput[]
+    update?: LeaveTypeBalanceUpdateWithWhereUniqueWithoutEmployeeInput | LeaveTypeBalanceUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: LeaveTypeBalanceUpdateManyWithWhereWithoutEmployeeInput | LeaveTypeBalanceUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: LeaveTypeBalanceScalarWhereInput | LeaveTypeBalanceScalarWhereInput[]
   }
 
   export type EmployeeCreateNestedOneWithoutDependentsInput = {
@@ -61638,6 +63206,34 @@ export namespace Prisma {
     update?: XOR<XOR<EmploymentContractUpdateToOneWithWhereWithoutWorkSchedulesInput, EmploymentContractUpdateWithoutWorkSchedulesInput>, EmploymentContractUncheckedUpdateWithoutWorkSchedulesInput>
   }
 
+  export type EmployeeCreateNestedOneWithoutLeaveTypeBalancesInput = {
+    create?: XOR<EmployeeCreateWithoutLeaveTypeBalancesInput, EmployeeUncheckedCreateWithoutLeaveTypeBalancesInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutLeaveTypeBalancesInput
+    connect?: EmployeeWhereUniqueInput
+  }
+
+  export type LeaveTypeCreateNestedOneWithoutLeaveTypeBalancesInput = {
+    create?: XOR<LeaveTypeCreateWithoutLeaveTypeBalancesInput, LeaveTypeUncheckedCreateWithoutLeaveTypeBalancesInput>
+    connectOrCreate?: LeaveTypeCreateOrConnectWithoutLeaveTypeBalancesInput
+    connect?: LeaveTypeWhereUniqueInput
+  }
+
+  export type EmployeeUpdateOneRequiredWithoutLeaveTypeBalancesNestedInput = {
+    create?: XOR<EmployeeCreateWithoutLeaveTypeBalancesInput, EmployeeUncheckedCreateWithoutLeaveTypeBalancesInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutLeaveTypeBalancesInput
+    upsert?: EmployeeUpsertWithoutLeaveTypeBalancesInput
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutLeaveTypeBalancesInput, EmployeeUpdateWithoutLeaveTypeBalancesInput>, EmployeeUncheckedUpdateWithoutLeaveTypeBalancesInput>
+  }
+
+  export type LeaveTypeUpdateOneRequiredWithoutLeaveTypeBalancesNestedInput = {
+    create?: XOR<LeaveTypeCreateWithoutLeaveTypeBalancesInput, LeaveTypeUncheckedCreateWithoutLeaveTypeBalancesInput>
+    connectOrCreate?: LeaveTypeCreateOrConnectWithoutLeaveTypeBalancesInput
+    upsert?: LeaveTypeUpsertWithoutLeaveTypeBalancesInput
+    connect?: LeaveTypeWhereUniqueInput
+    update?: XOR<XOR<LeaveTypeUpdateToOneWithWhereWithoutLeaveTypeBalancesInput, LeaveTypeUpdateWithoutLeaveTypeBalancesInput>, LeaveTypeUncheckedUpdateWithoutLeaveTypeBalancesInput>
+  }
+
   export type LeaveGrantHistoryCreateNestedManyWithoutLeaveTypeInput = {
     create?: XOR<LeaveGrantHistoryCreateWithoutLeaveTypeInput, LeaveGrantHistoryUncheckedCreateWithoutLeaveTypeInput> | LeaveGrantHistoryCreateWithoutLeaveTypeInput[] | LeaveGrantHistoryUncheckedCreateWithoutLeaveTypeInput[]
     connectOrCreate?: LeaveGrantHistoryCreateOrConnectWithoutLeaveTypeInput | LeaveGrantHistoryCreateOrConnectWithoutLeaveTypeInput[]
@@ -61645,11 +63241,25 @@ export namespace Prisma {
     connect?: LeaveGrantHistoryWhereUniqueInput | LeaveGrantHistoryWhereUniqueInput[]
   }
 
+  export type LeaveTypeBalanceCreateNestedManyWithoutLeaveTypeInput = {
+    create?: XOR<LeaveTypeBalanceCreateWithoutLeaveTypeInput, LeaveTypeBalanceUncheckedCreateWithoutLeaveTypeInput> | LeaveTypeBalanceCreateWithoutLeaveTypeInput[] | LeaveTypeBalanceUncheckedCreateWithoutLeaveTypeInput[]
+    connectOrCreate?: LeaveTypeBalanceCreateOrConnectWithoutLeaveTypeInput | LeaveTypeBalanceCreateOrConnectWithoutLeaveTypeInput[]
+    createMany?: LeaveTypeBalanceCreateManyLeaveTypeInputEnvelope
+    connect?: LeaveTypeBalanceWhereUniqueInput | LeaveTypeBalanceWhereUniqueInput[]
+  }
+
   export type LeaveGrantHistoryUncheckedCreateNestedManyWithoutLeaveTypeInput = {
     create?: XOR<LeaveGrantHistoryCreateWithoutLeaveTypeInput, LeaveGrantHistoryUncheckedCreateWithoutLeaveTypeInput> | LeaveGrantHistoryCreateWithoutLeaveTypeInput[] | LeaveGrantHistoryUncheckedCreateWithoutLeaveTypeInput[]
     connectOrCreate?: LeaveGrantHistoryCreateOrConnectWithoutLeaveTypeInput | LeaveGrantHistoryCreateOrConnectWithoutLeaveTypeInput[]
     createMany?: LeaveGrantHistoryCreateManyLeaveTypeInputEnvelope
     connect?: LeaveGrantHistoryWhereUniqueInput | LeaveGrantHistoryWhereUniqueInput[]
+  }
+
+  export type LeaveTypeBalanceUncheckedCreateNestedManyWithoutLeaveTypeInput = {
+    create?: XOR<LeaveTypeBalanceCreateWithoutLeaveTypeInput, LeaveTypeBalanceUncheckedCreateWithoutLeaveTypeInput> | LeaveTypeBalanceCreateWithoutLeaveTypeInput[] | LeaveTypeBalanceUncheckedCreateWithoutLeaveTypeInput[]
+    connectOrCreate?: LeaveTypeBalanceCreateOrConnectWithoutLeaveTypeInput | LeaveTypeBalanceCreateOrConnectWithoutLeaveTypeInput[]
+    createMany?: LeaveTypeBalanceCreateManyLeaveTypeInputEnvelope
+    connect?: LeaveTypeBalanceWhereUniqueInput | LeaveTypeBalanceWhereUniqueInput[]
   }
 
   export type LeaveGrantHistoryUpdateManyWithoutLeaveTypeNestedInput = {
@@ -61666,6 +63276,20 @@ export namespace Prisma {
     deleteMany?: LeaveGrantHistoryScalarWhereInput | LeaveGrantHistoryScalarWhereInput[]
   }
 
+  export type LeaveTypeBalanceUpdateManyWithoutLeaveTypeNestedInput = {
+    create?: XOR<LeaveTypeBalanceCreateWithoutLeaveTypeInput, LeaveTypeBalanceUncheckedCreateWithoutLeaveTypeInput> | LeaveTypeBalanceCreateWithoutLeaveTypeInput[] | LeaveTypeBalanceUncheckedCreateWithoutLeaveTypeInput[]
+    connectOrCreate?: LeaveTypeBalanceCreateOrConnectWithoutLeaveTypeInput | LeaveTypeBalanceCreateOrConnectWithoutLeaveTypeInput[]
+    upsert?: LeaveTypeBalanceUpsertWithWhereUniqueWithoutLeaveTypeInput | LeaveTypeBalanceUpsertWithWhereUniqueWithoutLeaveTypeInput[]
+    createMany?: LeaveTypeBalanceCreateManyLeaveTypeInputEnvelope
+    set?: LeaveTypeBalanceWhereUniqueInput | LeaveTypeBalanceWhereUniqueInput[]
+    disconnect?: LeaveTypeBalanceWhereUniqueInput | LeaveTypeBalanceWhereUniqueInput[]
+    delete?: LeaveTypeBalanceWhereUniqueInput | LeaveTypeBalanceWhereUniqueInput[]
+    connect?: LeaveTypeBalanceWhereUniqueInput | LeaveTypeBalanceWhereUniqueInput[]
+    update?: LeaveTypeBalanceUpdateWithWhereUniqueWithoutLeaveTypeInput | LeaveTypeBalanceUpdateWithWhereUniqueWithoutLeaveTypeInput[]
+    updateMany?: LeaveTypeBalanceUpdateManyWithWhereWithoutLeaveTypeInput | LeaveTypeBalanceUpdateManyWithWhereWithoutLeaveTypeInput[]
+    deleteMany?: LeaveTypeBalanceScalarWhereInput | LeaveTypeBalanceScalarWhereInput[]
+  }
+
   export type LeaveGrantHistoryUncheckedUpdateManyWithoutLeaveTypeNestedInput = {
     create?: XOR<LeaveGrantHistoryCreateWithoutLeaveTypeInput, LeaveGrantHistoryUncheckedCreateWithoutLeaveTypeInput> | LeaveGrantHistoryCreateWithoutLeaveTypeInput[] | LeaveGrantHistoryUncheckedCreateWithoutLeaveTypeInput[]
     connectOrCreate?: LeaveGrantHistoryCreateOrConnectWithoutLeaveTypeInput | LeaveGrantHistoryCreateOrConnectWithoutLeaveTypeInput[]
@@ -61678,6 +63302,20 @@ export namespace Prisma {
     update?: LeaveGrantHistoryUpdateWithWhereUniqueWithoutLeaveTypeInput | LeaveGrantHistoryUpdateWithWhereUniqueWithoutLeaveTypeInput[]
     updateMany?: LeaveGrantHistoryUpdateManyWithWhereWithoutLeaveTypeInput | LeaveGrantHistoryUpdateManyWithWhereWithoutLeaveTypeInput[]
     deleteMany?: LeaveGrantHistoryScalarWhereInput | LeaveGrantHistoryScalarWhereInput[]
+  }
+
+  export type LeaveTypeBalanceUncheckedUpdateManyWithoutLeaveTypeNestedInput = {
+    create?: XOR<LeaveTypeBalanceCreateWithoutLeaveTypeInput, LeaveTypeBalanceUncheckedCreateWithoutLeaveTypeInput> | LeaveTypeBalanceCreateWithoutLeaveTypeInput[] | LeaveTypeBalanceUncheckedCreateWithoutLeaveTypeInput[]
+    connectOrCreate?: LeaveTypeBalanceCreateOrConnectWithoutLeaveTypeInput | LeaveTypeBalanceCreateOrConnectWithoutLeaveTypeInput[]
+    upsert?: LeaveTypeBalanceUpsertWithWhereUniqueWithoutLeaveTypeInput | LeaveTypeBalanceUpsertWithWhereUniqueWithoutLeaveTypeInput[]
+    createMany?: LeaveTypeBalanceCreateManyLeaveTypeInputEnvelope
+    set?: LeaveTypeBalanceWhereUniqueInput | LeaveTypeBalanceWhereUniqueInput[]
+    disconnect?: LeaveTypeBalanceWhereUniqueInput | LeaveTypeBalanceWhereUniqueInput[]
+    delete?: LeaveTypeBalanceWhereUniqueInput | LeaveTypeBalanceWhereUniqueInput[]
+    connect?: LeaveTypeBalanceWhereUniqueInput | LeaveTypeBalanceWhereUniqueInput[]
+    update?: LeaveTypeBalanceUpdateWithWhereUniqueWithoutLeaveTypeInput | LeaveTypeBalanceUpdateWithWhereUniqueWithoutLeaveTypeInput[]
+    updateMany?: LeaveTypeBalanceUpdateManyWithWhereWithoutLeaveTypeInput | LeaveTypeBalanceUpdateManyWithWhereWithoutLeaveTypeInput[]
+    deleteMany?: LeaveTypeBalanceScalarWhereInput | LeaveTypeBalanceScalarWhereInput[]
   }
 
   export type EmployeeCreateNestedOneWithoutRetirementChecklistInput = {
@@ -62240,6 +63878,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutUserInput = {
@@ -62283,6 +63922,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutUserInput = {
@@ -62386,6 +64026,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutUserInput = {
@@ -62429,6 +64070,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeRequestUpsertWithWhereUniqueWithoutUserInput = {
@@ -62567,6 +64209,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDepartmentInput = {
@@ -62610,6 +64253,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDepartmentInput = {
@@ -63337,6 +64981,34 @@ export namespace Prisma {
     create: XOR<RetirementCertificateCreateWithoutEmployeeInput, RetirementCertificateUncheckedCreateWithoutEmployeeInput>
   }
 
+  export type LeaveTypeBalanceCreateWithoutEmployeeInput = {
+    id?: string
+    grantedDays?: number
+    usedDays?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    leaveType: LeaveTypeCreateNestedOneWithoutLeaveTypeBalancesInput
+  }
+
+  export type LeaveTypeBalanceUncheckedCreateWithoutEmployeeInput = {
+    id?: string
+    leaveTypeId: string
+    grantedDays?: number
+    usedDays?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LeaveTypeBalanceCreateOrConnectWithoutEmployeeInput = {
+    where: LeaveTypeBalanceWhereUniqueInput
+    create: XOR<LeaveTypeBalanceCreateWithoutEmployeeInput, LeaveTypeBalanceUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type LeaveTypeBalanceCreateManyEmployeeInputEnvelope = {
+    data: LeaveTypeBalanceCreateManyEmployeeInput | LeaveTypeBalanceCreateManyEmployeeInput[]
+    skipDuplicates?: boolean
+  }
+
   export type DepartmentUpsertWithoutEmployeesInput = {
     update: XOR<DepartmentUpdateWithoutEmployeesInput, DepartmentUncheckedUpdateWithoutEmployeesInput>
     create: XOR<DepartmentCreateWithoutEmployeesInput, DepartmentUncheckedCreateWithoutEmployeesInput>
@@ -63962,6 +65634,35 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type LeaveTypeBalanceUpsertWithWhereUniqueWithoutEmployeeInput = {
+    where: LeaveTypeBalanceWhereUniqueInput
+    update: XOR<LeaveTypeBalanceUpdateWithoutEmployeeInput, LeaveTypeBalanceUncheckedUpdateWithoutEmployeeInput>
+    create: XOR<LeaveTypeBalanceCreateWithoutEmployeeInput, LeaveTypeBalanceUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type LeaveTypeBalanceUpdateWithWhereUniqueWithoutEmployeeInput = {
+    where: LeaveTypeBalanceWhereUniqueInput
+    data: XOR<LeaveTypeBalanceUpdateWithoutEmployeeInput, LeaveTypeBalanceUncheckedUpdateWithoutEmployeeInput>
+  }
+
+  export type LeaveTypeBalanceUpdateManyWithWhereWithoutEmployeeInput = {
+    where: LeaveTypeBalanceScalarWhereInput
+    data: XOR<LeaveTypeBalanceUpdateManyMutationInput, LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeInput>
+  }
+
+  export type LeaveTypeBalanceScalarWhereInput = {
+    AND?: LeaveTypeBalanceScalarWhereInput | LeaveTypeBalanceScalarWhereInput[]
+    OR?: LeaveTypeBalanceScalarWhereInput[]
+    NOT?: LeaveTypeBalanceScalarWhereInput | LeaveTypeBalanceScalarWhereInput[]
+    id?: StringFilter<"LeaveTypeBalance"> | string
+    employeeId?: StringFilter<"LeaveTypeBalance"> | string
+    leaveTypeId?: StringFilter<"LeaveTypeBalance"> | string
+    grantedDays?: FloatFilter<"LeaveTypeBalance"> | number
+    usedDays?: FloatFilter<"LeaveTypeBalance"> | number
+    createdAt?: DateTimeFilter<"LeaveTypeBalance"> | Date | string
+    updatedAt?: DateTimeFilter<"LeaveTypeBalance"> | Date | string
+  }
+
   export type EmployeeCreateWithoutDependentsInput = {
     id?: string
     employeeNo: string
@@ -64003,6 +65704,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDependentsInput = {
@@ -64046,6 +65748,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDependentsInput = {
@@ -64141,6 +65844,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDependentsInput = {
@@ -64184,6 +65888,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmploymentContractConsentUpsertWithWhereUniqueWithoutDependentInput = {
@@ -64260,6 +65965,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmploymentHistoriesInput = {
@@ -64303,6 +66009,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmploymentHistoriesInput = {
@@ -64362,6 +66069,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmploymentHistoriesInput = {
@@ -64405,6 +66113,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmployeeMyNumberInput = {
@@ -64448,6 +66157,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmployeeMyNumberInput = {
@@ -64491,6 +66201,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmployeeMyNumberInput = {
@@ -64550,6 +66261,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmployeeMyNumberInput = {
@@ -64593,6 +66305,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmployeeSalaryInput = {
@@ -64636,6 +66349,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmployeeSalaryInput = {
@@ -64679,6 +66393,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmployeeSalaryInput = {
@@ -64738,6 +66453,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmployeeSalaryInput = {
@@ -64781,6 +66497,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutSalaryHistoriesInput = {
@@ -64824,6 +66541,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutSalaryHistoriesInput = {
@@ -64867,6 +66585,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutSalaryHistoriesInput = {
@@ -64926,6 +66645,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutSalaryHistoriesInput = {
@@ -64969,6 +66689,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutLeaveGrantHistoriesInput = {
@@ -65012,6 +66733,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLeaveGrantHistoriesInput = {
@@ -65055,6 +66777,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLeaveGrantHistoriesInput = {
@@ -65071,6 +66794,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutLeaveTypeInput
   }
 
   export type LeaveTypeUncheckedCreateWithoutLeaveGrantHistoriesInput = {
@@ -65082,6 +66806,7 @@ export namespace Prisma {
     isActive?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutLeaveTypeInput
   }
 
   export type LeaveTypeCreateOrConnectWithoutLeaveGrantHistoriesInput = {
@@ -65141,6 +66866,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLeaveGrantHistoriesInput = {
@@ -65184,6 +66910,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type LeaveTypeUpsertWithoutLeaveGrantHistoriesInput = {
@@ -65206,6 +66933,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutLeaveTypeNestedInput
   }
 
   export type LeaveTypeUncheckedUpdateWithoutLeaveGrantHistoriesInput = {
@@ -65217,6 +66945,7 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutLeaveTypeNestedInput
   }
 
   export type EmployeeCreateWithoutLeaveBalanceInput = {
@@ -65260,6 +66989,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLeaveBalanceInput = {
@@ -65303,6 +67033,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLeaveBalanceInput = {
@@ -65362,6 +67093,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLeaveBalanceInput = {
@@ -65405,6 +67137,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutRequestsInput = {
@@ -65448,6 +67181,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutRequestsInput = {
@@ -65491,6 +67225,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutRequestsInput = {
@@ -65631,6 +67366,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutRequestsInput = {
@@ -65674,6 +67410,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type UserUpsertWithoutRequestsInput = {
@@ -66042,6 +67779,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutCertificationsInput = {
@@ -66085,6 +67823,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutCertificationsInput = {
@@ -66197,6 +67936,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutCertificationsInput = {
@@ -66240,6 +67980,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCertificationAttachmentUpsertWithWhereUniqueWithoutEmployeeCertificationInput = {
@@ -66443,6 +68184,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutBankAccountInput = {
@@ -66486,6 +68228,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutBankAccountInput = {
@@ -66573,6 +68316,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutBankAccountInput = {
@@ -66616,6 +68360,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeBankAttachmentUpsertWithWhereUniqueWithoutBankAccountInput = {
@@ -66780,6 +68525,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDependentRequestsInput = {
@@ -66823,6 +68569,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDependentRequestsInput = {
@@ -66910,6 +68657,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDependentRequestsInput = {
@@ -66953,6 +68701,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type DependentRequestAttachmentUpsertWithWhereUniqueWithoutDependentRequestInput = {
@@ -67129,6 +68878,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutProfileChangeRequestsInput = {
@@ -67172,6 +68922,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutProfileChangeRequestsInput = {
@@ -67231,6 +68982,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutProfileChangeRequestsInput = {
@@ -67274,6 +69026,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmploymentContractsInput = {
@@ -67317,6 +69070,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmploymentContractsInput = {
@@ -67360,6 +69114,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmploymentContractsInput = {
@@ -67487,6 +69242,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmploymentContractsInput = {
@@ -67530,6 +69286,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmploymentContractConsentUpsertWithWhereUniqueWithoutEmploymentContractInput = {
@@ -68027,6 +69784,262 @@ export namespace Prisma {
     employmentContractConsents?: EmploymentContractConsentUncheckedUpdateManyWithoutEmploymentContractNestedInput
   }
 
+  export type EmployeeCreateWithoutLeaveTypeBalancesInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    emergencyContact?: string | null
+    department?: DepartmentCreateNestedOneWithoutEmployeesInput
+    user?: UserCreateNestedOneWithoutEmployeeInput
+    certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+  }
+
+  export type EmployeeUncheckedCreateWithoutLeaveTypeBalancesInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    departmentId?: string | null
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    userId?: string | null
+    emergencyContact?: string | null
+    certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+  }
+
+  export type EmployeeCreateOrConnectWithoutLeaveTypeBalancesInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutLeaveTypeBalancesInput, EmployeeUncheckedCreateWithoutLeaveTypeBalancesInput>
+  }
+
+  export type LeaveTypeCreateWithoutLeaveTypeBalancesInput = {
+    id?: string
+    code: string
+    name: string
+    isPaid?: boolean
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutLeaveTypeInput
+  }
+
+  export type LeaveTypeUncheckedCreateWithoutLeaveTypeBalancesInput = {
+    id?: string
+    code: string
+    name: string
+    isPaid?: boolean
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutLeaveTypeInput
+  }
+
+  export type LeaveTypeCreateOrConnectWithoutLeaveTypeBalancesInput = {
+    where: LeaveTypeWhereUniqueInput
+    create: XOR<LeaveTypeCreateWithoutLeaveTypeBalancesInput, LeaveTypeUncheckedCreateWithoutLeaveTypeBalancesInput>
+  }
+
+  export type EmployeeUpsertWithoutLeaveTypeBalancesInput = {
+    update: XOR<EmployeeUpdateWithoutLeaveTypeBalancesInput, EmployeeUncheckedUpdateWithoutLeaveTypeBalancesInput>
+    create: XOR<EmployeeCreateWithoutLeaveTypeBalancesInput, EmployeeUncheckedCreateWithoutLeaveTypeBalancesInput>
+    where?: EmployeeWhereInput
+  }
+
+  export type EmployeeUpdateToOneWithWhereWithoutLeaveTypeBalancesInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutLeaveTypeBalancesInput, EmployeeUncheckedUpdateWithoutLeaveTypeBalancesInput>
+  }
+
+  export type EmployeeUpdateWithoutLeaveTypeBalancesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: DepartmentUpdateOneWithoutEmployeesNestedInput
+    user?: UserUpdateOneWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateWithoutLeaveTypeBalancesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+  }
+
+  export type LeaveTypeUpsertWithoutLeaveTypeBalancesInput = {
+    update: XOR<LeaveTypeUpdateWithoutLeaveTypeBalancesInput, LeaveTypeUncheckedUpdateWithoutLeaveTypeBalancesInput>
+    create: XOR<LeaveTypeCreateWithoutLeaveTypeBalancesInput, LeaveTypeUncheckedCreateWithoutLeaveTypeBalancesInput>
+    where?: LeaveTypeWhereInput
+  }
+
+  export type LeaveTypeUpdateToOneWithWhereWithoutLeaveTypeBalancesInput = {
+    where?: LeaveTypeWhereInput
+    data: XOR<LeaveTypeUpdateWithoutLeaveTypeBalancesInput, LeaveTypeUncheckedUpdateWithoutLeaveTypeBalancesInput>
+  }
+
+  export type LeaveTypeUpdateWithoutLeaveTypeBalancesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isPaid?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutLeaveTypeNestedInput
+  }
+
+  export type LeaveTypeUncheckedUpdateWithoutLeaveTypeBalancesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    isPaid?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutLeaveTypeNestedInput
+  }
+
   export type LeaveGrantHistoryCreateWithoutLeaveTypeInput = {
     id?: string
     grantDate: Date | string
@@ -68057,6 +70070,34 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type LeaveTypeBalanceCreateWithoutLeaveTypeInput = {
+    id?: string
+    grantedDays?: number
+    usedDays?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutLeaveTypeBalancesInput
+  }
+
+  export type LeaveTypeBalanceUncheckedCreateWithoutLeaveTypeInput = {
+    id?: string
+    employeeId: string
+    grantedDays?: number
+    usedDays?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LeaveTypeBalanceCreateOrConnectWithoutLeaveTypeInput = {
+    where: LeaveTypeBalanceWhereUniqueInput
+    create: XOR<LeaveTypeBalanceCreateWithoutLeaveTypeInput, LeaveTypeBalanceUncheckedCreateWithoutLeaveTypeInput>
+  }
+
+  export type LeaveTypeBalanceCreateManyLeaveTypeInputEnvelope = {
+    data: LeaveTypeBalanceCreateManyLeaveTypeInput | LeaveTypeBalanceCreateManyLeaveTypeInput[]
+    skipDuplicates?: boolean
+  }
+
   export type LeaveGrantHistoryUpsertWithWhereUniqueWithoutLeaveTypeInput = {
     where: LeaveGrantHistoryWhereUniqueInput
     update: XOR<LeaveGrantHistoryUpdateWithoutLeaveTypeInput, LeaveGrantHistoryUncheckedUpdateWithoutLeaveTypeInput>
@@ -68071,6 +70112,22 @@ export namespace Prisma {
   export type LeaveGrantHistoryUpdateManyWithWhereWithoutLeaveTypeInput = {
     where: LeaveGrantHistoryScalarWhereInput
     data: XOR<LeaveGrantHistoryUpdateManyMutationInput, LeaveGrantHistoryUncheckedUpdateManyWithoutLeaveTypeInput>
+  }
+
+  export type LeaveTypeBalanceUpsertWithWhereUniqueWithoutLeaveTypeInput = {
+    where: LeaveTypeBalanceWhereUniqueInput
+    update: XOR<LeaveTypeBalanceUpdateWithoutLeaveTypeInput, LeaveTypeBalanceUncheckedUpdateWithoutLeaveTypeInput>
+    create: XOR<LeaveTypeBalanceCreateWithoutLeaveTypeInput, LeaveTypeBalanceUncheckedCreateWithoutLeaveTypeInput>
+  }
+
+  export type LeaveTypeBalanceUpdateWithWhereUniqueWithoutLeaveTypeInput = {
+    where: LeaveTypeBalanceWhereUniqueInput
+    data: XOR<LeaveTypeBalanceUpdateWithoutLeaveTypeInput, LeaveTypeBalanceUncheckedUpdateWithoutLeaveTypeInput>
+  }
+
+  export type LeaveTypeBalanceUpdateManyWithWhereWithoutLeaveTypeInput = {
+    where: LeaveTypeBalanceScalarWhereInput
+    data: XOR<LeaveTypeBalanceUpdateManyMutationInput, LeaveTypeBalanceUncheckedUpdateManyWithoutLeaveTypeInput>
   }
 
   export type EmployeeCreateWithoutRetirementChecklistInput = {
@@ -68114,6 +70171,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutRetirementChecklistInput = {
@@ -68157,6 +70215,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutRetirementChecklistInput = {
@@ -68216,6 +70275,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutRetirementChecklistInput = {
@@ -68259,6 +70319,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutLoanedAssetsInput = {
@@ -68302,6 +70363,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLoanedAssetsInput = {
@@ -68345,6 +70407,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLoanedAssetsInput = {
@@ -68404,6 +70467,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLoanedAssetsInput = {
@@ -68447,6 +70511,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutRetirementCertificateInput = {
@@ -68490,6 +70555,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutRetirementCertificateInput = {
@@ -68533,6 +70599,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutRetirementCertificateInput = {
@@ -68592,6 +70659,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutRetirementCertificateInput = {
@@ -68635,6 +70703,7 @@ export namespace Prisma {
     employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeRequestCreateManyUserInput = {
@@ -68809,6 +70878,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDepartmentInput = {
@@ -68852,6 +70922,7 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateManyWithoutDepartmentInput = {
@@ -69035,6 +71106,15 @@ export namespace Prisma {
     returnedAt?: Date | string | null
     returnedBy?: string | null
     memo?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type LeaveTypeBalanceCreateManyEmployeeInput = {
+    id?: string
+    leaveTypeId: string
+    grantedDays?: number
+    usedDays?: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -69527,6 +71607,33 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type LeaveTypeBalanceUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    grantedDays?: FloatFieldUpdateOperationsInput | number
+    usedDays?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    leaveType?: LeaveTypeUpdateOneRequiredWithoutLeaveTypeBalancesNestedInput
+  }
+
+  export type LeaveTypeBalanceUncheckedUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    leaveTypeId?: StringFieldUpdateOperationsInput | string
+    grantedDays?: FloatFieldUpdateOperationsInput | number
+    usedDays?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    leaveTypeId?: StringFieldUpdateOperationsInput | string
+    grantedDays?: FloatFieldUpdateOperationsInput | number
+    usedDays?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type EmploymentContractConsentCreateManyDependentInput = {
     id?: string
     employmentContractId: string
@@ -69911,6 +72018,15 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
+  export type LeaveTypeBalanceCreateManyLeaveTypeInput = {
+    id?: string
+    employeeId: string
+    grantedDays?: number
+    usedDays?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type LeaveGrantHistoryUpdateWithoutLeaveTypeInput = {
     id?: StringFieldUpdateOperationsInput | string
     grantDate?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -69939,6 +72055,33 @@ export namespace Prisma {
     grantType?: EnumLeaveGrantTypeFieldUpdateOperationsInput | $Enums.LeaveGrantType
     note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LeaveTypeBalanceUpdateWithoutLeaveTypeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    grantedDays?: FloatFieldUpdateOperationsInput | number
+    usedDays?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutLeaveTypeBalancesNestedInput
+  }
+
+  export type LeaveTypeBalanceUncheckedUpdateWithoutLeaveTypeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    grantedDays?: FloatFieldUpdateOperationsInput | number
+    usedDays?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LeaveTypeBalanceUncheckedUpdateManyWithoutLeaveTypeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    grantedDays?: FloatFieldUpdateOperationsInput | number
+    usedDays?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

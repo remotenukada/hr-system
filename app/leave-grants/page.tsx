@@ -106,6 +106,8 @@ async function grantManualLeave(formData: FormData) {
 
   const grantDate = String(formData.get("grantDate") ?? "");
 
+  const leaveTypeId = String(formData.get("leaveTypeId") ?? "");
+
   if (!employeeId || days <= 0) {
     return;
   }
@@ -133,12 +135,40 @@ async function grantManualLeave(formData: FormData) {
   await prisma.leaveGrantHistory.create({
     data: {
       employeeId,
+      leaveTypeId: leaveTypeId || null,
       grantDate: grantDate ? new Date(grantDate) : new Date(),
       grantedDays: days,
       grantType: adjustType === "DEDUCT" ? "MANUAL_DEDUCT" : "MANUAL",
       note,
     },
   });
+
+  if (leaveTypeId) {
+    await prisma.leaveTypeBalance.upsert({
+      where: {
+        employeeId_leaveTypeId: {
+          employeeId,
+          leaveTypeId,
+        },
+      },
+      update: {
+        grantedDays:
+          adjustType === "DEDUCT"
+            ? {
+                decrement: days,
+              }
+            : {
+                increment: days,
+              },
+      },
+      create: {
+        employeeId,
+        leaveTypeId,
+        grantedDays: adjustType === "DEDUCT" ? 0 : days,
+        usedDays: 0,
+      },
+    });
+  }
 
   const updatedBalance = await prisma.leaveBalance.upsert({
     where: {
@@ -284,6 +314,15 @@ export default async function LeaveGrantHistoryPage() {
     },
   });
 
+  const leaveTypes = await prisma.leaveType.findMany({
+    where: {
+      isActive: true,
+    },
+    orderBy: {
+      sortOrder: "asc",
+    },
+  });
+
   const grants = await prisma.leaveGrantHistory.findMany({
     include: {
       employee: true,
@@ -339,6 +378,14 @@ export default async function LeaveGrantHistoryPage() {
             {employees.map((employee) => (
               <option key={employee.id} value={employee.id}>
                 {employee.employeeNo} {employee.lastName} {employee.firstName}
+              </option>
+            ))}
+          </select>
+
+          <select name="leaveTypeId" className="rounded border p-2" required>
+            {leaveTypes.map((leaveType) => (
+              <option key={leaveType.id} value={leaveType.id}>
+                {leaveType.name}
               </option>
             ))}
           </select>

@@ -91,6 +91,7 @@ model Employee {
   retirementChecklist   RetirementChecklist?
   loanedAssets          LoanedAsset[]
   retirementCertificate RetirementCertificate?
+  leaveTypeBalances     LeaveTypeBalance[]
 }
 
 model Dependent {
@@ -780,6 +781,27 @@ model PositionMaster {
   updatedAt DateTime @updatedAt
 }
 
+model LeaveTypeBalance {
+  id String @id @default(uuid())
+
+  employeeId  String
+  leaveTypeId String
+
+  grantedDays Float @default(0)
+  usedDays    Float @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  leaveType LeaveType @relation(fields: [leaveTypeId], references: [id], onDelete: Cascade)
+
+  @@unique([employeeId, leaveTypeId])
+  @@index([employeeId])
+  @@index([leaveTypeId])
+}
+
 model LeaveType {
   id String @id @default(uuid())
 
@@ -797,6 +819,7 @@ model LeaveType {
   updatedAt DateTime @updatedAt
 
   leaveGrantHistories LeaveGrantHistory[]
+  leaveTypeBalances   LeaveTypeBalance[]
 }
 
 enum ConsentMethod {

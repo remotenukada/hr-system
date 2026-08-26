@@ -590,6 +590,16 @@ exports.Prisma.PositionMasterScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.LeaveTypeBalanceScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  leaveTypeId: 'leaveTypeId',
+  grantedDays: 'grantedDays',
+  usedDays: 'usedDays',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.LeaveTypeScalarFieldEnum = {
   id: 'id',
   code: 'code',
@@ -797,6 +807,7 @@ exports.Prisma.ModelName = {
   ContractTypeMaster: 'ContractTypeMaster',
   JobTitleMaster: 'JobTitleMaster',
   PositionMaster: 'PositionMaster',
+  LeaveTypeBalance: 'LeaveTypeBalance',
   LeaveType: 'LeaveType',
   RetirementChecklist: 'RetirementChecklist',
   LoanedAsset: 'LoanedAsset',
