@@ -97,18 +97,13 @@ async function grantManualLeave(formData: FormData) {
   const session = await requireHRManager();
 
   const employeeId = String(formData.get("employeeId") ?? "");
-
+  const leaveTypeId = String(formData.get("leaveTypeId") ?? "");
   const days = Number(formData.get("days") ?? 0);
-
   const adjustType = String(formData.get("adjustType") ?? "GRANT");
-
   const note = String(formData.get("note") ?? "");
-
   const grantDate = String(formData.get("grantDate") ?? "");
 
-  const leaveTypeId = String(formData.get("leaveTypeId") ?? "");
-
-  if (!employeeId || days <= 0) {
+  if (!employeeId || !leaveTypeId || days <= 0) {
     return;
   }
 
@@ -117,34 +112,46 @@ async function grantManualLeave(formData: FormData) {
   }
 
   const employee = await prisma.employee.findUnique({
-    where: {
-      id: employeeId,
-    },
+    where: { id: employeeId },
   });
 
-  if (!employee) {
+  const leaveType = await prisma.leaveType.findUnique({
+    where: { id: leaveTypeId },
+  });
+
+  if (!employee || !leaveType) {
     return;
   }
 
-  const currentBalance = await prisma.leaveBalance.findUnique({
+  const currentTypeBalance = await prisma.leaveTypeBalance.findUnique({
     where: {
-      employeeId,
+      employeeId_leaveTypeId: {
+        employeeId,
+        leaveTypeId,
+      },
     },
   });
 
-  await prisma.leaveGrantHistory.create({
-    data: {
-      employeeId,
-      leaveTypeId: leaveTypeId || null,
-      grantDate: grantDate ? new Date(grantDate) : new Date(),
-      grantedDays: days,
-      grantType: adjustType === "DEDUCT" ? "MANUAL_DEDUCT" : "MANUAL",
-      note,
-    },
-  });
+  const currentTypeGrantedDays = currentTypeBalance?.grantedDays ?? 0;
 
-  if (leaveTypeId) {
-    await prisma.leaveTypeBalance.upsert({
+  const nextTypeGrantedDays =
+    adjustType === "DEDUCT"
+      ? Math.max(0, currentTypeGrantedDays - days)
+      : currentTypeGrantedDays + days;
+
+  await prisma.$transaction(async (tx) => {
+    await tx.leaveGrantHistory.create({
+      data: {
+        employeeId,
+        leaveTypeId,
+        grantDate: grantDate ? new Date(grantDate) : new Date(),
+        grantedDays: days,
+        grantType: adjustType === "DEDUCT" ? "MANUAL_DEDUCT" : "MANUAL",
+        note,
+      },
+    });
+
+    await tx.leaveTypeBalance.upsert({
       where: {
         employeeId_leaveTypeId: {
           employeeId,
@@ -152,14 +159,7 @@ async function grantManualLeave(formData: FormData) {
         },
       },
       update: {
-        grantedDays:
-          adjustType === "DEDUCT"
-            ? {
-                decrement: days,
-              }
-            : {
-                increment: days,
-              },
+        grantedDays: nextTypeGrantedDays,
       },
       create: {
         employeeId,
@@ -168,23 +168,29 @@ async function grantManualLeave(formData: FormData) {
         usedDays: 0,
       },
     });
-  }
 
-  const updatedBalance = await prisma.leaveBalance.upsert({
-    where: {
-      employeeId,
-    },
-    update: {
-      grantedDays:
+    if (leaveType.code === "ANNUAL") {
+      const currentBalance = await tx.leaveBalance.findUnique({
+        where: { employeeId },
+      });
+
+      const nextAnnualDays =
         adjustType === "DEDUCT"
           ? Math.max(0, (currentBalance?.grantedDays ?? 0) - days)
-          : (currentBalance?.grantedDays ?? 0) + days,
-    },
-    create: {
-      employeeId,
-      grantedDays: adjustType === "DEDUCT" ? 0 : days,
-      usedDays: 0,
-    },
+          : (currentBalance?.grantedDays ?? 0) + days;
+
+      await tx.leaveBalance.upsert({
+        where: { employeeId },
+        update: {
+          grantedDays: nextAnnualDays,
+        },
+        create: {
+          employeeId,
+          grantedDays: adjustType === "DEDUCT" ? 0 : days,
+          usedDays: 0,
+        },
+      });
+    }
   });
 
   await logAudit({
@@ -192,14 +198,18 @@ async function grantManualLeave(formData: FormData) {
     userName: session.user.name,
     action:
       adjustType === "DEDUCT" ? "LEAVE_DEDUCT_MANUAL" : "LEAVE_GRANTED_MANUAL",
-    targetType: "Employee",
+    targetType: "LeaveTypeBalance",
     targetId: employeeId,
     description:
-      adjustType === "DEDUCT"
-        ? `${employee.employeeNo} の有給を ${days}日 減算`
-        : `${employee.employeeNo} に手動付与 ${days}日`,
-    beforeData: currentBalance,
-    afterData: updatedBalance,
+      `${employee.employeeNo} ${leaveType.name} ` +
+      `${days}日 ${adjustType === "DEDUCT" ? "減算" : "付与"}`,
+    beforeData: currentTypeBalance,
+    afterData: {
+      employeeId,
+      leaveTypeId,
+      leaveTypeName: leaveType.name,
+      grantedDays: nextTypeGrantedDays,
+    },
   });
 
   revalidatePath("/leave-grants");
