@@ -27,14 +27,16 @@ export default function MastersPage() {
       href: "/position-masters",
       name: "役職マスタ",
     },
+    {
+      href: "/leave-type-masters",
+      name: "休暇種別マスタ",
+    },
   ];
 
   return (
     <main className="mx-auto max-w-4xl p-6">
       <BackLink href="/" label="ダッシュボードへ戻る" />
-      <h1 className="mb-6 text-2xl font-bold">
-        マスタ管理
-      </h1>
+      <h1 className="mb-6 text-2xl font-bold">マスタ管理</h1>
 
       <div className="grid gap-4 md:grid-cols-2">
         {menus.map((menu) => (
@@ -43,9 +45,7 @@ export default function MastersPage() {
             href={menu.href}
             className="block rounded-lg border p-6 transition hover:border-blue-500 hover:shadow-md"
           >
-            <div className="text-lg font-semibold">
-              {menu.name}
-            </div>
+            <div className="text-lg font-semibold">{menu.name}</div>
           </Link>
         ))}
       </div>
