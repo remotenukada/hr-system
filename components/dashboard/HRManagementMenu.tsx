@@ -47,6 +47,7 @@ export default function HRManagementMenu({
           <Link href="/leave-grants">有給付与履歴</Link>
           <Link href="/leave-grants/pending">有給付与対象者一覧</Link>
           <Link href="/leave-expiration">有給失効管理</Link>
+          <Link href="/leave-type-balances">休暇別残高一覧</Link>
         </div>
       </section>
 
