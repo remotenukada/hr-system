@@ -3,8 +3,16 @@ import { prisma } from "@/lib/prisma";
 import { saveCompanySetting } from "@/app/actions/company-setting";
 import { DirtySubmitButton } from "@/components/DirtySubmitButton";
 
-export default async function CompanySettingsPage() {
+type Props = {
+  searchParams: Promise<{
+    smtpTest?: string;
+    smtpMessage?: string;
+  }>;
+};
+
+export default async function CompanySettingsPage({ searchParams }: Props) {
   const current = await prisma.companySetting.findFirst();
+  const params = await searchParams;
 
   return (
     <main className="mx-auto max-w-4xl p-6">
@@ -161,6 +169,40 @@ export default async function CompanySettingsPage() {
           <DirtySubmitButton label="保存する" pendingLabel="保存中..." />
         </div>
       </form>
+
+      <section className="mt-6 rounded-lg border bg-white p-6 shadow-sm">
+        <h2 className="text-lg font-semibold">SMTP接続テスト</h2>
+
+        <p className="mt-1 text-sm text-gray-600">
+          保存済みメール設定と環境変数のパスワードで接続を確認します。
+        </p>
+
+        {params.smtpTest === "success" && (
+          <p className="mt-4 rounded bg-green-50 p-3 text-green-700">
+            SMTP接続に成功しました。
+          </p>
+        )}
+
+        {params.smtpTest === "error" && (
+          <p className="mt-4 rounded bg-red-50 p-3 text-red-700">
+            SMTP接続に失敗しました。
+            {params.smtpMessage ? ` ${params.smtpMessage}` : ""}
+          </p>
+        )}
+
+        <form
+          action="/api/company-settings/test-smtp"
+          method="POST"
+          className="mt-4"
+        >
+          <button
+            type="submit"
+            className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+          >
+            SMTP接続テスト
+          </button>
+        </form>
+      </section>
     </main>
   );
 }
