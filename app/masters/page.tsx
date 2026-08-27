@@ -31,6 +31,10 @@ export default function MastersPage() {
       href: "/leave-type-masters",
       name: "休暇種別マスタ",
     },
+    {
+      href: "/annual-leave-service-rules",
+      name: "年次有給付与ルール",
+    },
   ];
 
   return (
