@@ -12,6 +12,17 @@ export async function createLeaveTypeMaster(formData: FormData) {
     .toUpperCase();
   const name = String(formData.get("name") ?? "").trim();
   const isPaid = formData.get("isPaid") === "on";
+
+  const expirationMonths = formData.get("expirationMonths")
+    ? Number(formData.get("expirationMonths"))
+    : null;
+
+  const allowRequest = formData.get("allowRequest") === "on";
+
+  const manageBalance = formData.get("manageBalance") === "on";
+
+  const description = String(formData.get("description") ?? "").trim() || null;
+
   const sortOrder = Number(formData.get("sortOrder") ?? 0);
 
   if (!code || !name) {
@@ -23,6 +34,10 @@ export async function createLeaveTypeMaster(formData: FormData) {
       code,
       name,
       isPaid,
+      expirationMonths,
+      allowRequest,
+      manageBalance,
+      description,
       sortOrder: Number.isFinite(sortOrder) ? sortOrder : 0,
     },
   });
