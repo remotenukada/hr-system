@@ -1,7 +1,10 @@
 import Link from "next/link";
 import BackLink from "@/components/BackLink";
 import { prisma } from "@/lib/prisma";
-import { toggleLeaveTypeMaster } from "@/app/actions/leave-type-master";
+import {
+  toggleLeaveTypeMaster,
+  deleteLeaveTypeMaster,
+} from "@/app/actions/leave-type-master";
 
 export default async function LeaveTypeMastersPage() {
   const items = await prisma.leaveType.findMany({
@@ -34,6 +37,7 @@ export default async function LeaveTypeMastersPage() {
               <th className="border-b p-3">状態</th>
               <th className="border-b p-3">編集</th>
               <th className="border-b p-3">操作</th>
+              <th className="border-b p-3">削除</th>
             </tr>
           </thead>
           <tbody>
@@ -80,11 +84,23 @@ export default async function LeaveTypeMastersPage() {
                     </button>
                   </form>
                 </td>
+
+                <td className="border-b p-3">
+                  <form action={deleteLeaveTypeMaster}>
+                    <input type="hidden" name="id" value={item.id} />
+                    <button
+                      type="submit"
+                      className="text-red-600 hover:underline"
+                    >
+                      削除
+                    </button>
+                  </form>
+                </td>
               </tr>
             ))}
             {items.length === 0 && (
               <tr>
-                <td colSpan={10} className="p-6 text-center text-gray-500">
+                <td colSpan={11} className="p-6 text-center text-gray-500">
                   休暇種別は登録されていません。
                 </td>
               </tr>
