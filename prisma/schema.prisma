@@ -977,3 +977,24 @@ model AnnualLeaveEntryRule {
   @@unique([entryMonth, dayFrom, dayTo])
   @@index([entryMonth, sortOrder])
 }
+
+model PartTimeAnnualLeaveRule {
+  id String @id @default(uuid())
+
+  weeklyScheduledDays Int @unique
+
+  days6Months  Float
+  days18Months Float
+  days30Months Float
+  days42Months Float
+  days54Months Float
+  days66Months Float
+  days78Months Float
+
+  description String?
+  sortOrder   Int     @default(0)
+  isActive    Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

@@ -208,3 +208,148 @@ export async function resolveNextAnnualGrantEvent(
     category: "定期付与",
   };
 }
+
+type StatutoryWorkConditions = {
+  weeklyScheduledDays: number | null;
+  weeklyScheduledHours: number | null;
+  annualScheduledDays: number | null;
+};
+
+function getStatutoryRuleMonths(serviceMonths: number) {
+  const ruleMonths = [78, 66, 54, 42, 30, 18, 6];
+
+  return ruleMonths.find((months) => serviceMonths >= months) ?? null;
+}
+
+function getProportionalWeeklyDays(conditions: StatutoryWorkConditions) {
+  const annualDays = conditions.annualScheduledDays;
+
+  if (annualDays !== null) {
+    if (annualDays >= 169 && annualDays <= 216) return 4;
+    if (annualDays >= 121 && annualDays <= 168) return 3;
+    if (annualDays >= 73 && annualDays <= 120) return 2;
+    if (annualDays >= 48 && annualDays <= 72) return 1;
+  }
+
+  const weeklyDays = conditions.weeklyScheduledDays;
+
+  if (
+    weeklyDays !== null &&
+    Number.isInteger(weeklyDays) &&
+    weeklyDays >= 1 &&
+    weeklyDays <= 4
+  ) {
+    return weeklyDays;
+  }
+
+  return null;
+}
+
+export async function resolveStatutoryAnnualGrantEvent(
+  hireDate: Date,
+  histories: GrantHistory[],
+  conditions: StatutoryWorkConditions,
+) {
+  const today = new Date();
+
+  const elapsedMonths =
+    (today.getFullYear() - hireDate.getFullYear()) * 12 +
+    today.getMonth() -
+    hireDate.getMonth();
+
+  const ruleMonths = getStatutoryRuleMonths(elapsedMonths);
+
+  if (ruleMonths === null) {
+    return null;
+  }
+
+  const grantDate = addMonths(hireDate, ruleMonths);
+
+  if (grantDate > today) {
+    return null;
+  }
+
+  const note = `年次有給休暇 法定付与 ${ruleMonths}か月`;
+
+  const alreadyGranted = histories.some(
+    (history) =>
+      sameDate(new Date(history.grantDate), grantDate) && history.note === note,
+  );
+
+  if (alreadyGranted) {
+    return null;
+  }
+
+  const normalGrant =
+    (conditions.weeklyScheduledHours ?? 0) >= 30 ||
+    (conditions.weeklyScheduledDays ?? 0) >= 5 ||
+    (conditions.annualScheduledDays ?? 0) >= 217;
+
+  let days: number;
+
+  if (normalGrant) {
+    const serviceRule = await prisma.annualLeaveServiceRule.findUnique({
+      where: {
+        serviceMonths: ruleMonths,
+      },
+    });
+
+    if (!serviceRule?.isActive) {
+      return null;
+    }
+
+    days = serviceRule.legalDays;
+  } else {
+    const weeklyDays = getProportionalWeeklyDays(conditions);
+
+    if (weeklyDays === null) {
+      return null;
+    }
+
+    const rule = await prisma.partTimeAnnualLeaveRule.findUnique({
+      where: {
+        weeklyScheduledDays: weeklyDays,
+      },
+    });
+
+    if (!rule?.isActive) {
+      return null;
+    }
+
+    switch (ruleMonths) {
+      case 6:
+        days = rule.days6Months;
+        break;
+      case 18:
+        days = rule.days18Months;
+        break;
+      case 30:
+        days = rule.days30Months;
+        break;
+      case 42:
+        days = rule.days42Months;
+        break;
+      case 54:
+        days = rule.days54Months;
+        break;
+      case 66:
+        days = rule.days66Months;
+        break;
+      case 78:
+        days = rule.days78Months;
+        break;
+      default:
+        return null;
+    }
+  }
+
+  return {
+    grantDate,
+    legalDays: days,
+    specialDays: 0,
+    days,
+    grantType: "LEGAL" as const,
+    note,
+    category: normalGrant ? "法定通常付与" : "法定比例付与",
+  };
+}
