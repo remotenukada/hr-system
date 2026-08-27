@@ -127,61 +127,99 @@ async function expireLeave() {
       return false;
     }
 
-    const expirationDate =
-      grant.expiresAt ?? addYears(new Date(grant.grantDate), 2);
+    if (!grant.expiresAt) {
+      return false;
+    }
 
-    return expirationDate < today;
+    return grant.expiresAt < today;
+  });
+
+  const annualType = await prisma.leaveType.findUnique({
+    where: {
+      code: "ANNUAL",
+    },
   });
 
   for (const grant of targets) {
-    const currentBalance = await prisma.leaveBalance.findUnique({
+    const leaveTypeId = grant.leaveTypeId ?? annualType?.id;
+
+    if (!leaveTypeId) {
+      continue;
+    }
+
+    const currentTypeBalance = await prisma.leaveTypeBalance.findUnique({
       where: {
-        employeeId: grant.employeeId,
+        employeeId_leaveTypeId: {
+          employeeId: grant.employeeId,
+          leaveTypeId,
+        },
       },
     });
 
-    const currentGrantedDays = currentBalance?.grantedDays ?? 0;
-
-    const currentUsedDays = currentBalance?.usedDays ?? 0;
-
-    const nextGrantedDays = Math.max(
-      currentUsedDays,
-      currentGrantedDays - grant.grantedDays,
+    const availableDays = Math.max(
+      0,
+      (currentTypeBalance?.grantedDays ?? 0) -
+        (currentTypeBalance?.usedDays ?? 0),
     );
 
-    const updatedBalance = await prisma.leaveBalance.upsert({
-      where: {
-        employeeId: grant.employeeId,
-      },
-      update: {
-        grantedDays: nextGrantedDays,
-      },
-      create: {
-        employeeId: grant.employeeId,
-        grantedDays: 0,
-        usedDays: 0,
-      },
-    });
+    const expiredDays = Math.min(grant.grantedDays, availableDays);
 
-    await prisma.leaveGrantHistory.create({
-      data: {
-        employeeId: grant.employeeId,
-        grantDate: new Date(),
-        grantedDays: grant.grantedDays,
-        grantType: "EXPIRED",
-        note: `失効元:${grant.id} ${formatGrantType(grant.grantType)} ${grant.note ?? ""}`.trim(),
-      },
-    });
+    let updatedTypeBalance: unknown = null;
 
-    await logAudit({
-      userId: session.user.id,
-      userName: session.user.name,
-      action: "LEAVE_EXPIRED",
-      targetType: "Employee",
-      targetId: grant.employeeId,
-      description: `${grant.employee.employeeNo} の有給 ${grant.grantedDays}日 を失効処理`,
-      beforeData: currentBalance,
-      afterData: updatedBalance,
+    await prisma.$transaction(async (tx) => {
+      updatedTypeBalance = await tx.leaveTypeBalance.upsert({
+        where: {
+          employeeId_leaveTypeId: {
+            employeeId: grant.employeeId,
+            leaveTypeId,
+          },
+        },
+        update: {
+          grantedDays: Math.max(
+            currentTypeBalance?.usedDays ?? 0,
+            (currentTypeBalance?.grantedDays ?? 0) - expiredDays,
+          ),
+        },
+        create: {
+          employeeId: grant.employeeId,
+          leaveTypeId,
+          grantedDays: 0,
+          usedDays: 0,
+        },
+      });
+
+      if ((grant.leaveType?.code ?? "ANNUAL") === "ANNUAL") {
+        const annualBalance = await tx.leaveBalance.findUnique({
+          where: {
+            employeeId: grant.employeeId,
+          },
+        });
+
+        if (annualBalance) {
+          await tx.leaveBalance.update({
+            where: {
+              employeeId: grant.employeeId,
+            },
+            data: {
+              grantedDays: Math.max(
+                annualBalance.usedDays,
+                annualBalance.grantedDays - expiredDays,
+              ),
+            },
+          });
+        }
+      }
+
+      await tx.leaveGrantHistory.create({
+        data: {
+          employeeId: grant.employeeId,
+          leaveTypeId,
+          grantDate: new Date(),
+          grantedDays: -expiredDays,
+          grantType: "EXPIRED",
+          note: `自動失効処理 (元付与ID: ${grant.id})`,
+        },
+      });
     });
   }
 
