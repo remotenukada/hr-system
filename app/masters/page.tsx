@@ -35,6 +35,14 @@ export default function MastersPage() {
       href: "/annual-leave-service-rules",
       name: "年次有給付与ルール",
     },
+    {
+      href: "/annual-leave-entry-rules",
+      name: "入職月別有給付与ルール",
+    },
+    {
+      href: "/annual-leave-entry-rules",
+      name: "入職月別有給付与ルール",
+    },
   ];
 
   return (

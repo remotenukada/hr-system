@@ -9,7 +9,7 @@ export default async function AnnualLeaveServiceRulesPage() {
 
   return (
     <main className="mx-auto max-w-6xl p-6">
-      /masters
+      <BackLink href="/masters" label="マスタ一覧へ戻る" />
       <div className="mb-6 flex items-center justify-between">
         <h1 className="text-2xl font-bold">年次有給付与ルール</h1>
 
