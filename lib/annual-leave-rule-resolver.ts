@@ -106,7 +106,16 @@ export async function resolveNextAnnualGrantEvent(
   hireDate: Date,
   employmentType: string | null,
   histories: GrantHistory[],
+  conditions?: StatutoryWorkConditions,
 ) {
+  if (employmentType === "PART_TIME") {
+    if (!conditions) {
+      return null;
+    }
+
+    return resolveStatutoryAnnualGrantEvent(hireDate, histories, conditions);
+  }
+
   if (employmentType !== "FULL_TIME") {
     return null;
   }

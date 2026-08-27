@@ -34,7 +34,9 @@ async function grantPendingLeave() {
     where: {
       hireDate: { not: null },
       status: "ACTIVE",
-      employmentType: "FULL_TIME",
+      employmentType: {
+        in: ["FULL_TIME", "PART_TIME"],
+      },
     },
     include: {
       leaveGrantHistories: true,
@@ -57,6 +59,11 @@ async function grantPendingLeave() {
         new Date(employee.hireDate),
         employee.employmentType,
         histories,
+        {
+          weeklyScheduledDays: employee.weeklyScheduledDays,
+          weeklyScheduledHours: employee.weeklyScheduledHours,
+          annualScheduledDays: employee.annualScheduledDays,
+        },
       );
 
       if (!event || event.days <= 0) {
