@@ -150,20 +150,28 @@ export async function resolveNextAnnualGrantEvent(
   const regularGrantDate =
     today >= aprilThisYear ? aprilThisYear : new Date(currentYear - 1, 3, 1);
 
-  const serviceMonths =
-    (regularGrantDate.getFullYear() - hireDate.getFullYear()) * 12 +
-    regularGrantDate.getMonth() -
-    hireDate.getMonth();
+  const firstRegularGrantDate = new Date(
+    hireDate.getMonth() >= 3
+      ? hireDate.getFullYear() + 2
+      : hireDate.getFullYear() + 1,
+    3,
+    1,
+  );
 
-  if (serviceMonths < 12) {
+  if (regularGrantDate < firstRegularGrantDate) {
     return null;
   }
+
+  const regularGrantYears =
+    regularGrantDate.getFullYear() - firstRegularGrantDate.getFullYear();
+
+  const ruleServiceMonths = 18 + regularGrantYears * 12;
 
   const serviceRule = await prisma.annualLeaveServiceRule.findFirst({
     where: {
       isActive: true,
       serviceMonths: {
-        lte: serviceMonths,
+        lte: ruleServiceMonths,
       },
     },
     orderBy: {
