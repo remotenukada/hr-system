@@ -215,9 +215,11 @@ async function expireLeave() {
           employeeId: grant.employeeId,
           leaveTypeId,
           grantDate: new Date(),
-          grantedDays: -expiredDays,
+          grantedDays: expiredDays,
           grantType: "EXPIRED",
-          note: `自動失効処理 (元付与ID: ${grant.id})`,
+          note:
+            `失効元:${grant.id} ` +
+            `${grant.leaveType?.name ?? "年次有給休暇"} 自動失効処理`,
         },
       });
     });
