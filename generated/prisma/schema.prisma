@@ -918,3 +918,56 @@ model RetirementCertificate {
 
   employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
 }
+
+model AnnualLeaveServiceRule {
+  id String @id @default(uuid())
+
+  serviceMonths Int   @unique
+  legalDays     Float
+  specialDays   Float
+  maxTotalDays  Float @default(20)
+
+  allowManualSpecialAdjustment Boolean @default(true)
+
+  description String?
+  sortOrder   Int     @default(0)
+  isActive    Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AnnualLeaveEntryRule {
+  id String @id @default(uuid())
+
+  entryMonth Int
+  dayFrom    Int
+  dayTo      Int
+
+  legalGrantAfterMonths Int   @default(6)
+  legalDays             Float @default(10)
+
+  specialGrant1AfterMonths Int?
+  specialGrant1Days        Float @default(0)
+
+  specialGrant2AfterMonths Int?
+  specialGrant2Days        Float @default(0)
+
+  specialGrant3AfterMonths Int?
+  specialGrant3Days        Float @default(0)
+
+  firstYearTotalDays Float
+  nextAprilDays      Float
+
+  allowManualSpecialAdjustment Boolean @default(true)
+
+  description String?
+  sortOrder   Int     @default(0)
+  isActive    Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([entryMonth, dayFrom, dayTo])
+  @@index([entryMonth, sortOrder])
+}

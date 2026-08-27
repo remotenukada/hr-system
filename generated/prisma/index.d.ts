@@ -208,6 +208,16 @@ export type LoanedAsset = $Result.DefaultSelection<Prisma.$LoanedAssetPayload>
  * 
  */
 export type RetirementCertificate = $Result.DefaultSelection<Prisma.$RetirementCertificatePayload>
+/**
+ * Model AnnualLeaveServiceRule
+ * 
+ */
+export type AnnualLeaveServiceRule = $Result.DefaultSelection<Prisma.$AnnualLeaveServiceRulePayload>
+/**
+ * Model AnnualLeaveEntryRule
+ * 
+ */
+export type AnnualLeaveEntryRule = $Result.DefaultSelection<Prisma.$AnnualLeaveEntryRulePayload>
 
 /**
  * Enums
@@ -905,6 +915,26 @@ export class PrismaClient<
     * ```
     */
   get retirementCertificate(): Prisma.RetirementCertificateDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.annualLeaveServiceRule`: Exposes CRUD operations for the **AnnualLeaveServiceRule** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AnnualLeaveServiceRules
+    * const annualLeaveServiceRules = await prisma.annualLeaveServiceRule.findMany()
+    * ```
+    */
+  get annualLeaveServiceRule(): Prisma.AnnualLeaveServiceRuleDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.annualLeaveEntryRule`: Exposes CRUD operations for the **AnnualLeaveEntryRule** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AnnualLeaveEntryRules
+    * const annualLeaveEntryRules = await prisma.annualLeaveEntryRule.findMany()
+    * ```
+    */
+  get annualLeaveEntryRule(): Prisma.AnnualLeaveEntryRuleDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1377,7 +1407,9 @@ export namespace Prisma {
     LeaveType: 'LeaveType',
     RetirementChecklist: 'RetirementChecklist',
     LoanedAsset: 'LoanedAsset',
-    RetirementCertificate: 'RetirementCertificate'
+    RetirementCertificate: 'RetirementCertificate',
+    AnnualLeaveServiceRule: 'AnnualLeaveServiceRule',
+    AnnualLeaveEntryRule: 'AnnualLeaveEntryRule'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1393,7 +1425,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "userInvitation" | "department" | "employee" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster" | "contractTypeMaster" | "jobTitleMaster" | "positionMaster" | "leaveTypeBalance" | "leaveType" | "retirementChecklist" | "loanedAsset" | "retirementCertificate"
+      modelProps: "user" | "userInvitation" | "department" | "employee" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster" | "contractTypeMaster" | "jobTitleMaster" | "positionMaster" | "leaveTypeBalance" | "leaveType" | "retirementChecklist" | "loanedAsset" | "retirementCertificate" | "annualLeaveServiceRule" | "annualLeaveEntryRule"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -4283,6 +4315,154 @@ export namespace Prisma {
           }
         }
       }
+      AnnualLeaveServiceRule: {
+        payload: Prisma.$AnnualLeaveServiceRulePayload<ExtArgs>
+        fields: Prisma.AnnualLeaveServiceRuleFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AnnualLeaveServiceRuleFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnualLeaveServiceRulePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AnnualLeaveServiceRuleFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnualLeaveServiceRulePayload>
+          }
+          findFirst: {
+            args: Prisma.AnnualLeaveServiceRuleFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnualLeaveServiceRulePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AnnualLeaveServiceRuleFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnualLeaveServiceRulePayload>
+          }
+          findMany: {
+            args: Prisma.AnnualLeaveServiceRuleFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnualLeaveServiceRulePayload>[]
+          }
+          create: {
+            args: Prisma.AnnualLeaveServiceRuleCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnualLeaveServiceRulePayload>
+          }
+          createMany: {
+            args: Prisma.AnnualLeaveServiceRuleCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AnnualLeaveServiceRuleCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnualLeaveServiceRulePayload>[]
+          }
+          delete: {
+            args: Prisma.AnnualLeaveServiceRuleDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnualLeaveServiceRulePayload>
+          }
+          update: {
+            args: Prisma.AnnualLeaveServiceRuleUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnualLeaveServiceRulePayload>
+          }
+          deleteMany: {
+            args: Prisma.AnnualLeaveServiceRuleDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AnnualLeaveServiceRuleUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AnnualLeaveServiceRuleUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnualLeaveServiceRulePayload>[]
+          }
+          upsert: {
+            args: Prisma.AnnualLeaveServiceRuleUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnualLeaveServiceRulePayload>
+          }
+          aggregate: {
+            args: Prisma.AnnualLeaveServiceRuleAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAnnualLeaveServiceRule>
+          }
+          groupBy: {
+            args: Prisma.AnnualLeaveServiceRuleGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AnnualLeaveServiceRuleGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AnnualLeaveServiceRuleCountArgs<ExtArgs>
+            result: $Utils.Optional<AnnualLeaveServiceRuleCountAggregateOutputType> | number
+          }
+        }
+      }
+      AnnualLeaveEntryRule: {
+        payload: Prisma.$AnnualLeaveEntryRulePayload<ExtArgs>
+        fields: Prisma.AnnualLeaveEntryRuleFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AnnualLeaveEntryRuleFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnualLeaveEntryRulePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AnnualLeaveEntryRuleFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnualLeaveEntryRulePayload>
+          }
+          findFirst: {
+            args: Prisma.AnnualLeaveEntryRuleFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnualLeaveEntryRulePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AnnualLeaveEntryRuleFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnualLeaveEntryRulePayload>
+          }
+          findMany: {
+            args: Prisma.AnnualLeaveEntryRuleFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnualLeaveEntryRulePayload>[]
+          }
+          create: {
+            args: Prisma.AnnualLeaveEntryRuleCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnualLeaveEntryRulePayload>
+          }
+          createMany: {
+            args: Prisma.AnnualLeaveEntryRuleCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AnnualLeaveEntryRuleCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnualLeaveEntryRulePayload>[]
+          }
+          delete: {
+            args: Prisma.AnnualLeaveEntryRuleDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnualLeaveEntryRulePayload>
+          }
+          update: {
+            args: Prisma.AnnualLeaveEntryRuleUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnualLeaveEntryRulePayload>
+          }
+          deleteMany: {
+            args: Prisma.AnnualLeaveEntryRuleDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AnnualLeaveEntryRuleUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AnnualLeaveEntryRuleUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnualLeaveEntryRulePayload>[]
+          }
+          upsert: {
+            args: Prisma.AnnualLeaveEntryRuleUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AnnualLeaveEntryRulePayload>
+          }
+          aggregate: {
+            args: Prisma.AnnualLeaveEntryRuleAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAnnualLeaveEntryRule>
+          }
+          groupBy: {
+            args: Prisma.AnnualLeaveEntryRuleGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AnnualLeaveEntryRuleGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AnnualLeaveEntryRuleCountArgs<ExtArgs>
+            result: $Utils.Optional<AnnualLeaveEntryRuleCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -4430,6 +4610,8 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistOmit
     loanedAsset?: LoanedAssetOmit
     retirementCertificate?: RetirementCertificateOmit
+    annualLeaveServiceRule?: AnnualLeaveServiceRuleOmit
+    annualLeaveEntryRule?: AnnualLeaveEntryRuleOmit
   }
 
   /* Types for Logging */
@@ -50788,6 +50970,2415 @@ export namespace Prisma {
 
 
   /**
+   * Model AnnualLeaveServiceRule
+   */
+
+  export type AggregateAnnualLeaveServiceRule = {
+    _count: AnnualLeaveServiceRuleCountAggregateOutputType | null
+    _avg: AnnualLeaveServiceRuleAvgAggregateOutputType | null
+    _sum: AnnualLeaveServiceRuleSumAggregateOutputType | null
+    _min: AnnualLeaveServiceRuleMinAggregateOutputType | null
+    _max: AnnualLeaveServiceRuleMaxAggregateOutputType | null
+  }
+
+  export type AnnualLeaveServiceRuleAvgAggregateOutputType = {
+    serviceMonths: number | null
+    legalDays: number | null
+    specialDays: number | null
+    maxTotalDays: number | null
+    sortOrder: number | null
+  }
+
+  export type AnnualLeaveServiceRuleSumAggregateOutputType = {
+    serviceMonths: number | null
+    legalDays: number | null
+    specialDays: number | null
+    maxTotalDays: number | null
+    sortOrder: number | null
+  }
+
+  export type AnnualLeaveServiceRuleMinAggregateOutputType = {
+    id: string | null
+    serviceMonths: number | null
+    legalDays: number | null
+    specialDays: number | null
+    maxTotalDays: number | null
+    allowManualSpecialAdjustment: boolean | null
+    description: string | null
+    sortOrder: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AnnualLeaveServiceRuleMaxAggregateOutputType = {
+    id: string | null
+    serviceMonths: number | null
+    legalDays: number | null
+    specialDays: number | null
+    maxTotalDays: number | null
+    allowManualSpecialAdjustment: boolean | null
+    description: string | null
+    sortOrder: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AnnualLeaveServiceRuleCountAggregateOutputType = {
+    id: number
+    serviceMonths: number
+    legalDays: number
+    specialDays: number
+    maxTotalDays: number
+    allowManualSpecialAdjustment: number
+    description: number
+    sortOrder: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AnnualLeaveServiceRuleAvgAggregateInputType = {
+    serviceMonths?: true
+    legalDays?: true
+    specialDays?: true
+    maxTotalDays?: true
+    sortOrder?: true
+  }
+
+  export type AnnualLeaveServiceRuleSumAggregateInputType = {
+    serviceMonths?: true
+    legalDays?: true
+    specialDays?: true
+    maxTotalDays?: true
+    sortOrder?: true
+  }
+
+  export type AnnualLeaveServiceRuleMinAggregateInputType = {
+    id?: true
+    serviceMonths?: true
+    legalDays?: true
+    specialDays?: true
+    maxTotalDays?: true
+    allowManualSpecialAdjustment?: true
+    description?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AnnualLeaveServiceRuleMaxAggregateInputType = {
+    id?: true
+    serviceMonths?: true
+    legalDays?: true
+    specialDays?: true
+    maxTotalDays?: true
+    allowManualSpecialAdjustment?: true
+    description?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AnnualLeaveServiceRuleCountAggregateInputType = {
+    id?: true
+    serviceMonths?: true
+    legalDays?: true
+    specialDays?: true
+    maxTotalDays?: true
+    allowManualSpecialAdjustment?: true
+    description?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AnnualLeaveServiceRuleAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AnnualLeaveServiceRule to aggregate.
+     */
+    where?: AnnualLeaveServiceRuleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnnualLeaveServiceRules to fetch.
+     */
+    orderBy?: AnnualLeaveServiceRuleOrderByWithRelationInput | AnnualLeaveServiceRuleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AnnualLeaveServiceRuleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnnualLeaveServiceRules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnnualLeaveServiceRules.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AnnualLeaveServiceRules
+    **/
+    _count?: true | AnnualLeaveServiceRuleCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AnnualLeaveServiceRuleAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AnnualLeaveServiceRuleSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AnnualLeaveServiceRuleMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AnnualLeaveServiceRuleMaxAggregateInputType
+  }
+
+  export type GetAnnualLeaveServiceRuleAggregateType<T extends AnnualLeaveServiceRuleAggregateArgs> = {
+        [P in keyof T & keyof AggregateAnnualLeaveServiceRule]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAnnualLeaveServiceRule[P]>
+      : GetScalarType<T[P], AggregateAnnualLeaveServiceRule[P]>
+  }
+
+
+
+
+  export type AnnualLeaveServiceRuleGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AnnualLeaveServiceRuleWhereInput
+    orderBy?: AnnualLeaveServiceRuleOrderByWithAggregationInput | AnnualLeaveServiceRuleOrderByWithAggregationInput[]
+    by: AnnualLeaveServiceRuleScalarFieldEnum[] | AnnualLeaveServiceRuleScalarFieldEnum
+    having?: AnnualLeaveServiceRuleScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AnnualLeaveServiceRuleCountAggregateInputType | true
+    _avg?: AnnualLeaveServiceRuleAvgAggregateInputType
+    _sum?: AnnualLeaveServiceRuleSumAggregateInputType
+    _min?: AnnualLeaveServiceRuleMinAggregateInputType
+    _max?: AnnualLeaveServiceRuleMaxAggregateInputType
+  }
+
+  export type AnnualLeaveServiceRuleGroupByOutputType = {
+    id: string
+    serviceMonths: number
+    legalDays: number
+    specialDays: number
+    maxTotalDays: number
+    allowManualSpecialAdjustment: boolean
+    description: string | null
+    sortOrder: number
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: AnnualLeaveServiceRuleCountAggregateOutputType | null
+    _avg: AnnualLeaveServiceRuleAvgAggregateOutputType | null
+    _sum: AnnualLeaveServiceRuleSumAggregateOutputType | null
+    _min: AnnualLeaveServiceRuleMinAggregateOutputType | null
+    _max: AnnualLeaveServiceRuleMaxAggregateOutputType | null
+  }
+
+  type GetAnnualLeaveServiceRuleGroupByPayload<T extends AnnualLeaveServiceRuleGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AnnualLeaveServiceRuleGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AnnualLeaveServiceRuleGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AnnualLeaveServiceRuleGroupByOutputType[P]>
+            : GetScalarType<T[P], AnnualLeaveServiceRuleGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AnnualLeaveServiceRuleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    serviceMonths?: boolean
+    legalDays?: boolean
+    specialDays?: boolean
+    maxTotalDays?: boolean
+    allowManualSpecialAdjustment?: boolean
+    description?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["annualLeaveServiceRule"]>
+
+  export type AnnualLeaveServiceRuleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    serviceMonths?: boolean
+    legalDays?: boolean
+    specialDays?: boolean
+    maxTotalDays?: boolean
+    allowManualSpecialAdjustment?: boolean
+    description?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["annualLeaveServiceRule"]>
+
+  export type AnnualLeaveServiceRuleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    serviceMonths?: boolean
+    legalDays?: boolean
+    specialDays?: boolean
+    maxTotalDays?: boolean
+    allowManualSpecialAdjustment?: boolean
+    description?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["annualLeaveServiceRule"]>
+
+  export type AnnualLeaveServiceRuleSelectScalar = {
+    id?: boolean
+    serviceMonths?: boolean
+    legalDays?: boolean
+    specialDays?: boolean
+    maxTotalDays?: boolean
+    allowManualSpecialAdjustment?: boolean
+    description?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AnnualLeaveServiceRuleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "serviceMonths" | "legalDays" | "specialDays" | "maxTotalDays" | "allowManualSpecialAdjustment" | "description" | "sortOrder" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["annualLeaveServiceRule"]>
+
+  export type $AnnualLeaveServiceRulePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AnnualLeaveServiceRule"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      serviceMonths: number
+      legalDays: number
+      specialDays: number
+      maxTotalDays: number
+      allowManualSpecialAdjustment: boolean
+      description: string | null
+      sortOrder: number
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["annualLeaveServiceRule"]>
+    composites: {}
+  }
+
+  type AnnualLeaveServiceRuleGetPayload<S extends boolean | null | undefined | AnnualLeaveServiceRuleDefaultArgs> = $Result.GetResult<Prisma.$AnnualLeaveServiceRulePayload, S>
+
+  type AnnualLeaveServiceRuleCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AnnualLeaveServiceRuleFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AnnualLeaveServiceRuleCountAggregateInputType | true
+    }
+
+  export interface AnnualLeaveServiceRuleDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AnnualLeaveServiceRule'], meta: { name: 'AnnualLeaveServiceRule' } }
+    /**
+     * Find zero or one AnnualLeaveServiceRule that matches the filter.
+     * @param {AnnualLeaveServiceRuleFindUniqueArgs} args - Arguments to find a AnnualLeaveServiceRule
+     * @example
+     * // Get one AnnualLeaveServiceRule
+     * const annualLeaveServiceRule = await prisma.annualLeaveServiceRule.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AnnualLeaveServiceRuleFindUniqueArgs>(args: SelectSubset<T, AnnualLeaveServiceRuleFindUniqueArgs<ExtArgs>>): Prisma__AnnualLeaveServiceRuleClient<$Result.GetResult<Prisma.$AnnualLeaveServiceRulePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AnnualLeaveServiceRule that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AnnualLeaveServiceRuleFindUniqueOrThrowArgs} args - Arguments to find a AnnualLeaveServiceRule
+     * @example
+     * // Get one AnnualLeaveServiceRule
+     * const annualLeaveServiceRule = await prisma.annualLeaveServiceRule.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AnnualLeaveServiceRuleFindUniqueOrThrowArgs>(args: SelectSubset<T, AnnualLeaveServiceRuleFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AnnualLeaveServiceRuleClient<$Result.GetResult<Prisma.$AnnualLeaveServiceRulePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AnnualLeaveServiceRule that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnnualLeaveServiceRuleFindFirstArgs} args - Arguments to find a AnnualLeaveServiceRule
+     * @example
+     * // Get one AnnualLeaveServiceRule
+     * const annualLeaveServiceRule = await prisma.annualLeaveServiceRule.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AnnualLeaveServiceRuleFindFirstArgs>(args?: SelectSubset<T, AnnualLeaveServiceRuleFindFirstArgs<ExtArgs>>): Prisma__AnnualLeaveServiceRuleClient<$Result.GetResult<Prisma.$AnnualLeaveServiceRulePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AnnualLeaveServiceRule that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnnualLeaveServiceRuleFindFirstOrThrowArgs} args - Arguments to find a AnnualLeaveServiceRule
+     * @example
+     * // Get one AnnualLeaveServiceRule
+     * const annualLeaveServiceRule = await prisma.annualLeaveServiceRule.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AnnualLeaveServiceRuleFindFirstOrThrowArgs>(args?: SelectSubset<T, AnnualLeaveServiceRuleFindFirstOrThrowArgs<ExtArgs>>): Prisma__AnnualLeaveServiceRuleClient<$Result.GetResult<Prisma.$AnnualLeaveServiceRulePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AnnualLeaveServiceRules that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnnualLeaveServiceRuleFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AnnualLeaveServiceRules
+     * const annualLeaveServiceRules = await prisma.annualLeaveServiceRule.findMany()
+     * 
+     * // Get first 10 AnnualLeaveServiceRules
+     * const annualLeaveServiceRules = await prisma.annualLeaveServiceRule.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const annualLeaveServiceRuleWithIdOnly = await prisma.annualLeaveServiceRule.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AnnualLeaveServiceRuleFindManyArgs>(args?: SelectSubset<T, AnnualLeaveServiceRuleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnnualLeaveServiceRulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AnnualLeaveServiceRule.
+     * @param {AnnualLeaveServiceRuleCreateArgs} args - Arguments to create a AnnualLeaveServiceRule.
+     * @example
+     * // Create one AnnualLeaveServiceRule
+     * const AnnualLeaveServiceRule = await prisma.annualLeaveServiceRule.create({
+     *   data: {
+     *     // ... data to create a AnnualLeaveServiceRule
+     *   }
+     * })
+     * 
+     */
+    create<T extends AnnualLeaveServiceRuleCreateArgs>(args: SelectSubset<T, AnnualLeaveServiceRuleCreateArgs<ExtArgs>>): Prisma__AnnualLeaveServiceRuleClient<$Result.GetResult<Prisma.$AnnualLeaveServiceRulePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AnnualLeaveServiceRules.
+     * @param {AnnualLeaveServiceRuleCreateManyArgs} args - Arguments to create many AnnualLeaveServiceRules.
+     * @example
+     * // Create many AnnualLeaveServiceRules
+     * const annualLeaveServiceRule = await prisma.annualLeaveServiceRule.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AnnualLeaveServiceRuleCreateManyArgs>(args?: SelectSubset<T, AnnualLeaveServiceRuleCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AnnualLeaveServiceRules and returns the data saved in the database.
+     * @param {AnnualLeaveServiceRuleCreateManyAndReturnArgs} args - Arguments to create many AnnualLeaveServiceRules.
+     * @example
+     * // Create many AnnualLeaveServiceRules
+     * const annualLeaveServiceRule = await prisma.annualLeaveServiceRule.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AnnualLeaveServiceRules and only return the `id`
+     * const annualLeaveServiceRuleWithIdOnly = await prisma.annualLeaveServiceRule.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AnnualLeaveServiceRuleCreateManyAndReturnArgs>(args?: SelectSubset<T, AnnualLeaveServiceRuleCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnnualLeaveServiceRulePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AnnualLeaveServiceRule.
+     * @param {AnnualLeaveServiceRuleDeleteArgs} args - Arguments to delete one AnnualLeaveServiceRule.
+     * @example
+     * // Delete one AnnualLeaveServiceRule
+     * const AnnualLeaveServiceRule = await prisma.annualLeaveServiceRule.delete({
+     *   where: {
+     *     // ... filter to delete one AnnualLeaveServiceRule
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AnnualLeaveServiceRuleDeleteArgs>(args: SelectSubset<T, AnnualLeaveServiceRuleDeleteArgs<ExtArgs>>): Prisma__AnnualLeaveServiceRuleClient<$Result.GetResult<Prisma.$AnnualLeaveServiceRulePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AnnualLeaveServiceRule.
+     * @param {AnnualLeaveServiceRuleUpdateArgs} args - Arguments to update one AnnualLeaveServiceRule.
+     * @example
+     * // Update one AnnualLeaveServiceRule
+     * const annualLeaveServiceRule = await prisma.annualLeaveServiceRule.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AnnualLeaveServiceRuleUpdateArgs>(args: SelectSubset<T, AnnualLeaveServiceRuleUpdateArgs<ExtArgs>>): Prisma__AnnualLeaveServiceRuleClient<$Result.GetResult<Prisma.$AnnualLeaveServiceRulePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AnnualLeaveServiceRules.
+     * @param {AnnualLeaveServiceRuleDeleteManyArgs} args - Arguments to filter AnnualLeaveServiceRules to delete.
+     * @example
+     * // Delete a few AnnualLeaveServiceRules
+     * const { count } = await prisma.annualLeaveServiceRule.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AnnualLeaveServiceRuleDeleteManyArgs>(args?: SelectSubset<T, AnnualLeaveServiceRuleDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AnnualLeaveServiceRules.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnnualLeaveServiceRuleUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AnnualLeaveServiceRules
+     * const annualLeaveServiceRule = await prisma.annualLeaveServiceRule.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AnnualLeaveServiceRuleUpdateManyArgs>(args: SelectSubset<T, AnnualLeaveServiceRuleUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AnnualLeaveServiceRules and returns the data updated in the database.
+     * @param {AnnualLeaveServiceRuleUpdateManyAndReturnArgs} args - Arguments to update many AnnualLeaveServiceRules.
+     * @example
+     * // Update many AnnualLeaveServiceRules
+     * const annualLeaveServiceRule = await prisma.annualLeaveServiceRule.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AnnualLeaveServiceRules and only return the `id`
+     * const annualLeaveServiceRuleWithIdOnly = await prisma.annualLeaveServiceRule.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AnnualLeaveServiceRuleUpdateManyAndReturnArgs>(args: SelectSubset<T, AnnualLeaveServiceRuleUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnnualLeaveServiceRulePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AnnualLeaveServiceRule.
+     * @param {AnnualLeaveServiceRuleUpsertArgs} args - Arguments to update or create a AnnualLeaveServiceRule.
+     * @example
+     * // Update or create a AnnualLeaveServiceRule
+     * const annualLeaveServiceRule = await prisma.annualLeaveServiceRule.upsert({
+     *   create: {
+     *     // ... data to create a AnnualLeaveServiceRule
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AnnualLeaveServiceRule we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AnnualLeaveServiceRuleUpsertArgs>(args: SelectSubset<T, AnnualLeaveServiceRuleUpsertArgs<ExtArgs>>): Prisma__AnnualLeaveServiceRuleClient<$Result.GetResult<Prisma.$AnnualLeaveServiceRulePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AnnualLeaveServiceRules.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnnualLeaveServiceRuleCountArgs} args - Arguments to filter AnnualLeaveServiceRules to count.
+     * @example
+     * // Count the number of AnnualLeaveServiceRules
+     * const count = await prisma.annualLeaveServiceRule.count({
+     *   where: {
+     *     // ... the filter for the AnnualLeaveServiceRules we want to count
+     *   }
+     * })
+    **/
+    count<T extends AnnualLeaveServiceRuleCountArgs>(
+      args?: Subset<T, AnnualLeaveServiceRuleCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AnnualLeaveServiceRuleCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AnnualLeaveServiceRule.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnnualLeaveServiceRuleAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AnnualLeaveServiceRuleAggregateArgs>(args: Subset<T, AnnualLeaveServiceRuleAggregateArgs>): Prisma.PrismaPromise<GetAnnualLeaveServiceRuleAggregateType<T>>
+
+    /**
+     * Group by AnnualLeaveServiceRule.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnnualLeaveServiceRuleGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AnnualLeaveServiceRuleGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AnnualLeaveServiceRuleGroupByArgs['orderBy'] }
+        : { orderBy?: AnnualLeaveServiceRuleGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AnnualLeaveServiceRuleGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAnnualLeaveServiceRuleGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AnnualLeaveServiceRule model
+   */
+  readonly fields: AnnualLeaveServiceRuleFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AnnualLeaveServiceRule.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AnnualLeaveServiceRuleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AnnualLeaveServiceRule model
+   */
+  interface AnnualLeaveServiceRuleFieldRefs {
+    readonly id: FieldRef<"AnnualLeaveServiceRule", 'String'>
+    readonly serviceMonths: FieldRef<"AnnualLeaveServiceRule", 'Int'>
+    readonly legalDays: FieldRef<"AnnualLeaveServiceRule", 'Float'>
+    readonly specialDays: FieldRef<"AnnualLeaveServiceRule", 'Float'>
+    readonly maxTotalDays: FieldRef<"AnnualLeaveServiceRule", 'Float'>
+    readonly allowManualSpecialAdjustment: FieldRef<"AnnualLeaveServiceRule", 'Boolean'>
+    readonly description: FieldRef<"AnnualLeaveServiceRule", 'String'>
+    readonly sortOrder: FieldRef<"AnnualLeaveServiceRule", 'Int'>
+    readonly isActive: FieldRef<"AnnualLeaveServiceRule", 'Boolean'>
+    readonly createdAt: FieldRef<"AnnualLeaveServiceRule", 'DateTime'>
+    readonly updatedAt: FieldRef<"AnnualLeaveServiceRule", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AnnualLeaveServiceRule findUnique
+   */
+  export type AnnualLeaveServiceRuleFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnnualLeaveServiceRule
+     */
+    select?: AnnualLeaveServiceRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnnualLeaveServiceRule
+     */
+    omit?: AnnualLeaveServiceRuleOmit<ExtArgs> | null
+    /**
+     * Filter, which AnnualLeaveServiceRule to fetch.
+     */
+    where: AnnualLeaveServiceRuleWhereUniqueInput
+  }
+
+  /**
+   * AnnualLeaveServiceRule findUniqueOrThrow
+   */
+  export type AnnualLeaveServiceRuleFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnnualLeaveServiceRule
+     */
+    select?: AnnualLeaveServiceRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnnualLeaveServiceRule
+     */
+    omit?: AnnualLeaveServiceRuleOmit<ExtArgs> | null
+    /**
+     * Filter, which AnnualLeaveServiceRule to fetch.
+     */
+    where: AnnualLeaveServiceRuleWhereUniqueInput
+  }
+
+  /**
+   * AnnualLeaveServiceRule findFirst
+   */
+  export type AnnualLeaveServiceRuleFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnnualLeaveServiceRule
+     */
+    select?: AnnualLeaveServiceRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnnualLeaveServiceRule
+     */
+    omit?: AnnualLeaveServiceRuleOmit<ExtArgs> | null
+    /**
+     * Filter, which AnnualLeaveServiceRule to fetch.
+     */
+    where?: AnnualLeaveServiceRuleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnnualLeaveServiceRules to fetch.
+     */
+    orderBy?: AnnualLeaveServiceRuleOrderByWithRelationInput | AnnualLeaveServiceRuleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AnnualLeaveServiceRules.
+     */
+    cursor?: AnnualLeaveServiceRuleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnnualLeaveServiceRules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnnualLeaveServiceRules.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AnnualLeaveServiceRules.
+     */
+    distinct?: AnnualLeaveServiceRuleScalarFieldEnum | AnnualLeaveServiceRuleScalarFieldEnum[]
+  }
+
+  /**
+   * AnnualLeaveServiceRule findFirstOrThrow
+   */
+  export type AnnualLeaveServiceRuleFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnnualLeaveServiceRule
+     */
+    select?: AnnualLeaveServiceRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnnualLeaveServiceRule
+     */
+    omit?: AnnualLeaveServiceRuleOmit<ExtArgs> | null
+    /**
+     * Filter, which AnnualLeaveServiceRule to fetch.
+     */
+    where?: AnnualLeaveServiceRuleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnnualLeaveServiceRules to fetch.
+     */
+    orderBy?: AnnualLeaveServiceRuleOrderByWithRelationInput | AnnualLeaveServiceRuleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AnnualLeaveServiceRules.
+     */
+    cursor?: AnnualLeaveServiceRuleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnnualLeaveServiceRules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnnualLeaveServiceRules.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AnnualLeaveServiceRules.
+     */
+    distinct?: AnnualLeaveServiceRuleScalarFieldEnum | AnnualLeaveServiceRuleScalarFieldEnum[]
+  }
+
+  /**
+   * AnnualLeaveServiceRule findMany
+   */
+  export type AnnualLeaveServiceRuleFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnnualLeaveServiceRule
+     */
+    select?: AnnualLeaveServiceRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnnualLeaveServiceRule
+     */
+    omit?: AnnualLeaveServiceRuleOmit<ExtArgs> | null
+    /**
+     * Filter, which AnnualLeaveServiceRules to fetch.
+     */
+    where?: AnnualLeaveServiceRuleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnnualLeaveServiceRules to fetch.
+     */
+    orderBy?: AnnualLeaveServiceRuleOrderByWithRelationInput | AnnualLeaveServiceRuleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AnnualLeaveServiceRules.
+     */
+    cursor?: AnnualLeaveServiceRuleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnnualLeaveServiceRules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnnualLeaveServiceRules.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AnnualLeaveServiceRules.
+     */
+    distinct?: AnnualLeaveServiceRuleScalarFieldEnum | AnnualLeaveServiceRuleScalarFieldEnum[]
+  }
+
+  /**
+   * AnnualLeaveServiceRule create
+   */
+  export type AnnualLeaveServiceRuleCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnnualLeaveServiceRule
+     */
+    select?: AnnualLeaveServiceRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnnualLeaveServiceRule
+     */
+    omit?: AnnualLeaveServiceRuleOmit<ExtArgs> | null
+    /**
+     * The data needed to create a AnnualLeaveServiceRule.
+     */
+    data: XOR<AnnualLeaveServiceRuleCreateInput, AnnualLeaveServiceRuleUncheckedCreateInput>
+  }
+
+  /**
+   * AnnualLeaveServiceRule createMany
+   */
+  export type AnnualLeaveServiceRuleCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AnnualLeaveServiceRules.
+     */
+    data: AnnualLeaveServiceRuleCreateManyInput | AnnualLeaveServiceRuleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AnnualLeaveServiceRule createManyAndReturn
+   */
+  export type AnnualLeaveServiceRuleCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnnualLeaveServiceRule
+     */
+    select?: AnnualLeaveServiceRuleSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnnualLeaveServiceRule
+     */
+    omit?: AnnualLeaveServiceRuleOmit<ExtArgs> | null
+    /**
+     * The data used to create many AnnualLeaveServiceRules.
+     */
+    data: AnnualLeaveServiceRuleCreateManyInput | AnnualLeaveServiceRuleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AnnualLeaveServiceRule update
+   */
+  export type AnnualLeaveServiceRuleUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnnualLeaveServiceRule
+     */
+    select?: AnnualLeaveServiceRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnnualLeaveServiceRule
+     */
+    omit?: AnnualLeaveServiceRuleOmit<ExtArgs> | null
+    /**
+     * The data needed to update a AnnualLeaveServiceRule.
+     */
+    data: XOR<AnnualLeaveServiceRuleUpdateInput, AnnualLeaveServiceRuleUncheckedUpdateInput>
+    /**
+     * Choose, which AnnualLeaveServiceRule to update.
+     */
+    where: AnnualLeaveServiceRuleWhereUniqueInput
+  }
+
+  /**
+   * AnnualLeaveServiceRule updateMany
+   */
+  export type AnnualLeaveServiceRuleUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AnnualLeaveServiceRules.
+     */
+    data: XOR<AnnualLeaveServiceRuleUpdateManyMutationInput, AnnualLeaveServiceRuleUncheckedUpdateManyInput>
+    /**
+     * Filter which AnnualLeaveServiceRules to update
+     */
+    where?: AnnualLeaveServiceRuleWhereInput
+    /**
+     * Limit how many AnnualLeaveServiceRules to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AnnualLeaveServiceRule updateManyAndReturn
+   */
+  export type AnnualLeaveServiceRuleUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnnualLeaveServiceRule
+     */
+    select?: AnnualLeaveServiceRuleSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnnualLeaveServiceRule
+     */
+    omit?: AnnualLeaveServiceRuleOmit<ExtArgs> | null
+    /**
+     * The data used to update AnnualLeaveServiceRules.
+     */
+    data: XOR<AnnualLeaveServiceRuleUpdateManyMutationInput, AnnualLeaveServiceRuleUncheckedUpdateManyInput>
+    /**
+     * Filter which AnnualLeaveServiceRules to update
+     */
+    where?: AnnualLeaveServiceRuleWhereInput
+    /**
+     * Limit how many AnnualLeaveServiceRules to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AnnualLeaveServiceRule upsert
+   */
+  export type AnnualLeaveServiceRuleUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnnualLeaveServiceRule
+     */
+    select?: AnnualLeaveServiceRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnnualLeaveServiceRule
+     */
+    omit?: AnnualLeaveServiceRuleOmit<ExtArgs> | null
+    /**
+     * The filter to search for the AnnualLeaveServiceRule to update in case it exists.
+     */
+    where: AnnualLeaveServiceRuleWhereUniqueInput
+    /**
+     * In case the AnnualLeaveServiceRule found by the `where` argument doesn't exist, create a new AnnualLeaveServiceRule with this data.
+     */
+    create: XOR<AnnualLeaveServiceRuleCreateInput, AnnualLeaveServiceRuleUncheckedCreateInput>
+    /**
+     * In case the AnnualLeaveServiceRule was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AnnualLeaveServiceRuleUpdateInput, AnnualLeaveServiceRuleUncheckedUpdateInput>
+  }
+
+  /**
+   * AnnualLeaveServiceRule delete
+   */
+  export type AnnualLeaveServiceRuleDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnnualLeaveServiceRule
+     */
+    select?: AnnualLeaveServiceRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnnualLeaveServiceRule
+     */
+    omit?: AnnualLeaveServiceRuleOmit<ExtArgs> | null
+    /**
+     * Filter which AnnualLeaveServiceRule to delete.
+     */
+    where: AnnualLeaveServiceRuleWhereUniqueInput
+  }
+
+  /**
+   * AnnualLeaveServiceRule deleteMany
+   */
+  export type AnnualLeaveServiceRuleDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AnnualLeaveServiceRules to delete
+     */
+    where?: AnnualLeaveServiceRuleWhereInput
+    /**
+     * Limit how many AnnualLeaveServiceRules to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AnnualLeaveServiceRule without action
+   */
+  export type AnnualLeaveServiceRuleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnnualLeaveServiceRule
+     */
+    select?: AnnualLeaveServiceRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnnualLeaveServiceRule
+     */
+    omit?: AnnualLeaveServiceRuleOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model AnnualLeaveEntryRule
+   */
+
+  export type AggregateAnnualLeaveEntryRule = {
+    _count: AnnualLeaveEntryRuleCountAggregateOutputType | null
+    _avg: AnnualLeaveEntryRuleAvgAggregateOutputType | null
+    _sum: AnnualLeaveEntryRuleSumAggregateOutputType | null
+    _min: AnnualLeaveEntryRuleMinAggregateOutputType | null
+    _max: AnnualLeaveEntryRuleMaxAggregateOutputType | null
+  }
+
+  export type AnnualLeaveEntryRuleAvgAggregateOutputType = {
+    entryMonth: number | null
+    dayFrom: number | null
+    dayTo: number | null
+    legalGrantAfterMonths: number | null
+    legalDays: number | null
+    specialGrant1AfterMonths: number | null
+    specialGrant1Days: number | null
+    specialGrant2AfterMonths: number | null
+    specialGrant2Days: number | null
+    specialGrant3AfterMonths: number | null
+    specialGrant3Days: number | null
+    firstYearTotalDays: number | null
+    nextAprilDays: number | null
+    sortOrder: number | null
+  }
+
+  export type AnnualLeaveEntryRuleSumAggregateOutputType = {
+    entryMonth: number | null
+    dayFrom: number | null
+    dayTo: number | null
+    legalGrantAfterMonths: number | null
+    legalDays: number | null
+    specialGrant1AfterMonths: number | null
+    specialGrant1Days: number | null
+    specialGrant2AfterMonths: number | null
+    specialGrant2Days: number | null
+    specialGrant3AfterMonths: number | null
+    specialGrant3Days: number | null
+    firstYearTotalDays: number | null
+    nextAprilDays: number | null
+    sortOrder: number | null
+  }
+
+  export type AnnualLeaveEntryRuleMinAggregateOutputType = {
+    id: string | null
+    entryMonth: number | null
+    dayFrom: number | null
+    dayTo: number | null
+    legalGrantAfterMonths: number | null
+    legalDays: number | null
+    specialGrant1AfterMonths: number | null
+    specialGrant1Days: number | null
+    specialGrant2AfterMonths: number | null
+    specialGrant2Days: number | null
+    specialGrant3AfterMonths: number | null
+    specialGrant3Days: number | null
+    firstYearTotalDays: number | null
+    nextAprilDays: number | null
+    allowManualSpecialAdjustment: boolean | null
+    description: string | null
+    sortOrder: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AnnualLeaveEntryRuleMaxAggregateOutputType = {
+    id: string | null
+    entryMonth: number | null
+    dayFrom: number | null
+    dayTo: number | null
+    legalGrantAfterMonths: number | null
+    legalDays: number | null
+    specialGrant1AfterMonths: number | null
+    specialGrant1Days: number | null
+    specialGrant2AfterMonths: number | null
+    specialGrant2Days: number | null
+    specialGrant3AfterMonths: number | null
+    specialGrant3Days: number | null
+    firstYearTotalDays: number | null
+    nextAprilDays: number | null
+    allowManualSpecialAdjustment: boolean | null
+    description: string | null
+    sortOrder: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AnnualLeaveEntryRuleCountAggregateOutputType = {
+    id: number
+    entryMonth: number
+    dayFrom: number
+    dayTo: number
+    legalGrantAfterMonths: number
+    legalDays: number
+    specialGrant1AfterMonths: number
+    specialGrant1Days: number
+    specialGrant2AfterMonths: number
+    specialGrant2Days: number
+    specialGrant3AfterMonths: number
+    specialGrant3Days: number
+    firstYearTotalDays: number
+    nextAprilDays: number
+    allowManualSpecialAdjustment: number
+    description: number
+    sortOrder: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AnnualLeaveEntryRuleAvgAggregateInputType = {
+    entryMonth?: true
+    dayFrom?: true
+    dayTo?: true
+    legalGrantAfterMonths?: true
+    legalDays?: true
+    specialGrant1AfterMonths?: true
+    specialGrant1Days?: true
+    specialGrant2AfterMonths?: true
+    specialGrant2Days?: true
+    specialGrant3AfterMonths?: true
+    specialGrant3Days?: true
+    firstYearTotalDays?: true
+    nextAprilDays?: true
+    sortOrder?: true
+  }
+
+  export type AnnualLeaveEntryRuleSumAggregateInputType = {
+    entryMonth?: true
+    dayFrom?: true
+    dayTo?: true
+    legalGrantAfterMonths?: true
+    legalDays?: true
+    specialGrant1AfterMonths?: true
+    specialGrant1Days?: true
+    specialGrant2AfterMonths?: true
+    specialGrant2Days?: true
+    specialGrant3AfterMonths?: true
+    specialGrant3Days?: true
+    firstYearTotalDays?: true
+    nextAprilDays?: true
+    sortOrder?: true
+  }
+
+  export type AnnualLeaveEntryRuleMinAggregateInputType = {
+    id?: true
+    entryMonth?: true
+    dayFrom?: true
+    dayTo?: true
+    legalGrantAfterMonths?: true
+    legalDays?: true
+    specialGrant1AfterMonths?: true
+    specialGrant1Days?: true
+    specialGrant2AfterMonths?: true
+    specialGrant2Days?: true
+    specialGrant3AfterMonths?: true
+    specialGrant3Days?: true
+    firstYearTotalDays?: true
+    nextAprilDays?: true
+    allowManualSpecialAdjustment?: true
+    description?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AnnualLeaveEntryRuleMaxAggregateInputType = {
+    id?: true
+    entryMonth?: true
+    dayFrom?: true
+    dayTo?: true
+    legalGrantAfterMonths?: true
+    legalDays?: true
+    specialGrant1AfterMonths?: true
+    specialGrant1Days?: true
+    specialGrant2AfterMonths?: true
+    specialGrant2Days?: true
+    specialGrant3AfterMonths?: true
+    specialGrant3Days?: true
+    firstYearTotalDays?: true
+    nextAprilDays?: true
+    allowManualSpecialAdjustment?: true
+    description?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AnnualLeaveEntryRuleCountAggregateInputType = {
+    id?: true
+    entryMonth?: true
+    dayFrom?: true
+    dayTo?: true
+    legalGrantAfterMonths?: true
+    legalDays?: true
+    specialGrant1AfterMonths?: true
+    specialGrant1Days?: true
+    specialGrant2AfterMonths?: true
+    specialGrant2Days?: true
+    specialGrant3AfterMonths?: true
+    specialGrant3Days?: true
+    firstYearTotalDays?: true
+    nextAprilDays?: true
+    allowManualSpecialAdjustment?: true
+    description?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AnnualLeaveEntryRuleAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AnnualLeaveEntryRule to aggregate.
+     */
+    where?: AnnualLeaveEntryRuleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnnualLeaveEntryRules to fetch.
+     */
+    orderBy?: AnnualLeaveEntryRuleOrderByWithRelationInput | AnnualLeaveEntryRuleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AnnualLeaveEntryRuleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnnualLeaveEntryRules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnnualLeaveEntryRules.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AnnualLeaveEntryRules
+    **/
+    _count?: true | AnnualLeaveEntryRuleCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AnnualLeaveEntryRuleAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AnnualLeaveEntryRuleSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AnnualLeaveEntryRuleMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AnnualLeaveEntryRuleMaxAggregateInputType
+  }
+
+  export type GetAnnualLeaveEntryRuleAggregateType<T extends AnnualLeaveEntryRuleAggregateArgs> = {
+        [P in keyof T & keyof AggregateAnnualLeaveEntryRule]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAnnualLeaveEntryRule[P]>
+      : GetScalarType<T[P], AggregateAnnualLeaveEntryRule[P]>
+  }
+
+
+
+
+  export type AnnualLeaveEntryRuleGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AnnualLeaveEntryRuleWhereInput
+    orderBy?: AnnualLeaveEntryRuleOrderByWithAggregationInput | AnnualLeaveEntryRuleOrderByWithAggregationInput[]
+    by: AnnualLeaveEntryRuleScalarFieldEnum[] | AnnualLeaveEntryRuleScalarFieldEnum
+    having?: AnnualLeaveEntryRuleScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AnnualLeaveEntryRuleCountAggregateInputType | true
+    _avg?: AnnualLeaveEntryRuleAvgAggregateInputType
+    _sum?: AnnualLeaveEntryRuleSumAggregateInputType
+    _min?: AnnualLeaveEntryRuleMinAggregateInputType
+    _max?: AnnualLeaveEntryRuleMaxAggregateInputType
+  }
+
+  export type AnnualLeaveEntryRuleGroupByOutputType = {
+    id: string
+    entryMonth: number
+    dayFrom: number
+    dayTo: number
+    legalGrantAfterMonths: number
+    legalDays: number
+    specialGrant1AfterMonths: number | null
+    specialGrant1Days: number
+    specialGrant2AfterMonths: number | null
+    specialGrant2Days: number
+    specialGrant3AfterMonths: number | null
+    specialGrant3Days: number
+    firstYearTotalDays: number
+    nextAprilDays: number
+    allowManualSpecialAdjustment: boolean
+    description: string | null
+    sortOrder: number
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: AnnualLeaveEntryRuleCountAggregateOutputType | null
+    _avg: AnnualLeaveEntryRuleAvgAggregateOutputType | null
+    _sum: AnnualLeaveEntryRuleSumAggregateOutputType | null
+    _min: AnnualLeaveEntryRuleMinAggregateOutputType | null
+    _max: AnnualLeaveEntryRuleMaxAggregateOutputType | null
+  }
+
+  type GetAnnualLeaveEntryRuleGroupByPayload<T extends AnnualLeaveEntryRuleGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AnnualLeaveEntryRuleGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AnnualLeaveEntryRuleGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AnnualLeaveEntryRuleGroupByOutputType[P]>
+            : GetScalarType<T[P], AnnualLeaveEntryRuleGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AnnualLeaveEntryRuleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    entryMonth?: boolean
+    dayFrom?: boolean
+    dayTo?: boolean
+    legalGrantAfterMonths?: boolean
+    legalDays?: boolean
+    specialGrant1AfterMonths?: boolean
+    specialGrant1Days?: boolean
+    specialGrant2AfterMonths?: boolean
+    specialGrant2Days?: boolean
+    specialGrant3AfterMonths?: boolean
+    specialGrant3Days?: boolean
+    firstYearTotalDays?: boolean
+    nextAprilDays?: boolean
+    allowManualSpecialAdjustment?: boolean
+    description?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["annualLeaveEntryRule"]>
+
+  export type AnnualLeaveEntryRuleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    entryMonth?: boolean
+    dayFrom?: boolean
+    dayTo?: boolean
+    legalGrantAfterMonths?: boolean
+    legalDays?: boolean
+    specialGrant1AfterMonths?: boolean
+    specialGrant1Days?: boolean
+    specialGrant2AfterMonths?: boolean
+    specialGrant2Days?: boolean
+    specialGrant3AfterMonths?: boolean
+    specialGrant3Days?: boolean
+    firstYearTotalDays?: boolean
+    nextAprilDays?: boolean
+    allowManualSpecialAdjustment?: boolean
+    description?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["annualLeaveEntryRule"]>
+
+  export type AnnualLeaveEntryRuleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    entryMonth?: boolean
+    dayFrom?: boolean
+    dayTo?: boolean
+    legalGrantAfterMonths?: boolean
+    legalDays?: boolean
+    specialGrant1AfterMonths?: boolean
+    specialGrant1Days?: boolean
+    specialGrant2AfterMonths?: boolean
+    specialGrant2Days?: boolean
+    specialGrant3AfterMonths?: boolean
+    specialGrant3Days?: boolean
+    firstYearTotalDays?: boolean
+    nextAprilDays?: boolean
+    allowManualSpecialAdjustment?: boolean
+    description?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["annualLeaveEntryRule"]>
+
+  export type AnnualLeaveEntryRuleSelectScalar = {
+    id?: boolean
+    entryMonth?: boolean
+    dayFrom?: boolean
+    dayTo?: boolean
+    legalGrantAfterMonths?: boolean
+    legalDays?: boolean
+    specialGrant1AfterMonths?: boolean
+    specialGrant1Days?: boolean
+    specialGrant2AfterMonths?: boolean
+    specialGrant2Days?: boolean
+    specialGrant3AfterMonths?: boolean
+    specialGrant3Days?: boolean
+    firstYearTotalDays?: boolean
+    nextAprilDays?: boolean
+    allowManualSpecialAdjustment?: boolean
+    description?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AnnualLeaveEntryRuleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "entryMonth" | "dayFrom" | "dayTo" | "legalGrantAfterMonths" | "legalDays" | "specialGrant1AfterMonths" | "specialGrant1Days" | "specialGrant2AfterMonths" | "specialGrant2Days" | "specialGrant3AfterMonths" | "specialGrant3Days" | "firstYearTotalDays" | "nextAprilDays" | "allowManualSpecialAdjustment" | "description" | "sortOrder" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["annualLeaveEntryRule"]>
+
+  export type $AnnualLeaveEntryRulePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AnnualLeaveEntryRule"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      entryMonth: number
+      dayFrom: number
+      dayTo: number
+      legalGrantAfterMonths: number
+      legalDays: number
+      specialGrant1AfterMonths: number | null
+      specialGrant1Days: number
+      specialGrant2AfterMonths: number | null
+      specialGrant2Days: number
+      specialGrant3AfterMonths: number | null
+      specialGrant3Days: number
+      firstYearTotalDays: number
+      nextAprilDays: number
+      allowManualSpecialAdjustment: boolean
+      description: string | null
+      sortOrder: number
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["annualLeaveEntryRule"]>
+    composites: {}
+  }
+
+  type AnnualLeaveEntryRuleGetPayload<S extends boolean | null | undefined | AnnualLeaveEntryRuleDefaultArgs> = $Result.GetResult<Prisma.$AnnualLeaveEntryRulePayload, S>
+
+  type AnnualLeaveEntryRuleCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AnnualLeaveEntryRuleFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AnnualLeaveEntryRuleCountAggregateInputType | true
+    }
+
+  export interface AnnualLeaveEntryRuleDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AnnualLeaveEntryRule'], meta: { name: 'AnnualLeaveEntryRule' } }
+    /**
+     * Find zero or one AnnualLeaveEntryRule that matches the filter.
+     * @param {AnnualLeaveEntryRuleFindUniqueArgs} args - Arguments to find a AnnualLeaveEntryRule
+     * @example
+     * // Get one AnnualLeaveEntryRule
+     * const annualLeaveEntryRule = await prisma.annualLeaveEntryRule.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AnnualLeaveEntryRuleFindUniqueArgs>(args: SelectSubset<T, AnnualLeaveEntryRuleFindUniqueArgs<ExtArgs>>): Prisma__AnnualLeaveEntryRuleClient<$Result.GetResult<Prisma.$AnnualLeaveEntryRulePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AnnualLeaveEntryRule that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AnnualLeaveEntryRuleFindUniqueOrThrowArgs} args - Arguments to find a AnnualLeaveEntryRule
+     * @example
+     * // Get one AnnualLeaveEntryRule
+     * const annualLeaveEntryRule = await prisma.annualLeaveEntryRule.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AnnualLeaveEntryRuleFindUniqueOrThrowArgs>(args: SelectSubset<T, AnnualLeaveEntryRuleFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AnnualLeaveEntryRuleClient<$Result.GetResult<Prisma.$AnnualLeaveEntryRulePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AnnualLeaveEntryRule that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnnualLeaveEntryRuleFindFirstArgs} args - Arguments to find a AnnualLeaveEntryRule
+     * @example
+     * // Get one AnnualLeaveEntryRule
+     * const annualLeaveEntryRule = await prisma.annualLeaveEntryRule.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AnnualLeaveEntryRuleFindFirstArgs>(args?: SelectSubset<T, AnnualLeaveEntryRuleFindFirstArgs<ExtArgs>>): Prisma__AnnualLeaveEntryRuleClient<$Result.GetResult<Prisma.$AnnualLeaveEntryRulePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AnnualLeaveEntryRule that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnnualLeaveEntryRuleFindFirstOrThrowArgs} args - Arguments to find a AnnualLeaveEntryRule
+     * @example
+     * // Get one AnnualLeaveEntryRule
+     * const annualLeaveEntryRule = await prisma.annualLeaveEntryRule.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AnnualLeaveEntryRuleFindFirstOrThrowArgs>(args?: SelectSubset<T, AnnualLeaveEntryRuleFindFirstOrThrowArgs<ExtArgs>>): Prisma__AnnualLeaveEntryRuleClient<$Result.GetResult<Prisma.$AnnualLeaveEntryRulePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AnnualLeaveEntryRules that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnnualLeaveEntryRuleFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AnnualLeaveEntryRules
+     * const annualLeaveEntryRules = await prisma.annualLeaveEntryRule.findMany()
+     * 
+     * // Get first 10 AnnualLeaveEntryRules
+     * const annualLeaveEntryRules = await prisma.annualLeaveEntryRule.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const annualLeaveEntryRuleWithIdOnly = await prisma.annualLeaveEntryRule.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AnnualLeaveEntryRuleFindManyArgs>(args?: SelectSubset<T, AnnualLeaveEntryRuleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnnualLeaveEntryRulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AnnualLeaveEntryRule.
+     * @param {AnnualLeaveEntryRuleCreateArgs} args - Arguments to create a AnnualLeaveEntryRule.
+     * @example
+     * // Create one AnnualLeaveEntryRule
+     * const AnnualLeaveEntryRule = await prisma.annualLeaveEntryRule.create({
+     *   data: {
+     *     // ... data to create a AnnualLeaveEntryRule
+     *   }
+     * })
+     * 
+     */
+    create<T extends AnnualLeaveEntryRuleCreateArgs>(args: SelectSubset<T, AnnualLeaveEntryRuleCreateArgs<ExtArgs>>): Prisma__AnnualLeaveEntryRuleClient<$Result.GetResult<Prisma.$AnnualLeaveEntryRulePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AnnualLeaveEntryRules.
+     * @param {AnnualLeaveEntryRuleCreateManyArgs} args - Arguments to create many AnnualLeaveEntryRules.
+     * @example
+     * // Create many AnnualLeaveEntryRules
+     * const annualLeaveEntryRule = await prisma.annualLeaveEntryRule.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AnnualLeaveEntryRuleCreateManyArgs>(args?: SelectSubset<T, AnnualLeaveEntryRuleCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AnnualLeaveEntryRules and returns the data saved in the database.
+     * @param {AnnualLeaveEntryRuleCreateManyAndReturnArgs} args - Arguments to create many AnnualLeaveEntryRules.
+     * @example
+     * // Create many AnnualLeaveEntryRules
+     * const annualLeaveEntryRule = await prisma.annualLeaveEntryRule.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AnnualLeaveEntryRules and only return the `id`
+     * const annualLeaveEntryRuleWithIdOnly = await prisma.annualLeaveEntryRule.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AnnualLeaveEntryRuleCreateManyAndReturnArgs>(args?: SelectSubset<T, AnnualLeaveEntryRuleCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnnualLeaveEntryRulePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AnnualLeaveEntryRule.
+     * @param {AnnualLeaveEntryRuleDeleteArgs} args - Arguments to delete one AnnualLeaveEntryRule.
+     * @example
+     * // Delete one AnnualLeaveEntryRule
+     * const AnnualLeaveEntryRule = await prisma.annualLeaveEntryRule.delete({
+     *   where: {
+     *     // ... filter to delete one AnnualLeaveEntryRule
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AnnualLeaveEntryRuleDeleteArgs>(args: SelectSubset<T, AnnualLeaveEntryRuleDeleteArgs<ExtArgs>>): Prisma__AnnualLeaveEntryRuleClient<$Result.GetResult<Prisma.$AnnualLeaveEntryRulePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AnnualLeaveEntryRule.
+     * @param {AnnualLeaveEntryRuleUpdateArgs} args - Arguments to update one AnnualLeaveEntryRule.
+     * @example
+     * // Update one AnnualLeaveEntryRule
+     * const annualLeaveEntryRule = await prisma.annualLeaveEntryRule.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AnnualLeaveEntryRuleUpdateArgs>(args: SelectSubset<T, AnnualLeaveEntryRuleUpdateArgs<ExtArgs>>): Prisma__AnnualLeaveEntryRuleClient<$Result.GetResult<Prisma.$AnnualLeaveEntryRulePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AnnualLeaveEntryRules.
+     * @param {AnnualLeaveEntryRuleDeleteManyArgs} args - Arguments to filter AnnualLeaveEntryRules to delete.
+     * @example
+     * // Delete a few AnnualLeaveEntryRules
+     * const { count } = await prisma.annualLeaveEntryRule.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AnnualLeaveEntryRuleDeleteManyArgs>(args?: SelectSubset<T, AnnualLeaveEntryRuleDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AnnualLeaveEntryRules.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnnualLeaveEntryRuleUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AnnualLeaveEntryRules
+     * const annualLeaveEntryRule = await prisma.annualLeaveEntryRule.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AnnualLeaveEntryRuleUpdateManyArgs>(args: SelectSubset<T, AnnualLeaveEntryRuleUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AnnualLeaveEntryRules and returns the data updated in the database.
+     * @param {AnnualLeaveEntryRuleUpdateManyAndReturnArgs} args - Arguments to update many AnnualLeaveEntryRules.
+     * @example
+     * // Update many AnnualLeaveEntryRules
+     * const annualLeaveEntryRule = await prisma.annualLeaveEntryRule.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AnnualLeaveEntryRules and only return the `id`
+     * const annualLeaveEntryRuleWithIdOnly = await prisma.annualLeaveEntryRule.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AnnualLeaveEntryRuleUpdateManyAndReturnArgs>(args: SelectSubset<T, AnnualLeaveEntryRuleUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AnnualLeaveEntryRulePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AnnualLeaveEntryRule.
+     * @param {AnnualLeaveEntryRuleUpsertArgs} args - Arguments to update or create a AnnualLeaveEntryRule.
+     * @example
+     * // Update or create a AnnualLeaveEntryRule
+     * const annualLeaveEntryRule = await prisma.annualLeaveEntryRule.upsert({
+     *   create: {
+     *     // ... data to create a AnnualLeaveEntryRule
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AnnualLeaveEntryRule we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AnnualLeaveEntryRuleUpsertArgs>(args: SelectSubset<T, AnnualLeaveEntryRuleUpsertArgs<ExtArgs>>): Prisma__AnnualLeaveEntryRuleClient<$Result.GetResult<Prisma.$AnnualLeaveEntryRulePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AnnualLeaveEntryRules.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnnualLeaveEntryRuleCountArgs} args - Arguments to filter AnnualLeaveEntryRules to count.
+     * @example
+     * // Count the number of AnnualLeaveEntryRules
+     * const count = await prisma.annualLeaveEntryRule.count({
+     *   where: {
+     *     // ... the filter for the AnnualLeaveEntryRules we want to count
+     *   }
+     * })
+    **/
+    count<T extends AnnualLeaveEntryRuleCountArgs>(
+      args?: Subset<T, AnnualLeaveEntryRuleCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AnnualLeaveEntryRuleCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AnnualLeaveEntryRule.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnnualLeaveEntryRuleAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AnnualLeaveEntryRuleAggregateArgs>(args: Subset<T, AnnualLeaveEntryRuleAggregateArgs>): Prisma.PrismaPromise<GetAnnualLeaveEntryRuleAggregateType<T>>
+
+    /**
+     * Group by AnnualLeaveEntryRule.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AnnualLeaveEntryRuleGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AnnualLeaveEntryRuleGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AnnualLeaveEntryRuleGroupByArgs['orderBy'] }
+        : { orderBy?: AnnualLeaveEntryRuleGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AnnualLeaveEntryRuleGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAnnualLeaveEntryRuleGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AnnualLeaveEntryRule model
+   */
+  readonly fields: AnnualLeaveEntryRuleFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AnnualLeaveEntryRule.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AnnualLeaveEntryRuleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AnnualLeaveEntryRule model
+   */
+  interface AnnualLeaveEntryRuleFieldRefs {
+    readonly id: FieldRef<"AnnualLeaveEntryRule", 'String'>
+    readonly entryMonth: FieldRef<"AnnualLeaveEntryRule", 'Int'>
+    readonly dayFrom: FieldRef<"AnnualLeaveEntryRule", 'Int'>
+    readonly dayTo: FieldRef<"AnnualLeaveEntryRule", 'Int'>
+    readonly legalGrantAfterMonths: FieldRef<"AnnualLeaveEntryRule", 'Int'>
+    readonly legalDays: FieldRef<"AnnualLeaveEntryRule", 'Float'>
+    readonly specialGrant1AfterMonths: FieldRef<"AnnualLeaveEntryRule", 'Int'>
+    readonly specialGrant1Days: FieldRef<"AnnualLeaveEntryRule", 'Float'>
+    readonly specialGrant2AfterMonths: FieldRef<"AnnualLeaveEntryRule", 'Int'>
+    readonly specialGrant2Days: FieldRef<"AnnualLeaveEntryRule", 'Float'>
+    readonly specialGrant3AfterMonths: FieldRef<"AnnualLeaveEntryRule", 'Int'>
+    readonly specialGrant3Days: FieldRef<"AnnualLeaveEntryRule", 'Float'>
+    readonly firstYearTotalDays: FieldRef<"AnnualLeaveEntryRule", 'Float'>
+    readonly nextAprilDays: FieldRef<"AnnualLeaveEntryRule", 'Float'>
+    readonly allowManualSpecialAdjustment: FieldRef<"AnnualLeaveEntryRule", 'Boolean'>
+    readonly description: FieldRef<"AnnualLeaveEntryRule", 'String'>
+    readonly sortOrder: FieldRef<"AnnualLeaveEntryRule", 'Int'>
+    readonly isActive: FieldRef<"AnnualLeaveEntryRule", 'Boolean'>
+    readonly createdAt: FieldRef<"AnnualLeaveEntryRule", 'DateTime'>
+    readonly updatedAt: FieldRef<"AnnualLeaveEntryRule", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AnnualLeaveEntryRule findUnique
+   */
+  export type AnnualLeaveEntryRuleFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnnualLeaveEntryRule
+     */
+    select?: AnnualLeaveEntryRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnnualLeaveEntryRule
+     */
+    omit?: AnnualLeaveEntryRuleOmit<ExtArgs> | null
+    /**
+     * Filter, which AnnualLeaveEntryRule to fetch.
+     */
+    where: AnnualLeaveEntryRuleWhereUniqueInput
+  }
+
+  /**
+   * AnnualLeaveEntryRule findUniqueOrThrow
+   */
+  export type AnnualLeaveEntryRuleFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnnualLeaveEntryRule
+     */
+    select?: AnnualLeaveEntryRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnnualLeaveEntryRule
+     */
+    omit?: AnnualLeaveEntryRuleOmit<ExtArgs> | null
+    /**
+     * Filter, which AnnualLeaveEntryRule to fetch.
+     */
+    where: AnnualLeaveEntryRuleWhereUniqueInput
+  }
+
+  /**
+   * AnnualLeaveEntryRule findFirst
+   */
+  export type AnnualLeaveEntryRuleFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnnualLeaveEntryRule
+     */
+    select?: AnnualLeaveEntryRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnnualLeaveEntryRule
+     */
+    omit?: AnnualLeaveEntryRuleOmit<ExtArgs> | null
+    /**
+     * Filter, which AnnualLeaveEntryRule to fetch.
+     */
+    where?: AnnualLeaveEntryRuleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnnualLeaveEntryRules to fetch.
+     */
+    orderBy?: AnnualLeaveEntryRuleOrderByWithRelationInput | AnnualLeaveEntryRuleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AnnualLeaveEntryRules.
+     */
+    cursor?: AnnualLeaveEntryRuleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnnualLeaveEntryRules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnnualLeaveEntryRules.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AnnualLeaveEntryRules.
+     */
+    distinct?: AnnualLeaveEntryRuleScalarFieldEnum | AnnualLeaveEntryRuleScalarFieldEnum[]
+  }
+
+  /**
+   * AnnualLeaveEntryRule findFirstOrThrow
+   */
+  export type AnnualLeaveEntryRuleFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnnualLeaveEntryRule
+     */
+    select?: AnnualLeaveEntryRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnnualLeaveEntryRule
+     */
+    omit?: AnnualLeaveEntryRuleOmit<ExtArgs> | null
+    /**
+     * Filter, which AnnualLeaveEntryRule to fetch.
+     */
+    where?: AnnualLeaveEntryRuleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnnualLeaveEntryRules to fetch.
+     */
+    orderBy?: AnnualLeaveEntryRuleOrderByWithRelationInput | AnnualLeaveEntryRuleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AnnualLeaveEntryRules.
+     */
+    cursor?: AnnualLeaveEntryRuleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnnualLeaveEntryRules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnnualLeaveEntryRules.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AnnualLeaveEntryRules.
+     */
+    distinct?: AnnualLeaveEntryRuleScalarFieldEnum | AnnualLeaveEntryRuleScalarFieldEnum[]
+  }
+
+  /**
+   * AnnualLeaveEntryRule findMany
+   */
+  export type AnnualLeaveEntryRuleFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnnualLeaveEntryRule
+     */
+    select?: AnnualLeaveEntryRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnnualLeaveEntryRule
+     */
+    omit?: AnnualLeaveEntryRuleOmit<ExtArgs> | null
+    /**
+     * Filter, which AnnualLeaveEntryRules to fetch.
+     */
+    where?: AnnualLeaveEntryRuleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AnnualLeaveEntryRules to fetch.
+     */
+    orderBy?: AnnualLeaveEntryRuleOrderByWithRelationInput | AnnualLeaveEntryRuleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AnnualLeaveEntryRules.
+     */
+    cursor?: AnnualLeaveEntryRuleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AnnualLeaveEntryRules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AnnualLeaveEntryRules.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AnnualLeaveEntryRules.
+     */
+    distinct?: AnnualLeaveEntryRuleScalarFieldEnum | AnnualLeaveEntryRuleScalarFieldEnum[]
+  }
+
+  /**
+   * AnnualLeaveEntryRule create
+   */
+  export type AnnualLeaveEntryRuleCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnnualLeaveEntryRule
+     */
+    select?: AnnualLeaveEntryRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnnualLeaveEntryRule
+     */
+    omit?: AnnualLeaveEntryRuleOmit<ExtArgs> | null
+    /**
+     * The data needed to create a AnnualLeaveEntryRule.
+     */
+    data: XOR<AnnualLeaveEntryRuleCreateInput, AnnualLeaveEntryRuleUncheckedCreateInput>
+  }
+
+  /**
+   * AnnualLeaveEntryRule createMany
+   */
+  export type AnnualLeaveEntryRuleCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AnnualLeaveEntryRules.
+     */
+    data: AnnualLeaveEntryRuleCreateManyInput | AnnualLeaveEntryRuleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AnnualLeaveEntryRule createManyAndReturn
+   */
+  export type AnnualLeaveEntryRuleCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnnualLeaveEntryRule
+     */
+    select?: AnnualLeaveEntryRuleSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnnualLeaveEntryRule
+     */
+    omit?: AnnualLeaveEntryRuleOmit<ExtArgs> | null
+    /**
+     * The data used to create many AnnualLeaveEntryRules.
+     */
+    data: AnnualLeaveEntryRuleCreateManyInput | AnnualLeaveEntryRuleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AnnualLeaveEntryRule update
+   */
+  export type AnnualLeaveEntryRuleUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnnualLeaveEntryRule
+     */
+    select?: AnnualLeaveEntryRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnnualLeaveEntryRule
+     */
+    omit?: AnnualLeaveEntryRuleOmit<ExtArgs> | null
+    /**
+     * The data needed to update a AnnualLeaveEntryRule.
+     */
+    data: XOR<AnnualLeaveEntryRuleUpdateInput, AnnualLeaveEntryRuleUncheckedUpdateInput>
+    /**
+     * Choose, which AnnualLeaveEntryRule to update.
+     */
+    where: AnnualLeaveEntryRuleWhereUniqueInput
+  }
+
+  /**
+   * AnnualLeaveEntryRule updateMany
+   */
+  export type AnnualLeaveEntryRuleUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AnnualLeaveEntryRules.
+     */
+    data: XOR<AnnualLeaveEntryRuleUpdateManyMutationInput, AnnualLeaveEntryRuleUncheckedUpdateManyInput>
+    /**
+     * Filter which AnnualLeaveEntryRules to update
+     */
+    where?: AnnualLeaveEntryRuleWhereInput
+    /**
+     * Limit how many AnnualLeaveEntryRules to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AnnualLeaveEntryRule updateManyAndReturn
+   */
+  export type AnnualLeaveEntryRuleUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnnualLeaveEntryRule
+     */
+    select?: AnnualLeaveEntryRuleSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnnualLeaveEntryRule
+     */
+    omit?: AnnualLeaveEntryRuleOmit<ExtArgs> | null
+    /**
+     * The data used to update AnnualLeaveEntryRules.
+     */
+    data: XOR<AnnualLeaveEntryRuleUpdateManyMutationInput, AnnualLeaveEntryRuleUncheckedUpdateManyInput>
+    /**
+     * Filter which AnnualLeaveEntryRules to update
+     */
+    where?: AnnualLeaveEntryRuleWhereInput
+    /**
+     * Limit how many AnnualLeaveEntryRules to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AnnualLeaveEntryRule upsert
+   */
+  export type AnnualLeaveEntryRuleUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnnualLeaveEntryRule
+     */
+    select?: AnnualLeaveEntryRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnnualLeaveEntryRule
+     */
+    omit?: AnnualLeaveEntryRuleOmit<ExtArgs> | null
+    /**
+     * The filter to search for the AnnualLeaveEntryRule to update in case it exists.
+     */
+    where: AnnualLeaveEntryRuleWhereUniqueInput
+    /**
+     * In case the AnnualLeaveEntryRule found by the `where` argument doesn't exist, create a new AnnualLeaveEntryRule with this data.
+     */
+    create: XOR<AnnualLeaveEntryRuleCreateInput, AnnualLeaveEntryRuleUncheckedCreateInput>
+    /**
+     * In case the AnnualLeaveEntryRule was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AnnualLeaveEntryRuleUpdateInput, AnnualLeaveEntryRuleUncheckedUpdateInput>
+  }
+
+  /**
+   * AnnualLeaveEntryRule delete
+   */
+  export type AnnualLeaveEntryRuleDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnnualLeaveEntryRule
+     */
+    select?: AnnualLeaveEntryRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnnualLeaveEntryRule
+     */
+    omit?: AnnualLeaveEntryRuleOmit<ExtArgs> | null
+    /**
+     * Filter which AnnualLeaveEntryRule to delete.
+     */
+    where: AnnualLeaveEntryRuleWhereUniqueInput
+  }
+
+  /**
+   * AnnualLeaveEntryRule deleteMany
+   */
+  export type AnnualLeaveEntryRuleDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AnnualLeaveEntryRules to delete
+     */
+    where?: AnnualLeaveEntryRuleWhereInput
+    /**
+     * Limit how many AnnualLeaveEntryRules to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AnnualLeaveEntryRule without action
+   */
+  export type AnnualLeaveEntryRuleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AnnualLeaveEntryRule
+     */
+    select?: AnnualLeaveEntryRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AnnualLeaveEntryRule
+     */
+    omit?: AnnualLeaveEntryRuleOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -51461,6 +54052,49 @@ export namespace Prisma {
   };
 
   export type RetirementCertificateScalarFieldEnum = (typeof RetirementCertificateScalarFieldEnum)[keyof typeof RetirementCertificateScalarFieldEnum]
+
+
+  export const AnnualLeaveServiceRuleScalarFieldEnum: {
+    id: 'id',
+    serviceMonths: 'serviceMonths',
+    legalDays: 'legalDays',
+    specialDays: 'specialDays',
+    maxTotalDays: 'maxTotalDays',
+    allowManualSpecialAdjustment: 'allowManualSpecialAdjustment',
+    description: 'description',
+    sortOrder: 'sortOrder',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AnnualLeaveServiceRuleScalarFieldEnum = (typeof AnnualLeaveServiceRuleScalarFieldEnum)[keyof typeof AnnualLeaveServiceRuleScalarFieldEnum]
+
+
+  export const AnnualLeaveEntryRuleScalarFieldEnum: {
+    id: 'id',
+    entryMonth: 'entryMonth',
+    dayFrom: 'dayFrom',
+    dayTo: 'dayTo',
+    legalGrantAfterMonths: 'legalGrantAfterMonths',
+    legalDays: 'legalDays',
+    specialGrant1AfterMonths: 'specialGrant1AfterMonths',
+    specialGrant1Days: 'specialGrant1Days',
+    specialGrant2AfterMonths: 'specialGrant2AfterMonths',
+    specialGrant2Days: 'specialGrant2Days',
+    specialGrant3AfterMonths: 'specialGrant3AfterMonths',
+    specialGrant3Days: 'specialGrant3Days',
+    firstYearTotalDays: 'firstYearTotalDays',
+    nextAprilDays: 'nextAprilDays',
+    allowManualSpecialAdjustment: 'allowManualSpecialAdjustment',
+    description: 'description',
+    sortOrder: 'sortOrder',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AnnualLeaveEntryRuleScalarFieldEnum = (typeof AnnualLeaveEntryRuleScalarFieldEnum)[keyof typeof AnnualLeaveEntryRuleScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -55208,6 +57842,220 @@ export namespace Prisma {
     issuedBy?: StringNullableWithAggregatesFilter<"RetirementCertificate"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"RetirementCertificate"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"RetirementCertificate"> | Date | string
+  }
+
+  export type AnnualLeaveServiceRuleWhereInput = {
+    AND?: AnnualLeaveServiceRuleWhereInput | AnnualLeaveServiceRuleWhereInput[]
+    OR?: AnnualLeaveServiceRuleWhereInput[]
+    NOT?: AnnualLeaveServiceRuleWhereInput | AnnualLeaveServiceRuleWhereInput[]
+    id?: StringFilter<"AnnualLeaveServiceRule"> | string
+    serviceMonths?: IntFilter<"AnnualLeaveServiceRule"> | number
+    legalDays?: FloatFilter<"AnnualLeaveServiceRule"> | number
+    specialDays?: FloatFilter<"AnnualLeaveServiceRule"> | number
+    maxTotalDays?: FloatFilter<"AnnualLeaveServiceRule"> | number
+    allowManualSpecialAdjustment?: BoolFilter<"AnnualLeaveServiceRule"> | boolean
+    description?: StringNullableFilter<"AnnualLeaveServiceRule"> | string | null
+    sortOrder?: IntFilter<"AnnualLeaveServiceRule"> | number
+    isActive?: BoolFilter<"AnnualLeaveServiceRule"> | boolean
+    createdAt?: DateTimeFilter<"AnnualLeaveServiceRule"> | Date | string
+    updatedAt?: DateTimeFilter<"AnnualLeaveServiceRule"> | Date | string
+  }
+
+  export type AnnualLeaveServiceRuleOrderByWithRelationInput = {
+    id?: SortOrder
+    serviceMonths?: SortOrder
+    legalDays?: SortOrder
+    specialDays?: SortOrder
+    maxTotalDays?: SortOrder
+    allowManualSpecialAdjustment?: SortOrder
+    description?: SortOrderInput | SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AnnualLeaveServiceRuleWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    serviceMonths?: number
+    AND?: AnnualLeaveServiceRuleWhereInput | AnnualLeaveServiceRuleWhereInput[]
+    OR?: AnnualLeaveServiceRuleWhereInput[]
+    NOT?: AnnualLeaveServiceRuleWhereInput | AnnualLeaveServiceRuleWhereInput[]
+    legalDays?: FloatFilter<"AnnualLeaveServiceRule"> | number
+    specialDays?: FloatFilter<"AnnualLeaveServiceRule"> | number
+    maxTotalDays?: FloatFilter<"AnnualLeaveServiceRule"> | number
+    allowManualSpecialAdjustment?: BoolFilter<"AnnualLeaveServiceRule"> | boolean
+    description?: StringNullableFilter<"AnnualLeaveServiceRule"> | string | null
+    sortOrder?: IntFilter<"AnnualLeaveServiceRule"> | number
+    isActive?: BoolFilter<"AnnualLeaveServiceRule"> | boolean
+    createdAt?: DateTimeFilter<"AnnualLeaveServiceRule"> | Date | string
+    updatedAt?: DateTimeFilter<"AnnualLeaveServiceRule"> | Date | string
+  }, "id" | "serviceMonths">
+
+  export type AnnualLeaveServiceRuleOrderByWithAggregationInput = {
+    id?: SortOrder
+    serviceMonths?: SortOrder
+    legalDays?: SortOrder
+    specialDays?: SortOrder
+    maxTotalDays?: SortOrder
+    allowManualSpecialAdjustment?: SortOrder
+    description?: SortOrderInput | SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AnnualLeaveServiceRuleCountOrderByAggregateInput
+    _avg?: AnnualLeaveServiceRuleAvgOrderByAggregateInput
+    _max?: AnnualLeaveServiceRuleMaxOrderByAggregateInput
+    _min?: AnnualLeaveServiceRuleMinOrderByAggregateInput
+    _sum?: AnnualLeaveServiceRuleSumOrderByAggregateInput
+  }
+
+  export type AnnualLeaveServiceRuleScalarWhereWithAggregatesInput = {
+    AND?: AnnualLeaveServiceRuleScalarWhereWithAggregatesInput | AnnualLeaveServiceRuleScalarWhereWithAggregatesInput[]
+    OR?: AnnualLeaveServiceRuleScalarWhereWithAggregatesInput[]
+    NOT?: AnnualLeaveServiceRuleScalarWhereWithAggregatesInput | AnnualLeaveServiceRuleScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AnnualLeaveServiceRule"> | string
+    serviceMonths?: IntWithAggregatesFilter<"AnnualLeaveServiceRule"> | number
+    legalDays?: FloatWithAggregatesFilter<"AnnualLeaveServiceRule"> | number
+    specialDays?: FloatWithAggregatesFilter<"AnnualLeaveServiceRule"> | number
+    maxTotalDays?: FloatWithAggregatesFilter<"AnnualLeaveServiceRule"> | number
+    allowManualSpecialAdjustment?: BoolWithAggregatesFilter<"AnnualLeaveServiceRule"> | boolean
+    description?: StringNullableWithAggregatesFilter<"AnnualLeaveServiceRule"> | string | null
+    sortOrder?: IntWithAggregatesFilter<"AnnualLeaveServiceRule"> | number
+    isActive?: BoolWithAggregatesFilter<"AnnualLeaveServiceRule"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"AnnualLeaveServiceRule"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"AnnualLeaveServiceRule"> | Date | string
+  }
+
+  export type AnnualLeaveEntryRuleWhereInput = {
+    AND?: AnnualLeaveEntryRuleWhereInput | AnnualLeaveEntryRuleWhereInput[]
+    OR?: AnnualLeaveEntryRuleWhereInput[]
+    NOT?: AnnualLeaveEntryRuleWhereInput | AnnualLeaveEntryRuleWhereInput[]
+    id?: StringFilter<"AnnualLeaveEntryRule"> | string
+    entryMonth?: IntFilter<"AnnualLeaveEntryRule"> | number
+    dayFrom?: IntFilter<"AnnualLeaveEntryRule"> | number
+    dayTo?: IntFilter<"AnnualLeaveEntryRule"> | number
+    legalGrantAfterMonths?: IntFilter<"AnnualLeaveEntryRule"> | number
+    legalDays?: FloatFilter<"AnnualLeaveEntryRule"> | number
+    specialGrant1AfterMonths?: IntNullableFilter<"AnnualLeaveEntryRule"> | number | null
+    specialGrant1Days?: FloatFilter<"AnnualLeaveEntryRule"> | number
+    specialGrant2AfterMonths?: IntNullableFilter<"AnnualLeaveEntryRule"> | number | null
+    specialGrant2Days?: FloatFilter<"AnnualLeaveEntryRule"> | number
+    specialGrant3AfterMonths?: IntNullableFilter<"AnnualLeaveEntryRule"> | number | null
+    specialGrant3Days?: FloatFilter<"AnnualLeaveEntryRule"> | number
+    firstYearTotalDays?: FloatFilter<"AnnualLeaveEntryRule"> | number
+    nextAprilDays?: FloatFilter<"AnnualLeaveEntryRule"> | number
+    allowManualSpecialAdjustment?: BoolFilter<"AnnualLeaveEntryRule"> | boolean
+    description?: StringNullableFilter<"AnnualLeaveEntryRule"> | string | null
+    sortOrder?: IntFilter<"AnnualLeaveEntryRule"> | number
+    isActive?: BoolFilter<"AnnualLeaveEntryRule"> | boolean
+    createdAt?: DateTimeFilter<"AnnualLeaveEntryRule"> | Date | string
+    updatedAt?: DateTimeFilter<"AnnualLeaveEntryRule"> | Date | string
+  }
+
+  export type AnnualLeaveEntryRuleOrderByWithRelationInput = {
+    id?: SortOrder
+    entryMonth?: SortOrder
+    dayFrom?: SortOrder
+    dayTo?: SortOrder
+    legalGrantAfterMonths?: SortOrder
+    legalDays?: SortOrder
+    specialGrant1AfterMonths?: SortOrderInput | SortOrder
+    specialGrant1Days?: SortOrder
+    specialGrant2AfterMonths?: SortOrderInput | SortOrder
+    specialGrant2Days?: SortOrder
+    specialGrant3AfterMonths?: SortOrderInput | SortOrder
+    specialGrant3Days?: SortOrder
+    firstYearTotalDays?: SortOrder
+    nextAprilDays?: SortOrder
+    allowManualSpecialAdjustment?: SortOrder
+    description?: SortOrderInput | SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AnnualLeaveEntryRuleWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    entryMonth_dayFrom_dayTo?: AnnualLeaveEntryRuleEntryMonthDayFromDayToCompoundUniqueInput
+    AND?: AnnualLeaveEntryRuleWhereInput | AnnualLeaveEntryRuleWhereInput[]
+    OR?: AnnualLeaveEntryRuleWhereInput[]
+    NOT?: AnnualLeaveEntryRuleWhereInput | AnnualLeaveEntryRuleWhereInput[]
+    entryMonth?: IntFilter<"AnnualLeaveEntryRule"> | number
+    dayFrom?: IntFilter<"AnnualLeaveEntryRule"> | number
+    dayTo?: IntFilter<"AnnualLeaveEntryRule"> | number
+    legalGrantAfterMonths?: IntFilter<"AnnualLeaveEntryRule"> | number
+    legalDays?: FloatFilter<"AnnualLeaveEntryRule"> | number
+    specialGrant1AfterMonths?: IntNullableFilter<"AnnualLeaveEntryRule"> | number | null
+    specialGrant1Days?: FloatFilter<"AnnualLeaveEntryRule"> | number
+    specialGrant2AfterMonths?: IntNullableFilter<"AnnualLeaveEntryRule"> | number | null
+    specialGrant2Days?: FloatFilter<"AnnualLeaveEntryRule"> | number
+    specialGrant3AfterMonths?: IntNullableFilter<"AnnualLeaveEntryRule"> | number | null
+    specialGrant3Days?: FloatFilter<"AnnualLeaveEntryRule"> | number
+    firstYearTotalDays?: FloatFilter<"AnnualLeaveEntryRule"> | number
+    nextAprilDays?: FloatFilter<"AnnualLeaveEntryRule"> | number
+    allowManualSpecialAdjustment?: BoolFilter<"AnnualLeaveEntryRule"> | boolean
+    description?: StringNullableFilter<"AnnualLeaveEntryRule"> | string | null
+    sortOrder?: IntFilter<"AnnualLeaveEntryRule"> | number
+    isActive?: BoolFilter<"AnnualLeaveEntryRule"> | boolean
+    createdAt?: DateTimeFilter<"AnnualLeaveEntryRule"> | Date | string
+    updatedAt?: DateTimeFilter<"AnnualLeaveEntryRule"> | Date | string
+  }, "id" | "entryMonth_dayFrom_dayTo">
+
+  export type AnnualLeaveEntryRuleOrderByWithAggregationInput = {
+    id?: SortOrder
+    entryMonth?: SortOrder
+    dayFrom?: SortOrder
+    dayTo?: SortOrder
+    legalGrantAfterMonths?: SortOrder
+    legalDays?: SortOrder
+    specialGrant1AfterMonths?: SortOrderInput | SortOrder
+    specialGrant1Days?: SortOrder
+    specialGrant2AfterMonths?: SortOrderInput | SortOrder
+    specialGrant2Days?: SortOrder
+    specialGrant3AfterMonths?: SortOrderInput | SortOrder
+    specialGrant3Days?: SortOrder
+    firstYearTotalDays?: SortOrder
+    nextAprilDays?: SortOrder
+    allowManualSpecialAdjustment?: SortOrder
+    description?: SortOrderInput | SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AnnualLeaveEntryRuleCountOrderByAggregateInput
+    _avg?: AnnualLeaveEntryRuleAvgOrderByAggregateInput
+    _max?: AnnualLeaveEntryRuleMaxOrderByAggregateInput
+    _min?: AnnualLeaveEntryRuleMinOrderByAggregateInput
+    _sum?: AnnualLeaveEntryRuleSumOrderByAggregateInput
+  }
+
+  export type AnnualLeaveEntryRuleScalarWhereWithAggregatesInput = {
+    AND?: AnnualLeaveEntryRuleScalarWhereWithAggregatesInput | AnnualLeaveEntryRuleScalarWhereWithAggregatesInput[]
+    OR?: AnnualLeaveEntryRuleScalarWhereWithAggregatesInput[]
+    NOT?: AnnualLeaveEntryRuleScalarWhereWithAggregatesInput | AnnualLeaveEntryRuleScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AnnualLeaveEntryRule"> | string
+    entryMonth?: IntWithAggregatesFilter<"AnnualLeaveEntryRule"> | number
+    dayFrom?: IntWithAggregatesFilter<"AnnualLeaveEntryRule"> | number
+    dayTo?: IntWithAggregatesFilter<"AnnualLeaveEntryRule"> | number
+    legalGrantAfterMonths?: IntWithAggregatesFilter<"AnnualLeaveEntryRule"> | number
+    legalDays?: FloatWithAggregatesFilter<"AnnualLeaveEntryRule"> | number
+    specialGrant1AfterMonths?: IntNullableWithAggregatesFilter<"AnnualLeaveEntryRule"> | number | null
+    specialGrant1Days?: FloatWithAggregatesFilter<"AnnualLeaveEntryRule"> | number
+    specialGrant2AfterMonths?: IntNullableWithAggregatesFilter<"AnnualLeaveEntryRule"> | number | null
+    specialGrant2Days?: FloatWithAggregatesFilter<"AnnualLeaveEntryRule"> | number
+    specialGrant3AfterMonths?: IntNullableWithAggregatesFilter<"AnnualLeaveEntryRule"> | number | null
+    specialGrant3Days?: FloatWithAggregatesFilter<"AnnualLeaveEntryRule"> | number
+    firstYearTotalDays?: FloatWithAggregatesFilter<"AnnualLeaveEntryRule"> | number
+    nextAprilDays?: FloatWithAggregatesFilter<"AnnualLeaveEntryRule"> | number
+    allowManualSpecialAdjustment?: BoolWithAggregatesFilter<"AnnualLeaveEntryRule"> | boolean
+    description?: StringNullableWithAggregatesFilter<"AnnualLeaveEntryRule"> | string | null
+    sortOrder?: IntWithAggregatesFilter<"AnnualLeaveEntryRule"> | number
+    isActive?: BoolWithAggregatesFilter<"AnnualLeaveEntryRule"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"AnnualLeaveEntryRule"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"AnnualLeaveEntryRule"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -59124,6 +61972,265 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type AnnualLeaveServiceRuleCreateInput = {
+    id?: string
+    serviceMonths: number
+    legalDays: number
+    specialDays: number
+    maxTotalDays?: number
+    allowManualSpecialAdjustment?: boolean
+    description?: string | null
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AnnualLeaveServiceRuleUncheckedCreateInput = {
+    id?: string
+    serviceMonths: number
+    legalDays: number
+    specialDays: number
+    maxTotalDays?: number
+    allowManualSpecialAdjustment?: boolean
+    description?: string | null
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AnnualLeaveServiceRuleUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    serviceMonths?: IntFieldUpdateOperationsInput | number
+    legalDays?: FloatFieldUpdateOperationsInput | number
+    specialDays?: FloatFieldUpdateOperationsInput | number
+    maxTotalDays?: FloatFieldUpdateOperationsInput | number
+    allowManualSpecialAdjustment?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnnualLeaveServiceRuleUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    serviceMonths?: IntFieldUpdateOperationsInput | number
+    legalDays?: FloatFieldUpdateOperationsInput | number
+    specialDays?: FloatFieldUpdateOperationsInput | number
+    maxTotalDays?: FloatFieldUpdateOperationsInput | number
+    allowManualSpecialAdjustment?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnnualLeaveServiceRuleCreateManyInput = {
+    id?: string
+    serviceMonths: number
+    legalDays: number
+    specialDays: number
+    maxTotalDays?: number
+    allowManualSpecialAdjustment?: boolean
+    description?: string | null
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AnnualLeaveServiceRuleUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    serviceMonths?: IntFieldUpdateOperationsInput | number
+    legalDays?: FloatFieldUpdateOperationsInput | number
+    specialDays?: FloatFieldUpdateOperationsInput | number
+    maxTotalDays?: FloatFieldUpdateOperationsInput | number
+    allowManualSpecialAdjustment?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnnualLeaveServiceRuleUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    serviceMonths?: IntFieldUpdateOperationsInput | number
+    legalDays?: FloatFieldUpdateOperationsInput | number
+    specialDays?: FloatFieldUpdateOperationsInput | number
+    maxTotalDays?: FloatFieldUpdateOperationsInput | number
+    allowManualSpecialAdjustment?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnnualLeaveEntryRuleCreateInput = {
+    id?: string
+    entryMonth: number
+    dayFrom: number
+    dayTo: number
+    legalGrantAfterMonths?: number
+    legalDays?: number
+    specialGrant1AfterMonths?: number | null
+    specialGrant1Days?: number
+    specialGrant2AfterMonths?: number | null
+    specialGrant2Days?: number
+    specialGrant3AfterMonths?: number | null
+    specialGrant3Days?: number
+    firstYearTotalDays: number
+    nextAprilDays: number
+    allowManualSpecialAdjustment?: boolean
+    description?: string | null
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AnnualLeaveEntryRuleUncheckedCreateInput = {
+    id?: string
+    entryMonth: number
+    dayFrom: number
+    dayTo: number
+    legalGrantAfterMonths?: number
+    legalDays?: number
+    specialGrant1AfterMonths?: number | null
+    specialGrant1Days?: number
+    specialGrant2AfterMonths?: number | null
+    specialGrant2Days?: number
+    specialGrant3AfterMonths?: number | null
+    specialGrant3Days?: number
+    firstYearTotalDays: number
+    nextAprilDays: number
+    allowManualSpecialAdjustment?: boolean
+    description?: string | null
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AnnualLeaveEntryRuleUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    entryMonth?: IntFieldUpdateOperationsInput | number
+    dayFrom?: IntFieldUpdateOperationsInput | number
+    dayTo?: IntFieldUpdateOperationsInput | number
+    legalGrantAfterMonths?: IntFieldUpdateOperationsInput | number
+    legalDays?: FloatFieldUpdateOperationsInput | number
+    specialGrant1AfterMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    specialGrant1Days?: FloatFieldUpdateOperationsInput | number
+    specialGrant2AfterMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    specialGrant2Days?: FloatFieldUpdateOperationsInput | number
+    specialGrant3AfterMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    specialGrant3Days?: FloatFieldUpdateOperationsInput | number
+    firstYearTotalDays?: FloatFieldUpdateOperationsInput | number
+    nextAprilDays?: FloatFieldUpdateOperationsInput | number
+    allowManualSpecialAdjustment?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnnualLeaveEntryRuleUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    entryMonth?: IntFieldUpdateOperationsInput | number
+    dayFrom?: IntFieldUpdateOperationsInput | number
+    dayTo?: IntFieldUpdateOperationsInput | number
+    legalGrantAfterMonths?: IntFieldUpdateOperationsInput | number
+    legalDays?: FloatFieldUpdateOperationsInput | number
+    specialGrant1AfterMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    specialGrant1Days?: FloatFieldUpdateOperationsInput | number
+    specialGrant2AfterMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    specialGrant2Days?: FloatFieldUpdateOperationsInput | number
+    specialGrant3AfterMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    specialGrant3Days?: FloatFieldUpdateOperationsInput | number
+    firstYearTotalDays?: FloatFieldUpdateOperationsInput | number
+    nextAprilDays?: FloatFieldUpdateOperationsInput | number
+    allowManualSpecialAdjustment?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnnualLeaveEntryRuleCreateManyInput = {
+    id?: string
+    entryMonth: number
+    dayFrom: number
+    dayTo: number
+    legalGrantAfterMonths?: number
+    legalDays?: number
+    specialGrant1AfterMonths?: number | null
+    specialGrant1Days?: number
+    specialGrant2AfterMonths?: number | null
+    specialGrant2Days?: number
+    specialGrant3AfterMonths?: number | null
+    specialGrant3Days?: number
+    firstYearTotalDays: number
+    nextAprilDays: number
+    allowManualSpecialAdjustment?: boolean
+    description?: string | null
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AnnualLeaveEntryRuleUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    entryMonth?: IntFieldUpdateOperationsInput | number
+    dayFrom?: IntFieldUpdateOperationsInput | number
+    dayTo?: IntFieldUpdateOperationsInput | number
+    legalGrantAfterMonths?: IntFieldUpdateOperationsInput | number
+    legalDays?: FloatFieldUpdateOperationsInput | number
+    specialGrant1AfterMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    specialGrant1Days?: FloatFieldUpdateOperationsInput | number
+    specialGrant2AfterMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    specialGrant2Days?: FloatFieldUpdateOperationsInput | number
+    specialGrant3AfterMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    specialGrant3Days?: FloatFieldUpdateOperationsInput | number
+    firstYearTotalDays?: FloatFieldUpdateOperationsInput | number
+    nextAprilDays?: FloatFieldUpdateOperationsInput | number
+    allowManualSpecialAdjustment?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AnnualLeaveEntryRuleUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    entryMonth?: IntFieldUpdateOperationsInput | number
+    dayFrom?: IntFieldUpdateOperationsInput | number
+    dayTo?: IntFieldUpdateOperationsInput | number
+    legalGrantAfterMonths?: IntFieldUpdateOperationsInput | number
+    legalDays?: FloatFieldUpdateOperationsInput | number
+    specialGrant1AfterMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    specialGrant1Days?: FloatFieldUpdateOperationsInput | number
+    specialGrant2AfterMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    specialGrant2Days?: FloatFieldUpdateOperationsInput | number
+    specialGrant3AfterMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    specialGrant3Days?: FloatFieldUpdateOperationsInput | number
+    firstYearTotalDays?: FloatFieldUpdateOperationsInput | number
+    nextAprilDays?: FloatFieldUpdateOperationsInput | number
+    allowManualSpecialAdjustment?: BoolFieldUpdateOperationsInput | boolean
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -61773,6 +64880,173 @@ export namespace Prisma {
     issuedBy?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+  }
+
+  export type AnnualLeaveServiceRuleCountOrderByAggregateInput = {
+    id?: SortOrder
+    serviceMonths?: SortOrder
+    legalDays?: SortOrder
+    specialDays?: SortOrder
+    maxTotalDays?: SortOrder
+    allowManualSpecialAdjustment?: SortOrder
+    description?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AnnualLeaveServiceRuleAvgOrderByAggregateInput = {
+    serviceMonths?: SortOrder
+    legalDays?: SortOrder
+    specialDays?: SortOrder
+    maxTotalDays?: SortOrder
+    sortOrder?: SortOrder
+  }
+
+  export type AnnualLeaveServiceRuleMaxOrderByAggregateInput = {
+    id?: SortOrder
+    serviceMonths?: SortOrder
+    legalDays?: SortOrder
+    specialDays?: SortOrder
+    maxTotalDays?: SortOrder
+    allowManualSpecialAdjustment?: SortOrder
+    description?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AnnualLeaveServiceRuleMinOrderByAggregateInput = {
+    id?: SortOrder
+    serviceMonths?: SortOrder
+    legalDays?: SortOrder
+    specialDays?: SortOrder
+    maxTotalDays?: SortOrder
+    allowManualSpecialAdjustment?: SortOrder
+    description?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AnnualLeaveServiceRuleSumOrderByAggregateInput = {
+    serviceMonths?: SortOrder
+    legalDays?: SortOrder
+    specialDays?: SortOrder
+    maxTotalDays?: SortOrder
+    sortOrder?: SortOrder
+  }
+
+  export type AnnualLeaveEntryRuleEntryMonthDayFromDayToCompoundUniqueInput = {
+    entryMonth: number
+    dayFrom: number
+    dayTo: number
+  }
+
+  export type AnnualLeaveEntryRuleCountOrderByAggregateInput = {
+    id?: SortOrder
+    entryMonth?: SortOrder
+    dayFrom?: SortOrder
+    dayTo?: SortOrder
+    legalGrantAfterMonths?: SortOrder
+    legalDays?: SortOrder
+    specialGrant1AfterMonths?: SortOrder
+    specialGrant1Days?: SortOrder
+    specialGrant2AfterMonths?: SortOrder
+    specialGrant2Days?: SortOrder
+    specialGrant3AfterMonths?: SortOrder
+    specialGrant3Days?: SortOrder
+    firstYearTotalDays?: SortOrder
+    nextAprilDays?: SortOrder
+    allowManualSpecialAdjustment?: SortOrder
+    description?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AnnualLeaveEntryRuleAvgOrderByAggregateInput = {
+    entryMonth?: SortOrder
+    dayFrom?: SortOrder
+    dayTo?: SortOrder
+    legalGrantAfterMonths?: SortOrder
+    legalDays?: SortOrder
+    specialGrant1AfterMonths?: SortOrder
+    specialGrant1Days?: SortOrder
+    specialGrant2AfterMonths?: SortOrder
+    specialGrant2Days?: SortOrder
+    specialGrant3AfterMonths?: SortOrder
+    specialGrant3Days?: SortOrder
+    firstYearTotalDays?: SortOrder
+    nextAprilDays?: SortOrder
+    sortOrder?: SortOrder
+  }
+
+  export type AnnualLeaveEntryRuleMaxOrderByAggregateInput = {
+    id?: SortOrder
+    entryMonth?: SortOrder
+    dayFrom?: SortOrder
+    dayTo?: SortOrder
+    legalGrantAfterMonths?: SortOrder
+    legalDays?: SortOrder
+    specialGrant1AfterMonths?: SortOrder
+    specialGrant1Days?: SortOrder
+    specialGrant2AfterMonths?: SortOrder
+    specialGrant2Days?: SortOrder
+    specialGrant3AfterMonths?: SortOrder
+    specialGrant3Days?: SortOrder
+    firstYearTotalDays?: SortOrder
+    nextAprilDays?: SortOrder
+    allowManualSpecialAdjustment?: SortOrder
+    description?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AnnualLeaveEntryRuleMinOrderByAggregateInput = {
+    id?: SortOrder
+    entryMonth?: SortOrder
+    dayFrom?: SortOrder
+    dayTo?: SortOrder
+    legalGrantAfterMonths?: SortOrder
+    legalDays?: SortOrder
+    specialGrant1AfterMonths?: SortOrder
+    specialGrant1Days?: SortOrder
+    specialGrant2AfterMonths?: SortOrder
+    specialGrant2Days?: SortOrder
+    specialGrant3AfterMonths?: SortOrder
+    specialGrant3Days?: SortOrder
+    firstYearTotalDays?: SortOrder
+    nextAprilDays?: SortOrder
+    allowManualSpecialAdjustment?: SortOrder
+    description?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AnnualLeaveEntryRuleSumOrderByAggregateInput = {
+    entryMonth?: SortOrder
+    dayFrom?: SortOrder
+    dayTo?: SortOrder
+    legalGrantAfterMonths?: SortOrder
+    legalDays?: SortOrder
+    specialGrant1AfterMonths?: SortOrder
+    specialGrant1Days?: SortOrder
+    specialGrant2AfterMonths?: SortOrder
+    specialGrant2Days?: SortOrder
+    specialGrant3AfterMonths?: SortOrder
+    specialGrant3Days?: SortOrder
+    firstYearTotalDays?: SortOrder
+    nextAprilDays?: SortOrder
+    sortOrder?: SortOrder
   }
 
   export type EmployeeCreateNestedOneWithoutUserInput = {

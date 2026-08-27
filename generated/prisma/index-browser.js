@@ -665,6 +665,43 @@ exports.Prisma.RetirementCertificateScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.AnnualLeaveServiceRuleScalarFieldEnum = {
+  id: 'id',
+  serviceMonths: 'serviceMonths',
+  legalDays: 'legalDays',
+  specialDays: 'specialDays',
+  maxTotalDays: 'maxTotalDays',
+  allowManualSpecialAdjustment: 'allowManualSpecialAdjustment',
+  description: 'description',
+  sortOrder: 'sortOrder',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AnnualLeaveEntryRuleScalarFieldEnum = {
+  id: 'id',
+  entryMonth: 'entryMonth',
+  dayFrom: 'dayFrom',
+  dayTo: 'dayTo',
+  legalGrantAfterMonths: 'legalGrantAfterMonths',
+  legalDays: 'legalDays',
+  specialGrant1AfterMonths: 'specialGrant1AfterMonths',
+  specialGrant1Days: 'specialGrant1Days',
+  specialGrant2AfterMonths: 'specialGrant2AfterMonths',
+  specialGrant2Days: 'specialGrant2Days',
+  specialGrant3AfterMonths: 'specialGrant3AfterMonths',
+  specialGrant3Days: 'specialGrant3Days',
+  firstYearTotalDays: 'firstYearTotalDays',
+  nextAprilDays: 'nextAprilDays',
+  allowManualSpecialAdjustment: 'allowManualSpecialAdjustment',
+  description: 'description',
+  sortOrder: 'sortOrder',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -819,7 +856,9 @@ exports.Prisma.ModelName = {
   LeaveType: 'LeaveType',
   RetirementChecklist: 'RetirementChecklist',
   LoanedAsset: 'LoanedAsset',
-  RetirementCertificate: 'RetirementCertificate'
+  RetirementCertificate: 'RetirementCertificate',
+  AnnualLeaveServiceRule: 'AnnualLeaveServiceRule',
+  AnnualLeaveEntryRule: 'AnnualLeaveEntryRule'
 };
 
 /**
