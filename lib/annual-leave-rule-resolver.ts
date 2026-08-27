@@ -185,9 +185,7 @@ export async function resolveNextAnnualGrantEvent(
     return null;
   }
 
-  const specialDays = serviceRule.allowManualSpecialAdjustment
-    ? serviceRule.specialDays
-    : 0;
+  const specialDays = serviceRule.specialDays;
 
   return {
     grantDate: regularGrantDate,

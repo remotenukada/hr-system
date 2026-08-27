@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { prisma } from "@/lib/prisma";
 import { requireHRManager } from "@/lib/auth-guard";
 import { logAudit } from "@/lib/audit-log";
+import { resolveNextAnnualGrantEvent } from "@/lib/annual-leave-rule-resolver";
 import {
   calculateAnnualGrantBreakdown,
   calculateRuleBasedNextGrantDate,
@@ -19,7 +20,7 @@ function formatEmploymentType(type: string | null) {
     TEMPORARY: "派遣",
   };
 
-  return type ? labels[type] ?? type : "-";
+  return type ? (labels[type] ?? type) : "-";
 }
 
 async function grantPendingLeave() {
@@ -27,12 +28,19 @@ async function grantPendingLeave() {
 
   const session = await requireHRManager();
 
+  const annualType = await prisma.leaveType.findUnique({
+    where: { code: "ANNUAL" },
+  });
+
+  if (!annualType) {
+    throw new Error("年次有給休暇マスタが見つかりません。");
+  }
+
   const employees = await prisma.employee.findMany({
     where: {
-      hireDate: {
-        not: null,
-      },
+      hireDate: { not: null },
       status: "ACTIVE",
+      employmentType: "FULL_TIME",
     },
     include: {
       leaveGrantHistories: true,
@@ -48,87 +56,157 @@ async function grantPendingLeave() {
       continue;
     }
 
-    const hireDate = new Date(employee.hireDate);
-    const nextGrantDate = calculateRuleBasedNextGrantDate(hireDate);
-    const nextGrantDateKey = toDateKey(nextGrantDate);
+    const histories = [...employee.leaveGrantHistories];
 
-    const alreadyGranted = employee.leaveGrantHistories.some(
-      (history) => toDateKey(new Date(history.grantDate)) === nextGrantDateKey,
-    );
+    for (let count = 0; count < 10; count += 1) {
+      const event = await resolveNextAnnualGrantEvent(
+        new Date(employee.hireDate),
+        employee.employmentType,
+        histories,
+      );
 
-    if (alreadyGranted) {
-      continue;
-    }
+      if (!event || event.days <= 0) {
+        break;
+      }
 
-    const breakdown = calculateAnnualGrantBreakdown(
-      hireDate,
-      employee.employmentType,
-    );
+      const legalDays =
+        "legalDays" in event
+          ? Math.min(event.legalDays ?? 0, event.days)
+          : event.grantType === "LEGAL"
+            ? event.days
+            : 0;
 
-    if (breakdown.totalDays <= 0) {
-      continue;
-    }
+      const specialDays =
+        "specialDays" in event
+          ? Math.max(0, event.days - legalDays)
+          : event.grantType === "SPECIAL"
+            ? event.days
+            : 0;
 
-    const grantRows = [
-      {
-        employeeId: employee.id,
-        grantDate: nextGrantDate,
-        grantedDays: breakdown.legalDays,
-        grantType: "LEGAL" as const,
-        note: "年次有給休暇 法定付与",
-      },
-      ...(breakdown.specialDays > 0
-        ? [
-            {
-              employeeId: employee.id,
-              grantDate: nextGrantDate,
-              grantedDays: breakdown.specialDays,
-              grantType: "SPECIAL" as const,
-              note: "年次有給休暇 特別休暇付与",
+      const grantRows = [
+        ...(legalDays > 0
+          ? [
+              {
+                employeeId: employee.id,
+                leaveTypeId: annualType.id,
+                grantDate: event.grantDate,
+                expiresAt: new Date(
+                  new Date(event.grantDate).setMonth(
+                    event.grantDate.getMonth() +
+                      (annualType.expirationMonths ?? 24),
+                  ),
+                ),
+                grantedDays: legalDays,
+                grantType: "LEGAL" as const,
+                note: event.note,
+              },
+            ]
+          : []),
+        ...(specialDays > 0
+          ? [
+              {
+                employeeId: employee.id,
+                leaveTypeId: annualType.id,
+                grantDate: event.grantDate,
+                expiresAt: new Date(
+                  new Date(event.grantDate).setMonth(
+                    event.grantDate.getMonth() +
+                      (annualType.expirationMonths ?? 24),
+                  ),
+                ),
+                grantedDays: specialDays,
+                grantType: "SPECIAL" as const,
+                note:
+                  event.category === "定期付与"
+                    ? "年次有給休暇 定期付与 特別休暇"
+                    : event.note,
+              },
+            ]
+          : []),
+      ];
+
+      const beforeBalance = await prisma.leaveBalance.findUnique({
+        where: { employeeId: employee.id },
+      });
+
+      const result = await prisma.$transaction(async (tx) => {
+        await tx.leaveGrantHistory.createMany({
+          data: grantRows,
+        });
+
+        const annualBalance = await tx.leaveBalance.upsert({
+          where: { employeeId: employee.id },
+          update: {
+            grantedDays: {
+              increment: event.days,
             },
-          ]
-        : []),
-    ];
+          },
+          create: {
+            employeeId: employee.id,
+            grantedDays: event.days,
+            usedDays: 0,
+          },
+        });
 
-    await prisma.leaveGrantHistory.createMany({
-      data: grantRows,
-    });
+        await tx.leaveTypeBalance.upsert({
+          where: {
+            employeeId_leaveTypeId: {
+              employeeId: employee.id,
+              leaveTypeId: annualType.id,
+            },
+          },
+          update: {
+            grantedDays: {
+              increment: event.days,
+            },
+          },
+          create: {
+            employeeId: employee.id,
+            leaveTypeId: annualType.id,
+            grantedDays: event.days,
+            usedDays: 0,
+          },
+        });
 
-    const beforeBalance = employee.leaveBalance;
+        return annualBalance;
+      });
 
-    const updatedBalance = await prisma.leaveBalance.upsert({
-      where: {
-        employeeId: employee.id,
-      },
-      update: {
-        grantedDays:
-          (employee.leaveBalance?.grantedDays ?? 0) + breakdown.totalDays,
-      },
-      create: {
-        employeeId: employee.id,
-        grantedDays: breakdown.totalDays,
-        usedDays: 0,
-      },
-    });
+      await logAudit({
+        userId: session.user.id,
+        userName: session.user.name,
+        action: "LEAVE_GRANTED",
+        targetType: "Employee",
+        targetId: employee.id,
+        description:
+          `${employee.employeeNo} に年次有給休暇 ` +
+          `${event.days}日を${event.category}として付与`,
+        beforeData: beforeBalance,
+        afterData: {
+          balance: result,
+          grants: grantRows,
+        },
+      });
 
-    await logAudit({
-      userId: session.user.id,
-      userName: session.user.name,
-      action: "LEAVE_GRANTED",
-      targetType: "Employee",
-      targetId: employee.id,
-      description: `${employee.employeeNo} に有給 ${breakdown.totalDays}日 を一括付与`,
-      beforeData: beforeBalance,
-      afterData: {
-        balance: updatedBalance,
-        grants: grantRows,
-      },
-    });
+      histories.push(
+        ...grantRows.map((row, index) => ({
+          id: `temporary-${count}-${index}`,
+          employeeId: row.employeeId,
+          leaveTypeId: row.leaveTypeId,
+          grantDate: row.grantDate,
+          expiresAt: row.expiresAt,
+          grantedDays: row.grantedDays,
+          grantType: row.grantType,
+          note: row.note,
+          createdAt: new Date(),
+        })),
+      );
+    }
   }
 
   revalidatePath("/leave-grants/pending");
   revalidatePath("/leave-grants");
   revalidatePath("/leave-balances");
+  revalidatePath("/leave-type-balances");
 }
 
 export default async function PendingLeaveGrantPage() {
@@ -171,9 +249,7 @@ export default async function PendingLeaveGrantPage() {
       <BackLink href="/" label="ダッシュボードへ戻る" />
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">
-            有給付与対象者一覧
-          </h1>
+          <h1 className="text-3xl font-bold">有給付与対象者一覧</h1>
 
           <p className="mt-1 text-sm text-gray-500">
             次回付与予定の職員を確認し、一括付与します。
@@ -230,10 +306,7 @@ export default async function PendingLeaveGrantPage() {
           <tbody>
             {targets.length === 0 ? (
               <tr>
-                <td
-                  colSpan={9}
-                  className="p-8 text-center text-gray-500"
-                >
+                <td colSpan={9} className="p-8 text-center text-gray-500">
                   付与対象者はいません。
                 </td>
               </tr>
@@ -259,13 +332,8 @@ export default async function PendingLeaveGrantPage() {
                   : "-";
 
                 return (
-                  <tr
-                    key={employee.id}
-                    className="border-b hover:bg-gray-50"
-                  >
-                    <td className="p-3">
-                      {employee.employeeNo}
-                    </td>
+                  <tr key={employee.id} className="border-b hover:bg-gray-50">
+                    <td className="p-3">{employee.employeeNo}</td>
 
                     <td className="p-3 font-medium">
                       {employee.lastName} {employee.firstName}
@@ -282,21 +350,15 @@ export default async function PendingLeaveGrantPage() {
                     </td>
 
                     <td className="p-3">
-                      {breakdown
-                        ? `${breakdown.legalDays}日`
-                        : "-"}
+                      {breakdown ? `${breakdown.legalDays}日` : "-"}
                     </td>
 
                     <td className="p-3">
-                      {breakdown
-                        ? `${breakdown.specialDays}日`
-                        : "-"}
+                      {breakdown ? `${breakdown.specialDays}日` : "-"}
                     </td>
 
                     <td className="p-3 font-medium text-green-700">
-                      {breakdown
-                        ? `${breakdown.totalDays}日`
-                        : "-"}
+                      {breakdown ? `${breakdown.totalDays}日` : "-"}
                     </td>
 
                     <td className="p-3">
