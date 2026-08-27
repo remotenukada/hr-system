@@ -224,12 +224,6 @@ type StatutoryWorkConditions = {
   annualScheduledDays: number | null;
 };
 
-function getStatutoryRuleMonths(serviceMonths: number) {
-  const ruleMonths = [78, 66, 54, 42, 30, 18, 6];
-
-  return ruleMonths.find((months) => serviceMonths >= months) ?? null;
-}
-
 function getProportionalWeeklyDays(conditions: StatutoryWorkConditions) {
   const annualDays = conditions.annualScheduledDays;
 
@@ -266,28 +260,35 @@ export async function resolveStatutoryAnnualGrantEvent(
     today.getMonth() -
     hireDate.getMonth();
 
-  const ruleMonths = getStatutoryRuleMonths(elapsedMonths);
+  const dueGrantMonths: number[] = [];
 
-  if (ruleMonths === null) {
+  for (let months = 6; months <= elapsedMonths; months += 12) {
+    dueGrantMonths.push(months);
+  }
+
+  const grantMonths = dueGrantMonths.find((months) => {
+    const date = addMonths(hireDate, months);
+    const note = `年次有給休暇 法定付与 ${months}か月`;
+
+    return !histories.some(
+      (history) =>
+        sameDate(new Date(history.grantDate), date) && history.note === note,
+    );
+  });
+
+  if (grantMonths === undefined) {
     return null;
   }
 
-  const grantDate = addMonths(hireDate, ruleMonths);
+  const grantDate = addMonths(hireDate, grantMonths);
 
   if (grantDate > today) {
     return null;
   }
 
-  const note = `年次有給休暇 法定付与 ${ruleMonths}か月`;
-
-  const alreadyGranted = histories.some(
-    (history) =>
-      sameDate(new Date(history.grantDate), grantDate) && history.note === note,
-  );
-
-  if (alreadyGranted) {
-    return null;
-  }
+  // 6年6か月以降は78か月ルールの日数を毎年適用
+  const ruleMonths = Math.min(grantMonths, 78);
+  const note = `年次有給休暇 法定付与 ${grantMonths}か月`;
 
   const normalGrant =
     (conditions.weeklyScheduledHours ?? 0) >= 30 ||
