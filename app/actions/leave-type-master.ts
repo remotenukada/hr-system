@@ -76,6 +76,43 @@ export async function toggleLeaveTypeMaster(formData: FormData) {
 export async function deleteLeaveTypeMaster(formData: FormData) {
   const id = String(formData.get("id") ?? "");
 
+  if (!id) {
+    redirect(listPath);
+  }
+
+  const item = await prisma.leaveType.findUnique({
+    where: { id },
+    select: {
+      code: true,
+      _count: {
+        select: {
+          leaveGrantHistories: true,
+          leaveTypeBalances: true,
+          employeeRequests: true,
+        },
+      },
+    },
+  });
+
+  if (!item) {
+    redirect(listPath);
+  }
+
+  const usageCount =
+    item._count.leaveGrantHistories +
+    item._count.leaveTypeBalances +
+    item._count.employeeRequests;
+
+  if (usageCount > 0) {
+    const message =
+      `使用中のため削除できません。` +
+      `付与履歴:${item._count.leaveGrantHistories}件、` +
+      `残高:${item._count.leaveTypeBalances}件、` +
+      `申請:${item._count.employeeRequests}件`;
+
+    redirect(`${listPath}?error=${encodeURIComponent(message)}`);
+  }
+
   await prisma.leaveType.delete({
     where: { id },
   });

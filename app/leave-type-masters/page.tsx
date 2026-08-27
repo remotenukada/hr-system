@@ -6,7 +6,14 @@ import {
   deleteLeaveTypeMaster,
 } from "@/app/actions/leave-type-master";
 
-export default async function LeaveTypeMastersPage() {
+type Props = {
+  searchParams: Promise<{
+    error?: string;
+  }>;
+};
+
+export default async function LeaveTypeMastersPage({ searchParams }: Props) {
+  const { error } = await searchParams;
   const items = await prisma.leaveType.findMany({
     orderBy: [{ sortOrder: "asc" }, { name: "asc" }],
   });
