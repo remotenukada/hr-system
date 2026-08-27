@@ -145,6 +145,21 @@ async function grantManualLeave(formData: FormData) {
         employeeId,
         leaveTypeId,
         grantDate: grantDate ? new Date(grantDate) : new Date(),
+
+        expiresAt: leaveType.expirationMonths
+          ? (() => {
+              const baseDate = grantDate ? new Date(grantDate) : new Date();
+
+              const expiresAt = new Date(baseDate);
+
+              expiresAt.setMonth(
+                expiresAt.getMonth() + leaveType.expirationMonths,
+              );
+
+              return expiresAt;
+            })()
+          : null,
+
         grantedDays: days,
         grantType: adjustType === "DEDUCT" ? "MANUAL_DEDUCT" : "MANUAL",
         note,
