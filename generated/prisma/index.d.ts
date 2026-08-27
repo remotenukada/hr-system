@@ -46054,6 +46054,9 @@ export namespace Prisma {
     name: string | null
     isPaid: boolean | null
     expirationMonths: number | null
+    description: string | null
+    allowRequest: boolean | null
+    manageBalance: boolean | null
     sortOrder: number | null
     isActive: boolean | null
     createdAt: Date | null
@@ -46066,6 +46069,9 @@ export namespace Prisma {
     name: string | null
     isPaid: boolean | null
     expirationMonths: number | null
+    description: string | null
+    allowRequest: boolean | null
+    manageBalance: boolean | null
     sortOrder: number | null
     isActive: boolean | null
     createdAt: Date | null
@@ -46078,6 +46084,9 @@ export namespace Prisma {
     name: number
     isPaid: number
     expirationMonths: number
+    description: number
+    allowRequest: number
+    manageBalance: number
     sortOrder: number
     isActive: number
     createdAt: number
@@ -46102,6 +46111,9 @@ export namespace Prisma {
     name?: true
     isPaid?: true
     expirationMonths?: true
+    description?: true
+    allowRequest?: true
+    manageBalance?: true
     sortOrder?: true
     isActive?: true
     createdAt?: true
@@ -46114,6 +46126,9 @@ export namespace Prisma {
     name?: true
     isPaid?: true
     expirationMonths?: true
+    description?: true
+    allowRequest?: true
+    manageBalance?: true
     sortOrder?: true
     isActive?: true
     createdAt?: true
@@ -46126,6 +46141,9 @@ export namespace Prisma {
     name?: true
     isPaid?: true
     expirationMonths?: true
+    description?: true
+    allowRequest?: true
+    manageBalance?: true
     sortOrder?: true
     isActive?: true
     createdAt?: true
@@ -46225,6 +46243,9 @@ export namespace Prisma {
     name: string
     isPaid: boolean
     expirationMonths: number | null
+    description: string | null
+    allowRequest: boolean
+    manageBalance: boolean
     sortOrder: number
     isActive: boolean
     createdAt: Date
@@ -46256,6 +46277,9 @@ export namespace Prisma {
     name?: boolean
     isPaid?: boolean
     expirationMonths?: boolean
+    description?: boolean
+    allowRequest?: boolean
+    manageBalance?: boolean
     sortOrder?: boolean
     isActive?: boolean
     createdAt?: boolean
@@ -46272,6 +46296,9 @@ export namespace Prisma {
     name?: boolean
     isPaid?: boolean
     expirationMonths?: boolean
+    description?: boolean
+    allowRequest?: boolean
+    manageBalance?: boolean
     sortOrder?: boolean
     isActive?: boolean
     createdAt?: boolean
@@ -46284,6 +46311,9 @@ export namespace Prisma {
     name?: boolean
     isPaid?: boolean
     expirationMonths?: boolean
+    description?: boolean
+    allowRequest?: boolean
+    manageBalance?: boolean
     sortOrder?: boolean
     isActive?: boolean
     createdAt?: boolean
@@ -46296,13 +46326,16 @@ export namespace Prisma {
     name?: boolean
     isPaid?: boolean
     expirationMonths?: boolean
+    description?: boolean
+    allowRequest?: boolean
+    manageBalance?: boolean
     sortOrder?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type LeaveTypeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "name" | "isPaid" | "expirationMonths" | "sortOrder" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["leaveType"]>
+  export type LeaveTypeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "name" | "isPaid" | "expirationMonths" | "description" | "allowRequest" | "manageBalance" | "sortOrder" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["leaveType"]>
   export type LeaveTypeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     leaveGrantHistories?: boolean | LeaveType$leaveGrantHistoriesArgs<ExtArgs>
     employeeRequests?: boolean | LeaveType$employeeRequestsArgs<ExtArgs>
@@ -46325,6 +46358,9 @@ export namespace Prisma {
       name: string
       isPaid: boolean
       expirationMonths: number | null
+      description: string | null
+      allowRequest: boolean
+      manageBalance: boolean
       sortOrder: number
       isActive: boolean
       createdAt: Date
@@ -46760,6 +46796,9 @@ export namespace Prisma {
     readonly name: FieldRef<"LeaveType", 'String'>
     readonly isPaid: FieldRef<"LeaveType", 'Boolean'>
     readonly expirationMonths: FieldRef<"LeaveType", 'Int'>
+    readonly description: FieldRef<"LeaveType", 'String'>
+    readonly allowRequest: FieldRef<"LeaveType", 'Boolean'>
+    readonly manageBalance: FieldRef<"LeaveType", 'Boolean'>
     readonly sortOrder: FieldRef<"LeaveType", 'Int'>
     readonly isActive: FieldRef<"LeaveType", 'Boolean'>
     readonly createdAt: FieldRef<"LeaveType", 'DateTime'>
@@ -51355,6 +51394,9 @@ export namespace Prisma {
     name: 'name',
     isPaid: 'isPaid',
     expirationMonths: 'expirationMonths',
+    description: 'description',
+    allowRequest: 'allowRequest',
+    manageBalance: 'manageBalance',
     sortOrder: 'sortOrder',
     isActive: 'isActive',
     createdAt: 'createdAt',
@@ -54794,6 +54836,9 @@ export namespace Prisma {
     name?: StringFilter<"LeaveType"> | string
     isPaid?: BoolFilter<"LeaveType"> | boolean
     expirationMonths?: IntNullableFilter<"LeaveType"> | number | null
+    description?: StringNullableFilter<"LeaveType"> | string | null
+    allowRequest?: BoolFilter<"LeaveType"> | boolean
+    manageBalance?: BoolFilter<"LeaveType"> | boolean
     sortOrder?: IntFilter<"LeaveType"> | number
     isActive?: BoolFilter<"LeaveType"> | boolean
     createdAt?: DateTimeFilter<"LeaveType"> | Date | string
@@ -54809,6 +54854,9 @@ export namespace Prisma {
     name?: SortOrder
     isPaid?: SortOrder
     expirationMonths?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    allowRequest?: SortOrder
+    manageBalance?: SortOrder
     sortOrder?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
@@ -54827,6 +54875,9 @@ export namespace Prisma {
     name?: StringFilter<"LeaveType"> | string
     isPaid?: BoolFilter<"LeaveType"> | boolean
     expirationMonths?: IntNullableFilter<"LeaveType"> | number | null
+    description?: StringNullableFilter<"LeaveType"> | string | null
+    allowRequest?: BoolFilter<"LeaveType"> | boolean
+    manageBalance?: BoolFilter<"LeaveType"> | boolean
     sortOrder?: IntFilter<"LeaveType"> | number
     isActive?: BoolFilter<"LeaveType"> | boolean
     createdAt?: DateTimeFilter<"LeaveType"> | Date | string
@@ -54842,6 +54893,9 @@ export namespace Prisma {
     name?: SortOrder
     isPaid?: SortOrder
     expirationMonths?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    allowRequest?: SortOrder
+    manageBalance?: SortOrder
     sortOrder?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
@@ -54862,6 +54916,9 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"LeaveType"> | string
     isPaid?: BoolWithAggregatesFilter<"LeaveType"> | boolean
     expirationMonths?: IntNullableWithAggregatesFilter<"LeaveType"> | number | null
+    description?: StringNullableWithAggregatesFilter<"LeaveType"> | string | null
+    allowRequest?: BoolWithAggregatesFilter<"LeaveType"> | boolean
+    manageBalance?: BoolWithAggregatesFilter<"LeaveType"> | boolean
     sortOrder?: IntWithAggregatesFilter<"LeaveType"> | number
     isActive?: BoolWithAggregatesFilter<"LeaveType"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"LeaveType"> | Date | string
@@ -58623,6 +58680,9 @@ export namespace Prisma {
     name: string
     isPaid?: boolean
     expirationMonths?: number | null
+    description?: string | null
+    allowRequest?: boolean
+    manageBalance?: boolean
     sortOrder?: number
     isActive?: boolean
     createdAt?: Date | string
@@ -58638,6 +58698,9 @@ export namespace Prisma {
     name: string
     isPaid?: boolean
     expirationMonths?: number | null
+    description?: string | null
+    allowRequest?: boolean
+    manageBalance?: boolean
     sortOrder?: number
     isActive?: boolean
     createdAt?: Date | string
@@ -58653,6 +58716,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    allowRequest?: BoolFieldUpdateOperationsInput | boolean
+    manageBalance?: BoolFieldUpdateOperationsInput | boolean
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -58668,6 +58734,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    allowRequest?: BoolFieldUpdateOperationsInput | boolean
+    manageBalance?: BoolFieldUpdateOperationsInput | boolean
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -58683,6 +58752,9 @@ export namespace Prisma {
     name: string
     isPaid?: boolean
     expirationMonths?: number | null
+    description?: string | null
+    allowRequest?: boolean
+    manageBalance?: boolean
     sortOrder?: number
     isActive?: boolean
     createdAt?: Date | string
@@ -58695,6 +58767,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    allowRequest?: BoolFieldUpdateOperationsInput | boolean
+    manageBalance?: BoolFieldUpdateOperationsInput | boolean
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -58707,6 +58782,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    allowRequest?: BoolFieldUpdateOperationsInput | boolean
+    manageBalance?: BoolFieldUpdateOperationsInput | boolean
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -61504,6 +61582,9 @@ export namespace Prisma {
     name?: SortOrder
     isPaid?: SortOrder
     expirationMonths?: SortOrder
+    description?: SortOrder
+    allowRequest?: SortOrder
+    manageBalance?: SortOrder
     sortOrder?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
@@ -61521,6 +61602,9 @@ export namespace Prisma {
     name?: SortOrder
     isPaid?: SortOrder
     expirationMonths?: SortOrder
+    description?: SortOrder
+    allowRequest?: SortOrder
+    manageBalance?: SortOrder
     sortOrder?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
@@ -61533,6 +61617,9 @@ export namespace Prisma {
     name?: SortOrder
     isPaid?: SortOrder
     expirationMonths?: SortOrder
+    description?: SortOrder
+    allowRequest?: SortOrder
+    manageBalance?: SortOrder
     sortOrder?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
@@ -67025,6 +67112,9 @@ export namespace Prisma {
     name: string
     isPaid?: boolean
     expirationMonths?: number | null
+    description?: string | null
+    allowRequest?: boolean
+    manageBalance?: boolean
     sortOrder?: number
     isActive?: boolean
     createdAt?: Date | string
@@ -67039,6 +67129,9 @@ export namespace Prisma {
     name: string
     isPaid?: boolean
     expirationMonths?: number | null
+    description?: string | null
+    allowRequest?: boolean
+    manageBalance?: boolean
     sortOrder?: number
     isActive?: boolean
     createdAt?: Date | string
@@ -67168,6 +67261,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    allowRequest?: BoolFieldUpdateOperationsInput | boolean
+    manageBalance?: BoolFieldUpdateOperationsInput | boolean
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -67182,6 +67278,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    allowRequest?: BoolFieldUpdateOperationsInput | boolean
+    manageBalance?: BoolFieldUpdateOperationsInput | boolean
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -67481,6 +67580,9 @@ export namespace Prisma {
     name: string
     isPaid?: boolean
     expirationMonths?: number | null
+    description?: string | null
+    allowRequest?: boolean
+    manageBalance?: boolean
     sortOrder?: number
     isActive?: boolean
     createdAt?: Date | string
@@ -67495,6 +67597,9 @@ export namespace Prisma {
     name: string
     isPaid?: boolean
     expirationMonths?: number | null
+    description?: string | null
+    allowRequest?: boolean
+    manageBalance?: boolean
     sortOrder?: number
     isActive?: boolean
     createdAt?: Date | string
@@ -67705,6 +67810,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    allowRequest?: BoolFieldUpdateOperationsInput | boolean
+    manageBalance?: BoolFieldUpdateOperationsInput | boolean
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -67719,6 +67827,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    allowRequest?: BoolFieldUpdateOperationsInput | boolean
+    manageBalance?: BoolFieldUpdateOperationsInput | boolean
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -70205,6 +70316,9 @@ export namespace Prisma {
     name: string
     isPaid?: boolean
     expirationMonths?: number | null
+    description?: string | null
+    allowRequest?: boolean
+    manageBalance?: boolean
     sortOrder?: number
     isActive?: boolean
     createdAt?: Date | string
@@ -70219,6 +70333,9 @@ export namespace Prisma {
     name: string
     isPaid?: boolean
     expirationMonths?: number | null
+    description?: string | null
+    allowRequest?: boolean
+    manageBalance?: boolean
     sortOrder?: number
     isActive?: boolean
     createdAt?: Date | string
@@ -70348,6 +70465,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    allowRequest?: BoolFieldUpdateOperationsInput | boolean
+    manageBalance?: BoolFieldUpdateOperationsInput | boolean
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -70362,6 +70482,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     isPaid?: BoolFieldUpdateOperationsInput | boolean
     expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    allowRequest?: BoolFieldUpdateOperationsInput | boolean
+    manageBalance?: BoolFieldUpdateOperationsInput | boolean
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

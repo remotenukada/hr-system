@@ -822,6 +822,12 @@ model LeaveType {
 
   expirationMonths Int?
 
+  description String?
+
+  allowRequest Boolean @default(true)
+
+  manageBalance Boolean @default(true)
+
   sortOrder Int @default(0)
 
   isActive Boolean @default(true)
