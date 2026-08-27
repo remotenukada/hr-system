@@ -5,12 +5,6 @@ import { prisma } from "@/lib/prisma";
 import { requireHRManager } from "@/lib/auth-guard";
 import { logAudit } from "@/lib/audit-log";
 import { resolveNextAnnualGrantEvent } from "@/lib/annual-leave-rule-resolver";
-import {
-  calculateAnnualGrantBreakdown,
-  calculateRuleBasedNextGrantDate,
-  getLeaveGrantCategory,
-  toDateKey,
-} from "@/lib/leave-annual-grant";
 
 function formatEmploymentType(type: string | null) {
   const labels: Record<string, string> = {
@@ -227,22 +221,32 @@ export default async function PendingLeaveGrantPage() {
     },
   });
 
-  const targets = employees.filter((employee) => {
-    if (!employee.hireDate) {
-      return false;
-    }
+  const candidates = await Promise.all(
+    employees.map(async (employee) => {
+      if (!employee.hireDate || employee.employmentType !== "FULL_TIME") {
+        return null;
+      }
 
-    const nextGrantDate = calculateRuleBasedNextGrantDate(
-      new Date(employee.hireDate),
-    );
+      const event = await resolveNextAnnualGrantEvent(
+        new Date(employee.hireDate),
+        employee.employmentType,
+        employee.leaveGrantHistories,
+      );
 
-    const alreadyGranted = employee.leaveGrantHistories.some(
-      (history) =>
-        toDateKey(new Date(history.grantDate)) === toDateKey(nextGrantDate),
-    );
+      if (!event || event.days <= 0) {
+        return null;
+      }
 
-    return !alreadyGranted;
-  });
+      return {
+        employee,
+        event,
+      };
+    }),
+  );
+
+  const targets = candidates.filter(
+    (target): target is NonNullable<typeof target> => target !== null,
+  );
 
   return (
     <main className="p-8">
@@ -311,25 +315,30 @@ export default async function PendingLeaveGrantPage() {
                 </td>
               </tr>
             ) : (
-              targets.map((employee) => {
-                const hireDate = employee.hireDate
-                  ? new Date(employee.hireDate)
-                  : null;
+              targets.map(({ employee, event }) => {
+                const nextGrantDate = event.grantDate;
 
-                const nextGrantDate = hireDate
-                  ? calculateRuleBasedNextGrantDate(hireDate)
-                  : null;
+                const legalDays =
+                  "legalDays" in event
+                    ? Math.min(event.legalDays ?? 0, event.days)
+                    : event.grantType === "LEGAL"
+                      ? event.days
+                      : 0;
 
-                const breakdown = hireDate
-                  ? calculateAnnualGrantBreakdown(
-                      hireDate,
-                      employee.employmentType,
-                    )
-                  : null;
+                const specialDays =
+                  "specialDays" in event
+                    ? Math.max(0, event.days - legalDays)
+                    : event.grantType === "SPECIAL"
+                      ? event.days
+                      : 0;
 
-                const category = hireDate
-                  ? getLeaveGrantCategory(hireDate)
-                  : "-";
+                const breakdown = {
+                  legalDays,
+                  specialDays,
+                  totalDays: event.days,
+                };
+
+                const category = event.category;
 
                 return (
                   <tr key={employee.id} className="border-b hover:bg-gray-50">
