@@ -31,6 +31,7 @@ export default async function LeaveTypeMastersPage() {
               <th className="border-b p-3">残高管理</th>
               <th className="border-b p-3">表示順</th>
               <th className="border-b p-3">状態</th>
+              <th className="border-b p-3">編集</th>
             </tr>
           </thead>
           <tbody>
@@ -56,11 +57,20 @@ export default async function LeaveTypeMastersPage() {
                 <td className="border-b p-3">
                   {item.isActive ? "有効" : "無効"}
                 </td>
+
+                <td className="border-b p-3">
+                  <Link
+                    href={`/leave-type-masters/${item.id}/edit`}
+                    className="text-blue-600 hover:underline"
+                  >
+                    編集
+                  </Link>
+                </td>
               </tr>
             ))}
             {items.length === 0 && (
               <tr>
-                <td colSpan={8} className="p-6 text-center text-gray-500">
+                <td colSpan={9} className="p-6 text-center text-gray-500">
                   休暇種別は登録されていません。
                 </td>
               </tr>
