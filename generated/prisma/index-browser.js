@@ -171,6 +171,10 @@ exports.Prisma.EmployeeScalarFieldEnum = {
   position: 'position',
   commutingType: 'commutingType',
   employmentType: 'employmentType',
+  weeklyScheduledDays: 'weeklyScheduledDays',
+  weeklyScheduledHours: 'weeklyScheduledHours',
+  annualScheduledDays: 'annualScheduledDays',
+  dailyScheduledHours: 'dailyScheduledHours',
   status: 'status',
   employmentInsuranceNo: 'employmentInsuranceNo',
   healthInsuranceNo: 'healthInsuranceNo',
@@ -275,7 +279,13 @@ exports.Prisma.EmployeeRequestScalarFieldEnum = {
   leaveDays: 'leaveDays',
   leaveEndDate: 'leaveEndDate',
   leaveStartDate: 'leaveStartDate',
-  leaveTypeId: 'leaveTypeId'
+  leaveTypeId: 'leaveTypeId',
+  requestCategory: 'requestCategory',
+  targetDate: 'targetDate',
+  unitType: 'unitType',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  hours: 'hours'
 };
 
 exports.Prisma.RequestAttachmentScalarFieldEnum = {
@@ -702,6 +712,23 @@ exports.Prisma.AnnualLeaveEntryRuleScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.PartTimeAnnualLeaveRuleScalarFieldEnum = {
+  id: 'id',
+  weeklyScheduledDays: 'weeklyScheduledDays',
+  days6Months: 'days6Months',
+  days18Months: 'days18Months',
+  days30Months: 'days30Months',
+  days42Months: 'days42Months',
+  days54Months: 'days54Months',
+  days66Months: 'days66Months',
+  days78Months: 'days78Months',
+  description: 'description',
+  sortOrder: 'sortOrder',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -786,6 +813,21 @@ exports.RequestStatus = exports.$Enums.RequestStatus = {
   CANCELLED: 'CANCELLED'
 };
 
+exports.RequestCategory = exports.$Enums.RequestCategory = {
+  LEAVE: 'LEAVE',
+  LATE: 'LATE',
+  EARLY: 'EARLY',
+  OUTING: 'OUTING',
+  CHILD_CARE: 'CHILD_CARE',
+  FAMILY_CARE: 'FAMILY_CARE'
+};
+
+exports.RequestUnitType = exports.$Enums.RequestUnitType = {
+  DAY: 'DAY',
+  HALF_DAY: 'HALF_DAY',
+  HOUR: 'HOUR'
+};
+
 exports.RequestHistoryAction = exports.$Enums.RequestHistoryAction = {
   CREATED: 'CREATED',
   UPDATED: 'UPDATED',
@@ -858,7 +900,8 @@ exports.Prisma.ModelName = {
   LoanedAsset: 'LoanedAsset',
   RetirementCertificate: 'RetirementCertificate',
   AnnualLeaveServiceRule: 'AnnualLeaveServiceRule',
-  AnnualLeaveEntryRule: 'AnnualLeaveEntryRule'
+  AnnualLeaveEntryRule: 'AnnualLeaveEntryRule',
+  PartTimeAnnualLeaveRule: 'PartTimeAnnualLeaveRule'
 };
 
 /**

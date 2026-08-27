@@ -230,7 +230,10 @@ export default async function PendingLeaveGrantPage() {
 
   const candidates = await Promise.all(
     employees.map(async (employee) => {
-      if (!employee.hireDate || employee.employmentType !== "FULL_TIME") {
+      if (
+        !employee.hireDate ||
+        !["FULL_TIME", "PART_TIME"].includes(employee.employmentType ?? "")
+      ) {
         return null;
       }
 
@@ -238,6 +241,11 @@ export default async function PendingLeaveGrantPage() {
         new Date(employee.hireDate),
         employee.employmentType,
         employee.leaveGrantHistories,
+        {
+          weeklyScheduledDays: employee.weeklyScheduledDays,
+          weeklyScheduledHours: employee.weeklyScheduledHours,
+          annualScheduledDays: employee.annualScheduledDays,
+        },
       );
 
       if (!event || event.days <= 0) {

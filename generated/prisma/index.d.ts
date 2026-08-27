@@ -218,6 +218,11 @@ export type AnnualLeaveServiceRule = $Result.DefaultSelection<Prisma.$AnnualLeav
  * 
  */
 export type AnnualLeaveEntryRule = $Result.DefaultSelection<Prisma.$AnnualLeaveEntryRulePayload>
+/**
+ * Model PartTimeAnnualLeaveRule
+ * 
+ */
+export type PartTimeAnnualLeaveRule = $Result.DefaultSelection<Prisma.$PartTimeAnnualLeaveRulePayload>
 
 /**
  * Enums
@@ -260,6 +265,27 @@ export const RequestStatus: {
 };
 
 export type RequestStatus = (typeof RequestStatus)[keyof typeof RequestStatus]
+
+
+export const RequestCategory: {
+  LEAVE: 'LEAVE',
+  LATE: 'LATE',
+  EARLY: 'EARLY',
+  OUTING: 'OUTING',
+  CHILD_CARE: 'CHILD_CARE',
+  FAMILY_CARE: 'FAMILY_CARE'
+};
+
+export type RequestCategory = (typeof RequestCategory)[keyof typeof RequestCategory]
+
+
+export const RequestUnitType: {
+  DAY: 'DAY',
+  HALF_DAY: 'HALF_DAY',
+  HOUR: 'HOUR'
+};
+
+export type RequestUnitType = (typeof RequestUnitType)[keyof typeof RequestUnitType]
 
 
 export const DependentRequestType: {
@@ -368,6 +394,14 @@ export const RequestType: typeof $Enums.RequestType
 export type RequestStatus = $Enums.RequestStatus
 
 export const RequestStatus: typeof $Enums.RequestStatus
+
+export type RequestCategory = $Enums.RequestCategory
+
+export const RequestCategory: typeof $Enums.RequestCategory
+
+export type RequestUnitType = $Enums.RequestUnitType
+
+export const RequestUnitType: typeof $Enums.RequestUnitType
 
 export type DependentRequestType = $Enums.DependentRequestType
 
@@ -935,6 +969,16 @@ export class PrismaClient<
     * ```
     */
   get annualLeaveEntryRule(): Prisma.AnnualLeaveEntryRuleDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.partTimeAnnualLeaveRule`: Exposes CRUD operations for the **PartTimeAnnualLeaveRule** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PartTimeAnnualLeaveRules
+    * const partTimeAnnualLeaveRules = await prisma.partTimeAnnualLeaveRule.findMany()
+    * ```
+    */
+  get partTimeAnnualLeaveRule(): Prisma.PartTimeAnnualLeaveRuleDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1409,7 +1453,8 @@ export namespace Prisma {
     LoanedAsset: 'LoanedAsset',
     RetirementCertificate: 'RetirementCertificate',
     AnnualLeaveServiceRule: 'AnnualLeaveServiceRule',
-    AnnualLeaveEntryRule: 'AnnualLeaveEntryRule'
+    AnnualLeaveEntryRule: 'AnnualLeaveEntryRule',
+    PartTimeAnnualLeaveRule: 'PartTimeAnnualLeaveRule'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1425,7 +1470,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "userInvitation" | "department" | "employee" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster" | "contractTypeMaster" | "jobTitleMaster" | "positionMaster" | "leaveTypeBalance" | "leaveType" | "retirementChecklist" | "loanedAsset" | "retirementCertificate" | "annualLeaveServiceRule" | "annualLeaveEntryRule"
+      modelProps: "user" | "userInvitation" | "department" | "employee" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster" | "contractTypeMaster" | "jobTitleMaster" | "positionMaster" | "leaveTypeBalance" | "leaveType" | "retirementChecklist" | "loanedAsset" | "retirementCertificate" | "annualLeaveServiceRule" | "annualLeaveEntryRule" | "partTimeAnnualLeaveRule"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -4463,6 +4508,80 @@ export namespace Prisma {
           }
         }
       }
+      PartTimeAnnualLeaveRule: {
+        payload: Prisma.$PartTimeAnnualLeaveRulePayload<ExtArgs>
+        fields: Prisma.PartTimeAnnualLeaveRuleFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PartTimeAnnualLeaveRuleFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartTimeAnnualLeaveRulePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PartTimeAnnualLeaveRuleFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartTimeAnnualLeaveRulePayload>
+          }
+          findFirst: {
+            args: Prisma.PartTimeAnnualLeaveRuleFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartTimeAnnualLeaveRulePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PartTimeAnnualLeaveRuleFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartTimeAnnualLeaveRulePayload>
+          }
+          findMany: {
+            args: Prisma.PartTimeAnnualLeaveRuleFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartTimeAnnualLeaveRulePayload>[]
+          }
+          create: {
+            args: Prisma.PartTimeAnnualLeaveRuleCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartTimeAnnualLeaveRulePayload>
+          }
+          createMany: {
+            args: Prisma.PartTimeAnnualLeaveRuleCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PartTimeAnnualLeaveRuleCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartTimeAnnualLeaveRulePayload>[]
+          }
+          delete: {
+            args: Prisma.PartTimeAnnualLeaveRuleDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartTimeAnnualLeaveRulePayload>
+          }
+          update: {
+            args: Prisma.PartTimeAnnualLeaveRuleUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartTimeAnnualLeaveRulePayload>
+          }
+          deleteMany: {
+            args: Prisma.PartTimeAnnualLeaveRuleDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PartTimeAnnualLeaveRuleUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PartTimeAnnualLeaveRuleUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartTimeAnnualLeaveRulePayload>[]
+          }
+          upsert: {
+            args: Prisma.PartTimeAnnualLeaveRuleUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PartTimeAnnualLeaveRulePayload>
+          }
+          aggregate: {
+            args: Prisma.PartTimeAnnualLeaveRuleAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePartTimeAnnualLeaveRule>
+          }
+          groupBy: {
+            args: Prisma.PartTimeAnnualLeaveRuleGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PartTimeAnnualLeaveRuleGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PartTimeAnnualLeaveRuleCountArgs<ExtArgs>
+            result: $Utils.Optional<PartTimeAnnualLeaveRuleCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -4612,6 +4731,7 @@ export namespace Prisma {
     retirementCertificate?: RetirementCertificateOmit
     annualLeaveServiceRule?: AnnualLeaveServiceRuleOmit
     annualLeaveEntryRule?: AnnualLeaveEntryRuleOmit
+    partTimeAnnualLeaveRule?: PartTimeAnnualLeaveRuleOmit
   }
 
   /* Types for Logging */
@@ -8547,8 +8667,24 @@ export namespace Prisma {
 
   export type AggregateEmployee = {
     _count: EmployeeCountAggregateOutputType | null
+    _avg: EmployeeAvgAggregateOutputType | null
+    _sum: EmployeeSumAggregateOutputType | null
     _min: EmployeeMinAggregateOutputType | null
     _max: EmployeeMaxAggregateOutputType | null
+  }
+
+  export type EmployeeAvgAggregateOutputType = {
+    weeklyScheduledDays: number | null
+    weeklyScheduledHours: number | null
+    annualScheduledDays: number | null
+    dailyScheduledHours: number | null
+  }
+
+  export type EmployeeSumAggregateOutputType = {
+    weeklyScheduledDays: number | null
+    weeklyScheduledHours: number | null
+    annualScheduledDays: number | null
+    dailyScheduledHours: number | null
   }
 
   export type EmployeeMinAggregateOutputType = {
@@ -8570,6 +8706,10 @@ export namespace Prisma {
     position: string | null
     commutingType: string | null
     employmentType: $Enums.EmploymentType | null
+    weeklyScheduledDays: number | null
+    weeklyScheduledHours: number | null
+    annualScheduledDays: number | null
+    dailyScheduledHours: number | null
     status: $Enums.EmployeeStatus | null
     employmentInsuranceNo: string | null
     healthInsuranceNo: string | null
@@ -8598,6 +8738,10 @@ export namespace Prisma {
     position: string | null
     commutingType: string | null
     employmentType: $Enums.EmploymentType | null
+    weeklyScheduledDays: number | null
+    weeklyScheduledHours: number | null
+    annualScheduledDays: number | null
+    dailyScheduledHours: number | null
     status: $Enums.EmployeeStatus | null
     employmentInsuranceNo: string | null
     healthInsuranceNo: string | null
@@ -8626,6 +8770,10 @@ export namespace Prisma {
     position: number
     commutingType: number
     employmentType: number
+    weeklyScheduledDays: number
+    weeklyScheduledHours: number
+    annualScheduledDays: number
+    dailyScheduledHours: number
     status: number
     employmentInsuranceNo: number
     healthInsuranceNo: number
@@ -8636,6 +8784,20 @@ export namespace Prisma {
     _all: number
   }
 
+
+  export type EmployeeAvgAggregateInputType = {
+    weeklyScheduledDays?: true
+    weeklyScheduledHours?: true
+    annualScheduledDays?: true
+    dailyScheduledHours?: true
+  }
+
+  export type EmployeeSumAggregateInputType = {
+    weeklyScheduledDays?: true
+    weeklyScheduledHours?: true
+    annualScheduledDays?: true
+    dailyScheduledHours?: true
+  }
 
   export type EmployeeMinAggregateInputType = {
     id?: true
@@ -8656,6 +8818,10 @@ export namespace Prisma {
     position?: true
     commutingType?: true
     employmentType?: true
+    weeklyScheduledDays?: true
+    weeklyScheduledHours?: true
+    annualScheduledDays?: true
+    dailyScheduledHours?: true
     status?: true
     employmentInsuranceNo?: true
     healthInsuranceNo?: true
@@ -8684,6 +8850,10 @@ export namespace Prisma {
     position?: true
     commutingType?: true
     employmentType?: true
+    weeklyScheduledDays?: true
+    weeklyScheduledHours?: true
+    annualScheduledDays?: true
+    dailyScheduledHours?: true
     status?: true
     employmentInsuranceNo?: true
     healthInsuranceNo?: true
@@ -8712,6 +8882,10 @@ export namespace Prisma {
     position?: true
     commutingType?: true
     employmentType?: true
+    weeklyScheduledDays?: true
+    weeklyScheduledHours?: true
+    annualScheduledDays?: true
+    dailyScheduledHours?: true
     status?: true
     employmentInsuranceNo?: true
     healthInsuranceNo?: true
@@ -8760,6 +8934,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: EmployeeAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: EmployeeSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: EmployeeMinAggregateInputType
@@ -8790,6 +8976,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: EmployeeCountAggregateInputType | true
+    _avg?: EmployeeAvgAggregateInputType
+    _sum?: EmployeeSumAggregateInputType
     _min?: EmployeeMinAggregateInputType
     _max?: EmployeeMaxAggregateInputType
   }
@@ -8813,6 +9001,10 @@ export namespace Prisma {
     position: string | null
     commutingType: string | null
     employmentType: $Enums.EmploymentType | null
+    weeklyScheduledDays: number | null
+    weeklyScheduledHours: number | null
+    annualScheduledDays: number | null
+    dailyScheduledHours: number | null
     status: $Enums.EmployeeStatus
     employmentInsuranceNo: string | null
     healthInsuranceNo: string | null
@@ -8821,6 +9013,8 @@ export namespace Prisma {
     userId: string | null
     emergencyContact: string | null
     _count: EmployeeCountAggregateOutputType | null
+    _avg: EmployeeAvgAggregateOutputType | null
+    _sum: EmployeeSumAggregateOutputType | null
     _min: EmployeeMinAggregateOutputType | null
     _max: EmployeeMaxAggregateOutputType | null
   }
@@ -8858,6 +9052,10 @@ export namespace Prisma {
     position?: boolean
     commutingType?: boolean
     employmentType?: boolean
+    weeklyScheduledDays?: boolean
+    weeklyScheduledHours?: boolean
+    annualScheduledDays?: boolean
+    dailyScheduledHours?: boolean
     status?: boolean
     employmentInsuranceNo?: boolean
     healthInsuranceNo?: boolean
@@ -8906,6 +9104,10 @@ export namespace Prisma {
     position?: boolean
     commutingType?: boolean
     employmentType?: boolean
+    weeklyScheduledDays?: boolean
+    weeklyScheduledHours?: boolean
+    annualScheduledDays?: boolean
+    dailyScheduledHours?: boolean
     status?: boolean
     employmentInsuranceNo?: boolean
     healthInsuranceNo?: boolean
@@ -8936,6 +9138,10 @@ export namespace Prisma {
     position?: boolean
     commutingType?: boolean
     employmentType?: boolean
+    weeklyScheduledDays?: boolean
+    weeklyScheduledHours?: boolean
+    annualScheduledDays?: boolean
+    dailyScheduledHours?: boolean
     status?: boolean
     employmentInsuranceNo?: boolean
     healthInsuranceNo?: boolean
@@ -8966,6 +9172,10 @@ export namespace Prisma {
     position?: boolean
     commutingType?: boolean
     employmentType?: boolean
+    weeklyScheduledDays?: boolean
+    weeklyScheduledHours?: boolean
+    annualScheduledDays?: boolean
+    dailyScheduledHours?: boolean
     status?: boolean
     employmentInsuranceNo?: boolean
     healthInsuranceNo?: boolean
@@ -8975,7 +9185,7 @@ export namespace Prisma {
     emergencyContact?: boolean
   }
 
-  export type EmployeeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeNo" | "firstName" | "lastName" | "email" | "createdAt" | "departmentId" | "address" | "birthDate" | "firstNameKana" | "gender" | "hireDate" | "lastNameKana" | "occupation" | "phoneNumber" | "position" | "commutingType" | "employmentType" | "status" | "employmentInsuranceNo" | "healthInsuranceNo" | "retirementDate" | "photoPath" | "userId" | "emergencyContact", ExtArgs["result"]["employee"]>
+  export type EmployeeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeNo" | "firstName" | "lastName" | "email" | "createdAt" | "departmentId" | "address" | "birthDate" | "firstNameKana" | "gender" | "hireDate" | "lastNameKana" | "occupation" | "phoneNumber" | "position" | "commutingType" | "employmentType" | "weeklyScheduledDays" | "weeklyScheduledHours" | "annualScheduledDays" | "dailyScheduledHours" | "status" | "employmentInsuranceNo" | "healthInsuranceNo" | "retirementDate" | "photoPath" | "userId" | "emergencyContact", ExtArgs["result"]["employee"]>
   export type EmployeeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     department?: boolean | Employee$departmentArgs<ExtArgs>
     user?: boolean | Employee$userArgs<ExtArgs>
@@ -9049,6 +9259,10 @@ export namespace Prisma {
       position: string | null
       commutingType: string | null
       employmentType: $Enums.EmploymentType | null
+      weeklyScheduledDays: number | null
+      weeklyScheduledHours: number | null
+      annualScheduledDays: number | null
+      dailyScheduledHours: number | null
       status: $Enums.EmployeeStatus
       employmentInsuranceNo: string | null
       healthInsuranceNo: string | null
@@ -9516,6 +9730,10 @@ export namespace Prisma {
     readonly position: FieldRef<"Employee", 'String'>
     readonly commutingType: FieldRef<"Employee", 'String'>
     readonly employmentType: FieldRef<"Employee", 'EmploymentType'>
+    readonly weeklyScheduledDays: FieldRef<"Employee", 'Float'>
+    readonly weeklyScheduledHours: FieldRef<"Employee", 'Float'>
+    readonly annualScheduledDays: FieldRef<"Employee", 'Int'>
+    readonly dailyScheduledHours: FieldRef<"Employee", 'Float'>
     readonly status: FieldRef<"Employee", 'EmployeeStatus'>
     readonly employmentInsuranceNo: FieldRef<"Employee", 'String'>
     readonly healthInsuranceNo: FieldRef<"Employee", 'String'>
@@ -18385,10 +18603,12 @@ export namespace Prisma {
 
   export type EmployeeRequestAvgAggregateOutputType = {
     leaveDays: number | null
+    hours: number | null
   }
 
   export type EmployeeRequestSumAggregateOutputType = {
     leaveDays: number | null
+    hours: number | null
   }
 
   export type EmployeeRequestMinAggregateOutputType = {
@@ -18406,6 +18626,12 @@ export namespace Prisma {
     leaveEndDate: Date | null
     leaveStartDate: Date | null
     leaveTypeId: string | null
+    requestCategory: $Enums.RequestCategory | null
+    targetDate: Date | null
+    unitType: $Enums.RequestUnitType | null
+    startTime: string | null
+    endTime: string | null
+    hours: number | null
   }
 
   export type EmployeeRequestMaxAggregateOutputType = {
@@ -18423,6 +18649,12 @@ export namespace Prisma {
     leaveEndDate: Date | null
     leaveStartDate: Date | null
     leaveTypeId: string | null
+    requestCategory: $Enums.RequestCategory | null
+    targetDate: Date | null
+    unitType: $Enums.RequestUnitType | null
+    startTime: string | null
+    endTime: string | null
+    hours: number | null
   }
 
   export type EmployeeRequestCountAggregateOutputType = {
@@ -18440,16 +18672,24 @@ export namespace Prisma {
     leaveEndDate: number
     leaveStartDate: number
     leaveTypeId: number
+    requestCategory: number
+    targetDate: number
+    unitType: number
+    startTime: number
+    endTime: number
+    hours: number
     _all: number
   }
 
 
   export type EmployeeRequestAvgAggregateInputType = {
     leaveDays?: true
+    hours?: true
   }
 
   export type EmployeeRequestSumAggregateInputType = {
     leaveDays?: true
+    hours?: true
   }
 
   export type EmployeeRequestMinAggregateInputType = {
@@ -18467,6 +18707,12 @@ export namespace Prisma {
     leaveEndDate?: true
     leaveStartDate?: true
     leaveTypeId?: true
+    requestCategory?: true
+    targetDate?: true
+    unitType?: true
+    startTime?: true
+    endTime?: true
+    hours?: true
   }
 
   export type EmployeeRequestMaxAggregateInputType = {
@@ -18484,6 +18730,12 @@ export namespace Prisma {
     leaveEndDate?: true
     leaveStartDate?: true
     leaveTypeId?: true
+    requestCategory?: true
+    targetDate?: true
+    unitType?: true
+    startTime?: true
+    endTime?: true
+    hours?: true
   }
 
   export type EmployeeRequestCountAggregateInputType = {
@@ -18501,6 +18753,12 @@ export namespace Prisma {
     leaveEndDate?: true
     leaveStartDate?: true
     leaveTypeId?: true
+    requestCategory?: true
+    targetDate?: true
+    unitType?: true
+    startTime?: true
+    endTime?: true
+    hours?: true
     _all?: true
   }
 
@@ -18605,6 +18863,12 @@ export namespace Prisma {
     leaveEndDate: Date | null
     leaveStartDate: Date | null
     leaveTypeId: string | null
+    requestCategory: $Enums.RequestCategory | null
+    targetDate: Date | null
+    unitType: $Enums.RequestUnitType | null
+    startTime: string | null
+    endTime: string | null
+    hours: number | null
     _count: EmployeeRequestCountAggregateOutputType | null
     _avg: EmployeeRequestAvgAggregateOutputType | null
     _sum: EmployeeRequestSumAggregateOutputType | null
@@ -18641,6 +18905,12 @@ export namespace Prisma {
     leaveEndDate?: boolean
     leaveStartDate?: boolean
     leaveTypeId?: boolean
+    requestCategory?: boolean
+    targetDate?: boolean
+    unitType?: boolean
+    startTime?: boolean
+    endTime?: boolean
+    hours?: boolean
     employee?: boolean | EmployeeRequest$employeeArgs<ExtArgs>
     leaveType?: boolean | EmployeeRequest$leaveTypeArgs<ExtArgs>
     user?: boolean | EmployeeRequest$userArgs<ExtArgs>
@@ -18664,6 +18934,12 @@ export namespace Prisma {
     leaveEndDate?: boolean
     leaveStartDate?: boolean
     leaveTypeId?: boolean
+    requestCategory?: boolean
+    targetDate?: boolean
+    unitType?: boolean
+    startTime?: boolean
+    endTime?: boolean
+    hours?: boolean
     employee?: boolean | EmployeeRequest$employeeArgs<ExtArgs>
     leaveType?: boolean | EmployeeRequest$leaveTypeArgs<ExtArgs>
     user?: boolean | EmployeeRequest$userArgs<ExtArgs>
@@ -18684,6 +18960,12 @@ export namespace Prisma {
     leaveEndDate?: boolean
     leaveStartDate?: boolean
     leaveTypeId?: boolean
+    requestCategory?: boolean
+    targetDate?: boolean
+    unitType?: boolean
+    startTime?: boolean
+    endTime?: boolean
+    hours?: boolean
     employee?: boolean | EmployeeRequest$employeeArgs<ExtArgs>
     leaveType?: boolean | EmployeeRequest$leaveTypeArgs<ExtArgs>
     user?: boolean | EmployeeRequest$userArgs<ExtArgs>
@@ -18704,9 +18986,15 @@ export namespace Prisma {
     leaveEndDate?: boolean
     leaveStartDate?: boolean
     leaveTypeId?: boolean
+    requestCategory?: boolean
+    targetDate?: boolean
+    unitType?: boolean
+    startTime?: boolean
+    endTime?: boolean
+    hours?: boolean
   }
 
-  export type EmployeeRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "employeeId" | "createdAt" | "comment" | "approvalComment" | "rejectionReason" | "type" | "userId" | "status" | "leaveDays" | "leaveEndDate" | "leaveStartDate" | "leaveTypeId", ExtArgs["result"]["employeeRequest"]>
+  export type EmployeeRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "employeeId" | "createdAt" | "comment" | "approvalComment" | "rejectionReason" | "type" | "userId" | "status" | "leaveDays" | "leaveEndDate" | "leaveStartDate" | "leaveTypeId" | "requestCategory" | "targetDate" | "unitType" | "startTime" | "endTime" | "hours", ExtArgs["result"]["employeeRequest"]>
   export type EmployeeRequestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeRequest$employeeArgs<ExtArgs>
     leaveType?: boolean | EmployeeRequest$leaveTypeArgs<ExtArgs>
@@ -18750,6 +19038,12 @@ export namespace Prisma {
       leaveEndDate: Date | null
       leaveStartDate: Date | null
       leaveTypeId: string | null
+      requestCategory: $Enums.RequestCategory | null
+      targetDate: Date | null
+      unitType: $Enums.RequestUnitType | null
+      startTime: string | null
+      endTime: string | null
+      hours: number | null
     }, ExtArgs["result"]["employeeRequest"]>
     composites: {}
   }
@@ -19192,6 +19486,12 @@ export namespace Prisma {
     readonly leaveEndDate: FieldRef<"EmployeeRequest", 'DateTime'>
     readonly leaveStartDate: FieldRef<"EmployeeRequest", 'DateTime'>
     readonly leaveTypeId: FieldRef<"EmployeeRequest", 'String'>
+    readonly requestCategory: FieldRef<"EmployeeRequest", 'RequestCategory'>
+    readonly targetDate: FieldRef<"EmployeeRequest", 'DateTime'>
+    readonly unitType: FieldRef<"EmployeeRequest", 'RequestUnitType'>
+    readonly startTime: FieldRef<"EmployeeRequest", 'String'>
+    readonly endTime: FieldRef<"EmployeeRequest", 'String'>
+    readonly hours: FieldRef<"EmployeeRequest", 'Float'>
   }
     
 
@@ -53379,6 +53679,1189 @@ export namespace Prisma {
 
 
   /**
+   * Model PartTimeAnnualLeaveRule
+   */
+
+  export type AggregatePartTimeAnnualLeaveRule = {
+    _count: PartTimeAnnualLeaveRuleCountAggregateOutputType | null
+    _avg: PartTimeAnnualLeaveRuleAvgAggregateOutputType | null
+    _sum: PartTimeAnnualLeaveRuleSumAggregateOutputType | null
+    _min: PartTimeAnnualLeaveRuleMinAggregateOutputType | null
+    _max: PartTimeAnnualLeaveRuleMaxAggregateOutputType | null
+  }
+
+  export type PartTimeAnnualLeaveRuleAvgAggregateOutputType = {
+    weeklyScheduledDays: number | null
+    days6Months: number | null
+    days18Months: number | null
+    days30Months: number | null
+    days42Months: number | null
+    days54Months: number | null
+    days66Months: number | null
+    days78Months: number | null
+    sortOrder: number | null
+  }
+
+  export type PartTimeAnnualLeaveRuleSumAggregateOutputType = {
+    weeklyScheduledDays: number | null
+    days6Months: number | null
+    days18Months: number | null
+    days30Months: number | null
+    days42Months: number | null
+    days54Months: number | null
+    days66Months: number | null
+    days78Months: number | null
+    sortOrder: number | null
+  }
+
+  export type PartTimeAnnualLeaveRuleMinAggregateOutputType = {
+    id: string | null
+    weeklyScheduledDays: number | null
+    days6Months: number | null
+    days18Months: number | null
+    days30Months: number | null
+    days42Months: number | null
+    days54Months: number | null
+    days66Months: number | null
+    days78Months: number | null
+    description: string | null
+    sortOrder: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PartTimeAnnualLeaveRuleMaxAggregateOutputType = {
+    id: string | null
+    weeklyScheduledDays: number | null
+    days6Months: number | null
+    days18Months: number | null
+    days30Months: number | null
+    days42Months: number | null
+    days54Months: number | null
+    days66Months: number | null
+    days78Months: number | null
+    description: string | null
+    sortOrder: number | null
+    isActive: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PartTimeAnnualLeaveRuleCountAggregateOutputType = {
+    id: number
+    weeklyScheduledDays: number
+    days6Months: number
+    days18Months: number
+    days30Months: number
+    days42Months: number
+    days54Months: number
+    days66Months: number
+    days78Months: number
+    description: number
+    sortOrder: number
+    isActive: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type PartTimeAnnualLeaveRuleAvgAggregateInputType = {
+    weeklyScheduledDays?: true
+    days6Months?: true
+    days18Months?: true
+    days30Months?: true
+    days42Months?: true
+    days54Months?: true
+    days66Months?: true
+    days78Months?: true
+    sortOrder?: true
+  }
+
+  export type PartTimeAnnualLeaveRuleSumAggregateInputType = {
+    weeklyScheduledDays?: true
+    days6Months?: true
+    days18Months?: true
+    days30Months?: true
+    days42Months?: true
+    days54Months?: true
+    days66Months?: true
+    days78Months?: true
+    sortOrder?: true
+  }
+
+  export type PartTimeAnnualLeaveRuleMinAggregateInputType = {
+    id?: true
+    weeklyScheduledDays?: true
+    days6Months?: true
+    days18Months?: true
+    days30Months?: true
+    days42Months?: true
+    days54Months?: true
+    days66Months?: true
+    days78Months?: true
+    description?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PartTimeAnnualLeaveRuleMaxAggregateInputType = {
+    id?: true
+    weeklyScheduledDays?: true
+    days6Months?: true
+    days18Months?: true
+    days30Months?: true
+    days42Months?: true
+    days54Months?: true
+    days66Months?: true
+    days78Months?: true
+    description?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PartTimeAnnualLeaveRuleCountAggregateInputType = {
+    id?: true
+    weeklyScheduledDays?: true
+    days6Months?: true
+    days18Months?: true
+    days30Months?: true
+    days42Months?: true
+    days54Months?: true
+    days66Months?: true
+    days78Months?: true
+    description?: true
+    sortOrder?: true
+    isActive?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type PartTimeAnnualLeaveRuleAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PartTimeAnnualLeaveRule to aggregate.
+     */
+    where?: PartTimeAnnualLeaveRuleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PartTimeAnnualLeaveRules to fetch.
+     */
+    orderBy?: PartTimeAnnualLeaveRuleOrderByWithRelationInput | PartTimeAnnualLeaveRuleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PartTimeAnnualLeaveRuleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PartTimeAnnualLeaveRules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PartTimeAnnualLeaveRules.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PartTimeAnnualLeaveRules
+    **/
+    _count?: true | PartTimeAnnualLeaveRuleCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PartTimeAnnualLeaveRuleAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PartTimeAnnualLeaveRuleSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PartTimeAnnualLeaveRuleMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PartTimeAnnualLeaveRuleMaxAggregateInputType
+  }
+
+  export type GetPartTimeAnnualLeaveRuleAggregateType<T extends PartTimeAnnualLeaveRuleAggregateArgs> = {
+        [P in keyof T & keyof AggregatePartTimeAnnualLeaveRule]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePartTimeAnnualLeaveRule[P]>
+      : GetScalarType<T[P], AggregatePartTimeAnnualLeaveRule[P]>
+  }
+
+
+
+
+  export type PartTimeAnnualLeaveRuleGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PartTimeAnnualLeaveRuleWhereInput
+    orderBy?: PartTimeAnnualLeaveRuleOrderByWithAggregationInput | PartTimeAnnualLeaveRuleOrderByWithAggregationInput[]
+    by: PartTimeAnnualLeaveRuleScalarFieldEnum[] | PartTimeAnnualLeaveRuleScalarFieldEnum
+    having?: PartTimeAnnualLeaveRuleScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PartTimeAnnualLeaveRuleCountAggregateInputType | true
+    _avg?: PartTimeAnnualLeaveRuleAvgAggregateInputType
+    _sum?: PartTimeAnnualLeaveRuleSumAggregateInputType
+    _min?: PartTimeAnnualLeaveRuleMinAggregateInputType
+    _max?: PartTimeAnnualLeaveRuleMaxAggregateInputType
+  }
+
+  export type PartTimeAnnualLeaveRuleGroupByOutputType = {
+    id: string
+    weeklyScheduledDays: number
+    days6Months: number
+    days18Months: number
+    days30Months: number
+    days42Months: number
+    days54Months: number
+    days66Months: number
+    days78Months: number
+    description: string | null
+    sortOrder: number
+    isActive: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: PartTimeAnnualLeaveRuleCountAggregateOutputType | null
+    _avg: PartTimeAnnualLeaveRuleAvgAggregateOutputType | null
+    _sum: PartTimeAnnualLeaveRuleSumAggregateOutputType | null
+    _min: PartTimeAnnualLeaveRuleMinAggregateOutputType | null
+    _max: PartTimeAnnualLeaveRuleMaxAggregateOutputType | null
+  }
+
+  type GetPartTimeAnnualLeaveRuleGroupByPayload<T extends PartTimeAnnualLeaveRuleGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PartTimeAnnualLeaveRuleGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PartTimeAnnualLeaveRuleGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PartTimeAnnualLeaveRuleGroupByOutputType[P]>
+            : GetScalarType<T[P], PartTimeAnnualLeaveRuleGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PartTimeAnnualLeaveRuleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    weeklyScheduledDays?: boolean
+    days6Months?: boolean
+    days18Months?: boolean
+    days30Months?: boolean
+    days42Months?: boolean
+    days54Months?: boolean
+    days66Months?: boolean
+    days78Months?: boolean
+    description?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["partTimeAnnualLeaveRule"]>
+
+  export type PartTimeAnnualLeaveRuleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    weeklyScheduledDays?: boolean
+    days6Months?: boolean
+    days18Months?: boolean
+    days30Months?: boolean
+    days42Months?: boolean
+    days54Months?: boolean
+    days66Months?: boolean
+    days78Months?: boolean
+    description?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["partTimeAnnualLeaveRule"]>
+
+  export type PartTimeAnnualLeaveRuleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    weeklyScheduledDays?: boolean
+    days6Months?: boolean
+    days18Months?: boolean
+    days30Months?: boolean
+    days42Months?: boolean
+    days54Months?: boolean
+    days66Months?: boolean
+    days78Months?: boolean
+    description?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["partTimeAnnualLeaveRule"]>
+
+  export type PartTimeAnnualLeaveRuleSelectScalar = {
+    id?: boolean
+    weeklyScheduledDays?: boolean
+    days6Months?: boolean
+    days18Months?: boolean
+    days30Months?: boolean
+    days42Months?: boolean
+    days54Months?: boolean
+    days66Months?: boolean
+    days78Months?: boolean
+    description?: boolean
+    sortOrder?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type PartTimeAnnualLeaveRuleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "weeklyScheduledDays" | "days6Months" | "days18Months" | "days30Months" | "days42Months" | "days54Months" | "days66Months" | "days78Months" | "description" | "sortOrder" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["partTimeAnnualLeaveRule"]>
+
+  export type $PartTimeAnnualLeaveRulePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PartTimeAnnualLeaveRule"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      weeklyScheduledDays: number
+      days6Months: number
+      days18Months: number
+      days30Months: number
+      days42Months: number
+      days54Months: number
+      days66Months: number
+      days78Months: number
+      description: string | null
+      sortOrder: number
+      isActive: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["partTimeAnnualLeaveRule"]>
+    composites: {}
+  }
+
+  type PartTimeAnnualLeaveRuleGetPayload<S extends boolean | null | undefined | PartTimeAnnualLeaveRuleDefaultArgs> = $Result.GetResult<Prisma.$PartTimeAnnualLeaveRulePayload, S>
+
+  type PartTimeAnnualLeaveRuleCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PartTimeAnnualLeaveRuleFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PartTimeAnnualLeaveRuleCountAggregateInputType | true
+    }
+
+  export interface PartTimeAnnualLeaveRuleDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PartTimeAnnualLeaveRule'], meta: { name: 'PartTimeAnnualLeaveRule' } }
+    /**
+     * Find zero or one PartTimeAnnualLeaveRule that matches the filter.
+     * @param {PartTimeAnnualLeaveRuleFindUniqueArgs} args - Arguments to find a PartTimeAnnualLeaveRule
+     * @example
+     * // Get one PartTimeAnnualLeaveRule
+     * const partTimeAnnualLeaveRule = await prisma.partTimeAnnualLeaveRule.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PartTimeAnnualLeaveRuleFindUniqueArgs>(args: SelectSubset<T, PartTimeAnnualLeaveRuleFindUniqueArgs<ExtArgs>>): Prisma__PartTimeAnnualLeaveRuleClient<$Result.GetResult<Prisma.$PartTimeAnnualLeaveRulePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PartTimeAnnualLeaveRule that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PartTimeAnnualLeaveRuleFindUniqueOrThrowArgs} args - Arguments to find a PartTimeAnnualLeaveRule
+     * @example
+     * // Get one PartTimeAnnualLeaveRule
+     * const partTimeAnnualLeaveRule = await prisma.partTimeAnnualLeaveRule.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PartTimeAnnualLeaveRuleFindUniqueOrThrowArgs>(args: SelectSubset<T, PartTimeAnnualLeaveRuleFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PartTimeAnnualLeaveRuleClient<$Result.GetResult<Prisma.$PartTimeAnnualLeaveRulePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PartTimeAnnualLeaveRule that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartTimeAnnualLeaveRuleFindFirstArgs} args - Arguments to find a PartTimeAnnualLeaveRule
+     * @example
+     * // Get one PartTimeAnnualLeaveRule
+     * const partTimeAnnualLeaveRule = await prisma.partTimeAnnualLeaveRule.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PartTimeAnnualLeaveRuleFindFirstArgs>(args?: SelectSubset<T, PartTimeAnnualLeaveRuleFindFirstArgs<ExtArgs>>): Prisma__PartTimeAnnualLeaveRuleClient<$Result.GetResult<Prisma.$PartTimeAnnualLeaveRulePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PartTimeAnnualLeaveRule that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartTimeAnnualLeaveRuleFindFirstOrThrowArgs} args - Arguments to find a PartTimeAnnualLeaveRule
+     * @example
+     * // Get one PartTimeAnnualLeaveRule
+     * const partTimeAnnualLeaveRule = await prisma.partTimeAnnualLeaveRule.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PartTimeAnnualLeaveRuleFindFirstOrThrowArgs>(args?: SelectSubset<T, PartTimeAnnualLeaveRuleFindFirstOrThrowArgs<ExtArgs>>): Prisma__PartTimeAnnualLeaveRuleClient<$Result.GetResult<Prisma.$PartTimeAnnualLeaveRulePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PartTimeAnnualLeaveRules that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartTimeAnnualLeaveRuleFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PartTimeAnnualLeaveRules
+     * const partTimeAnnualLeaveRules = await prisma.partTimeAnnualLeaveRule.findMany()
+     * 
+     * // Get first 10 PartTimeAnnualLeaveRules
+     * const partTimeAnnualLeaveRules = await prisma.partTimeAnnualLeaveRule.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const partTimeAnnualLeaveRuleWithIdOnly = await prisma.partTimeAnnualLeaveRule.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PartTimeAnnualLeaveRuleFindManyArgs>(args?: SelectSubset<T, PartTimeAnnualLeaveRuleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PartTimeAnnualLeaveRulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PartTimeAnnualLeaveRule.
+     * @param {PartTimeAnnualLeaveRuleCreateArgs} args - Arguments to create a PartTimeAnnualLeaveRule.
+     * @example
+     * // Create one PartTimeAnnualLeaveRule
+     * const PartTimeAnnualLeaveRule = await prisma.partTimeAnnualLeaveRule.create({
+     *   data: {
+     *     // ... data to create a PartTimeAnnualLeaveRule
+     *   }
+     * })
+     * 
+     */
+    create<T extends PartTimeAnnualLeaveRuleCreateArgs>(args: SelectSubset<T, PartTimeAnnualLeaveRuleCreateArgs<ExtArgs>>): Prisma__PartTimeAnnualLeaveRuleClient<$Result.GetResult<Prisma.$PartTimeAnnualLeaveRulePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PartTimeAnnualLeaveRules.
+     * @param {PartTimeAnnualLeaveRuleCreateManyArgs} args - Arguments to create many PartTimeAnnualLeaveRules.
+     * @example
+     * // Create many PartTimeAnnualLeaveRules
+     * const partTimeAnnualLeaveRule = await prisma.partTimeAnnualLeaveRule.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PartTimeAnnualLeaveRuleCreateManyArgs>(args?: SelectSubset<T, PartTimeAnnualLeaveRuleCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PartTimeAnnualLeaveRules and returns the data saved in the database.
+     * @param {PartTimeAnnualLeaveRuleCreateManyAndReturnArgs} args - Arguments to create many PartTimeAnnualLeaveRules.
+     * @example
+     * // Create many PartTimeAnnualLeaveRules
+     * const partTimeAnnualLeaveRule = await prisma.partTimeAnnualLeaveRule.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PartTimeAnnualLeaveRules and only return the `id`
+     * const partTimeAnnualLeaveRuleWithIdOnly = await prisma.partTimeAnnualLeaveRule.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PartTimeAnnualLeaveRuleCreateManyAndReturnArgs>(args?: SelectSubset<T, PartTimeAnnualLeaveRuleCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PartTimeAnnualLeaveRulePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PartTimeAnnualLeaveRule.
+     * @param {PartTimeAnnualLeaveRuleDeleteArgs} args - Arguments to delete one PartTimeAnnualLeaveRule.
+     * @example
+     * // Delete one PartTimeAnnualLeaveRule
+     * const PartTimeAnnualLeaveRule = await prisma.partTimeAnnualLeaveRule.delete({
+     *   where: {
+     *     // ... filter to delete one PartTimeAnnualLeaveRule
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PartTimeAnnualLeaveRuleDeleteArgs>(args: SelectSubset<T, PartTimeAnnualLeaveRuleDeleteArgs<ExtArgs>>): Prisma__PartTimeAnnualLeaveRuleClient<$Result.GetResult<Prisma.$PartTimeAnnualLeaveRulePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PartTimeAnnualLeaveRule.
+     * @param {PartTimeAnnualLeaveRuleUpdateArgs} args - Arguments to update one PartTimeAnnualLeaveRule.
+     * @example
+     * // Update one PartTimeAnnualLeaveRule
+     * const partTimeAnnualLeaveRule = await prisma.partTimeAnnualLeaveRule.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PartTimeAnnualLeaveRuleUpdateArgs>(args: SelectSubset<T, PartTimeAnnualLeaveRuleUpdateArgs<ExtArgs>>): Prisma__PartTimeAnnualLeaveRuleClient<$Result.GetResult<Prisma.$PartTimeAnnualLeaveRulePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PartTimeAnnualLeaveRules.
+     * @param {PartTimeAnnualLeaveRuleDeleteManyArgs} args - Arguments to filter PartTimeAnnualLeaveRules to delete.
+     * @example
+     * // Delete a few PartTimeAnnualLeaveRules
+     * const { count } = await prisma.partTimeAnnualLeaveRule.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PartTimeAnnualLeaveRuleDeleteManyArgs>(args?: SelectSubset<T, PartTimeAnnualLeaveRuleDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PartTimeAnnualLeaveRules.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartTimeAnnualLeaveRuleUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PartTimeAnnualLeaveRules
+     * const partTimeAnnualLeaveRule = await prisma.partTimeAnnualLeaveRule.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PartTimeAnnualLeaveRuleUpdateManyArgs>(args: SelectSubset<T, PartTimeAnnualLeaveRuleUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PartTimeAnnualLeaveRules and returns the data updated in the database.
+     * @param {PartTimeAnnualLeaveRuleUpdateManyAndReturnArgs} args - Arguments to update many PartTimeAnnualLeaveRules.
+     * @example
+     * // Update many PartTimeAnnualLeaveRules
+     * const partTimeAnnualLeaveRule = await prisma.partTimeAnnualLeaveRule.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PartTimeAnnualLeaveRules and only return the `id`
+     * const partTimeAnnualLeaveRuleWithIdOnly = await prisma.partTimeAnnualLeaveRule.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PartTimeAnnualLeaveRuleUpdateManyAndReturnArgs>(args: SelectSubset<T, PartTimeAnnualLeaveRuleUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PartTimeAnnualLeaveRulePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PartTimeAnnualLeaveRule.
+     * @param {PartTimeAnnualLeaveRuleUpsertArgs} args - Arguments to update or create a PartTimeAnnualLeaveRule.
+     * @example
+     * // Update or create a PartTimeAnnualLeaveRule
+     * const partTimeAnnualLeaveRule = await prisma.partTimeAnnualLeaveRule.upsert({
+     *   create: {
+     *     // ... data to create a PartTimeAnnualLeaveRule
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PartTimeAnnualLeaveRule we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PartTimeAnnualLeaveRuleUpsertArgs>(args: SelectSubset<T, PartTimeAnnualLeaveRuleUpsertArgs<ExtArgs>>): Prisma__PartTimeAnnualLeaveRuleClient<$Result.GetResult<Prisma.$PartTimeAnnualLeaveRulePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PartTimeAnnualLeaveRules.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartTimeAnnualLeaveRuleCountArgs} args - Arguments to filter PartTimeAnnualLeaveRules to count.
+     * @example
+     * // Count the number of PartTimeAnnualLeaveRules
+     * const count = await prisma.partTimeAnnualLeaveRule.count({
+     *   where: {
+     *     // ... the filter for the PartTimeAnnualLeaveRules we want to count
+     *   }
+     * })
+    **/
+    count<T extends PartTimeAnnualLeaveRuleCountArgs>(
+      args?: Subset<T, PartTimeAnnualLeaveRuleCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PartTimeAnnualLeaveRuleCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PartTimeAnnualLeaveRule.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartTimeAnnualLeaveRuleAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PartTimeAnnualLeaveRuleAggregateArgs>(args: Subset<T, PartTimeAnnualLeaveRuleAggregateArgs>): Prisma.PrismaPromise<GetPartTimeAnnualLeaveRuleAggregateType<T>>
+
+    /**
+     * Group by PartTimeAnnualLeaveRule.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PartTimeAnnualLeaveRuleGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PartTimeAnnualLeaveRuleGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PartTimeAnnualLeaveRuleGroupByArgs['orderBy'] }
+        : { orderBy?: PartTimeAnnualLeaveRuleGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PartTimeAnnualLeaveRuleGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPartTimeAnnualLeaveRuleGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PartTimeAnnualLeaveRule model
+   */
+  readonly fields: PartTimeAnnualLeaveRuleFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PartTimeAnnualLeaveRule.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PartTimeAnnualLeaveRuleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PartTimeAnnualLeaveRule model
+   */
+  interface PartTimeAnnualLeaveRuleFieldRefs {
+    readonly id: FieldRef<"PartTimeAnnualLeaveRule", 'String'>
+    readonly weeklyScheduledDays: FieldRef<"PartTimeAnnualLeaveRule", 'Int'>
+    readonly days6Months: FieldRef<"PartTimeAnnualLeaveRule", 'Float'>
+    readonly days18Months: FieldRef<"PartTimeAnnualLeaveRule", 'Float'>
+    readonly days30Months: FieldRef<"PartTimeAnnualLeaveRule", 'Float'>
+    readonly days42Months: FieldRef<"PartTimeAnnualLeaveRule", 'Float'>
+    readonly days54Months: FieldRef<"PartTimeAnnualLeaveRule", 'Float'>
+    readonly days66Months: FieldRef<"PartTimeAnnualLeaveRule", 'Float'>
+    readonly days78Months: FieldRef<"PartTimeAnnualLeaveRule", 'Float'>
+    readonly description: FieldRef<"PartTimeAnnualLeaveRule", 'String'>
+    readonly sortOrder: FieldRef<"PartTimeAnnualLeaveRule", 'Int'>
+    readonly isActive: FieldRef<"PartTimeAnnualLeaveRule", 'Boolean'>
+    readonly createdAt: FieldRef<"PartTimeAnnualLeaveRule", 'DateTime'>
+    readonly updatedAt: FieldRef<"PartTimeAnnualLeaveRule", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PartTimeAnnualLeaveRule findUnique
+   */
+  export type PartTimeAnnualLeaveRuleFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PartTimeAnnualLeaveRule
+     */
+    select?: PartTimeAnnualLeaveRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PartTimeAnnualLeaveRule
+     */
+    omit?: PartTimeAnnualLeaveRuleOmit<ExtArgs> | null
+    /**
+     * Filter, which PartTimeAnnualLeaveRule to fetch.
+     */
+    where: PartTimeAnnualLeaveRuleWhereUniqueInput
+  }
+
+  /**
+   * PartTimeAnnualLeaveRule findUniqueOrThrow
+   */
+  export type PartTimeAnnualLeaveRuleFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PartTimeAnnualLeaveRule
+     */
+    select?: PartTimeAnnualLeaveRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PartTimeAnnualLeaveRule
+     */
+    omit?: PartTimeAnnualLeaveRuleOmit<ExtArgs> | null
+    /**
+     * Filter, which PartTimeAnnualLeaveRule to fetch.
+     */
+    where: PartTimeAnnualLeaveRuleWhereUniqueInput
+  }
+
+  /**
+   * PartTimeAnnualLeaveRule findFirst
+   */
+  export type PartTimeAnnualLeaveRuleFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PartTimeAnnualLeaveRule
+     */
+    select?: PartTimeAnnualLeaveRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PartTimeAnnualLeaveRule
+     */
+    omit?: PartTimeAnnualLeaveRuleOmit<ExtArgs> | null
+    /**
+     * Filter, which PartTimeAnnualLeaveRule to fetch.
+     */
+    where?: PartTimeAnnualLeaveRuleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PartTimeAnnualLeaveRules to fetch.
+     */
+    orderBy?: PartTimeAnnualLeaveRuleOrderByWithRelationInput | PartTimeAnnualLeaveRuleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PartTimeAnnualLeaveRules.
+     */
+    cursor?: PartTimeAnnualLeaveRuleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PartTimeAnnualLeaveRules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PartTimeAnnualLeaveRules.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PartTimeAnnualLeaveRules.
+     */
+    distinct?: PartTimeAnnualLeaveRuleScalarFieldEnum | PartTimeAnnualLeaveRuleScalarFieldEnum[]
+  }
+
+  /**
+   * PartTimeAnnualLeaveRule findFirstOrThrow
+   */
+  export type PartTimeAnnualLeaveRuleFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PartTimeAnnualLeaveRule
+     */
+    select?: PartTimeAnnualLeaveRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PartTimeAnnualLeaveRule
+     */
+    omit?: PartTimeAnnualLeaveRuleOmit<ExtArgs> | null
+    /**
+     * Filter, which PartTimeAnnualLeaveRule to fetch.
+     */
+    where?: PartTimeAnnualLeaveRuleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PartTimeAnnualLeaveRules to fetch.
+     */
+    orderBy?: PartTimeAnnualLeaveRuleOrderByWithRelationInput | PartTimeAnnualLeaveRuleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PartTimeAnnualLeaveRules.
+     */
+    cursor?: PartTimeAnnualLeaveRuleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PartTimeAnnualLeaveRules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PartTimeAnnualLeaveRules.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PartTimeAnnualLeaveRules.
+     */
+    distinct?: PartTimeAnnualLeaveRuleScalarFieldEnum | PartTimeAnnualLeaveRuleScalarFieldEnum[]
+  }
+
+  /**
+   * PartTimeAnnualLeaveRule findMany
+   */
+  export type PartTimeAnnualLeaveRuleFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PartTimeAnnualLeaveRule
+     */
+    select?: PartTimeAnnualLeaveRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PartTimeAnnualLeaveRule
+     */
+    omit?: PartTimeAnnualLeaveRuleOmit<ExtArgs> | null
+    /**
+     * Filter, which PartTimeAnnualLeaveRules to fetch.
+     */
+    where?: PartTimeAnnualLeaveRuleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PartTimeAnnualLeaveRules to fetch.
+     */
+    orderBy?: PartTimeAnnualLeaveRuleOrderByWithRelationInput | PartTimeAnnualLeaveRuleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PartTimeAnnualLeaveRules.
+     */
+    cursor?: PartTimeAnnualLeaveRuleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PartTimeAnnualLeaveRules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PartTimeAnnualLeaveRules.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PartTimeAnnualLeaveRules.
+     */
+    distinct?: PartTimeAnnualLeaveRuleScalarFieldEnum | PartTimeAnnualLeaveRuleScalarFieldEnum[]
+  }
+
+  /**
+   * PartTimeAnnualLeaveRule create
+   */
+  export type PartTimeAnnualLeaveRuleCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PartTimeAnnualLeaveRule
+     */
+    select?: PartTimeAnnualLeaveRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PartTimeAnnualLeaveRule
+     */
+    omit?: PartTimeAnnualLeaveRuleOmit<ExtArgs> | null
+    /**
+     * The data needed to create a PartTimeAnnualLeaveRule.
+     */
+    data: XOR<PartTimeAnnualLeaveRuleCreateInput, PartTimeAnnualLeaveRuleUncheckedCreateInput>
+  }
+
+  /**
+   * PartTimeAnnualLeaveRule createMany
+   */
+  export type PartTimeAnnualLeaveRuleCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PartTimeAnnualLeaveRules.
+     */
+    data: PartTimeAnnualLeaveRuleCreateManyInput | PartTimeAnnualLeaveRuleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PartTimeAnnualLeaveRule createManyAndReturn
+   */
+  export type PartTimeAnnualLeaveRuleCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PartTimeAnnualLeaveRule
+     */
+    select?: PartTimeAnnualLeaveRuleSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PartTimeAnnualLeaveRule
+     */
+    omit?: PartTimeAnnualLeaveRuleOmit<ExtArgs> | null
+    /**
+     * The data used to create many PartTimeAnnualLeaveRules.
+     */
+    data: PartTimeAnnualLeaveRuleCreateManyInput | PartTimeAnnualLeaveRuleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PartTimeAnnualLeaveRule update
+   */
+  export type PartTimeAnnualLeaveRuleUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PartTimeAnnualLeaveRule
+     */
+    select?: PartTimeAnnualLeaveRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PartTimeAnnualLeaveRule
+     */
+    omit?: PartTimeAnnualLeaveRuleOmit<ExtArgs> | null
+    /**
+     * The data needed to update a PartTimeAnnualLeaveRule.
+     */
+    data: XOR<PartTimeAnnualLeaveRuleUpdateInput, PartTimeAnnualLeaveRuleUncheckedUpdateInput>
+    /**
+     * Choose, which PartTimeAnnualLeaveRule to update.
+     */
+    where: PartTimeAnnualLeaveRuleWhereUniqueInput
+  }
+
+  /**
+   * PartTimeAnnualLeaveRule updateMany
+   */
+  export type PartTimeAnnualLeaveRuleUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PartTimeAnnualLeaveRules.
+     */
+    data: XOR<PartTimeAnnualLeaveRuleUpdateManyMutationInput, PartTimeAnnualLeaveRuleUncheckedUpdateManyInput>
+    /**
+     * Filter which PartTimeAnnualLeaveRules to update
+     */
+    where?: PartTimeAnnualLeaveRuleWhereInput
+    /**
+     * Limit how many PartTimeAnnualLeaveRules to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PartTimeAnnualLeaveRule updateManyAndReturn
+   */
+  export type PartTimeAnnualLeaveRuleUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PartTimeAnnualLeaveRule
+     */
+    select?: PartTimeAnnualLeaveRuleSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PartTimeAnnualLeaveRule
+     */
+    omit?: PartTimeAnnualLeaveRuleOmit<ExtArgs> | null
+    /**
+     * The data used to update PartTimeAnnualLeaveRules.
+     */
+    data: XOR<PartTimeAnnualLeaveRuleUpdateManyMutationInput, PartTimeAnnualLeaveRuleUncheckedUpdateManyInput>
+    /**
+     * Filter which PartTimeAnnualLeaveRules to update
+     */
+    where?: PartTimeAnnualLeaveRuleWhereInput
+    /**
+     * Limit how many PartTimeAnnualLeaveRules to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PartTimeAnnualLeaveRule upsert
+   */
+  export type PartTimeAnnualLeaveRuleUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PartTimeAnnualLeaveRule
+     */
+    select?: PartTimeAnnualLeaveRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PartTimeAnnualLeaveRule
+     */
+    omit?: PartTimeAnnualLeaveRuleOmit<ExtArgs> | null
+    /**
+     * The filter to search for the PartTimeAnnualLeaveRule to update in case it exists.
+     */
+    where: PartTimeAnnualLeaveRuleWhereUniqueInput
+    /**
+     * In case the PartTimeAnnualLeaveRule found by the `where` argument doesn't exist, create a new PartTimeAnnualLeaveRule with this data.
+     */
+    create: XOR<PartTimeAnnualLeaveRuleCreateInput, PartTimeAnnualLeaveRuleUncheckedCreateInput>
+    /**
+     * In case the PartTimeAnnualLeaveRule was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PartTimeAnnualLeaveRuleUpdateInput, PartTimeAnnualLeaveRuleUncheckedUpdateInput>
+  }
+
+  /**
+   * PartTimeAnnualLeaveRule delete
+   */
+  export type PartTimeAnnualLeaveRuleDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PartTimeAnnualLeaveRule
+     */
+    select?: PartTimeAnnualLeaveRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PartTimeAnnualLeaveRule
+     */
+    omit?: PartTimeAnnualLeaveRuleOmit<ExtArgs> | null
+    /**
+     * Filter which PartTimeAnnualLeaveRule to delete.
+     */
+    where: PartTimeAnnualLeaveRuleWhereUniqueInput
+  }
+
+  /**
+   * PartTimeAnnualLeaveRule deleteMany
+   */
+  export type PartTimeAnnualLeaveRuleDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PartTimeAnnualLeaveRules to delete
+     */
+    where?: PartTimeAnnualLeaveRuleWhereInput
+    /**
+     * Limit how many PartTimeAnnualLeaveRules to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PartTimeAnnualLeaveRule without action
+   */
+  export type PartTimeAnnualLeaveRuleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PartTimeAnnualLeaveRule
+     */
+    select?: PartTimeAnnualLeaveRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PartTimeAnnualLeaveRule
+     */
+    omit?: PartTimeAnnualLeaveRuleOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -53452,6 +54935,10 @@ export namespace Prisma {
     position: 'position',
     commutingType: 'commutingType',
     employmentType: 'employmentType',
+    weeklyScheduledDays: 'weeklyScheduledDays',
+    weeklyScheduledHours: 'weeklyScheduledHours',
+    annualScheduledDays: 'annualScheduledDays',
+    dailyScheduledHours: 'dailyScheduledHours',
     status: 'status',
     employmentInsuranceNo: 'employmentInsuranceNo',
     healthInsuranceNo: 'healthInsuranceNo',
@@ -53580,7 +55067,13 @@ export namespace Prisma {
     leaveDays: 'leaveDays',
     leaveEndDate: 'leaveEndDate',
     leaveStartDate: 'leaveStartDate',
-    leaveTypeId: 'leaveTypeId'
+    leaveTypeId: 'leaveTypeId',
+    requestCategory: 'requestCategory',
+    targetDate: 'targetDate',
+    unitType: 'unitType',
+    startTime: 'startTime',
+    endTime: 'endTime',
+    hours: 'hours'
   };
 
   export type EmployeeRequestScalarFieldEnum = (typeof EmployeeRequestScalarFieldEnum)[keyof typeof EmployeeRequestScalarFieldEnum]
@@ -54097,6 +55590,26 @@ export namespace Prisma {
   export type AnnualLeaveEntryRuleScalarFieldEnum = (typeof AnnualLeaveEntryRuleScalarFieldEnum)[keyof typeof AnnualLeaveEntryRuleScalarFieldEnum]
 
 
+  export const PartTimeAnnualLeaveRuleScalarFieldEnum: {
+    id: 'id',
+    weeklyScheduledDays: 'weeklyScheduledDays',
+    days6Months: 'days6Months',
+    days18Months: 'days18Months',
+    days30Months: 'days30Months',
+    days42Months: 'days42Months',
+    days54Months: 'days54Months',
+    days66Months: 'days66Months',
+    days78Months: 'days78Months',
+    description: 'description',
+    sortOrder: 'sortOrder',
+    isActive: 'isActive',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type PartTimeAnnualLeaveRuleScalarFieldEnum = (typeof PartTimeAnnualLeaveRuleScalarFieldEnum)[keyof typeof PartTimeAnnualLeaveRuleScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -54221,16 +55734,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'EmployeeStatus'
+   * Reference to a field of type 'Float'
    */
-  export type EnumEmployeeStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EmployeeStatus'>
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
     
 
 
   /**
-   * Reference to a field of type 'EmployeeStatus[]'
+   * Reference to a field of type 'Float[]'
    */
-  export type ListEnumEmployeeStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EmployeeStatus[]'>
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 
@@ -54249,6 +55762,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'EmployeeStatus'
+   */
+  export type EnumEmployeeStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EmployeeStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'EmployeeStatus[]'
+   */
+  export type ListEnumEmployeeStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EmployeeStatus[]'>
+    
+
+
+  /**
    * Reference to a field of type 'EmploymentAction'
    */
   export type EnumEmploymentActionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EmploymentAction'>
@@ -54259,20 +55786,6 @@ export namespace Prisma {
    * Reference to a field of type 'EmploymentAction[]'
    */
   export type ListEnumEmploymentActionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EmploymentAction[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float'
-   */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float[]'
-   */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 
@@ -54315,6 +55828,34 @@ export namespace Prisma {
    * Reference to a field of type 'RequestStatus[]'
    */
   export type ListEnumRequestStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RequestStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'RequestCategory'
+   */
+  export type EnumRequestCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RequestCategory'>
+    
+
+
+  /**
+   * Reference to a field of type 'RequestCategory[]'
+   */
+  export type ListEnumRequestCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RequestCategory[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'RequestUnitType'
+   */
+  export type EnumRequestUnitTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RequestUnitType'>
+    
+
+
+  /**
+   * Reference to a field of type 'RequestUnitType[]'
+   */
+  export type ListEnumRequestUnitTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RequestUnitType[]'>
     
 
 
@@ -54635,6 +56176,10 @@ export namespace Prisma {
     position?: StringNullableFilter<"Employee"> | string | null
     commutingType?: StringNullableFilter<"Employee"> | string | null
     employmentType?: EnumEmploymentTypeNullableFilter<"Employee"> | $Enums.EmploymentType | null
+    weeklyScheduledDays?: FloatNullableFilter<"Employee"> | number | null
+    weeklyScheduledHours?: FloatNullableFilter<"Employee"> | number | null
+    annualScheduledDays?: IntNullableFilter<"Employee"> | number | null
+    dailyScheduledHours?: FloatNullableFilter<"Employee"> | number | null
     status?: EnumEmployeeStatusFilter<"Employee"> | $Enums.EmployeeStatus
     employmentInsuranceNo?: StringNullableFilter<"Employee"> | string | null
     healthInsuranceNo?: StringNullableFilter<"Employee"> | string | null
@@ -54682,6 +56227,10 @@ export namespace Prisma {
     position?: SortOrderInput | SortOrder
     commutingType?: SortOrderInput | SortOrder
     employmentType?: SortOrderInput | SortOrder
+    weeklyScheduledDays?: SortOrderInput | SortOrder
+    weeklyScheduledHours?: SortOrderInput | SortOrder
+    annualScheduledDays?: SortOrderInput | SortOrder
+    dailyScheduledHours?: SortOrderInput | SortOrder
     status?: SortOrder
     employmentInsuranceNo?: SortOrderInput | SortOrder
     healthInsuranceNo?: SortOrderInput | SortOrder
@@ -54733,6 +56282,10 @@ export namespace Prisma {
     position?: StringNullableFilter<"Employee"> | string | null
     commutingType?: StringNullableFilter<"Employee"> | string | null
     employmentType?: EnumEmploymentTypeNullableFilter<"Employee"> | $Enums.EmploymentType | null
+    weeklyScheduledDays?: FloatNullableFilter<"Employee"> | number | null
+    weeklyScheduledHours?: FloatNullableFilter<"Employee"> | number | null
+    annualScheduledDays?: IntNullableFilter<"Employee"> | number | null
+    dailyScheduledHours?: FloatNullableFilter<"Employee"> | number | null
     status?: EnumEmployeeStatusFilter<"Employee"> | $Enums.EmployeeStatus
     employmentInsuranceNo?: StringNullableFilter<"Employee"> | string | null
     healthInsuranceNo?: StringNullableFilter<"Employee"> | string | null
@@ -54779,6 +56332,10 @@ export namespace Prisma {
     position?: SortOrderInput | SortOrder
     commutingType?: SortOrderInput | SortOrder
     employmentType?: SortOrderInput | SortOrder
+    weeklyScheduledDays?: SortOrderInput | SortOrder
+    weeklyScheduledHours?: SortOrderInput | SortOrder
+    annualScheduledDays?: SortOrderInput | SortOrder
+    dailyScheduledHours?: SortOrderInput | SortOrder
     status?: SortOrder
     employmentInsuranceNo?: SortOrderInput | SortOrder
     healthInsuranceNo?: SortOrderInput | SortOrder
@@ -54787,8 +56344,10 @@ export namespace Prisma {
     userId?: SortOrderInput | SortOrder
     emergencyContact?: SortOrderInput | SortOrder
     _count?: EmployeeCountOrderByAggregateInput
+    _avg?: EmployeeAvgOrderByAggregateInput
     _max?: EmployeeMaxOrderByAggregateInput
     _min?: EmployeeMinOrderByAggregateInput
+    _sum?: EmployeeSumOrderByAggregateInput
   }
 
   export type EmployeeScalarWhereWithAggregatesInput = {
@@ -54813,6 +56372,10 @@ export namespace Prisma {
     position?: StringNullableWithAggregatesFilter<"Employee"> | string | null
     commutingType?: StringNullableWithAggregatesFilter<"Employee"> | string | null
     employmentType?: EnumEmploymentTypeNullableWithAggregatesFilter<"Employee"> | $Enums.EmploymentType | null
+    weeklyScheduledDays?: FloatNullableWithAggregatesFilter<"Employee"> | number | null
+    weeklyScheduledHours?: FloatNullableWithAggregatesFilter<"Employee"> | number | null
+    annualScheduledDays?: IntNullableWithAggregatesFilter<"Employee"> | number | null
+    dailyScheduledHours?: FloatNullableWithAggregatesFilter<"Employee"> | number | null
     status?: EnumEmployeeStatusWithAggregatesFilter<"Employee"> | $Enums.EmployeeStatus
     employmentInsuranceNo?: StringNullableWithAggregatesFilter<"Employee"> | string | null
     healthInsuranceNo?: StringNullableWithAggregatesFilter<"Employee"> | string | null
@@ -55366,6 +56929,12 @@ export namespace Prisma {
     leaveEndDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
     leaveStartDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
     leaveTypeId?: StringNullableFilter<"EmployeeRequest"> | string | null
+    requestCategory?: EnumRequestCategoryNullableFilter<"EmployeeRequest"> | $Enums.RequestCategory | null
+    targetDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
+    unitType?: EnumRequestUnitTypeNullableFilter<"EmployeeRequest"> | $Enums.RequestUnitType | null
+    startTime?: StringNullableFilter<"EmployeeRequest"> | string | null
+    endTime?: StringNullableFilter<"EmployeeRequest"> | string | null
+    hours?: FloatNullableFilter<"EmployeeRequest"> | number | null
     employee?: XOR<EmployeeNullableScalarRelationFilter, EmployeeWhereInput> | null
     leaveType?: XOR<LeaveTypeNullableScalarRelationFilter, LeaveTypeWhereInput> | null
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
@@ -55388,6 +56957,12 @@ export namespace Prisma {
     leaveEndDate?: SortOrderInput | SortOrder
     leaveStartDate?: SortOrderInput | SortOrder
     leaveTypeId?: SortOrderInput | SortOrder
+    requestCategory?: SortOrderInput | SortOrder
+    targetDate?: SortOrderInput | SortOrder
+    unitType?: SortOrderInput | SortOrder
+    startTime?: SortOrderInput | SortOrder
+    endTime?: SortOrderInput | SortOrder
+    hours?: SortOrderInput | SortOrder
     employee?: EmployeeOrderByWithRelationInput
     leaveType?: LeaveTypeOrderByWithRelationInput
     user?: UserOrderByWithRelationInput
@@ -55413,6 +56988,12 @@ export namespace Prisma {
     leaveEndDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
     leaveStartDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
     leaveTypeId?: StringNullableFilter<"EmployeeRequest"> | string | null
+    requestCategory?: EnumRequestCategoryNullableFilter<"EmployeeRequest"> | $Enums.RequestCategory | null
+    targetDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
+    unitType?: EnumRequestUnitTypeNullableFilter<"EmployeeRequest"> | $Enums.RequestUnitType | null
+    startTime?: StringNullableFilter<"EmployeeRequest"> | string | null
+    endTime?: StringNullableFilter<"EmployeeRequest"> | string | null
+    hours?: FloatNullableFilter<"EmployeeRequest"> | number | null
     employee?: XOR<EmployeeNullableScalarRelationFilter, EmployeeWhereInput> | null
     leaveType?: XOR<LeaveTypeNullableScalarRelationFilter, LeaveTypeWhereInput> | null
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
@@ -55435,6 +57016,12 @@ export namespace Prisma {
     leaveEndDate?: SortOrderInput | SortOrder
     leaveStartDate?: SortOrderInput | SortOrder
     leaveTypeId?: SortOrderInput | SortOrder
+    requestCategory?: SortOrderInput | SortOrder
+    targetDate?: SortOrderInput | SortOrder
+    unitType?: SortOrderInput | SortOrder
+    startTime?: SortOrderInput | SortOrder
+    endTime?: SortOrderInput | SortOrder
+    hours?: SortOrderInput | SortOrder
     _count?: EmployeeRequestCountOrderByAggregateInput
     _avg?: EmployeeRequestAvgOrderByAggregateInput
     _max?: EmployeeRequestMaxOrderByAggregateInput
@@ -55460,6 +57047,12 @@ export namespace Prisma {
     leaveEndDate?: DateTimeNullableWithAggregatesFilter<"EmployeeRequest"> | Date | string | null
     leaveStartDate?: DateTimeNullableWithAggregatesFilter<"EmployeeRequest"> | Date | string | null
     leaveTypeId?: StringNullableWithAggregatesFilter<"EmployeeRequest"> | string | null
+    requestCategory?: EnumRequestCategoryNullableWithAggregatesFilter<"EmployeeRequest"> | $Enums.RequestCategory | null
+    targetDate?: DateTimeNullableWithAggregatesFilter<"EmployeeRequest"> | Date | string | null
+    unitType?: EnumRequestUnitTypeNullableWithAggregatesFilter<"EmployeeRequest"> | $Enums.RequestUnitType | null
+    startTime?: StringNullableWithAggregatesFilter<"EmployeeRequest"> | string | null
+    endTime?: StringNullableWithAggregatesFilter<"EmployeeRequest"> | string | null
+    hours?: FloatNullableWithAggregatesFilter<"EmployeeRequest"> | number | null
   }
 
   export type RequestAttachmentWhereInput = {
@@ -58058,6 +59651,105 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"AnnualLeaveEntryRule"> | Date | string
   }
 
+  export type PartTimeAnnualLeaveRuleWhereInput = {
+    AND?: PartTimeAnnualLeaveRuleWhereInput | PartTimeAnnualLeaveRuleWhereInput[]
+    OR?: PartTimeAnnualLeaveRuleWhereInput[]
+    NOT?: PartTimeAnnualLeaveRuleWhereInput | PartTimeAnnualLeaveRuleWhereInput[]
+    id?: StringFilter<"PartTimeAnnualLeaveRule"> | string
+    weeklyScheduledDays?: IntFilter<"PartTimeAnnualLeaveRule"> | number
+    days6Months?: FloatFilter<"PartTimeAnnualLeaveRule"> | number
+    days18Months?: FloatFilter<"PartTimeAnnualLeaveRule"> | number
+    days30Months?: FloatFilter<"PartTimeAnnualLeaveRule"> | number
+    days42Months?: FloatFilter<"PartTimeAnnualLeaveRule"> | number
+    days54Months?: FloatFilter<"PartTimeAnnualLeaveRule"> | number
+    days66Months?: FloatFilter<"PartTimeAnnualLeaveRule"> | number
+    days78Months?: FloatFilter<"PartTimeAnnualLeaveRule"> | number
+    description?: StringNullableFilter<"PartTimeAnnualLeaveRule"> | string | null
+    sortOrder?: IntFilter<"PartTimeAnnualLeaveRule"> | number
+    isActive?: BoolFilter<"PartTimeAnnualLeaveRule"> | boolean
+    createdAt?: DateTimeFilter<"PartTimeAnnualLeaveRule"> | Date | string
+    updatedAt?: DateTimeFilter<"PartTimeAnnualLeaveRule"> | Date | string
+  }
+
+  export type PartTimeAnnualLeaveRuleOrderByWithRelationInput = {
+    id?: SortOrder
+    weeklyScheduledDays?: SortOrder
+    days6Months?: SortOrder
+    days18Months?: SortOrder
+    days30Months?: SortOrder
+    days42Months?: SortOrder
+    days54Months?: SortOrder
+    days66Months?: SortOrder
+    days78Months?: SortOrder
+    description?: SortOrderInput | SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PartTimeAnnualLeaveRuleWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    weeklyScheduledDays?: number
+    AND?: PartTimeAnnualLeaveRuleWhereInput | PartTimeAnnualLeaveRuleWhereInput[]
+    OR?: PartTimeAnnualLeaveRuleWhereInput[]
+    NOT?: PartTimeAnnualLeaveRuleWhereInput | PartTimeAnnualLeaveRuleWhereInput[]
+    days6Months?: FloatFilter<"PartTimeAnnualLeaveRule"> | number
+    days18Months?: FloatFilter<"PartTimeAnnualLeaveRule"> | number
+    days30Months?: FloatFilter<"PartTimeAnnualLeaveRule"> | number
+    days42Months?: FloatFilter<"PartTimeAnnualLeaveRule"> | number
+    days54Months?: FloatFilter<"PartTimeAnnualLeaveRule"> | number
+    days66Months?: FloatFilter<"PartTimeAnnualLeaveRule"> | number
+    days78Months?: FloatFilter<"PartTimeAnnualLeaveRule"> | number
+    description?: StringNullableFilter<"PartTimeAnnualLeaveRule"> | string | null
+    sortOrder?: IntFilter<"PartTimeAnnualLeaveRule"> | number
+    isActive?: BoolFilter<"PartTimeAnnualLeaveRule"> | boolean
+    createdAt?: DateTimeFilter<"PartTimeAnnualLeaveRule"> | Date | string
+    updatedAt?: DateTimeFilter<"PartTimeAnnualLeaveRule"> | Date | string
+  }, "id" | "weeklyScheduledDays">
+
+  export type PartTimeAnnualLeaveRuleOrderByWithAggregationInput = {
+    id?: SortOrder
+    weeklyScheduledDays?: SortOrder
+    days6Months?: SortOrder
+    days18Months?: SortOrder
+    days30Months?: SortOrder
+    days42Months?: SortOrder
+    days54Months?: SortOrder
+    days66Months?: SortOrder
+    days78Months?: SortOrder
+    description?: SortOrderInput | SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: PartTimeAnnualLeaveRuleCountOrderByAggregateInput
+    _avg?: PartTimeAnnualLeaveRuleAvgOrderByAggregateInput
+    _max?: PartTimeAnnualLeaveRuleMaxOrderByAggregateInput
+    _min?: PartTimeAnnualLeaveRuleMinOrderByAggregateInput
+    _sum?: PartTimeAnnualLeaveRuleSumOrderByAggregateInput
+  }
+
+  export type PartTimeAnnualLeaveRuleScalarWhereWithAggregatesInput = {
+    AND?: PartTimeAnnualLeaveRuleScalarWhereWithAggregatesInput | PartTimeAnnualLeaveRuleScalarWhereWithAggregatesInput[]
+    OR?: PartTimeAnnualLeaveRuleScalarWhereWithAggregatesInput[]
+    NOT?: PartTimeAnnualLeaveRuleScalarWhereWithAggregatesInput | PartTimeAnnualLeaveRuleScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PartTimeAnnualLeaveRule"> | string
+    weeklyScheduledDays?: IntWithAggregatesFilter<"PartTimeAnnualLeaveRule"> | number
+    days6Months?: FloatWithAggregatesFilter<"PartTimeAnnualLeaveRule"> | number
+    days18Months?: FloatWithAggregatesFilter<"PartTimeAnnualLeaveRule"> | number
+    days30Months?: FloatWithAggregatesFilter<"PartTimeAnnualLeaveRule"> | number
+    days42Months?: FloatWithAggregatesFilter<"PartTimeAnnualLeaveRule"> | number
+    days54Months?: FloatWithAggregatesFilter<"PartTimeAnnualLeaveRule"> | number
+    days66Months?: FloatWithAggregatesFilter<"PartTimeAnnualLeaveRule"> | number
+    days78Months?: FloatWithAggregatesFilter<"PartTimeAnnualLeaveRule"> | number
+    description?: StringNullableWithAggregatesFilter<"PartTimeAnnualLeaveRule"> | string | null
+    sortOrder?: IntWithAggregatesFilter<"PartTimeAnnualLeaveRule"> | number
+    isActive?: BoolWithAggregatesFilter<"PartTimeAnnualLeaveRule"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"PartTimeAnnualLeaveRule"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"PartTimeAnnualLeaveRule"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     name: string
@@ -58316,6 +60008,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -58362,6 +60058,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -58406,6 +60106,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -58452,6 +60156,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -58497,6 +60205,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -58524,6 +60236,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -58551,6 +60267,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -59135,6 +60855,12 @@ export namespace Prisma {
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
+    requestCategory?: $Enums.RequestCategory | null
+    targetDate?: Date | string | null
+    unitType?: $Enums.RequestUnitType | null
+    startTime?: string | null
+    endTime?: string | null
+    hours?: number | null
     employee?: EmployeeCreateNestedOneWithoutRequestsInput
     leaveType?: LeaveTypeCreateNestedOneWithoutEmployeeRequestsInput
     user?: UserCreateNestedOneWithoutRequestsInput
@@ -59157,6 +60883,12 @@ export namespace Prisma {
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
     leaveTypeId?: string | null
+    requestCategory?: $Enums.RequestCategory | null
+    targetDate?: Date | string | null
+    unitType?: $Enums.RequestUnitType | null
+    startTime?: string | null
+    endTime?: string | null
+    hours?: number | null
     attachments?: RequestAttachmentUncheckedCreateNestedManyWithoutRequestInput
     histories?: RequestHistoryUncheckedCreateNestedManyWithoutRequestInput
   }
@@ -59173,6 +60905,12 @@ export namespace Prisma {
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requestCategory?: NullableEnumRequestCategoryFieldUpdateOperationsInput | $Enums.RequestCategory | null
+    targetDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    unitType?: NullableEnumRequestUnitTypeFieldUpdateOperationsInput | $Enums.RequestUnitType | null
+    startTime?: NullableStringFieldUpdateOperationsInput | string | null
+    endTime?: NullableStringFieldUpdateOperationsInput | string | null
+    hours?: NullableFloatFieldUpdateOperationsInput | number | null
     employee?: EmployeeUpdateOneWithoutRequestsNestedInput
     leaveType?: LeaveTypeUpdateOneWithoutEmployeeRequestsNestedInput
     user?: UserUpdateOneWithoutRequestsNestedInput
@@ -59195,6 +60933,12 @@ export namespace Prisma {
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveTypeId?: NullableStringFieldUpdateOperationsInput | string | null
+    requestCategory?: NullableEnumRequestCategoryFieldUpdateOperationsInput | $Enums.RequestCategory | null
+    targetDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    unitType?: NullableEnumRequestUnitTypeFieldUpdateOperationsInput | $Enums.RequestUnitType | null
+    startTime?: NullableStringFieldUpdateOperationsInput | string | null
+    endTime?: NullableStringFieldUpdateOperationsInput | string | null
+    hours?: NullableFloatFieldUpdateOperationsInput | number | null
     attachments?: RequestAttachmentUncheckedUpdateManyWithoutRequestNestedInput
     histories?: RequestHistoryUncheckedUpdateManyWithoutRequestNestedInput
   }
@@ -59214,6 +60958,12 @@ export namespace Prisma {
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
     leaveTypeId?: string | null
+    requestCategory?: $Enums.RequestCategory | null
+    targetDate?: Date | string | null
+    unitType?: $Enums.RequestUnitType | null
+    startTime?: string | null
+    endTime?: string | null
+    hours?: number | null
   }
 
   export type EmployeeRequestUpdateManyMutationInput = {
@@ -59228,6 +60978,12 @@ export namespace Prisma {
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requestCategory?: NullableEnumRequestCategoryFieldUpdateOperationsInput | $Enums.RequestCategory | null
+    targetDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    unitType?: NullableEnumRequestUnitTypeFieldUpdateOperationsInput | $Enums.RequestUnitType | null
+    startTime?: NullableStringFieldUpdateOperationsInput | string | null
+    endTime?: NullableStringFieldUpdateOperationsInput | string | null
+    hours?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type EmployeeRequestUncheckedUpdateManyInput = {
@@ -59245,6 +61001,12 @@ export namespace Prisma {
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveTypeId?: NullableStringFieldUpdateOperationsInput | string | null
+    requestCategory?: NullableEnumRequestCategoryFieldUpdateOperationsInput | $Enums.RequestCategory | null
+    targetDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    unitType?: NullableEnumRequestUnitTypeFieldUpdateOperationsInput | $Enums.RequestUnitType | null
+    startTime?: NullableStringFieldUpdateOperationsInput | string | null
+    endTime?: NullableStringFieldUpdateOperationsInput | string | null
+    hours?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type RequestAttachmentCreateInput = {
@@ -62231,6 +63993,125 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type PartTimeAnnualLeaveRuleCreateInput = {
+    id?: string
+    weeklyScheduledDays: number
+    days6Months: number
+    days18Months: number
+    days30Months: number
+    days42Months: number
+    days54Months: number
+    days66Months: number
+    days78Months: number
+    description?: string | null
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PartTimeAnnualLeaveRuleUncheckedCreateInput = {
+    id?: string
+    weeklyScheduledDays: number
+    days6Months: number
+    days18Months: number
+    days30Months: number
+    days42Months: number
+    days54Months: number
+    days66Months: number
+    days78Months: number
+    description?: string | null
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PartTimeAnnualLeaveRuleUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    weeklyScheduledDays?: IntFieldUpdateOperationsInput | number
+    days6Months?: FloatFieldUpdateOperationsInput | number
+    days18Months?: FloatFieldUpdateOperationsInput | number
+    days30Months?: FloatFieldUpdateOperationsInput | number
+    days42Months?: FloatFieldUpdateOperationsInput | number
+    days54Months?: FloatFieldUpdateOperationsInput | number
+    days66Months?: FloatFieldUpdateOperationsInput | number
+    days78Months?: FloatFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PartTimeAnnualLeaveRuleUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    weeklyScheduledDays?: IntFieldUpdateOperationsInput | number
+    days6Months?: FloatFieldUpdateOperationsInput | number
+    days18Months?: FloatFieldUpdateOperationsInput | number
+    days30Months?: FloatFieldUpdateOperationsInput | number
+    days42Months?: FloatFieldUpdateOperationsInput | number
+    days54Months?: FloatFieldUpdateOperationsInput | number
+    days66Months?: FloatFieldUpdateOperationsInput | number
+    days78Months?: FloatFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PartTimeAnnualLeaveRuleCreateManyInput = {
+    id?: string
+    weeklyScheduledDays: number
+    days6Months: number
+    days18Months: number
+    days30Months: number
+    days42Months: number
+    days54Months: number
+    days66Months: number
+    days78Months: number
+    description?: string | null
+    sortOrder?: number
+    isActive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PartTimeAnnualLeaveRuleUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    weeklyScheduledDays?: IntFieldUpdateOperationsInput | number
+    days6Months?: FloatFieldUpdateOperationsInput | number
+    days18Months?: FloatFieldUpdateOperationsInput | number
+    days30Months?: FloatFieldUpdateOperationsInput | number
+    days42Months?: FloatFieldUpdateOperationsInput | number
+    days54Months?: FloatFieldUpdateOperationsInput | number
+    days66Months?: FloatFieldUpdateOperationsInput | number
+    days78Months?: FloatFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PartTimeAnnualLeaveRuleUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    weeklyScheduledDays?: IntFieldUpdateOperationsInput | number
+    days6Months?: FloatFieldUpdateOperationsInput | number
+    days18Months?: FloatFieldUpdateOperationsInput | number
+    days30Months?: FloatFieldUpdateOperationsInput | number
+    days42Months?: FloatFieldUpdateOperationsInput | number
+    days54Months?: FloatFieldUpdateOperationsInput | number
+    days66Months?: FloatFieldUpdateOperationsInput | number
+    days78Months?: FloatFieldUpdateOperationsInput | number
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -62527,6 +64408,28 @@ export namespace Prisma {
     not?: NestedEnumEmploymentTypeNullableFilter<$PrismaModel> | $Enums.EmploymentType | null
   }
 
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type EnumEmployeeStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.EmployeeStatus | EnumEmployeeStatusFieldRefInput<$PrismaModel>
     in?: $Enums.EmployeeStatus[] | ListEnumEmployeeStatusFieldRefInput<$PrismaModel>
@@ -62693,6 +64596,10 @@ export namespace Prisma {
     position?: SortOrder
     commutingType?: SortOrder
     employmentType?: SortOrder
+    weeklyScheduledDays?: SortOrder
+    weeklyScheduledHours?: SortOrder
+    annualScheduledDays?: SortOrder
+    dailyScheduledHours?: SortOrder
     status?: SortOrder
     employmentInsuranceNo?: SortOrder
     healthInsuranceNo?: SortOrder
@@ -62700,6 +64607,13 @@ export namespace Prisma {
     photoPath?: SortOrder
     userId?: SortOrder
     emergencyContact?: SortOrder
+  }
+
+  export type EmployeeAvgOrderByAggregateInput = {
+    weeklyScheduledDays?: SortOrder
+    weeklyScheduledHours?: SortOrder
+    annualScheduledDays?: SortOrder
+    dailyScheduledHours?: SortOrder
   }
 
   export type EmployeeMaxOrderByAggregateInput = {
@@ -62721,6 +64635,10 @@ export namespace Prisma {
     position?: SortOrder
     commutingType?: SortOrder
     employmentType?: SortOrder
+    weeklyScheduledDays?: SortOrder
+    weeklyScheduledHours?: SortOrder
+    annualScheduledDays?: SortOrder
+    dailyScheduledHours?: SortOrder
     status?: SortOrder
     employmentInsuranceNo?: SortOrder
     healthInsuranceNo?: SortOrder
@@ -62749,6 +64667,10 @@ export namespace Prisma {
     position?: SortOrder
     commutingType?: SortOrder
     employmentType?: SortOrder
+    weeklyScheduledDays?: SortOrder
+    weeklyScheduledHours?: SortOrder
+    annualScheduledDays?: SortOrder
+    dailyScheduledHours?: SortOrder
     status?: SortOrder
     employmentInsuranceNo?: SortOrder
     healthInsuranceNo?: SortOrder
@@ -62756,6 +64678,13 @@ export namespace Prisma {
     photoPath?: SortOrder
     userId?: SortOrder
     emergencyContact?: SortOrder
+  }
+
+  export type EmployeeSumOrderByAggregateInput = {
+    weeklyScheduledDays?: SortOrder
+    weeklyScheduledHours?: SortOrder
+    annualScheduledDays?: SortOrder
+    dailyScheduledHours?: SortOrder
   }
 
   export type EnumGenderNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -62778,6 +64707,38 @@ export namespace Prisma {
     _max?: NestedEnumEmploymentTypeNullableFilter<$PrismaModel>
   }
 
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
   export type EnumEmployeeStatusWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.EmployeeStatus | EnumEmployeeStatusFieldRefInput<$PrismaModel>
     in?: $Enums.EmployeeStatus[] | ListEnumEmployeeStatusFieldRefInput<$PrismaModel>
@@ -62786,17 +64747,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumEmployeeStatusFilter<$PrismaModel>
     _max?: NestedEnumEmployeeStatusFilter<$PrismaModel>
-  }
-
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type EmployeeScalarRelationFilter = {
@@ -62874,22 +64824,6 @@ export namespace Prisma {
 
   export type DependentSumOrderByAggregateInput = {
     annualIncome?: SortOrder
-  }
-
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type EnumEmploymentActionFilter<$PrismaModel = never> = {
@@ -63230,15 +65164,18 @@ export namespace Prisma {
     not?: NestedEnumRequestStatusFilter<$PrismaModel> | $Enums.RequestStatus
   }
 
-  export type FloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  export type EnumRequestCategoryNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.RequestCategory | EnumRequestCategoryFieldRefInput<$PrismaModel> | null
+    in?: $Enums.RequestCategory[] | ListEnumRequestCategoryFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.RequestCategory[] | ListEnumRequestCategoryFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumRequestCategoryNullableFilter<$PrismaModel> | $Enums.RequestCategory | null
+  }
+
+  export type EnumRequestUnitTypeNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.RequestUnitType | EnumRequestUnitTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.RequestUnitType[] | ListEnumRequestUnitTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.RequestUnitType[] | ListEnumRequestUnitTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumRequestUnitTypeNullableFilter<$PrismaModel> | $Enums.RequestUnitType | null
   }
 
   export type RequestAttachmentListRelationFilter = {
@@ -63276,10 +65213,17 @@ export namespace Prisma {
     leaveEndDate?: SortOrder
     leaveStartDate?: SortOrder
     leaveTypeId?: SortOrder
+    requestCategory?: SortOrder
+    targetDate?: SortOrder
+    unitType?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    hours?: SortOrder
   }
 
   export type EmployeeRequestAvgOrderByAggregateInput = {
     leaveDays?: SortOrder
+    hours?: SortOrder
   }
 
   export type EmployeeRequestMaxOrderByAggregateInput = {
@@ -63297,6 +65241,12 @@ export namespace Prisma {
     leaveEndDate?: SortOrder
     leaveStartDate?: SortOrder
     leaveTypeId?: SortOrder
+    requestCategory?: SortOrder
+    targetDate?: SortOrder
+    unitType?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    hours?: SortOrder
   }
 
   export type EmployeeRequestMinOrderByAggregateInput = {
@@ -63314,10 +65264,17 @@ export namespace Prisma {
     leaveEndDate?: SortOrder
     leaveStartDate?: SortOrder
     leaveTypeId?: SortOrder
+    requestCategory?: SortOrder
+    targetDate?: SortOrder
+    unitType?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    hours?: SortOrder
   }
 
   export type EmployeeRequestSumOrderByAggregateInput = {
     leaveDays?: SortOrder
+    hours?: SortOrder
   }
 
   export type EnumRequestTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -63340,20 +65297,24 @@ export namespace Prisma {
     _max?: NestedEnumRequestStatusFilter<$PrismaModel>
   }
 
-  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+  export type EnumRequestCategoryNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.RequestCategory | EnumRequestCategoryFieldRefInput<$PrismaModel> | null
+    in?: $Enums.RequestCategory[] | ListEnumRequestCategoryFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.RequestCategory[] | ListEnumRequestCategoryFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumRequestCategoryNullableWithAggregatesFilter<$PrismaModel> | $Enums.RequestCategory | null
     _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedFloatNullableFilter<$PrismaModel>
-    _min?: NestedFloatNullableFilter<$PrismaModel>
-    _max?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedEnumRequestCategoryNullableFilter<$PrismaModel>
+    _max?: NestedEnumRequestCategoryNullableFilter<$PrismaModel>
+  }
+
+  export type EnumRequestUnitTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.RequestUnitType | EnumRequestUnitTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.RequestUnitType[] | ListEnumRequestUnitTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.RequestUnitType[] | ListEnumRequestUnitTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumRequestUnitTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.RequestUnitType | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumRequestUnitTypeNullableFilter<$PrismaModel>
+    _max?: NestedEnumRequestUnitTypeNullableFilter<$PrismaModel>
   }
 
   export type EmployeeRequestScalarRelationFilter = {
@@ -65049,6 +67010,81 @@ export namespace Prisma {
     sortOrder?: SortOrder
   }
 
+  export type PartTimeAnnualLeaveRuleCountOrderByAggregateInput = {
+    id?: SortOrder
+    weeklyScheduledDays?: SortOrder
+    days6Months?: SortOrder
+    days18Months?: SortOrder
+    days30Months?: SortOrder
+    days42Months?: SortOrder
+    days54Months?: SortOrder
+    days66Months?: SortOrder
+    days78Months?: SortOrder
+    description?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PartTimeAnnualLeaveRuleAvgOrderByAggregateInput = {
+    weeklyScheduledDays?: SortOrder
+    days6Months?: SortOrder
+    days18Months?: SortOrder
+    days30Months?: SortOrder
+    days42Months?: SortOrder
+    days54Months?: SortOrder
+    days66Months?: SortOrder
+    days78Months?: SortOrder
+    sortOrder?: SortOrder
+  }
+
+  export type PartTimeAnnualLeaveRuleMaxOrderByAggregateInput = {
+    id?: SortOrder
+    weeklyScheduledDays?: SortOrder
+    days6Months?: SortOrder
+    days18Months?: SortOrder
+    days30Months?: SortOrder
+    days42Months?: SortOrder
+    days54Months?: SortOrder
+    days66Months?: SortOrder
+    days78Months?: SortOrder
+    description?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PartTimeAnnualLeaveRuleMinOrderByAggregateInput = {
+    id?: SortOrder
+    weeklyScheduledDays?: SortOrder
+    days6Months?: SortOrder
+    days18Months?: SortOrder
+    days30Months?: SortOrder
+    days42Months?: SortOrder
+    days54Months?: SortOrder
+    days66Months?: SortOrder
+    days78Months?: SortOrder
+    description?: SortOrder
+    sortOrder?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PartTimeAnnualLeaveRuleSumOrderByAggregateInput = {
+    weeklyScheduledDays?: SortOrder
+    days6Months?: SortOrder
+    days18Months?: SortOrder
+    days30Months?: SortOrder
+    days42Months?: SortOrder
+    days54Months?: SortOrder
+    days66Months?: SortOrder
+    days78Months?: SortOrder
+    sortOrder?: SortOrder
+  }
+
   export type EmployeeCreateNestedOneWithoutUserInput = {
     create?: XOR<EmployeeCreateWithoutUserInput, EmployeeUncheckedCreateWithoutUserInput>
     connectOrCreate?: EmployeeCreateOrConnectWithoutUserInput
@@ -65475,6 +67511,22 @@ export namespace Prisma {
 
   export type NullableEnumEmploymentTypeFieldUpdateOperationsInput = {
     set?: $Enums.EmploymentType | null
+  }
+
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type EnumEmployeeStatusFieldUpdateOperationsInput = {
@@ -65949,14 +68001,6 @@ export namespace Prisma {
     connect?: EmploymentContractConsentWhereUniqueInput | EmploymentContractConsentWhereUniqueInput[]
   }
 
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type EmployeeUpdateOneRequiredWithoutDependentsNestedInput = {
     create?: XOR<EmployeeCreateWithoutDependentsInput, EmployeeUncheckedCreateWithoutDependentsInput>
     connectOrCreate?: EmployeeCreateOrConnectWithoutDependentsInput
@@ -66171,12 +68215,12 @@ export namespace Prisma {
     set?: $Enums.RequestStatus
   }
 
-  export type NullableFloatFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
+  export type NullableEnumRequestCategoryFieldUpdateOperationsInput = {
+    set?: $Enums.RequestCategory | null
+  }
+
+  export type NullableEnumRequestUnitTypeFieldUpdateOperationsInput = {
+    set?: $Enums.RequestUnitType | null
   }
 
   export type EmployeeUpdateOneWithoutRequestsNestedInput = {
@@ -67125,6 +69169,17 @@ export namespace Prisma {
     not?: NestedEnumEmploymentTypeNullableFilter<$PrismaModel> | $Enums.EmploymentType | null
   }
 
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
   export type NestedEnumEmployeeStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.EmployeeStatus | EnumEmployeeStatusFieldRefInput<$PrismaModel>
     in?: $Enums.EmployeeStatus[] | ListEnumEmployeeStatusFieldRefInput<$PrismaModel>
@@ -67152,14 +69207,20 @@ export namespace Prisma {
     _max?: NestedEnumEmploymentTypeNullableFilter<$PrismaModel>
   }
 
-  export type NestedEnumEmployeeStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.EmployeeStatus | EnumEmployeeStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.EmployeeStatus[] | ListEnumEmployeeStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.EmployeeStatus[] | ListEnumEmployeeStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumEmployeeStatusWithAggregatesFilter<$PrismaModel> | $Enums.EmployeeStatus
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumEmployeeStatusFilter<$PrismaModel>
-    _max?: NestedEnumEmployeeStatusFilter<$PrismaModel>
+  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -67178,15 +69239,14 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
-  export type NestedFloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  export type NestedEnumEmployeeStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.EmployeeStatus | EnumEmployeeStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.EmployeeStatus[] | ListEnumEmployeeStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EmployeeStatus[] | ListEnumEmployeeStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumEmployeeStatusWithAggregatesFilter<$PrismaModel> | $Enums.EmployeeStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumEmployeeStatusFilter<$PrismaModel>
+    _max?: NestedEnumEmployeeStatusFilter<$PrismaModel>
   }
 
   export type NestedEnumEmploymentActionFilter<$PrismaModel = never> = {
@@ -67280,6 +69340,20 @@ export namespace Prisma {
     not?: NestedEnumRequestStatusFilter<$PrismaModel> | $Enums.RequestStatus
   }
 
+  export type NestedEnumRequestCategoryNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.RequestCategory | EnumRequestCategoryFieldRefInput<$PrismaModel> | null
+    in?: $Enums.RequestCategory[] | ListEnumRequestCategoryFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.RequestCategory[] | ListEnumRequestCategoryFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumRequestCategoryNullableFilter<$PrismaModel> | $Enums.RequestCategory | null
+  }
+
+  export type NestedEnumRequestUnitTypeNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.RequestUnitType | EnumRequestUnitTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.RequestUnitType[] | ListEnumRequestUnitTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.RequestUnitType[] | ListEnumRequestUnitTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumRequestUnitTypeNullableFilter<$PrismaModel> | $Enums.RequestUnitType | null
+  }
+
   export type NestedEnumRequestTypeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.RequestType | EnumRequestTypeFieldRefInput<$PrismaModel>
     in?: $Enums.RequestType[] | ListEnumRequestTypeFieldRefInput<$PrismaModel>
@@ -67300,20 +69374,24 @@ export namespace Prisma {
     _max?: NestedEnumRequestStatusFilter<$PrismaModel>
   }
 
-  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+  export type NestedEnumRequestCategoryNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.RequestCategory | EnumRequestCategoryFieldRefInput<$PrismaModel> | null
+    in?: $Enums.RequestCategory[] | ListEnumRequestCategoryFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.RequestCategory[] | ListEnumRequestCategoryFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumRequestCategoryNullableWithAggregatesFilter<$PrismaModel> | $Enums.RequestCategory | null
     _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedFloatNullableFilter<$PrismaModel>
-    _min?: NestedFloatNullableFilter<$PrismaModel>
-    _max?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedEnumRequestCategoryNullableFilter<$PrismaModel>
+    _max?: NestedEnumRequestCategoryNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumRequestUnitTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.RequestUnitType | EnumRequestUnitTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.RequestUnitType[] | ListEnumRequestUnitTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.RequestUnitType[] | ListEnumRequestUnitTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumRequestUnitTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.RequestUnitType | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumRequestUnitTypeNullableFilter<$PrismaModel>
+    _max?: NestedEnumRequestUnitTypeNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumRequestHistoryActionFilter<$PrismaModel = never> = {
@@ -67442,6 +69520,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -67487,6 +69569,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -67529,6 +69615,12 @@ export namespace Prisma {
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
+    requestCategory?: $Enums.RequestCategory | null
+    targetDate?: Date | string | null
+    unitType?: $Enums.RequestUnitType | null
+    startTime?: string | null
+    endTime?: string | null
+    hours?: number | null
     employee?: EmployeeCreateNestedOneWithoutRequestsInput
     leaveType?: LeaveTypeCreateNestedOneWithoutEmployeeRequestsInput
     attachments?: RequestAttachmentCreateNestedManyWithoutRequestInput
@@ -67549,6 +69641,12 @@ export namespace Prisma {
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
     leaveTypeId?: string | null
+    requestCategory?: $Enums.RequestCategory | null
+    targetDate?: Date | string | null
+    unitType?: $Enums.RequestUnitType | null
+    startTime?: string | null
+    endTime?: string | null
+    hours?: number | null
     attachments?: RequestAttachmentUncheckedCreateNestedManyWithoutRequestInput
     histories?: RequestHistoryUncheckedCreateNestedManyWithoutRequestInput
   }
@@ -67592,6 +69690,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -67637,6 +69739,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -67696,6 +69802,12 @@ export namespace Prisma {
     leaveEndDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
     leaveStartDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
     leaveTypeId?: StringNullableFilter<"EmployeeRequest"> | string | null
+    requestCategory?: EnumRequestCategoryNullableFilter<"EmployeeRequest"> | $Enums.RequestCategory | null
+    targetDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
+    unitType?: EnumRequestUnitTypeNullableFilter<"EmployeeRequest"> | $Enums.RequestUnitType | null
+    startTime?: StringNullableFilter<"EmployeeRequest"> | string | null
+    endTime?: StringNullableFilter<"EmployeeRequest"> | string | null
+    hours?: FloatNullableFilter<"EmployeeRequest"> | number | null
   }
 
   export type EmployeeCertificationAttachmentCreateWithoutUserInvitationInput = {
@@ -67776,6 +69888,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -67820,6 +69936,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -67894,6 +70014,10 @@ export namespace Prisma {
     position?: StringNullableFilter<"Employee"> | string | null
     commutingType?: StringNullableFilter<"Employee"> | string | null
     employmentType?: EnumEmploymentTypeNullableFilter<"Employee"> | $Enums.EmploymentType | null
+    weeklyScheduledDays?: FloatNullableFilter<"Employee"> | number | null
+    weeklyScheduledHours?: FloatNullableFilter<"Employee"> | number | null
+    annualScheduledDays?: IntNullableFilter<"Employee"> | number | null
+    dailyScheduledHours?: FloatNullableFilter<"Employee"> | number | null
     status?: EnumEmployeeStatusFilter<"Employee"> | $Enums.EmployeeStatus
     employmentInsuranceNo?: StringNullableFilter<"Employee"> | string | null
     healthInsuranceNo?: StringNullableFilter<"Employee"> | string | null
@@ -68020,6 +70144,12 @@ export namespace Prisma {
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
+    requestCategory?: $Enums.RequestCategory | null
+    targetDate?: Date | string | null
+    unitType?: $Enums.RequestUnitType | null
+    startTime?: string | null
+    endTime?: string | null
+    hours?: number | null
     leaveType?: LeaveTypeCreateNestedOneWithoutEmployeeRequestsInput
     user?: UserCreateNestedOneWithoutRequestsInput
     attachments?: RequestAttachmentCreateNestedManyWithoutRequestInput
@@ -68040,6 +70170,12 @@ export namespace Prisma {
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
     leaveTypeId?: string | null
+    requestCategory?: $Enums.RequestCategory | null
+    targetDate?: Date | string | null
+    unitType?: $Enums.RequestUnitType | null
+    startTime?: string | null
+    endTime?: string | null
+    hours?: number | null
     attachments?: RequestAttachmentUncheckedCreateNestedManyWithoutRequestInput
     histories?: RequestHistoryUncheckedCreateNestedManyWithoutRequestInput
   }
@@ -69276,6 +71412,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -69321,6 +71461,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -69416,6 +71560,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -69461,6 +71609,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -69537,6 +71689,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -69582,6 +71738,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -69641,6 +71801,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -69686,6 +71850,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -69729,6 +71897,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -69774,6 +71946,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -69833,6 +72009,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -69878,6 +72058,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -69921,6 +72105,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -69966,6 +72154,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -70025,6 +72217,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -70070,6 +72266,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -70113,6 +72313,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -70158,6 +72362,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -70217,6 +72425,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -70262,6 +72474,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -70305,6 +72521,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -70350,6 +72570,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -70448,6 +72672,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -70493,6 +72721,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -70581,6 +72813,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -70626,6 +72862,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -70685,6 +72925,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -70730,6 +72974,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -70773,6 +73021,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -70818,6 +73070,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -70997,6 +73253,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -71042,6 +73302,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -71214,6 +73478,12 @@ export namespace Prisma {
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
+    requestCategory?: $Enums.RequestCategory | null
+    targetDate?: Date | string | null
+    unitType?: $Enums.RequestUnitType | null
+    startTime?: string | null
+    endTime?: string | null
+    hours?: number | null
     employee?: EmployeeCreateNestedOneWithoutRequestsInput
     leaveType?: LeaveTypeCreateNestedOneWithoutEmployeeRequestsInput
     user?: UserCreateNestedOneWithoutRequestsInput
@@ -71235,6 +73505,12 @@ export namespace Prisma {
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
     leaveTypeId?: string | null
+    requestCategory?: $Enums.RequestCategory | null
+    targetDate?: Date | string | null
+    unitType?: $Enums.RequestUnitType | null
+    startTime?: string | null
+    endTime?: string | null
+    hours?: number | null
     histories?: RequestHistoryUncheckedCreateNestedManyWithoutRequestInput
   }
 
@@ -71266,6 +73542,12 @@ export namespace Prisma {
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requestCategory?: NullableEnumRequestCategoryFieldUpdateOperationsInput | $Enums.RequestCategory | null
+    targetDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    unitType?: NullableEnumRequestUnitTypeFieldUpdateOperationsInput | $Enums.RequestUnitType | null
+    startTime?: NullableStringFieldUpdateOperationsInput | string | null
+    endTime?: NullableStringFieldUpdateOperationsInput | string | null
+    hours?: NullableFloatFieldUpdateOperationsInput | number | null
     employee?: EmployeeUpdateOneWithoutRequestsNestedInput
     leaveType?: LeaveTypeUpdateOneWithoutEmployeeRequestsNestedInput
     user?: UserUpdateOneWithoutRequestsNestedInput
@@ -71287,6 +73569,12 @@ export namespace Prisma {
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveTypeId?: NullableStringFieldUpdateOperationsInput | string | null
+    requestCategory?: NullableEnumRequestCategoryFieldUpdateOperationsInput | $Enums.RequestCategory | null
+    targetDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    unitType?: NullableEnumRequestUnitTypeFieldUpdateOperationsInput | $Enums.RequestUnitType | null
+    startTime?: NullableStringFieldUpdateOperationsInput | string | null
+    endTime?: NullableStringFieldUpdateOperationsInput | string | null
+    hours?: NullableFloatFieldUpdateOperationsInput | number | null
     histories?: RequestHistoryUncheckedUpdateManyWithoutRequestNestedInput
   }
 
@@ -71302,6 +73590,12 @@ export namespace Prisma {
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
+    requestCategory?: $Enums.RequestCategory | null
+    targetDate?: Date | string | null
+    unitType?: $Enums.RequestUnitType | null
+    startTime?: string | null
+    endTime?: string | null
+    hours?: number | null
     employee?: EmployeeCreateNestedOneWithoutRequestsInput
     leaveType?: LeaveTypeCreateNestedOneWithoutEmployeeRequestsInput
     user?: UserCreateNestedOneWithoutRequestsInput
@@ -71323,6 +73617,12 @@ export namespace Prisma {
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
     leaveTypeId?: string | null
+    requestCategory?: $Enums.RequestCategory | null
+    targetDate?: Date | string | null
+    unitType?: $Enums.RequestUnitType | null
+    startTime?: string | null
+    endTime?: string | null
+    hours?: number | null
     attachments?: RequestAttachmentUncheckedCreateNestedManyWithoutRequestInput
   }
 
@@ -71354,6 +73654,12 @@ export namespace Prisma {
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requestCategory?: NullableEnumRequestCategoryFieldUpdateOperationsInput | $Enums.RequestCategory | null
+    targetDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    unitType?: NullableEnumRequestUnitTypeFieldUpdateOperationsInput | $Enums.RequestUnitType | null
+    startTime?: NullableStringFieldUpdateOperationsInput | string | null
+    endTime?: NullableStringFieldUpdateOperationsInput | string | null
+    hours?: NullableFloatFieldUpdateOperationsInput | number | null
     employee?: EmployeeUpdateOneWithoutRequestsNestedInput
     leaveType?: LeaveTypeUpdateOneWithoutEmployeeRequestsNestedInput
     user?: UserUpdateOneWithoutRequestsNestedInput
@@ -71375,6 +73681,12 @@ export namespace Prisma {
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveTypeId?: NullableStringFieldUpdateOperationsInput | string | null
+    requestCategory?: NullableEnumRequestCategoryFieldUpdateOperationsInput | $Enums.RequestCategory | null
+    targetDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    unitType?: NullableEnumRequestUnitTypeFieldUpdateOperationsInput | $Enums.RequestUnitType | null
+    startTime?: NullableStringFieldUpdateOperationsInput | string | null
+    endTime?: NullableStringFieldUpdateOperationsInput | string | null
+    hours?: NullableFloatFieldUpdateOperationsInput | number | null
     attachments?: RequestAttachmentUncheckedUpdateManyWithoutRequestNestedInput
   }
 
@@ -71463,6 +73775,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -71508,6 +73824,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -71620,6 +73940,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -71665,6 +73989,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -71868,6 +74196,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -71913,6 +74245,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -72000,6 +74336,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -72045,6 +74385,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -72209,6 +74553,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -72254,6 +74602,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -72341,6 +74693,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -72386,6 +74742,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -72562,6 +74922,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -72607,6 +74971,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -72666,6 +75034,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -72711,6 +75083,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -72754,6 +75130,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -72799,6 +75179,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -72926,6 +75310,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -72971,6 +75359,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -73509,6 +75901,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -73554,6 +75950,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -73652,6 +76052,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -73697,6 +76101,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -73811,6 +76219,12 @@ export namespace Prisma {
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
+    requestCategory?: $Enums.RequestCategory | null
+    targetDate?: Date | string | null
+    unitType?: $Enums.RequestUnitType | null
+    startTime?: string | null
+    endTime?: string | null
+    hours?: number | null
     employee?: EmployeeCreateNestedOneWithoutRequestsInput
     user?: UserCreateNestedOneWithoutRequestsInput
     attachments?: RequestAttachmentCreateNestedManyWithoutRequestInput
@@ -73831,6 +76245,12 @@ export namespace Prisma {
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
+    requestCategory?: $Enums.RequestCategory | null
+    targetDate?: Date | string | null
+    unitType?: $Enums.RequestUnitType | null
+    startTime?: string | null
+    endTime?: string | null
+    hours?: number | null
     attachments?: RequestAttachmentUncheckedCreateNestedManyWithoutRequestInput
     histories?: RequestHistoryUncheckedCreateNestedManyWithoutRequestInput
   }
@@ -73939,6 +76359,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -73984,6 +76408,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -74043,6 +76471,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -74088,6 +76520,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -74131,6 +76567,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -74176,6 +76616,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -74235,6 +76679,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -74280,6 +76728,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -74323,6 +76775,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -74368,6 +76824,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -74427,6 +76887,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -74472,6 +76936,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -74511,6 +76979,12 @@ export namespace Prisma {
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
     leaveTypeId?: string | null
+    requestCategory?: $Enums.RequestCategory | null
+    targetDate?: Date | string | null
+    unitType?: $Enums.RequestUnitType | null
+    startTime?: string | null
+    endTime?: string | null
+    hours?: number | null
   }
 
   export type EmployeeRequestUpdateWithoutUserInput = {
@@ -74525,6 +76999,12 @@ export namespace Prisma {
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requestCategory?: NullableEnumRequestCategoryFieldUpdateOperationsInput | $Enums.RequestCategory | null
+    targetDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    unitType?: NullableEnumRequestUnitTypeFieldUpdateOperationsInput | $Enums.RequestUnitType | null
+    startTime?: NullableStringFieldUpdateOperationsInput | string | null
+    endTime?: NullableStringFieldUpdateOperationsInput | string | null
+    hours?: NullableFloatFieldUpdateOperationsInput | number | null
     employee?: EmployeeUpdateOneWithoutRequestsNestedInput
     leaveType?: LeaveTypeUpdateOneWithoutEmployeeRequestsNestedInput
     attachments?: RequestAttachmentUpdateManyWithoutRequestNestedInput
@@ -74545,6 +77025,12 @@ export namespace Prisma {
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveTypeId?: NullableStringFieldUpdateOperationsInput | string | null
+    requestCategory?: NullableEnumRequestCategoryFieldUpdateOperationsInput | $Enums.RequestCategory | null
+    targetDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    unitType?: NullableEnumRequestUnitTypeFieldUpdateOperationsInput | $Enums.RequestUnitType | null
+    startTime?: NullableStringFieldUpdateOperationsInput | string | null
+    endTime?: NullableStringFieldUpdateOperationsInput | string | null
+    hours?: NullableFloatFieldUpdateOperationsInput | number | null
     attachments?: RequestAttachmentUncheckedUpdateManyWithoutRequestNestedInput
     histories?: RequestHistoryUncheckedUpdateManyWithoutRequestNestedInput
   }
@@ -74563,6 +77049,12 @@ export namespace Prisma {
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveTypeId?: NullableStringFieldUpdateOperationsInput | string | null
+    requestCategory?: NullableEnumRequestCategoryFieldUpdateOperationsInput | $Enums.RequestCategory | null
+    targetDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    unitType?: NullableEnumRequestUnitTypeFieldUpdateOperationsInput | $Enums.RequestUnitType | null
+    startTime?: NullableStringFieldUpdateOperationsInput | string | null
+    endTime?: NullableStringFieldUpdateOperationsInput | string | null
+    hours?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type EmployeeCertificationAttachmentCreateManyUserInvitationInput = {
@@ -74623,6 +77115,10 @@ export namespace Prisma {
     position?: string | null
     commutingType?: string | null
     employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
     status?: $Enums.EmployeeStatus
     employmentInsuranceNo?: string | null
     healthInsuranceNo?: string | null
@@ -74650,6 +77146,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -74694,6 +77194,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -74738,6 +77242,10 @@ export namespace Prisma {
     position?: NullableStringFieldUpdateOperationsInput | string | null
     commutingType?: NullableStringFieldUpdateOperationsInput | string | null
     employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
     status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
     employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
@@ -74772,6 +77280,12 @@ export namespace Prisma {
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
     leaveTypeId?: string | null
+    requestCategory?: $Enums.RequestCategory | null
+    targetDate?: Date | string | null
+    unitType?: $Enums.RequestUnitType | null
+    startTime?: string | null
+    endTime?: string | null
+    hours?: number | null
   }
 
   export type EmploymentHistoryCreateManyEmployeeInput = {
@@ -74963,6 +77477,12 @@ export namespace Prisma {
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requestCategory?: NullableEnumRequestCategoryFieldUpdateOperationsInput | $Enums.RequestCategory | null
+    targetDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    unitType?: NullableEnumRequestUnitTypeFieldUpdateOperationsInput | $Enums.RequestUnitType | null
+    startTime?: NullableStringFieldUpdateOperationsInput | string | null
+    endTime?: NullableStringFieldUpdateOperationsInput | string | null
+    hours?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveType?: LeaveTypeUpdateOneWithoutEmployeeRequestsNestedInput
     user?: UserUpdateOneWithoutRequestsNestedInput
     attachments?: RequestAttachmentUpdateManyWithoutRequestNestedInput
@@ -74983,6 +77503,12 @@ export namespace Prisma {
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveTypeId?: NullableStringFieldUpdateOperationsInput | string | null
+    requestCategory?: NullableEnumRequestCategoryFieldUpdateOperationsInput | $Enums.RequestCategory | null
+    targetDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    unitType?: NullableEnumRequestUnitTypeFieldUpdateOperationsInput | $Enums.RequestUnitType | null
+    startTime?: NullableStringFieldUpdateOperationsInput | string | null
+    endTime?: NullableStringFieldUpdateOperationsInput | string | null
+    hours?: NullableFloatFieldUpdateOperationsInput | number | null
     attachments?: RequestAttachmentUncheckedUpdateManyWithoutRequestNestedInput
     histories?: RequestHistoryUncheckedUpdateManyWithoutRequestNestedInput
   }
@@ -75001,6 +77527,12 @@ export namespace Prisma {
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveTypeId?: NullableStringFieldUpdateOperationsInput | string | null
+    requestCategory?: NullableEnumRequestCategoryFieldUpdateOperationsInput | $Enums.RequestCategory | null
+    targetDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    unitType?: NullableEnumRequestUnitTypeFieldUpdateOperationsInput | $Enums.RequestUnitType | null
+    startTime?: NullableStringFieldUpdateOperationsInput | string | null
+    endTime?: NullableStringFieldUpdateOperationsInput | string | null
+    hours?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type EmploymentHistoryUpdateWithoutEmployeeInput = {
@@ -75836,6 +78368,12 @@ export namespace Prisma {
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
+    requestCategory?: $Enums.RequestCategory | null
+    targetDate?: Date | string | null
+    unitType?: $Enums.RequestUnitType | null
+    startTime?: string | null
+    endTime?: string | null
+    hours?: number | null
   }
 
   export type LeaveTypeBalanceCreateManyLeaveTypeInput = {
@@ -75892,6 +78430,12 @@ export namespace Prisma {
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requestCategory?: NullableEnumRequestCategoryFieldUpdateOperationsInput | $Enums.RequestCategory | null
+    targetDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    unitType?: NullableEnumRequestUnitTypeFieldUpdateOperationsInput | $Enums.RequestUnitType | null
+    startTime?: NullableStringFieldUpdateOperationsInput | string | null
+    endTime?: NullableStringFieldUpdateOperationsInput | string | null
+    hours?: NullableFloatFieldUpdateOperationsInput | number | null
     employee?: EmployeeUpdateOneWithoutRequestsNestedInput
     user?: UserUpdateOneWithoutRequestsNestedInput
     attachments?: RequestAttachmentUpdateManyWithoutRequestNestedInput
@@ -75912,6 +78456,12 @@ export namespace Prisma {
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requestCategory?: NullableEnumRequestCategoryFieldUpdateOperationsInput | $Enums.RequestCategory | null
+    targetDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    unitType?: NullableEnumRequestUnitTypeFieldUpdateOperationsInput | $Enums.RequestUnitType | null
+    startTime?: NullableStringFieldUpdateOperationsInput | string | null
+    endTime?: NullableStringFieldUpdateOperationsInput | string | null
+    hours?: NullableFloatFieldUpdateOperationsInput | number | null
     attachments?: RequestAttachmentUncheckedUpdateManyWithoutRequestNestedInput
     histories?: RequestHistoryUncheckedUpdateManyWithoutRequestNestedInput
   }
@@ -75930,6 +78480,12 @@ export namespace Prisma {
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requestCategory?: NullableEnumRequestCategoryFieldUpdateOperationsInput | $Enums.RequestCategory | null
+    targetDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    unitType?: NullableEnumRequestUnitTypeFieldUpdateOperationsInput | $Enums.RequestUnitType | null
+    startTime?: NullableStringFieldUpdateOperationsInput | string | null
+    endTime?: NullableStringFieldUpdateOperationsInput | string | null
+    hours?: NullableFloatFieldUpdateOperationsInput | number | null
   }
 
   export type LeaveTypeBalanceUpdateWithoutLeaveTypeInput = {

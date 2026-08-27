@@ -48,24 +48,30 @@ model Department {
 }
 
 model Employee {
-  id                    String                  @id @default(uuid())
-  employeeNo            String                  @unique
-  firstName             String
-  lastName              String
-  email                 String                  @unique
-  createdAt             DateTime                @default(now())
-  departmentId          String?
-  address               String?
-  birthDate             DateTime?
-  firstNameKana         String?
-  gender                Gender?
-  hireDate              DateTime?
-  lastNameKana          String?
-  occupation            String?
-  phoneNumber           String?
-  position              String?
-  commutingType         String?
-  employmentType        EmploymentType?
+  id             String          @id @default(uuid())
+  employeeNo     String          @unique
+  firstName      String
+  lastName       String
+  email          String          @unique
+  createdAt      DateTime        @default(now())
+  departmentId   String?
+  address        String?
+  birthDate      DateTime?
+  firstNameKana  String?
+  gender         Gender?
+  hireDate       DateTime?
+  lastNameKana   String?
+  occupation     String?
+  phoneNumber    String?
+  position       String?
+  commutingType  String?
+  employmentType EmploymentType?
+
+  weeklyScheduledDays  Float?
+  weeklyScheduledHours Float?
+  annualScheduledDays  Int?
+  dailyScheduledHours  Float?
+
   status                EmployeeStatus          @default(ACTIVE)
   employmentInsuranceNo String?
   healthInsuranceNo     String?
@@ -207,25 +213,36 @@ model LeaveBalance {
 }
 
 model EmployeeRequest {
-  id              String              @id @default(uuid())
+  id              String        @id @default(uuid())
   title           String
   employeeId      String?
-  createdAt       DateTime            @default(now())
+  createdAt       DateTime      @default(now())
   comment         String?
   approvalComment String?
   rejectionReason String?
   type            RequestType
   userId          String?
-  status          RequestStatus       @default(PENDING)
+  status          RequestStatus @default(PENDING)
   leaveDays       Float?
   leaveEndDate    DateTime?
   leaveStartDate  DateTime?
   leaveTypeId     String?
-  employee        Employee?           @relation(fields: [employeeId], references: [id])
-  leaveType       LeaveType?          @relation(fields: [leaveTypeId], references: [id])
-  user            User?               @relation(fields: [userId], references: [id])
-  attachments     RequestAttachment[]
-  histories       RequestHistory[]
+
+  requestCategory RequestCategory?
+
+  targetDate DateTime?
+
+  unitType RequestUnitType?
+
+  startTime String?
+  endTime   String?
+
+  hours       Float?
+  employee    Employee?           @relation(fields: [employeeId], references: [id])
+  leaveType   LeaveType?          @relation(fields: [leaveTypeId], references: [id])
+  user        User?               @relation(fields: [userId], references: [id])
+  attachments RequestAttachment[]
+  histories   RequestHistory[]
 
   @@index([leaveTypeId])
 }
@@ -459,6 +476,21 @@ enum RequestStatus {
   APPROVED
   REJECTED
   CANCELLED
+}
+
+enum RequestCategory {
+  LEAVE
+  LATE
+  EARLY
+  OUTING
+  CHILD_CARE
+  FAMILY_CARE
+}
+
+enum RequestUnitType {
+  DAY
+  HALF_DAY
+  HOUR
 }
 
 enum DependentRequestType {
@@ -970,4 +1002,25 @@ model AnnualLeaveEntryRule {
 
   @@unique([entryMonth, dayFrom, dayTo])
   @@index([entryMonth, sortOrder])
+}
+
+model PartTimeAnnualLeaveRule {
+  id String @id @default(uuid())
+
+  weeklyScheduledDays Int @unique
+
+  days6Months  Float
+  days18Months Float
+  days30Months Float
+  days42Months Float
+  days54Months Float
+  days66Months Float
+  days78Months Float
+
+  description String?
+  sortOrder   Int     @default(0)
+  isActive    Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
