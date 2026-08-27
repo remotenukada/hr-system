@@ -6,9 +6,7 @@ type Props = {
   params: Promise<{ id: string }>;
 };
 
-export default async function EditLeaveTypeMasterPage({
-  params,
-}: Props) {
+export default async function EditLeaveTypeMasterPage({ params }: Props) {
   const { id } = await params;
 
   const item = await prisma.leaveType.findUnique({
@@ -21,10 +19,8 @@ export default async function EditLeaveTypeMasterPage({
 
   return (
     <main className="mx-auto max-w-2xl p-6">
-      <BackLink href="/leave-type-masters" />
-
+      /leave-type-masters
       <h1 className="mb-6 text-2xl font-bold">休暇種別編集</h1>
-
       <form action={updateLeaveTypeMaster} className="space-y-4">
         <input type="hidden" name="id" value={item.id} />
 
@@ -67,9 +63,7 @@ export default async function EditLeaveTypeMasterPage({
             defaultValue={item.expirationMonths ?? ""}
             className="w-full rounded border p-2"
           />
-          <p className="mt-1 text-xs text-gray-500">
-            空欄の場合は失効期限なし
-          </p>
+          <p className="mt-1 text-xs text-gray-500">空欄の場合は失効期限なし</p>
         </div>
 
         <div>

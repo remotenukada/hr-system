@@ -6,40 +6,47 @@ import { redirect } from "next/navigation";
 
 const listPath = "/leave-type-masters";
 
+function getData(formData: FormData) {
+  const expirationValue = String(formData.get("expirationMonths") ?? "").trim();
+
+  return {
+    code: String(formData.get("code") ?? "")
+      .trim()
+      .toUpperCase(),
+    name: String(formData.get("name") ?? "").trim(),
+    description: String(formData.get("description") ?? "").trim() || null,
+    expirationMonths: expirationValue === "" ? null : Number(expirationValue),
+    isPaid: formData.get("isPaid") === "on",
+    allowRequest: formData.get("allowRequest") === "on",
+    manageBalance: formData.get("manageBalance") === "on",
+    sortOrder: Number(formData.get("sortOrder") ?? 0),
+  };
+}
+
 export async function createLeaveTypeMaster(formData: FormData) {
-  const code = String(formData.get("code") ?? "")
-    .trim()
-    .toUpperCase();
-  const name = String(formData.get("name") ?? "").trim();
-  const isPaid = formData.get("isPaid") === "on";
+  const data = getData(formData);
 
-  const expirationMonths = formData.get("expirationMonths")
-    ? Number(formData.get("expirationMonths"))
-    : null;
-
-  const allowRequest = formData.get("allowRequest") === "on";
-
-  const manageBalance = formData.get("manageBalance") === "on";
-
-  const description = String(formData.get("description") ?? "").trim() || null;
-
-  const sortOrder = Number(formData.get("sortOrder") ?? 0);
-
-  if (!code || !name) {
+  if (!data.code || !data.name) {
     redirect("/leave-type-masters/new");
   }
 
-  await prisma.leaveType.create({
-    data: {
-      code,
-      name,
-      isPaid,
-      expirationMonths,
-      allowRequest,
-      manageBalance,
-      description,
-      sortOrder: Number.isFinite(sortOrder) ? sortOrder : 0,
-    },
+  await prisma.leaveType.create({ data });
+
+  revalidatePath(listPath);
+  redirect(listPath);
+}
+
+export async function updateLeaveTypeMaster(formData: FormData) {
+  const id = String(formData.get("id") ?? "");
+  const data = getData(formData);
+
+  if (!id || !data.code || !data.name) {
+    redirect(listPath);
+  }
+
+  await prisma.leaveType.update({
+    where: { id },
+    data,
   });
 
   revalidatePath(listPath);
@@ -59,9 +66,7 @@ export async function toggleLeaveTypeMaster(formData: FormData) {
 
   await prisma.leaveType.update({
     where: { id },
-    data: {
-      isActive: !current.isActive,
-    },
+    data: { isActive: !current.isActive },
   });
 
   revalidatePath(listPath);
@@ -77,58 +82,4 @@ export async function deleteLeaveTypeMaster(formData: FormData) {
 
   revalidatePath(listPath);
   redirect(listPath);
-}
-
-export async function updateLeaveTypeMaster(
-  formData: FormData,
-) {
-  const id =
-    String(formData.get("id") ?? "");
-
-  const code =
-    String(formData.get("code") ?? "")
-      .trim()
-      .toUpperCase();
-
-  const name =
-    String(formData.get("name") ?? "").trim();
-
-  const isPaid =
-    formData.get("isPaid") === "on";
-
-  const expirationMonths =
-    formData.get("expirationMonths")
-      ? Number(formData.get("expirationMonths"))
-      : null;
-
-  const allowRequest =
-    formData.get("allowRequest") === "on";
-
-  const manageBalance =
-    formData.get("manageBalance") === "on";
-
-  const description =
-    String(formData.get("description") ?? "").trim() || null;
-
-  const sortOrder = Number(
-    formData.get("sortOrder") ?? 0,
-  );
-
-  await prisma.leaveType.update({
-    where: { id },
-    data: {
-      code,
-      name,
-      isPaid,
-      expirationMonths,
-      allowRequest,
-      manageBalance,
-      description,
-      sortOrder,
-    },
-  });
-
-  revalidatePath("/leave-type-masters");
-
-  redirect("/leave-type-masters");
 }
