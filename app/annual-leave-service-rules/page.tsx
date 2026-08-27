@@ -31,6 +31,7 @@ export default async function AnnualLeaveServiceRulesPage() {
               <th className="border-b p-3">上限</th>
               <th className="border-b p-3">手動補正</th>
               <th className="border-b p-3">状態</th>
+              <th className="border-b p-3">編集</th>
             </tr>
           </thead>
 
@@ -53,6 +54,15 @@ export default async function AnnualLeaveServiceRulesPage() {
                   </td>
                   <td className="border-b p-3">
                     {rule.isActive ? "有効" : "無効"}
+                  </td>
+
+                  <td className="border-b p-3">
+                    <Link
+                      href={`/annual-leave-service-rules/${rule.id}/edit`}
+                      className="text-blue-600 hover:underline"
+                    >
+                      編集
+                    </Link>
                   </td>
                 </tr>
               );
