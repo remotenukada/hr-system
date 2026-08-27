@@ -85,3 +85,120 @@ export function findEntryRule<
     ) ?? null
   );
 }
+
+import { prisma } from "@/lib/prisma";
+
+type GrantHistory = {
+  grantDate: Date;
+  grantType: string;
+  note: string | null;
+};
+
+function sameDate(a: Date, b: Date) {
+  return (
+    a.getFullYear() === b.getFullYear() &&
+    a.getMonth() === b.getMonth() &&
+    a.getDate() === b.getDate()
+  );
+}
+
+export async function resolveNextAnnualGrantEvent(
+  hireDate: Date,
+  employmentType: string | null,
+  histories: GrantHistory[],
+) {
+  if (employmentType !== "FULL_TIME") {
+    return null;
+  }
+
+  const entryRules = await prisma.annualLeaveEntryRule.findMany({
+    where: { isActive: true },
+    orderBy: { sortOrder: "asc" },
+  });
+
+  const entryRule = findEntryRule(hireDate, entryRules);
+
+  if (!entryRule) {
+    return null;
+  }
+
+  const today = new Date();
+  const initialEvents = buildInitialGrantSchedule(hireDate, entryRule);
+
+  const pendingInitialEvent = initialEvents.find((event) => {
+    if (event.grantDate > today) {
+      return false;
+    }
+
+    return !histories.some(
+      (history) =>
+        history.grantType === event.grantType &&
+        history.note === event.note &&
+        sameDate(new Date(history.grantDate), event.grantDate),
+    );
+  });
+
+  if (pendingInitialEvent) {
+    return {
+      ...pendingInitialEvent,
+      category: "初年度付与",
+    };
+  }
+
+  const currentYear = today.getFullYear();
+  const aprilThisYear = new Date(currentYear, 3, 1);
+  const regularGrantDate =
+    today >= aprilThisYear ? aprilThisYear : new Date(currentYear - 1, 3, 1);
+
+  const serviceMonths =
+    (regularGrantDate.getFullYear() - hireDate.getFullYear()) * 12 +
+    regularGrantDate.getMonth() -
+    hireDate.getMonth();
+
+  if (serviceMonths < 12) {
+    return null;
+  }
+
+  const serviceRule = await prisma.annualLeaveServiceRule.findFirst({
+    where: {
+      isActive: true,
+      serviceMonths: {
+        lte: serviceMonths,
+      },
+    },
+    orderBy: {
+      serviceMonths: "desc",
+    },
+  });
+
+  if (!serviceRule) {
+    return null;
+  }
+
+  const alreadyGranted = histories.some(
+    (history) =>
+      sameDate(new Date(history.grantDate), regularGrantDate) &&
+      history.note?.includes("定期付与"),
+  );
+
+  if (alreadyGranted) {
+    return null;
+  }
+
+  const specialDays = serviceRule.allowManualSpecialAdjustment
+    ? serviceRule.specialDays
+    : 0;
+
+  return {
+    grantDate: regularGrantDate,
+    legalDays: serviceRule.legalDays,
+    specialDays,
+    days: Math.min(
+      serviceRule.legalDays + specialDays,
+      serviceRule.maxTotalDays,
+    ),
+    grantType: "LEGAL" as const,
+    note: "年次有給休暇 定期付与",
+    category: "定期付与",
+  };
+}
