@@ -485,6 +485,10 @@ export default async function DashboardPage() {
     (row) => !row.alreadyExpired && row.daysUntil >= 0 && row.daysUntil <= 30,
   ).length;
 
+  const warning90LeaveCount = expirationRows.filter(
+    (row) => !row.alreadyExpired && row.daysUntil >= 0 && row.daysUntil <= 90,
+  ).length;
+
   const expiredLeaveTargetCount = expirationRows.filter(
     (row) => !row.alreadyExpired && row.daysUntil < 0,
   ).length;
@@ -933,6 +937,13 @@ export default async function DashboardPage() {
               value={soonExpiringLeaveCount}
               description="30日以内に失効予定の付与履歴"
               color="yellow"
+            />
+
+            <StatCard
+              title="90日以内失効件数"
+              value={warning90LeaveCount}
+              description="90日以内に失効予定の付与履歴"
+              color="blue"
             />
             <StatCard
               title="失効実行対象件数"
