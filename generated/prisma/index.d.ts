@@ -15924,6 +15924,7 @@ export namespace Prisma {
     employeeId: string | null
     leaveTypeId: string | null
     grantDate: Date | null
+    expiresAt: Date | null
     grantedDays: number | null
     grantType: $Enums.LeaveGrantType | null
     note: string | null
@@ -15935,6 +15936,7 @@ export namespace Prisma {
     employeeId: string | null
     leaveTypeId: string | null
     grantDate: Date | null
+    expiresAt: Date | null
     grantedDays: number | null
     grantType: $Enums.LeaveGrantType | null
     note: string | null
@@ -15946,6 +15948,7 @@ export namespace Prisma {
     employeeId: number
     leaveTypeId: number
     grantDate: number
+    expiresAt: number
     grantedDays: number
     grantType: number
     note: number
@@ -15967,6 +15970,7 @@ export namespace Prisma {
     employeeId?: true
     leaveTypeId?: true
     grantDate?: true
+    expiresAt?: true
     grantedDays?: true
     grantType?: true
     note?: true
@@ -15978,6 +15982,7 @@ export namespace Prisma {
     employeeId?: true
     leaveTypeId?: true
     grantDate?: true
+    expiresAt?: true
     grantedDays?: true
     grantType?: true
     note?: true
@@ -15989,6 +15994,7 @@ export namespace Prisma {
     employeeId?: true
     leaveTypeId?: true
     grantDate?: true
+    expiresAt?: true
     grantedDays?: true
     grantType?: true
     note?: true
@@ -16087,6 +16093,7 @@ export namespace Prisma {
     employeeId: string
     leaveTypeId: string | null
     grantDate: Date
+    expiresAt: Date | null
     grantedDays: number
     grantType: $Enums.LeaveGrantType
     note: string | null
@@ -16117,6 +16124,7 @@ export namespace Prisma {
     employeeId?: boolean
     leaveTypeId?: boolean
     grantDate?: boolean
+    expiresAt?: boolean
     grantedDays?: boolean
     grantType?: boolean
     note?: boolean
@@ -16130,6 +16138,7 @@ export namespace Prisma {
     employeeId?: boolean
     leaveTypeId?: boolean
     grantDate?: boolean
+    expiresAt?: boolean
     grantedDays?: boolean
     grantType?: boolean
     note?: boolean
@@ -16143,6 +16152,7 @@ export namespace Prisma {
     employeeId?: boolean
     leaveTypeId?: boolean
     grantDate?: boolean
+    expiresAt?: boolean
     grantedDays?: boolean
     grantType?: boolean
     note?: boolean
@@ -16156,13 +16166,14 @@ export namespace Prisma {
     employeeId?: boolean
     leaveTypeId?: boolean
     grantDate?: boolean
+    expiresAt?: boolean
     grantedDays?: boolean
     grantType?: boolean
     note?: boolean
     createdAt?: boolean
   }
 
-  export type LeaveGrantHistoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "leaveTypeId" | "grantDate" | "grantedDays" | "grantType" | "note" | "createdAt", ExtArgs["result"]["leaveGrantHistory"]>
+  export type LeaveGrantHistoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "leaveTypeId" | "grantDate" | "expiresAt" | "grantedDays" | "grantType" | "note" | "createdAt", ExtArgs["result"]["leaveGrantHistory"]>
   export type LeaveGrantHistoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     leaveType?: boolean | LeaveGrantHistory$leaveTypeArgs<ExtArgs>
@@ -16187,6 +16198,7 @@ export namespace Prisma {
       employeeId: string
       leaveTypeId: string | null
       grantDate: Date
+      expiresAt: Date | null
       grantedDays: number
       grantType: $Enums.LeaveGrantType
       note: string | null
@@ -16620,6 +16632,7 @@ export namespace Prisma {
     readonly employeeId: FieldRef<"LeaveGrantHistory", 'String'>
     readonly leaveTypeId: FieldRef<"LeaveGrantHistory", 'String'>
     readonly grantDate: FieldRef<"LeaveGrantHistory", 'DateTime'>
+    readonly expiresAt: FieldRef<"LeaveGrantHistory", 'DateTime'>
     readonly grantedDays: FieldRef<"LeaveGrantHistory", 'Float'>
     readonly grantType: FieldRef<"LeaveGrantHistory", 'LeaveGrantType'>
     readonly note: FieldRef<"LeaveGrantHistory", 'String'>
@@ -46026,10 +46039,12 @@ export namespace Prisma {
   }
 
   export type LeaveTypeAvgAggregateOutputType = {
+    expirationMonths: number | null
     sortOrder: number | null
   }
 
   export type LeaveTypeSumAggregateOutputType = {
+    expirationMonths: number | null
     sortOrder: number | null
   }
 
@@ -46038,6 +46053,7 @@ export namespace Prisma {
     code: string | null
     name: string | null
     isPaid: boolean | null
+    expirationMonths: number | null
     sortOrder: number | null
     isActive: boolean | null
     createdAt: Date | null
@@ -46049,6 +46065,7 @@ export namespace Prisma {
     code: string | null
     name: string | null
     isPaid: boolean | null
+    expirationMonths: number | null
     sortOrder: number | null
     isActive: boolean | null
     createdAt: Date | null
@@ -46060,6 +46077,7 @@ export namespace Prisma {
     code: number
     name: number
     isPaid: number
+    expirationMonths: number
     sortOrder: number
     isActive: number
     createdAt: number
@@ -46069,10 +46087,12 @@ export namespace Prisma {
 
 
   export type LeaveTypeAvgAggregateInputType = {
+    expirationMonths?: true
     sortOrder?: true
   }
 
   export type LeaveTypeSumAggregateInputType = {
+    expirationMonths?: true
     sortOrder?: true
   }
 
@@ -46081,6 +46101,7 @@ export namespace Prisma {
     code?: true
     name?: true
     isPaid?: true
+    expirationMonths?: true
     sortOrder?: true
     isActive?: true
     createdAt?: true
@@ -46092,6 +46113,7 @@ export namespace Prisma {
     code?: true
     name?: true
     isPaid?: true
+    expirationMonths?: true
     sortOrder?: true
     isActive?: true
     createdAt?: true
@@ -46103,6 +46125,7 @@ export namespace Prisma {
     code?: true
     name?: true
     isPaid?: true
+    expirationMonths?: true
     sortOrder?: true
     isActive?: true
     createdAt?: true
@@ -46201,6 +46224,7 @@ export namespace Prisma {
     code: string
     name: string
     isPaid: boolean
+    expirationMonths: number | null
     sortOrder: number
     isActive: boolean
     createdAt: Date
@@ -46231,6 +46255,7 @@ export namespace Prisma {
     code?: boolean
     name?: boolean
     isPaid?: boolean
+    expirationMonths?: boolean
     sortOrder?: boolean
     isActive?: boolean
     createdAt?: boolean
@@ -46246,6 +46271,7 @@ export namespace Prisma {
     code?: boolean
     name?: boolean
     isPaid?: boolean
+    expirationMonths?: boolean
     sortOrder?: boolean
     isActive?: boolean
     createdAt?: boolean
@@ -46257,6 +46283,7 @@ export namespace Prisma {
     code?: boolean
     name?: boolean
     isPaid?: boolean
+    expirationMonths?: boolean
     sortOrder?: boolean
     isActive?: boolean
     createdAt?: boolean
@@ -46268,13 +46295,14 @@ export namespace Prisma {
     code?: boolean
     name?: boolean
     isPaid?: boolean
+    expirationMonths?: boolean
     sortOrder?: boolean
     isActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type LeaveTypeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "name" | "isPaid" | "sortOrder" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["leaveType"]>
+  export type LeaveTypeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "name" | "isPaid" | "expirationMonths" | "sortOrder" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["leaveType"]>
   export type LeaveTypeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     leaveGrantHistories?: boolean | LeaveType$leaveGrantHistoriesArgs<ExtArgs>
     employeeRequests?: boolean | LeaveType$employeeRequestsArgs<ExtArgs>
@@ -46296,6 +46324,7 @@ export namespace Prisma {
       code: string
       name: string
       isPaid: boolean
+      expirationMonths: number | null
       sortOrder: number
       isActive: boolean
       createdAt: Date
@@ -46730,6 +46759,7 @@ export namespace Prisma {
     readonly code: FieldRef<"LeaveType", 'String'>
     readonly name: FieldRef<"LeaveType", 'String'>
     readonly isPaid: FieldRef<"LeaveType", 'Boolean'>
+    readonly expirationMonths: FieldRef<"LeaveType", 'Int'>
     readonly sortOrder: FieldRef<"LeaveType", 'Int'>
     readonly isActive: FieldRef<"LeaveType", 'Boolean'>
     readonly createdAt: FieldRef<"LeaveType", 'DateTime'>
@@ -50884,6 +50914,7 @@ export namespace Prisma {
     employeeId: 'employeeId',
     leaveTypeId: 'leaveTypeId',
     grantDate: 'grantDate',
+    expiresAt: 'expiresAt',
     grantedDays: 'grantedDays',
     grantType: 'grantType',
     note: 'note',
@@ -51323,6 +51354,7 @@ export namespace Prisma {
     code: 'code',
     name: 'name',
     isPaid: 'isPaid',
+    expirationMonths: 'expirationMonths',
     sortOrder: 'sortOrder',
     isActive: 'isActive',
     createdAt: 'createdAt',
@@ -52506,6 +52538,7 @@ export namespace Prisma {
     employeeId?: StringFilter<"LeaveGrantHistory"> | string
     leaveTypeId?: StringNullableFilter<"LeaveGrantHistory"> | string | null
     grantDate?: DateTimeFilter<"LeaveGrantHistory"> | Date | string
+    expiresAt?: DateTimeNullableFilter<"LeaveGrantHistory"> | Date | string | null
     grantedDays?: FloatFilter<"LeaveGrantHistory"> | number
     grantType?: EnumLeaveGrantTypeFilter<"LeaveGrantHistory"> | $Enums.LeaveGrantType
     note?: StringNullableFilter<"LeaveGrantHistory"> | string | null
@@ -52519,6 +52552,7 @@ export namespace Prisma {
     employeeId?: SortOrder
     leaveTypeId?: SortOrderInput | SortOrder
     grantDate?: SortOrder
+    expiresAt?: SortOrderInput | SortOrder
     grantedDays?: SortOrder
     grantType?: SortOrder
     note?: SortOrderInput | SortOrder
@@ -52535,6 +52569,7 @@ export namespace Prisma {
     employeeId?: StringFilter<"LeaveGrantHistory"> | string
     leaveTypeId?: StringNullableFilter<"LeaveGrantHistory"> | string | null
     grantDate?: DateTimeFilter<"LeaveGrantHistory"> | Date | string
+    expiresAt?: DateTimeNullableFilter<"LeaveGrantHistory"> | Date | string | null
     grantedDays?: FloatFilter<"LeaveGrantHistory"> | number
     grantType?: EnumLeaveGrantTypeFilter<"LeaveGrantHistory"> | $Enums.LeaveGrantType
     note?: StringNullableFilter<"LeaveGrantHistory"> | string | null
@@ -52548,6 +52583,7 @@ export namespace Prisma {
     employeeId?: SortOrder
     leaveTypeId?: SortOrderInput | SortOrder
     grantDate?: SortOrder
+    expiresAt?: SortOrderInput | SortOrder
     grantedDays?: SortOrder
     grantType?: SortOrder
     note?: SortOrderInput | SortOrder
@@ -52567,6 +52603,7 @@ export namespace Prisma {
     employeeId?: StringWithAggregatesFilter<"LeaveGrantHistory"> | string
     leaveTypeId?: StringNullableWithAggregatesFilter<"LeaveGrantHistory"> | string | null
     grantDate?: DateTimeWithAggregatesFilter<"LeaveGrantHistory"> | Date | string
+    expiresAt?: DateTimeNullableWithAggregatesFilter<"LeaveGrantHistory"> | Date | string | null
     grantedDays?: FloatWithAggregatesFilter<"LeaveGrantHistory"> | number
     grantType?: EnumLeaveGrantTypeWithAggregatesFilter<"LeaveGrantHistory"> | $Enums.LeaveGrantType
     note?: StringNullableWithAggregatesFilter<"LeaveGrantHistory"> | string | null
@@ -54756,6 +54793,7 @@ export namespace Prisma {
     code?: StringFilter<"LeaveType"> | string
     name?: StringFilter<"LeaveType"> | string
     isPaid?: BoolFilter<"LeaveType"> | boolean
+    expirationMonths?: IntNullableFilter<"LeaveType"> | number | null
     sortOrder?: IntFilter<"LeaveType"> | number
     isActive?: BoolFilter<"LeaveType"> | boolean
     createdAt?: DateTimeFilter<"LeaveType"> | Date | string
@@ -54770,6 +54808,7 @@ export namespace Prisma {
     code?: SortOrder
     name?: SortOrder
     isPaid?: SortOrder
+    expirationMonths?: SortOrderInput | SortOrder
     sortOrder?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
@@ -54787,6 +54826,7 @@ export namespace Prisma {
     NOT?: LeaveTypeWhereInput | LeaveTypeWhereInput[]
     name?: StringFilter<"LeaveType"> | string
     isPaid?: BoolFilter<"LeaveType"> | boolean
+    expirationMonths?: IntNullableFilter<"LeaveType"> | number | null
     sortOrder?: IntFilter<"LeaveType"> | number
     isActive?: BoolFilter<"LeaveType"> | boolean
     createdAt?: DateTimeFilter<"LeaveType"> | Date | string
@@ -54801,6 +54841,7 @@ export namespace Prisma {
     code?: SortOrder
     name?: SortOrder
     isPaid?: SortOrder
+    expirationMonths?: SortOrderInput | SortOrder
     sortOrder?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
@@ -54820,6 +54861,7 @@ export namespace Prisma {
     code?: StringWithAggregatesFilter<"LeaveType"> | string
     name?: StringWithAggregatesFilter<"LeaveType"> | string
     isPaid?: BoolWithAggregatesFilter<"LeaveType"> | boolean
+    expirationMonths?: IntNullableWithAggregatesFilter<"LeaveType"> | number | null
     sortOrder?: IntWithAggregatesFilter<"LeaveType"> | number
     isActive?: BoolWithAggregatesFilter<"LeaveType"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"LeaveType"> | Date | string
@@ -56035,6 +56077,7 @@ export namespace Prisma {
   export type LeaveGrantHistoryCreateInput = {
     id?: string
     grantDate: Date | string
+    expiresAt?: Date | string | null
     grantedDays: number
     grantType: $Enums.LeaveGrantType
     note?: string | null
@@ -56048,6 +56091,7 @@ export namespace Prisma {
     employeeId: string
     leaveTypeId?: string | null
     grantDate: Date | string
+    expiresAt?: Date | string | null
     grantedDays: number
     grantType: $Enums.LeaveGrantType
     note?: string | null
@@ -56057,6 +56101,7 @@ export namespace Prisma {
   export type LeaveGrantHistoryUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     grantDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     grantedDays?: FloatFieldUpdateOperationsInput | number
     grantType?: EnumLeaveGrantTypeFieldUpdateOperationsInput | $Enums.LeaveGrantType
     note?: NullableStringFieldUpdateOperationsInput | string | null
@@ -56070,6 +56115,7 @@ export namespace Prisma {
     employeeId?: StringFieldUpdateOperationsInput | string
     leaveTypeId?: NullableStringFieldUpdateOperationsInput | string | null
     grantDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     grantedDays?: FloatFieldUpdateOperationsInput | number
     grantType?: EnumLeaveGrantTypeFieldUpdateOperationsInput | $Enums.LeaveGrantType
     note?: NullableStringFieldUpdateOperationsInput | string | null
@@ -56081,6 +56127,7 @@ export namespace Prisma {
     employeeId: string
     leaveTypeId?: string | null
     grantDate: Date | string
+    expiresAt?: Date | string | null
     grantedDays: number
     grantType: $Enums.LeaveGrantType
     note?: string | null
@@ -56090,6 +56137,7 @@ export namespace Prisma {
   export type LeaveGrantHistoryUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     grantDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     grantedDays?: FloatFieldUpdateOperationsInput | number
     grantType?: EnumLeaveGrantTypeFieldUpdateOperationsInput | $Enums.LeaveGrantType
     note?: NullableStringFieldUpdateOperationsInput | string | null
@@ -56101,6 +56149,7 @@ export namespace Prisma {
     employeeId?: StringFieldUpdateOperationsInput | string
     leaveTypeId?: NullableStringFieldUpdateOperationsInput | string | null
     grantDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     grantedDays?: FloatFieldUpdateOperationsInput | number
     grantType?: EnumLeaveGrantTypeFieldUpdateOperationsInput | $Enums.LeaveGrantType
     note?: NullableStringFieldUpdateOperationsInput | string | null
@@ -58573,6 +58622,7 @@ export namespace Prisma {
     code: string
     name: string
     isPaid?: boolean
+    expirationMonths?: number | null
     sortOrder?: number
     isActive?: boolean
     createdAt?: Date | string
@@ -58587,6 +58637,7 @@ export namespace Prisma {
     code: string
     name: string
     isPaid?: boolean
+    expirationMonths?: number | null
     sortOrder?: number
     isActive?: boolean
     createdAt?: Date | string
@@ -58601,6 +58652,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     isPaid?: BoolFieldUpdateOperationsInput | boolean
+    expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -58615,6 +58667,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     isPaid?: BoolFieldUpdateOperationsInput | boolean
+    expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -58629,6 +58682,7 @@ export namespace Prisma {
     code: string
     name: string
     isPaid?: boolean
+    expirationMonths?: number | null
     sortOrder?: number
     isActive?: boolean
     createdAt?: Date | string
@@ -58640,6 +58694,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     isPaid?: BoolFieldUpdateOperationsInput | boolean
+    expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -58651,6 +58706,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     isPaid?: BoolFieldUpdateOperationsInput | boolean
+    expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -59873,6 +59929,7 @@ export namespace Prisma {
     employeeId?: SortOrder
     leaveTypeId?: SortOrder
     grantDate?: SortOrder
+    expiresAt?: SortOrder
     grantedDays?: SortOrder
     grantType?: SortOrder
     note?: SortOrder
@@ -59888,6 +59945,7 @@ export namespace Prisma {
     employeeId?: SortOrder
     leaveTypeId?: SortOrder
     grantDate?: SortOrder
+    expiresAt?: SortOrder
     grantedDays?: SortOrder
     grantType?: SortOrder
     note?: SortOrder
@@ -59899,6 +59957,7 @@ export namespace Prisma {
     employeeId?: SortOrder
     leaveTypeId?: SortOrder
     grantDate?: SortOrder
+    expiresAt?: SortOrder
     grantedDays?: SortOrder
     grantType?: SortOrder
     note?: SortOrder
@@ -61444,6 +61503,7 @@ export namespace Prisma {
     code?: SortOrder
     name?: SortOrder
     isPaid?: SortOrder
+    expirationMonths?: SortOrder
     sortOrder?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
@@ -61451,6 +61511,7 @@ export namespace Prisma {
   }
 
   export type LeaveTypeAvgOrderByAggregateInput = {
+    expirationMonths?: SortOrder
     sortOrder?: SortOrder
   }
 
@@ -61459,6 +61520,7 @@ export namespace Prisma {
     code?: SortOrder
     name?: SortOrder
     isPaid?: SortOrder
+    expirationMonths?: SortOrder
     sortOrder?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
@@ -61470,6 +61532,7 @@ export namespace Prisma {
     code?: SortOrder
     name?: SortOrder
     isPaid?: SortOrder
+    expirationMonths?: SortOrder
     sortOrder?: SortOrder
     isActive?: SortOrder
     createdAt?: SortOrder
@@ -61477,6 +61540,7 @@ export namespace Prisma {
   }
 
   export type LeaveTypeSumOrderByAggregateInput = {
+    expirationMonths?: SortOrder
     sortOrder?: SortOrder
   }
 
@@ -64747,6 +64811,7 @@ export namespace Prisma {
   export type LeaveGrantHistoryCreateWithoutEmployeeInput = {
     id?: string
     grantDate: Date | string
+    expiresAt?: Date | string | null
     grantedDays: number
     grantType: $Enums.LeaveGrantType
     note?: string | null
@@ -64758,6 +64823,7 @@ export namespace Prisma {
     id?: string
     leaveTypeId?: string | null
     grantDate: Date | string
+    expiresAt?: Date | string | null
     grantedDays: number
     grantType: $Enums.LeaveGrantType
     note?: string | null
@@ -65471,6 +65537,7 @@ export namespace Prisma {
     employeeId?: StringFilter<"LeaveGrantHistory"> | string
     leaveTypeId?: StringNullableFilter<"LeaveGrantHistory"> | string | null
     grantDate?: DateTimeFilter<"LeaveGrantHistory"> | Date | string
+    expiresAt?: DateTimeNullableFilter<"LeaveGrantHistory"> | Date | string | null
     grantedDays?: FloatFilter<"LeaveGrantHistory"> | number
     grantType?: EnumLeaveGrantTypeFilter<"LeaveGrantHistory"> | $Enums.LeaveGrantType
     note?: StringNullableFilter<"LeaveGrantHistory"> | string | null
@@ -66957,6 +67024,7 @@ export namespace Prisma {
     code: string
     name: string
     isPaid?: boolean
+    expirationMonths?: number | null
     sortOrder?: number
     isActive?: boolean
     createdAt?: Date | string
@@ -66970,6 +67038,7 @@ export namespace Prisma {
     code: string
     name: string
     isPaid?: boolean
+    expirationMonths?: number | null
     sortOrder?: number
     isActive?: boolean
     createdAt?: Date | string
@@ -67098,6 +67167,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     isPaid?: BoolFieldUpdateOperationsInput | boolean
+    expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -67111,6 +67181,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     isPaid?: BoolFieldUpdateOperationsInput | boolean
+    expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -67409,6 +67480,7 @@ export namespace Prisma {
     code: string
     name: string
     isPaid?: boolean
+    expirationMonths?: number | null
     sortOrder?: number
     isActive?: boolean
     createdAt?: Date | string
@@ -67422,6 +67494,7 @@ export namespace Prisma {
     code: string
     name: string
     isPaid?: boolean
+    expirationMonths?: number | null
     sortOrder?: number
     isActive?: boolean
     createdAt?: Date | string
@@ -67631,6 +67704,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     isPaid?: BoolFieldUpdateOperationsInput | boolean
+    expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -67644,6 +67718,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     isPaid?: BoolFieldUpdateOperationsInput | boolean
+    expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -70129,6 +70204,7 @@ export namespace Prisma {
     code: string
     name: string
     isPaid?: boolean
+    expirationMonths?: number | null
     sortOrder?: number
     isActive?: boolean
     createdAt?: Date | string
@@ -70142,6 +70218,7 @@ export namespace Prisma {
     code: string
     name: string
     isPaid?: boolean
+    expirationMonths?: number | null
     sortOrder?: number
     isActive?: boolean
     createdAt?: Date | string
@@ -70270,6 +70347,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     isPaid?: BoolFieldUpdateOperationsInput | boolean
+    expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -70283,6 +70361,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     isPaid?: BoolFieldUpdateOperationsInput | boolean
+    expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -70294,6 +70373,7 @@ export namespace Prisma {
   export type LeaveGrantHistoryCreateWithoutLeaveTypeInput = {
     id?: string
     grantDate: Date | string
+    expiresAt?: Date | string | null
     grantedDays: number
     grantType: $Enums.LeaveGrantType
     note?: string | null
@@ -70305,6 +70385,7 @@ export namespace Prisma {
     id?: string
     employeeId: string
     grantDate: Date | string
+    expiresAt?: Date | string | null
     grantedDays: number
     grantType: $Enums.LeaveGrantType
     note?: string | null
@@ -71308,6 +71389,7 @@ export namespace Prisma {
     id?: string
     leaveTypeId?: string | null
     grantDate: Date | string
+    expiresAt?: Date | string | null
     grantedDays: number
     grantType: $Enums.LeaveGrantType
     note?: string | null
@@ -71551,6 +71633,7 @@ export namespace Prisma {
   export type LeaveGrantHistoryUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
     grantDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     grantedDays?: FloatFieldUpdateOperationsInput | number
     grantType?: EnumLeaveGrantTypeFieldUpdateOperationsInput | $Enums.LeaveGrantType
     note?: NullableStringFieldUpdateOperationsInput | string | null
@@ -71562,6 +71645,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     leaveTypeId?: NullableStringFieldUpdateOperationsInput | string | null
     grantDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     grantedDays?: FloatFieldUpdateOperationsInput | number
     grantType?: EnumLeaveGrantTypeFieldUpdateOperationsInput | $Enums.LeaveGrantType
     note?: NullableStringFieldUpdateOperationsInput | string | null
@@ -71572,6 +71656,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     leaveTypeId?: NullableStringFieldUpdateOperationsInput | string | null
     grantDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     grantedDays?: FloatFieldUpdateOperationsInput | number
     grantType?: EnumLeaveGrantTypeFieldUpdateOperationsInput | $Enums.LeaveGrantType
     note?: NullableStringFieldUpdateOperationsInput | string | null
@@ -72333,6 +72418,7 @@ export namespace Prisma {
     id?: string
     employeeId: string
     grantDate: Date | string
+    expiresAt?: Date | string | null
     grantedDays: number
     grantType: $Enums.LeaveGrantType
     note?: string | null
@@ -72367,6 +72453,7 @@ export namespace Prisma {
   export type LeaveGrantHistoryUpdateWithoutLeaveTypeInput = {
     id?: StringFieldUpdateOperationsInput | string
     grantDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     grantedDays?: FloatFieldUpdateOperationsInput | number
     grantType?: EnumLeaveGrantTypeFieldUpdateOperationsInput | $Enums.LeaveGrantType
     note?: NullableStringFieldUpdateOperationsInput | string | null
@@ -72378,6 +72465,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
     grantDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     grantedDays?: FloatFieldUpdateOperationsInput | number
     grantType?: EnumLeaveGrantTypeFieldUpdateOperationsInput | $Enums.LeaveGrantType
     note?: NullableStringFieldUpdateOperationsInput | string | null
@@ -72388,6 +72476,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     employeeId?: StringFieldUpdateOperationsInput | string
     grantDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     grantedDays?: FloatFieldUpdateOperationsInput | number
     grantType?: EnumLeaveGrantTypeFieldUpdateOperationsInput | $Enums.LeaveGrantType
     note?: NullableStringFieldUpdateOperationsInput | string | null

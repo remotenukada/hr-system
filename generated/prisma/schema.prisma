@@ -180,6 +180,9 @@ model LeaveGrantHistory {
 
   leaveTypeId String?
   grantDate   DateTime
+
+  expiresAt DateTime?
+
   grantedDays Float
   grantType   LeaveGrantType
   note        String?
@@ -816,6 +819,8 @@ model LeaveType {
   name String
 
   isPaid Boolean @default(true)
+
+  expirationMonths Int?
 
   sortOrder Int @default(0)
 

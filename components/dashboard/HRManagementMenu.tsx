@@ -41,12 +41,12 @@ export default function HRManagementMenu({
       </section>
 
       <section className="rounded-lg border bg-gray-50 p-4">
-        <h4 className="mb-2 font-semibold">有給管理</h4>
+        <h4 className="mb-2 font-semibold">年次有給休暇・休暇管理</h4>
         <div className="flex flex-wrap gap-3">
-          <Link href="/leave-balances">有給管理一覧</Link>
-          <Link href="/leave-grants">有給付与履歴</Link>
-          <Link href="/leave-grants/pending">有給付与対象者一覧</Link>
-          <Link href="/leave-expiration">有給失効管理</Link>
+          <Link href="/leave-balances">年次有給休暇残高一覧</Link>
+          <Link href="/leave-grants">休暇付与履歴</Link>
+          <Link href="/leave-grants/pending">休暇付与対象者一覧</Link>
+          <Link href="/leave-expiration">休暇失効管理</Link>
           <Link href="/leave-type-balances">休暇別残高一覧</Link>
         </div>
       </section>

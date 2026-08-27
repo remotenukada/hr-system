@@ -30,11 +30,9 @@ export default async function LeaveBalancesPage() {
       <BackLink href="/" label="ダッシュボードへ戻る" />
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">
-            有給管理一覧
-          </h1>
+          <h1 className="text-3xl font-bold">年次有給休暇残高一覧</h1>
           <p className="mt-1 text-sm text-gray-500">
-            職員ごとの有給残数を管理します。
+            職員ごとの年次有給休暇残高を管理します。
           </p>
         </div>
       </div>
