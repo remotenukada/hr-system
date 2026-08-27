@@ -42,7 +42,7 @@ function formatEmploymentType(type: string | null) {
   const labels: Record<string, string> = {
     FULL_TIME: "正職員",
     CONTRACT: "契約職員",
-    PART_TIME: "パート",
+    PART_TIME: "非常勤職員",
     TEMPORARY: "派遣",
   };
 

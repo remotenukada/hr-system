@@ -256,7 +256,7 @@ export default async function EmployeesPage({ searchParams }: Props) {
           <option value="">全雇用形態</option>
           <option value="FULL_TIME">正職員</option>
           <option value="CONTRACT">契約職員</option>
-          <option value="PART_TIME">パート</option>
+          <option value="PART_TIME">非常勤職員</option>
           <option value="TEMPORARY">派遣</option>
         </select>
 

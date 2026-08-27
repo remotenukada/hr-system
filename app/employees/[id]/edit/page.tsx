@@ -510,7 +510,7 @@ export default async function EmployeeEditPage({ params }: Props) {
                   <option value="">雇用形態を選択</option>
                   <option value="FULL_TIME">正職員</option>
                   <option value="CONTRACT">契約職員</option>
-                  <option value="PART_TIME">パート</option>
+                  <option value="PART_TIME">非常勤職員</option>
                   <option value="TEMPORARY">派遣</option>
                 </select>
               </div>
