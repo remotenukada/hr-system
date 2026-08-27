@@ -1,34 +1,30 @@
 import BackLink from "@/components/BackLink";
 import { requireHRManager } from "@/lib/auth-guard";
-import Link from 'next/link'
-import { createEmployee } from '@/app/actions/employee'
-import { prisma } from '@/lib/prisma'
+import Link from "next/link";
+import { createEmployee } from "@/app/actions/employee";
+import { prisma } from "@/lib/prisma";
 
 export default async function NewEmployeePage() {
   await requireHRManager();
 
   const departments = await prisma.department.findMany({
-    orderBy: { name: 'asc' },
-  })
+    orderBy: { name: "asc" },
+  });
 
-  const jobTitles =
-    await prisma.jobTitleMaster.findMany({
-      where: { isActive: true },
-      orderBy: { sortOrder: 'asc' },
-    })
+  const jobTitles = await prisma.jobTitleMaster.findMany({
+    where: { isActive: true },
+    orderBy: { sortOrder: "asc" },
+  });
 
-  const positions =
-    await prisma.positionMaster.findMany({
-      where: { isActive: true },
-      orderBy: { sortOrder: 'asc' },
-    })
+  const positions = await prisma.positionMaster.findMany({
+    where: { isActive: true },
+    orderBy: { sortOrder: "asc" },
+  });
 
   return (
     <main className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-sm border my-8">
       <BackLink href="/employees" label="社員一覧へ戻る" />
-      <h1 className="text-xl font-bold mb-6 text-slate-800">
-        新規社員登録
-      </h1>
+      <h1 className="text-xl font-bold mb-6 text-slate-800">新規社員登録</h1>
 
       <form action={createEmployee} className="space-y-6">
         <section className="space-y-4">
@@ -234,6 +230,53 @@ export default async function NewEmployeePage() {
 
             <div>
               <label className="block text-xs font-medium text-slate-700 mb-1">
+                週所定労働日数
+              </label>
+              <input
+                type="number"
+                step="0.5"
+                name="weeklyScheduledDays"
+                className="border p-2 w-full rounded"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-slate-700 mb-1">
+                週所定労働時間
+              </label>
+              <input
+                type="number"
+                step="0.5"
+                name="weeklyScheduledHours"
+                className="border p-2 w-full rounded"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-slate-700 mb-1">
+                年間所定労働日数
+              </label>
+              <input
+                type="number"
+                name="annualScheduledDays"
+                className="border p-2 w-full rounded"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-slate-700 mb-1">
+                1日所定労働時間
+              </label>
+              <input
+                type="number"
+                step="0.5"
+                name="dailyScheduledHours"
+                className="border p-2 w-full rounded"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-slate-700 mb-1">
                 入職日
               </label>
               <input
@@ -323,5 +366,5 @@ export default async function NewEmployeePage() {
         </div>
       </form>
     </main>
-  )
+  );
 }

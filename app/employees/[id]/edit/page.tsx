@@ -45,17 +45,15 @@ export default async function EmployeeEditPage({ params }: Props) {
     },
   });
 
-  const jobTitles =
-    await prisma.jobTitleMaster.findMany({
-      where: { isActive: true },
-      orderBy: { sortOrder: "asc" },
-    });
+  const jobTitles = await prisma.jobTitleMaster.findMany({
+    where: { isActive: true },
+    orderBy: { sortOrder: "asc" },
+  });
 
-  const positions =
-    await prisma.positionMaster.findMany({
-      where: { isActive: true },
-      orderBy: { sortOrder: "asc" },
-    });
+  const positions = await prisma.positionMaster.findMany({
+    where: { isActive: true },
+    orderBy: { sortOrder: "asc" },
+  });
 
   async function updateEmployee(formData: FormData) {
     "use server";
@@ -80,7 +78,9 @@ export default async function EmployeeEditPage({ params }: Props) {
     const commutingType = formData.get("commutingType") as string;
     const statusRaw = formData.get("status") as string;
     const healthInsuranceNo = formData.get("healthInsuranceNo") as string;
-    const employmentInsuranceNo = formData.get("employmentInsuranceNo") as string;
+    const employmentInsuranceNo = formData.get(
+      "employmentInsuranceNo",
+    ) as string;
     const photoPath = formData.get("photoPath") as string;
 
     const updatedEmployee = await prisma.employee.update({
@@ -113,6 +113,18 @@ export default async function EmployeeEditPage({ params }: Props) {
           ? (employmentTypeRaw as EmploymentType)
           : null,
 
+        weeklyScheduledDays:
+          Number(formData.get("weeklyScheduledDays")) || null,
+
+        weeklyScheduledHours:
+          Number(formData.get("weeklyScheduledHours")) || null,
+
+        annualScheduledDays:
+          Number(formData.get("annualScheduledDays")) || null,
+
+        dailyScheduledHours:
+          Number(formData.get("dailyScheduledHours")) || null,
+
         commutingType: commutingType || null,
 
         status: statusRaw ? (statusRaw as EmployeeStatus) : "ACTIVE",
@@ -123,9 +135,9 @@ export default async function EmployeeEditPage({ params }: Props) {
       },
     });
 
-
-
-    if ((employee?.departmentId ?? "") !== (updatedEmployee.departmentId ?? "")) {
+    if (
+      (employee?.departmentId ?? "") !== (updatedEmployee.departmentId ?? "")
+    ) {
       const oldDepartment = employee?.departmentId
         ? await prisma.department.findUnique({
             where: { id: employee.departmentId },
@@ -212,10 +224,7 @@ export default async function EmployeeEditPage({ params }: Props) {
       });
     }
 
-    if (
-      employee?.status !== "LEAVE" &&
-      updatedEmployee.status === "LEAVE"
-    ) {
+    if (employee?.status !== "LEAVE" && updatedEmployee.status === "LEAVE") {
       await prisma.employmentHistory.create({
         data: {
           employeeId: updatedEmployee.id,
@@ -233,10 +242,7 @@ export default async function EmployeeEditPage({ params }: Props) {
       });
     }
 
-    if (
-      employee?.status === "LEAVE" &&
-      updatedEmployee.status === "ACTIVE"
-    ) {
+    if (employee?.status === "LEAVE" && updatedEmployee.status === "ACTIVE") {
       await prisma.employmentHistory.create({
         data: {
           employeeId: updatedEmployee.id,
@@ -254,7 +260,6 @@ export default async function EmployeeEditPage({ params }: Props) {
       });
     }
 
-
     if (
       employee?.status !== "RETIRED" &&
       updatedEmployee.status === "RETIRED"
@@ -263,8 +268,7 @@ export default async function EmployeeEditPage({ params }: Props) {
         data: {
           employeeId: updatedEmployee.id,
           action: EmploymentAction.RETIRED,
-          effectiveDate:
-            updatedEmployee.retirementDate ?? new Date(),
+          effectiveDate: updatedEmployee.retirementDate ?? new Date(),
           reason: "退職",
         },
       });
@@ -297,9 +301,7 @@ export default async function EmployeeEditPage({ params }: Props) {
     <main className="mx-auto max-w-3xl p-8">
       <BackLink href="/employees" label="社員一覧へ戻る" />
       <div className="rounded-lg border bg-white p-6 shadow-sm">
-        <h1 className="mb-6 text-2xl font-bold text-slate-800">
-          社員編集
-        </h1>
+        <h1 className="mb-6 text-2xl font-bold text-slate-800">社員編集</h1>
 
         <form action={updateEmployee} className="space-y-6">
           <section className="space-y-4">
@@ -511,6 +513,57 @@ export default async function EmployeeEditPage({ params }: Props) {
                   <option value="PART_TIME">パート</option>
                   <option value="TEMPORARY">派遣</option>
                 </select>
+              </div>
+
+              <div>
+                <label className="mb-1 block text-xs font-medium text-slate-700">
+                  週所定労働日数
+                </label>
+                <input
+                  type="number"
+                  step="0.5"
+                  name="weeklyScheduledDays"
+                  defaultValue={employee.weeklyScheduledDays ?? ""}
+                  className="w-full rounded border p-2 focus:outline-indigo-500"
+                />
+              </div>
+
+              <div>
+                <label className="mb-1 block text-xs font-medium text-slate-700">
+                  週所定労働時間
+                </label>
+                <input
+                  type="number"
+                  step="0.5"
+                  name="weeklyScheduledHours"
+                  defaultValue={employee.weeklyScheduledHours ?? ""}
+                  className="w-full rounded border p-2 focus:outline-indigo-500"
+                />
+              </div>
+
+              <div>
+                <label className="mb-1 block text-xs font-medium text-slate-700">
+                  年間所定労働日数
+                </label>
+                <input
+                  type="number"
+                  name="annualScheduledDays"
+                  defaultValue={employee.annualScheduledDays ?? ""}
+                  className="w-full rounded border p-2 focus:outline-indigo-500"
+                />
+              </div>
+
+              <div>
+                <label className="mb-1 block text-xs font-medium text-slate-700">
+                  1日所定労働時間
+                </label>
+                <input
+                  type="number"
+                  step="0.5"
+                  name="dailyScheduledHours"
+                  defaultValue={employee.dailyScheduledHours ?? ""}
+                  className="w-full rounded border p-2 focus:outline-indigo-500"
+                />
               </div>
 
               <div>

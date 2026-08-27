@@ -48,24 +48,30 @@ model Department {
 }
 
 model Employee {
-  id                    String                  @id @default(uuid())
-  employeeNo            String                  @unique
-  firstName             String
-  lastName              String
-  email                 String                  @unique
-  createdAt             DateTime                @default(now())
-  departmentId          String?
-  address               String?
-  birthDate             DateTime?
-  firstNameKana         String?
-  gender                Gender?
-  hireDate              DateTime?
-  lastNameKana          String?
-  occupation            String?
-  phoneNumber           String?
-  position              String?
-  commutingType         String?
-  employmentType        EmploymentType?
+  id             String          @id @default(uuid())
+  employeeNo     String          @unique
+  firstName      String
+  lastName       String
+  email          String          @unique
+  createdAt      DateTime        @default(now())
+  departmentId   String?
+  address        String?
+  birthDate      DateTime?
+  firstNameKana  String?
+  gender         Gender?
+  hireDate       DateTime?
+  lastNameKana   String?
+  occupation     String?
+  phoneNumber    String?
+  position       String?
+  commutingType  String?
+  employmentType EmploymentType?
+
+  weeklyScheduledDays  Float?
+  weeklyScheduledHours Float?
+  annualScheduledDays  Int?
+  dailyScheduledHours  Float?
+
   status                EmployeeStatus          @default(ACTIVE)
   employmentInsuranceNo String?
   healthInsuranceNo     String?
