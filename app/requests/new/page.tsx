@@ -59,11 +59,21 @@ async function createRequest(formData: FormData) {
     redirect("/login");
   }
 
-  const title = String(formData.get("title") || "");
   const comment = String(formData.get("comment") || "");
   const type = String(formData.get("type") || "");
-  const employeeId = String(formData.get("employeeId") || "") || null;
+  const requestCategory = type;
   const leaveTypeId = String(formData.get("leaveTypeId") || "") || null;
+
+  const titleMap: Record<string, string> = {
+    LEAVE: "休暇申請",
+    LATE: "遅刻申請",
+    EARLY: "早退申請",
+    OUTING: "外出申請",
+    CHILD_CARE: "子の看護休暇申請",
+    FAMILY_CARE: "介護休暇申請",
+  };
+
+  const title = titleMap[type] ?? "各種申請";
 
   const leaveStartDate = String(formData.get("leaveStartDate") || "") || null;
 
@@ -79,6 +89,20 @@ async function createRequest(formData: FormData) {
       })
     : null;
 
+  const employee = currentUser?.id
+    ? await prisma.employee.findUnique({
+        where: {
+          userId: currentUser.id,
+        },
+      })
+    : null;
+
+  if (!employee) {
+    redirect(
+      `/requests/new?error=${encodeURIComponent("職員情報が見つかりません。")}`,
+    );
+  }
+
   const files = formData
     .getAll("attachments")
     .filter((file): file is File => file instanceof File && file.size > 0);
@@ -90,11 +114,11 @@ async function createRequest(formData: FormData) {
     attachments.push(attachment);
   }
 
-  if (type === "PAID_LEAVE") {
-    if (!employeeId || !leaveTypeId || !leaveDays) {
+  if (type === "LEAVE") {
+    if (!leaveTypeId || !leaveDays) {
       redirect(
         `/requests/new?error=${encodeURIComponent(
-          "対象職員、休暇種別、取得日数は必須です。",
+          "休暇種別、取得日数は必須です。",
         )}`,
       );
     }
@@ -116,7 +140,7 @@ async function createRequest(formData: FormData) {
     const typeBalance = await prisma.leaveTypeBalance.findUnique({
       where: {
         employeeId_leaveTypeId: {
-          employeeId,
+          employeeId: employee.id,
           leaveTypeId,
         },
       },
@@ -142,7 +166,10 @@ async function createRequest(formData: FormData) {
 
       userId: currentUser?.id ?? null,
 
-      employeeId,
+      requestCategory: requestCategory as
+        "LEAVE" | "LATE" | "EARLY" | "OUTING" | "CHILD_CARE" | "FAMILY_CARE",
+
+      employeeId: employee.id,
       leaveTypeId: type === "PAID_LEAVE" ? leaveTypeId : null,
 
       leaveStartDate: leaveStartDate ? new Date(leaveStartDate) : null,
@@ -228,43 +255,18 @@ export default async function NewRequestPage({
 
       <form action={createRequest} className="space-y-4">
         <div>
-          <label className="mb-1 block font-medium">タイトル</label>
-          <input
-            name="title"
-            placeholder="タイトルを入力"
-            className="w-full rounded border p-2"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="mb-1 block font-medium">対象職員</label>
-
-          <select
-            name="employeeId"
-            className="w-full rounded border bg-white p-2"
-          >
-            <option value="">対象職員を選択</option>
-
-            {employees.map((employee) => (
-              <option key={employee.id} value={employee.id}>
-                {employee.employeeNo} {employee.lastName} {employee.firstName}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div>
           <label className="mb-1 block font-medium">申請種別</label>
           <select
             name="type"
             className="w-full rounded border bg-white p-2"
             required
           >
-            <option value="ONBOARDING">入社</option>
-            <option value="DEPARTMENT_CHANGE">部署変更</option>
-            <option value="PAID_LEAVE">有給休暇</option>
-            <option value="OTHER">その他</option>
+            <option value="LEAVE">休暇申請</option>
+            <option value="LATE">遅刻申請</option>
+            <option value="EARLY">早退申請</option>
+            <option value="OUTING">外出申請</option>
+            <option value="CHILD_CARE">子の看護休暇</option>
+            <option value="FAMILY_CARE">介護休暇</option>
           </select>
         </div>
 
