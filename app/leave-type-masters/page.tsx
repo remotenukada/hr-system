@@ -26,6 +26,9 @@ export default async function LeaveTypeMastersPage() {
               <th className="border-b p-3">コード</th>
               <th className="border-b p-3">名称</th>
               <th className="border-b p-3">給与区分</th>
+              <th className="border-b p-3">失効(月)</th>
+              <th className="border-b p-3">申請可</th>
+              <th className="border-b p-3">残高管理</th>
               <th className="border-b p-3">表示順</th>
               <th className="border-b p-3">状態</th>
             </tr>
@@ -38,6 +41,17 @@ export default async function LeaveTypeMastersPage() {
                 <td className="border-b p-3">
                   {item.isPaid ? "有給" : "無給"}
                 </td>
+
+                <td className="border-b p-3">{item.expirationMonths ?? "-"}</td>
+
+                <td className="border-b p-3">
+                  {item.allowRequest ? "○" : "×"}
+                </td>
+
+                <td className="border-b p-3">
+                  {item.manageBalance ? "○" : "×"}
+                </td>
+
                 <td className="border-b p-3">{item.sortOrder}</td>
                 <td className="border-b p-3">
                   {item.isActive ? "有効" : "無効"}
@@ -46,7 +60,7 @@ export default async function LeaveTypeMastersPage() {
             ))}
             {items.length === 0 && (
               <tr>
-                <td colSpan={5} className="p-6 text-center text-gray-500">
+                <td colSpan={8} className="p-6 text-center text-gray-500">
                   休暇種別は登録されていません。
                 </td>
               </tr>
