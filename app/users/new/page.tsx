@@ -13,8 +13,7 @@ type Props = {
   }>;
 };
 
-type UserRoleValue =
-  (typeof UserRole)[keyof typeof UserRole];
+type UserRoleValue = (typeof UserRole)[keyof typeof UserRole];
 
 const USER_ROLES = [
   UserRole.ADMIN,
@@ -41,20 +40,14 @@ async function createUser(formData: FormData) {
   const password = String(formData.get("password") ?? "");
   const roleRaw = String(formData.get("role") ?? UserRole.USER);
 
-  const role = isValidRole(roleRaw)
-    ? roleRaw
-    : UserRole.USER;
+  const role = isValidRole(roleRaw) ? roleRaw : UserRole.USER;
 
   if (!name || !email || !password) {
-    redirectWithError(
-      "氏名、メールアドレス、パスワードは必須です。",
-    );
+    redirectWithError("氏名、メールアドレス、パスワードは必須です。");
   }
 
   if (password.length < 8) {
-    redirectWithError(
-      "パスワードは8文字以上にしてください。",
-    );
+    redirectWithError("パスワードは8文字以上にしてください。");
   }
 
   const existingUser = await prisma.user.findUnique({
@@ -64,9 +57,7 @@ async function createUser(formData: FormData) {
   });
 
   if (existingUser) {
-    redirectWithError(
-      "このメールアドレスは既に登録されています。",
-    );
+    redirectWithError("このメールアドレスは既に登録されています。");
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -97,9 +88,7 @@ async function createUser(formData: FormData) {
   redirect("/users");
 }
 
-export default async function NewUserPage({
-  searchParams,
-}: Props) {
+export default async function NewUserPage({ searchParams }: Props) {
   await requireAdmin();
 
   const params = await searchParams;
@@ -109,16 +98,11 @@ export default async function NewUserPage({
     <main className="mx-auto max-w-2xl p-8">
       <BackLink href="/users" label="ユーザー一覧へ戻る" />
       <div className="mb-6">
-        <Link
-          href="/users"
-          className="text-sm text-gray-500 hover:underline"
-        >
+        <Link href="/users" className="text-sm text-gray-500 hover:underline">
           ← ユーザー一覧へ戻る
         </Link>
 
-        <h1 className="mt-2 text-3xl font-bold">
-          新規ユーザー作成
-        </h1>
+        <h1 className="mt-2 text-3xl font-bold">新規ユーザー作成</h1>
 
         <p className="mt-1 text-sm text-gray-500">
           ログイン用ユーザーを作成します。
@@ -131,16 +115,13 @@ export default async function NewUserPage({
         </div>
       )}
 
-      <form action={createUser} className="space-y-4 rounded border bg-white p-6 shadow-sm">
+      <form
+        action={createUser}
+        className="space-y-4 rounded border bg-white p-6 shadow-sm"
+      >
         <div>
-          <label className="mb-1 block text-sm font-medium">
-            氏名
-          </label>
-          <input
-            name="name"
-            className="w-full rounded border p-2"
-            required
-          />
+          <label className="mb-1 block text-sm font-medium">氏名</label>
+          <input name="name" className="w-full rounded border p-2" required />
         </div>
 
         <div>
@@ -156,9 +137,7 @@ export default async function NewUserPage({
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-medium">
-            パスワード
-          </label>
+          <label className="mb-1 block text-sm font-medium">パスワード</label>
           <input
             type="password"
             name="password"
@@ -172,18 +151,16 @@ export default async function NewUserPage({
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-medium">
-            権限
-          </label>
+          <label className="mb-1 block text-sm font-medium">権限</label>
           <select
             name="role"
             className="w-full rounded border bg-white p-2"
             defaultValue={UserRole.USER}
           >
-            <option value={UserRole.ADMIN}>管理者</option>
-            <option value={UserRole.HR_MANAGER}>人事担当</option>
-            <option value={UserRole.MANAGER}>管理職</option>
-            <option value={UserRole.USER}>一般ユーザー</option>
+            <option value={UserRole.ADMIN}>システム管理者</option>
+            <option value={UserRole.HR_MANAGER}>人事管理者</option>
+            <option value={UserRole.MANAGER}>部署責任者</option>
+            <option value={UserRole.USER}>一般利用者</option>
           </select>
         </div>
 

@@ -1,17 +1,14 @@
 import BackLink from "@/components/BackLink";
 import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
 import Link from "next/link";
 import Image from "next/image";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { logAudit } from "@/lib/audit-log";
 import { requireHRManager } from "@/lib/auth-guard";
-import {
-  encryptMyNumber,
-  decryptMyNumber,
-  maskMyNumber,
-} from "@/lib/mynumber";
+import { encryptMyNumber, decryptMyNumber, maskMyNumber } from "@/lib/mynumber";
 
 type Props = {
   params: Promise<{
@@ -77,7 +74,6 @@ function InfoItem({
   );
 }
 
-
 function formatLeaveGrantType(type: string) {
   const labels: Record<string, string> = {
     LEGAL: "法定付与",
@@ -130,15 +126,19 @@ export default async function EmployeeDetailPage({ params }: Props) {
     redirect("/login");
   }
 
+  const cookieStore = await cookies();
+
+  const facilityScope = cookieStore.get("facilityScope")?.value ?? "ALL";
+
   const canManageMyNumber =
-    session.user.role === "ADMIN" ||
-    session.user.role === "HR_MANAGER";
+    session.user.role === "ADMIN" || session.user.role === "HR_MANAGER";
 
   const employee = await prisma.employee.findUnique({
     where: {
       id,
     },
     include: {
+      facility: true,
       department: true,
       employeeMyNumber: true,
       employeeSalary: true,
@@ -149,7 +149,7 @@ export default async function EmployeeDetailPage({ params }: Props) {
         take: 10,
       },
       leaveBalance: true,
-            certifications: {
+      certifications: {
         include: {
           certification: true,
         },
@@ -164,6 +164,17 @@ export default async function EmployeeDetailPage({ params }: Props) {
         take: 20,
       },
       employmentHistories: {
+        orderBy: {
+          effectiveDate: "desc",
+        },
+      },
+      transferHistories: {
+        include: {
+          fromFacility: true,
+          toFacility: true,
+          fromDepartment: true,
+          toDepartment: true,
+        },
         orderBy: {
           effectiveDate: "desc",
         },
@@ -183,25 +194,26 @@ export default async function EmployeeDetailPage({ params }: Props) {
     notFound();
   }
 
-  const inactiveDependents =
-    await prisma.dependent.findMany({
-      where: {
-        employeeId: employee.id,
-        isActive: false,
-      },
-      orderBy: {
-        endedAt: "desc",
-      },
-    });
+  if (facilityScope !== "ALL" && employee.facilityId !== facilityScope) {
+    notFound();
+  }
+
+  const inactiveDependents = await prisma.dependent.findMany({
+    where: {
+      employeeId: employee.id,
+      isActive: false,
+    },
+    orderBy: {
+      endedAt: "desc",
+    },
+  });
 
   async function endDependent(formData: FormData) {
     "use server";
 
     const currentSession = await requireHRManager();
 
-    const dependentId = String(
-      formData.get("dependentId") ?? "",
-    ).trim();
+    const dependentId = String(formData.get("dependentId") ?? "").trim();
 
     if (!dependentId) {
       return;
@@ -252,9 +264,7 @@ export default async function EmployeeDetailPage({ params }: Props) {
 
     const currentSession = await requireHRManager();
 
-    const dependentId = String(
-      formData.get("dependentId") ?? "",
-    ).trim();
+    const dependentId = String(formData.get("dependentId") ?? "").trim();
 
     if (!dependentId) {
       return;
@@ -300,14 +310,12 @@ export default async function EmployeeDetailPage({ params }: Props) {
     revalidatePath("/");
   }
 
-    async function activateEmployee(formData: FormData) {
+  async function activateEmployee(formData: FormData) {
     "use server";
 
     const currentSession = await requireHRManager();
 
-    const employeeId = String(
-      formData.get("id") ?? "",
-    ).trim();
+    const employeeId = String(formData.get("id") ?? "").trim();
 
     if (!employeeId) {
       return;
@@ -358,9 +366,7 @@ export default async function EmployeeDetailPage({ params }: Props) {
   }
 
   const maskedMyNumber = employee.employeeMyNumber
-    ? maskMyNumber(
-        decryptMyNumber(employee.employeeMyNumber.encryptedNumber),
-      )
+    ? maskMyNumber(decryptMyNumber(employee.employeeMyNumber.encryptedNumber))
     : null;
 
   if (employee.employeeMyNumber && canManageMyNumber) {
@@ -431,46 +437,40 @@ export default async function EmployeeDetailPage({ params }: Props) {
     revalidatePath(`/employees/${id}`);
   }
 
-
   async function updateSalary(formData: FormData) {
     "use server";
 
     await requireHRManager();
 
-    const baseSalary =
-      Number(formData.get("baseSalary") || 0);
+    const baseSalary = Number(formData.get("baseSalary") || 0);
 
-    const allowance =
-      Number(formData.get("allowance") || 0);
+    const allowance = Number(formData.get("allowance") || 0);
 
-    const bonus =
-      Number(formData.get("bonus") || 0);
+    const bonus = Number(formData.get("bonus") || 0);
 
-    const currentSalary =
-      await prisma.employeeSalary.findUnique({
-        where: {
-          employeeId: id,
-        },
-      });
+    const currentSalary = await prisma.employeeSalary.findUnique({
+      where: {
+        employeeId: id,
+      },
+    });
 
-    const updatedSalary =
-      await prisma.employeeSalary.upsert({
-        where: {
-          employeeId: id,
-        },
-        update: {
-          baseSalary,
-          allowance,
-          bonus,
-        },
-        create: {
-          employeeId: id,
-          baseSalary,
-          allowance,
-          bonus,
-          effectiveFrom: new Date(),
-        },
-      });
+    const updatedSalary = await prisma.employeeSalary.upsert({
+      where: {
+        employeeId: id,
+      },
+      update: {
+        baseSalary,
+        allowance,
+        bonus,
+      },
+      create: {
+        employeeId: id,
+        baseSalary,
+        allowance,
+        bonus,
+        effectiveFrom: new Date(),
+      },
+    });
 
     await prisma.salaryHistory.create({
       data: {
@@ -495,7 +495,6 @@ export default async function EmployeeDetailPage({ params }: Props) {
 
     revalidatePath(`/employees/${id}`);
   }
-
 
   async function updateLeaveBalance(formData: FormData) {
     "use server";
@@ -567,10 +566,7 @@ export default async function EmployeeDetailPage({ params }: Props) {
       <BackLink href="/employees" label="社員一覧へ戻る" />
       <div className="mb-6 flex items-start justify-between gap-4">
         <div>
-
-          <h1 className="mt-3 text-3xl font-bold text-gray-900">
-            社員詳細
-          </h1>
+          <h1 className="mt-3 text-3xl font-bold text-gray-900">社員詳細</h1>
 
           <p className="mt-1 text-gray-500">
             {employee.lastName} {employee.firstName} さんの社員情報
@@ -585,10 +581,7 @@ export default async function EmployeeDetailPage({ params }: Props) {
             PDF出力
           </a>
 
-
-
-
-{canManageMyNumber && (
+          {canManageMyNumber && (
             <>
               <Link
                 href={`/employees/${employee.id}/edit`}
@@ -696,7 +689,10 @@ export default async function EmployeeDetailPage({ params }: Props) {
               value={formatEmploymentType(employee.employmentType)}
             />
             <InfoItem label="入職日" value={formatDate(employee.hireDate)} />
-            <InfoItem label="退職日" value={formatDate(employee.retirementDate)} />
+            <InfoItem
+              label="退職日"
+              value={formatDate(employee.retirementDate)}
+            />
             <InfoItem label="通勤区分" value={employee.commutingType} />
             <InfoItem
               label="ステータス"
@@ -711,17 +707,13 @@ export default async function EmployeeDetailPage({ params }: Props) {
           </h2>
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <InfoItem
-              label="被保険者番号"
-              value={employee.healthInsuranceNo}
-            />
+            <InfoItem label="被保険者番号" value={employee.healthInsuranceNo} />
             <InfoItem
               label="雇用保険番号"
               value={employee.employmentInsuranceNo}
             />
           </div>
         </section>
-
 
         <section className="rounded-lg border bg-gray-50 p-5">
           <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
@@ -755,17 +747,20 @@ export default async function EmployeeDetailPage({ params }: Props) {
         {canManageMyNumber && (
           <section className="rounded-lg border bg-white p-5">
             <div className="mb-4 flex items-center justify-between border-b pb-2">
-              <h2 className="text-lg font-semibold text-gray-800">
-                扶養家族
-              </h2>
+              <h2 className="text-lg font-semibold text-gray-800">扶養家族</h2>
 
               <div className="flex items-center gap-2">
-                <a href={`/employees/${employee.id}/dependents/export`} className="rounded border border-green-600 bg-white px-3 py-1.5 text-sm font-medium text-green-700 hover:bg-green-50">CSV出力</a>
+                <a
+                  href={`/employees/${employee.id}/dependents/export`}
+                  className="rounded border border-green-600 bg-white px-3 py-1.5 text-sm font-medium text-green-700 hover:bg-green-50"
+                >
+                  CSV出力
+                </a>
                 <Link
                   href={`/employees/${employee.id}/dependents/new`}
-                className="rounded bg-blue-600 px-3 py-1 text-sm font-medium text-white hover:bg-blue-700"
-              >
-                扶養家族を追加
+                  className="rounded bg-blue-600 px-3 py-1 text-sm font-medium text-white hover:bg-blue-700"
+                >
+                  扶養家族を追加
                 </Link>
               </div>
             </div>
@@ -791,19 +786,15 @@ export default async function EmployeeDetailPage({ params }: Props) {
                   <tbody>
                     {employee.dependents.map((dependent) => (
                       <tr key={dependent.id}>
-                        <td className="border p-2">
-                          {dependent.name}
-                        </td>
+                        <td className="border p-2">{dependent.name}</td>
 
-                        <td className="border p-2">
-                          {dependent.relationship}
-                        </td>
+                        <td className="border p-2">{dependent.relationship}</td>
 
                         <td className="border p-2">
                           {dependent.birthDate
-                            ? new Date(
-                                dependent.birthDate,
-                              ).toLocaleDateString("ja-JP")
+                            ? new Date(dependent.birthDate).toLocaleDateString(
+                                "ja-JP",
+                              )
                             : "-"}
                         </td>
 
@@ -857,9 +848,7 @@ export default async function EmployeeDetailPage({ params }: Props) {
             </h2>
 
             {inactiveDependents.length === 0 ? (
-              <p className="text-sm text-gray-500">
-                扶養履歴はありません。
-              </p>
+              <p className="text-sm text-gray-500">扶養履歴はありません。</p>
             ) : (
               <div className="overflow-x-auto">
                 <table className="min-w-full text-sm">
@@ -878,19 +867,15 @@ export default async function EmployeeDetailPage({ params }: Props) {
                   <tbody>
                     {inactiveDependents.map((dependent) => (
                       <tr key={dependent.id}>
-                        <td className="border p-2">
-                          {dependent.name}
-                        </td>
+                        <td className="border p-2">{dependent.name}</td>
 
-                        <td className="border p-2">
-                          {dependent.relationship}
-                        </td>
+                        <td className="border p-2">{dependent.relationship}</td>
 
                         <td className="border p-2">
                           {dependent.birthDate
-                            ? new Date(
-                                dependent.birthDate,
-                              ).toLocaleDateString("ja-JP")
+                            ? new Date(dependent.birthDate).toLocaleDateString(
+                                "ja-JP",
+                              )
                             : "-"}
                         </td>
 
@@ -906,9 +891,9 @@ export default async function EmployeeDetailPage({ params }: Props) {
 
                         <td className="border p-2">
                           {dependent.endedAt
-                            ? new Date(
-                                dependent.endedAt,
-                              ).toLocaleDateString("ja-JP")
+                            ? new Date(dependent.endedAt).toLocaleDateString(
+                                "ja-JP",
+                              )
                             : "-"}
                         </td>
 
@@ -943,17 +928,21 @@ export default async function EmployeeDetailPage({ params }: Props) {
             </h2>
 
             {employee.employmentHistories.length === 0 ? (
-              <p className="text-sm text-gray-500">
-                雇用履歴はありません。
-              </p>
+              <p className="text-sm text-gray-500">雇用履歴はありません。</p>
             ) : (
               <div className="overflow-x-auto">
                 <table className="min-w-full text-sm">
                   <thead className="bg-gray-50">
                     <tr>
-                      <th className="border p-2 text-left font-medium text-gray-700">区分</th>
-                      <th className="border p-2 text-left font-medium text-gray-700">適用日</th>
-                      <th className="border p-2 text-left font-medium text-gray-700">備考</th>
+                      <th className="border p-2 text-left font-medium text-gray-700">
+                        区分
+                      </th>
+                      <th className="border p-2 text-left font-medium text-gray-700">
+                        適用日
+                      </th>
+                      <th className="border p-2 text-left font-medium text-gray-700">
+                        備考
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -963,7 +952,9 @@ export default async function EmployeeDetailPage({ params }: Props) {
                           {formatEmploymentAction(history.action)}
                         </td>
                         <td className="border p-2 text-gray-600">
-                          {new Date(history.effectiveDate).toLocaleDateString("ja-JP")}
+                          {new Date(history.effectiveDate).toLocaleDateString(
+                            "ja-JP",
+                          )}
                         </td>
                         <td className="border p-2 text-gray-600">
                           {history.reason ?? "-"}
@@ -984,9 +975,7 @@ export default async function EmployeeDetailPage({ params }: Props) {
             </h2>
 
             {employee.salaryHistories.length === 0 ? (
-              <p className="text-sm text-gray-500">
-                給与履歴はありません。
-              </p>
+              <p className="text-sm text-gray-500">給与履歴はありません。</p>
             ) : (
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
@@ -1004,7 +993,9 @@ export default async function EmployeeDetailPage({ params }: Props) {
                     {employee.salaryHistories.map((history) => (
                       <tr key={history.id} className="border-b">
                         <td className="p-3">
-                          {new Date(history.effectiveFrom).toLocaleDateString("ja-JP")}
+                          {new Date(history.effectiveFrom).toLocaleDateString(
+                            "ja-JP",
+                          )}
                         </td>
                         <td className="p-3">
                           {history.baseSalary.toLocaleString("ja-JP")}円
@@ -1016,7 +1007,9 @@ export default async function EmployeeDetailPage({ params }: Props) {
                           {history.bonus.toLocaleString("ja-JP")}円
                         </td>
                         <td className="p-3">
-                          {new Date(history.createdAt).toLocaleDateString("ja-JP")}
+                          {new Date(history.createdAt).toLocaleDateString(
+                            "ja-JP",
+                          )}
                         </td>
                       </tr>
                     ))}
@@ -1053,7 +1046,9 @@ export default async function EmployeeDetailPage({ params }: Props) {
                     {employee.leaveGrantHistories.map((history) => (
                       <tr key={history.id} className="border-b">
                         <td className="p-3">
-                          {new Date(history.grantDate).toLocaleDateString("ja-JP")}
+                          {new Date(history.grantDate).toLocaleDateString(
+                            "ja-JP",
+                          )}
                         </td>
 
                         <td className="p-3">
@@ -1067,12 +1062,13 @@ export default async function EmployeeDetailPage({ params }: Props) {
                               : "p-3 font-medium text-green-700"
                           }
                         >
-                          {formatGrantDays(history.grantType, history.grantedDays)}
+                          {formatGrantDays(
+                            history.grantType,
+                            history.grantedDays,
+                          )}
                         </td>
 
-                        <td className="p-3">
-                          {history.note ?? "-"}
-                        </td>
+                        <td className="p-3">{history.note ?? "-"}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -1118,9 +1114,7 @@ export default async function EmployeeDetailPage({ params }: Props) {
               </div>
 
               <div className="rounded border bg-white p-3">
-                <p className="text-xs text-gray-500">
-                  残日数
-                </p>
+                <p className="text-xs text-gray-500">残日数</p>
 
                 <p className="text-lg font-bold text-blue-700">
                   {(
@@ -1141,18 +1135,18 @@ export default async function EmployeeDetailPage({ params }: Props) {
           </section>
         )}
 
-
         {canManageMyNumber && (
           <section className="rounded-lg border bg-green-50 p-5">
             <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-green-800">
               給与情報
             </h2>
 
-            <form action={updateSalary} className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            <form
+              action={updateSalary}
+              className="grid grid-cols-1 gap-4 md:grid-cols-3"
+            >
               <div>
-                <label className="mb-1 block text-sm font-medium">
-                  基本給
-                </label>
+                <label className="mb-1 block text-sm font-medium">基本給</label>
 
                 <input
                   type="number"
@@ -1164,9 +1158,7 @@ export default async function EmployeeDetailPage({ params }: Props) {
               </div>
 
               <div>
-                <label className="mb-1 block text-sm font-medium">
-                  手当
-                </label>
+                <label className="mb-1 block text-sm font-medium">手当</label>
 
                 <input
                   type="number"
@@ -1177,9 +1169,7 @@ export default async function EmployeeDetailPage({ params }: Props) {
               </div>
 
               <div>
-                <label className="mb-1 block text-sm font-medium">
-                  賞与
-                </label>
+                <label className="mb-1 block text-sm font-medium">賞与</label>
 
                 <input
                   type="number"
@@ -1201,6 +1191,57 @@ export default async function EmployeeDetailPage({ params }: Props) {
           </section>
         )}
 
+        <section className="rounded-lg border bg-white p-5">
+          <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
+            異動履歴
+          </h2>
+
+          {employee.transferHistories.length === 0 ? (
+            <p className="text-sm text-gray-500">異動履歴はありません。</p>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="min-w-full text-sm">
+                <thead className="bg-gray-50 text-left">
+                  <tr>
+                    <th className="p-3">異動日</th>
+                    <th className="p-3">変更前</th>
+                    <th className="p-3">変更後</th>
+                    <th className="p-3">理由</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {employee.transferHistories.map((transfer) => (
+                    <tr key={transfer.id} className="border-t">
+                      <td className="whitespace-nowrap p-3">
+                        {new Intl.DateTimeFormat("ja-JP").format(
+                          transfer.effectiveDate,
+                        )}
+                      </td>
+
+                      <td className="p-3">
+                        <div>
+                          {transfer.fromFacility?.name ?? "未設定"} /{" "}
+                          {transfer.fromDepartment?.name ?? "未設定"}
+                        </div>
+                      </td>
+
+                      <td className="p-3">
+                        <div>
+                          {transfer.toFacility?.name ?? "未設定"} /{" "}
+                          {transfer.toDepartment?.name ?? "未設定"}
+                        </div>
+                      </td>
+
+                      <td className="p-3">{transfer.reason ?? "理由なし"}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </section>
+
         {canManageMyNumber && (
           <section className="rounded-lg border bg-red-50 p-5">
             <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-red-800">
@@ -1208,14 +1249,13 @@ export default async function EmployeeDetailPage({ params }: Props) {
             </h2>
 
             <div className="mb-4 rounded border bg-white p-3">
-              <p className="text-xs font-medium text-gray-500">
-                登録状況
-              </p>
+              <p className="text-xs font-medium text-gray-500">登録状況</p>
               <p className="mt-1 text-sm font-semibold text-gray-900">
                 {maskedMyNumber ?? "未登録"}
               </p>
               <p className="mt-1 text-xs text-red-600">
-                ※ マイナンバーは暗号化して保存されます。画面には下4桁のみ表示します。
+                ※
+                マイナンバーは暗号化して保存されます。画面には下4桁のみ表示します。
               </p>
             </div>
 

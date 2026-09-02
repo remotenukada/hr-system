@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
 import { randomUUID } from "crypto";
 import path from "path";
 import { mkdir, writeFile, unlink } from "fs/promises";
 import { prisma } from "../../../../lib/prisma";
+import { requireHRManager } from "@/lib/auth-guard";
 
 type Props = {
   params: Promise<{
@@ -31,6 +33,11 @@ export default async function EmployeeCertificationsPage({
   params,
   searchParams,
 }: Props) {
+  await requireHRManager();
+
+  const cookieStore = await cookies();
+  const facilityScope = cookieStore.get("facilityScope")?.value ?? "ALL";
+
   const { id } = await params;
   const { error } = await searchParams;
 
@@ -59,6 +66,10 @@ export default async function EmployeeCertificationsPage({
     notFound();
   }
 
+  if (facilityScope !== "ALL" && employee.facilityId !== facilityScope) {
+    notFound();
+  }
+
   const certifications = await prisma.certification.findMany({
     orderBy: {
       name: "asc",
@@ -68,6 +79,28 @@ export default async function EmployeeCertificationsPage({
   async function addEmployeeCertification(formData: FormData) {
     "use server";
 
+    await requireHRManager();
+
+    const actionCookieStore = await cookies();
+    const actionFacilityScope =
+      actionCookieStore.get("facilityScope")?.value ?? "ALL";
+
+    const targetEmployee = await prisma.employee.findUnique({
+      where: { id },
+      select: { facilityId: true },
+    });
+
+    if (!targetEmployee) {
+      notFound();
+    }
+
+    if (
+      actionFacilityScope !== "ALL" &&
+      targetEmployee.facilityId !== actionFacilityScope
+    ) {
+      notFound();
+    }
+
     const certificationId = String(
       formData.get("certificationId") ?? "",
     ).trim();
@@ -76,13 +109,9 @@ export default async function EmployeeCertificationsPage({
       formData.get("newCertificationName") ?? "",
     ).trim();
 
-    const acquiredDateRaw = String(
-      formData.get("acquiredDate") ?? "",
-    );
+    const acquiredDateRaw = String(formData.get("acquiredDate") ?? "");
 
-    const expiryDateRaw = String(
-      formData.get("expiryDate") ?? "",
-    );
+    const expiryDateRaw = String(formData.get("expiryDate") ?? "");
 
     if (!certificationId && !newCertificationName) {
       redirect(`/employees/${id}/certifications?error=required`);
@@ -104,15 +133,14 @@ export default async function EmployeeCertificationsPage({
       targetCertificationId = certification.id;
     }
 
-    const existing =
-      await prisma.employeeCertification.findUnique({
-        where: {
-          employeeId_certificationId: {
-            employeeId: id,
-            certificationId: targetCertificationId,
-          },
+    const existing = await prisma.employeeCertification.findUnique({
+      where: {
+        employeeId_certificationId: {
+          employeeId: id,
+          certificationId: targetCertificationId,
         },
-      });
+      },
+    });
 
     if (existing) {
       redirect(`/employees/${id}/certifications?error=duplicate`);
@@ -155,8 +183,7 @@ export default async function EmployeeCertificationsPage({
         recursive: true,
       });
 
-      const storedFileName =
-        `${id}-${targetCertificationId}-${randomUUID()}${extension}`;
+      const storedFileName = `${id}-${targetCertificationId}-${randomUUID()}${extension}`;
 
       const filePath = path.join(uploadDir, storedFileName);
 
@@ -223,23 +250,20 @@ export default async function EmployeeCertificationsPage({
   async function deleteEmployeeCertificationAttachment(formData: FormData) {
     "use server";
 
-    const attachmentId = String(
-      formData.get("attachmentId") ?? "",
-    ).trim();
+    const attachmentId = String(formData.get("attachmentId") ?? "").trim();
 
     if (!attachmentId) {
       redirect(`/employees/${id}/certifications`);
     }
 
-    const attachment =
-      await prisma.employeeCertificationAttachment.findFirst({
-        where: {
-          id: attachmentId,
-          employeeCertification: {
-            employeeId: id,
-          },
+    const attachment = await prisma.employeeCertificationAttachment.findFirst({
+      where: {
+        id: attachmentId,
+        employeeCertification: {
+          employeeId: id,
         },
-      });
+      },
+    });
 
     if (!attachment) {
       redirect(`/employees/${id}/certifications`);
@@ -253,11 +277,7 @@ export default async function EmployeeCertificationsPage({
 
     if (attachment.filePath.startsWith("/uploads/certifications/")) {
       const relativePath = attachment.filePath.replace(/^\//, "");
-      const absolutePath = path.join(
-        process.cwd(),
-        "public",
-        relativePath,
-      );
+      const absolutePath = path.join(process.cwd(), "public", relativePath);
 
       await unlink(absolutePath).catch(() => undefined);
     }
@@ -278,9 +298,7 @@ export default async function EmployeeCertificationsPage({
           ← 職員詳細へ戻る
         </Link>
 
-        <h1 className="mt-2 text-3xl font-bold">
-          職員資格管理
-        </h1>
+        <h1 className="mt-2 text-3xl font-bold">職員資格管理</h1>
 
         <p className="mt-1 text-sm text-gray-500">
           {employee.lastName} {employee.firstName} さんの保有資格を管理します。
@@ -312,9 +330,7 @@ export default async function EmployeeCertificationsPage({
       )}
 
       <section className="mb-8 max-w-xl rounded border bg-white p-6">
-        <h2 className="mb-4 text-xl font-bold">
-          資格を追加
-        </h2>
+        <h2 className="mb-4 text-xl font-bold">資格を追加</h2>
 
         <form action={addEmployeeCertification} className="space-y-4">
           <div>
@@ -328,10 +344,7 @@ export default async function EmployeeCertificationsPage({
             >
               <option value="">既存の資格を選択</option>
               {certifications.map((certification) => (
-                <option
-                  key={certification.id}
-                  value={certification.id}
-                >
+                <option key={certification.id} value={certification.id}>
                   {certification.name}
                 </option>
               ))}
@@ -352,9 +365,7 @@ export default async function EmployeeCertificationsPage({
           </div>
 
           <div>
-            <label className="mb-1 block text-sm font-medium">
-              取得日
-            </label>
+            <label className="mb-1 block text-sm font-medium">取得日</label>
 
             <input
               type="date"
@@ -364,9 +375,7 @@ export default async function EmployeeCertificationsPage({
           </div>
 
           <div>
-            <label className="mb-1 block text-sm font-medium">
-              有効期限
-            </label>
+            <label className="mb-1 block text-sm font-medium">有効期限</label>
 
             <input
               type="date"
@@ -403,86 +412,72 @@ export default async function EmployeeCertificationsPage({
       </section>
 
       <section>
-        <h2 className="mb-4 text-xl font-bold">
-          保有資格一覧
-        </h2>
+        <h2 className="mb-4 text-xl font-bold">保有資格一覧</h2>
 
         {employee.certifications.length === 0 ? (
-          <p className="text-sm text-gray-500">
-            登録済みの資格はありません。
-          </p>
+          <p className="text-sm text-gray-500">登録済みの資格はありません。</p>
         ) : (
           <table className="w-full max-w-6xl border-collapse border">
             <thead>
               <tr className="bg-gray-50">
-                <th className="border p-2 text-left">
-                  資格名
-                </th>
-                <th className="border p-2 text-left">
-                  取得日
-                </th>
-                <th className="border p-2 text-left">
-                  有効期限
-                </th>
-                <th className="border p-2 text-left">
-                  添付ファイル
-                </th>
-                <th className="border p-2 text-center">
-                  操作
-                </th>
+                <th className="border p-2 text-left">資格名</th>
+                <th className="border p-2 text-left">取得日</th>
+                <th className="border p-2 text-left">有効期限</th>
+                <th className="border p-2 text-left">添付ファイル</th>
+                <th className="border p-2 text-center">操作</th>
               </tr>
             </thead>
 
             <tbody>
               {employee.certifications.map((item) => (
                 <tr key={item.id}>
-                  <td className="border p-2">
-                    {item.certification.name}
-                  </td>
+                  <td className="border p-2">{item.certification.name}</td>
 
                   <td className="border p-2">
                     {formatDate(item.acquiredDate)}
                   </td>
 
-                  <td className="border p-2">
-                    {formatDate(item.expiryDate)}
-                  </td>
+                  <td className="border p-2">{formatDate(item.expiryDate)}</td>
 
                   <td className="border p-2">
                     {item.employeeCertificationAttachments.length === 0 ? (
                       "-"
                     ) : (
                       <ul className="space-y-1">
-                        {item.employeeCertificationAttachments.map((attachment) => (
-                          <li
-                            key={attachment.id}
-                            className="flex items-center gap-2"
-                          >
-                            <a
-                              href={attachment.filePath}
-                              target="_blank"
-                              rel="noreferrer"
-                              className="text-blue-600 hover:underline"
+                        {item.employeeCertificationAttachments.map(
+                          (attachment) => (
+                            <li
+                              key={attachment.id}
+                              className="flex items-center gap-2"
                             >
-                              {attachment.fileName}
-                            </a>
-
-                            <form action={deleteEmployeeCertificationAttachment}>
-                              <input
-                                type="hidden"
-                                name="attachmentId"
-                                value={attachment.id}
-                              />
-
-                              <button
-                                type="submit"
-                                className="rounded bg-red-50 px-2 py-0.5 text-xs text-red-700 hover:bg-red-100"
+                              <a
+                                href={attachment.filePath}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-blue-600 hover:underline"
                               >
-                                削除
-                              </button>
-                            </form>
-                          </li>
-                        ))}
+                                {attachment.fileName}
+                              </a>
+
+                              <form
+                                action={deleteEmployeeCertificationAttachment}
+                              >
+                                <input
+                                  type="hidden"
+                                  name="attachmentId"
+                                  value={attachment.id}
+                                />
+
+                                <button
+                                  type="submit"
+                                  className="rounded bg-red-50 px-2 py-0.5 text-xs text-red-700 hover:bg-red-100"
+                                >
+                                  削除
+                                </button>
+                              </form>
+                            </li>
+                          ),
+                        )}
                       </ul>
                     )}
                   </td>

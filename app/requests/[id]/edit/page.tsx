@@ -25,8 +25,8 @@ export default async function EditRequestPage({ params }: Props) {
 
     const title = formData.get("title")?.toString() || "";
     const comment = formData.get("comment")?.toString() || null;
-    const type = formData.get("type")?.toString() as "ONBOARDING" | "DEPARTMENT_CHANGE" | "PAID_LEAVE" | "OTHER";
-
+    const type = formData.get("type")?.toString() as
+      "ONBOARDING" | "DEPARTMENT_CHANGE" | "PAID_LEAVE" | "OTHER";
 
     const employeeId = formData.get("employeeId")?.toString() || null;
 
@@ -59,12 +59,22 @@ export default async function EditRequestPage({ params }: Props) {
       <BackLink href="/requests" label="申請一覧へ戻る" />
       <div>
         <h1 className="text-2xl font-bold text-gray-800">申請内容の編集</h1>
-        <p className="text-sm text-gray-500 mt-1">既存の申請内容を修正します。</p>
+        <p className="text-sm text-gray-500 mt-1">
+          既存の申請内容を修正します。
+        </p>
       </div>
 
-      <form action={updateRequest} className="bg-white border rounded-xl p-6 shadow-sm space-y-4">
+      <form
+        action={updateRequest}
+        className="bg-white border rounded-xl p-6 shadow-sm space-y-4"
+      >
         <div className="space-y-1">
-          <label htmlFor="title" className="text-sm font-semibold text-gray-700 block">申請タイトル</label>
+          <label
+            htmlFor="title"
+            className="text-sm font-semibold text-gray-700 block"
+          >
+            申請タイトル
+          </label>
           <input
             id="title"
             name="title"
@@ -76,7 +86,12 @@ export default async function EditRequestPage({ params }: Props) {
         </div>
 
         <div className="space-y-1">
-          <label htmlFor="type" className="text-sm font-semibold text-gray-700 block">申請種別</label>
+          <label
+            htmlFor="type"
+            className="text-sm font-semibold text-gray-700 block"
+          >
+            申請種別
+          </label>
           <select
             id="type"
             name="type"
@@ -91,7 +106,12 @@ export default async function EditRequestPage({ params }: Props) {
         </div>
 
         <div className="space-y-1">
-          <label htmlFor="employeeId" className="text-sm font-semibold text-gray-700 block">対象社員</label>
+          <label
+            htmlFor="employeeId"
+            className="text-sm font-semibold text-gray-700 block"
+          >
+            対象社員
+          </label>
           <select
             id="employeeId"
             name="employeeId"
@@ -108,7 +128,12 @@ export default async function EditRequestPage({ params }: Props) {
         </div>
 
         <div className="space-y-1">
-          <label htmlFor="comment" className="text-sm font-semibold text-gray-700 block">申請理由・コメント</label>
+          <label
+            htmlFor="comment"
+            className="text-sm font-semibold text-gray-700 block"
+          >
+            申請理由・コメント
+          </label>
           <textarea
             id="comment"
             name="comment"
@@ -119,7 +144,10 @@ export default async function EditRequestPage({ params }: Props) {
         </div>
 
         <div className="pt-4 flex justify-between items-center">
-          <Link href={`/requests/${id}`} className="text-sm text-gray-600 hover:underline">
+          <Link
+            href={`/requests/${id}`}
+            className="text-sm text-gray-600 hover:underline"
+          >
             キャンセル
           </Link>
           <button

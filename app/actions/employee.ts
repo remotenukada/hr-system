@@ -17,6 +17,7 @@ export async function createEmployee(formData: FormData) {
   const firstName = formData.get("firstName") as string;
   const email = formData.get("email") as string;
   const departmentId = formData.get("departmentId") as string;
+  const facilityId = formData.get("facilityId") as string;
 
   const lastNameKana = formData.get("lastNameKana") as string;
   const firstNameKana = formData.get("firstNameKana") as string;
@@ -66,6 +67,8 @@ export async function createEmployee(formData: FormData) {
       address: address || null,
 
       email,
+
+      facilityId: facilityId || null,
 
       departmentId: departmentId || null,
 

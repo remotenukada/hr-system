@@ -24,6 +24,11 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  */
 export type UserInvitation = $Result.DefaultSelection<Prisma.$UserInvitationPayload>
 /**
+ * Model Facility
+ * 
+ */
+export type Facility = $Result.DefaultSelection<Prisma.$FacilityPayload>
+/**
  * Model Department
  * 
  */
@@ -33,6 +38,11 @@ export type Department = $Result.DefaultSelection<Prisma.$DepartmentPayload>
  * 
  */
 export type Employee = $Result.DefaultSelection<Prisma.$EmployeePayload>
+/**
+ * Model EmployeeTransfer
+ * 
+ */
+export type EmployeeTransfer = $Result.DefaultSelection<Prisma.$EmployeeTransferPayload>
 /**
  * Model Dependent
  * 
@@ -74,6 +84,11 @@ export type LeaveBalance = $Result.DefaultSelection<Prisma.$LeaveBalancePayload>
  */
 export type EmployeeRequest = $Result.DefaultSelection<Prisma.$EmployeeRequestPayload>
 /**
+ * Model RequestApproval
+ * 
+ */
+export type RequestApproval = $Result.DefaultSelection<Prisma.$RequestApprovalPayload>
+/**
  * Model RequestAttachment
  * 
  */
@@ -83,6 +98,11 @@ export type RequestAttachment = $Result.DefaultSelection<Prisma.$RequestAttachme
  * 
  */
 export type RequestHistory = $Result.DefaultSelection<Prisma.$RequestHistoryPayload>
+/**
+ * Model ApprovalRoute
+ * 
+ */
+export type ApprovalRoute = $Result.DefaultSelection<Prisma.$ApprovalRoutePayload>
 /**
  * Model AuditLog
  * 
@@ -223,6 +243,21 @@ export type AnnualLeaveEntryRule = $Result.DefaultSelection<Prisma.$AnnualLeaveE
  * 
  */
 export type PartTimeAnnualLeaveRule = $Result.DefaultSelection<Prisma.$PartTimeAnnualLeaveRulePayload>
+/**
+ * Model LateRecord
+ * 
+ */
+export type LateRecord = $Result.DefaultSelection<Prisma.$LateRecordPayload>
+/**
+ * Model EarlyLeaveRecord
+ * 
+ */
+export type EarlyLeaveRecord = $Result.DefaultSelection<Prisma.$EarlyLeaveRecordPayload>
+/**
+ * Model OutingRecord
+ * 
+ */
+export type OutingRecord = $Result.DefaultSelection<Prisma.$OutingRecordPayload>
 
 /**
  * Enums
@@ -282,6 +317,8 @@ export type RequestCategory = (typeof RequestCategory)[keyof typeof RequestCateg
 export const RequestUnitType: {
   DAY: 'DAY',
   HALF_DAY: 'HALF_DAY',
+  AM_HALF: 'AM_HALF',
+  PM_HALF: 'PM_HALF',
   HOUR: 'HOUR'
 };
 
@@ -581,6 +618,16 @@ export class PrismaClient<
   get userInvitation(): Prisma.UserInvitationDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.facility`: Exposes CRUD operations for the **Facility** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Facilities
+    * const facilities = await prisma.facility.findMany()
+    * ```
+    */
+  get facility(): Prisma.FacilityDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.department`: Exposes CRUD operations for the **Department** model.
     * Example usage:
     * ```ts
@@ -599,6 +646,16 @@ export class PrismaClient<
     * ```
     */
   get employee(): Prisma.EmployeeDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.employeeTransfer`: Exposes CRUD operations for the **EmployeeTransfer** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EmployeeTransfers
+    * const employeeTransfers = await prisma.employeeTransfer.findMany()
+    * ```
+    */
+  get employeeTransfer(): Prisma.EmployeeTransferDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.dependent`: Exposes CRUD operations for the **Dependent** model.
@@ -681,6 +738,16 @@ export class PrismaClient<
   get employeeRequest(): Prisma.EmployeeRequestDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.requestApproval`: Exposes CRUD operations for the **RequestApproval** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RequestApprovals
+    * const requestApprovals = await prisma.requestApproval.findMany()
+    * ```
+    */
+  get requestApproval(): Prisma.RequestApprovalDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.requestAttachment`: Exposes CRUD operations for the **RequestAttachment** model.
     * Example usage:
     * ```ts
@@ -699,6 +766,16 @@ export class PrismaClient<
     * ```
     */
   get requestHistory(): Prisma.RequestHistoryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.approvalRoute`: Exposes CRUD operations for the **ApprovalRoute** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ApprovalRoutes
+    * const approvalRoutes = await prisma.approvalRoute.findMany()
+    * ```
+    */
+  get approvalRoute(): Prisma.ApprovalRouteDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.auditLog`: Exposes CRUD operations for the **AuditLog** model.
@@ -979,6 +1056,36 @@ export class PrismaClient<
     * ```
     */
   get partTimeAnnualLeaveRule(): Prisma.PartTimeAnnualLeaveRuleDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.lateRecord`: Exposes CRUD operations for the **LateRecord** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more LateRecords
+    * const lateRecords = await prisma.lateRecord.findMany()
+    * ```
+    */
+  get lateRecord(): Prisma.LateRecordDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.earlyLeaveRecord`: Exposes CRUD operations for the **EarlyLeaveRecord** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more EarlyLeaveRecords
+    * const earlyLeaveRecords = await prisma.earlyLeaveRecord.findMany()
+    * ```
+    */
+  get earlyLeaveRecord(): Prisma.EarlyLeaveRecordDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.outingRecord`: Exposes CRUD operations for the **OutingRecord** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more OutingRecords
+    * const outingRecords = await prisma.outingRecord.findMany()
+    * ```
+    */
+  get outingRecord(): Prisma.OutingRecordDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1415,8 +1522,10 @@ export namespace Prisma {
   export const ModelName: {
     User: 'User',
     UserInvitation: 'UserInvitation',
+    Facility: 'Facility',
     Department: 'Department',
     Employee: 'Employee',
+    EmployeeTransfer: 'EmployeeTransfer',
     Dependent: 'Dependent',
     EmploymentHistory: 'EmploymentHistory',
     EmployeeMyNumber: 'EmployeeMyNumber',
@@ -1425,8 +1534,10 @@ export namespace Prisma {
     LeaveGrantHistory: 'LeaveGrantHistory',
     LeaveBalance: 'LeaveBalance',
     EmployeeRequest: 'EmployeeRequest',
+    RequestApproval: 'RequestApproval',
     RequestAttachment: 'RequestAttachment',
     RequestHistory: 'RequestHistory',
+    ApprovalRoute: 'ApprovalRoute',
     AuditLog: 'AuditLog',
     Certification: 'Certification',
     EmployeeCertification: 'EmployeeCertification',
@@ -1454,7 +1565,10 @@ export namespace Prisma {
     RetirementCertificate: 'RetirementCertificate',
     AnnualLeaveServiceRule: 'AnnualLeaveServiceRule',
     AnnualLeaveEntryRule: 'AnnualLeaveEntryRule',
-    PartTimeAnnualLeaveRule: 'PartTimeAnnualLeaveRule'
+    PartTimeAnnualLeaveRule: 'PartTimeAnnualLeaveRule',
+    LateRecord: 'LateRecord',
+    EarlyLeaveRecord: 'EarlyLeaveRecord',
+    OutingRecord: 'OutingRecord'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1470,7 +1584,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "userInvitation" | "department" | "employee" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestAttachment" | "requestHistory" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster" | "contractTypeMaster" | "jobTitleMaster" | "positionMaster" | "leaveTypeBalance" | "leaveType" | "retirementChecklist" | "loanedAsset" | "retirementCertificate" | "annualLeaveServiceRule" | "annualLeaveEntryRule" | "partTimeAnnualLeaveRule"
+      modelProps: "user" | "userInvitation" | "facility" | "department" | "employee" | "employeeTransfer" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestApproval" | "requestAttachment" | "requestHistory" | "approvalRoute" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster" | "contractTypeMaster" | "jobTitleMaster" | "positionMaster" | "leaveTypeBalance" | "leaveType" | "retirementChecklist" | "loanedAsset" | "retirementCertificate" | "annualLeaveServiceRule" | "annualLeaveEntryRule" | "partTimeAnnualLeaveRule" | "lateRecord" | "earlyLeaveRecord" | "outingRecord"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1622,6 +1736,80 @@ export namespace Prisma {
           }
         }
       }
+      Facility: {
+        payload: Prisma.$FacilityPayload<ExtArgs>
+        fields: Prisma.FacilityFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FacilityFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FacilityPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FacilityFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FacilityPayload>
+          }
+          findFirst: {
+            args: Prisma.FacilityFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FacilityPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FacilityFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FacilityPayload>
+          }
+          findMany: {
+            args: Prisma.FacilityFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FacilityPayload>[]
+          }
+          create: {
+            args: Prisma.FacilityCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FacilityPayload>
+          }
+          createMany: {
+            args: Prisma.FacilityCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FacilityCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FacilityPayload>[]
+          }
+          delete: {
+            args: Prisma.FacilityDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FacilityPayload>
+          }
+          update: {
+            args: Prisma.FacilityUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FacilityPayload>
+          }
+          deleteMany: {
+            args: Prisma.FacilityDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FacilityUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FacilityUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FacilityPayload>[]
+          }
+          upsert: {
+            args: Prisma.FacilityUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FacilityPayload>
+          }
+          aggregate: {
+            args: Prisma.FacilityAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFacility>
+          }
+          groupBy: {
+            args: Prisma.FacilityGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FacilityGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FacilityCountArgs<ExtArgs>
+            result: $Utils.Optional<FacilityCountAggregateOutputType> | number
+          }
+        }
+      }
       Department: {
         payload: Prisma.$DepartmentPayload<ExtArgs>
         fields: Prisma.DepartmentFieldRefs
@@ -1767,6 +1955,80 @@ export namespace Prisma {
           count: {
             args: Prisma.EmployeeCountArgs<ExtArgs>
             result: $Utils.Optional<EmployeeCountAggregateOutputType> | number
+          }
+        }
+      }
+      EmployeeTransfer: {
+        payload: Prisma.$EmployeeTransferPayload<ExtArgs>
+        fields: Prisma.EmployeeTransferFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EmployeeTransferFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeTransferPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EmployeeTransferFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeTransferPayload>
+          }
+          findFirst: {
+            args: Prisma.EmployeeTransferFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeTransferPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EmployeeTransferFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeTransferPayload>
+          }
+          findMany: {
+            args: Prisma.EmployeeTransferFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeTransferPayload>[]
+          }
+          create: {
+            args: Prisma.EmployeeTransferCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeTransferPayload>
+          }
+          createMany: {
+            args: Prisma.EmployeeTransferCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EmployeeTransferCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeTransferPayload>[]
+          }
+          delete: {
+            args: Prisma.EmployeeTransferDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeTransferPayload>
+          }
+          update: {
+            args: Prisma.EmployeeTransferUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeTransferPayload>
+          }
+          deleteMany: {
+            args: Prisma.EmployeeTransferDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EmployeeTransferUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EmployeeTransferUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeTransferPayload>[]
+          }
+          upsert: {
+            args: Prisma.EmployeeTransferUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EmployeeTransferPayload>
+          }
+          aggregate: {
+            args: Prisma.EmployeeTransferAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEmployeeTransfer>
+          }
+          groupBy: {
+            args: Prisma.EmployeeTransferGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EmployeeTransferGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EmployeeTransferCountArgs<ExtArgs>
+            result: $Utils.Optional<EmployeeTransferCountAggregateOutputType> | number
           }
         }
       }
@@ -2362,6 +2624,80 @@ export namespace Prisma {
           }
         }
       }
+      RequestApproval: {
+        payload: Prisma.$RequestApprovalPayload<ExtArgs>
+        fields: Prisma.RequestApprovalFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.RequestApprovalFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestApprovalPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.RequestApprovalFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestApprovalPayload>
+          }
+          findFirst: {
+            args: Prisma.RequestApprovalFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestApprovalPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.RequestApprovalFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestApprovalPayload>
+          }
+          findMany: {
+            args: Prisma.RequestApprovalFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestApprovalPayload>[]
+          }
+          create: {
+            args: Prisma.RequestApprovalCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestApprovalPayload>
+          }
+          createMany: {
+            args: Prisma.RequestApprovalCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.RequestApprovalCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestApprovalPayload>[]
+          }
+          delete: {
+            args: Prisma.RequestApprovalDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestApprovalPayload>
+          }
+          update: {
+            args: Prisma.RequestApprovalUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestApprovalPayload>
+          }
+          deleteMany: {
+            args: Prisma.RequestApprovalDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.RequestApprovalUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RequestApprovalUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestApprovalPayload>[]
+          }
+          upsert: {
+            args: Prisma.RequestApprovalUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RequestApprovalPayload>
+          }
+          aggregate: {
+            args: Prisma.RequestApprovalAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateRequestApproval>
+          }
+          groupBy: {
+            args: Prisma.RequestApprovalGroupByArgs<ExtArgs>
+            result: $Utils.Optional<RequestApprovalGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.RequestApprovalCountArgs<ExtArgs>
+            result: $Utils.Optional<RequestApprovalCountAggregateOutputType> | number
+          }
+        }
+      }
       RequestAttachment: {
         payload: Prisma.$RequestAttachmentPayload<ExtArgs>
         fields: Prisma.RequestAttachmentFieldRefs
@@ -2507,6 +2843,80 @@ export namespace Prisma {
           count: {
             args: Prisma.RequestHistoryCountArgs<ExtArgs>
             result: $Utils.Optional<RequestHistoryCountAggregateOutputType> | number
+          }
+        }
+      }
+      ApprovalRoute: {
+        payload: Prisma.$ApprovalRoutePayload<ExtArgs>
+        fields: Prisma.ApprovalRouteFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ApprovalRouteFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApprovalRoutePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ApprovalRouteFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApprovalRoutePayload>
+          }
+          findFirst: {
+            args: Prisma.ApprovalRouteFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApprovalRoutePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ApprovalRouteFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApprovalRoutePayload>
+          }
+          findMany: {
+            args: Prisma.ApprovalRouteFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApprovalRoutePayload>[]
+          }
+          create: {
+            args: Prisma.ApprovalRouteCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApprovalRoutePayload>
+          }
+          createMany: {
+            args: Prisma.ApprovalRouteCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ApprovalRouteCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApprovalRoutePayload>[]
+          }
+          delete: {
+            args: Prisma.ApprovalRouteDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApprovalRoutePayload>
+          }
+          update: {
+            args: Prisma.ApprovalRouteUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApprovalRoutePayload>
+          }
+          deleteMany: {
+            args: Prisma.ApprovalRouteDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ApprovalRouteUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ApprovalRouteUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApprovalRoutePayload>[]
+          }
+          upsert: {
+            args: Prisma.ApprovalRouteUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ApprovalRoutePayload>
+          }
+          aggregate: {
+            args: Prisma.ApprovalRouteAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateApprovalRoute>
+          }
+          groupBy: {
+            args: Prisma.ApprovalRouteGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ApprovalRouteGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ApprovalRouteCountArgs<ExtArgs>
+            result: $Utils.Optional<ApprovalRouteCountAggregateOutputType> | number
           }
         }
       }
@@ -4582,6 +4992,228 @@ export namespace Prisma {
           }
         }
       }
+      LateRecord: {
+        payload: Prisma.$LateRecordPayload<ExtArgs>
+        fields: Prisma.LateRecordFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.LateRecordFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LateRecordPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.LateRecordFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LateRecordPayload>
+          }
+          findFirst: {
+            args: Prisma.LateRecordFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LateRecordPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.LateRecordFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LateRecordPayload>
+          }
+          findMany: {
+            args: Prisma.LateRecordFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LateRecordPayload>[]
+          }
+          create: {
+            args: Prisma.LateRecordCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LateRecordPayload>
+          }
+          createMany: {
+            args: Prisma.LateRecordCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.LateRecordCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LateRecordPayload>[]
+          }
+          delete: {
+            args: Prisma.LateRecordDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LateRecordPayload>
+          }
+          update: {
+            args: Prisma.LateRecordUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LateRecordPayload>
+          }
+          deleteMany: {
+            args: Prisma.LateRecordDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.LateRecordUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.LateRecordUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LateRecordPayload>[]
+          }
+          upsert: {
+            args: Prisma.LateRecordUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$LateRecordPayload>
+          }
+          aggregate: {
+            args: Prisma.LateRecordAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateLateRecord>
+          }
+          groupBy: {
+            args: Prisma.LateRecordGroupByArgs<ExtArgs>
+            result: $Utils.Optional<LateRecordGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.LateRecordCountArgs<ExtArgs>
+            result: $Utils.Optional<LateRecordCountAggregateOutputType> | number
+          }
+        }
+      }
+      EarlyLeaveRecord: {
+        payload: Prisma.$EarlyLeaveRecordPayload<ExtArgs>
+        fields: Prisma.EarlyLeaveRecordFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.EarlyLeaveRecordFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EarlyLeaveRecordPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.EarlyLeaveRecordFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EarlyLeaveRecordPayload>
+          }
+          findFirst: {
+            args: Prisma.EarlyLeaveRecordFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EarlyLeaveRecordPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.EarlyLeaveRecordFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EarlyLeaveRecordPayload>
+          }
+          findMany: {
+            args: Prisma.EarlyLeaveRecordFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EarlyLeaveRecordPayload>[]
+          }
+          create: {
+            args: Prisma.EarlyLeaveRecordCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EarlyLeaveRecordPayload>
+          }
+          createMany: {
+            args: Prisma.EarlyLeaveRecordCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.EarlyLeaveRecordCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EarlyLeaveRecordPayload>[]
+          }
+          delete: {
+            args: Prisma.EarlyLeaveRecordDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EarlyLeaveRecordPayload>
+          }
+          update: {
+            args: Prisma.EarlyLeaveRecordUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EarlyLeaveRecordPayload>
+          }
+          deleteMany: {
+            args: Prisma.EarlyLeaveRecordDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.EarlyLeaveRecordUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.EarlyLeaveRecordUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EarlyLeaveRecordPayload>[]
+          }
+          upsert: {
+            args: Prisma.EarlyLeaveRecordUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$EarlyLeaveRecordPayload>
+          }
+          aggregate: {
+            args: Prisma.EarlyLeaveRecordAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateEarlyLeaveRecord>
+          }
+          groupBy: {
+            args: Prisma.EarlyLeaveRecordGroupByArgs<ExtArgs>
+            result: $Utils.Optional<EarlyLeaveRecordGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.EarlyLeaveRecordCountArgs<ExtArgs>
+            result: $Utils.Optional<EarlyLeaveRecordCountAggregateOutputType> | number
+          }
+        }
+      }
+      OutingRecord: {
+        payload: Prisma.$OutingRecordPayload<ExtArgs>
+        fields: Prisma.OutingRecordFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.OutingRecordFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OutingRecordPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.OutingRecordFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OutingRecordPayload>
+          }
+          findFirst: {
+            args: Prisma.OutingRecordFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OutingRecordPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.OutingRecordFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OutingRecordPayload>
+          }
+          findMany: {
+            args: Prisma.OutingRecordFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OutingRecordPayload>[]
+          }
+          create: {
+            args: Prisma.OutingRecordCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OutingRecordPayload>
+          }
+          createMany: {
+            args: Prisma.OutingRecordCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.OutingRecordCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OutingRecordPayload>[]
+          }
+          delete: {
+            args: Prisma.OutingRecordDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OutingRecordPayload>
+          }
+          update: {
+            args: Prisma.OutingRecordUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OutingRecordPayload>
+          }
+          deleteMany: {
+            args: Prisma.OutingRecordDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.OutingRecordUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.OutingRecordUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OutingRecordPayload>[]
+          }
+          upsert: {
+            args: Prisma.OutingRecordUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OutingRecordPayload>
+          }
+          aggregate: {
+            args: Prisma.OutingRecordAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateOutingRecord>
+          }
+          groupBy: {
+            args: Prisma.OutingRecordGroupByArgs<ExtArgs>
+            result: $Utils.Optional<OutingRecordGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.OutingRecordCountArgs<ExtArgs>
+            result: $Utils.Optional<OutingRecordCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -4692,8 +5324,10 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     user?: UserOmit
     userInvitation?: UserInvitationOmit
+    facility?: FacilityOmit
     department?: DepartmentOmit
     employee?: EmployeeOmit
+    employeeTransfer?: EmployeeTransferOmit
     dependent?: DependentOmit
     employmentHistory?: EmploymentHistoryOmit
     employeeMyNumber?: EmployeeMyNumberOmit
@@ -4702,8 +5336,10 @@ export namespace Prisma {
     leaveGrantHistory?: LeaveGrantHistoryOmit
     leaveBalance?: LeaveBalanceOmit
     employeeRequest?: EmployeeRequestOmit
+    requestApproval?: RequestApprovalOmit
     requestAttachment?: RequestAttachmentOmit
     requestHistory?: RequestHistoryOmit
+    approvalRoute?: ApprovalRouteOmit
     auditLog?: AuditLogOmit
     certification?: CertificationOmit
     employeeCertification?: EmployeeCertificationOmit
@@ -4732,6 +5368,9 @@ export namespace Prisma {
     annualLeaveServiceRule?: AnnualLeaveServiceRuleOmit
     annualLeaveEntryRule?: AnnualLeaveEntryRuleOmit
     partTimeAnnualLeaveRule?: PartTimeAnnualLeaveRuleOmit
+    lateRecord?: LateRecordOmit
+    earlyLeaveRecord?: EarlyLeaveRecordOmit
+    outingRecord?: OutingRecordOmit
   }
 
   /* Types for Logging */
@@ -4870,15 +5509,79 @@ export namespace Prisma {
 
 
   /**
+   * Count Type FacilityCountOutputType
+   */
+
+  export type FacilityCountOutputType = {
+    employees: number
+    transfersFrom: number
+    transfersTo: number
+    approvalRoutes: number
+  }
+
+  export type FacilityCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employees?: boolean | FacilityCountOutputTypeCountEmployeesArgs
+    transfersFrom?: boolean | FacilityCountOutputTypeCountTransfersFromArgs
+    transfersTo?: boolean | FacilityCountOutputTypeCountTransfersToArgs
+    approvalRoutes?: boolean | FacilityCountOutputTypeCountApprovalRoutesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * FacilityCountOutputType without action
+   */
+  export type FacilityCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the FacilityCountOutputType
+     */
+    select?: FacilityCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * FacilityCountOutputType without action
+   */
+  export type FacilityCountOutputTypeCountEmployeesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmployeeWhereInput
+  }
+
+  /**
+   * FacilityCountOutputType without action
+   */
+  export type FacilityCountOutputTypeCountTransfersFromArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmployeeTransferWhereInput
+  }
+
+  /**
+   * FacilityCountOutputType without action
+   */
+  export type FacilityCountOutputTypeCountTransfersToArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmployeeTransferWhereInput
+  }
+
+  /**
+   * FacilityCountOutputType without action
+   */
+  export type FacilityCountOutputTypeCountApprovalRoutesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ApprovalRouteWhereInput
+  }
+
+
+  /**
    * Count Type DepartmentCountOutputType
    */
 
   export type DepartmentCountOutputType = {
     employees: number
+    transfersFrom: number
+    transfersTo: number
+    approvalRoutes: number
   }
 
   export type DepartmentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employees?: boolean | DepartmentCountOutputTypeCountEmployeesArgs
+    transfersFrom?: boolean | DepartmentCountOutputTypeCountTransfersFromArgs
+    transfersTo?: boolean | DepartmentCountOutputTypeCountTransfersToArgs
+    approvalRoutes?: boolean | DepartmentCountOutputTypeCountApprovalRoutesArgs
   }
 
   // Custom InputTypes
@@ -4899,6 +5602,27 @@ export namespace Prisma {
     where?: EmployeeWhereInput
   }
 
+  /**
+   * DepartmentCountOutputType without action
+   */
+  export type DepartmentCountOutputTypeCountTransfersFromArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmployeeTransferWhereInput
+  }
+
+  /**
+   * DepartmentCountOutputType without action
+   */
+  export type DepartmentCountOutputTypeCountTransfersToArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmployeeTransferWhereInput
+  }
+
+  /**
+   * DepartmentCountOutputType without action
+   */
+  export type DepartmentCountOutputTypeCountApprovalRoutesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ApprovalRouteWhereInput
+  }
+
 
   /**
    * Count Type EmployeeCountOutputType
@@ -4916,6 +5640,10 @@ export namespace Prisma {
     employmentContracts: number
     loanedAssets: number
     leaveTypeBalances: number
+    lateRecords: number
+    earlyLeaveRecords: number
+    outingRecords: number
+    transferHistories: number
   }
 
   export type EmployeeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4930,6 +5658,10 @@ export namespace Prisma {
     employmentContracts?: boolean | EmployeeCountOutputTypeCountEmploymentContractsArgs
     loanedAssets?: boolean | EmployeeCountOutputTypeCountLoanedAssetsArgs
     leaveTypeBalances?: boolean | EmployeeCountOutputTypeCountLeaveTypeBalancesArgs
+    lateRecords?: boolean | EmployeeCountOutputTypeCountLateRecordsArgs
+    earlyLeaveRecords?: boolean | EmployeeCountOutputTypeCountEarlyLeaveRecordsArgs
+    outingRecords?: boolean | EmployeeCountOutputTypeCountOutingRecordsArgs
+    transferHistories?: boolean | EmployeeCountOutputTypeCountTransferHistoriesArgs
   }
 
   // Custom InputTypes
@@ -5020,6 +5752,34 @@ export namespace Prisma {
     where?: LeaveTypeBalanceWhereInput
   }
 
+  /**
+   * EmployeeCountOutputType without action
+   */
+  export type EmployeeCountOutputTypeCountLateRecordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LateRecordWhereInput
+  }
+
+  /**
+   * EmployeeCountOutputType without action
+   */
+  export type EmployeeCountOutputTypeCountEarlyLeaveRecordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EarlyLeaveRecordWhereInput
+  }
+
+  /**
+   * EmployeeCountOutputType without action
+   */
+  export type EmployeeCountOutputTypeCountOutingRecordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OutingRecordWhereInput
+  }
+
+  /**
+   * EmployeeCountOutputType without action
+   */
+  export type EmployeeCountOutputTypeCountTransferHistoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmployeeTransferWhereInput
+  }
+
 
   /**
    * Count Type DependentCountOutputType
@@ -5059,11 +5819,13 @@ export namespace Prisma {
   export type EmployeeRequestCountOutputType = {
     attachments: number
     histories: number
+    approvals: number
   }
 
   export type EmployeeRequestCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     attachments?: boolean | EmployeeRequestCountOutputTypeCountAttachmentsArgs
     histories?: boolean | EmployeeRequestCountOutputTypeCountHistoriesArgs
+    approvals?: boolean | EmployeeRequestCountOutputTypeCountApprovalsArgs
   }
 
   // Custom InputTypes
@@ -5089,6 +5851,13 @@ export namespace Prisma {
    */
   export type EmployeeRequestCountOutputTypeCountHistoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: RequestHistoryWhereInput
+  }
+
+  /**
+   * EmployeeRequestCountOutputType without action
+   */
+  export type EmployeeRequestCountOutputTypeCountApprovalsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RequestApprovalWhereInput
   }
 
 
@@ -7613,6 +8382,1152 @@ export namespace Prisma {
 
 
   /**
+   * Model Facility
+   */
+
+  export type AggregateFacility = {
+    _count: FacilityCountAggregateOutputType | null
+    _min: FacilityMinAggregateOutputType | null
+    _max: FacilityMaxAggregateOutputType | null
+  }
+
+  export type FacilityMinAggregateOutputType = {
+    id: string | null
+    code: string | null
+    name: string | null
+    createdAt: Date | null
+  }
+
+  export type FacilityMaxAggregateOutputType = {
+    id: string | null
+    code: string | null
+    name: string | null
+    createdAt: Date | null
+  }
+
+  export type FacilityCountAggregateOutputType = {
+    id: number
+    code: number
+    name: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type FacilityMinAggregateInputType = {
+    id?: true
+    code?: true
+    name?: true
+    createdAt?: true
+  }
+
+  export type FacilityMaxAggregateInputType = {
+    id?: true
+    code?: true
+    name?: true
+    createdAt?: true
+  }
+
+  export type FacilityCountAggregateInputType = {
+    id?: true
+    code?: true
+    name?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type FacilityAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Facility to aggregate.
+     */
+    where?: FacilityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Facilities to fetch.
+     */
+    orderBy?: FacilityOrderByWithRelationInput | FacilityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FacilityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Facilities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Facilities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Facilities
+    **/
+    _count?: true | FacilityCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FacilityMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FacilityMaxAggregateInputType
+  }
+
+  export type GetFacilityAggregateType<T extends FacilityAggregateArgs> = {
+        [P in keyof T & keyof AggregateFacility]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFacility[P]>
+      : GetScalarType<T[P], AggregateFacility[P]>
+  }
+
+
+
+
+  export type FacilityGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FacilityWhereInput
+    orderBy?: FacilityOrderByWithAggregationInput | FacilityOrderByWithAggregationInput[]
+    by: FacilityScalarFieldEnum[] | FacilityScalarFieldEnum
+    having?: FacilityScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FacilityCountAggregateInputType | true
+    _min?: FacilityMinAggregateInputType
+    _max?: FacilityMaxAggregateInputType
+  }
+
+  export type FacilityGroupByOutputType = {
+    id: string
+    code: string
+    name: string
+    createdAt: Date
+    _count: FacilityCountAggregateOutputType | null
+    _min: FacilityMinAggregateOutputType | null
+    _max: FacilityMaxAggregateOutputType | null
+  }
+
+  type GetFacilityGroupByPayload<T extends FacilityGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FacilityGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FacilityGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FacilityGroupByOutputType[P]>
+            : GetScalarType<T[P], FacilityGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FacilitySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    code?: boolean
+    name?: boolean
+    createdAt?: boolean
+    employees?: boolean | Facility$employeesArgs<ExtArgs>
+    transfersFrom?: boolean | Facility$transfersFromArgs<ExtArgs>
+    transfersTo?: boolean | Facility$transfersToArgs<ExtArgs>
+    approvalRoutes?: boolean | Facility$approvalRoutesArgs<ExtArgs>
+    _count?: boolean | FacilityCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["facility"]>
+
+  export type FacilitySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    code?: boolean
+    name?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["facility"]>
+
+  export type FacilitySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    code?: boolean
+    name?: boolean
+    createdAt?: boolean
+  }, ExtArgs["result"]["facility"]>
+
+  export type FacilitySelectScalar = {
+    id?: boolean
+    code?: boolean
+    name?: boolean
+    createdAt?: boolean
+  }
+
+  export type FacilityOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "name" | "createdAt", ExtArgs["result"]["facility"]>
+  export type FacilityInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employees?: boolean | Facility$employeesArgs<ExtArgs>
+    transfersFrom?: boolean | Facility$transfersFromArgs<ExtArgs>
+    transfersTo?: boolean | Facility$transfersToArgs<ExtArgs>
+    approvalRoutes?: boolean | Facility$approvalRoutesArgs<ExtArgs>
+    _count?: boolean | FacilityCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type FacilityIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type FacilityIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $FacilityPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Facility"
+    objects: {
+      employees: Prisma.$EmployeePayload<ExtArgs>[]
+      transfersFrom: Prisma.$EmployeeTransferPayload<ExtArgs>[]
+      transfersTo: Prisma.$EmployeeTransferPayload<ExtArgs>[]
+      approvalRoutes: Prisma.$ApprovalRoutePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      code: string
+      name: string
+      createdAt: Date
+    }, ExtArgs["result"]["facility"]>
+    composites: {}
+  }
+
+  type FacilityGetPayload<S extends boolean | null | undefined | FacilityDefaultArgs> = $Result.GetResult<Prisma.$FacilityPayload, S>
+
+  type FacilityCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FacilityFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FacilityCountAggregateInputType | true
+    }
+
+  export interface FacilityDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Facility'], meta: { name: 'Facility' } }
+    /**
+     * Find zero or one Facility that matches the filter.
+     * @param {FacilityFindUniqueArgs} args - Arguments to find a Facility
+     * @example
+     * // Get one Facility
+     * const facility = await prisma.facility.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FacilityFindUniqueArgs>(args: SelectSubset<T, FacilityFindUniqueArgs<ExtArgs>>): Prisma__FacilityClient<$Result.GetResult<Prisma.$FacilityPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Facility that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FacilityFindUniqueOrThrowArgs} args - Arguments to find a Facility
+     * @example
+     * // Get one Facility
+     * const facility = await prisma.facility.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FacilityFindUniqueOrThrowArgs>(args: SelectSubset<T, FacilityFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FacilityClient<$Result.GetResult<Prisma.$FacilityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Facility that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FacilityFindFirstArgs} args - Arguments to find a Facility
+     * @example
+     * // Get one Facility
+     * const facility = await prisma.facility.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FacilityFindFirstArgs>(args?: SelectSubset<T, FacilityFindFirstArgs<ExtArgs>>): Prisma__FacilityClient<$Result.GetResult<Prisma.$FacilityPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Facility that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FacilityFindFirstOrThrowArgs} args - Arguments to find a Facility
+     * @example
+     * // Get one Facility
+     * const facility = await prisma.facility.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FacilityFindFirstOrThrowArgs>(args?: SelectSubset<T, FacilityFindFirstOrThrowArgs<ExtArgs>>): Prisma__FacilityClient<$Result.GetResult<Prisma.$FacilityPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Facilities that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FacilityFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Facilities
+     * const facilities = await prisma.facility.findMany()
+     * 
+     * // Get first 10 Facilities
+     * const facilities = await prisma.facility.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const facilityWithIdOnly = await prisma.facility.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FacilityFindManyArgs>(args?: SelectSubset<T, FacilityFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FacilityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Facility.
+     * @param {FacilityCreateArgs} args - Arguments to create a Facility.
+     * @example
+     * // Create one Facility
+     * const Facility = await prisma.facility.create({
+     *   data: {
+     *     // ... data to create a Facility
+     *   }
+     * })
+     * 
+     */
+    create<T extends FacilityCreateArgs>(args: SelectSubset<T, FacilityCreateArgs<ExtArgs>>): Prisma__FacilityClient<$Result.GetResult<Prisma.$FacilityPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Facilities.
+     * @param {FacilityCreateManyArgs} args - Arguments to create many Facilities.
+     * @example
+     * // Create many Facilities
+     * const facility = await prisma.facility.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FacilityCreateManyArgs>(args?: SelectSubset<T, FacilityCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Facilities and returns the data saved in the database.
+     * @param {FacilityCreateManyAndReturnArgs} args - Arguments to create many Facilities.
+     * @example
+     * // Create many Facilities
+     * const facility = await prisma.facility.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Facilities and only return the `id`
+     * const facilityWithIdOnly = await prisma.facility.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FacilityCreateManyAndReturnArgs>(args?: SelectSubset<T, FacilityCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FacilityPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Facility.
+     * @param {FacilityDeleteArgs} args - Arguments to delete one Facility.
+     * @example
+     * // Delete one Facility
+     * const Facility = await prisma.facility.delete({
+     *   where: {
+     *     // ... filter to delete one Facility
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FacilityDeleteArgs>(args: SelectSubset<T, FacilityDeleteArgs<ExtArgs>>): Prisma__FacilityClient<$Result.GetResult<Prisma.$FacilityPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Facility.
+     * @param {FacilityUpdateArgs} args - Arguments to update one Facility.
+     * @example
+     * // Update one Facility
+     * const facility = await prisma.facility.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FacilityUpdateArgs>(args: SelectSubset<T, FacilityUpdateArgs<ExtArgs>>): Prisma__FacilityClient<$Result.GetResult<Prisma.$FacilityPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Facilities.
+     * @param {FacilityDeleteManyArgs} args - Arguments to filter Facilities to delete.
+     * @example
+     * // Delete a few Facilities
+     * const { count } = await prisma.facility.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FacilityDeleteManyArgs>(args?: SelectSubset<T, FacilityDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Facilities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FacilityUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Facilities
+     * const facility = await prisma.facility.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FacilityUpdateManyArgs>(args: SelectSubset<T, FacilityUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Facilities and returns the data updated in the database.
+     * @param {FacilityUpdateManyAndReturnArgs} args - Arguments to update many Facilities.
+     * @example
+     * // Update many Facilities
+     * const facility = await prisma.facility.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Facilities and only return the `id`
+     * const facilityWithIdOnly = await prisma.facility.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FacilityUpdateManyAndReturnArgs>(args: SelectSubset<T, FacilityUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FacilityPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Facility.
+     * @param {FacilityUpsertArgs} args - Arguments to update or create a Facility.
+     * @example
+     * // Update or create a Facility
+     * const facility = await prisma.facility.upsert({
+     *   create: {
+     *     // ... data to create a Facility
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Facility we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FacilityUpsertArgs>(args: SelectSubset<T, FacilityUpsertArgs<ExtArgs>>): Prisma__FacilityClient<$Result.GetResult<Prisma.$FacilityPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Facilities.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FacilityCountArgs} args - Arguments to filter Facilities to count.
+     * @example
+     * // Count the number of Facilities
+     * const count = await prisma.facility.count({
+     *   where: {
+     *     // ... the filter for the Facilities we want to count
+     *   }
+     * })
+    **/
+    count<T extends FacilityCountArgs>(
+      args?: Subset<T, FacilityCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FacilityCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Facility.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FacilityAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FacilityAggregateArgs>(args: Subset<T, FacilityAggregateArgs>): Prisma.PrismaPromise<GetFacilityAggregateType<T>>
+
+    /**
+     * Group by Facility.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FacilityGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FacilityGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FacilityGroupByArgs['orderBy'] }
+        : { orderBy?: FacilityGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FacilityGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFacilityGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Facility model
+   */
+  readonly fields: FacilityFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Facility.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FacilityClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    employees<T extends Facility$employeesArgs<ExtArgs> = {}>(args?: Subset<T, Facility$employeesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    transfersFrom<T extends Facility$transfersFromArgs<ExtArgs> = {}>(args?: Subset<T, Facility$transfersFromArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    transfersTo<T extends Facility$transfersToArgs<ExtArgs> = {}>(args?: Subset<T, Facility$transfersToArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    approvalRoutes<T extends Facility$approvalRoutesArgs<ExtArgs> = {}>(args?: Subset<T, Facility$approvalRoutesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApprovalRoutePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Facility model
+   */
+  interface FacilityFieldRefs {
+    readonly id: FieldRef<"Facility", 'String'>
+    readonly code: FieldRef<"Facility", 'String'>
+    readonly name: FieldRef<"Facility", 'String'>
+    readonly createdAt: FieldRef<"Facility", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Facility findUnique
+   */
+  export type FacilityFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Facility
+     */
+    select?: FacilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Facility
+     */
+    omit?: FacilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FacilityInclude<ExtArgs> | null
+    /**
+     * Filter, which Facility to fetch.
+     */
+    where: FacilityWhereUniqueInput
+  }
+
+  /**
+   * Facility findUniqueOrThrow
+   */
+  export type FacilityFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Facility
+     */
+    select?: FacilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Facility
+     */
+    omit?: FacilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FacilityInclude<ExtArgs> | null
+    /**
+     * Filter, which Facility to fetch.
+     */
+    where: FacilityWhereUniqueInput
+  }
+
+  /**
+   * Facility findFirst
+   */
+  export type FacilityFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Facility
+     */
+    select?: FacilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Facility
+     */
+    omit?: FacilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FacilityInclude<ExtArgs> | null
+    /**
+     * Filter, which Facility to fetch.
+     */
+    where?: FacilityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Facilities to fetch.
+     */
+    orderBy?: FacilityOrderByWithRelationInput | FacilityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Facilities.
+     */
+    cursor?: FacilityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Facilities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Facilities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Facilities.
+     */
+    distinct?: FacilityScalarFieldEnum | FacilityScalarFieldEnum[]
+  }
+
+  /**
+   * Facility findFirstOrThrow
+   */
+  export type FacilityFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Facility
+     */
+    select?: FacilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Facility
+     */
+    omit?: FacilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FacilityInclude<ExtArgs> | null
+    /**
+     * Filter, which Facility to fetch.
+     */
+    where?: FacilityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Facilities to fetch.
+     */
+    orderBy?: FacilityOrderByWithRelationInput | FacilityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Facilities.
+     */
+    cursor?: FacilityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Facilities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Facilities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Facilities.
+     */
+    distinct?: FacilityScalarFieldEnum | FacilityScalarFieldEnum[]
+  }
+
+  /**
+   * Facility findMany
+   */
+  export type FacilityFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Facility
+     */
+    select?: FacilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Facility
+     */
+    omit?: FacilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FacilityInclude<ExtArgs> | null
+    /**
+     * Filter, which Facilities to fetch.
+     */
+    where?: FacilityWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Facilities to fetch.
+     */
+    orderBy?: FacilityOrderByWithRelationInput | FacilityOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Facilities.
+     */
+    cursor?: FacilityWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Facilities from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Facilities.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Facilities.
+     */
+    distinct?: FacilityScalarFieldEnum | FacilityScalarFieldEnum[]
+  }
+
+  /**
+   * Facility create
+   */
+  export type FacilityCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Facility
+     */
+    select?: FacilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Facility
+     */
+    omit?: FacilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FacilityInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Facility.
+     */
+    data: XOR<FacilityCreateInput, FacilityUncheckedCreateInput>
+  }
+
+  /**
+   * Facility createMany
+   */
+  export type FacilityCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Facilities.
+     */
+    data: FacilityCreateManyInput | FacilityCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Facility createManyAndReturn
+   */
+  export type FacilityCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Facility
+     */
+    select?: FacilitySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Facility
+     */
+    omit?: FacilityOmit<ExtArgs> | null
+    /**
+     * The data used to create many Facilities.
+     */
+    data: FacilityCreateManyInput | FacilityCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Facility update
+   */
+  export type FacilityUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Facility
+     */
+    select?: FacilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Facility
+     */
+    omit?: FacilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FacilityInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Facility.
+     */
+    data: XOR<FacilityUpdateInput, FacilityUncheckedUpdateInput>
+    /**
+     * Choose, which Facility to update.
+     */
+    where: FacilityWhereUniqueInput
+  }
+
+  /**
+   * Facility updateMany
+   */
+  export type FacilityUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Facilities.
+     */
+    data: XOR<FacilityUpdateManyMutationInput, FacilityUncheckedUpdateManyInput>
+    /**
+     * Filter which Facilities to update
+     */
+    where?: FacilityWhereInput
+    /**
+     * Limit how many Facilities to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Facility updateManyAndReturn
+   */
+  export type FacilityUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Facility
+     */
+    select?: FacilitySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Facility
+     */
+    omit?: FacilityOmit<ExtArgs> | null
+    /**
+     * The data used to update Facilities.
+     */
+    data: XOR<FacilityUpdateManyMutationInput, FacilityUncheckedUpdateManyInput>
+    /**
+     * Filter which Facilities to update
+     */
+    where?: FacilityWhereInput
+    /**
+     * Limit how many Facilities to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Facility upsert
+   */
+  export type FacilityUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Facility
+     */
+    select?: FacilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Facility
+     */
+    omit?: FacilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FacilityInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Facility to update in case it exists.
+     */
+    where: FacilityWhereUniqueInput
+    /**
+     * In case the Facility found by the `where` argument doesn't exist, create a new Facility with this data.
+     */
+    create: XOR<FacilityCreateInput, FacilityUncheckedCreateInput>
+    /**
+     * In case the Facility was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FacilityUpdateInput, FacilityUncheckedUpdateInput>
+  }
+
+  /**
+   * Facility delete
+   */
+  export type FacilityDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Facility
+     */
+    select?: FacilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Facility
+     */
+    omit?: FacilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FacilityInclude<ExtArgs> | null
+    /**
+     * Filter which Facility to delete.
+     */
+    where: FacilityWhereUniqueInput
+  }
+
+  /**
+   * Facility deleteMany
+   */
+  export type FacilityDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Facilities to delete
+     */
+    where?: FacilityWhereInput
+    /**
+     * Limit how many Facilities to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Facility.employees
+   */
+  export type Facility$employeesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Employee
+     */
+    select?: EmployeeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Employee
+     */
+    omit?: EmployeeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeInclude<ExtArgs> | null
+    where?: EmployeeWhereInput
+    orderBy?: EmployeeOrderByWithRelationInput | EmployeeOrderByWithRelationInput[]
+    cursor?: EmployeeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmployeeScalarFieldEnum | EmployeeScalarFieldEnum[]
+  }
+
+  /**
+   * Facility.transfersFrom
+   */
+  export type Facility$transfersFromArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeTransfer
+     */
+    select?: EmployeeTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeTransfer
+     */
+    omit?: EmployeeTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeTransferInclude<ExtArgs> | null
+    where?: EmployeeTransferWhereInput
+    orderBy?: EmployeeTransferOrderByWithRelationInput | EmployeeTransferOrderByWithRelationInput[]
+    cursor?: EmployeeTransferWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmployeeTransferScalarFieldEnum | EmployeeTransferScalarFieldEnum[]
+  }
+
+  /**
+   * Facility.transfersTo
+   */
+  export type Facility$transfersToArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeTransfer
+     */
+    select?: EmployeeTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeTransfer
+     */
+    omit?: EmployeeTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeTransferInclude<ExtArgs> | null
+    where?: EmployeeTransferWhereInput
+    orderBy?: EmployeeTransferOrderByWithRelationInput | EmployeeTransferOrderByWithRelationInput[]
+    cursor?: EmployeeTransferWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmployeeTransferScalarFieldEnum | EmployeeTransferScalarFieldEnum[]
+  }
+
+  /**
+   * Facility.approvalRoutes
+   */
+  export type Facility$approvalRoutesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRoute
+     */
+    select?: ApprovalRouteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRoute
+     */
+    omit?: ApprovalRouteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRouteInclude<ExtArgs> | null
+    where?: ApprovalRouteWhereInput
+    orderBy?: ApprovalRouteOrderByWithRelationInput | ApprovalRouteOrderByWithRelationInput[]
+    cursor?: ApprovalRouteWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ApprovalRouteScalarFieldEnum | ApprovalRouteScalarFieldEnum[]
+  }
+
+  /**
+   * Facility without action
+   */
+  export type FacilityDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Facility
+     */
+    select?: FacilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Facility
+     */
+    omit?: FacilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FacilityInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Department
    */
 
@@ -7761,6 +9676,9 @@ export namespace Prisma {
     name?: boolean
     createdAt?: boolean
     employees?: boolean | Department$employeesArgs<ExtArgs>
+    transfersFrom?: boolean | Department$transfersFromArgs<ExtArgs>
+    transfersTo?: boolean | Department$transfersToArgs<ExtArgs>
+    approvalRoutes?: boolean | Department$approvalRoutesArgs<ExtArgs>
     _count?: boolean | DepartmentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["department"]>
 
@@ -7785,6 +9703,9 @@ export namespace Prisma {
   export type DepartmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt", ExtArgs["result"]["department"]>
   export type DepartmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employees?: boolean | Department$employeesArgs<ExtArgs>
+    transfersFrom?: boolean | Department$transfersFromArgs<ExtArgs>
+    transfersTo?: boolean | Department$transfersToArgs<ExtArgs>
+    approvalRoutes?: boolean | Department$approvalRoutesArgs<ExtArgs>
     _count?: boolean | DepartmentCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type DepartmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -7794,6 +9715,9 @@ export namespace Prisma {
     name: "Department"
     objects: {
       employees: Prisma.$EmployeePayload<ExtArgs>[]
+      transfersFrom: Prisma.$EmployeeTransferPayload<ExtArgs>[]
+      transfersTo: Prisma.$EmployeeTransferPayload<ExtArgs>[]
+      approvalRoutes: Prisma.$ApprovalRoutePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8194,6 +10118,9 @@ export namespace Prisma {
   export interface Prisma__DepartmentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     employees<T extends Department$employeesArgs<ExtArgs> = {}>(args?: Subset<T, Department$employeesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    transfersFrom<T extends Department$transfersFromArgs<ExtArgs> = {}>(args?: Subset<T, Department$transfersFromArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    transfersTo<T extends Department$transfersToArgs<ExtArgs> = {}>(args?: Subset<T, Department$transfersToArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    approvalRoutes<T extends Department$approvalRoutesArgs<ExtArgs> = {}>(args?: Subset<T, Department$approvalRoutesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApprovalRoutePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8643,6 +10570,78 @@ export namespace Prisma {
   }
 
   /**
+   * Department.transfersFrom
+   */
+  export type Department$transfersFromArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeTransfer
+     */
+    select?: EmployeeTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeTransfer
+     */
+    omit?: EmployeeTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeTransferInclude<ExtArgs> | null
+    where?: EmployeeTransferWhereInput
+    orderBy?: EmployeeTransferOrderByWithRelationInput | EmployeeTransferOrderByWithRelationInput[]
+    cursor?: EmployeeTransferWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmployeeTransferScalarFieldEnum | EmployeeTransferScalarFieldEnum[]
+  }
+
+  /**
+   * Department.transfersTo
+   */
+  export type Department$transfersToArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeTransfer
+     */
+    select?: EmployeeTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeTransfer
+     */
+    omit?: EmployeeTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeTransferInclude<ExtArgs> | null
+    where?: EmployeeTransferWhereInput
+    orderBy?: EmployeeTransferOrderByWithRelationInput | EmployeeTransferOrderByWithRelationInput[]
+    cursor?: EmployeeTransferWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmployeeTransferScalarFieldEnum | EmployeeTransferScalarFieldEnum[]
+  }
+
+  /**
+   * Department.approvalRoutes
+   */
+  export type Department$approvalRoutesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRoute
+     */
+    select?: ApprovalRouteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRoute
+     */
+    omit?: ApprovalRouteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRouteInclude<ExtArgs> | null
+    where?: ApprovalRouteWhereInput
+    orderBy?: ApprovalRouteOrderByWithRelationInput | ApprovalRouteOrderByWithRelationInput[]
+    cursor?: ApprovalRouteWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ApprovalRouteScalarFieldEnum | ApprovalRouteScalarFieldEnum[]
+  }
+
+  /**
    * Department without action
    */
   export type DepartmentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8695,6 +10694,7 @@ export namespace Prisma {
     email: string | null
     createdAt: Date | null
     departmentId: string | null
+    facilityId: string | null
     address: string | null
     birthDate: Date | null
     firstNameKana: string | null
@@ -8727,6 +10727,7 @@ export namespace Prisma {
     email: string | null
     createdAt: Date | null
     departmentId: string | null
+    facilityId: string | null
     address: string | null
     birthDate: Date | null
     firstNameKana: string | null
@@ -8759,6 +10760,7 @@ export namespace Prisma {
     email: number
     createdAt: number
     departmentId: number
+    facilityId: number
     address: number
     birthDate: number
     firstNameKana: number
@@ -8807,6 +10809,7 @@ export namespace Prisma {
     email?: true
     createdAt?: true
     departmentId?: true
+    facilityId?: true
     address?: true
     birthDate?: true
     firstNameKana?: true
@@ -8839,6 +10842,7 @@ export namespace Prisma {
     email?: true
     createdAt?: true
     departmentId?: true
+    facilityId?: true
     address?: true
     birthDate?: true
     firstNameKana?: true
@@ -8871,6 +10875,7 @@ export namespace Prisma {
     email?: true
     createdAt?: true
     departmentId?: true
+    facilityId?: true
     address?: true
     birthDate?: true
     firstNameKana?: true
@@ -8990,6 +10995,7 @@ export namespace Prisma {
     email: string
     createdAt: Date
     departmentId: string | null
+    facilityId: string | null
     address: string | null
     birthDate: Date | null
     firstNameKana: string | null
@@ -9041,6 +11047,7 @@ export namespace Prisma {
     email?: boolean
     createdAt?: boolean
     departmentId?: boolean
+    facilityId?: boolean
     address?: boolean
     birthDate?: boolean
     firstNameKana?: boolean
@@ -9063,6 +11070,7 @@ export namespace Prisma {
     photoPath?: boolean
     userId?: boolean
     emergencyContact?: boolean
+    facility?: boolean | Employee$facilityArgs<ExtArgs>
     department?: boolean | Employee$departmentArgs<ExtArgs>
     user?: boolean | Employee$userArgs<ExtArgs>
     certifications?: boolean | Employee$certificationsArgs<ExtArgs>
@@ -9082,6 +11090,10 @@ export namespace Prisma {
     loanedAssets?: boolean | Employee$loanedAssetsArgs<ExtArgs>
     retirementCertificate?: boolean | Employee$retirementCertificateArgs<ExtArgs>
     leaveTypeBalances?: boolean | Employee$leaveTypeBalancesArgs<ExtArgs>
+    lateRecords?: boolean | Employee$lateRecordsArgs<ExtArgs>
+    earlyLeaveRecords?: boolean | Employee$earlyLeaveRecordsArgs<ExtArgs>
+    outingRecords?: boolean | Employee$outingRecordsArgs<ExtArgs>
+    transferHistories?: boolean | Employee$transferHistoriesArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["employee"]>
 
@@ -9093,6 +11105,7 @@ export namespace Prisma {
     email?: boolean
     createdAt?: boolean
     departmentId?: boolean
+    facilityId?: boolean
     address?: boolean
     birthDate?: boolean
     firstNameKana?: boolean
@@ -9115,6 +11128,7 @@ export namespace Prisma {
     photoPath?: boolean
     userId?: boolean
     emergencyContact?: boolean
+    facility?: boolean | Employee$facilityArgs<ExtArgs>
     department?: boolean | Employee$departmentArgs<ExtArgs>
     user?: boolean | Employee$userArgs<ExtArgs>
   }, ExtArgs["result"]["employee"]>
@@ -9127,6 +11141,7 @@ export namespace Prisma {
     email?: boolean
     createdAt?: boolean
     departmentId?: boolean
+    facilityId?: boolean
     address?: boolean
     birthDate?: boolean
     firstNameKana?: boolean
@@ -9149,6 +11164,7 @@ export namespace Prisma {
     photoPath?: boolean
     userId?: boolean
     emergencyContact?: boolean
+    facility?: boolean | Employee$facilityArgs<ExtArgs>
     department?: boolean | Employee$departmentArgs<ExtArgs>
     user?: boolean | Employee$userArgs<ExtArgs>
   }, ExtArgs["result"]["employee"]>
@@ -9161,6 +11177,7 @@ export namespace Prisma {
     email?: boolean
     createdAt?: boolean
     departmentId?: boolean
+    facilityId?: boolean
     address?: boolean
     birthDate?: boolean
     firstNameKana?: boolean
@@ -9185,8 +11202,9 @@ export namespace Prisma {
     emergencyContact?: boolean
   }
 
-  export type EmployeeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeNo" | "firstName" | "lastName" | "email" | "createdAt" | "departmentId" | "address" | "birthDate" | "firstNameKana" | "gender" | "hireDate" | "lastNameKana" | "occupation" | "phoneNumber" | "position" | "commutingType" | "employmentType" | "weeklyScheduledDays" | "weeklyScheduledHours" | "annualScheduledDays" | "dailyScheduledHours" | "status" | "employmentInsuranceNo" | "healthInsuranceNo" | "retirementDate" | "photoPath" | "userId" | "emergencyContact", ExtArgs["result"]["employee"]>
+  export type EmployeeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeNo" | "firstName" | "lastName" | "email" | "createdAt" | "departmentId" | "facilityId" | "address" | "birthDate" | "firstNameKana" | "gender" | "hireDate" | "lastNameKana" | "occupation" | "phoneNumber" | "position" | "commutingType" | "employmentType" | "weeklyScheduledDays" | "weeklyScheduledHours" | "annualScheduledDays" | "dailyScheduledHours" | "status" | "employmentInsuranceNo" | "healthInsuranceNo" | "retirementDate" | "photoPath" | "userId" | "emergencyContact", ExtArgs["result"]["employee"]>
   export type EmployeeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    facility?: boolean | Employee$facilityArgs<ExtArgs>
     department?: boolean | Employee$departmentArgs<ExtArgs>
     user?: boolean | Employee$userArgs<ExtArgs>
     certifications?: boolean | Employee$certificationsArgs<ExtArgs>
@@ -9206,13 +11224,19 @@ export namespace Prisma {
     loanedAssets?: boolean | Employee$loanedAssetsArgs<ExtArgs>
     retirementCertificate?: boolean | Employee$retirementCertificateArgs<ExtArgs>
     leaveTypeBalances?: boolean | Employee$leaveTypeBalancesArgs<ExtArgs>
+    lateRecords?: boolean | Employee$lateRecordsArgs<ExtArgs>
+    earlyLeaveRecords?: boolean | Employee$earlyLeaveRecordsArgs<ExtArgs>
+    outingRecords?: boolean | Employee$outingRecordsArgs<ExtArgs>
+    transferHistories?: boolean | Employee$transferHistoriesArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EmployeeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    facility?: boolean | Employee$facilityArgs<ExtArgs>
     department?: boolean | Employee$departmentArgs<ExtArgs>
     user?: boolean | Employee$userArgs<ExtArgs>
   }
   export type EmployeeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    facility?: boolean | Employee$facilityArgs<ExtArgs>
     department?: boolean | Employee$departmentArgs<ExtArgs>
     user?: boolean | Employee$userArgs<ExtArgs>
   }
@@ -9220,6 +11244,7 @@ export namespace Prisma {
   export type $EmployeePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Employee"
     objects: {
+      facility: Prisma.$FacilityPayload<ExtArgs> | null
       department: Prisma.$DepartmentPayload<ExtArgs> | null
       user: Prisma.$UserPayload<ExtArgs> | null
       certifications: Prisma.$EmployeeCertificationPayload<ExtArgs>[]
@@ -9239,6 +11264,10 @@ export namespace Prisma {
       loanedAssets: Prisma.$LoanedAssetPayload<ExtArgs>[]
       retirementCertificate: Prisma.$RetirementCertificatePayload<ExtArgs> | null
       leaveTypeBalances: Prisma.$LeaveTypeBalancePayload<ExtArgs>[]
+      lateRecords: Prisma.$LateRecordPayload<ExtArgs>[]
+      earlyLeaveRecords: Prisma.$EarlyLeaveRecordPayload<ExtArgs>[]
+      outingRecords: Prisma.$OutingRecordPayload<ExtArgs>[]
+      transferHistories: Prisma.$EmployeeTransferPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -9248,6 +11277,7 @@ export namespace Prisma {
       email: string
       createdAt: Date
       departmentId: string | null
+      facilityId: string | null
       address: string | null
       birthDate: Date | null
       firstNameKana: string | null
@@ -9664,6 +11694,7 @@ export namespace Prisma {
    */
   export interface Prisma__EmployeeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    facility<T extends Employee$facilityArgs<ExtArgs> = {}>(args?: Subset<T, Employee$facilityArgs<ExtArgs>>): Prisma__FacilityClient<$Result.GetResult<Prisma.$FacilityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     department<T extends Employee$departmentArgs<ExtArgs> = {}>(args?: Subset<T, Employee$departmentArgs<ExtArgs>>): Prisma__DepartmentClient<$Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     user<T extends Employee$userArgs<ExtArgs> = {}>(args?: Subset<T, Employee$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     certifications<T extends Employee$certificationsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$certificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeCertificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -9683,6 +11714,10 @@ export namespace Prisma {
     loanedAssets<T extends Employee$loanedAssetsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$loanedAssetsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LoanedAssetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     retirementCertificate<T extends Employee$retirementCertificateArgs<ExtArgs> = {}>(args?: Subset<T, Employee$retirementCertificateArgs<ExtArgs>>): Prisma__RetirementCertificateClient<$Result.GetResult<Prisma.$RetirementCertificatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     leaveTypeBalances<T extends Employee$leaveTypeBalancesArgs<ExtArgs> = {}>(args?: Subset<T, Employee$leaveTypeBalancesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LeaveTypeBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    lateRecords<T extends Employee$lateRecordsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$lateRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LateRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    earlyLeaveRecords<T extends Employee$earlyLeaveRecordsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$earlyLeaveRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EarlyLeaveRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    outingRecords<T extends Employee$outingRecordsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$outingRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OutingRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    transferHistories<T extends Employee$transferHistoriesArgs<ExtArgs> = {}>(args?: Subset<T, Employee$transferHistoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9719,6 +11754,7 @@ export namespace Prisma {
     readonly email: FieldRef<"Employee", 'String'>
     readonly createdAt: FieldRef<"Employee", 'DateTime'>
     readonly departmentId: FieldRef<"Employee", 'String'>
+    readonly facilityId: FieldRef<"Employee", 'String'>
     readonly address: FieldRef<"Employee", 'String'>
     readonly birthDate: FieldRef<"Employee", 'DateTime'>
     readonly firstNameKana: FieldRef<"Employee", 'String'>
@@ -10142,6 +12178,25 @@ export namespace Prisma {
   }
 
   /**
+   * Employee.facility
+   */
+  export type Employee$facilityArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Facility
+     */
+    select?: FacilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Facility
+     */
+    omit?: FacilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FacilityInclude<ExtArgs> | null
+    where?: FacilityWhereInput
+  }
+
+  /**
    * Employee.department
    */
   export type Employee$departmentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10558,6 +12613,102 @@ export namespace Prisma {
   }
 
   /**
+   * Employee.lateRecords
+   */
+  export type Employee$lateRecordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LateRecord
+     */
+    select?: LateRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LateRecord
+     */
+    omit?: LateRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LateRecordInclude<ExtArgs> | null
+    where?: LateRecordWhereInput
+    orderBy?: LateRecordOrderByWithRelationInput | LateRecordOrderByWithRelationInput[]
+    cursor?: LateRecordWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: LateRecordScalarFieldEnum | LateRecordScalarFieldEnum[]
+  }
+
+  /**
+   * Employee.earlyLeaveRecords
+   */
+  export type Employee$earlyLeaveRecordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EarlyLeaveRecord
+     */
+    select?: EarlyLeaveRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EarlyLeaveRecord
+     */
+    omit?: EarlyLeaveRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EarlyLeaveRecordInclude<ExtArgs> | null
+    where?: EarlyLeaveRecordWhereInput
+    orderBy?: EarlyLeaveRecordOrderByWithRelationInput | EarlyLeaveRecordOrderByWithRelationInput[]
+    cursor?: EarlyLeaveRecordWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EarlyLeaveRecordScalarFieldEnum | EarlyLeaveRecordScalarFieldEnum[]
+  }
+
+  /**
+   * Employee.outingRecords
+   */
+  export type Employee$outingRecordsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OutingRecord
+     */
+    select?: OutingRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OutingRecord
+     */
+    omit?: OutingRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OutingRecordInclude<ExtArgs> | null
+    where?: OutingRecordWhereInput
+    orderBy?: OutingRecordOrderByWithRelationInput | OutingRecordOrderByWithRelationInput[]
+    cursor?: OutingRecordWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: OutingRecordScalarFieldEnum | OutingRecordScalarFieldEnum[]
+  }
+
+  /**
+   * Employee.transferHistories
+   */
+  export type Employee$transferHistoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeTransfer
+     */
+    select?: EmployeeTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeTransfer
+     */
+    omit?: EmployeeTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeTransferInclude<ExtArgs> | null
+    where?: EmployeeTransferWhereInput
+    orderBy?: EmployeeTransferOrderByWithRelationInput | EmployeeTransferOrderByWithRelationInput[]
+    cursor?: EmployeeTransferWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmployeeTransferScalarFieldEnum | EmployeeTransferScalarFieldEnum[]
+  }
+
+  /**
    * Employee without action
    */
   export type EmployeeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10573,6 +12724,1242 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: EmployeeInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model EmployeeTransfer
+   */
+
+  export type AggregateEmployeeTransfer = {
+    _count: EmployeeTransferCountAggregateOutputType | null
+    _min: EmployeeTransferMinAggregateOutputType | null
+    _max: EmployeeTransferMaxAggregateOutputType | null
+  }
+
+  export type EmployeeTransferMinAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    fromFacilityId: string | null
+    toFacilityId: string | null
+    fromDepartmentId: string | null
+    toDepartmentId: string | null
+    effectiveDate: Date | null
+    reason: string | null
+    createdBy: string | null
+    createdAt: Date | null
+  }
+
+  export type EmployeeTransferMaxAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    fromFacilityId: string | null
+    toFacilityId: string | null
+    fromDepartmentId: string | null
+    toDepartmentId: string | null
+    effectiveDate: Date | null
+    reason: string | null
+    createdBy: string | null
+    createdAt: Date | null
+  }
+
+  export type EmployeeTransferCountAggregateOutputType = {
+    id: number
+    employeeId: number
+    fromFacilityId: number
+    toFacilityId: number
+    fromDepartmentId: number
+    toDepartmentId: number
+    effectiveDate: number
+    reason: number
+    createdBy: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type EmployeeTransferMinAggregateInputType = {
+    id?: true
+    employeeId?: true
+    fromFacilityId?: true
+    toFacilityId?: true
+    fromDepartmentId?: true
+    toDepartmentId?: true
+    effectiveDate?: true
+    reason?: true
+    createdBy?: true
+    createdAt?: true
+  }
+
+  export type EmployeeTransferMaxAggregateInputType = {
+    id?: true
+    employeeId?: true
+    fromFacilityId?: true
+    toFacilityId?: true
+    fromDepartmentId?: true
+    toDepartmentId?: true
+    effectiveDate?: true
+    reason?: true
+    createdBy?: true
+    createdAt?: true
+  }
+
+  export type EmployeeTransferCountAggregateInputType = {
+    id?: true
+    employeeId?: true
+    fromFacilityId?: true
+    toFacilityId?: true
+    fromDepartmentId?: true
+    toDepartmentId?: true
+    effectiveDate?: true
+    reason?: true
+    createdBy?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type EmployeeTransferAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmployeeTransfer to aggregate.
+     */
+    where?: EmployeeTransferWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmployeeTransfers to fetch.
+     */
+    orderBy?: EmployeeTransferOrderByWithRelationInput | EmployeeTransferOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EmployeeTransferWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmployeeTransfers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmployeeTransfers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EmployeeTransfers
+    **/
+    _count?: true | EmployeeTransferCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EmployeeTransferMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EmployeeTransferMaxAggregateInputType
+  }
+
+  export type GetEmployeeTransferAggregateType<T extends EmployeeTransferAggregateArgs> = {
+        [P in keyof T & keyof AggregateEmployeeTransfer]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEmployeeTransfer[P]>
+      : GetScalarType<T[P], AggregateEmployeeTransfer[P]>
+  }
+
+
+
+
+  export type EmployeeTransferGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmployeeTransferWhereInput
+    orderBy?: EmployeeTransferOrderByWithAggregationInput | EmployeeTransferOrderByWithAggregationInput[]
+    by: EmployeeTransferScalarFieldEnum[] | EmployeeTransferScalarFieldEnum
+    having?: EmployeeTransferScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EmployeeTransferCountAggregateInputType | true
+    _min?: EmployeeTransferMinAggregateInputType
+    _max?: EmployeeTransferMaxAggregateInputType
+  }
+
+  export type EmployeeTransferGroupByOutputType = {
+    id: string
+    employeeId: string
+    fromFacilityId: string | null
+    toFacilityId: string | null
+    fromDepartmentId: string | null
+    toDepartmentId: string | null
+    effectiveDate: Date
+    reason: string | null
+    createdBy: string | null
+    createdAt: Date
+    _count: EmployeeTransferCountAggregateOutputType | null
+    _min: EmployeeTransferMinAggregateOutputType | null
+    _max: EmployeeTransferMaxAggregateOutputType | null
+  }
+
+  type GetEmployeeTransferGroupByPayload<T extends EmployeeTransferGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EmployeeTransferGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EmployeeTransferGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EmployeeTransferGroupByOutputType[P]>
+            : GetScalarType<T[P], EmployeeTransferGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EmployeeTransferSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    fromFacilityId?: boolean
+    toFacilityId?: boolean
+    fromDepartmentId?: boolean
+    toDepartmentId?: boolean
+    effectiveDate?: boolean
+    reason?: boolean
+    createdBy?: boolean
+    createdAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    fromFacility?: boolean | EmployeeTransfer$fromFacilityArgs<ExtArgs>
+    toFacility?: boolean | EmployeeTransfer$toFacilityArgs<ExtArgs>
+    fromDepartment?: boolean | EmployeeTransfer$fromDepartmentArgs<ExtArgs>
+    toDepartment?: boolean | EmployeeTransfer$toDepartmentArgs<ExtArgs>
+  }, ExtArgs["result"]["employeeTransfer"]>
+
+  export type EmployeeTransferSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    fromFacilityId?: boolean
+    toFacilityId?: boolean
+    fromDepartmentId?: boolean
+    toDepartmentId?: boolean
+    effectiveDate?: boolean
+    reason?: boolean
+    createdBy?: boolean
+    createdAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    fromFacility?: boolean | EmployeeTransfer$fromFacilityArgs<ExtArgs>
+    toFacility?: boolean | EmployeeTransfer$toFacilityArgs<ExtArgs>
+    fromDepartment?: boolean | EmployeeTransfer$fromDepartmentArgs<ExtArgs>
+    toDepartment?: boolean | EmployeeTransfer$toDepartmentArgs<ExtArgs>
+  }, ExtArgs["result"]["employeeTransfer"]>
+
+  export type EmployeeTransferSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    fromFacilityId?: boolean
+    toFacilityId?: boolean
+    fromDepartmentId?: boolean
+    toDepartmentId?: boolean
+    effectiveDate?: boolean
+    reason?: boolean
+    createdBy?: boolean
+    createdAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    fromFacility?: boolean | EmployeeTransfer$fromFacilityArgs<ExtArgs>
+    toFacility?: boolean | EmployeeTransfer$toFacilityArgs<ExtArgs>
+    fromDepartment?: boolean | EmployeeTransfer$fromDepartmentArgs<ExtArgs>
+    toDepartment?: boolean | EmployeeTransfer$toDepartmentArgs<ExtArgs>
+  }, ExtArgs["result"]["employeeTransfer"]>
+
+  export type EmployeeTransferSelectScalar = {
+    id?: boolean
+    employeeId?: boolean
+    fromFacilityId?: boolean
+    toFacilityId?: boolean
+    fromDepartmentId?: boolean
+    toDepartmentId?: boolean
+    effectiveDate?: boolean
+    reason?: boolean
+    createdBy?: boolean
+    createdAt?: boolean
+  }
+
+  export type EmployeeTransferOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "fromFacilityId" | "toFacilityId" | "fromDepartmentId" | "toDepartmentId" | "effectiveDate" | "reason" | "createdBy" | "createdAt", ExtArgs["result"]["employeeTransfer"]>
+  export type EmployeeTransferInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    fromFacility?: boolean | EmployeeTransfer$fromFacilityArgs<ExtArgs>
+    toFacility?: boolean | EmployeeTransfer$toFacilityArgs<ExtArgs>
+    fromDepartment?: boolean | EmployeeTransfer$fromDepartmentArgs<ExtArgs>
+    toDepartment?: boolean | EmployeeTransfer$toDepartmentArgs<ExtArgs>
+  }
+  export type EmployeeTransferIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    fromFacility?: boolean | EmployeeTransfer$fromFacilityArgs<ExtArgs>
+    toFacility?: boolean | EmployeeTransfer$toFacilityArgs<ExtArgs>
+    fromDepartment?: boolean | EmployeeTransfer$fromDepartmentArgs<ExtArgs>
+    toDepartment?: boolean | EmployeeTransfer$toDepartmentArgs<ExtArgs>
+  }
+  export type EmployeeTransferIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    fromFacility?: boolean | EmployeeTransfer$fromFacilityArgs<ExtArgs>
+    toFacility?: boolean | EmployeeTransfer$toFacilityArgs<ExtArgs>
+    fromDepartment?: boolean | EmployeeTransfer$fromDepartmentArgs<ExtArgs>
+    toDepartment?: boolean | EmployeeTransfer$toDepartmentArgs<ExtArgs>
+  }
+
+  export type $EmployeeTransferPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EmployeeTransfer"
+    objects: {
+      employee: Prisma.$EmployeePayload<ExtArgs>
+      fromFacility: Prisma.$FacilityPayload<ExtArgs> | null
+      toFacility: Prisma.$FacilityPayload<ExtArgs> | null
+      fromDepartment: Prisma.$DepartmentPayload<ExtArgs> | null
+      toDepartment: Prisma.$DepartmentPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      employeeId: string
+      fromFacilityId: string | null
+      toFacilityId: string | null
+      fromDepartmentId: string | null
+      toDepartmentId: string | null
+      effectiveDate: Date
+      reason: string | null
+      createdBy: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["employeeTransfer"]>
+    composites: {}
+  }
+
+  type EmployeeTransferGetPayload<S extends boolean | null | undefined | EmployeeTransferDefaultArgs> = $Result.GetResult<Prisma.$EmployeeTransferPayload, S>
+
+  type EmployeeTransferCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EmployeeTransferFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EmployeeTransferCountAggregateInputType | true
+    }
+
+  export interface EmployeeTransferDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EmployeeTransfer'], meta: { name: 'EmployeeTransfer' } }
+    /**
+     * Find zero or one EmployeeTransfer that matches the filter.
+     * @param {EmployeeTransferFindUniqueArgs} args - Arguments to find a EmployeeTransfer
+     * @example
+     * // Get one EmployeeTransfer
+     * const employeeTransfer = await prisma.employeeTransfer.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EmployeeTransferFindUniqueArgs>(args: SelectSubset<T, EmployeeTransferFindUniqueArgs<ExtArgs>>): Prisma__EmployeeTransferClient<$Result.GetResult<Prisma.$EmployeeTransferPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EmployeeTransfer that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EmployeeTransferFindUniqueOrThrowArgs} args - Arguments to find a EmployeeTransfer
+     * @example
+     * // Get one EmployeeTransfer
+     * const employeeTransfer = await prisma.employeeTransfer.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EmployeeTransferFindUniqueOrThrowArgs>(args: SelectSubset<T, EmployeeTransferFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EmployeeTransferClient<$Result.GetResult<Prisma.$EmployeeTransferPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmployeeTransfer that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeTransferFindFirstArgs} args - Arguments to find a EmployeeTransfer
+     * @example
+     * // Get one EmployeeTransfer
+     * const employeeTransfer = await prisma.employeeTransfer.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EmployeeTransferFindFirstArgs>(args?: SelectSubset<T, EmployeeTransferFindFirstArgs<ExtArgs>>): Prisma__EmployeeTransferClient<$Result.GetResult<Prisma.$EmployeeTransferPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EmployeeTransfer that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeTransferFindFirstOrThrowArgs} args - Arguments to find a EmployeeTransfer
+     * @example
+     * // Get one EmployeeTransfer
+     * const employeeTransfer = await prisma.employeeTransfer.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EmployeeTransferFindFirstOrThrowArgs>(args?: SelectSubset<T, EmployeeTransferFindFirstOrThrowArgs<ExtArgs>>): Prisma__EmployeeTransferClient<$Result.GetResult<Prisma.$EmployeeTransferPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EmployeeTransfers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeTransferFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EmployeeTransfers
+     * const employeeTransfers = await prisma.employeeTransfer.findMany()
+     * 
+     * // Get first 10 EmployeeTransfers
+     * const employeeTransfers = await prisma.employeeTransfer.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const employeeTransferWithIdOnly = await prisma.employeeTransfer.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EmployeeTransferFindManyArgs>(args?: SelectSubset<T, EmployeeTransferFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EmployeeTransfer.
+     * @param {EmployeeTransferCreateArgs} args - Arguments to create a EmployeeTransfer.
+     * @example
+     * // Create one EmployeeTransfer
+     * const EmployeeTransfer = await prisma.employeeTransfer.create({
+     *   data: {
+     *     // ... data to create a EmployeeTransfer
+     *   }
+     * })
+     * 
+     */
+    create<T extends EmployeeTransferCreateArgs>(args: SelectSubset<T, EmployeeTransferCreateArgs<ExtArgs>>): Prisma__EmployeeTransferClient<$Result.GetResult<Prisma.$EmployeeTransferPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EmployeeTransfers.
+     * @param {EmployeeTransferCreateManyArgs} args - Arguments to create many EmployeeTransfers.
+     * @example
+     * // Create many EmployeeTransfers
+     * const employeeTransfer = await prisma.employeeTransfer.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EmployeeTransferCreateManyArgs>(args?: SelectSubset<T, EmployeeTransferCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EmployeeTransfers and returns the data saved in the database.
+     * @param {EmployeeTransferCreateManyAndReturnArgs} args - Arguments to create many EmployeeTransfers.
+     * @example
+     * // Create many EmployeeTransfers
+     * const employeeTransfer = await prisma.employeeTransfer.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EmployeeTransfers and only return the `id`
+     * const employeeTransferWithIdOnly = await prisma.employeeTransfer.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EmployeeTransferCreateManyAndReturnArgs>(args?: SelectSubset<T, EmployeeTransferCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeTransferPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EmployeeTransfer.
+     * @param {EmployeeTransferDeleteArgs} args - Arguments to delete one EmployeeTransfer.
+     * @example
+     * // Delete one EmployeeTransfer
+     * const EmployeeTransfer = await prisma.employeeTransfer.delete({
+     *   where: {
+     *     // ... filter to delete one EmployeeTransfer
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EmployeeTransferDeleteArgs>(args: SelectSubset<T, EmployeeTransferDeleteArgs<ExtArgs>>): Prisma__EmployeeTransferClient<$Result.GetResult<Prisma.$EmployeeTransferPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EmployeeTransfer.
+     * @param {EmployeeTransferUpdateArgs} args - Arguments to update one EmployeeTransfer.
+     * @example
+     * // Update one EmployeeTransfer
+     * const employeeTransfer = await prisma.employeeTransfer.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EmployeeTransferUpdateArgs>(args: SelectSubset<T, EmployeeTransferUpdateArgs<ExtArgs>>): Prisma__EmployeeTransferClient<$Result.GetResult<Prisma.$EmployeeTransferPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EmployeeTransfers.
+     * @param {EmployeeTransferDeleteManyArgs} args - Arguments to filter EmployeeTransfers to delete.
+     * @example
+     * // Delete a few EmployeeTransfers
+     * const { count } = await prisma.employeeTransfer.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EmployeeTransferDeleteManyArgs>(args?: SelectSubset<T, EmployeeTransferDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmployeeTransfers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeTransferUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EmployeeTransfers
+     * const employeeTransfer = await prisma.employeeTransfer.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EmployeeTransferUpdateManyArgs>(args: SelectSubset<T, EmployeeTransferUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EmployeeTransfers and returns the data updated in the database.
+     * @param {EmployeeTransferUpdateManyAndReturnArgs} args - Arguments to update many EmployeeTransfers.
+     * @example
+     * // Update many EmployeeTransfers
+     * const employeeTransfer = await prisma.employeeTransfer.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EmployeeTransfers and only return the `id`
+     * const employeeTransferWithIdOnly = await prisma.employeeTransfer.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EmployeeTransferUpdateManyAndReturnArgs>(args: SelectSubset<T, EmployeeTransferUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeTransferPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EmployeeTransfer.
+     * @param {EmployeeTransferUpsertArgs} args - Arguments to update or create a EmployeeTransfer.
+     * @example
+     * // Update or create a EmployeeTransfer
+     * const employeeTransfer = await prisma.employeeTransfer.upsert({
+     *   create: {
+     *     // ... data to create a EmployeeTransfer
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EmployeeTransfer we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EmployeeTransferUpsertArgs>(args: SelectSubset<T, EmployeeTransferUpsertArgs<ExtArgs>>): Prisma__EmployeeTransferClient<$Result.GetResult<Prisma.$EmployeeTransferPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EmployeeTransfers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeTransferCountArgs} args - Arguments to filter EmployeeTransfers to count.
+     * @example
+     * // Count the number of EmployeeTransfers
+     * const count = await prisma.employeeTransfer.count({
+     *   where: {
+     *     // ... the filter for the EmployeeTransfers we want to count
+     *   }
+     * })
+    **/
+    count<T extends EmployeeTransferCountArgs>(
+      args?: Subset<T, EmployeeTransferCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EmployeeTransferCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EmployeeTransfer.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeTransferAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EmployeeTransferAggregateArgs>(args: Subset<T, EmployeeTransferAggregateArgs>): Prisma.PrismaPromise<GetEmployeeTransferAggregateType<T>>
+
+    /**
+     * Group by EmployeeTransfer.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EmployeeTransferGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EmployeeTransferGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EmployeeTransferGroupByArgs['orderBy'] }
+        : { orderBy?: EmployeeTransferGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EmployeeTransferGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEmployeeTransferGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EmployeeTransfer model
+   */
+  readonly fields: EmployeeTransferFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EmployeeTransfer.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EmployeeTransferClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    fromFacility<T extends EmployeeTransfer$fromFacilityArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeTransfer$fromFacilityArgs<ExtArgs>>): Prisma__FacilityClient<$Result.GetResult<Prisma.$FacilityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    toFacility<T extends EmployeeTransfer$toFacilityArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeTransfer$toFacilityArgs<ExtArgs>>): Prisma__FacilityClient<$Result.GetResult<Prisma.$FacilityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    fromDepartment<T extends EmployeeTransfer$fromDepartmentArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeTransfer$fromDepartmentArgs<ExtArgs>>): Prisma__DepartmentClient<$Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    toDepartment<T extends EmployeeTransfer$toDepartmentArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeTransfer$toDepartmentArgs<ExtArgs>>): Prisma__DepartmentClient<$Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EmployeeTransfer model
+   */
+  interface EmployeeTransferFieldRefs {
+    readonly id: FieldRef<"EmployeeTransfer", 'String'>
+    readonly employeeId: FieldRef<"EmployeeTransfer", 'String'>
+    readonly fromFacilityId: FieldRef<"EmployeeTransfer", 'String'>
+    readonly toFacilityId: FieldRef<"EmployeeTransfer", 'String'>
+    readonly fromDepartmentId: FieldRef<"EmployeeTransfer", 'String'>
+    readonly toDepartmentId: FieldRef<"EmployeeTransfer", 'String'>
+    readonly effectiveDate: FieldRef<"EmployeeTransfer", 'DateTime'>
+    readonly reason: FieldRef<"EmployeeTransfer", 'String'>
+    readonly createdBy: FieldRef<"EmployeeTransfer", 'String'>
+    readonly createdAt: FieldRef<"EmployeeTransfer", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EmployeeTransfer findUnique
+   */
+  export type EmployeeTransferFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeTransfer
+     */
+    select?: EmployeeTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeTransfer
+     */
+    omit?: EmployeeTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeTransferInclude<ExtArgs> | null
+    /**
+     * Filter, which EmployeeTransfer to fetch.
+     */
+    where: EmployeeTransferWhereUniqueInput
+  }
+
+  /**
+   * EmployeeTransfer findUniqueOrThrow
+   */
+  export type EmployeeTransferFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeTransfer
+     */
+    select?: EmployeeTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeTransfer
+     */
+    omit?: EmployeeTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeTransferInclude<ExtArgs> | null
+    /**
+     * Filter, which EmployeeTransfer to fetch.
+     */
+    where: EmployeeTransferWhereUniqueInput
+  }
+
+  /**
+   * EmployeeTransfer findFirst
+   */
+  export type EmployeeTransferFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeTransfer
+     */
+    select?: EmployeeTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeTransfer
+     */
+    omit?: EmployeeTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeTransferInclude<ExtArgs> | null
+    /**
+     * Filter, which EmployeeTransfer to fetch.
+     */
+    where?: EmployeeTransferWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmployeeTransfers to fetch.
+     */
+    orderBy?: EmployeeTransferOrderByWithRelationInput | EmployeeTransferOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmployeeTransfers.
+     */
+    cursor?: EmployeeTransferWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmployeeTransfers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmployeeTransfers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmployeeTransfers.
+     */
+    distinct?: EmployeeTransferScalarFieldEnum | EmployeeTransferScalarFieldEnum[]
+  }
+
+  /**
+   * EmployeeTransfer findFirstOrThrow
+   */
+  export type EmployeeTransferFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeTransfer
+     */
+    select?: EmployeeTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeTransfer
+     */
+    omit?: EmployeeTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeTransferInclude<ExtArgs> | null
+    /**
+     * Filter, which EmployeeTransfer to fetch.
+     */
+    where?: EmployeeTransferWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmployeeTransfers to fetch.
+     */
+    orderBy?: EmployeeTransferOrderByWithRelationInput | EmployeeTransferOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EmployeeTransfers.
+     */
+    cursor?: EmployeeTransferWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmployeeTransfers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmployeeTransfers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmployeeTransfers.
+     */
+    distinct?: EmployeeTransferScalarFieldEnum | EmployeeTransferScalarFieldEnum[]
+  }
+
+  /**
+   * EmployeeTransfer findMany
+   */
+  export type EmployeeTransferFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeTransfer
+     */
+    select?: EmployeeTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeTransfer
+     */
+    omit?: EmployeeTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeTransferInclude<ExtArgs> | null
+    /**
+     * Filter, which EmployeeTransfers to fetch.
+     */
+    where?: EmployeeTransferWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EmployeeTransfers to fetch.
+     */
+    orderBy?: EmployeeTransferOrderByWithRelationInput | EmployeeTransferOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EmployeeTransfers.
+     */
+    cursor?: EmployeeTransferWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EmployeeTransfers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EmployeeTransfers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EmployeeTransfers.
+     */
+    distinct?: EmployeeTransferScalarFieldEnum | EmployeeTransferScalarFieldEnum[]
+  }
+
+  /**
+   * EmployeeTransfer create
+   */
+  export type EmployeeTransferCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeTransfer
+     */
+    select?: EmployeeTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeTransfer
+     */
+    omit?: EmployeeTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeTransferInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EmployeeTransfer.
+     */
+    data: XOR<EmployeeTransferCreateInput, EmployeeTransferUncheckedCreateInput>
+  }
+
+  /**
+   * EmployeeTransfer createMany
+   */
+  export type EmployeeTransferCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EmployeeTransfers.
+     */
+    data: EmployeeTransferCreateManyInput | EmployeeTransferCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EmployeeTransfer createManyAndReturn
+   */
+  export type EmployeeTransferCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeTransfer
+     */
+    select?: EmployeeTransferSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeTransfer
+     */
+    omit?: EmployeeTransferOmit<ExtArgs> | null
+    /**
+     * The data used to create many EmployeeTransfers.
+     */
+    data: EmployeeTransferCreateManyInput | EmployeeTransferCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeTransferIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EmployeeTransfer update
+   */
+  export type EmployeeTransferUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeTransfer
+     */
+    select?: EmployeeTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeTransfer
+     */
+    omit?: EmployeeTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeTransferInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EmployeeTransfer.
+     */
+    data: XOR<EmployeeTransferUpdateInput, EmployeeTransferUncheckedUpdateInput>
+    /**
+     * Choose, which EmployeeTransfer to update.
+     */
+    where: EmployeeTransferWhereUniqueInput
+  }
+
+  /**
+   * EmployeeTransfer updateMany
+   */
+  export type EmployeeTransferUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EmployeeTransfers.
+     */
+    data: XOR<EmployeeTransferUpdateManyMutationInput, EmployeeTransferUncheckedUpdateManyInput>
+    /**
+     * Filter which EmployeeTransfers to update
+     */
+    where?: EmployeeTransferWhereInput
+    /**
+     * Limit how many EmployeeTransfers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmployeeTransfer updateManyAndReturn
+   */
+  export type EmployeeTransferUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeTransfer
+     */
+    select?: EmployeeTransferSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeTransfer
+     */
+    omit?: EmployeeTransferOmit<ExtArgs> | null
+    /**
+     * The data used to update EmployeeTransfers.
+     */
+    data: XOR<EmployeeTransferUpdateManyMutationInput, EmployeeTransferUncheckedUpdateManyInput>
+    /**
+     * Filter which EmployeeTransfers to update
+     */
+    where?: EmployeeTransferWhereInput
+    /**
+     * Limit how many EmployeeTransfers to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeTransferIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EmployeeTransfer upsert
+   */
+  export type EmployeeTransferUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeTransfer
+     */
+    select?: EmployeeTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeTransfer
+     */
+    omit?: EmployeeTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeTransferInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EmployeeTransfer to update in case it exists.
+     */
+    where: EmployeeTransferWhereUniqueInput
+    /**
+     * In case the EmployeeTransfer found by the `where` argument doesn't exist, create a new EmployeeTransfer with this data.
+     */
+    create: XOR<EmployeeTransferCreateInput, EmployeeTransferUncheckedCreateInput>
+    /**
+     * In case the EmployeeTransfer was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EmployeeTransferUpdateInput, EmployeeTransferUncheckedUpdateInput>
+  }
+
+  /**
+   * EmployeeTransfer delete
+   */
+  export type EmployeeTransferDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeTransfer
+     */
+    select?: EmployeeTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeTransfer
+     */
+    omit?: EmployeeTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeTransferInclude<ExtArgs> | null
+    /**
+     * Filter which EmployeeTransfer to delete.
+     */
+    where: EmployeeTransferWhereUniqueInput
+  }
+
+  /**
+   * EmployeeTransfer deleteMany
+   */
+  export type EmployeeTransferDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EmployeeTransfers to delete
+     */
+    where?: EmployeeTransferWhereInput
+    /**
+     * Limit how many EmployeeTransfers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EmployeeTransfer.fromFacility
+   */
+  export type EmployeeTransfer$fromFacilityArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Facility
+     */
+    select?: FacilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Facility
+     */
+    omit?: FacilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FacilityInclude<ExtArgs> | null
+    where?: FacilityWhereInput
+  }
+
+  /**
+   * EmployeeTransfer.toFacility
+   */
+  export type EmployeeTransfer$toFacilityArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Facility
+     */
+    select?: FacilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Facility
+     */
+    omit?: FacilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FacilityInclude<ExtArgs> | null
+    where?: FacilityWhereInput
+  }
+
+  /**
+   * EmployeeTransfer.fromDepartment
+   */
+  export type EmployeeTransfer$fromDepartmentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Department
+     */
+    select?: DepartmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Department
+     */
+    omit?: DepartmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepartmentInclude<ExtArgs> | null
+    where?: DepartmentWhereInput
+  }
+
+  /**
+   * EmployeeTransfer.toDepartment
+   */
+  export type EmployeeTransfer$toDepartmentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Department
+     */
+    select?: DepartmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Department
+     */
+    omit?: DepartmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepartmentInclude<ExtArgs> | null
+    where?: DepartmentWhereInput
+  }
+
+  /**
+   * EmployeeTransfer without action
+   */
+  export type EmployeeTransferDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeTransfer
+     */
+    select?: EmployeeTransferSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeTransfer
+     */
+    omit?: EmployeeTransferOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeTransferInclude<ExtArgs> | null
   }
 
 
@@ -18602,11 +21989,13 @@ export namespace Prisma {
   }
 
   export type EmployeeRequestAvgAggregateOutputType = {
+    currentApprovalStep: number | null
     leaveDays: number | null
     hours: number | null
   }
 
   export type EmployeeRequestSumAggregateOutputType = {
+    currentApprovalStep: number | null
     leaveDays: number | null
     hours: number | null
   }
@@ -18622,6 +22011,8 @@ export namespace Prisma {
     type: $Enums.RequestType | null
     userId: string | null
     status: $Enums.RequestStatus | null
+    currentApprovalStep: number | null
+    approvalCompleted: boolean | null
     leaveDays: number | null
     leaveEndDate: Date | null
     leaveStartDate: Date | null
@@ -18645,6 +22036,8 @@ export namespace Prisma {
     type: $Enums.RequestType | null
     userId: string | null
     status: $Enums.RequestStatus | null
+    currentApprovalStep: number | null
+    approvalCompleted: boolean | null
     leaveDays: number | null
     leaveEndDate: Date | null
     leaveStartDate: Date | null
@@ -18668,6 +22061,8 @@ export namespace Prisma {
     type: number
     userId: number
     status: number
+    currentApprovalStep: number
+    approvalCompleted: number
     leaveDays: number
     leaveEndDate: number
     leaveStartDate: number
@@ -18683,11 +22078,13 @@ export namespace Prisma {
 
 
   export type EmployeeRequestAvgAggregateInputType = {
+    currentApprovalStep?: true
     leaveDays?: true
     hours?: true
   }
 
   export type EmployeeRequestSumAggregateInputType = {
+    currentApprovalStep?: true
     leaveDays?: true
     hours?: true
   }
@@ -18703,6 +22100,8 @@ export namespace Prisma {
     type?: true
     userId?: true
     status?: true
+    currentApprovalStep?: true
+    approvalCompleted?: true
     leaveDays?: true
     leaveEndDate?: true
     leaveStartDate?: true
@@ -18726,6 +22125,8 @@ export namespace Prisma {
     type?: true
     userId?: true
     status?: true
+    currentApprovalStep?: true
+    approvalCompleted?: true
     leaveDays?: true
     leaveEndDate?: true
     leaveStartDate?: true
@@ -18749,6 +22150,8 @@ export namespace Prisma {
     type?: true
     userId?: true
     status?: true
+    currentApprovalStep?: true
+    approvalCompleted?: true
     leaveDays?: true
     leaveEndDate?: true
     leaveStartDate?: true
@@ -18859,6 +22262,8 @@ export namespace Prisma {
     type: $Enums.RequestType
     userId: string | null
     status: $Enums.RequestStatus
+    currentApprovalStep: number
+    approvalCompleted: boolean
     leaveDays: number | null
     leaveEndDate: Date | null
     leaveStartDate: Date | null
@@ -18901,6 +22306,8 @@ export namespace Prisma {
     type?: boolean
     userId?: boolean
     status?: boolean
+    currentApprovalStep?: boolean
+    approvalCompleted?: boolean
     leaveDays?: boolean
     leaveEndDate?: boolean
     leaveStartDate?: boolean
@@ -18916,6 +22323,7 @@ export namespace Prisma {
     user?: boolean | EmployeeRequest$userArgs<ExtArgs>
     attachments?: boolean | EmployeeRequest$attachmentsArgs<ExtArgs>
     histories?: boolean | EmployeeRequest$historiesArgs<ExtArgs>
+    approvals?: boolean | EmployeeRequest$approvalsArgs<ExtArgs>
     _count?: boolean | EmployeeRequestCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["employeeRequest"]>
 
@@ -18930,6 +22338,8 @@ export namespace Prisma {
     type?: boolean
     userId?: boolean
     status?: boolean
+    currentApprovalStep?: boolean
+    approvalCompleted?: boolean
     leaveDays?: boolean
     leaveEndDate?: boolean
     leaveStartDate?: boolean
@@ -18956,6 +22366,8 @@ export namespace Prisma {
     type?: boolean
     userId?: boolean
     status?: boolean
+    currentApprovalStep?: boolean
+    approvalCompleted?: boolean
     leaveDays?: boolean
     leaveEndDate?: boolean
     leaveStartDate?: boolean
@@ -18982,6 +22394,8 @@ export namespace Prisma {
     type?: boolean
     userId?: boolean
     status?: boolean
+    currentApprovalStep?: boolean
+    approvalCompleted?: boolean
     leaveDays?: boolean
     leaveEndDate?: boolean
     leaveStartDate?: boolean
@@ -18994,13 +22408,14 @@ export namespace Prisma {
     hours?: boolean
   }
 
-  export type EmployeeRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "employeeId" | "createdAt" | "comment" | "approvalComment" | "rejectionReason" | "type" | "userId" | "status" | "leaveDays" | "leaveEndDate" | "leaveStartDate" | "leaveTypeId" | "requestCategory" | "targetDate" | "unitType" | "startTime" | "endTime" | "hours", ExtArgs["result"]["employeeRequest"]>
+  export type EmployeeRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "employeeId" | "createdAt" | "comment" | "approvalComment" | "rejectionReason" | "type" | "userId" | "status" | "currentApprovalStep" | "approvalCompleted" | "leaveDays" | "leaveEndDate" | "leaveStartDate" | "leaveTypeId" | "requestCategory" | "targetDate" | "unitType" | "startTime" | "endTime" | "hours", ExtArgs["result"]["employeeRequest"]>
   export type EmployeeRequestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeRequest$employeeArgs<ExtArgs>
     leaveType?: boolean | EmployeeRequest$leaveTypeArgs<ExtArgs>
     user?: boolean | EmployeeRequest$userArgs<ExtArgs>
     attachments?: boolean | EmployeeRequest$attachmentsArgs<ExtArgs>
     histories?: boolean | EmployeeRequest$historiesArgs<ExtArgs>
+    approvals?: boolean | EmployeeRequest$approvalsArgs<ExtArgs>
     _count?: boolean | EmployeeRequestCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EmployeeRequestIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -19022,6 +22437,7 @@ export namespace Prisma {
       user: Prisma.$UserPayload<ExtArgs> | null
       attachments: Prisma.$RequestAttachmentPayload<ExtArgs>[]
       histories: Prisma.$RequestHistoryPayload<ExtArgs>[]
+      approvals: Prisma.$RequestApprovalPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -19034,6 +22450,8 @@ export namespace Prisma {
       type: $Enums.RequestType
       userId: string | null
       status: $Enums.RequestStatus
+      currentApprovalStep: number
+      approvalCompleted: boolean
       leaveDays: number | null
       leaveEndDate: Date | null
       leaveStartDate: Date | null
@@ -19443,6 +22861,7 @@ export namespace Prisma {
     user<T extends EmployeeRequest$userArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeRequest$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     attachments<T extends EmployeeRequest$attachmentsArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeRequest$attachmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RequestAttachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     histories<T extends EmployeeRequest$historiesArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeRequest$historiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RequestHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    approvals<T extends EmployeeRequest$approvalsArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeRequest$approvalsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RequestApprovalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -19482,6 +22901,8 @@ export namespace Prisma {
     readonly type: FieldRef<"EmployeeRequest", 'RequestType'>
     readonly userId: FieldRef<"EmployeeRequest", 'String'>
     readonly status: FieldRef<"EmployeeRequest", 'RequestStatus'>
+    readonly currentApprovalStep: FieldRef<"EmployeeRequest", 'Int'>
+    readonly approvalCompleted: FieldRef<"EmployeeRequest", 'Boolean'>
     readonly leaveDays: FieldRef<"EmployeeRequest", 'Float'>
     readonly leaveEndDate: FieldRef<"EmployeeRequest", 'DateTime'>
     readonly leaveStartDate: FieldRef<"EmployeeRequest", 'DateTime'>
@@ -19998,6 +23419,30 @@ export namespace Prisma {
   }
 
   /**
+   * EmployeeRequest.approvals
+   */
+  export type EmployeeRequest$approvalsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RequestApproval
+     */
+    select?: RequestApprovalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RequestApproval
+     */
+    omit?: RequestApprovalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RequestApprovalInclude<ExtArgs> | null
+    where?: RequestApprovalWhereInput
+    orderBy?: RequestApprovalOrderByWithRelationInput | RequestApprovalOrderByWithRelationInput[]
+    cursor?: RequestApprovalWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: RequestApprovalScalarFieldEnum | RequestApprovalScalarFieldEnum[]
+  }
+
+  /**
    * EmployeeRequest without action
    */
   export type EmployeeRequestDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -20013,6 +23458,1155 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: EmployeeRequestInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model RequestApproval
+   */
+
+  export type AggregateRequestApproval = {
+    _count: RequestApprovalCountAggregateOutputType | null
+    _avg: RequestApprovalAvgAggregateOutputType | null
+    _sum: RequestApprovalSumAggregateOutputType | null
+    _min: RequestApprovalMinAggregateOutputType | null
+    _max: RequestApprovalMaxAggregateOutputType | null
+  }
+
+  export type RequestApprovalAvgAggregateOutputType = {
+    stepNo: number | null
+  }
+
+  export type RequestApprovalSumAggregateOutputType = {
+    stepNo: number | null
+  }
+
+  export type RequestApprovalMinAggregateOutputType = {
+    id: string | null
+    requestId: string | null
+    stepNo: number | null
+    approverRole: $Enums.UserRole | null
+    approverId: string | null
+    status: $Enums.RequestStatus | null
+    comment: string | null
+    approvedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type RequestApprovalMaxAggregateOutputType = {
+    id: string | null
+    requestId: string | null
+    stepNo: number | null
+    approverRole: $Enums.UserRole | null
+    approverId: string | null
+    status: $Enums.RequestStatus | null
+    comment: string | null
+    approvedAt: Date | null
+    createdAt: Date | null
+  }
+
+  export type RequestApprovalCountAggregateOutputType = {
+    id: number
+    requestId: number
+    stepNo: number
+    approverRole: number
+    approverId: number
+    status: number
+    comment: number
+    approvedAt: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type RequestApprovalAvgAggregateInputType = {
+    stepNo?: true
+  }
+
+  export type RequestApprovalSumAggregateInputType = {
+    stepNo?: true
+  }
+
+  export type RequestApprovalMinAggregateInputType = {
+    id?: true
+    requestId?: true
+    stepNo?: true
+    approverRole?: true
+    approverId?: true
+    status?: true
+    comment?: true
+    approvedAt?: true
+    createdAt?: true
+  }
+
+  export type RequestApprovalMaxAggregateInputType = {
+    id?: true
+    requestId?: true
+    stepNo?: true
+    approverRole?: true
+    approverId?: true
+    status?: true
+    comment?: true
+    approvedAt?: true
+    createdAt?: true
+  }
+
+  export type RequestApprovalCountAggregateInputType = {
+    id?: true
+    requestId?: true
+    stepNo?: true
+    approverRole?: true
+    approverId?: true
+    status?: true
+    comment?: true
+    approvedAt?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type RequestApprovalAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RequestApproval to aggregate.
+     */
+    where?: RequestApprovalWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RequestApprovals to fetch.
+     */
+    orderBy?: RequestApprovalOrderByWithRelationInput | RequestApprovalOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: RequestApprovalWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RequestApprovals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RequestApprovals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned RequestApprovals
+    **/
+    _count?: true | RequestApprovalCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: RequestApprovalAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: RequestApprovalSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: RequestApprovalMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: RequestApprovalMaxAggregateInputType
+  }
+
+  export type GetRequestApprovalAggregateType<T extends RequestApprovalAggregateArgs> = {
+        [P in keyof T & keyof AggregateRequestApproval]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateRequestApproval[P]>
+      : GetScalarType<T[P], AggregateRequestApproval[P]>
+  }
+
+
+
+
+  export type RequestApprovalGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: RequestApprovalWhereInput
+    orderBy?: RequestApprovalOrderByWithAggregationInput | RequestApprovalOrderByWithAggregationInput[]
+    by: RequestApprovalScalarFieldEnum[] | RequestApprovalScalarFieldEnum
+    having?: RequestApprovalScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: RequestApprovalCountAggregateInputType | true
+    _avg?: RequestApprovalAvgAggregateInputType
+    _sum?: RequestApprovalSumAggregateInputType
+    _min?: RequestApprovalMinAggregateInputType
+    _max?: RequestApprovalMaxAggregateInputType
+  }
+
+  export type RequestApprovalGroupByOutputType = {
+    id: string
+    requestId: string
+    stepNo: number
+    approverRole: $Enums.UserRole
+    approverId: string | null
+    status: $Enums.RequestStatus
+    comment: string | null
+    approvedAt: Date | null
+    createdAt: Date
+    _count: RequestApprovalCountAggregateOutputType | null
+    _avg: RequestApprovalAvgAggregateOutputType | null
+    _sum: RequestApprovalSumAggregateOutputType | null
+    _min: RequestApprovalMinAggregateOutputType | null
+    _max: RequestApprovalMaxAggregateOutputType | null
+  }
+
+  type GetRequestApprovalGroupByPayload<T extends RequestApprovalGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<RequestApprovalGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof RequestApprovalGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], RequestApprovalGroupByOutputType[P]>
+            : GetScalarType<T[P], RequestApprovalGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type RequestApprovalSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    requestId?: boolean
+    stepNo?: boolean
+    approverRole?: boolean
+    approverId?: boolean
+    status?: boolean
+    comment?: boolean
+    approvedAt?: boolean
+    createdAt?: boolean
+    request?: boolean | EmployeeRequestDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["requestApproval"]>
+
+  export type RequestApprovalSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    requestId?: boolean
+    stepNo?: boolean
+    approverRole?: boolean
+    approverId?: boolean
+    status?: boolean
+    comment?: boolean
+    approvedAt?: boolean
+    createdAt?: boolean
+    request?: boolean | EmployeeRequestDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["requestApproval"]>
+
+  export type RequestApprovalSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    requestId?: boolean
+    stepNo?: boolean
+    approverRole?: boolean
+    approverId?: boolean
+    status?: boolean
+    comment?: boolean
+    approvedAt?: boolean
+    createdAt?: boolean
+    request?: boolean | EmployeeRequestDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["requestApproval"]>
+
+  export type RequestApprovalSelectScalar = {
+    id?: boolean
+    requestId?: boolean
+    stepNo?: boolean
+    approverRole?: boolean
+    approverId?: boolean
+    status?: boolean
+    comment?: boolean
+    approvedAt?: boolean
+    createdAt?: boolean
+  }
+
+  export type RequestApprovalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "requestId" | "stepNo" | "approverRole" | "approverId" | "status" | "comment" | "approvedAt" | "createdAt", ExtArgs["result"]["requestApproval"]>
+  export type RequestApprovalInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    request?: boolean | EmployeeRequestDefaultArgs<ExtArgs>
+  }
+  export type RequestApprovalIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    request?: boolean | EmployeeRequestDefaultArgs<ExtArgs>
+  }
+  export type RequestApprovalIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    request?: boolean | EmployeeRequestDefaultArgs<ExtArgs>
+  }
+
+  export type $RequestApprovalPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "RequestApproval"
+    objects: {
+      request: Prisma.$EmployeeRequestPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      requestId: string
+      stepNo: number
+      approverRole: $Enums.UserRole
+      approverId: string | null
+      status: $Enums.RequestStatus
+      comment: string | null
+      approvedAt: Date | null
+      createdAt: Date
+    }, ExtArgs["result"]["requestApproval"]>
+    composites: {}
+  }
+
+  type RequestApprovalGetPayload<S extends boolean | null | undefined | RequestApprovalDefaultArgs> = $Result.GetResult<Prisma.$RequestApprovalPayload, S>
+
+  type RequestApprovalCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<RequestApprovalFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: RequestApprovalCountAggregateInputType | true
+    }
+
+  export interface RequestApprovalDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['RequestApproval'], meta: { name: 'RequestApproval' } }
+    /**
+     * Find zero or one RequestApproval that matches the filter.
+     * @param {RequestApprovalFindUniqueArgs} args - Arguments to find a RequestApproval
+     * @example
+     * // Get one RequestApproval
+     * const requestApproval = await prisma.requestApproval.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends RequestApprovalFindUniqueArgs>(args: SelectSubset<T, RequestApprovalFindUniqueArgs<ExtArgs>>): Prisma__RequestApprovalClient<$Result.GetResult<Prisma.$RequestApprovalPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one RequestApproval that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {RequestApprovalFindUniqueOrThrowArgs} args - Arguments to find a RequestApproval
+     * @example
+     * // Get one RequestApproval
+     * const requestApproval = await prisma.requestApproval.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends RequestApprovalFindUniqueOrThrowArgs>(args: SelectSubset<T, RequestApprovalFindUniqueOrThrowArgs<ExtArgs>>): Prisma__RequestApprovalClient<$Result.GetResult<Prisma.$RequestApprovalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RequestApproval that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RequestApprovalFindFirstArgs} args - Arguments to find a RequestApproval
+     * @example
+     * // Get one RequestApproval
+     * const requestApproval = await prisma.requestApproval.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends RequestApprovalFindFirstArgs>(args?: SelectSubset<T, RequestApprovalFindFirstArgs<ExtArgs>>): Prisma__RequestApprovalClient<$Result.GetResult<Prisma.$RequestApprovalPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first RequestApproval that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RequestApprovalFindFirstOrThrowArgs} args - Arguments to find a RequestApproval
+     * @example
+     * // Get one RequestApproval
+     * const requestApproval = await prisma.requestApproval.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends RequestApprovalFindFirstOrThrowArgs>(args?: SelectSubset<T, RequestApprovalFindFirstOrThrowArgs<ExtArgs>>): Prisma__RequestApprovalClient<$Result.GetResult<Prisma.$RequestApprovalPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more RequestApprovals that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RequestApprovalFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all RequestApprovals
+     * const requestApprovals = await prisma.requestApproval.findMany()
+     * 
+     * // Get first 10 RequestApprovals
+     * const requestApprovals = await prisma.requestApproval.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const requestApprovalWithIdOnly = await prisma.requestApproval.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends RequestApprovalFindManyArgs>(args?: SelectSubset<T, RequestApprovalFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RequestApprovalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a RequestApproval.
+     * @param {RequestApprovalCreateArgs} args - Arguments to create a RequestApproval.
+     * @example
+     * // Create one RequestApproval
+     * const RequestApproval = await prisma.requestApproval.create({
+     *   data: {
+     *     // ... data to create a RequestApproval
+     *   }
+     * })
+     * 
+     */
+    create<T extends RequestApprovalCreateArgs>(args: SelectSubset<T, RequestApprovalCreateArgs<ExtArgs>>): Prisma__RequestApprovalClient<$Result.GetResult<Prisma.$RequestApprovalPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many RequestApprovals.
+     * @param {RequestApprovalCreateManyArgs} args - Arguments to create many RequestApprovals.
+     * @example
+     * // Create many RequestApprovals
+     * const requestApproval = await prisma.requestApproval.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends RequestApprovalCreateManyArgs>(args?: SelectSubset<T, RequestApprovalCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many RequestApprovals and returns the data saved in the database.
+     * @param {RequestApprovalCreateManyAndReturnArgs} args - Arguments to create many RequestApprovals.
+     * @example
+     * // Create many RequestApprovals
+     * const requestApproval = await prisma.requestApproval.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RequestApprovals and only return the `id`
+     * const requestApprovalWithIdOnly = await prisma.requestApproval.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RequestApprovalCreateManyAndReturnArgs>(args?: SelectSubset<T, RequestApprovalCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RequestApprovalPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a RequestApproval.
+     * @param {RequestApprovalDeleteArgs} args - Arguments to delete one RequestApproval.
+     * @example
+     * // Delete one RequestApproval
+     * const RequestApproval = await prisma.requestApproval.delete({
+     *   where: {
+     *     // ... filter to delete one RequestApproval
+     *   }
+     * })
+     * 
+     */
+    delete<T extends RequestApprovalDeleteArgs>(args: SelectSubset<T, RequestApprovalDeleteArgs<ExtArgs>>): Prisma__RequestApprovalClient<$Result.GetResult<Prisma.$RequestApprovalPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one RequestApproval.
+     * @param {RequestApprovalUpdateArgs} args - Arguments to update one RequestApproval.
+     * @example
+     * // Update one RequestApproval
+     * const requestApproval = await prisma.requestApproval.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends RequestApprovalUpdateArgs>(args: SelectSubset<T, RequestApprovalUpdateArgs<ExtArgs>>): Prisma__RequestApprovalClient<$Result.GetResult<Prisma.$RequestApprovalPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more RequestApprovals.
+     * @param {RequestApprovalDeleteManyArgs} args - Arguments to filter RequestApprovals to delete.
+     * @example
+     * // Delete a few RequestApprovals
+     * const { count } = await prisma.requestApproval.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends RequestApprovalDeleteManyArgs>(args?: SelectSubset<T, RequestApprovalDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RequestApprovals.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RequestApprovalUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many RequestApprovals
+     * const requestApproval = await prisma.requestApproval.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends RequestApprovalUpdateManyArgs>(args: SelectSubset<T, RequestApprovalUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RequestApprovals and returns the data updated in the database.
+     * @param {RequestApprovalUpdateManyAndReturnArgs} args - Arguments to update many RequestApprovals.
+     * @example
+     * // Update many RequestApprovals
+     * const requestApproval = await prisma.requestApproval.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RequestApprovals and only return the `id`
+     * const requestApprovalWithIdOnly = await prisma.requestApproval.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RequestApprovalUpdateManyAndReturnArgs>(args: SelectSubset<T, RequestApprovalUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RequestApprovalPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one RequestApproval.
+     * @param {RequestApprovalUpsertArgs} args - Arguments to update or create a RequestApproval.
+     * @example
+     * // Update or create a RequestApproval
+     * const requestApproval = await prisma.requestApproval.upsert({
+     *   create: {
+     *     // ... data to create a RequestApproval
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the RequestApproval we want to update
+     *   }
+     * })
+     */
+    upsert<T extends RequestApprovalUpsertArgs>(args: SelectSubset<T, RequestApprovalUpsertArgs<ExtArgs>>): Prisma__RequestApprovalClient<$Result.GetResult<Prisma.$RequestApprovalPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of RequestApprovals.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RequestApprovalCountArgs} args - Arguments to filter RequestApprovals to count.
+     * @example
+     * // Count the number of RequestApprovals
+     * const count = await prisma.requestApproval.count({
+     *   where: {
+     *     // ... the filter for the RequestApprovals we want to count
+     *   }
+     * })
+    **/
+    count<T extends RequestApprovalCountArgs>(
+      args?: Subset<T, RequestApprovalCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], RequestApprovalCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a RequestApproval.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RequestApprovalAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends RequestApprovalAggregateArgs>(args: Subset<T, RequestApprovalAggregateArgs>): Prisma.PrismaPromise<GetRequestApprovalAggregateType<T>>
+
+    /**
+     * Group by RequestApproval.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {RequestApprovalGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends RequestApprovalGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: RequestApprovalGroupByArgs['orderBy'] }
+        : { orderBy?: RequestApprovalGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, RequestApprovalGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetRequestApprovalGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the RequestApproval model
+   */
+  readonly fields: RequestApprovalFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for RequestApproval.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__RequestApprovalClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    request<T extends EmployeeRequestDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeRequestDefaultArgs<ExtArgs>>): Prisma__EmployeeRequestClient<$Result.GetResult<Prisma.$EmployeeRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the RequestApproval model
+   */
+  interface RequestApprovalFieldRefs {
+    readonly id: FieldRef<"RequestApproval", 'String'>
+    readonly requestId: FieldRef<"RequestApproval", 'String'>
+    readonly stepNo: FieldRef<"RequestApproval", 'Int'>
+    readonly approverRole: FieldRef<"RequestApproval", 'UserRole'>
+    readonly approverId: FieldRef<"RequestApproval", 'String'>
+    readonly status: FieldRef<"RequestApproval", 'RequestStatus'>
+    readonly comment: FieldRef<"RequestApproval", 'String'>
+    readonly approvedAt: FieldRef<"RequestApproval", 'DateTime'>
+    readonly createdAt: FieldRef<"RequestApproval", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * RequestApproval findUnique
+   */
+  export type RequestApprovalFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RequestApproval
+     */
+    select?: RequestApprovalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RequestApproval
+     */
+    omit?: RequestApprovalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RequestApprovalInclude<ExtArgs> | null
+    /**
+     * Filter, which RequestApproval to fetch.
+     */
+    where: RequestApprovalWhereUniqueInput
+  }
+
+  /**
+   * RequestApproval findUniqueOrThrow
+   */
+  export type RequestApprovalFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RequestApproval
+     */
+    select?: RequestApprovalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RequestApproval
+     */
+    omit?: RequestApprovalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RequestApprovalInclude<ExtArgs> | null
+    /**
+     * Filter, which RequestApproval to fetch.
+     */
+    where: RequestApprovalWhereUniqueInput
+  }
+
+  /**
+   * RequestApproval findFirst
+   */
+  export type RequestApprovalFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RequestApproval
+     */
+    select?: RequestApprovalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RequestApproval
+     */
+    omit?: RequestApprovalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RequestApprovalInclude<ExtArgs> | null
+    /**
+     * Filter, which RequestApproval to fetch.
+     */
+    where?: RequestApprovalWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RequestApprovals to fetch.
+     */
+    orderBy?: RequestApprovalOrderByWithRelationInput | RequestApprovalOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RequestApprovals.
+     */
+    cursor?: RequestApprovalWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RequestApprovals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RequestApprovals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RequestApprovals.
+     */
+    distinct?: RequestApprovalScalarFieldEnum | RequestApprovalScalarFieldEnum[]
+  }
+
+  /**
+   * RequestApproval findFirstOrThrow
+   */
+  export type RequestApprovalFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RequestApproval
+     */
+    select?: RequestApprovalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RequestApproval
+     */
+    omit?: RequestApprovalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RequestApprovalInclude<ExtArgs> | null
+    /**
+     * Filter, which RequestApproval to fetch.
+     */
+    where?: RequestApprovalWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RequestApprovals to fetch.
+     */
+    orderBy?: RequestApprovalOrderByWithRelationInput | RequestApprovalOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for RequestApprovals.
+     */
+    cursor?: RequestApprovalWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RequestApprovals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RequestApprovals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RequestApprovals.
+     */
+    distinct?: RequestApprovalScalarFieldEnum | RequestApprovalScalarFieldEnum[]
+  }
+
+  /**
+   * RequestApproval findMany
+   */
+  export type RequestApprovalFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RequestApproval
+     */
+    select?: RequestApprovalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RequestApproval
+     */
+    omit?: RequestApprovalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RequestApprovalInclude<ExtArgs> | null
+    /**
+     * Filter, which RequestApprovals to fetch.
+     */
+    where?: RequestApprovalWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of RequestApprovals to fetch.
+     */
+    orderBy?: RequestApprovalOrderByWithRelationInput | RequestApprovalOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing RequestApprovals.
+     */
+    cursor?: RequestApprovalWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` RequestApprovals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` RequestApprovals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of RequestApprovals.
+     */
+    distinct?: RequestApprovalScalarFieldEnum | RequestApprovalScalarFieldEnum[]
+  }
+
+  /**
+   * RequestApproval create
+   */
+  export type RequestApprovalCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RequestApproval
+     */
+    select?: RequestApprovalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RequestApproval
+     */
+    omit?: RequestApprovalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RequestApprovalInclude<ExtArgs> | null
+    /**
+     * The data needed to create a RequestApproval.
+     */
+    data: XOR<RequestApprovalCreateInput, RequestApprovalUncheckedCreateInput>
+  }
+
+  /**
+   * RequestApproval createMany
+   */
+  export type RequestApprovalCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many RequestApprovals.
+     */
+    data: RequestApprovalCreateManyInput | RequestApprovalCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * RequestApproval createManyAndReturn
+   */
+  export type RequestApprovalCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RequestApproval
+     */
+    select?: RequestApprovalSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RequestApproval
+     */
+    omit?: RequestApprovalOmit<ExtArgs> | null
+    /**
+     * The data used to create many RequestApprovals.
+     */
+    data: RequestApprovalCreateManyInput | RequestApprovalCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RequestApprovalIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RequestApproval update
+   */
+  export type RequestApprovalUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RequestApproval
+     */
+    select?: RequestApprovalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RequestApproval
+     */
+    omit?: RequestApprovalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RequestApprovalInclude<ExtArgs> | null
+    /**
+     * The data needed to update a RequestApproval.
+     */
+    data: XOR<RequestApprovalUpdateInput, RequestApprovalUncheckedUpdateInput>
+    /**
+     * Choose, which RequestApproval to update.
+     */
+    where: RequestApprovalWhereUniqueInput
+  }
+
+  /**
+   * RequestApproval updateMany
+   */
+  export type RequestApprovalUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RequestApprovals.
+     */
+    data: XOR<RequestApprovalUpdateManyMutationInput, RequestApprovalUncheckedUpdateManyInput>
+    /**
+     * Filter which RequestApprovals to update
+     */
+    where?: RequestApprovalWhereInput
+    /**
+     * Limit how many RequestApprovals to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RequestApproval updateManyAndReturn
+   */
+  export type RequestApprovalUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RequestApproval
+     */
+    select?: RequestApprovalSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RequestApproval
+     */
+    omit?: RequestApprovalOmit<ExtArgs> | null
+    /**
+     * The data used to update RequestApprovals.
+     */
+    data: XOR<RequestApprovalUpdateManyMutationInput, RequestApprovalUncheckedUpdateManyInput>
+    /**
+     * Filter which RequestApprovals to update
+     */
+    where?: RequestApprovalWhereInput
+    /**
+     * Limit how many RequestApprovals to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RequestApprovalIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * RequestApproval upsert
+   */
+  export type RequestApprovalUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RequestApproval
+     */
+    select?: RequestApprovalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RequestApproval
+     */
+    omit?: RequestApprovalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RequestApprovalInclude<ExtArgs> | null
+    /**
+     * The filter to search for the RequestApproval to update in case it exists.
+     */
+    where: RequestApprovalWhereUniqueInput
+    /**
+     * In case the RequestApproval found by the `where` argument doesn't exist, create a new RequestApproval with this data.
+     */
+    create: XOR<RequestApprovalCreateInput, RequestApprovalUncheckedCreateInput>
+    /**
+     * In case the RequestApproval was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<RequestApprovalUpdateInput, RequestApprovalUncheckedUpdateInput>
+  }
+
+  /**
+   * RequestApproval delete
+   */
+  export type RequestApprovalDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RequestApproval
+     */
+    select?: RequestApprovalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RequestApproval
+     */
+    omit?: RequestApprovalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RequestApprovalInclude<ExtArgs> | null
+    /**
+     * Filter which RequestApproval to delete.
+     */
+    where: RequestApprovalWhereUniqueInput
+  }
+
+  /**
+   * RequestApproval deleteMany
+   */
+  export type RequestApprovalDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which RequestApprovals to delete
+     */
+    where?: RequestApprovalWhereInput
+    /**
+     * Limit how many RequestApprovals to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * RequestApproval without action
+   */
+  export type RequestApprovalDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RequestApproval
+     */
+    select?: RequestApprovalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the RequestApproval
+     */
+    omit?: RequestApprovalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: RequestApprovalInclude<ExtArgs> | null
   }
 
 
@@ -22212,6 +26806,1175 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: RequestHistoryInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ApprovalRoute
+   */
+
+  export type AggregateApprovalRoute = {
+    _count: ApprovalRouteCountAggregateOutputType | null
+    _avg: ApprovalRouteAvgAggregateOutputType | null
+    _sum: ApprovalRouteSumAggregateOutputType | null
+    _min: ApprovalRouteMinAggregateOutputType | null
+    _max: ApprovalRouteMaxAggregateOutputType | null
+  }
+
+  export type ApprovalRouteAvgAggregateOutputType = {
+    stepNo: number | null
+  }
+
+  export type ApprovalRouteSumAggregateOutputType = {
+    stepNo: number | null
+  }
+
+  export type ApprovalRouteMinAggregateOutputType = {
+    id: string | null
+    facilityId: string | null
+    departmentId: string | null
+    stepNo: number | null
+    approverRole: $Enums.UserRole | null
+    isActive: boolean | null
+    createdAt: Date | null
+  }
+
+  export type ApprovalRouteMaxAggregateOutputType = {
+    id: string | null
+    facilityId: string | null
+    departmentId: string | null
+    stepNo: number | null
+    approverRole: $Enums.UserRole | null
+    isActive: boolean | null
+    createdAt: Date | null
+  }
+
+  export type ApprovalRouteCountAggregateOutputType = {
+    id: number
+    facilityId: number
+    departmentId: number
+    stepNo: number
+    approverRole: number
+    isActive: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ApprovalRouteAvgAggregateInputType = {
+    stepNo?: true
+  }
+
+  export type ApprovalRouteSumAggregateInputType = {
+    stepNo?: true
+  }
+
+  export type ApprovalRouteMinAggregateInputType = {
+    id?: true
+    facilityId?: true
+    departmentId?: true
+    stepNo?: true
+    approverRole?: true
+    isActive?: true
+    createdAt?: true
+  }
+
+  export type ApprovalRouteMaxAggregateInputType = {
+    id?: true
+    facilityId?: true
+    departmentId?: true
+    stepNo?: true
+    approverRole?: true
+    isActive?: true
+    createdAt?: true
+  }
+
+  export type ApprovalRouteCountAggregateInputType = {
+    id?: true
+    facilityId?: true
+    departmentId?: true
+    stepNo?: true
+    approverRole?: true
+    isActive?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ApprovalRouteAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ApprovalRoute to aggregate.
+     */
+    where?: ApprovalRouteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApprovalRoutes to fetch.
+     */
+    orderBy?: ApprovalRouteOrderByWithRelationInput | ApprovalRouteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ApprovalRouteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApprovalRoutes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApprovalRoutes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ApprovalRoutes
+    **/
+    _count?: true | ApprovalRouteCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ApprovalRouteAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ApprovalRouteSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ApprovalRouteMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ApprovalRouteMaxAggregateInputType
+  }
+
+  export type GetApprovalRouteAggregateType<T extends ApprovalRouteAggregateArgs> = {
+        [P in keyof T & keyof AggregateApprovalRoute]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateApprovalRoute[P]>
+      : GetScalarType<T[P], AggregateApprovalRoute[P]>
+  }
+
+
+
+
+  export type ApprovalRouteGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ApprovalRouteWhereInput
+    orderBy?: ApprovalRouteOrderByWithAggregationInput | ApprovalRouteOrderByWithAggregationInput[]
+    by: ApprovalRouteScalarFieldEnum[] | ApprovalRouteScalarFieldEnum
+    having?: ApprovalRouteScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ApprovalRouteCountAggregateInputType | true
+    _avg?: ApprovalRouteAvgAggregateInputType
+    _sum?: ApprovalRouteSumAggregateInputType
+    _min?: ApprovalRouteMinAggregateInputType
+    _max?: ApprovalRouteMaxAggregateInputType
+  }
+
+  export type ApprovalRouteGroupByOutputType = {
+    id: string
+    facilityId: string | null
+    departmentId: string | null
+    stepNo: number
+    approverRole: $Enums.UserRole
+    isActive: boolean
+    createdAt: Date
+    _count: ApprovalRouteCountAggregateOutputType | null
+    _avg: ApprovalRouteAvgAggregateOutputType | null
+    _sum: ApprovalRouteSumAggregateOutputType | null
+    _min: ApprovalRouteMinAggregateOutputType | null
+    _max: ApprovalRouteMaxAggregateOutputType | null
+  }
+
+  type GetApprovalRouteGroupByPayload<T extends ApprovalRouteGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ApprovalRouteGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ApprovalRouteGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ApprovalRouteGroupByOutputType[P]>
+            : GetScalarType<T[P], ApprovalRouteGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ApprovalRouteSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    facilityId?: boolean
+    departmentId?: boolean
+    stepNo?: boolean
+    approverRole?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    facility?: boolean | ApprovalRoute$facilityArgs<ExtArgs>
+    department?: boolean | ApprovalRoute$departmentArgs<ExtArgs>
+  }, ExtArgs["result"]["approvalRoute"]>
+
+  export type ApprovalRouteSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    facilityId?: boolean
+    departmentId?: boolean
+    stepNo?: boolean
+    approverRole?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    facility?: boolean | ApprovalRoute$facilityArgs<ExtArgs>
+    department?: boolean | ApprovalRoute$departmentArgs<ExtArgs>
+  }, ExtArgs["result"]["approvalRoute"]>
+
+  export type ApprovalRouteSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    facilityId?: boolean
+    departmentId?: boolean
+    stepNo?: boolean
+    approverRole?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+    facility?: boolean | ApprovalRoute$facilityArgs<ExtArgs>
+    department?: boolean | ApprovalRoute$departmentArgs<ExtArgs>
+  }, ExtArgs["result"]["approvalRoute"]>
+
+  export type ApprovalRouteSelectScalar = {
+    id?: boolean
+    facilityId?: boolean
+    departmentId?: boolean
+    stepNo?: boolean
+    approverRole?: boolean
+    isActive?: boolean
+    createdAt?: boolean
+  }
+
+  export type ApprovalRouteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "facilityId" | "departmentId" | "stepNo" | "approverRole" | "isActive" | "createdAt", ExtArgs["result"]["approvalRoute"]>
+  export type ApprovalRouteInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    facility?: boolean | ApprovalRoute$facilityArgs<ExtArgs>
+    department?: boolean | ApprovalRoute$departmentArgs<ExtArgs>
+  }
+  export type ApprovalRouteIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    facility?: boolean | ApprovalRoute$facilityArgs<ExtArgs>
+    department?: boolean | ApprovalRoute$departmentArgs<ExtArgs>
+  }
+  export type ApprovalRouteIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    facility?: boolean | ApprovalRoute$facilityArgs<ExtArgs>
+    department?: boolean | ApprovalRoute$departmentArgs<ExtArgs>
+  }
+
+  export type $ApprovalRoutePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ApprovalRoute"
+    objects: {
+      facility: Prisma.$FacilityPayload<ExtArgs> | null
+      department: Prisma.$DepartmentPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      facilityId: string | null
+      departmentId: string | null
+      stepNo: number
+      approverRole: $Enums.UserRole
+      isActive: boolean
+      createdAt: Date
+    }, ExtArgs["result"]["approvalRoute"]>
+    composites: {}
+  }
+
+  type ApprovalRouteGetPayload<S extends boolean | null | undefined | ApprovalRouteDefaultArgs> = $Result.GetResult<Prisma.$ApprovalRoutePayload, S>
+
+  type ApprovalRouteCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ApprovalRouteFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ApprovalRouteCountAggregateInputType | true
+    }
+
+  export interface ApprovalRouteDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ApprovalRoute'], meta: { name: 'ApprovalRoute' } }
+    /**
+     * Find zero or one ApprovalRoute that matches the filter.
+     * @param {ApprovalRouteFindUniqueArgs} args - Arguments to find a ApprovalRoute
+     * @example
+     * // Get one ApprovalRoute
+     * const approvalRoute = await prisma.approvalRoute.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ApprovalRouteFindUniqueArgs>(args: SelectSubset<T, ApprovalRouteFindUniqueArgs<ExtArgs>>): Prisma__ApprovalRouteClient<$Result.GetResult<Prisma.$ApprovalRoutePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ApprovalRoute that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ApprovalRouteFindUniqueOrThrowArgs} args - Arguments to find a ApprovalRoute
+     * @example
+     * // Get one ApprovalRoute
+     * const approvalRoute = await prisma.approvalRoute.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ApprovalRouteFindUniqueOrThrowArgs>(args: SelectSubset<T, ApprovalRouteFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ApprovalRouteClient<$Result.GetResult<Prisma.$ApprovalRoutePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ApprovalRoute that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApprovalRouteFindFirstArgs} args - Arguments to find a ApprovalRoute
+     * @example
+     * // Get one ApprovalRoute
+     * const approvalRoute = await prisma.approvalRoute.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ApprovalRouteFindFirstArgs>(args?: SelectSubset<T, ApprovalRouteFindFirstArgs<ExtArgs>>): Prisma__ApprovalRouteClient<$Result.GetResult<Prisma.$ApprovalRoutePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ApprovalRoute that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApprovalRouteFindFirstOrThrowArgs} args - Arguments to find a ApprovalRoute
+     * @example
+     * // Get one ApprovalRoute
+     * const approvalRoute = await prisma.approvalRoute.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ApprovalRouteFindFirstOrThrowArgs>(args?: SelectSubset<T, ApprovalRouteFindFirstOrThrowArgs<ExtArgs>>): Prisma__ApprovalRouteClient<$Result.GetResult<Prisma.$ApprovalRoutePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ApprovalRoutes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApprovalRouteFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ApprovalRoutes
+     * const approvalRoutes = await prisma.approvalRoute.findMany()
+     * 
+     * // Get first 10 ApprovalRoutes
+     * const approvalRoutes = await prisma.approvalRoute.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const approvalRouteWithIdOnly = await prisma.approvalRoute.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ApprovalRouteFindManyArgs>(args?: SelectSubset<T, ApprovalRouteFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApprovalRoutePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ApprovalRoute.
+     * @param {ApprovalRouteCreateArgs} args - Arguments to create a ApprovalRoute.
+     * @example
+     * // Create one ApprovalRoute
+     * const ApprovalRoute = await prisma.approvalRoute.create({
+     *   data: {
+     *     // ... data to create a ApprovalRoute
+     *   }
+     * })
+     * 
+     */
+    create<T extends ApprovalRouteCreateArgs>(args: SelectSubset<T, ApprovalRouteCreateArgs<ExtArgs>>): Prisma__ApprovalRouteClient<$Result.GetResult<Prisma.$ApprovalRoutePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ApprovalRoutes.
+     * @param {ApprovalRouteCreateManyArgs} args - Arguments to create many ApprovalRoutes.
+     * @example
+     * // Create many ApprovalRoutes
+     * const approvalRoute = await prisma.approvalRoute.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ApprovalRouteCreateManyArgs>(args?: SelectSubset<T, ApprovalRouteCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ApprovalRoutes and returns the data saved in the database.
+     * @param {ApprovalRouteCreateManyAndReturnArgs} args - Arguments to create many ApprovalRoutes.
+     * @example
+     * // Create many ApprovalRoutes
+     * const approvalRoute = await prisma.approvalRoute.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ApprovalRoutes and only return the `id`
+     * const approvalRouteWithIdOnly = await prisma.approvalRoute.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ApprovalRouteCreateManyAndReturnArgs>(args?: SelectSubset<T, ApprovalRouteCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApprovalRoutePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ApprovalRoute.
+     * @param {ApprovalRouteDeleteArgs} args - Arguments to delete one ApprovalRoute.
+     * @example
+     * // Delete one ApprovalRoute
+     * const ApprovalRoute = await prisma.approvalRoute.delete({
+     *   where: {
+     *     // ... filter to delete one ApprovalRoute
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ApprovalRouteDeleteArgs>(args: SelectSubset<T, ApprovalRouteDeleteArgs<ExtArgs>>): Prisma__ApprovalRouteClient<$Result.GetResult<Prisma.$ApprovalRoutePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ApprovalRoute.
+     * @param {ApprovalRouteUpdateArgs} args - Arguments to update one ApprovalRoute.
+     * @example
+     * // Update one ApprovalRoute
+     * const approvalRoute = await prisma.approvalRoute.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ApprovalRouteUpdateArgs>(args: SelectSubset<T, ApprovalRouteUpdateArgs<ExtArgs>>): Prisma__ApprovalRouteClient<$Result.GetResult<Prisma.$ApprovalRoutePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ApprovalRoutes.
+     * @param {ApprovalRouteDeleteManyArgs} args - Arguments to filter ApprovalRoutes to delete.
+     * @example
+     * // Delete a few ApprovalRoutes
+     * const { count } = await prisma.approvalRoute.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ApprovalRouteDeleteManyArgs>(args?: SelectSubset<T, ApprovalRouteDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ApprovalRoutes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApprovalRouteUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ApprovalRoutes
+     * const approvalRoute = await prisma.approvalRoute.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ApprovalRouteUpdateManyArgs>(args: SelectSubset<T, ApprovalRouteUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ApprovalRoutes and returns the data updated in the database.
+     * @param {ApprovalRouteUpdateManyAndReturnArgs} args - Arguments to update many ApprovalRoutes.
+     * @example
+     * // Update many ApprovalRoutes
+     * const approvalRoute = await prisma.approvalRoute.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ApprovalRoutes and only return the `id`
+     * const approvalRouteWithIdOnly = await prisma.approvalRoute.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ApprovalRouteUpdateManyAndReturnArgs>(args: SelectSubset<T, ApprovalRouteUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApprovalRoutePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ApprovalRoute.
+     * @param {ApprovalRouteUpsertArgs} args - Arguments to update or create a ApprovalRoute.
+     * @example
+     * // Update or create a ApprovalRoute
+     * const approvalRoute = await prisma.approvalRoute.upsert({
+     *   create: {
+     *     // ... data to create a ApprovalRoute
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ApprovalRoute we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ApprovalRouteUpsertArgs>(args: SelectSubset<T, ApprovalRouteUpsertArgs<ExtArgs>>): Prisma__ApprovalRouteClient<$Result.GetResult<Prisma.$ApprovalRoutePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ApprovalRoutes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApprovalRouteCountArgs} args - Arguments to filter ApprovalRoutes to count.
+     * @example
+     * // Count the number of ApprovalRoutes
+     * const count = await prisma.approvalRoute.count({
+     *   where: {
+     *     // ... the filter for the ApprovalRoutes we want to count
+     *   }
+     * })
+    **/
+    count<T extends ApprovalRouteCountArgs>(
+      args?: Subset<T, ApprovalRouteCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ApprovalRouteCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ApprovalRoute.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApprovalRouteAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ApprovalRouteAggregateArgs>(args: Subset<T, ApprovalRouteAggregateArgs>): Prisma.PrismaPromise<GetApprovalRouteAggregateType<T>>
+
+    /**
+     * Group by ApprovalRoute.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApprovalRouteGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ApprovalRouteGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ApprovalRouteGroupByArgs['orderBy'] }
+        : { orderBy?: ApprovalRouteGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ApprovalRouteGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetApprovalRouteGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ApprovalRoute model
+   */
+  readonly fields: ApprovalRouteFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ApprovalRoute.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ApprovalRouteClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    facility<T extends ApprovalRoute$facilityArgs<ExtArgs> = {}>(args?: Subset<T, ApprovalRoute$facilityArgs<ExtArgs>>): Prisma__FacilityClient<$Result.GetResult<Prisma.$FacilityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    department<T extends ApprovalRoute$departmentArgs<ExtArgs> = {}>(args?: Subset<T, ApprovalRoute$departmentArgs<ExtArgs>>): Prisma__DepartmentClient<$Result.GetResult<Prisma.$DepartmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ApprovalRoute model
+   */
+  interface ApprovalRouteFieldRefs {
+    readonly id: FieldRef<"ApprovalRoute", 'String'>
+    readonly facilityId: FieldRef<"ApprovalRoute", 'String'>
+    readonly departmentId: FieldRef<"ApprovalRoute", 'String'>
+    readonly stepNo: FieldRef<"ApprovalRoute", 'Int'>
+    readonly approverRole: FieldRef<"ApprovalRoute", 'UserRole'>
+    readonly isActive: FieldRef<"ApprovalRoute", 'Boolean'>
+    readonly createdAt: FieldRef<"ApprovalRoute", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ApprovalRoute findUnique
+   */
+  export type ApprovalRouteFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRoute
+     */
+    select?: ApprovalRouteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRoute
+     */
+    omit?: ApprovalRouteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRouteInclude<ExtArgs> | null
+    /**
+     * Filter, which ApprovalRoute to fetch.
+     */
+    where: ApprovalRouteWhereUniqueInput
+  }
+
+  /**
+   * ApprovalRoute findUniqueOrThrow
+   */
+  export type ApprovalRouteFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRoute
+     */
+    select?: ApprovalRouteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRoute
+     */
+    omit?: ApprovalRouteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRouteInclude<ExtArgs> | null
+    /**
+     * Filter, which ApprovalRoute to fetch.
+     */
+    where: ApprovalRouteWhereUniqueInput
+  }
+
+  /**
+   * ApprovalRoute findFirst
+   */
+  export type ApprovalRouteFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRoute
+     */
+    select?: ApprovalRouteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRoute
+     */
+    omit?: ApprovalRouteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRouteInclude<ExtArgs> | null
+    /**
+     * Filter, which ApprovalRoute to fetch.
+     */
+    where?: ApprovalRouteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApprovalRoutes to fetch.
+     */
+    orderBy?: ApprovalRouteOrderByWithRelationInput | ApprovalRouteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ApprovalRoutes.
+     */
+    cursor?: ApprovalRouteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApprovalRoutes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApprovalRoutes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ApprovalRoutes.
+     */
+    distinct?: ApprovalRouteScalarFieldEnum | ApprovalRouteScalarFieldEnum[]
+  }
+
+  /**
+   * ApprovalRoute findFirstOrThrow
+   */
+  export type ApprovalRouteFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRoute
+     */
+    select?: ApprovalRouteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRoute
+     */
+    omit?: ApprovalRouteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRouteInclude<ExtArgs> | null
+    /**
+     * Filter, which ApprovalRoute to fetch.
+     */
+    where?: ApprovalRouteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApprovalRoutes to fetch.
+     */
+    orderBy?: ApprovalRouteOrderByWithRelationInput | ApprovalRouteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ApprovalRoutes.
+     */
+    cursor?: ApprovalRouteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApprovalRoutes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApprovalRoutes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ApprovalRoutes.
+     */
+    distinct?: ApprovalRouteScalarFieldEnum | ApprovalRouteScalarFieldEnum[]
+  }
+
+  /**
+   * ApprovalRoute findMany
+   */
+  export type ApprovalRouteFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRoute
+     */
+    select?: ApprovalRouteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRoute
+     */
+    omit?: ApprovalRouteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRouteInclude<ExtArgs> | null
+    /**
+     * Filter, which ApprovalRoutes to fetch.
+     */
+    where?: ApprovalRouteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApprovalRoutes to fetch.
+     */
+    orderBy?: ApprovalRouteOrderByWithRelationInput | ApprovalRouteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ApprovalRoutes.
+     */
+    cursor?: ApprovalRouteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApprovalRoutes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApprovalRoutes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ApprovalRoutes.
+     */
+    distinct?: ApprovalRouteScalarFieldEnum | ApprovalRouteScalarFieldEnum[]
+  }
+
+  /**
+   * ApprovalRoute create
+   */
+  export type ApprovalRouteCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRoute
+     */
+    select?: ApprovalRouteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRoute
+     */
+    omit?: ApprovalRouteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRouteInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ApprovalRoute.
+     */
+    data: XOR<ApprovalRouteCreateInput, ApprovalRouteUncheckedCreateInput>
+  }
+
+  /**
+   * ApprovalRoute createMany
+   */
+  export type ApprovalRouteCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ApprovalRoutes.
+     */
+    data: ApprovalRouteCreateManyInput | ApprovalRouteCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ApprovalRoute createManyAndReturn
+   */
+  export type ApprovalRouteCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRoute
+     */
+    select?: ApprovalRouteSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRoute
+     */
+    omit?: ApprovalRouteOmit<ExtArgs> | null
+    /**
+     * The data used to create many ApprovalRoutes.
+     */
+    data: ApprovalRouteCreateManyInput | ApprovalRouteCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRouteIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ApprovalRoute update
+   */
+  export type ApprovalRouteUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRoute
+     */
+    select?: ApprovalRouteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRoute
+     */
+    omit?: ApprovalRouteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRouteInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ApprovalRoute.
+     */
+    data: XOR<ApprovalRouteUpdateInput, ApprovalRouteUncheckedUpdateInput>
+    /**
+     * Choose, which ApprovalRoute to update.
+     */
+    where: ApprovalRouteWhereUniqueInput
+  }
+
+  /**
+   * ApprovalRoute updateMany
+   */
+  export type ApprovalRouteUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ApprovalRoutes.
+     */
+    data: XOR<ApprovalRouteUpdateManyMutationInput, ApprovalRouteUncheckedUpdateManyInput>
+    /**
+     * Filter which ApprovalRoutes to update
+     */
+    where?: ApprovalRouteWhereInput
+    /**
+     * Limit how many ApprovalRoutes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ApprovalRoute updateManyAndReturn
+   */
+  export type ApprovalRouteUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRoute
+     */
+    select?: ApprovalRouteSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRoute
+     */
+    omit?: ApprovalRouteOmit<ExtArgs> | null
+    /**
+     * The data used to update ApprovalRoutes.
+     */
+    data: XOR<ApprovalRouteUpdateManyMutationInput, ApprovalRouteUncheckedUpdateManyInput>
+    /**
+     * Filter which ApprovalRoutes to update
+     */
+    where?: ApprovalRouteWhereInput
+    /**
+     * Limit how many ApprovalRoutes to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRouteIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ApprovalRoute upsert
+   */
+  export type ApprovalRouteUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRoute
+     */
+    select?: ApprovalRouteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRoute
+     */
+    omit?: ApprovalRouteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRouteInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ApprovalRoute to update in case it exists.
+     */
+    where: ApprovalRouteWhereUniqueInput
+    /**
+     * In case the ApprovalRoute found by the `where` argument doesn't exist, create a new ApprovalRoute with this data.
+     */
+    create: XOR<ApprovalRouteCreateInput, ApprovalRouteUncheckedCreateInput>
+    /**
+     * In case the ApprovalRoute was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ApprovalRouteUpdateInput, ApprovalRouteUncheckedUpdateInput>
+  }
+
+  /**
+   * ApprovalRoute delete
+   */
+  export type ApprovalRouteDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRoute
+     */
+    select?: ApprovalRouteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRoute
+     */
+    omit?: ApprovalRouteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRouteInclude<ExtArgs> | null
+    /**
+     * Filter which ApprovalRoute to delete.
+     */
+    where: ApprovalRouteWhereUniqueInput
+  }
+
+  /**
+   * ApprovalRoute deleteMany
+   */
+  export type ApprovalRouteDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ApprovalRoutes to delete
+     */
+    where?: ApprovalRouteWhereInput
+    /**
+     * Limit how many ApprovalRoutes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ApprovalRoute.facility
+   */
+  export type ApprovalRoute$facilityArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Facility
+     */
+    select?: FacilitySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Facility
+     */
+    omit?: FacilityOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FacilityInclude<ExtArgs> | null
+    where?: FacilityWhereInput
+  }
+
+  /**
+   * ApprovalRoute.department
+   */
+  export type ApprovalRoute$departmentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Department
+     */
+    select?: DepartmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Department
+     */
+    omit?: DepartmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DepartmentInclude<ExtArgs> | null
+    where?: DepartmentWhereInput
+  }
+
+  /**
+   * ApprovalRoute without action
+   */
+  export type ApprovalRouteDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApprovalRoute
+     */
+    select?: ApprovalRouteSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ApprovalRoute
+     */
+    omit?: ApprovalRouteOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ApprovalRouteInclude<ExtArgs> | null
   }
 
 
@@ -46538,6 +52301,11 @@ export namespace Prisma {
     expirationMonths: number | null
     description: string | null
     allowRequest: boolean | null
+    allowDay: boolean | null
+    allowAmHalf: boolean | null
+    allowPmHalf: boolean | null
+    allowHourly: boolean | null
+    allowDateRange: boolean | null
     manageBalance: boolean | null
     sortOrder: number | null
     isActive: boolean | null
@@ -46553,6 +52321,11 @@ export namespace Prisma {
     expirationMonths: number | null
     description: string | null
     allowRequest: boolean | null
+    allowDay: boolean | null
+    allowAmHalf: boolean | null
+    allowPmHalf: boolean | null
+    allowHourly: boolean | null
+    allowDateRange: boolean | null
     manageBalance: boolean | null
     sortOrder: number | null
     isActive: boolean | null
@@ -46568,6 +52341,11 @@ export namespace Prisma {
     expirationMonths: number
     description: number
     allowRequest: number
+    allowDay: number
+    allowAmHalf: number
+    allowPmHalf: number
+    allowHourly: number
+    allowDateRange: number
     manageBalance: number
     sortOrder: number
     isActive: number
@@ -46595,6 +52373,11 @@ export namespace Prisma {
     expirationMonths?: true
     description?: true
     allowRequest?: true
+    allowDay?: true
+    allowAmHalf?: true
+    allowPmHalf?: true
+    allowHourly?: true
+    allowDateRange?: true
     manageBalance?: true
     sortOrder?: true
     isActive?: true
@@ -46610,6 +52393,11 @@ export namespace Prisma {
     expirationMonths?: true
     description?: true
     allowRequest?: true
+    allowDay?: true
+    allowAmHalf?: true
+    allowPmHalf?: true
+    allowHourly?: true
+    allowDateRange?: true
     manageBalance?: true
     sortOrder?: true
     isActive?: true
@@ -46625,6 +52413,11 @@ export namespace Prisma {
     expirationMonths?: true
     description?: true
     allowRequest?: true
+    allowDay?: true
+    allowAmHalf?: true
+    allowPmHalf?: true
+    allowHourly?: true
+    allowDateRange?: true
     manageBalance?: true
     sortOrder?: true
     isActive?: true
@@ -46727,6 +52520,11 @@ export namespace Prisma {
     expirationMonths: number | null
     description: string | null
     allowRequest: boolean
+    allowDay: boolean
+    allowAmHalf: boolean
+    allowPmHalf: boolean
+    allowHourly: boolean
+    allowDateRange: boolean
     manageBalance: boolean
     sortOrder: number
     isActive: boolean
@@ -46761,6 +52559,11 @@ export namespace Prisma {
     expirationMonths?: boolean
     description?: boolean
     allowRequest?: boolean
+    allowDay?: boolean
+    allowAmHalf?: boolean
+    allowPmHalf?: boolean
+    allowHourly?: boolean
+    allowDateRange?: boolean
     manageBalance?: boolean
     sortOrder?: boolean
     isActive?: boolean
@@ -46780,6 +52583,11 @@ export namespace Prisma {
     expirationMonths?: boolean
     description?: boolean
     allowRequest?: boolean
+    allowDay?: boolean
+    allowAmHalf?: boolean
+    allowPmHalf?: boolean
+    allowHourly?: boolean
+    allowDateRange?: boolean
     manageBalance?: boolean
     sortOrder?: boolean
     isActive?: boolean
@@ -46795,6 +52603,11 @@ export namespace Prisma {
     expirationMonths?: boolean
     description?: boolean
     allowRequest?: boolean
+    allowDay?: boolean
+    allowAmHalf?: boolean
+    allowPmHalf?: boolean
+    allowHourly?: boolean
+    allowDateRange?: boolean
     manageBalance?: boolean
     sortOrder?: boolean
     isActive?: boolean
@@ -46810,6 +52623,11 @@ export namespace Prisma {
     expirationMonths?: boolean
     description?: boolean
     allowRequest?: boolean
+    allowDay?: boolean
+    allowAmHalf?: boolean
+    allowPmHalf?: boolean
+    allowHourly?: boolean
+    allowDateRange?: boolean
     manageBalance?: boolean
     sortOrder?: boolean
     isActive?: boolean
@@ -46817,7 +52635,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type LeaveTypeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "name" | "isPaid" | "expirationMonths" | "description" | "allowRequest" | "manageBalance" | "sortOrder" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["leaveType"]>
+  export type LeaveTypeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "code" | "name" | "isPaid" | "expirationMonths" | "description" | "allowRequest" | "allowDay" | "allowAmHalf" | "allowPmHalf" | "allowHourly" | "allowDateRange" | "manageBalance" | "sortOrder" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["leaveType"]>
   export type LeaveTypeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     leaveGrantHistories?: boolean | LeaveType$leaveGrantHistoriesArgs<ExtArgs>
     employeeRequests?: boolean | LeaveType$employeeRequestsArgs<ExtArgs>
@@ -46842,6 +52660,11 @@ export namespace Prisma {
       expirationMonths: number | null
       description: string | null
       allowRequest: boolean
+      allowDay: boolean
+      allowAmHalf: boolean
+      allowPmHalf: boolean
+      allowHourly: boolean
+      allowDateRange: boolean
       manageBalance: boolean
       sortOrder: number
       isActive: boolean
@@ -47280,6 +53103,11 @@ export namespace Prisma {
     readonly expirationMonths: FieldRef<"LeaveType", 'Int'>
     readonly description: FieldRef<"LeaveType", 'String'>
     readonly allowRequest: FieldRef<"LeaveType", 'Boolean'>
+    readonly allowDay: FieldRef<"LeaveType", 'Boolean'>
+    readonly allowAmHalf: FieldRef<"LeaveType", 'Boolean'>
+    readonly allowPmHalf: FieldRef<"LeaveType", 'Boolean'>
+    readonly allowHourly: FieldRef<"LeaveType", 'Boolean'>
+    readonly allowDateRange: FieldRef<"LeaveType", 'Boolean'>
     readonly manageBalance: FieldRef<"LeaveType", 'Boolean'>
     readonly sortOrder: FieldRef<"LeaveType", 'Int'>
     readonly isActive: FieldRef<"LeaveType", 'Boolean'>
@@ -54862,6 +60690,3273 @@ export namespace Prisma {
 
 
   /**
+   * Model LateRecord
+   */
+
+  export type AggregateLateRecord = {
+    _count: LateRecordCountAggregateOutputType | null
+    _min: LateRecordMinAggregateOutputType | null
+    _max: LateRecordMaxAggregateOutputType | null
+  }
+
+  export type LateRecordMinAggregateOutputType = {
+    id: string | null
+    requestId: string | null
+    employeeId: string | null
+    targetDate: Date | null
+    scheduledTime: string | null
+    arrivalTime: string | null
+    createdAt: Date | null
+  }
+
+  export type LateRecordMaxAggregateOutputType = {
+    id: string | null
+    requestId: string | null
+    employeeId: string | null
+    targetDate: Date | null
+    scheduledTime: string | null
+    arrivalTime: string | null
+    createdAt: Date | null
+  }
+
+  export type LateRecordCountAggregateOutputType = {
+    id: number
+    requestId: number
+    employeeId: number
+    targetDate: number
+    scheduledTime: number
+    arrivalTime: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type LateRecordMinAggregateInputType = {
+    id?: true
+    requestId?: true
+    employeeId?: true
+    targetDate?: true
+    scheduledTime?: true
+    arrivalTime?: true
+    createdAt?: true
+  }
+
+  export type LateRecordMaxAggregateInputType = {
+    id?: true
+    requestId?: true
+    employeeId?: true
+    targetDate?: true
+    scheduledTime?: true
+    arrivalTime?: true
+    createdAt?: true
+  }
+
+  export type LateRecordCountAggregateInputType = {
+    id?: true
+    requestId?: true
+    employeeId?: true
+    targetDate?: true
+    scheduledTime?: true
+    arrivalTime?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type LateRecordAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LateRecord to aggregate.
+     */
+    where?: LateRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LateRecords to fetch.
+     */
+    orderBy?: LateRecordOrderByWithRelationInput | LateRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: LateRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LateRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LateRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned LateRecords
+    **/
+    _count?: true | LateRecordCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: LateRecordMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: LateRecordMaxAggregateInputType
+  }
+
+  export type GetLateRecordAggregateType<T extends LateRecordAggregateArgs> = {
+        [P in keyof T & keyof AggregateLateRecord]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateLateRecord[P]>
+      : GetScalarType<T[P], AggregateLateRecord[P]>
+  }
+
+
+
+
+  export type LateRecordGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LateRecordWhereInput
+    orderBy?: LateRecordOrderByWithAggregationInput | LateRecordOrderByWithAggregationInput[]
+    by: LateRecordScalarFieldEnum[] | LateRecordScalarFieldEnum
+    having?: LateRecordScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: LateRecordCountAggregateInputType | true
+    _min?: LateRecordMinAggregateInputType
+    _max?: LateRecordMaxAggregateInputType
+  }
+
+  export type LateRecordGroupByOutputType = {
+    id: string
+    requestId: string
+    employeeId: string
+    targetDate: Date
+    scheduledTime: string
+    arrivalTime: string
+    createdAt: Date
+    _count: LateRecordCountAggregateOutputType | null
+    _min: LateRecordMinAggregateOutputType | null
+    _max: LateRecordMaxAggregateOutputType | null
+  }
+
+  type GetLateRecordGroupByPayload<T extends LateRecordGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<LateRecordGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof LateRecordGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], LateRecordGroupByOutputType[P]>
+            : GetScalarType<T[P], LateRecordGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type LateRecordSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    requestId?: boolean
+    employeeId?: boolean
+    targetDate?: boolean
+    scheduledTime?: boolean
+    arrivalTime?: boolean
+    createdAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["lateRecord"]>
+
+  export type LateRecordSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    requestId?: boolean
+    employeeId?: boolean
+    targetDate?: boolean
+    scheduledTime?: boolean
+    arrivalTime?: boolean
+    createdAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["lateRecord"]>
+
+  export type LateRecordSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    requestId?: boolean
+    employeeId?: boolean
+    targetDate?: boolean
+    scheduledTime?: boolean
+    arrivalTime?: boolean
+    createdAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["lateRecord"]>
+
+  export type LateRecordSelectScalar = {
+    id?: boolean
+    requestId?: boolean
+    employeeId?: boolean
+    targetDate?: boolean
+    scheduledTime?: boolean
+    arrivalTime?: boolean
+    createdAt?: boolean
+  }
+
+  export type LateRecordOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "requestId" | "employeeId" | "targetDate" | "scheduledTime" | "arrivalTime" | "createdAt", ExtArgs["result"]["lateRecord"]>
+  export type LateRecordInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+  export type LateRecordIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+  export type LateRecordIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+
+  export type $LateRecordPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "LateRecord"
+    objects: {
+      employee: Prisma.$EmployeePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      requestId: string
+      employeeId: string
+      targetDate: Date
+      scheduledTime: string
+      arrivalTime: string
+      createdAt: Date
+    }, ExtArgs["result"]["lateRecord"]>
+    composites: {}
+  }
+
+  type LateRecordGetPayload<S extends boolean | null | undefined | LateRecordDefaultArgs> = $Result.GetResult<Prisma.$LateRecordPayload, S>
+
+  type LateRecordCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<LateRecordFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: LateRecordCountAggregateInputType | true
+    }
+
+  export interface LateRecordDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['LateRecord'], meta: { name: 'LateRecord' } }
+    /**
+     * Find zero or one LateRecord that matches the filter.
+     * @param {LateRecordFindUniqueArgs} args - Arguments to find a LateRecord
+     * @example
+     * // Get one LateRecord
+     * const lateRecord = await prisma.lateRecord.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends LateRecordFindUniqueArgs>(args: SelectSubset<T, LateRecordFindUniqueArgs<ExtArgs>>): Prisma__LateRecordClient<$Result.GetResult<Prisma.$LateRecordPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one LateRecord that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {LateRecordFindUniqueOrThrowArgs} args - Arguments to find a LateRecord
+     * @example
+     * // Get one LateRecord
+     * const lateRecord = await prisma.lateRecord.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends LateRecordFindUniqueOrThrowArgs>(args: SelectSubset<T, LateRecordFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LateRecordClient<$Result.GetResult<Prisma.$LateRecordPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LateRecord that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LateRecordFindFirstArgs} args - Arguments to find a LateRecord
+     * @example
+     * // Get one LateRecord
+     * const lateRecord = await prisma.lateRecord.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends LateRecordFindFirstArgs>(args?: SelectSubset<T, LateRecordFindFirstArgs<ExtArgs>>): Prisma__LateRecordClient<$Result.GetResult<Prisma.$LateRecordPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first LateRecord that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LateRecordFindFirstOrThrowArgs} args - Arguments to find a LateRecord
+     * @example
+     * // Get one LateRecord
+     * const lateRecord = await prisma.lateRecord.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends LateRecordFindFirstOrThrowArgs>(args?: SelectSubset<T, LateRecordFindFirstOrThrowArgs<ExtArgs>>): Prisma__LateRecordClient<$Result.GetResult<Prisma.$LateRecordPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more LateRecords that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LateRecordFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all LateRecords
+     * const lateRecords = await prisma.lateRecord.findMany()
+     * 
+     * // Get first 10 LateRecords
+     * const lateRecords = await prisma.lateRecord.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const lateRecordWithIdOnly = await prisma.lateRecord.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends LateRecordFindManyArgs>(args?: SelectSubset<T, LateRecordFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LateRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a LateRecord.
+     * @param {LateRecordCreateArgs} args - Arguments to create a LateRecord.
+     * @example
+     * // Create one LateRecord
+     * const LateRecord = await prisma.lateRecord.create({
+     *   data: {
+     *     // ... data to create a LateRecord
+     *   }
+     * })
+     * 
+     */
+    create<T extends LateRecordCreateArgs>(args: SelectSubset<T, LateRecordCreateArgs<ExtArgs>>): Prisma__LateRecordClient<$Result.GetResult<Prisma.$LateRecordPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many LateRecords.
+     * @param {LateRecordCreateManyArgs} args - Arguments to create many LateRecords.
+     * @example
+     * // Create many LateRecords
+     * const lateRecord = await prisma.lateRecord.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends LateRecordCreateManyArgs>(args?: SelectSubset<T, LateRecordCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many LateRecords and returns the data saved in the database.
+     * @param {LateRecordCreateManyAndReturnArgs} args - Arguments to create many LateRecords.
+     * @example
+     * // Create many LateRecords
+     * const lateRecord = await prisma.lateRecord.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many LateRecords and only return the `id`
+     * const lateRecordWithIdOnly = await prisma.lateRecord.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends LateRecordCreateManyAndReturnArgs>(args?: SelectSubset<T, LateRecordCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LateRecordPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a LateRecord.
+     * @param {LateRecordDeleteArgs} args - Arguments to delete one LateRecord.
+     * @example
+     * // Delete one LateRecord
+     * const LateRecord = await prisma.lateRecord.delete({
+     *   where: {
+     *     // ... filter to delete one LateRecord
+     *   }
+     * })
+     * 
+     */
+    delete<T extends LateRecordDeleteArgs>(args: SelectSubset<T, LateRecordDeleteArgs<ExtArgs>>): Prisma__LateRecordClient<$Result.GetResult<Prisma.$LateRecordPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one LateRecord.
+     * @param {LateRecordUpdateArgs} args - Arguments to update one LateRecord.
+     * @example
+     * // Update one LateRecord
+     * const lateRecord = await prisma.lateRecord.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends LateRecordUpdateArgs>(args: SelectSubset<T, LateRecordUpdateArgs<ExtArgs>>): Prisma__LateRecordClient<$Result.GetResult<Prisma.$LateRecordPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more LateRecords.
+     * @param {LateRecordDeleteManyArgs} args - Arguments to filter LateRecords to delete.
+     * @example
+     * // Delete a few LateRecords
+     * const { count } = await prisma.lateRecord.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends LateRecordDeleteManyArgs>(args?: SelectSubset<T, LateRecordDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LateRecords.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LateRecordUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many LateRecords
+     * const lateRecord = await prisma.lateRecord.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends LateRecordUpdateManyArgs>(args: SelectSubset<T, LateRecordUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more LateRecords and returns the data updated in the database.
+     * @param {LateRecordUpdateManyAndReturnArgs} args - Arguments to update many LateRecords.
+     * @example
+     * // Update many LateRecords
+     * const lateRecord = await prisma.lateRecord.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more LateRecords and only return the `id`
+     * const lateRecordWithIdOnly = await prisma.lateRecord.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends LateRecordUpdateManyAndReturnArgs>(args: SelectSubset<T, LateRecordUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LateRecordPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one LateRecord.
+     * @param {LateRecordUpsertArgs} args - Arguments to update or create a LateRecord.
+     * @example
+     * // Update or create a LateRecord
+     * const lateRecord = await prisma.lateRecord.upsert({
+     *   create: {
+     *     // ... data to create a LateRecord
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the LateRecord we want to update
+     *   }
+     * })
+     */
+    upsert<T extends LateRecordUpsertArgs>(args: SelectSubset<T, LateRecordUpsertArgs<ExtArgs>>): Prisma__LateRecordClient<$Result.GetResult<Prisma.$LateRecordPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of LateRecords.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LateRecordCountArgs} args - Arguments to filter LateRecords to count.
+     * @example
+     * // Count the number of LateRecords
+     * const count = await prisma.lateRecord.count({
+     *   where: {
+     *     // ... the filter for the LateRecords we want to count
+     *   }
+     * })
+    **/
+    count<T extends LateRecordCountArgs>(
+      args?: Subset<T, LateRecordCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], LateRecordCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a LateRecord.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LateRecordAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends LateRecordAggregateArgs>(args: Subset<T, LateRecordAggregateArgs>): Prisma.PrismaPromise<GetLateRecordAggregateType<T>>
+
+    /**
+     * Group by LateRecord.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {LateRecordGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends LateRecordGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: LateRecordGroupByArgs['orderBy'] }
+        : { orderBy?: LateRecordGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, LateRecordGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLateRecordGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the LateRecord model
+   */
+  readonly fields: LateRecordFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for LateRecord.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__LateRecordClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the LateRecord model
+   */
+  interface LateRecordFieldRefs {
+    readonly id: FieldRef<"LateRecord", 'String'>
+    readonly requestId: FieldRef<"LateRecord", 'String'>
+    readonly employeeId: FieldRef<"LateRecord", 'String'>
+    readonly targetDate: FieldRef<"LateRecord", 'DateTime'>
+    readonly scheduledTime: FieldRef<"LateRecord", 'String'>
+    readonly arrivalTime: FieldRef<"LateRecord", 'String'>
+    readonly createdAt: FieldRef<"LateRecord", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * LateRecord findUnique
+   */
+  export type LateRecordFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LateRecord
+     */
+    select?: LateRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LateRecord
+     */
+    omit?: LateRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LateRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which LateRecord to fetch.
+     */
+    where: LateRecordWhereUniqueInput
+  }
+
+  /**
+   * LateRecord findUniqueOrThrow
+   */
+  export type LateRecordFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LateRecord
+     */
+    select?: LateRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LateRecord
+     */
+    omit?: LateRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LateRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which LateRecord to fetch.
+     */
+    where: LateRecordWhereUniqueInput
+  }
+
+  /**
+   * LateRecord findFirst
+   */
+  export type LateRecordFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LateRecord
+     */
+    select?: LateRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LateRecord
+     */
+    omit?: LateRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LateRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which LateRecord to fetch.
+     */
+    where?: LateRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LateRecords to fetch.
+     */
+    orderBy?: LateRecordOrderByWithRelationInput | LateRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LateRecords.
+     */
+    cursor?: LateRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LateRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LateRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LateRecords.
+     */
+    distinct?: LateRecordScalarFieldEnum | LateRecordScalarFieldEnum[]
+  }
+
+  /**
+   * LateRecord findFirstOrThrow
+   */
+  export type LateRecordFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LateRecord
+     */
+    select?: LateRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LateRecord
+     */
+    omit?: LateRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LateRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which LateRecord to fetch.
+     */
+    where?: LateRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LateRecords to fetch.
+     */
+    orderBy?: LateRecordOrderByWithRelationInput | LateRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for LateRecords.
+     */
+    cursor?: LateRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LateRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LateRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LateRecords.
+     */
+    distinct?: LateRecordScalarFieldEnum | LateRecordScalarFieldEnum[]
+  }
+
+  /**
+   * LateRecord findMany
+   */
+  export type LateRecordFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LateRecord
+     */
+    select?: LateRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LateRecord
+     */
+    omit?: LateRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LateRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which LateRecords to fetch.
+     */
+    where?: LateRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of LateRecords to fetch.
+     */
+    orderBy?: LateRecordOrderByWithRelationInput | LateRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing LateRecords.
+     */
+    cursor?: LateRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` LateRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` LateRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of LateRecords.
+     */
+    distinct?: LateRecordScalarFieldEnum | LateRecordScalarFieldEnum[]
+  }
+
+  /**
+   * LateRecord create
+   */
+  export type LateRecordCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LateRecord
+     */
+    select?: LateRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LateRecord
+     */
+    omit?: LateRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LateRecordInclude<ExtArgs> | null
+    /**
+     * The data needed to create a LateRecord.
+     */
+    data: XOR<LateRecordCreateInput, LateRecordUncheckedCreateInput>
+  }
+
+  /**
+   * LateRecord createMany
+   */
+  export type LateRecordCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many LateRecords.
+     */
+    data: LateRecordCreateManyInput | LateRecordCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * LateRecord createManyAndReturn
+   */
+  export type LateRecordCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LateRecord
+     */
+    select?: LateRecordSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LateRecord
+     */
+    omit?: LateRecordOmit<ExtArgs> | null
+    /**
+     * The data used to create many LateRecords.
+     */
+    data: LateRecordCreateManyInput | LateRecordCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LateRecordIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LateRecord update
+   */
+  export type LateRecordUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LateRecord
+     */
+    select?: LateRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LateRecord
+     */
+    omit?: LateRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LateRecordInclude<ExtArgs> | null
+    /**
+     * The data needed to update a LateRecord.
+     */
+    data: XOR<LateRecordUpdateInput, LateRecordUncheckedUpdateInput>
+    /**
+     * Choose, which LateRecord to update.
+     */
+    where: LateRecordWhereUniqueInput
+  }
+
+  /**
+   * LateRecord updateMany
+   */
+  export type LateRecordUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update LateRecords.
+     */
+    data: XOR<LateRecordUpdateManyMutationInput, LateRecordUncheckedUpdateManyInput>
+    /**
+     * Filter which LateRecords to update
+     */
+    where?: LateRecordWhereInput
+    /**
+     * Limit how many LateRecords to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * LateRecord updateManyAndReturn
+   */
+  export type LateRecordUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LateRecord
+     */
+    select?: LateRecordSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the LateRecord
+     */
+    omit?: LateRecordOmit<ExtArgs> | null
+    /**
+     * The data used to update LateRecords.
+     */
+    data: XOR<LateRecordUpdateManyMutationInput, LateRecordUncheckedUpdateManyInput>
+    /**
+     * Filter which LateRecords to update
+     */
+    where?: LateRecordWhereInput
+    /**
+     * Limit how many LateRecords to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LateRecordIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * LateRecord upsert
+   */
+  export type LateRecordUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LateRecord
+     */
+    select?: LateRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LateRecord
+     */
+    omit?: LateRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LateRecordInclude<ExtArgs> | null
+    /**
+     * The filter to search for the LateRecord to update in case it exists.
+     */
+    where: LateRecordWhereUniqueInput
+    /**
+     * In case the LateRecord found by the `where` argument doesn't exist, create a new LateRecord with this data.
+     */
+    create: XOR<LateRecordCreateInput, LateRecordUncheckedCreateInput>
+    /**
+     * In case the LateRecord was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<LateRecordUpdateInput, LateRecordUncheckedUpdateInput>
+  }
+
+  /**
+   * LateRecord delete
+   */
+  export type LateRecordDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LateRecord
+     */
+    select?: LateRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LateRecord
+     */
+    omit?: LateRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LateRecordInclude<ExtArgs> | null
+    /**
+     * Filter which LateRecord to delete.
+     */
+    where: LateRecordWhereUniqueInput
+  }
+
+  /**
+   * LateRecord deleteMany
+   */
+  export type LateRecordDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which LateRecords to delete
+     */
+    where?: LateRecordWhereInput
+    /**
+     * Limit how many LateRecords to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * LateRecord without action
+   */
+  export type LateRecordDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LateRecord
+     */
+    select?: LateRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the LateRecord
+     */
+    omit?: LateRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: LateRecordInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model EarlyLeaveRecord
+   */
+
+  export type AggregateEarlyLeaveRecord = {
+    _count: EarlyLeaveRecordCountAggregateOutputType | null
+    _min: EarlyLeaveRecordMinAggregateOutputType | null
+    _max: EarlyLeaveRecordMaxAggregateOutputType | null
+  }
+
+  export type EarlyLeaveRecordMinAggregateOutputType = {
+    id: string | null
+    requestId: string | null
+    employeeId: string | null
+    targetDate: Date | null
+    scheduledTime: string | null
+    leaveTime: string | null
+    createdAt: Date | null
+  }
+
+  export type EarlyLeaveRecordMaxAggregateOutputType = {
+    id: string | null
+    requestId: string | null
+    employeeId: string | null
+    targetDate: Date | null
+    scheduledTime: string | null
+    leaveTime: string | null
+    createdAt: Date | null
+  }
+
+  export type EarlyLeaveRecordCountAggregateOutputType = {
+    id: number
+    requestId: number
+    employeeId: number
+    targetDate: number
+    scheduledTime: number
+    leaveTime: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type EarlyLeaveRecordMinAggregateInputType = {
+    id?: true
+    requestId?: true
+    employeeId?: true
+    targetDate?: true
+    scheduledTime?: true
+    leaveTime?: true
+    createdAt?: true
+  }
+
+  export type EarlyLeaveRecordMaxAggregateInputType = {
+    id?: true
+    requestId?: true
+    employeeId?: true
+    targetDate?: true
+    scheduledTime?: true
+    leaveTime?: true
+    createdAt?: true
+  }
+
+  export type EarlyLeaveRecordCountAggregateInputType = {
+    id?: true
+    requestId?: true
+    employeeId?: true
+    targetDate?: true
+    scheduledTime?: true
+    leaveTime?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type EarlyLeaveRecordAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EarlyLeaveRecord to aggregate.
+     */
+    where?: EarlyLeaveRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EarlyLeaveRecords to fetch.
+     */
+    orderBy?: EarlyLeaveRecordOrderByWithRelationInput | EarlyLeaveRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: EarlyLeaveRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EarlyLeaveRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EarlyLeaveRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned EarlyLeaveRecords
+    **/
+    _count?: true | EarlyLeaveRecordCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: EarlyLeaveRecordMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: EarlyLeaveRecordMaxAggregateInputType
+  }
+
+  export type GetEarlyLeaveRecordAggregateType<T extends EarlyLeaveRecordAggregateArgs> = {
+        [P in keyof T & keyof AggregateEarlyLeaveRecord]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateEarlyLeaveRecord[P]>
+      : GetScalarType<T[P], AggregateEarlyLeaveRecord[P]>
+  }
+
+
+
+
+  export type EarlyLeaveRecordGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EarlyLeaveRecordWhereInput
+    orderBy?: EarlyLeaveRecordOrderByWithAggregationInput | EarlyLeaveRecordOrderByWithAggregationInput[]
+    by: EarlyLeaveRecordScalarFieldEnum[] | EarlyLeaveRecordScalarFieldEnum
+    having?: EarlyLeaveRecordScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: EarlyLeaveRecordCountAggregateInputType | true
+    _min?: EarlyLeaveRecordMinAggregateInputType
+    _max?: EarlyLeaveRecordMaxAggregateInputType
+  }
+
+  export type EarlyLeaveRecordGroupByOutputType = {
+    id: string
+    requestId: string
+    employeeId: string
+    targetDate: Date
+    scheduledTime: string
+    leaveTime: string
+    createdAt: Date
+    _count: EarlyLeaveRecordCountAggregateOutputType | null
+    _min: EarlyLeaveRecordMinAggregateOutputType | null
+    _max: EarlyLeaveRecordMaxAggregateOutputType | null
+  }
+
+  type GetEarlyLeaveRecordGroupByPayload<T extends EarlyLeaveRecordGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<EarlyLeaveRecordGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof EarlyLeaveRecordGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], EarlyLeaveRecordGroupByOutputType[P]>
+            : GetScalarType<T[P], EarlyLeaveRecordGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type EarlyLeaveRecordSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    requestId?: boolean
+    employeeId?: boolean
+    targetDate?: boolean
+    scheduledTime?: boolean
+    leaveTime?: boolean
+    createdAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["earlyLeaveRecord"]>
+
+  export type EarlyLeaveRecordSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    requestId?: boolean
+    employeeId?: boolean
+    targetDate?: boolean
+    scheduledTime?: boolean
+    leaveTime?: boolean
+    createdAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["earlyLeaveRecord"]>
+
+  export type EarlyLeaveRecordSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    requestId?: boolean
+    employeeId?: boolean
+    targetDate?: boolean
+    scheduledTime?: boolean
+    leaveTime?: boolean
+    createdAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["earlyLeaveRecord"]>
+
+  export type EarlyLeaveRecordSelectScalar = {
+    id?: boolean
+    requestId?: boolean
+    employeeId?: boolean
+    targetDate?: boolean
+    scheduledTime?: boolean
+    leaveTime?: boolean
+    createdAt?: boolean
+  }
+
+  export type EarlyLeaveRecordOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "requestId" | "employeeId" | "targetDate" | "scheduledTime" | "leaveTime" | "createdAt", ExtArgs["result"]["earlyLeaveRecord"]>
+  export type EarlyLeaveRecordInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+  export type EarlyLeaveRecordIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+  export type EarlyLeaveRecordIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+
+  export type $EarlyLeaveRecordPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "EarlyLeaveRecord"
+    objects: {
+      employee: Prisma.$EmployeePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      requestId: string
+      employeeId: string
+      targetDate: Date
+      scheduledTime: string
+      leaveTime: string
+      createdAt: Date
+    }, ExtArgs["result"]["earlyLeaveRecord"]>
+    composites: {}
+  }
+
+  type EarlyLeaveRecordGetPayload<S extends boolean | null | undefined | EarlyLeaveRecordDefaultArgs> = $Result.GetResult<Prisma.$EarlyLeaveRecordPayload, S>
+
+  type EarlyLeaveRecordCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<EarlyLeaveRecordFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: EarlyLeaveRecordCountAggregateInputType | true
+    }
+
+  export interface EarlyLeaveRecordDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['EarlyLeaveRecord'], meta: { name: 'EarlyLeaveRecord' } }
+    /**
+     * Find zero or one EarlyLeaveRecord that matches the filter.
+     * @param {EarlyLeaveRecordFindUniqueArgs} args - Arguments to find a EarlyLeaveRecord
+     * @example
+     * // Get one EarlyLeaveRecord
+     * const earlyLeaveRecord = await prisma.earlyLeaveRecord.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends EarlyLeaveRecordFindUniqueArgs>(args: SelectSubset<T, EarlyLeaveRecordFindUniqueArgs<ExtArgs>>): Prisma__EarlyLeaveRecordClient<$Result.GetResult<Prisma.$EarlyLeaveRecordPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one EarlyLeaveRecord that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {EarlyLeaveRecordFindUniqueOrThrowArgs} args - Arguments to find a EarlyLeaveRecord
+     * @example
+     * // Get one EarlyLeaveRecord
+     * const earlyLeaveRecord = await prisma.earlyLeaveRecord.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends EarlyLeaveRecordFindUniqueOrThrowArgs>(args: SelectSubset<T, EarlyLeaveRecordFindUniqueOrThrowArgs<ExtArgs>>): Prisma__EarlyLeaveRecordClient<$Result.GetResult<Prisma.$EarlyLeaveRecordPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EarlyLeaveRecord that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EarlyLeaveRecordFindFirstArgs} args - Arguments to find a EarlyLeaveRecord
+     * @example
+     * // Get one EarlyLeaveRecord
+     * const earlyLeaveRecord = await prisma.earlyLeaveRecord.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends EarlyLeaveRecordFindFirstArgs>(args?: SelectSubset<T, EarlyLeaveRecordFindFirstArgs<ExtArgs>>): Prisma__EarlyLeaveRecordClient<$Result.GetResult<Prisma.$EarlyLeaveRecordPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first EarlyLeaveRecord that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EarlyLeaveRecordFindFirstOrThrowArgs} args - Arguments to find a EarlyLeaveRecord
+     * @example
+     * // Get one EarlyLeaveRecord
+     * const earlyLeaveRecord = await prisma.earlyLeaveRecord.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends EarlyLeaveRecordFindFirstOrThrowArgs>(args?: SelectSubset<T, EarlyLeaveRecordFindFirstOrThrowArgs<ExtArgs>>): Prisma__EarlyLeaveRecordClient<$Result.GetResult<Prisma.$EarlyLeaveRecordPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more EarlyLeaveRecords that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EarlyLeaveRecordFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all EarlyLeaveRecords
+     * const earlyLeaveRecords = await prisma.earlyLeaveRecord.findMany()
+     * 
+     * // Get first 10 EarlyLeaveRecords
+     * const earlyLeaveRecords = await prisma.earlyLeaveRecord.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const earlyLeaveRecordWithIdOnly = await prisma.earlyLeaveRecord.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends EarlyLeaveRecordFindManyArgs>(args?: SelectSubset<T, EarlyLeaveRecordFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EarlyLeaveRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a EarlyLeaveRecord.
+     * @param {EarlyLeaveRecordCreateArgs} args - Arguments to create a EarlyLeaveRecord.
+     * @example
+     * // Create one EarlyLeaveRecord
+     * const EarlyLeaveRecord = await prisma.earlyLeaveRecord.create({
+     *   data: {
+     *     // ... data to create a EarlyLeaveRecord
+     *   }
+     * })
+     * 
+     */
+    create<T extends EarlyLeaveRecordCreateArgs>(args: SelectSubset<T, EarlyLeaveRecordCreateArgs<ExtArgs>>): Prisma__EarlyLeaveRecordClient<$Result.GetResult<Prisma.$EarlyLeaveRecordPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many EarlyLeaveRecords.
+     * @param {EarlyLeaveRecordCreateManyArgs} args - Arguments to create many EarlyLeaveRecords.
+     * @example
+     * // Create many EarlyLeaveRecords
+     * const earlyLeaveRecord = await prisma.earlyLeaveRecord.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends EarlyLeaveRecordCreateManyArgs>(args?: SelectSubset<T, EarlyLeaveRecordCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many EarlyLeaveRecords and returns the data saved in the database.
+     * @param {EarlyLeaveRecordCreateManyAndReturnArgs} args - Arguments to create many EarlyLeaveRecords.
+     * @example
+     * // Create many EarlyLeaveRecords
+     * const earlyLeaveRecord = await prisma.earlyLeaveRecord.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many EarlyLeaveRecords and only return the `id`
+     * const earlyLeaveRecordWithIdOnly = await prisma.earlyLeaveRecord.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends EarlyLeaveRecordCreateManyAndReturnArgs>(args?: SelectSubset<T, EarlyLeaveRecordCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EarlyLeaveRecordPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a EarlyLeaveRecord.
+     * @param {EarlyLeaveRecordDeleteArgs} args - Arguments to delete one EarlyLeaveRecord.
+     * @example
+     * // Delete one EarlyLeaveRecord
+     * const EarlyLeaveRecord = await prisma.earlyLeaveRecord.delete({
+     *   where: {
+     *     // ... filter to delete one EarlyLeaveRecord
+     *   }
+     * })
+     * 
+     */
+    delete<T extends EarlyLeaveRecordDeleteArgs>(args: SelectSubset<T, EarlyLeaveRecordDeleteArgs<ExtArgs>>): Prisma__EarlyLeaveRecordClient<$Result.GetResult<Prisma.$EarlyLeaveRecordPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one EarlyLeaveRecord.
+     * @param {EarlyLeaveRecordUpdateArgs} args - Arguments to update one EarlyLeaveRecord.
+     * @example
+     * // Update one EarlyLeaveRecord
+     * const earlyLeaveRecord = await prisma.earlyLeaveRecord.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends EarlyLeaveRecordUpdateArgs>(args: SelectSubset<T, EarlyLeaveRecordUpdateArgs<ExtArgs>>): Prisma__EarlyLeaveRecordClient<$Result.GetResult<Prisma.$EarlyLeaveRecordPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more EarlyLeaveRecords.
+     * @param {EarlyLeaveRecordDeleteManyArgs} args - Arguments to filter EarlyLeaveRecords to delete.
+     * @example
+     * // Delete a few EarlyLeaveRecords
+     * const { count } = await prisma.earlyLeaveRecord.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends EarlyLeaveRecordDeleteManyArgs>(args?: SelectSubset<T, EarlyLeaveRecordDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EarlyLeaveRecords.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EarlyLeaveRecordUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many EarlyLeaveRecords
+     * const earlyLeaveRecord = await prisma.earlyLeaveRecord.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends EarlyLeaveRecordUpdateManyArgs>(args: SelectSubset<T, EarlyLeaveRecordUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more EarlyLeaveRecords and returns the data updated in the database.
+     * @param {EarlyLeaveRecordUpdateManyAndReturnArgs} args - Arguments to update many EarlyLeaveRecords.
+     * @example
+     * // Update many EarlyLeaveRecords
+     * const earlyLeaveRecord = await prisma.earlyLeaveRecord.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more EarlyLeaveRecords and only return the `id`
+     * const earlyLeaveRecordWithIdOnly = await prisma.earlyLeaveRecord.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends EarlyLeaveRecordUpdateManyAndReturnArgs>(args: SelectSubset<T, EarlyLeaveRecordUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EarlyLeaveRecordPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one EarlyLeaveRecord.
+     * @param {EarlyLeaveRecordUpsertArgs} args - Arguments to update or create a EarlyLeaveRecord.
+     * @example
+     * // Update or create a EarlyLeaveRecord
+     * const earlyLeaveRecord = await prisma.earlyLeaveRecord.upsert({
+     *   create: {
+     *     // ... data to create a EarlyLeaveRecord
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the EarlyLeaveRecord we want to update
+     *   }
+     * })
+     */
+    upsert<T extends EarlyLeaveRecordUpsertArgs>(args: SelectSubset<T, EarlyLeaveRecordUpsertArgs<ExtArgs>>): Prisma__EarlyLeaveRecordClient<$Result.GetResult<Prisma.$EarlyLeaveRecordPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of EarlyLeaveRecords.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EarlyLeaveRecordCountArgs} args - Arguments to filter EarlyLeaveRecords to count.
+     * @example
+     * // Count the number of EarlyLeaveRecords
+     * const count = await prisma.earlyLeaveRecord.count({
+     *   where: {
+     *     // ... the filter for the EarlyLeaveRecords we want to count
+     *   }
+     * })
+    **/
+    count<T extends EarlyLeaveRecordCountArgs>(
+      args?: Subset<T, EarlyLeaveRecordCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], EarlyLeaveRecordCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a EarlyLeaveRecord.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EarlyLeaveRecordAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends EarlyLeaveRecordAggregateArgs>(args: Subset<T, EarlyLeaveRecordAggregateArgs>): Prisma.PrismaPromise<GetEarlyLeaveRecordAggregateType<T>>
+
+    /**
+     * Group by EarlyLeaveRecord.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {EarlyLeaveRecordGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends EarlyLeaveRecordGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: EarlyLeaveRecordGroupByArgs['orderBy'] }
+        : { orderBy?: EarlyLeaveRecordGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, EarlyLeaveRecordGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetEarlyLeaveRecordGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the EarlyLeaveRecord model
+   */
+  readonly fields: EarlyLeaveRecordFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for EarlyLeaveRecord.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__EarlyLeaveRecordClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the EarlyLeaveRecord model
+   */
+  interface EarlyLeaveRecordFieldRefs {
+    readonly id: FieldRef<"EarlyLeaveRecord", 'String'>
+    readonly requestId: FieldRef<"EarlyLeaveRecord", 'String'>
+    readonly employeeId: FieldRef<"EarlyLeaveRecord", 'String'>
+    readonly targetDate: FieldRef<"EarlyLeaveRecord", 'DateTime'>
+    readonly scheduledTime: FieldRef<"EarlyLeaveRecord", 'String'>
+    readonly leaveTime: FieldRef<"EarlyLeaveRecord", 'String'>
+    readonly createdAt: FieldRef<"EarlyLeaveRecord", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * EarlyLeaveRecord findUnique
+   */
+  export type EarlyLeaveRecordFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EarlyLeaveRecord
+     */
+    select?: EarlyLeaveRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EarlyLeaveRecord
+     */
+    omit?: EarlyLeaveRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EarlyLeaveRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which EarlyLeaveRecord to fetch.
+     */
+    where: EarlyLeaveRecordWhereUniqueInput
+  }
+
+  /**
+   * EarlyLeaveRecord findUniqueOrThrow
+   */
+  export type EarlyLeaveRecordFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EarlyLeaveRecord
+     */
+    select?: EarlyLeaveRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EarlyLeaveRecord
+     */
+    omit?: EarlyLeaveRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EarlyLeaveRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which EarlyLeaveRecord to fetch.
+     */
+    where: EarlyLeaveRecordWhereUniqueInput
+  }
+
+  /**
+   * EarlyLeaveRecord findFirst
+   */
+  export type EarlyLeaveRecordFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EarlyLeaveRecord
+     */
+    select?: EarlyLeaveRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EarlyLeaveRecord
+     */
+    omit?: EarlyLeaveRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EarlyLeaveRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which EarlyLeaveRecord to fetch.
+     */
+    where?: EarlyLeaveRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EarlyLeaveRecords to fetch.
+     */
+    orderBy?: EarlyLeaveRecordOrderByWithRelationInput | EarlyLeaveRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EarlyLeaveRecords.
+     */
+    cursor?: EarlyLeaveRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EarlyLeaveRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EarlyLeaveRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EarlyLeaveRecords.
+     */
+    distinct?: EarlyLeaveRecordScalarFieldEnum | EarlyLeaveRecordScalarFieldEnum[]
+  }
+
+  /**
+   * EarlyLeaveRecord findFirstOrThrow
+   */
+  export type EarlyLeaveRecordFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EarlyLeaveRecord
+     */
+    select?: EarlyLeaveRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EarlyLeaveRecord
+     */
+    omit?: EarlyLeaveRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EarlyLeaveRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which EarlyLeaveRecord to fetch.
+     */
+    where?: EarlyLeaveRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EarlyLeaveRecords to fetch.
+     */
+    orderBy?: EarlyLeaveRecordOrderByWithRelationInput | EarlyLeaveRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for EarlyLeaveRecords.
+     */
+    cursor?: EarlyLeaveRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EarlyLeaveRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EarlyLeaveRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EarlyLeaveRecords.
+     */
+    distinct?: EarlyLeaveRecordScalarFieldEnum | EarlyLeaveRecordScalarFieldEnum[]
+  }
+
+  /**
+   * EarlyLeaveRecord findMany
+   */
+  export type EarlyLeaveRecordFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EarlyLeaveRecord
+     */
+    select?: EarlyLeaveRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EarlyLeaveRecord
+     */
+    omit?: EarlyLeaveRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EarlyLeaveRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which EarlyLeaveRecords to fetch.
+     */
+    where?: EarlyLeaveRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of EarlyLeaveRecords to fetch.
+     */
+    orderBy?: EarlyLeaveRecordOrderByWithRelationInput | EarlyLeaveRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing EarlyLeaveRecords.
+     */
+    cursor?: EarlyLeaveRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` EarlyLeaveRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` EarlyLeaveRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of EarlyLeaveRecords.
+     */
+    distinct?: EarlyLeaveRecordScalarFieldEnum | EarlyLeaveRecordScalarFieldEnum[]
+  }
+
+  /**
+   * EarlyLeaveRecord create
+   */
+  export type EarlyLeaveRecordCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EarlyLeaveRecord
+     */
+    select?: EarlyLeaveRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EarlyLeaveRecord
+     */
+    omit?: EarlyLeaveRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EarlyLeaveRecordInclude<ExtArgs> | null
+    /**
+     * The data needed to create a EarlyLeaveRecord.
+     */
+    data: XOR<EarlyLeaveRecordCreateInput, EarlyLeaveRecordUncheckedCreateInput>
+  }
+
+  /**
+   * EarlyLeaveRecord createMany
+   */
+  export type EarlyLeaveRecordCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many EarlyLeaveRecords.
+     */
+    data: EarlyLeaveRecordCreateManyInput | EarlyLeaveRecordCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * EarlyLeaveRecord createManyAndReturn
+   */
+  export type EarlyLeaveRecordCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EarlyLeaveRecord
+     */
+    select?: EarlyLeaveRecordSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EarlyLeaveRecord
+     */
+    omit?: EarlyLeaveRecordOmit<ExtArgs> | null
+    /**
+     * The data used to create many EarlyLeaveRecords.
+     */
+    data: EarlyLeaveRecordCreateManyInput | EarlyLeaveRecordCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EarlyLeaveRecordIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EarlyLeaveRecord update
+   */
+  export type EarlyLeaveRecordUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EarlyLeaveRecord
+     */
+    select?: EarlyLeaveRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EarlyLeaveRecord
+     */
+    omit?: EarlyLeaveRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EarlyLeaveRecordInclude<ExtArgs> | null
+    /**
+     * The data needed to update a EarlyLeaveRecord.
+     */
+    data: XOR<EarlyLeaveRecordUpdateInput, EarlyLeaveRecordUncheckedUpdateInput>
+    /**
+     * Choose, which EarlyLeaveRecord to update.
+     */
+    where: EarlyLeaveRecordWhereUniqueInput
+  }
+
+  /**
+   * EarlyLeaveRecord updateMany
+   */
+  export type EarlyLeaveRecordUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update EarlyLeaveRecords.
+     */
+    data: XOR<EarlyLeaveRecordUpdateManyMutationInput, EarlyLeaveRecordUncheckedUpdateManyInput>
+    /**
+     * Filter which EarlyLeaveRecords to update
+     */
+    where?: EarlyLeaveRecordWhereInput
+    /**
+     * Limit how many EarlyLeaveRecords to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * EarlyLeaveRecord updateManyAndReturn
+   */
+  export type EarlyLeaveRecordUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EarlyLeaveRecord
+     */
+    select?: EarlyLeaveRecordSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the EarlyLeaveRecord
+     */
+    omit?: EarlyLeaveRecordOmit<ExtArgs> | null
+    /**
+     * The data used to update EarlyLeaveRecords.
+     */
+    data: XOR<EarlyLeaveRecordUpdateManyMutationInput, EarlyLeaveRecordUncheckedUpdateManyInput>
+    /**
+     * Filter which EarlyLeaveRecords to update
+     */
+    where?: EarlyLeaveRecordWhereInput
+    /**
+     * Limit how many EarlyLeaveRecords to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EarlyLeaveRecordIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * EarlyLeaveRecord upsert
+   */
+  export type EarlyLeaveRecordUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EarlyLeaveRecord
+     */
+    select?: EarlyLeaveRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EarlyLeaveRecord
+     */
+    omit?: EarlyLeaveRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EarlyLeaveRecordInclude<ExtArgs> | null
+    /**
+     * The filter to search for the EarlyLeaveRecord to update in case it exists.
+     */
+    where: EarlyLeaveRecordWhereUniqueInput
+    /**
+     * In case the EarlyLeaveRecord found by the `where` argument doesn't exist, create a new EarlyLeaveRecord with this data.
+     */
+    create: XOR<EarlyLeaveRecordCreateInput, EarlyLeaveRecordUncheckedCreateInput>
+    /**
+     * In case the EarlyLeaveRecord was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<EarlyLeaveRecordUpdateInput, EarlyLeaveRecordUncheckedUpdateInput>
+  }
+
+  /**
+   * EarlyLeaveRecord delete
+   */
+  export type EarlyLeaveRecordDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EarlyLeaveRecord
+     */
+    select?: EarlyLeaveRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EarlyLeaveRecord
+     */
+    omit?: EarlyLeaveRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EarlyLeaveRecordInclude<ExtArgs> | null
+    /**
+     * Filter which EarlyLeaveRecord to delete.
+     */
+    where: EarlyLeaveRecordWhereUniqueInput
+  }
+
+  /**
+   * EarlyLeaveRecord deleteMany
+   */
+  export type EarlyLeaveRecordDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which EarlyLeaveRecords to delete
+     */
+    where?: EarlyLeaveRecordWhereInput
+    /**
+     * Limit how many EarlyLeaveRecords to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * EarlyLeaveRecord without action
+   */
+  export type EarlyLeaveRecordDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EarlyLeaveRecord
+     */
+    select?: EarlyLeaveRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EarlyLeaveRecord
+     */
+    omit?: EarlyLeaveRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EarlyLeaveRecordInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model OutingRecord
+   */
+
+  export type AggregateOutingRecord = {
+    _count: OutingRecordCountAggregateOutputType | null
+    _min: OutingRecordMinAggregateOutputType | null
+    _max: OutingRecordMaxAggregateOutputType | null
+  }
+
+  export type OutingRecordMinAggregateOutputType = {
+    id: string | null
+    requestId: string | null
+    employeeId: string | null
+    targetDate: Date | null
+    startTime: string | null
+    endTime: string | null
+    createdAt: Date | null
+  }
+
+  export type OutingRecordMaxAggregateOutputType = {
+    id: string | null
+    requestId: string | null
+    employeeId: string | null
+    targetDate: Date | null
+    startTime: string | null
+    endTime: string | null
+    createdAt: Date | null
+  }
+
+  export type OutingRecordCountAggregateOutputType = {
+    id: number
+    requestId: number
+    employeeId: number
+    targetDate: number
+    startTime: number
+    endTime: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type OutingRecordMinAggregateInputType = {
+    id?: true
+    requestId?: true
+    employeeId?: true
+    targetDate?: true
+    startTime?: true
+    endTime?: true
+    createdAt?: true
+  }
+
+  export type OutingRecordMaxAggregateInputType = {
+    id?: true
+    requestId?: true
+    employeeId?: true
+    targetDate?: true
+    startTime?: true
+    endTime?: true
+    createdAt?: true
+  }
+
+  export type OutingRecordCountAggregateInputType = {
+    id?: true
+    requestId?: true
+    employeeId?: true
+    targetDate?: true
+    startTime?: true
+    endTime?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type OutingRecordAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which OutingRecord to aggregate.
+     */
+    where?: OutingRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OutingRecords to fetch.
+     */
+    orderBy?: OutingRecordOrderByWithRelationInput | OutingRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: OutingRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OutingRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OutingRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned OutingRecords
+    **/
+    _count?: true | OutingRecordCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: OutingRecordMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: OutingRecordMaxAggregateInputType
+  }
+
+  export type GetOutingRecordAggregateType<T extends OutingRecordAggregateArgs> = {
+        [P in keyof T & keyof AggregateOutingRecord]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateOutingRecord[P]>
+      : GetScalarType<T[P], AggregateOutingRecord[P]>
+  }
+
+
+
+
+  export type OutingRecordGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OutingRecordWhereInput
+    orderBy?: OutingRecordOrderByWithAggregationInput | OutingRecordOrderByWithAggregationInput[]
+    by: OutingRecordScalarFieldEnum[] | OutingRecordScalarFieldEnum
+    having?: OutingRecordScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: OutingRecordCountAggregateInputType | true
+    _min?: OutingRecordMinAggregateInputType
+    _max?: OutingRecordMaxAggregateInputType
+  }
+
+  export type OutingRecordGroupByOutputType = {
+    id: string
+    requestId: string
+    employeeId: string
+    targetDate: Date
+    startTime: string
+    endTime: string
+    createdAt: Date
+    _count: OutingRecordCountAggregateOutputType | null
+    _min: OutingRecordMinAggregateOutputType | null
+    _max: OutingRecordMaxAggregateOutputType | null
+  }
+
+  type GetOutingRecordGroupByPayload<T extends OutingRecordGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<OutingRecordGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof OutingRecordGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], OutingRecordGroupByOutputType[P]>
+            : GetScalarType<T[P], OutingRecordGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type OutingRecordSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    requestId?: boolean
+    employeeId?: boolean
+    targetDate?: boolean
+    startTime?: boolean
+    endTime?: boolean
+    createdAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["outingRecord"]>
+
+  export type OutingRecordSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    requestId?: boolean
+    employeeId?: boolean
+    targetDate?: boolean
+    startTime?: boolean
+    endTime?: boolean
+    createdAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["outingRecord"]>
+
+  export type OutingRecordSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    requestId?: boolean
+    employeeId?: boolean
+    targetDate?: boolean
+    startTime?: boolean
+    endTime?: boolean
+    createdAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["outingRecord"]>
+
+  export type OutingRecordSelectScalar = {
+    id?: boolean
+    requestId?: boolean
+    employeeId?: boolean
+    targetDate?: boolean
+    startTime?: boolean
+    endTime?: boolean
+    createdAt?: boolean
+  }
+
+  export type OutingRecordOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "requestId" | "employeeId" | "targetDate" | "startTime" | "endTime" | "createdAt", ExtArgs["result"]["outingRecord"]>
+  export type OutingRecordInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+  export type OutingRecordIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+  export type OutingRecordIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+
+  export type $OutingRecordPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "OutingRecord"
+    objects: {
+      employee: Prisma.$EmployeePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      requestId: string
+      employeeId: string
+      targetDate: Date
+      startTime: string
+      endTime: string
+      createdAt: Date
+    }, ExtArgs["result"]["outingRecord"]>
+    composites: {}
+  }
+
+  type OutingRecordGetPayload<S extends boolean | null | undefined | OutingRecordDefaultArgs> = $Result.GetResult<Prisma.$OutingRecordPayload, S>
+
+  type OutingRecordCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<OutingRecordFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: OutingRecordCountAggregateInputType | true
+    }
+
+  export interface OutingRecordDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['OutingRecord'], meta: { name: 'OutingRecord' } }
+    /**
+     * Find zero or one OutingRecord that matches the filter.
+     * @param {OutingRecordFindUniqueArgs} args - Arguments to find a OutingRecord
+     * @example
+     * // Get one OutingRecord
+     * const outingRecord = await prisma.outingRecord.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends OutingRecordFindUniqueArgs>(args: SelectSubset<T, OutingRecordFindUniqueArgs<ExtArgs>>): Prisma__OutingRecordClient<$Result.GetResult<Prisma.$OutingRecordPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one OutingRecord that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {OutingRecordFindUniqueOrThrowArgs} args - Arguments to find a OutingRecord
+     * @example
+     * // Get one OutingRecord
+     * const outingRecord = await prisma.outingRecord.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends OutingRecordFindUniqueOrThrowArgs>(args: SelectSubset<T, OutingRecordFindUniqueOrThrowArgs<ExtArgs>>): Prisma__OutingRecordClient<$Result.GetResult<Prisma.$OutingRecordPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first OutingRecord that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OutingRecordFindFirstArgs} args - Arguments to find a OutingRecord
+     * @example
+     * // Get one OutingRecord
+     * const outingRecord = await prisma.outingRecord.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends OutingRecordFindFirstArgs>(args?: SelectSubset<T, OutingRecordFindFirstArgs<ExtArgs>>): Prisma__OutingRecordClient<$Result.GetResult<Prisma.$OutingRecordPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first OutingRecord that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OutingRecordFindFirstOrThrowArgs} args - Arguments to find a OutingRecord
+     * @example
+     * // Get one OutingRecord
+     * const outingRecord = await prisma.outingRecord.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends OutingRecordFindFirstOrThrowArgs>(args?: SelectSubset<T, OutingRecordFindFirstOrThrowArgs<ExtArgs>>): Prisma__OutingRecordClient<$Result.GetResult<Prisma.$OutingRecordPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more OutingRecords that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OutingRecordFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all OutingRecords
+     * const outingRecords = await prisma.outingRecord.findMany()
+     * 
+     * // Get first 10 OutingRecords
+     * const outingRecords = await prisma.outingRecord.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const outingRecordWithIdOnly = await prisma.outingRecord.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends OutingRecordFindManyArgs>(args?: SelectSubset<T, OutingRecordFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OutingRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a OutingRecord.
+     * @param {OutingRecordCreateArgs} args - Arguments to create a OutingRecord.
+     * @example
+     * // Create one OutingRecord
+     * const OutingRecord = await prisma.outingRecord.create({
+     *   data: {
+     *     // ... data to create a OutingRecord
+     *   }
+     * })
+     * 
+     */
+    create<T extends OutingRecordCreateArgs>(args: SelectSubset<T, OutingRecordCreateArgs<ExtArgs>>): Prisma__OutingRecordClient<$Result.GetResult<Prisma.$OutingRecordPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many OutingRecords.
+     * @param {OutingRecordCreateManyArgs} args - Arguments to create many OutingRecords.
+     * @example
+     * // Create many OutingRecords
+     * const outingRecord = await prisma.outingRecord.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends OutingRecordCreateManyArgs>(args?: SelectSubset<T, OutingRecordCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many OutingRecords and returns the data saved in the database.
+     * @param {OutingRecordCreateManyAndReturnArgs} args - Arguments to create many OutingRecords.
+     * @example
+     * // Create many OutingRecords
+     * const outingRecord = await prisma.outingRecord.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many OutingRecords and only return the `id`
+     * const outingRecordWithIdOnly = await prisma.outingRecord.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends OutingRecordCreateManyAndReturnArgs>(args?: SelectSubset<T, OutingRecordCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OutingRecordPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a OutingRecord.
+     * @param {OutingRecordDeleteArgs} args - Arguments to delete one OutingRecord.
+     * @example
+     * // Delete one OutingRecord
+     * const OutingRecord = await prisma.outingRecord.delete({
+     *   where: {
+     *     // ... filter to delete one OutingRecord
+     *   }
+     * })
+     * 
+     */
+    delete<T extends OutingRecordDeleteArgs>(args: SelectSubset<T, OutingRecordDeleteArgs<ExtArgs>>): Prisma__OutingRecordClient<$Result.GetResult<Prisma.$OutingRecordPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one OutingRecord.
+     * @param {OutingRecordUpdateArgs} args - Arguments to update one OutingRecord.
+     * @example
+     * // Update one OutingRecord
+     * const outingRecord = await prisma.outingRecord.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends OutingRecordUpdateArgs>(args: SelectSubset<T, OutingRecordUpdateArgs<ExtArgs>>): Prisma__OutingRecordClient<$Result.GetResult<Prisma.$OutingRecordPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more OutingRecords.
+     * @param {OutingRecordDeleteManyArgs} args - Arguments to filter OutingRecords to delete.
+     * @example
+     * // Delete a few OutingRecords
+     * const { count } = await prisma.outingRecord.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends OutingRecordDeleteManyArgs>(args?: SelectSubset<T, OutingRecordDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OutingRecords.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OutingRecordUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many OutingRecords
+     * const outingRecord = await prisma.outingRecord.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends OutingRecordUpdateManyArgs>(args: SelectSubset<T, OutingRecordUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OutingRecords and returns the data updated in the database.
+     * @param {OutingRecordUpdateManyAndReturnArgs} args - Arguments to update many OutingRecords.
+     * @example
+     * // Update many OutingRecords
+     * const outingRecord = await prisma.outingRecord.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more OutingRecords and only return the `id`
+     * const outingRecordWithIdOnly = await prisma.outingRecord.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends OutingRecordUpdateManyAndReturnArgs>(args: SelectSubset<T, OutingRecordUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OutingRecordPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one OutingRecord.
+     * @param {OutingRecordUpsertArgs} args - Arguments to update or create a OutingRecord.
+     * @example
+     * // Update or create a OutingRecord
+     * const outingRecord = await prisma.outingRecord.upsert({
+     *   create: {
+     *     // ... data to create a OutingRecord
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the OutingRecord we want to update
+     *   }
+     * })
+     */
+    upsert<T extends OutingRecordUpsertArgs>(args: SelectSubset<T, OutingRecordUpsertArgs<ExtArgs>>): Prisma__OutingRecordClient<$Result.GetResult<Prisma.$OutingRecordPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of OutingRecords.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OutingRecordCountArgs} args - Arguments to filter OutingRecords to count.
+     * @example
+     * // Count the number of OutingRecords
+     * const count = await prisma.outingRecord.count({
+     *   where: {
+     *     // ... the filter for the OutingRecords we want to count
+     *   }
+     * })
+    **/
+    count<T extends OutingRecordCountArgs>(
+      args?: Subset<T, OutingRecordCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], OutingRecordCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a OutingRecord.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OutingRecordAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends OutingRecordAggregateArgs>(args: Subset<T, OutingRecordAggregateArgs>): Prisma.PrismaPromise<GetOutingRecordAggregateType<T>>
+
+    /**
+     * Group by OutingRecord.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OutingRecordGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends OutingRecordGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: OutingRecordGroupByArgs['orderBy'] }
+        : { orderBy?: OutingRecordGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, OutingRecordGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetOutingRecordGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the OutingRecord model
+   */
+  readonly fields: OutingRecordFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for OutingRecord.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__OutingRecordClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the OutingRecord model
+   */
+  interface OutingRecordFieldRefs {
+    readonly id: FieldRef<"OutingRecord", 'String'>
+    readonly requestId: FieldRef<"OutingRecord", 'String'>
+    readonly employeeId: FieldRef<"OutingRecord", 'String'>
+    readonly targetDate: FieldRef<"OutingRecord", 'DateTime'>
+    readonly startTime: FieldRef<"OutingRecord", 'String'>
+    readonly endTime: FieldRef<"OutingRecord", 'String'>
+    readonly createdAt: FieldRef<"OutingRecord", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * OutingRecord findUnique
+   */
+  export type OutingRecordFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OutingRecord
+     */
+    select?: OutingRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OutingRecord
+     */
+    omit?: OutingRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OutingRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which OutingRecord to fetch.
+     */
+    where: OutingRecordWhereUniqueInput
+  }
+
+  /**
+   * OutingRecord findUniqueOrThrow
+   */
+  export type OutingRecordFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OutingRecord
+     */
+    select?: OutingRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OutingRecord
+     */
+    omit?: OutingRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OutingRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which OutingRecord to fetch.
+     */
+    where: OutingRecordWhereUniqueInput
+  }
+
+  /**
+   * OutingRecord findFirst
+   */
+  export type OutingRecordFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OutingRecord
+     */
+    select?: OutingRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OutingRecord
+     */
+    omit?: OutingRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OutingRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which OutingRecord to fetch.
+     */
+    where?: OutingRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OutingRecords to fetch.
+     */
+    orderBy?: OutingRecordOrderByWithRelationInput | OutingRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for OutingRecords.
+     */
+    cursor?: OutingRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OutingRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OutingRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OutingRecords.
+     */
+    distinct?: OutingRecordScalarFieldEnum | OutingRecordScalarFieldEnum[]
+  }
+
+  /**
+   * OutingRecord findFirstOrThrow
+   */
+  export type OutingRecordFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OutingRecord
+     */
+    select?: OutingRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OutingRecord
+     */
+    omit?: OutingRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OutingRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which OutingRecord to fetch.
+     */
+    where?: OutingRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OutingRecords to fetch.
+     */
+    orderBy?: OutingRecordOrderByWithRelationInput | OutingRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for OutingRecords.
+     */
+    cursor?: OutingRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OutingRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OutingRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OutingRecords.
+     */
+    distinct?: OutingRecordScalarFieldEnum | OutingRecordScalarFieldEnum[]
+  }
+
+  /**
+   * OutingRecord findMany
+   */
+  export type OutingRecordFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OutingRecord
+     */
+    select?: OutingRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OutingRecord
+     */
+    omit?: OutingRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OutingRecordInclude<ExtArgs> | null
+    /**
+     * Filter, which OutingRecords to fetch.
+     */
+    where?: OutingRecordWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OutingRecords to fetch.
+     */
+    orderBy?: OutingRecordOrderByWithRelationInput | OutingRecordOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing OutingRecords.
+     */
+    cursor?: OutingRecordWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OutingRecords from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OutingRecords.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OutingRecords.
+     */
+    distinct?: OutingRecordScalarFieldEnum | OutingRecordScalarFieldEnum[]
+  }
+
+  /**
+   * OutingRecord create
+   */
+  export type OutingRecordCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OutingRecord
+     */
+    select?: OutingRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OutingRecord
+     */
+    omit?: OutingRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OutingRecordInclude<ExtArgs> | null
+    /**
+     * The data needed to create a OutingRecord.
+     */
+    data: XOR<OutingRecordCreateInput, OutingRecordUncheckedCreateInput>
+  }
+
+  /**
+   * OutingRecord createMany
+   */
+  export type OutingRecordCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many OutingRecords.
+     */
+    data: OutingRecordCreateManyInput | OutingRecordCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * OutingRecord createManyAndReturn
+   */
+  export type OutingRecordCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OutingRecord
+     */
+    select?: OutingRecordSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OutingRecord
+     */
+    omit?: OutingRecordOmit<ExtArgs> | null
+    /**
+     * The data used to create many OutingRecords.
+     */
+    data: OutingRecordCreateManyInput | OutingRecordCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OutingRecordIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * OutingRecord update
+   */
+  export type OutingRecordUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OutingRecord
+     */
+    select?: OutingRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OutingRecord
+     */
+    omit?: OutingRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OutingRecordInclude<ExtArgs> | null
+    /**
+     * The data needed to update a OutingRecord.
+     */
+    data: XOR<OutingRecordUpdateInput, OutingRecordUncheckedUpdateInput>
+    /**
+     * Choose, which OutingRecord to update.
+     */
+    where: OutingRecordWhereUniqueInput
+  }
+
+  /**
+   * OutingRecord updateMany
+   */
+  export type OutingRecordUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update OutingRecords.
+     */
+    data: XOR<OutingRecordUpdateManyMutationInput, OutingRecordUncheckedUpdateManyInput>
+    /**
+     * Filter which OutingRecords to update
+     */
+    where?: OutingRecordWhereInput
+    /**
+     * Limit how many OutingRecords to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * OutingRecord updateManyAndReturn
+   */
+  export type OutingRecordUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OutingRecord
+     */
+    select?: OutingRecordSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OutingRecord
+     */
+    omit?: OutingRecordOmit<ExtArgs> | null
+    /**
+     * The data used to update OutingRecords.
+     */
+    data: XOR<OutingRecordUpdateManyMutationInput, OutingRecordUncheckedUpdateManyInput>
+    /**
+     * Filter which OutingRecords to update
+     */
+    where?: OutingRecordWhereInput
+    /**
+     * Limit how many OutingRecords to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OutingRecordIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * OutingRecord upsert
+   */
+  export type OutingRecordUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OutingRecord
+     */
+    select?: OutingRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OutingRecord
+     */
+    omit?: OutingRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OutingRecordInclude<ExtArgs> | null
+    /**
+     * The filter to search for the OutingRecord to update in case it exists.
+     */
+    where: OutingRecordWhereUniqueInput
+    /**
+     * In case the OutingRecord found by the `where` argument doesn't exist, create a new OutingRecord with this data.
+     */
+    create: XOR<OutingRecordCreateInput, OutingRecordUncheckedCreateInput>
+    /**
+     * In case the OutingRecord was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<OutingRecordUpdateInput, OutingRecordUncheckedUpdateInput>
+  }
+
+  /**
+   * OutingRecord delete
+   */
+  export type OutingRecordDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OutingRecord
+     */
+    select?: OutingRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OutingRecord
+     */
+    omit?: OutingRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OutingRecordInclude<ExtArgs> | null
+    /**
+     * Filter which OutingRecord to delete.
+     */
+    where: OutingRecordWhereUniqueInput
+  }
+
+  /**
+   * OutingRecord deleteMany
+   */
+  export type OutingRecordDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which OutingRecords to delete
+     */
+    where?: OutingRecordWhereInput
+    /**
+     * Limit how many OutingRecords to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * OutingRecord without action
+   */
+  export type OutingRecordDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OutingRecord
+     */
+    select?: OutingRecordSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OutingRecord
+     */
+    omit?: OutingRecordOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OutingRecordInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -54907,6 +64002,16 @@ export namespace Prisma {
   export type UserInvitationScalarFieldEnum = (typeof UserInvitationScalarFieldEnum)[keyof typeof UserInvitationScalarFieldEnum]
 
 
+  export const FacilityScalarFieldEnum: {
+    id: 'id',
+    code: 'code',
+    name: 'name',
+    createdAt: 'createdAt'
+  };
+
+  export type FacilityScalarFieldEnum = (typeof FacilityScalarFieldEnum)[keyof typeof FacilityScalarFieldEnum]
+
+
   export const DepartmentScalarFieldEnum: {
     id: 'id',
     name: 'name',
@@ -54924,6 +64029,7 @@ export namespace Prisma {
     email: 'email',
     createdAt: 'createdAt',
     departmentId: 'departmentId',
+    facilityId: 'facilityId',
     address: 'address',
     birthDate: 'birthDate',
     firstNameKana: 'firstNameKana',
@@ -54949,6 +64055,22 @@ export namespace Prisma {
   };
 
   export type EmployeeScalarFieldEnum = (typeof EmployeeScalarFieldEnum)[keyof typeof EmployeeScalarFieldEnum]
+
+
+  export const EmployeeTransferScalarFieldEnum: {
+    id: 'id',
+    employeeId: 'employeeId',
+    fromFacilityId: 'fromFacilityId',
+    toFacilityId: 'toFacilityId',
+    fromDepartmentId: 'fromDepartmentId',
+    toDepartmentId: 'toDepartmentId',
+    effectiveDate: 'effectiveDate',
+    reason: 'reason',
+    createdBy: 'createdBy',
+    createdAt: 'createdAt'
+  };
+
+  export type EmployeeTransferScalarFieldEnum = (typeof EmployeeTransferScalarFieldEnum)[keyof typeof EmployeeTransferScalarFieldEnum]
 
 
   export const DependentScalarFieldEnum: {
@@ -55064,6 +64186,8 @@ export namespace Prisma {
     type: 'type',
     userId: 'userId',
     status: 'status',
+    currentApprovalStep: 'currentApprovalStep',
+    approvalCompleted: 'approvalCompleted',
     leaveDays: 'leaveDays',
     leaveEndDate: 'leaveEndDate',
     leaveStartDate: 'leaveStartDate',
@@ -55077,6 +64201,21 @@ export namespace Prisma {
   };
 
   export type EmployeeRequestScalarFieldEnum = (typeof EmployeeRequestScalarFieldEnum)[keyof typeof EmployeeRequestScalarFieldEnum]
+
+
+  export const RequestApprovalScalarFieldEnum: {
+    id: 'id',
+    requestId: 'requestId',
+    stepNo: 'stepNo',
+    approverRole: 'approverRole',
+    approverId: 'approverId',
+    status: 'status',
+    comment: 'comment',
+    approvedAt: 'approvedAt',
+    createdAt: 'createdAt'
+  };
+
+  export type RequestApprovalScalarFieldEnum = (typeof RequestApprovalScalarFieldEnum)[keyof typeof RequestApprovalScalarFieldEnum]
 
 
   export const RequestAttachmentScalarFieldEnum: {
@@ -55102,6 +64241,19 @@ export namespace Prisma {
   };
 
   export type RequestHistoryScalarFieldEnum = (typeof RequestHistoryScalarFieldEnum)[keyof typeof RequestHistoryScalarFieldEnum]
+
+
+  export const ApprovalRouteScalarFieldEnum: {
+    id: 'id',
+    facilityId: 'facilityId',
+    departmentId: 'departmentId',
+    stepNo: 'stepNo',
+    approverRole: 'approverRole',
+    isActive: 'isActive',
+    createdAt: 'createdAt'
+  };
+
+  export type ApprovalRouteScalarFieldEnum = (typeof ApprovalRouteScalarFieldEnum)[keyof typeof ApprovalRouteScalarFieldEnum]
 
 
   export const AuditLogScalarFieldEnum: {
@@ -55480,6 +64632,11 @@ export namespace Prisma {
     expirationMonths: 'expirationMonths',
     description: 'description',
     allowRequest: 'allowRequest',
+    allowDay: 'allowDay',
+    allowAmHalf: 'allowAmHalf',
+    allowPmHalf: 'allowPmHalf',
+    allowHourly: 'allowHourly',
+    allowDateRange: 'allowDateRange',
     manageBalance: 'manageBalance',
     sortOrder: 'sortOrder',
     isActive: 'isActive',
@@ -55608,6 +64765,45 @@ export namespace Prisma {
   };
 
   export type PartTimeAnnualLeaveRuleScalarFieldEnum = (typeof PartTimeAnnualLeaveRuleScalarFieldEnum)[keyof typeof PartTimeAnnualLeaveRuleScalarFieldEnum]
+
+
+  export const LateRecordScalarFieldEnum: {
+    id: 'id',
+    requestId: 'requestId',
+    employeeId: 'employeeId',
+    targetDate: 'targetDate',
+    scheduledTime: 'scheduledTime',
+    arrivalTime: 'arrivalTime',
+    createdAt: 'createdAt'
+  };
+
+  export type LateRecordScalarFieldEnum = (typeof LateRecordScalarFieldEnum)[keyof typeof LateRecordScalarFieldEnum]
+
+
+  export const EarlyLeaveRecordScalarFieldEnum: {
+    id: 'id',
+    requestId: 'requestId',
+    employeeId: 'employeeId',
+    targetDate: 'targetDate',
+    scheduledTime: 'scheduledTime',
+    leaveTime: 'leaveTime',
+    createdAt: 'createdAt'
+  };
+
+  export type EarlyLeaveRecordScalarFieldEnum = (typeof EarlyLeaveRecordScalarFieldEnum)[keyof typeof EarlyLeaveRecordScalarFieldEnum]
+
+
+  export const OutingRecordScalarFieldEnum: {
+    id: 'id',
+    requestId: 'requestId',
+    employeeId: 'employeeId',
+    targetDate: 'targetDate',
+    startTime: 'startTime',
+    endTime: 'endTime',
+    createdAt: 'createdAt'
+  };
+
+  export type OutingRecordScalarFieldEnum = (typeof OutingRecordScalarFieldEnum)[keyof typeof OutingRecordScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -56109,6 +65305,65 @@ export namespace Prisma {
     cancelledAt?: DateTimeNullableWithAggregatesFilter<"UserInvitation"> | Date | string | null
   }
 
+  export type FacilityWhereInput = {
+    AND?: FacilityWhereInput | FacilityWhereInput[]
+    OR?: FacilityWhereInput[]
+    NOT?: FacilityWhereInput | FacilityWhereInput[]
+    id?: StringFilter<"Facility"> | string
+    code?: StringFilter<"Facility"> | string
+    name?: StringFilter<"Facility"> | string
+    createdAt?: DateTimeFilter<"Facility"> | Date | string
+    employees?: EmployeeListRelationFilter
+    transfersFrom?: EmployeeTransferListRelationFilter
+    transfersTo?: EmployeeTransferListRelationFilter
+    approvalRoutes?: ApprovalRouteListRelationFilter
+  }
+
+  export type FacilityOrderByWithRelationInput = {
+    id?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    employees?: EmployeeOrderByRelationAggregateInput
+    transfersFrom?: EmployeeTransferOrderByRelationAggregateInput
+    transfersTo?: EmployeeTransferOrderByRelationAggregateInput
+    approvalRoutes?: ApprovalRouteOrderByRelationAggregateInput
+  }
+
+  export type FacilityWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    code?: string
+    AND?: FacilityWhereInput | FacilityWhereInput[]
+    OR?: FacilityWhereInput[]
+    NOT?: FacilityWhereInput | FacilityWhereInput[]
+    name?: StringFilter<"Facility"> | string
+    createdAt?: DateTimeFilter<"Facility"> | Date | string
+    employees?: EmployeeListRelationFilter
+    transfersFrom?: EmployeeTransferListRelationFilter
+    transfersTo?: EmployeeTransferListRelationFilter
+    approvalRoutes?: ApprovalRouteListRelationFilter
+  }, "id" | "code">
+
+  export type FacilityOrderByWithAggregationInput = {
+    id?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+    _count?: FacilityCountOrderByAggregateInput
+    _max?: FacilityMaxOrderByAggregateInput
+    _min?: FacilityMinOrderByAggregateInput
+  }
+
+  export type FacilityScalarWhereWithAggregatesInput = {
+    AND?: FacilityScalarWhereWithAggregatesInput | FacilityScalarWhereWithAggregatesInput[]
+    OR?: FacilityScalarWhereWithAggregatesInput[]
+    NOT?: FacilityScalarWhereWithAggregatesInput | FacilityScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Facility"> | string
+    code?: StringWithAggregatesFilter<"Facility"> | string
+    name?: StringWithAggregatesFilter<"Facility"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Facility"> | Date | string
+  }
+
   export type DepartmentWhereInput = {
     AND?: DepartmentWhereInput | DepartmentWhereInput[]
     OR?: DepartmentWhereInput[]
@@ -56117,6 +65372,9 @@ export namespace Prisma {
     name?: StringFilter<"Department"> | string
     createdAt?: DateTimeFilter<"Department"> | Date | string
     employees?: EmployeeListRelationFilter
+    transfersFrom?: EmployeeTransferListRelationFilter
+    transfersTo?: EmployeeTransferListRelationFilter
+    approvalRoutes?: ApprovalRouteListRelationFilter
   }
 
   export type DepartmentOrderByWithRelationInput = {
@@ -56124,6 +65382,9 @@ export namespace Prisma {
     name?: SortOrder
     createdAt?: SortOrder
     employees?: EmployeeOrderByRelationAggregateInput
+    transfersFrom?: EmployeeTransferOrderByRelationAggregateInput
+    transfersTo?: EmployeeTransferOrderByRelationAggregateInput
+    approvalRoutes?: ApprovalRouteOrderByRelationAggregateInput
   }
 
   export type DepartmentWhereUniqueInput = Prisma.AtLeast<{
@@ -56134,6 +65395,9 @@ export namespace Prisma {
     NOT?: DepartmentWhereInput | DepartmentWhereInput[]
     createdAt?: DateTimeFilter<"Department"> | Date | string
     employees?: EmployeeListRelationFilter
+    transfersFrom?: EmployeeTransferListRelationFilter
+    transfersTo?: EmployeeTransferListRelationFilter
+    approvalRoutes?: ApprovalRouteListRelationFilter
   }, "id" | "name">
 
   export type DepartmentOrderByWithAggregationInput = {
@@ -56165,6 +65429,7 @@ export namespace Prisma {
     email?: StringFilter<"Employee"> | string
     createdAt?: DateTimeFilter<"Employee"> | Date | string
     departmentId?: StringNullableFilter<"Employee"> | string | null
+    facilityId?: StringNullableFilter<"Employee"> | string | null
     address?: StringNullableFilter<"Employee"> | string | null
     birthDate?: DateTimeNullableFilter<"Employee"> | Date | string | null
     firstNameKana?: StringNullableFilter<"Employee"> | string | null
@@ -56187,6 +65452,7 @@ export namespace Prisma {
     photoPath?: StringNullableFilter<"Employee"> | string | null
     userId?: StringNullableFilter<"Employee"> | string | null
     emergencyContact?: StringNullableFilter<"Employee"> | string | null
+    facility?: XOR<FacilityNullableScalarRelationFilter, FacilityWhereInput> | null
     department?: XOR<DepartmentNullableScalarRelationFilter, DepartmentWhereInput> | null
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     certifications?: EmployeeCertificationListRelationFilter
@@ -56206,6 +65472,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetListRelationFilter
     retirementCertificate?: XOR<RetirementCertificateNullableScalarRelationFilter, RetirementCertificateWhereInput> | null
     leaveTypeBalances?: LeaveTypeBalanceListRelationFilter
+    lateRecords?: LateRecordListRelationFilter
+    earlyLeaveRecords?: EarlyLeaveRecordListRelationFilter
+    outingRecords?: OutingRecordListRelationFilter
+    transferHistories?: EmployeeTransferListRelationFilter
   }
 
   export type EmployeeOrderByWithRelationInput = {
@@ -56216,6 +65486,7 @@ export namespace Prisma {
     email?: SortOrder
     createdAt?: SortOrder
     departmentId?: SortOrderInput | SortOrder
+    facilityId?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
     birthDate?: SortOrderInput | SortOrder
     firstNameKana?: SortOrderInput | SortOrder
@@ -56238,6 +65509,7 @@ export namespace Prisma {
     photoPath?: SortOrderInput | SortOrder
     userId?: SortOrderInput | SortOrder
     emergencyContact?: SortOrderInput | SortOrder
+    facility?: FacilityOrderByWithRelationInput
     department?: DepartmentOrderByWithRelationInput
     user?: UserOrderByWithRelationInput
     certifications?: EmployeeCertificationOrderByRelationAggregateInput
@@ -56257,6 +65529,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetOrderByRelationAggregateInput
     retirementCertificate?: RetirementCertificateOrderByWithRelationInput
     leaveTypeBalances?: LeaveTypeBalanceOrderByRelationAggregateInput
+    lateRecords?: LateRecordOrderByRelationAggregateInput
+    earlyLeaveRecords?: EarlyLeaveRecordOrderByRelationAggregateInput
+    outingRecords?: OutingRecordOrderByRelationAggregateInput
+    transferHistories?: EmployeeTransferOrderByRelationAggregateInput
   }
 
   export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
@@ -56271,6 +65547,7 @@ export namespace Prisma {
     lastName?: StringFilter<"Employee"> | string
     createdAt?: DateTimeFilter<"Employee"> | Date | string
     departmentId?: StringNullableFilter<"Employee"> | string | null
+    facilityId?: StringNullableFilter<"Employee"> | string | null
     address?: StringNullableFilter<"Employee"> | string | null
     birthDate?: DateTimeNullableFilter<"Employee"> | Date | string | null
     firstNameKana?: StringNullableFilter<"Employee"> | string | null
@@ -56292,6 +65569,7 @@ export namespace Prisma {
     retirementDate?: DateTimeNullableFilter<"Employee"> | Date | string | null
     photoPath?: StringNullableFilter<"Employee"> | string | null
     emergencyContact?: StringNullableFilter<"Employee"> | string | null
+    facility?: XOR<FacilityNullableScalarRelationFilter, FacilityWhereInput> | null
     department?: XOR<DepartmentNullableScalarRelationFilter, DepartmentWhereInput> | null
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     certifications?: EmployeeCertificationListRelationFilter
@@ -56311,6 +65589,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetListRelationFilter
     retirementCertificate?: XOR<RetirementCertificateNullableScalarRelationFilter, RetirementCertificateWhereInput> | null
     leaveTypeBalances?: LeaveTypeBalanceListRelationFilter
+    lateRecords?: LateRecordListRelationFilter
+    earlyLeaveRecords?: EarlyLeaveRecordListRelationFilter
+    outingRecords?: OutingRecordListRelationFilter
+    transferHistories?: EmployeeTransferListRelationFilter
   }, "id" | "employeeNo" | "email" | "userId">
 
   export type EmployeeOrderByWithAggregationInput = {
@@ -56321,6 +65603,7 @@ export namespace Prisma {
     email?: SortOrder
     createdAt?: SortOrder
     departmentId?: SortOrderInput | SortOrder
+    facilityId?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
     birthDate?: SortOrderInput | SortOrder
     firstNameKana?: SortOrderInput | SortOrder
@@ -56361,6 +65644,7 @@ export namespace Prisma {
     email?: StringWithAggregatesFilter<"Employee"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Employee"> | Date | string
     departmentId?: StringNullableWithAggregatesFilter<"Employee"> | string | null
+    facilityId?: StringNullableWithAggregatesFilter<"Employee"> | string | null
     address?: StringNullableWithAggregatesFilter<"Employee"> | string | null
     birthDate?: DateTimeNullableWithAggregatesFilter<"Employee"> | Date | string | null
     firstNameKana?: StringNullableWithAggregatesFilter<"Employee"> | string | null
@@ -56383,6 +65667,98 @@ export namespace Prisma {
     photoPath?: StringNullableWithAggregatesFilter<"Employee"> | string | null
     userId?: StringNullableWithAggregatesFilter<"Employee"> | string | null
     emergencyContact?: StringNullableWithAggregatesFilter<"Employee"> | string | null
+  }
+
+  export type EmployeeTransferWhereInput = {
+    AND?: EmployeeTransferWhereInput | EmployeeTransferWhereInput[]
+    OR?: EmployeeTransferWhereInput[]
+    NOT?: EmployeeTransferWhereInput | EmployeeTransferWhereInput[]
+    id?: StringFilter<"EmployeeTransfer"> | string
+    employeeId?: StringFilter<"EmployeeTransfer"> | string
+    fromFacilityId?: StringNullableFilter<"EmployeeTransfer"> | string | null
+    toFacilityId?: StringNullableFilter<"EmployeeTransfer"> | string | null
+    fromDepartmentId?: StringNullableFilter<"EmployeeTransfer"> | string | null
+    toDepartmentId?: StringNullableFilter<"EmployeeTransfer"> | string | null
+    effectiveDate?: DateTimeFilter<"EmployeeTransfer"> | Date | string
+    reason?: StringNullableFilter<"EmployeeTransfer"> | string | null
+    createdBy?: StringNullableFilter<"EmployeeTransfer"> | string | null
+    createdAt?: DateTimeFilter<"EmployeeTransfer"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+    fromFacility?: XOR<FacilityNullableScalarRelationFilter, FacilityWhereInput> | null
+    toFacility?: XOR<FacilityNullableScalarRelationFilter, FacilityWhereInput> | null
+    fromDepartment?: XOR<DepartmentNullableScalarRelationFilter, DepartmentWhereInput> | null
+    toDepartment?: XOR<DepartmentNullableScalarRelationFilter, DepartmentWhereInput> | null
+  }
+
+  export type EmployeeTransferOrderByWithRelationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    fromFacilityId?: SortOrderInput | SortOrder
+    toFacilityId?: SortOrderInput | SortOrder
+    fromDepartmentId?: SortOrderInput | SortOrder
+    toDepartmentId?: SortOrderInput | SortOrder
+    effectiveDate?: SortOrder
+    reason?: SortOrderInput | SortOrder
+    createdBy?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    employee?: EmployeeOrderByWithRelationInput
+    fromFacility?: FacilityOrderByWithRelationInput
+    toFacility?: FacilityOrderByWithRelationInput
+    fromDepartment?: DepartmentOrderByWithRelationInput
+    toDepartment?: DepartmentOrderByWithRelationInput
+  }
+
+  export type EmployeeTransferWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: EmployeeTransferWhereInput | EmployeeTransferWhereInput[]
+    OR?: EmployeeTransferWhereInput[]
+    NOT?: EmployeeTransferWhereInput | EmployeeTransferWhereInput[]
+    employeeId?: StringFilter<"EmployeeTransfer"> | string
+    fromFacilityId?: StringNullableFilter<"EmployeeTransfer"> | string | null
+    toFacilityId?: StringNullableFilter<"EmployeeTransfer"> | string | null
+    fromDepartmentId?: StringNullableFilter<"EmployeeTransfer"> | string | null
+    toDepartmentId?: StringNullableFilter<"EmployeeTransfer"> | string | null
+    effectiveDate?: DateTimeFilter<"EmployeeTransfer"> | Date | string
+    reason?: StringNullableFilter<"EmployeeTransfer"> | string | null
+    createdBy?: StringNullableFilter<"EmployeeTransfer"> | string | null
+    createdAt?: DateTimeFilter<"EmployeeTransfer"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+    fromFacility?: XOR<FacilityNullableScalarRelationFilter, FacilityWhereInput> | null
+    toFacility?: XOR<FacilityNullableScalarRelationFilter, FacilityWhereInput> | null
+    fromDepartment?: XOR<DepartmentNullableScalarRelationFilter, DepartmentWhereInput> | null
+    toDepartment?: XOR<DepartmentNullableScalarRelationFilter, DepartmentWhereInput> | null
+  }, "id">
+
+  export type EmployeeTransferOrderByWithAggregationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    fromFacilityId?: SortOrderInput | SortOrder
+    toFacilityId?: SortOrderInput | SortOrder
+    fromDepartmentId?: SortOrderInput | SortOrder
+    toDepartmentId?: SortOrderInput | SortOrder
+    effectiveDate?: SortOrder
+    reason?: SortOrderInput | SortOrder
+    createdBy?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: EmployeeTransferCountOrderByAggregateInput
+    _max?: EmployeeTransferMaxOrderByAggregateInput
+    _min?: EmployeeTransferMinOrderByAggregateInput
+  }
+
+  export type EmployeeTransferScalarWhereWithAggregatesInput = {
+    AND?: EmployeeTransferScalarWhereWithAggregatesInput | EmployeeTransferScalarWhereWithAggregatesInput[]
+    OR?: EmployeeTransferScalarWhereWithAggregatesInput[]
+    NOT?: EmployeeTransferScalarWhereWithAggregatesInput | EmployeeTransferScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EmployeeTransfer"> | string
+    employeeId?: StringWithAggregatesFilter<"EmployeeTransfer"> | string
+    fromFacilityId?: StringNullableWithAggregatesFilter<"EmployeeTransfer"> | string | null
+    toFacilityId?: StringNullableWithAggregatesFilter<"EmployeeTransfer"> | string | null
+    fromDepartmentId?: StringNullableWithAggregatesFilter<"EmployeeTransfer"> | string | null
+    toDepartmentId?: StringNullableWithAggregatesFilter<"EmployeeTransfer"> | string | null
+    effectiveDate?: DateTimeWithAggregatesFilter<"EmployeeTransfer"> | Date | string
+    reason?: StringNullableWithAggregatesFilter<"EmployeeTransfer"> | string | null
+    createdBy?: StringNullableWithAggregatesFilter<"EmployeeTransfer"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"EmployeeTransfer"> | Date | string
   }
 
   export type DependentWhereInput = {
@@ -56925,6 +66301,8 @@ export namespace Prisma {
     type?: EnumRequestTypeFilter<"EmployeeRequest"> | $Enums.RequestType
     userId?: StringNullableFilter<"EmployeeRequest"> | string | null
     status?: EnumRequestStatusFilter<"EmployeeRequest"> | $Enums.RequestStatus
+    currentApprovalStep?: IntFilter<"EmployeeRequest"> | number
+    approvalCompleted?: BoolFilter<"EmployeeRequest"> | boolean
     leaveDays?: FloatNullableFilter<"EmployeeRequest"> | number | null
     leaveEndDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
     leaveStartDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
@@ -56940,6 +66318,7 @@ export namespace Prisma {
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     attachments?: RequestAttachmentListRelationFilter
     histories?: RequestHistoryListRelationFilter
+    approvals?: RequestApprovalListRelationFilter
   }
 
   export type EmployeeRequestOrderByWithRelationInput = {
@@ -56953,6 +66332,8 @@ export namespace Prisma {
     type?: SortOrder
     userId?: SortOrderInput | SortOrder
     status?: SortOrder
+    currentApprovalStep?: SortOrder
+    approvalCompleted?: SortOrder
     leaveDays?: SortOrderInput | SortOrder
     leaveEndDate?: SortOrderInput | SortOrder
     leaveStartDate?: SortOrderInput | SortOrder
@@ -56968,6 +66349,7 @@ export namespace Prisma {
     user?: UserOrderByWithRelationInput
     attachments?: RequestAttachmentOrderByRelationAggregateInput
     histories?: RequestHistoryOrderByRelationAggregateInput
+    approvals?: RequestApprovalOrderByRelationAggregateInput
   }
 
   export type EmployeeRequestWhereUniqueInput = Prisma.AtLeast<{
@@ -56984,6 +66366,8 @@ export namespace Prisma {
     type?: EnumRequestTypeFilter<"EmployeeRequest"> | $Enums.RequestType
     userId?: StringNullableFilter<"EmployeeRequest"> | string | null
     status?: EnumRequestStatusFilter<"EmployeeRequest"> | $Enums.RequestStatus
+    currentApprovalStep?: IntFilter<"EmployeeRequest"> | number
+    approvalCompleted?: BoolFilter<"EmployeeRequest"> | boolean
     leaveDays?: FloatNullableFilter<"EmployeeRequest"> | number | null
     leaveEndDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
     leaveStartDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
@@ -56999,6 +66383,7 @@ export namespace Prisma {
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     attachments?: RequestAttachmentListRelationFilter
     histories?: RequestHistoryListRelationFilter
+    approvals?: RequestApprovalListRelationFilter
   }, "id">
 
   export type EmployeeRequestOrderByWithAggregationInput = {
@@ -57012,6 +66397,8 @@ export namespace Prisma {
     type?: SortOrder
     userId?: SortOrderInput | SortOrder
     status?: SortOrder
+    currentApprovalStep?: SortOrder
+    approvalCompleted?: SortOrder
     leaveDays?: SortOrderInput | SortOrder
     leaveEndDate?: SortOrderInput | SortOrder
     leaveStartDate?: SortOrderInput | SortOrder
@@ -57043,6 +66430,8 @@ export namespace Prisma {
     type?: EnumRequestTypeWithAggregatesFilter<"EmployeeRequest"> | $Enums.RequestType
     userId?: StringNullableWithAggregatesFilter<"EmployeeRequest"> | string | null
     status?: EnumRequestStatusWithAggregatesFilter<"EmployeeRequest"> | $Enums.RequestStatus
+    currentApprovalStep?: IntWithAggregatesFilter<"EmployeeRequest"> | number
+    approvalCompleted?: BoolWithAggregatesFilter<"EmployeeRequest"> | boolean
     leaveDays?: FloatNullableWithAggregatesFilter<"EmployeeRequest"> | number | null
     leaveEndDate?: DateTimeNullableWithAggregatesFilter<"EmployeeRequest"> | Date | string | null
     leaveStartDate?: DateTimeNullableWithAggregatesFilter<"EmployeeRequest"> | Date | string | null
@@ -57053,6 +66442,84 @@ export namespace Prisma {
     startTime?: StringNullableWithAggregatesFilter<"EmployeeRequest"> | string | null
     endTime?: StringNullableWithAggregatesFilter<"EmployeeRequest"> | string | null
     hours?: FloatNullableWithAggregatesFilter<"EmployeeRequest"> | number | null
+  }
+
+  export type RequestApprovalWhereInput = {
+    AND?: RequestApprovalWhereInput | RequestApprovalWhereInput[]
+    OR?: RequestApprovalWhereInput[]
+    NOT?: RequestApprovalWhereInput | RequestApprovalWhereInput[]
+    id?: StringFilter<"RequestApproval"> | string
+    requestId?: StringFilter<"RequestApproval"> | string
+    stepNo?: IntFilter<"RequestApproval"> | number
+    approverRole?: EnumUserRoleFilter<"RequestApproval"> | $Enums.UserRole
+    approverId?: StringNullableFilter<"RequestApproval"> | string | null
+    status?: EnumRequestStatusFilter<"RequestApproval"> | $Enums.RequestStatus
+    comment?: StringNullableFilter<"RequestApproval"> | string | null
+    approvedAt?: DateTimeNullableFilter<"RequestApproval"> | Date | string | null
+    createdAt?: DateTimeFilter<"RequestApproval"> | Date | string
+    request?: XOR<EmployeeRequestScalarRelationFilter, EmployeeRequestWhereInput>
+  }
+
+  export type RequestApprovalOrderByWithRelationInput = {
+    id?: SortOrder
+    requestId?: SortOrder
+    stepNo?: SortOrder
+    approverRole?: SortOrder
+    approverId?: SortOrderInput | SortOrder
+    status?: SortOrder
+    comment?: SortOrderInput | SortOrder
+    approvedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    request?: EmployeeRequestOrderByWithRelationInput
+  }
+
+  export type RequestApprovalWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    requestId_stepNo?: RequestApprovalRequestIdStepNoCompoundUniqueInput
+    AND?: RequestApprovalWhereInput | RequestApprovalWhereInput[]
+    OR?: RequestApprovalWhereInput[]
+    NOT?: RequestApprovalWhereInput | RequestApprovalWhereInput[]
+    requestId?: StringFilter<"RequestApproval"> | string
+    stepNo?: IntFilter<"RequestApproval"> | number
+    approverRole?: EnumUserRoleFilter<"RequestApproval"> | $Enums.UserRole
+    approverId?: StringNullableFilter<"RequestApproval"> | string | null
+    status?: EnumRequestStatusFilter<"RequestApproval"> | $Enums.RequestStatus
+    comment?: StringNullableFilter<"RequestApproval"> | string | null
+    approvedAt?: DateTimeNullableFilter<"RequestApproval"> | Date | string | null
+    createdAt?: DateTimeFilter<"RequestApproval"> | Date | string
+    request?: XOR<EmployeeRequestScalarRelationFilter, EmployeeRequestWhereInput>
+  }, "id" | "requestId_stepNo">
+
+  export type RequestApprovalOrderByWithAggregationInput = {
+    id?: SortOrder
+    requestId?: SortOrder
+    stepNo?: SortOrder
+    approverRole?: SortOrder
+    approverId?: SortOrderInput | SortOrder
+    status?: SortOrder
+    comment?: SortOrderInput | SortOrder
+    approvedAt?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: RequestApprovalCountOrderByAggregateInput
+    _avg?: RequestApprovalAvgOrderByAggregateInput
+    _max?: RequestApprovalMaxOrderByAggregateInput
+    _min?: RequestApprovalMinOrderByAggregateInput
+    _sum?: RequestApprovalSumOrderByAggregateInput
+  }
+
+  export type RequestApprovalScalarWhereWithAggregatesInput = {
+    AND?: RequestApprovalScalarWhereWithAggregatesInput | RequestApprovalScalarWhereWithAggregatesInput[]
+    OR?: RequestApprovalScalarWhereWithAggregatesInput[]
+    NOT?: RequestApprovalScalarWhereWithAggregatesInput | RequestApprovalScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"RequestApproval"> | string
+    requestId?: StringWithAggregatesFilter<"RequestApproval"> | string
+    stepNo?: IntWithAggregatesFilter<"RequestApproval"> | number
+    approverRole?: EnumUserRoleWithAggregatesFilter<"RequestApproval"> | $Enums.UserRole
+    approverId?: StringNullableWithAggregatesFilter<"RequestApproval"> | string | null
+    status?: EnumRequestStatusWithAggregatesFilter<"RequestApproval"> | $Enums.RequestStatus
+    comment?: StringNullableWithAggregatesFilter<"RequestApproval"> | string | null
+    approvedAt?: DateTimeNullableWithAggregatesFilter<"RequestApproval"> | Date | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"RequestApproval"> | Date | string
   }
 
   export type RequestAttachmentWhereInput = {
@@ -57180,6 +66647,76 @@ export namespace Prisma {
     actor?: StringNullableWithAggregatesFilter<"RequestHistory"> | string | null
     requestId?: StringWithAggregatesFilter<"RequestHistory"> | string
     createdAt?: DateTimeWithAggregatesFilter<"RequestHistory"> | Date | string
+  }
+
+  export type ApprovalRouteWhereInput = {
+    AND?: ApprovalRouteWhereInput | ApprovalRouteWhereInput[]
+    OR?: ApprovalRouteWhereInput[]
+    NOT?: ApprovalRouteWhereInput | ApprovalRouteWhereInput[]
+    id?: StringFilter<"ApprovalRoute"> | string
+    facilityId?: StringNullableFilter<"ApprovalRoute"> | string | null
+    departmentId?: StringNullableFilter<"ApprovalRoute"> | string | null
+    stepNo?: IntFilter<"ApprovalRoute"> | number
+    approverRole?: EnumUserRoleFilter<"ApprovalRoute"> | $Enums.UserRole
+    isActive?: BoolFilter<"ApprovalRoute"> | boolean
+    createdAt?: DateTimeFilter<"ApprovalRoute"> | Date | string
+    facility?: XOR<FacilityNullableScalarRelationFilter, FacilityWhereInput> | null
+    department?: XOR<DepartmentNullableScalarRelationFilter, DepartmentWhereInput> | null
+  }
+
+  export type ApprovalRouteOrderByWithRelationInput = {
+    id?: SortOrder
+    facilityId?: SortOrderInput | SortOrder
+    departmentId?: SortOrderInput | SortOrder
+    stepNo?: SortOrder
+    approverRole?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    facility?: FacilityOrderByWithRelationInput
+    department?: DepartmentOrderByWithRelationInput
+  }
+
+  export type ApprovalRouteWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ApprovalRouteWhereInput | ApprovalRouteWhereInput[]
+    OR?: ApprovalRouteWhereInput[]
+    NOT?: ApprovalRouteWhereInput | ApprovalRouteWhereInput[]
+    facilityId?: StringNullableFilter<"ApprovalRoute"> | string | null
+    departmentId?: StringNullableFilter<"ApprovalRoute"> | string | null
+    stepNo?: IntFilter<"ApprovalRoute"> | number
+    approverRole?: EnumUserRoleFilter<"ApprovalRoute"> | $Enums.UserRole
+    isActive?: BoolFilter<"ApprovalRoute"> | boolean
+    createdAt?: DateTimeFilter<"ApprovalRoute"> | Date | string
+    facility?: XOR<FacilityNullableScalarRelationFilter, FacilityWhereInput> | null
+    department?: XOR<DepartmentNullableScalarRelationFilter, DepartmentWhereInput> | null
+  }, "id">
+
+  export type ApprovalRouteOrderByWithAggregationInput = {
+    id?: SortOrder
+    facilityId?: SortOrderInput | SortOrder
+    departmentId?: SortOrderInput | SortOrder
+    stepNo?: SortOrder
+    approverRole?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+    _count?: ApprovalRouteCountOrderByAggregateInput
+    _avg?: ApprovalRouteAvgOrderByAggregateInput
+    _max?: ApprovalRouteMaxOrderByAggregateInput
+    _min?: ApprovalRouteMinOrderByAggregateInput
+    _sum?: ApprovalRouteSumOrderByAggregateInput
+  }
+
+  export type ApprovalRouteScalarWhereWithAggregatesInput = {
+    AND?: ApprovalRouteScalarWhereWithAggregatesInput | ApprovalRouteScalarWhereWithAggregatesInput[]
+    OR?: ApprovalRouteScalarWhereWithAggregatesInput[]
+    NOT?: ApprovalRouteScalarWhereWithAggregatesInput | ApprovalRouteScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ApprovalRoute"> | string
+    facilityId?: StringNullableWithAggregatesFilter<"ApprovalRoute"> | string | null
+    departmentId?: StringNullableWithAggregatesFilter<"ApprovalRoute"> | string | null
+    stepNo?: IntWithAggregatesFilter<"ApprovalRoute"> | number
+    approverRole?: EnumUserRoleWithAggregatesFilter<"ApprovalRoute"> | $Enums.UserRole
+    isActive?: BoolWithAggregatesFilter<"ApprovalRoute"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"ApprovalRoute"> | Date | string
   }
 
   export type AuditLogWhereInput = {
@@ -59065,6 +68602,11 @@ export namespace Prisma {
     expirationMonths?: IntNullableFilter<"LeaveType"> | number | null
     description?: StringNullableFilter<"LeaveType"> | string | null
     allowRequest?: BoolFilter<"LeaveType"> | boolean
+    allowDay?: BoolFilter<"LeaveType"> | boolean
+    allowAmHalf?: BoolFilter<"LeaveType"> | boolean
+    allowPmHalf?: BoolFilter<"LeaveType"> | boolean
+    allowHourly?: BoolFilter<"LeaveType"> | boolean
+    allowDateRange?: BoolFilter<"LeaveType"> | boolean
     manageBalance?: BoolFilter<"LeaveType"> | boolean
     sortOrder?: IntFilter<"LeaveType"> | number
     isActive?: BoolFilter<"LeaveType"> | boolean
@@ -59083,6 +68625,11 @@ export namespace Prisma {
     expirationMonths?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     allowRequest?: SortOrder
+    allowDay?: SortOrder
+    allowAmHalf?: SortOrder
+    allowPmHalf?: SortOrder
+    allowHourly?: SortOrder
+    allowDateRange?: SortOrder
     manageBalance?: SortOrder
     sortOrder?: SortOrder
     isActive?: SortOrder
@@ -59104,6 +68651,11 @@ export namespace Prisma {
     expirationMonths?: IntNullableFilter<"LeaveType"> | number | null
     description?: StringNullableFilter<"LeaveType"> | string | null
     allowRequest?: BoolFilter<"LeaveType"> | boolean
+    allowDay?: BoolFilter<"LeaveType"> | boolean
+    allowAmHalf?: BoolFilter<"LeaveType"> | boolean
+    allowPmHalf?: BoolFilter<"LeaveType"> | boolean
+    allowHourly?: BoolFilter<"LeaveType"> | boolean
+    allowDateRange?: BoolFilter<"LeaveType"> | boolean
     manageBalance?: BoolFilter<"LeaveType"> | boolean
     sortOrder?: IntFilter<"LeaveType"> | number
     isActive?: BoolFilter<"LeaveType"> | boolean
@@ -59122,6 +68674,11 @@ export namespace Prisma {
     expirationMonths?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     allowRequest?: SortOrder
+    allowDay?: SortOrder
+    allowAmHalf?: SortOrder
+    allowPmHalf?: SortOrder
+    allowHourly?: SortOrder
+    allowDateRange?: SortOrder
     manageBalance?: SortOrder
     sortOrder?: SortOrder
     isActive?: SortOrder
@@ -59145,6 +68702,11 @@ export namespace Prisma {
     expirationMonths?: IntNullableWithAggregatesFilter<"LeaveType"> | number | null
     description?: StringNullableWithAggregatesFilter<"LeaveType"> | string | null
     allowRequest?: BoolWithAggregatesFilter<"LeaveType"> | boolean
+    allowDay?: BoolWithAggregatesFilter<"LeaveType"> | boolean
+    allowAmHalf?: BoolWithAggregatesFilter<"LeaveType"> | boolean
+    allowPmHalf?: BoolWithAggregatesFilter<"LeaveType"> | boolean
+    allowHourly?: BoolWithAggregatesFilter<"LeaveType"> | boolean
+    allowDateRange?: BoolWithAggregatesFilter<"LeaveType"> | boolean
     manageBalance?: BoolWithAggregatesFilter<"LeaveType"> | boolean
     sortOrder?: IntWithAggregatesFilter<"LeaveType"> | number
     isActive?: BoolWithAggregatesFilter<"LeaveType"> | boolean
@@ -59750,6 +69312,201 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"PartTimeAnnualLeaveRule"> | Date | string
   }
 
+  export type LateRecordWhereInput = {
+    AND?: LateRecordWhereInput | LateRecordWhereInput[]
+    OR?: LateRecordWhereInput[]
+    NOT?: LateRecordWhereInput | LateRecordWhereInput[]
+    id?: StringFilter<"LateRecord"> | string
+    requestId?: StringFilter<"LateRecord"> | string
+    employeeId?: StringFilter<"LateRecord"> | string
+    targetDate?: DateTimeFilter<"LateRecord"> | Date | string
+    scheduledTime?: StringFilter<"LateRecord"> | string
+    arrivalTime?: StringFilter<"LateRecord"> | string
+    createdAt?: DateTimeFilter<"LateRecord"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+  }
+
+  export type LateRecordOrderByWithRelationInput = {
+    id?: SortOrder
+    requestId?: SortOrder
+    employeeId?: SortOrder
+    targetDate?: SortOrder
+    scheduledTime?: SortOrder
+    arrivalTime?: SortOrder
+    createdAt?: SortOrder
+    employee?: EmployeeOrderByWithRelationInput
+  }
+
+  export type LateRecordWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    requestId?: string
+    AND?: LateRecordWhereInput | LateRecordWhereInput[]
+    OR?: LateRecordWhereInput[]
+    NOT?: LateRecordWhereInput | LateRecordWhereInput[]
+    employeeId?: StringFilter<"LateRecord"> | string
+    targetDate?: DateTimeFilter<"LateRecord"> | Date | string
+    scheduledTime?: StringFilter<"LateRecord"> | string
+    arrivalTime?: StringFilter<"LateRecord"> | string
+    createdAt?: DateTimeFilter<"LateRecord"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+  }, "id" | "requestId">
+
+  export type LateRecordOrderByWithAggregationInput = {
+    id?: SortOrder
+    requestId?: SortOrder
+    employeeId?: SortOrder
+    targetDate?: SortOrder
+    scheduledTime?: SortOrder
+    arrivalTime?: SortOrder
+    createdAt?: SortOrder
+    _count?: LateRecordCountOrderByAggregateInput
+    _max?: LateRecordMaxOrderByAggregateInput
+    _min?: LateRecordMinOrderByAggregateInput
+  }
+
+  export type LateRecordScalarWhereWithAggregatesInput = {
+    AND?: LateRecordScalarWhereWithAggregatesInput | LateRecordScalarWhereWithAggregatesInput[]
+    OR?: LateRecordScalarWhereWithAggregatesInput[]
+    NOT?: LateRecordScalarWhereWithAggregatesInput | LateRecordScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"LateRecord"> | string
+    requestId?: StringWithAggregatesFilter<"LateRecord"> | string
+    employeeId?: StringWithAggregatesFilter<"LateRecord"> | string
+    targetDate?: DateTimeWithAggregatesFilter<"LateRecord"> | Date | string
+    scheduledTime?: StringWithAggregatesFilter<"LateRecord"> | string
+    arrivalTime?: StringWithAggregatesFilter<"LateRecord"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"LateRecord"> | Date | string
+  }
+
+  export type EarlyLeaveRecordWhereInput = {
+    AND?: EarlyLeaveRecordWhereInput | EarlyLeaveRecordWhereInput[]
+    OR?: EarlyLeaveRecordWhereInput[]
+    NOT?: EarlyLeaveRecordWhereInput | EarlyLeaveRecordWhereInput[]
+    id?: StringFilter<"EarlyLeaveRecord"> | string
+    requestId?: StringFilter<"EarlyLeaveRecord"> | string
+    employeeId?: StringFilter<"EarlyLeaveRecord"> | string
+    targetDate?: DateTimeFilter<"EarlyLeaveRecord"> | Date | string
+    scheduledTime?: StringFilter<"EarlyLeaveRecord"> | string
+    leaveTime?: StringFilter<"EarlyLeaveRecord"> | string
+    createdAt?: DateTimeFilter<"EarlyLeaveRecord"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+  }
+
+  export type EarlyLeaveRecordOrderByWithRelationInput = {
+    id?: SortOrder
+    requestId?: SortOrder
+    employeeId?: SortOrder
+    targetDate?: SortOrder
+    scheduledTime?: SortOrder
+    leaveTime?: SortOrder
+    createdAt?: SortOrder
+    employee?: EmployeeOrderByWithRelationInput
+  }
+
+  export type EarlyLeaveRecordWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    requestId?: string
+    AND?: EarlyLeaveRecordWhereInput | EarlyLeaveRecordWhereInput[]
+    OR?: EarlyLeaveRecordWhereInput[]
+    NOT?: EarlyLeaveRecordWhereInput | EarlyLeaveRecordWhereInput[]
+    employeeId?: StringFilter<"EarlyLeaveRecord"> | string
+    targetDate?: DateTimeFilter<"EarlyLeaveRecord"> | Date | string
+    scheduledTime?: StringFilter<"EarlyLeaveRecord"> | string
+    leaveTime?: StringFilter<"EarlyLeaveRecord"> | string
+    createdAt?: DateTimeFilter<"EarlyLeaveRecord"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+  }, "id" | "requestId">
+
+  export type EarlyLeaveRecordOrderByWithAggregationInput = {
+    id?: SortOrder
+    requestId?: SortOrder
+    employeeId?: SortOrder
+    targetDate?: SortOrder
+    scheduledTime?: SortOrder
+    leaveTime?: SortOrder
+    createdAt?: SortOrder
+    _count?: EarlyLeaveRecordCountOrderByAggregateInput
+    _max?: EarlyLeaveRecordMaxOrderByAggregateInput
+    _min?: EarlyLeaveRecordMinOrderByAggregateInput
+  }
+
+  export type EarlyLeaveRecordScalarWhereWithAggregatesInput = {
+    AND?: EarlyLeaveRecordScalarWhereWithAggregatesInput | EarlyLeaveRecordScalarWhereWithAggregatesInput[]
+    OR?: EarlyLeaveRecordScalarWhereWithAggregatesInput[]
+    NOT?: EarlyLeaveRecordScalarWhereWithAggregatesInput | EarlyLeaveRecordScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"EarlyLeaveRecord"> | string
+    requestId?: StringWithAggregatesFilter<"EarlyLeaveRecord"> | string
+    employeeId?: StringWithAggregatesFilter<"EarlyLeaveRecord"> | string
+    targetDate?: DateTimeWithAggregatesFilter<"EarlyLeaveRecord"> | Date | string
+    scheduledTime?: StringWithAggregatesFilter<"EarlyLeaveRecord"> | string
+    leaveTime?: StringWithAggregatesFilter<"EarlyLeaveRecord"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"EarlyLeaveRecord"> | Date | string
+  }
+
+  export type OutingRecordWhereInput = {
+    AND?: OutingRecordWhereInput | OutingRecordWhereInput[]
+    OR?: OutingRecordWhereInput[]
+    NOT?: OutingRecordWhereInput | OutingRecordWhereInput[]
+    id?: StringFilter<"OutingRecord"> | string
+    requestId?: StringFilter<"OutingRecord"> | string
+    employeeId?: StringFilter<"OutingRecord"> | string
+    targetDate?: DateTimeFilter<"OutingRecord"> | Date | string
+    startTime?: StringFilter<"OutingRecord"> | string
+    endTime?: StringFilter<"OutingRecord"> | string
+    createdAt?: DateTimeFilter<"OutingRecord"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+  }
+
+  export type OutingRecordOrderByWithRelationInput = {
+    id?: SortOrder
+    requestId?: SortOrder
+    employeeId?: SortOrder
+    targetDate?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    createdAt?: SortOrder
+    employee?: EmployeeOrderByWithRelationInput
+  }
+
+  export type OutingRecordWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    requestId?: string
+    AND?: OutingRecordWhereInput | OutingRecordWhereInput[]
+    OR?: OutingRecordWhereInput[]
+    NOT?: OutingRecordWhereInput | OutingRecordWhereInput[]
+    employeeId?: StringFilter<"OutingRecord"> | string
+    targetDate?: DateTimeFilter<"OutingRecord"> | Date | string
+    startTime?: StringFilter<"OutingRecord"> | string
+    endTime?: StringFilter<"OutingRecord"> | string
+    createdAt?: DateTimeFilter<"OutingRecord"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+  }, "id" | "requestId">
+
+  export type OutingRecordOrderByWithAggregationInput = {
+    id?: SortOrder
+    requestId?: SortOrder
+    employeeId?: SortOrder
+    targetDate?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    createdAt?: SortOrder
+    _count?: OutingRecordCountOrderByAggregateInput
+    _max?: OutingRecordMaxOrderByAggregateInput
+    _min?: OutingRecordMinOrderByAggregateInput
+  }
+
+  export type OutingRecordScalarWhereWithAggregatesInput = {
+    AND?: OutingRecordScalarWhereWithAggregatesInput | OutingRecordScalarWhereWithAggregatesInput[]
+    OR?: OutingRecordScalarWhereWithAggregatesInput[]
+    NOT?: OutingRecordScalarWhereWithAggregatesInput | OutingRecordScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"OutingRecord"> | string
+    requestId?: StringWithAggregatesFilter<"OutingRecord"> | string
+    employeeId?: StringWithAggregatesFilter<"OutingRecord"> | string
+    targetDate?: DateTimeWithAggregatesFilter<"OutingRecord"> | Date | string
+    startTime?: StringWithAggregatesFilter<"OutingRecord"> | string
+    endTime?: StringWithAggregatesFilter<"OutingRecord"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"OutingRecord"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     name: string
@@ -59944,11 +69701,79 @@ export namespace Prisma {
     cancelledAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
+  export type FacilityCreateInput = {
+    id?: string
+    code: string
+    name: string
+    createdAt?: Date | string
+    employees?: EmployeeCreateNestedManyWithoutFacilityInput
+    transfersFrom?: EmployeeTransferCreateNestedManyWithoutFromFacilityInput
+    transfersTo?: EmployeeTransferCreateNestedManyWithoutToFacilityInput
+    approvalRoutes?: ApprovalRouteCreateNestedManyWithoutFacilityInput
+  }
+
+  export type FacilityUncheckedCreateInput = {
+    id?: string
+    code: string
+    name: string
+    createdAt?: Date | string
+    employees?: EmployeeUncheckedCreateNestedManyWithoutFacilityInput
+    transfersFrom?: EmployeeTransferUncheckedCreateNestedManyWithoutFromFacilityInput
+    transfersTo?: EmployeeTransferUncheckedCreateNestedManyWithoutToFacilityInput
+    approvalRoutes?: ApprovalRouteUncheckedCreateNestedManyWithoutFacilityInput
+  }
+
+  export type FacilityUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employees?: EmployeeUpdateManyWithoutFacilityNestedInput
+    transfersFrom?: EmployeeTransferUpdateManyWithoutFromFacilityNestedInput
+    transfersTo?: EmployeeTransferUpdateManyWithoutToFacilityNestedInput
+    approvalRoutes?: ApprovalRouteUpdateManyWithoutFacilityNestedInput
+  }
+
+  export type FacilityUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employees?: EmployeeUncheckedUpdateManyWithoutFacilityNestedInput
+    transfersFrom?: EmployeeTransferUncheckedUpdateManyWithoutFromFacilityNestedInput
+    transfersTo?: EmployeeTransferUncheckedUpdateManyWithoutToFacilityNestedInput
+    approvalRoutes?: ApprovalRouteUncheckedUpdateManyWithoutFacilityNestedInput
+  }
+
+  export type FacilityCreateManyInput = {
+    id?: string
+    code: string
+    name: string
+    createdAt?: Date | string
+  }
+
+  export type FacilityUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FacilityUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type DepartmentCreateInput = {
     id?: string
     name: string
     createdAt?: Date | string
     employees?: EmployeeCreateNestedManyWithoutDepartmentInput
+    transfersFrom?: EmployeeTransferCreateNestedManyWithoutFromDepartmentInput
+    transfersTo?: EmployeeTransferCreateNestedManyWithoutToDepartmentInput
+    approvalRoutes?: ApprovalRouteCreateNestedManyWithoutDepartmentInput
   }
 
   export type DepartmentUncheckedCreateInput = {
@@ -59956,6 +69781,9 @@ export namespace Prisma {
     name: string
     createdAt?: Date | string
     employees?: EmployeeUncheckedCreateNestedManyWithoutDepartmentInput
+    transfersFrom?: EmployeeTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
+    transfersTo?: EmployeeTransferUncheckedCreateNestedManyWithoutToDepartmentInput
+    approvalRoutes?: ApprovalRouteUncheckedCreateNestedManyWithoutDepartmentInput
   }
 
   export type DepartmentUpdateInput = {
@@ -59963,6 +69791,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employees?: EmployeeUpdateManyWithoutDepartmentNestedInput
+    transfersFrom?: EmployeeTransferUpdateManyWithoutFromDepartmentNestedInput
+    transfersTo?: EmployeeTransferUpdateManyWithoutToDepartmentNestedInput
+    approvalRoutes?: ApprovalRouteUpdateManyWithoutDepartmentNestedInput
   }
 
   export type DepartmentUncheckedUpdateInput = {
@@ -59970,6 +69801,9 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employees?: EmployeeUncheckedUpdateManyWithoutDepartmentNestedInput
+    transfersFrom?: EmployeeTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
+    transfersTo?: EmployeeTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
+    approvalRoutes?: ApprovalRouteUncheckedUpdateManyWithoutDepartmentNestedInput
   }
 
   export type DepartmentCreateManyInput = {
@@ -60018,6 +69852,7 @@ export namespace Prisma {
     retirementDate?: Date | string | null
     photoPath?: string | null
     emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
     user?: UserCreateNestedOneWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
@@ -60037,6 +69872,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateInput = {
@@ -60047,6 +69886,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     departmentId?: string | null
+    facilityId?: string | null
     address?: string | null
     birthDate?: Date | string | null
     firstNameKana?: string | null
@@ -60086,6 +69926,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUpdateInput = {
@@ -60116,6 +69960,7 @@ export namespace Prisma {
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
     user?: UserUpdateOneWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
@@ -60135,6 +69980,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateInput = {
@@ -60145,6 +69994,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
@@ -60184,6 +70034,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateManyInput = {
@@ -60194,6 +70048,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     departmentId?: string | null
+    facilityId?: string | null
     address?: string | null
     birthDate?: Date | string | null
     firstNameKana?: string | null
@@ -60256,6 +70111,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
@@ -60278,6 +70134,92 @@ export namespace Prisma {
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EmployeeTransferCreateInput = {
+    id?: string
+    effectiveDate: Date | string
+    reason?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutTransferHistoriesInput
+    fromFacility?: FacilityCreateNestedOneWithoutTransfersFromInput
+    toFacility?: FacilityCreateNestedOneWithoutTransfersToInput
+    fromDepartment?: DepartmentCreateNestedOneWithoutTransfersFromInput
+    toDepartment?: DepartmentCreateNestedOneWithoutTransfersToInput
+  }
+
+  export type EmployeeTransferUncheckedCreateInput = {
+    id?: string
+    employeeId: string
+    fromFacilityId?: string | null
+    toFacilityId?: string | null
+    fromDepartmentId?: string | null
+    toDepartmentId?: string | null
+    effectiveDate: Date | string
+    reason?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmployeeTransferUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutTransferHistoriesNestedInput
+    fromFacility?: FacilityUpdateOneWithoutTransfersFromNestedInput
+    toFacility?: FacilityUpdateOneWithoutTransfersToNestedInput
+    fromDepartment?: DepartmentUpdateOneWithoutTransfersFromNestedInput
+    toDepartment?: DepartmentUpdateOneWithoutTransfersToNestedInput
+  }
+
+  export type EmployeeTransferUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    fromFacilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    toFacilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    fromDepartmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    toDepartmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeTransferCreateManyInput = {
+    id?: string
+    employeeId: string
+    fromFacilityId?: string | null
+    toFacilityId?: string | null
+    fromDepartmentId?: string | null
+    toDepartmentId?: string | null
+    effectiveDate: Date | string
+    reason?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmployeeTransferUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeTransferUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    fromFacilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    toFacilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    fromDepartmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    toDepartmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type DependentCreateInput = {
@@ -60852,6 +70794,8 @@ export namespace Prisma {
     rejectionReason?: string | null
     type: $Enums.RequestType
     status?: $Enums.RequestStatus
+    currentApprovalStep?: number
+    approvalCompleted?: boolean
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
@@ -60866,6 +70810,7 @@ export namespace Prisma {
     user?: UserCreateNestedOneWithoutRequestsInput
     attachments?: RequestAttachmentCreateNestedManyWithoutRequestInput
     histories?: RequestHistoryCreateNestedManyWithoutRequestInput
+    approvals?: RequestApprovalCreateNestedManyWithoutRequestInput
   }
 
   export type EmployeeRequestUncheckedCreateInput = {
@@ -60879,6 +70824,8 @@ export namespace Prisma {
     type: $Enums.RequestType
     userId?: string | null
     status?: $Enums.RequestStatus
+    currentApprovalStep?: number
+    approvalCompleted?: boolean
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
@@ -60891,6 +70838,7 @@ export namespace Prisma {
     hours?: number | null
     attachments?: RequestAttachmentUncheckedCreateNestedManyWithoutRequestInput
     histories?: RequestHistoryUncheckedCreateNestedManyWithoutRequestInput
+    approvals?: RequestApprovalUncheckedCreateNestedManyWithoutRequestInput
   }
 
   export type EmployeeRequestUpdateInput = {
@@ -60902,6 +70850,8 @@ export namespace Prisma {
     rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
     type?: EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    currentApprovalStep?: IntFieldUpdateOperationsInput | number
+    approvalCompleted?: BoolFieldUpdateOperationsInput | boolean
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -60916,6 +70866,7 @@ export namespace Prisma {
     user?: UserUpdateOneWithoutRequestsNestedInput
     attachments?: RequestAttachmentUpdateManyWithoutRequestNestedInput
     histories?: RequestHistoryUpdateManyWithoutRequestNestedInput
+    approvals?: RequestApprovalUpdateManyWithoutRequestNestedInput
   }
 
   export type EmployeeRequestUncheckedUpdateInput = {
@@ -60929,6 +70880,8 @@ export namespace Prisma {
     type?: EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    currentApprovalStep?: IntFieldUpdateOperationsInput | number
+    approvalCompleted?: BoolFieldUpdateOperationsInput | boolean
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -60941,6 +70894,7 @@ export namespace Prisma {
     hours?: NullableFloatFieldUpdateOperationsInput | number | null
     attachments?: RequestAttachmentUncheckedUpdateManyWithoutRequestNestedInput
     histories?: RequestHistoryUncheckedUpdateManyWithoutRequestNestedInput
+    approvals?: RequestApprovalUncheckedUpdateManyWithoutRequestNestedInput
   }
 
   export type EmployeeRequestCreateManyInput = {
@@ -60954,6 +70908,8 @@ export namespace Prisma {
     type: $Enums.RequestType
     userId?: string | null
     status?: $Enums.RequestStatus
+    currentApprovalStep?: number
+    approvalCompleted?: boolean
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
@@ -60975,6 +70931,8 @@ export namespace Prisma {
     rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
     type?: EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    currentApprovalStep?: IntFieldUpdateOperationsInput | number
+    approvalCompleted?: BoolFieldUpdateOperationsInput | boolean
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -60997,6 +70955,8 @@ export namespace Prisma {
     type?: EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    currentApprovalStep?: IntFieldUpdateOperationsInput | number
+    approvalCompleted?: BoolFieldUpdateOperationsInput | boolean
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -61007,6 +70967,89 @@ export namespace Prisma {
     startTime?: NullableStringFieldUpdateOperationsInput | string | null
     endTime?: NullableStringFieldUpdateOperationsInput | string | null
     hours?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type RequestApprovalCreateInput = {
+    id?: string
+    stepNo: number
+    approverRole: $Enums.UserRole
+    approverId?: string | null
+    status?: $Enums.RequestStatus
+    comment?: string | null
+    approvedAt?: Date | string | null
+    createdAt?: Date | string
+    request: EmployeeRequestCreateNestedOneWithoutApprovalsInput
+  }
+
+  export type RequestApprovalUncheckedCreateInput = {
+    id?: string
+    requestId: string
+    stepNo: number
+    approverRole: $Enums.UserRole
+    approverId?: string | null
+    status?: $Enums.RequestStatus
+    comment?: string | null
+    approvedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type RequestApprovalUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stepNo?: IntFieldUpdateOperationsInput | number
+    approverRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    approverId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    request?: EmployeeRequestUpdateOneRequiredWithoutApprovalsNestedInput
+  }
+
+  export type RequestApprovalUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    stepNo?: IntFieldUpdateOperationsInput | number
+    approverRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    approverId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RequestApprovalCreateManyInput = {
+    id?: string
+    requestId: string
+    stepNo: number
+    approverRole: $Enums.UserRole
+    approverId?: string | null
+    status?: $Enums.RequestStatus
+    comment?: string | null
+    approvedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type RequestApprovalUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stepNo?: IntFieldUpdateOperationsInput | number
+    approverRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    approverId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RequestApprovalUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    stepNo?: IntFieldUpdateOperationsInput | number
+    approverRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    approverId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type RequestAttachmentCreateInput = {
@@ -61137,6 +71180,74 @@ export namespace Prisma {
     comment?: NullableStringFieldUpdateOperationsInput | string | null
     actor?: NullableStringFieldUpdateOperationsInput | string | null
     requestId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApprovalRouteCreateInput = {
+    id?: string
+    stepNo: number
+    approverRole: $Enums.UserRole
+    isActive?: boolean
+    createdAt?: Date | string
+    facility?: FacilityCreateNestedOneWithoutApprovalRoutesInput
+    department?: DepartmentCreateNestedOneWithoutApprovalRoutesInput
+  }
+
+  export type ApprovalRouteUncheckedCreateInput = {
+    id?: string
+    facilityId?: string | null
+    departmentId?: string | null
+    stepNo: number
+    approverRole: $Enums.UserRole
+    isActive?: boolean
+    createdAt?: Date | string
+  }
+
+  export type ApprovalRouteUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stepNo?: IntFieldUpdateOperationsInput | number
+    approverRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facility?: FacilityUpdateOneWithoutApprovalRoutesNestedInput
+    department?: DepartmentUpdateOneWithoutApprovalRoutesNestedInput
+  }
+
+  export type ApprovalRouteUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    stepNo?: IntFieldUpdateOperationsInput | number
+    approverRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApprovalRouteCreateManyInput = {
+    id?: string
+    facilityId?: string | null
+    departmentId?: string | null
+    stepNo: number
+    approverRole: $Enums.UserRole
+    isActive?: boolean
+    createdAt?: Date | string
+  }
+
+  export type ApprovalRouteUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stepNo?: IntFieldUpdateOperationsInput | number
+    approverRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApprovalRouteUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    stepNo?: IntFieldUpdateOperationsInput | number
+    approverRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -63292,6 +73403,11 @@ export namespace Prisma {
     expirationMonths?: number | null
     description?: string | null
     allowRequest?: boolean
+    allowDay?: boolean
+    allowAmHalf?: boolean
+    allowPmHalf?: boolean
+    allowHourly?: boolean
+    allowDateRange?: boolean
     manageBalance?: boolean
     sortOrder?: number
     isActive?: boolean
@@ -63310,6 +73426,11 @@ export namespace Prisma {
     expirationMonths?: number | null
     description?: string | null
     allowRequest?: boolean
+    allowDay?: boolean
+    allowAmHalf?: boolean
+    allowPmHalf?: boolean
+    allowHourly?: boolean
+    allowDateRange?: boolean
     manageBalance?: boolean
     sortOrder?: number
     isActive?: boolean
@@ -63328,6 +73449,11 @@ export namespace Prisma {
     expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     allowRequest?: BoolFieldUpdateOperationsInput | boolean
+    allowDay?: BoolFieldUpdateOperationsInput | boolean
+    allowAmHalf?: BoolFieldUpdateOperationsInput | boolean
+    allowPmHalf?: BoolFieldUpdateOperationsInput | boolean
+    allowHourly?: BoolFieldUpdateOperationsInput | boolean
+    allowDateRange?: BoolFieldUpdateOperationsInput | boolean
     manageBalance?: BoolFieldUpdateOperationsInput | boolean
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
@@ -63346,6 +73472,11 @@ export namespace Prisma {
     expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     allowRequest?: BoolFieldUpdateOperationsInput | boolean
+    allowDay?: BoolFieldUpdateOperationsInput | boolean
+    allowAmHalf?: BoolFieldUpdateOperationsInput | boolean
+    allowPmHalf?: BoolFieldUpdateOperationsInput | boolean
+    allowHourly?: BoolFieldUpdateOperationsInput | boolean
+    allowDateRange?: BoolFieldUpdateOperationsInput | boolean
     manageBalance?: BoolFieldUpdateOperationsInput | boolean
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
@@ -63364,6 +73495,11 @@ export namespace Prisma {
     expirationMonths?: number | null
     description?: string | null
     allowRequest?: boolean
+    allowDay?: boolean
+    allowAmHalf?: boolean
+    allowPmHalf?: boolean
+    allowHourly?: boolean
+    allowDateRange?: boolean
     manageBalance?: boolean
     sortOrder?: number
     isActive?: boolean
@@ -63379,6 +73515,11 @@ export namespace Prisma {
     expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     allowRequest?: BoolFieldUpdateOperationsInput | boolean
+    allowDay?: BoolFieldUpdateOperationsInput | boolean
+    allowAmHalf?: BoolFieldUpdateOperationsInput | boolean
+    allowPmHalf?: BoolFieldUpdateOperationsInput | boolean
+    allowHourly?: BoolFieldUpdateOperationsInput | boolean
+    allowDateRange?: BoolFieldUpdateOperationsInput | boolean
     manageBalance?: BoolFieldUpdateOperationsInput | boolean
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
@@ -63394,6 +73535,11 @@ export namespace Prisma {
     expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     allowRequest?: BoolFieldUpdateOperationsInput | boolean
+    allowDay?: BoolFieldUpdateOperationsInput | boolean
+    allowAmHalf?: BoolFieldUpdateOperationsInput | boolean
+    allowPmHalf?: BoolFieldUpdateOperationsInput | boolean
+    allowHourly?: BoolFieldUpdateOperationsInput | boolean
+    allowDateRange?: BoolFieldUpdateOperationsInput | boolean
     manageBalance?: BoolFieldUpdateOperationsInput | boolean
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
@@ -64112,6 +74258,213 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type LateRecordCreateInput = {
+    id?: string
+    requestId: string
+    targetDate: Date | string
+    scheduledTime: string
+    arrivalTime: string
+    createdAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutLateRecordsInput
+  }
+
+  export type LateRecordUncheckedCreateInput = {
+    id?: string
+    requestId: string
+    employeeId: string
+    targetDate: Date | string
+    scheduledTime: string
+    arrivalTime: string
+    createdAt?: Date | string
+  }
+
+  export type LateRecordUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    targetDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    scheduledTime?: StringFieldUpdateOperationsInput | string
+    arrivalTime?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutLateRecordsNestedInput
+  }
+
+  export type LateRecordUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    targetDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    scheduledTime?: StringFieldUpdateOperationsInput | string
+    arrivalTime?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LateRecordCreateManyInput = {
+    id?: string
+    requestId: string
+    employeeId: string
+    targetDate: Date | string
+    scheduledTime: string
+    arrivalTime: string
+    createdAt?: Date | string
+  }
+
+  export type LateRecordUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    targetDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    scheduledTime?: StringFieldUpdateOperationsInput | string
+    arrivalTime?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LateRecordUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    targetDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    scheduledTime?: StringFieldUpdateOperationsInput | string
+    arrivalTime?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EarlyLeaveRecordCreateInput = {
+    id?: string
+    requestId: string
+    targetDate: Date | string
+    scheduledTime: string
+    leaveTime: string
+    createdAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutEarlyLeaveRecordsInput
+  }
+
+  export type EarlyLeaveRecordUncheckedCreateInput = {
+    id?: string
+    requestId: string
+    employeeId: string
+    targetDate: Date | string
+    scheduledTime: string
+    leaveTime: string
+    createdAt?: Date | string
+  }
+
+  export type EarlyLeaveRecordUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    targetDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    scheduledTime?: StringFieldUpdateOperationsInput | string
+    leaveTime?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutEarlyLeaveRecordsNestedInput
+  }
+
+  export type EarlyLeaveRecordUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    targetDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    scheduledTime?: StringFieldUpdateOperationsInput | string
+    leaveTime?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EarlyLeaveRecordCreateManyInput = {
+    id?: string
+    requestId: string
+    employeeId: string
+    targetDate: Date | string
+    scheduledTime: string
+    leaveTime: string
+    createdAt?: Date | string
+  }
+
+  export type EarlyLeaveRecordUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    targetDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    scheduledTime?: StringFieldUpdateOperationsInput | string
+    leaveTime?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EarlyLeaveRecordUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    targetDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    scheduledTime?: StringFieldUpdateOperationsInput | string
+    leaveTime?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OutingRecordCreateInput = {
+    id?: string
+    requestId: string
+    targetDate: Date | string
+    startTime: string
+    endTime: string
+    createdAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutOutingRecordsInput
+  }
+
+  export type OutingRecordUncheckedCreateInput = {
+    id?: string
+    requestId: string
+    employeeId: string
+    targetDate: Date | string
+    startTime: string
+    endTime: string
+    createdAt?: Date | string
+  }
+
+  export type OutingRecordUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    targetDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: StringFieldUpdateOperationsInput | string
+    endTime?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutOutingRecordsNestedInput
+  }
+
+  export type OutingRecordUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    targetDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: StringFieldUpdateOperationsInput | string
+    endTime?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OutingRecordCreateManyInput = {
+    id?: string
+    requestId: string
+    employeeId: string
+    targetDate: Date | string
+    startTime: string
+    endTime: string
+    createdAt?: Date | string
+  }
+
+  export type OutingRecordUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    targetDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: StringFieldUpdateOperationsInput | string
+    endTime?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OutingRecordUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    targetDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: StringFieldUpdateOperationsInput | string
+    endTime?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -64372,8 +74725,49 @@ export namespace Prisma {
     none?: EmployeeWhereInput
   }
 
+  export type EmployeeTransferListRelationFilter = {
+    every?: EmployeeTransferWhereInput
+    some?: EmployeeTransferWhereInput
+    none?: EmployeeTransferWhereInput
+  }
+
+  export type ApprovalRouteListRelationFilter = {
+    every?: ApprovalRouteWhereInput
+    some?: ApprovalRouteWhereInput
+    none?: ApprovalRouteWhereInput
+  }
+
   export type EmployeeOrderByRelationAggregateInput = {
     _count?: SortOrder
+  }
+
+  export type EmployeeTransferOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ApprovalRouteOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FacilityCountOrderByAggregateInput = {
+    id?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FacilityMaxOrderByAggregateInput = {
+    id?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FacilityMinOrderByAggregateInput = {
+    id?: SortOrder
+    code?: SortOrder
+    name?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type DepartmentCountOrderByAggregateInput = {
@@ -64435,6 +74829,11 @@ export namespace Prisma {
     in?: $Enums.EmployeeStatus[] | ListEnumEmployeeStatusFieldRefInput<$PrismaModel>
     notIn?: $Enums.EmployeeStatus[] | ListEnumEmployeeStatusFieldRefInput<$PrismaModel>
     not?: NestedEnumEmployeeStatusFilter<$PrismaModel> | $Enums.EmployeeStatus
+  }
+
+  export type FacilityNullableScalarRelationFilter = {
+    is?: FacilityWhereInput | null
+    isNot?: FacilityWhereInput | null
   }
 
   export type DepartmentNullableScalarRelationFilter = {
@@ -64537,6 +74936,24 @@ export namespace Prisma {
     none?: LeaveTypeBalanceWhereInput
   }
 
+  export type LateRecordListRelationFilter = {
+    every?: LateRecordWhereInput
+    some?: LateRecordWhereInput
+    none?: LateRecordWhereInput
+  }
+
+  export type EarlyLeaveRecordListRelationFilter = {
+    every?: EarlyLeaveRecordWhereInput
+    some?: EarlyLeaveRecordWhereInput
+    none?: EarlyLeaveRecordWhereInput
+  }
+
+  export type OutingRecordListRelationFilter = {
+    every?: OutingRecordWhereInput
+    some?: OutingRecordWhereInput
+    none?: OutingRecordWhereInput
+  }
+
   export type EmployeeCertificationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -64577,6 +74994,18 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type LateRecordOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type EarlyLeaveRecordOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type OutingRecordOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type EmployeeCountOrderByAggregateInput = {
     id?: SortOrder
     employeeNo?: SortOrder
@@ -64585,6 +75014,7 @@ export namespace Prisma {
     email?: SortOrder
     createdAt?: SortOrder
     departmentId?: SortOrder
+    facilityId?: SortOrder
     address?: SortOrder
     birthDate?: SortOrder
     firstNameKana?: SortOrder
@@ -64624,6 +75054,7 @@ export namespace Prisma {
     email?: SortOrder
     createdAt?: SortOrder
     departmentId?: SortOrder
+    facilityId?: SortOrder
     address?: SortOrder
     birthDate?: SortOrder
     firstNameKana?: SortOrder
@@ -64656,6 +75087,7 @@ export namespace Prisma {
     email?: SortOrder
     createdAt?: SortOrder
     departmentId?: SortOrder
+    facilityId?: SortOrder
     address?: SortOrder
     birthDate?: SortOrder
     firstNameKana?: SortOrder
@@ -64752,6 +75184,45 @@ export namespace Prisma {
   export type EmployeeScalarRelationFilter = {
     is?: EmployeeWhereInput
     isNot?: EmployeeWhereInput
+  }
+
+  export type EmployeeTransferCountOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    fromFacilityId?: SortOrder
+    toFacilityId?: SortOrder
+    fromDepartmentId?: SortOrder
+    toDepartmentId?: SortOrder
+    effectiveDate?: SortOrder
+    reason?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EmployeeTransferMaxOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    fromFacilityId?: SortOrder
+    toFacilityId?: SortOrder
+    fromDepartmentId?: SortOrder
+    toDepartmentId?: SortOrder
+    effectiveDate?: SortOrder
+    reason?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EmployeeTransferMinOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    fromFacilityId?: SortOrder
+    toFacilityId?: SortOrder
+    fromDepartmentId?: SortOrder
+    toDepartmentId?: SortOrder
+    effectiveDate?: SortOrder
+    reason?: SortOrder
+    createdBy?: SortOrder
+    createdAt?: SortOrder
   }
 
   export type EmploymentContractConsentListRelationFilter = {
@@ -65190,11 +75661,21 @@ export namespace Prisma {
     none?: RequestHistoryWhereInput
   }
 
+  export type RequestApprovalListRelationFilter = {
+    every?: RequestApprovalWhereInput
+    some?: RequestApprovalWhereInput
+    none?: RequestApprovalWhereInput
+  }
+
   export type RequestAttachmentOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type RequestHistoryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type RequestApprovalOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -65209,6 +75690,8 @@ export namespace Prisma {
     type?: SortOrder
     userId?: SortOrder
     status?: SortOrder
+    currentApprovalStep?: SortOrder
+    approvalCompleted?: SortOrder
     leaveDays?: SortOrder
     leaveEndDate?: SortOrder
     leaveStartDate?: SortOrder
@@ -65222,6 +75705,7 @@ export namespace Prisma {
   }
 
   export type EmployeeRequestAvgOrderByAggregateInput = {
+    currentApprovalStep?: SortOrder
     leaveDays?: SortOrder
     hours?: SortOrder
   }
@@ -65237,6 +75721,8 @@ export namespace Prisma {
     type?: SortOrder
     userId?: SortOrder
     status?: SortOrder
+    currentApprovalStep?: SortOrder
+    approvalCompleted?: SortOrder
     leaveDays?: SortOrder
     leaveEndDate?: SortOrder
     leaveStartDate?: SortOrder
@@ -65260,6 +75746,8 @@ export namespace Prisma {
     type?: SortOrder
     userId?: SortOrder
     status?: SortOrder
+    currentApprovalStep?: SortOrder
+    approvalCompleted?: SortOrder
     leaveDays?: SortOrder
     leaveEndDate?: SortOrder
     leaveStartDate?: SortOrder
@@ -65273,6 +75761,7 @@ export namespace Prisma {
   }
 
   export type EmployeeRequestSumOrderByAggregateInput = {
+    currentApprovalStep?: SortOrder
     leaveDays?: SortOrder
     hours?: SortOrder
   }
@@ -65320,6 +75809,55 @@ export namespace Prisma {
   export type EmployeeRequestScalarRelationFilter = {
     is?: EmployeeRequestWhereInput
     isNot?: EmployeeRequestWhereInput
+  }
+
+  export type RequestApprovalRequestIdStepNoCompoundUniqueInput = {
+    requestId: string
+    stepNo: number
+  }
+
+  export type RequestApprovalCountOrderByAggregateInput = {
+    id?: SortOrder
+    requestId?: SortOrder
+    stepNo?: SortOrder
+    approverRole?: SortOrder
+    approverId?: SortOrder
+    status?: SortOrder
+    comment?: SortOrder
+    approvedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RequestApprovalAvgOrderByAggregateInput = {
+    stepNo?: SortOrder
+  }
+
+  export type RequestApprovalMaxOrderByAggregateInput = {
+    id?: SortOrder
+    requestId?: SortOrder
+    stepNo?: SortOrder
+    approverRole?: SortOrder
+    approverId?: SortOrder
+    status?: SortOrder
+    comment?: SortOrder
+    approvedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RequestApprovalMinOrderByAggregateInput = {
+    id?: SortOrder
+    requestId?: SortOrder
+    stepNo?: SortOrder
+    approverRole?: SortOrder
+    approverId?: SortOrder
+    status?: SortOrder
+    comment?: SortOrder
+    approvedAt?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type RequestApprovalSumOrderByAggregateInput = {
+    stepNo?: SortOrder
   }
 
   export type RequestAttachmentCountOrderByAggregateInput = {
@@ -65402,6 +75940,44 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumRequestHistoryActionFilter<$PrismaModel>
     _max?: NestedEnumRequestHistoryActionFilter<$PrismaModel>
+  }
+
+  export type ApprovalRouteCountOrderByAggregateInput = {
+    id?: SortOrder
+    facilityId?: SortOrder
+    departmentId?: SortOrder
+    stepNo?: SortOrder
+    approverRole?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ApprovalRouteAvgOrderByAggregateInput = {
+    stepNo?: SortOrder
+  }
+
+  export type ApprovalRouteMaxOrderByAggregateInput = {
+    id?: SortOrder
+    facilityId?: SortOrder
+    departmentId?: SortOrder
+    stepNo?: SortOrder
+    approverRole?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ApprovalRouteMinOrderByAggregateInput = {
+    id?: SortOrder
+    facilityId?: SortOrder
+    departmentId?: SortOrder
+    stepNo?: SortOrder
+    approverRole?: SortOrder
+    isActive?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ApprovalRouteSumOrderByAggregateInput = {
+    stepNo?: SortOrder
   }
   export type JsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -66652,6 +77228,11 @@ export namespace Prisma {
     expirationMonths?: SortOrder
     description?: SortOrder
     allowRequest?: SortOrder
+    allowDay?: SortOrder
+    allowAmHalf?: SortOrder
+    allowPmHalf?: SortOrder
+    allowHourly?: SortOrder
+    allowDateRange?: SortOrder
     manageBalance?: SortOrder
     sortOrder?: SortOrder
     isActive?: SortOrder
@@ -66672,6 +77253,11 @@ export namespace Prisma {
     expirationMonths?: SortOrder
     description?: SortOrder
     allowRequest?: SortOrder
+    allowDay?: SortOrder
+    allowAmHalf?: SortOrder
+    allowPmHalf?: SortOrder
+    allowHourly?: SortOrder
+    allowDateRange?: SortOrder
     manageBalance?: SortOrder
     sortOrder?: SortOrder
     isActive?: SortOrder
@@ -66687,6 +77273,11 @@ export namespace Prisma {
     expirationMonths?: SortOrder
     description?: SortOrder
     allowRequest?: SortOrder
+    allowDay?: SortOrder
+    allowAmHalf?: SortOrder
+    allowPmHalf?: SortOrder
+    allowHourly?: SortOrder
+    allowDateRange?: SortOrder
     manageBalance?: SortOrder
     sortOrder?: SortOrder
     isActive?: SortOrder
@@ -67085,6 +77676,96 @@ export namespace Prisma {
     sortOrder?: SortOrder
   }
 
+  export type LateRecordCountOrderByAggregateInput = {
+    id?: SortOrder
+    requestId?: SortOrder
+    employeeId?: SortOrder
+    targetDate?: SortOrder
+    scheduledTime?: SortOrder
+    arrivalTime?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type LateRecordMaxOrderByAggregateInput = {
+    id?: SortOrder
+    requestId?: SortOrder
+    employeeId?: SortOrder
+    targetDate?: SortOrder
+    scheduledTime?: SortOrder
+    arrivalTime?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type LateRecordMinOrderByAggregateInput = {
+    id?: SortOrder
+    requestId?: SortOrder
+    employeeId?: SortOrder
+    targetDate?: SortOrder
+    scheduledTime?: SortOrder
+    arrivalTime?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EarlyLeaveRecordCountOrderByAggregateInput = {
+    id?: SortOrder
+    requestId?: SortOrder
+    employeeId?: SortOrder
+    targetDate?: SortOrder
+    scheduledTime?: SortOrder
+    leaveTime?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EarlyLeaveRecordMaxOrderByAggregateInput = {
+    id?: SortOrder
+    requestId?: SortOrder
+    employeeId?: SortOrder
+    targetDate?: SortOrder
+    scheduledTime?: SortOrder
+    leaveTime?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EarlyLeaveRecordMinOrderByAggregateInput = {
+    id?: SortOrder
+    requestId?: SortOrder
+    employeeId?: SortOrder
+    targetDate?: SortOrder
+    scheduledTime?: SortOrder
+    leaveTime?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type OutingRecordCountOrderByAggregateInput = {
+    id?: SortOrder
+    requestId?: SortOrder
+    employeeId?: SortOrder
+    targetDate?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type OutingRecordMaxOrderByAggregateInput = {
+    id?: SortOrder
+    requestId?: SortOrder
+    employeeId?: SortOrder
+    targetDate?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type OutingRecordMinOrderByAggregateInput = {
+    id?: SortOrder
+    requestId?: SortOrder
+    employeeId?: SortOrder
+    targetDate?: SortOrder
+    startTime?: SortOrder
+    endTime?: SortOrder
+    createdAt?: SortOrder
+  }
+
   export type EmployeeCreateNestedOneWithoutUserInput = {
     create?: XOR<EmployeeCreateWithoutUserInput, EmployeeUncheckedCreateWithoutUserInput>
     connectOrCreate?: EmployeeCreateOrConnectWithoutUserInput
@@ -67225,6 +77906,174 @@ export namespace Prisma {
     deleteMany?: EmployeeCertificationAttachmentScalarWhereInput | EmployeeCertificationAttachmentScalarWhereInput[]
   }
 
+  export type EmployeeCreateNestedManyWithoutFacilityInput = {
+    create?: XOR<EmployeeCreateWithoutFacilityInput, EmployeeUncheckedCreateWithoutFacilityInput> | EmployeeCreateWithoutFacilityInput[] | EmployeeUncheckedCreateWithoutFacilityInput[]
+    connectOrCreate?: EmployeeCreateOrConnectWithoutFacilityInput | EmployeeCreateOrConnectWithoutFacilityInput[]
+    createMany?: EmployeeCreateManyFacilityInputEnvelope
+    connect?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
+  }
+
+  export type EmployeeTransferCreateNestedManyWithoutFromFacilityInput = {
+    create?: XOR<EmployeeTransferCreateWithoutFromFacilityInput, EmployeeTransferUncheckedCreateWithoutFromFacilityInput> | EmployeeTransferCreateWithoutFromFacilityInput[] | EmployeeTransferUncheckedCreateWithoutFromFacilityInput[]
+    connectOrCreate?: EmployeeTransferCreateOrConnectWithoutFromFacilityInput | EmployeeTransferCreateOrConnectWithoutFromFacilityInput[]
+    createMany?: EmployeeTransferCreateManyFromFacilityInputEnvelope
+    connect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+  }
+
+  export type EmployeeTransferCreateNestedManyWithoutToFacilityInput = {
+    create?: XOR<EmployeeTransferCreateWithoutToFacilityInput, EmployeeTransferUncheckedCreateWithoutToFacilityInput> | EmployeeTransferCreateWithoutToFacilityInput[] | EmployeeTransferUncheckedCreateWithoutToFacilityInput[]
+    connectOrCreate?: EmployeeTransferCreateOrConnectWithoutToFacilityInput | EmployeeTransferCreateOrConnectWithoutToFacilityInput[]
+    createMany?: EmployeeTransferCreateManyToFacilityInputEnvelope
+    connect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+  }
+
+  export type ApprovalRouteCreateNestedManyWithoutFacilityInput = {
+    create?: XOR<ApprovalRouteCreateWithoutFacilityInput, ApprovalRouteUncheckedCreateWithoutFacilityInput> | ApprovalRouteCreateWithoutFacilityInput[] | ApprovalRouteUncheckedCreateWithoutFacilityInput[]
+    connectOrCreate?: ApprovalRouteCreateOrConnectWithoutFacilityInput | ApprovalRouteCreateOrConnectWithoutFacilityInput[]
+    createMany?: ApprovalRouteCreateManyFacilityInputEnvelope
+    connect?: ApprovalRouteWhereUniqueInput | ApprovalRouteWhereUniqueInput[]
+  }
+
+  export type EmployeeUncheckedCreateNestedManyWithoutFacilityInput = {
+    create?: XOR<EmployeeCreateWithoutFacilityInput, EmployeeUncheckedCreateWithoutFacilityInput> | EmployeeCreateWithoutFacilityInput[] | EmployeeUncheckedCreateWithoutFacilityInput[]
+    connectOrCreate?: EmployeeCreateOrConnectWithoutFacilityInput | EmployeeCreateOrConnectWithoutFacilityInput[]
+    createMany?: EmployeeCreateManyFacilityInputEnvelope
+    connect?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
+  }
+
+  export type EmployeeTransferUncheckedCreateNestedManyWithoutFromFacilityInput = {
+    create?: XOR<EmployeeTransferCreateWithoutFromFacilityInput, EmployeeTransferUncheckedCreateWithoutFromFacilityInput> | EmployeeTransferCreateWithoutFromFacilityInput[] | EmployeeTransferUncheckedCreateWithoutFromFacilityInput[]
+    connectOrCreate?: EmployeeTransferCreateOrConnectWithoutFromFacilityInput | EmployeeTransferCreateOrConnectWithoutFromFacilityInput[]
+    createMany?: EmployeeTransferCreateManyFromFacilityInputEnvelope
+    connect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+  }
+
+  export type EmployeeTransferUncheckedCreateNestedManyWithoutToFacilityInput = {
+    create?: XOR<EmployeeTransferCreateWithoutToFacilityInput, EmployeeTransferUncheckedCreateWithoutToFacilityInput> | EmployeeTransferCreateWithoutToFacilityInput[] | EmployeeTransferUncheckedCreateWithoutToFacilityInput[]
+    connectOrCreate?: EmployeeTransferCreateOrConnectWithoutToFacilityInput | EmployeeTransferCreateOrConnectWithoutToFacilityInput[]
+    createMany?: EmployeeTransferCreateManyToFacilityInputEnvelope
+    connect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+  }
+
+  export type ApprovalRouteUncheckedCreateNestedManyWithoutFacilityInput = {
+    create?: XOR<ApprovalRouteCreateWithoutFacilityInput, ApprovalRouteUncheckedCreateWithoutFacilityInput> | ApprovalRouteCreateWithoutFacilityInput[] | ApprovalRouteUncheckedCreateWithoutFacilityInput[]
+    connectOrCreate?: ApprovalRouteCreateOrConnectWithoutFacilityInput | ApprovalRouteCreateOrConnectWithoutFacilityInput[]
+    createMany?: ApprovalRouteCreateManyFacilityInputEnvelope
+    connect?: ApprovalRouteWhereUniqueInput | ApprovalRouteWhereUniqueInput[]
+  }
+
+  export type EmployeeUpdateManyWithoutFacilityNestedInput = {
+    create?: XOR<EmployeeCreateWithoutFacilityInput, EmployeeUncheckedCreateWithoutFacilityInput> | EmployeeCreateWithoutFacilityInput[] | EmployeeUncheckedCreateWithoutFacilityInput[]
+    connectOrCreate?: EmployeeCreateOrConnectWithoutFacilityInput | EmployeeCreateOrConnectWithoutFacilityInput[]
+    upsert?: EmployeeUpsertWithWhereUniqueWithoutFacilityInput | EmployeeUpsertWithWhereUniqueWithoutFacilityInput[]
+    createMany?: EmployeeCreateManyFacilityInputEnvelope
+    set?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
+    disconnect?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
+    delete?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
+    connect?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
+    update?: EmployeeUpdateWithWhereUniqueWithoutFacilityInput | EmployeeUpdateWithWhereUniqueWithoutFacilityInput[]
+    updateMany?: EmployeeUpdateManyWithWhereWithoutFacilityInput | EmployeeUpdateManyWithWhereWithoutFacilityInput[]
+    deleteMany?: EmployeeScalarWhereInput | EmployeeScalarWhereInput[]
+  }
+
+  export type EmployeeTransferUpdateManyWithoutFromFacilityNestedInput = {
+    create?: XOR<EmployeeTransferCreateWithoutFromFacilityInput, EmployeeTransferUncheckedCreateWithoutFromFacilityInput> | EmployeeTransferCreateWithoutFromFacilityInput[] | EmployeeTransferUncheckedCreateWithoutFromFacilityInput[]
+    connectOrCreate?: EmployeeTransferCreateOrConnectWithoutFromFacilityInput | EmployeeTransferCreateOrConnectWithoutFromFacilityInput[]
+    upsert?: EmployeeTransferUpsertWithWhereUniqueWithoutFromFacilityInput | EmployeeTransferUpsertWithWhereUniqueWithoutFromFacilityInput[]
+    createMany?: EmployeeTransferCreateManyFromFacilityInputEnvelope
+    set?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    disconnect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    delete?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    connect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    update?: EmployeeTransferUpdateWithWhereUniqueWithoutFromFacilityInput | EmployeeTransferUpdateWithWhereUniqueWithoutFromFacilityInput[]
+    updateMany?: EmployeeTransferUpdateManyWithWhereWithoutFromFacilityInput | EmployeeTransferUpdateManyWithWhereWithoutFromFacilityInput[]
+    deleteMany?: EmployeeTransferScalarWhereInput | EmployeeTransferScalarWhereInput[]
+  }
+
+  export type EmployeeTransferUpdateManyWithoutToFacilityNestedInput = {
+    create?: XOR<EmployeeTransferCreateWithoutToFacilityInput, EmployeeTransferUncheckedCreateWithoutToFacilityInput> | EmployeeTransferCreateWithoutToFacilityInput[] | EmployeeTransferUncheckedCreateWithoutToFacilityInput[]
+    connectOrCreate?: EmployeeTransferCreateOrConnectWithoutToFacilityInput | EmployeeTransferCreateOrConnectWithoutToFacilityInput[]
+    upsert?: EmployeeTransferUpsertWithWhereUniqueWithoutToFacilityInput | EmployeeTransferUpsertWithWhereUniqueWithoutToFacilityInput[]
+    createMany?: EmployeeTransferCreateManyToFacilityInputEnvelope
+    set?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    disconnect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    delete?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    connect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    update?: EmployeeTransferUpdateWithWhereUniqueWithoutToFacilityInput | EmployeeTransferUpdateWithWhereUniqueWithoutToFacilityInput[]
+    updateMany?: EmployeeTransferUpdateManyWithWhereWithoutToFacilityInput | EmployeeTransferUpdateManyWithWhereWithoutToFacilityInput[]
+    deleteMany?: EmployeeTransferScalarWhereInput | EmployeeTransferScalarWhereInput[]
+  }
+
+  export type ApprovalRouteUpdateManyWithoutFacilityNestedInput = {
+    create?: XOR<ApprovalRouteCreateWithoutFacilityInput, ApprovalRouteUncheckedCreateWithoutFacilityInput> | ApprovalRouteCreateWithoutFacilityInput[] | ApprovalRouteUncheckedCreateWithoutFacilityInput[]
+    connectOrCreate?: ApprovalRouteCreateOrConnectWithoutFacilityInput | ApprovalRouteCreateOrConnectWithoutFacilityInput[]
+    upsert?: ApprovalRouteUpsertWithWhereUniqueWithoutFacilityInput | ApprovalRouteUpsertWithWhereUniqueWithoutFacilityInput[]
+    createMany?: ApprovalRouteCreateManyFacilityInputEnvelope
+    set?: ApprovalRouteWhereUniqueInput | ApprovalRouteWhereUniqueInput[]
+    disconnect?: ApprovalRouteWhereUniqueInput | ApprovalRouteWhereUniqueInput[]
+    delete?: ApprovalRouteWhereUniqueInput | ApprovalRouteWhereUniqueInput[]
+    connect?: ApprovalRouteWhereUniqueInput | ApprovalRouteWhereUniqueInput[]
+    update?: ApprovalRouteUpdateWithWhereUniqueWithoutFacilityInput | ApprovalRouteUpdateWithWhereUniqueWithoutFacilityInput[]
+    updateMany?: ApprovalRouteUpdateManyWithWhereWithoutFacilityInput | ApprovalRouteUpdateManyWithWhereWithoutFacilityInput[]
+    deleteMany?: ApprovalRouteScalarWhereInput | ApprovalRouteScalarWhereInput[]
+  }
+
+  export type EmployeeUncheckedUpdateManyWithoutFacilityNestedInput = {
+    create?: XOR<EmployeeCreateWithoutFacilityInput, EmployeeUncheckedCreateWithoutFacilityInput> | EmployeeCreateWithoutFacilityInput[] | EmployeeUncheckedCreateWithoutFacilityInput[]
+    connectOrCreate?: EmployeeCreateOrConnectWithoutFacilityInput | EmployeeCreateOrConnectWithoutFacilityInput[]
+    upsert?: EmployeeUpsertWithWhereUniqueWithoutFacilityInput | EmployeeUpsertWithWhereUniqueWithoutFacilityInput[]
+    createMany?: EmployeeCreateManyFacilityInputEnvelope
+    set?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
+    disconnect?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
+    delete?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
+    connect?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
+    update?: EmployeeUpdateWithWhereUniqueWithoutFacilityInput | EmployeeUpdateWithWhereUniqueWithoutFacilityInput[]
+    updateMany?: EmployeeUpdateManyWithWhereWithoutFacilityInput | EmployeeUpdateManyWithWhereWithoutFacilityInput[]
+    deleteMany?: EmployeeScalarWhereInput | EmployeeScalarWhereInput[]
+  }
+
+  export type EmployeeTransferUncheckedUpdateManyWithoutFromFacilityNestedInput = {
+    create?: XOR<EmployeeTransferCreateWithoutFromFacilityInput, EmployeeTransferUncheckedCreateWithoutFromFacilityInput> | EmployeeTransferCreateWithoutFromFacilityInput[] | EmployeeTransferUncheckedCreateWithoutFromFacilityInput[]
+    connectOrCreate?: EmployeeTransferCreateOrConnectWithoutFromFacilityInput | EmployeeTransferCreateOrConnectWithoutFromFacilityInput[]
+    upsert?: EmployeeTransferUpsertWithWhereUniqueWithoutFromFacilityInput | EmployeeTransferUpsertWithWhereUniqueWithoutFromFacilityInput[]
+    createMany?: EmployeeTransferCreateManyFromFacilityInputEnvelope
+    set?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    disconnect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    delete?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    connect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    update?: EmployeeTransferUpdateWithWhereUniqueWithoutFromFacilityInput | EmployeeTransferUpdateWithWhereUniqueWithoutFromFacilityInput[]
+    updateMany?: EmployeeTransferUpdateManyWithWhereWithoutFromFacilityInput | EmployeeTransferUpdateManyWithWhereWithoutFromFacilityInput[]
+    deleteMany?: EmployeeTransferScalarWhereInput | EmployeeTransferScalarWhereInput[]
+  }
+
+  export type EmployeeTransferUncheckedUpdateManyWithoutToFacilityNestedInput = {
+    create?: XOR<EmployeeTransferCreateWithoutToFacilityInput, EmployeeTransferUncheckedCreateWithoutToFacilityInput> | EmployeeTransferCreateWithoutToFacilityInput[] | EmployeeTransferUncheckedCreateWithoutToFacilityInput[]
+    connectOrCreate?: EmployeeTransferCreateOrConnectWithoutToFacilityInput | EmployeeTransferCreateOrConnectWithoutToFacilityInput[]
+    upsert?: EmployeeTransferUpsertWithWhereUniqueWithoutToFacilityInput | EmployeeTransferUpsertWithWhereUniqueWithoutToFacilityInput[]
+    createMany?: EmployeeTransferCreateManyToFacilityInputEnvelope
+    set?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    disconnect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    delete?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    connect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    update?: EmployeeTransferUpdateWithWhereUniqueWithoutToFacilityInput | EmployeeTransferUpdateWithWhereUniqueWithoutToFacilityInput[]
+    updateMany?: EmployeeTransferUpdateManyWithWhereWithoutToFacilityInput | EmployeeTransferUpdateManyWithWhereWithoutToFacilityInput[]
+    deleteMany?: EmployeeTransferScalarWhereInput | EmployeeTransferScalarWhereInput[]
+  }
+
+  export type ApprovalRouteUncheckedUpdateManyWithoutFacilityNestedInput = {
+    create?: XOR<ApprovalRouteCreateWithoutFacilityInput, ApprovalRouteUncheckedCreateWithoutFacilityInput> | ApprovalRouteCreateWithoutFacilityInput[] | ApprovalRouteUncheckedCreateWithoutFacilityInput[]
+    connectOrCreate?: ApprovalRouteCreateOrConnectWithoutFacilityInput | ApprovalRouteCreateOrConnectWithoutFacilityInput[]
+    upsert?: ApprovalRouteUpsertWithWhereUniqueWithoutFacilityInput | ApprovalRouteUpsertWithWhereUniqueWithoutFacilityInput[]
+    createMany?: ApprovalRouteCreateManyFacilityInputEnvelope
+    set?: ApprovalRouteWhereUniqueInput | ApprovalRouteWhereUniqueInput[]
+    disconnect?: ApprovalRouteWhereUniqueInput | ApprovalRouteWhereUniqueInput[]
+    delete?: ApprovalRouteWhereUniqueInput | ApprovalRouteWhereUniqueInput[]
+    connect?: ApprovalRouteWhereUniqueInput | ApprovalRouteWhereUniqueInput[]
+    update?: ApprovalRouteUpdateWithWhereUniqueWithoutFacilityInput | ApprovalRouteUpdateWithWhereUniqueWithoutFacilityInput[]
+    updateMany?: ApprovalRouteUpdateManyWithWhereWithoutFacilityInput | ApprovalRouteUpdateManyWithWhereWithoutFacilityInput[]
+    deleteMany?: ApprovalRouteScalarWhereInput | ApprovalRouteScalarWhereInput[]
+  }
+
   export type EmployeeCreateNestedManyWithoutDepartmentInput = {
     create?: XOR<EmployeeCreateWithoutDepartmentInput, EmployeeUncheckedCreateWithoutDepartmentInput> | EmployeeCreateWithoutDepartmentInput[] | EmployeeUncheckedCreateWithoutDepartmentInput[]
     connectOrCreate?: EmployeeCreateOrConnectWithoutDepartmentInput | EmployeeCreateOrConnectWithoutDepartmentInput[]
@@ -67232,11 +78081,53 @@ export namespace Prisma {
     connect?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
   }
 
+  export type EmployeeTransferCreateNestedManyWithoutFromDepartmentInput = {
+    create?: XOR<EmployeeTransferCreateWithoutFromDepartmentInput, EmployeeTransferUncheckedCreateWithoutFromDepartmentInput> | EmployeeTransferCreateWithoutFromDepartmentInput[] | EmployeeTransferUncheckedCreateWithoutFromDepartmentInput[]
+    connectOrCreate?: EmployeeTransferCreateOrConnectWithoutFromDepartmentInput | EmployeeTransferCreateOrConnectWithoutFromDepartmentInput[]
+    createMany?: EmployeeTransferCreateManyFromDepartmentInputEnvelope
+    connect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+  }
+
+  export type EmployeeTransferCreateNestedManyWithoutToDepartmentInput = {
+    create?: XOR<EmployeeTransferCreateWithoutToDepartmentInput, EmployeeTransferUncheckedCreateWithoutToDepartmentInput> | EmployeeTransferCreateWithoutToDepartmentInput[] | EmployeeTransferUncheckedCreateWithoutToDepartmentInput[]
+    connectOrCreate?: EmployeeTransferCreateOrConnectWithoutToDepartmentInput | EmployeeTransferCreateOrConnectWithoutToDepartmentInput[]
+    createMany?: EmployeeTransferCreateManyToDepartmentInputEnvelope
+    connect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+  }
+
+  export type ApprovalRouteCreateNestedManyWithoutDepartmentInput = {
+    create?: XOR<ApprovalRouteCreateWithoutDepartmentInput, ApprovalRouteUncheckedCreateWithoutDepartmentInput> | ApprovalRouteCreateWithoutDepartmentInput[] | ApprovalRouteUncheckedCreateWithoutDepartmentInput[]
+    connectOrCreate?: ApprovalRouteCreateOrConnectWithoutDepartmentInput | ApprovalRouteCreateOrConnectWithoutDepartmentInput[]
+    createMany?: ApprovalRouteCreateManyDepartmentInputEnvelope
+    connect?: ApprovalRouteWhereUniqueInput | ApprovalRouteWhereUniqueInput[]
+  }
+
   export type EmployeeUncheckedCreateNestedManyWithoutDepartmentInput = {
     create?: XOR<EmployeeCreateWithoutDepartmentInput, EmployeeUncheckedCreateWithoutDepartmentInput> | EmployeeCreateWithoutDepartmentInput[] | EmployeeUncheckedCreateWithoutDepartmentInput[]
     connectOrCreate?: EmployeeCreateOrConnectWithoutDepartmentInput | EmployeeCreateOrConnectWithoutDepartmentInput[]
     createMany?: EmployeeCreateManyDepartmentInputEnvelope
     connect?: EmployeeWhereUniqueInput | EmployeeWhereUniqueInput[]
+  }
+
+  export type EmployeeTransferUncheckedCreateNestedManyWithoutFromDepartmentInput = {
+    create?: XOR<EmployeeTransferCreateWithoutFromDepartmentInput, EmployeeTransferUncheckedCreateWithoutFromDepartmentInput> | EmployeeTransferCreateWithoutFromDepartmentInput[] | EmployeeTransferUncheckedCreateWithoutFromDepartmentInput[]
+    connectOrCreate?: EmployeeTransferCreateOrConnectWithoutFromDepartmentInput | EmployeeTransferCreateOrConnectWithoutFromDepartmentInput[]
+    createMany?: EmployeeTransferCreateManyFromDepartmentInputEnvelope
+    connect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+  }
+
+  export type EmployeeTransferUncheckedCreateNestedManyWithoutToDepartmentInput = {
+    create?: XOR<EmployeeTransferCreateWithoutToDepartmentInput, EmployeeTransferUncheckedCreateWithoutToDepartmentInput> | EmployeeTransferCreateWithoutToDepartmentInput[] | EmployeeTransferUncheckedCreateWithoutToDepartmentInput[]
+    connectOrCreate?: EmployeeTransferCreateOrConnectWithoutToDepartmentInput | EmployeeTransferCreateOrConnectWithoutToDepartmentInput[]
+    createMany?: EmployeeTransferCreateManyToDepartmentInputEnvelope
+    connect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+  }
+
+  export type ApprovalRouteUncheckedCreateNestedManyWithoutDepartmentInput = {
+    create?: XOR<ApprovalRouteCreateWithoutDepartmentInput, ApprovalRouteUncheckedCreateWithoutDepartmentInput> | ApprovalRouteCreateWithoutDepartmentInput[] | ApprovalRouteUncheckedCreateWithoutDepartmentInput[]
+    connectOrCreate?: ApprovalRouteCreateOrConnectWithoutDepartmentInput | ApprovalRouteCreateOrConnectWithoutDepartmentInput[]
+    createMany?: ApprovalRouteCreateManyDepartmentInputEnvelope
+    connect?: ApprovalRouteWhereUniqueInput | ApprovalRouteWhereUniqueInput[]
   }
 
   export type EmployeeUpdateManyWithoutDepartmentNestedInput = {
@@ -67253,6 +78144,48 @@ export namespace Prisma {
     deleteMany?: EmployeeScalarWhereInput | EmployeeScalarWhereInput[]
   }
 
+  export type EmployeeTransferUpdateManyWithoutFromDepartmentNestedInput = {
+    create?: XOR<EmployeeTransferCreateWithoutFromDepartmentInput, EmployeeTransferUncheckedCreateWithoutFromDepartmentInput> | EmployeeTransferCreateWithoutFromDepartmentInput[] | EmployeeTransferUncheckedCreateWithoutFromDepartmentInput[]
+    connectOrCreate?: EmployeeTransferCreateOrConnectWithoutFromDepartmentInput | EmployeeTransferCreateOrConnectWithoutFromDepartmentInput[]
+    upsert?: EmployeeTransferUpsertWithWhereUniqueWithoutFromDepartmentInput | EmployeeTransferUpsertWithWhereUniqueWithoutFromDepartmentInput[]
+    createMany?: EmployeeTransferCreateManyFromDepartmentInputEnvelope
+    set?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    disconnect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    delete?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    connect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    update?: EmployeeTransferUpdateWithWhereUniqueWithoutFromDepartmentInput | EmployeeTransferUpdateWithWhereUniqueWithoutFromDepartmentInput[]
+    updateMany?: EmployeeTransferUpdateManyWithWhereWithoutFromDepartmentInput | EmployeeTransferUpdateManyWithWhereWithoutFromDepartmentInput[]
+    deleteMany?: EmployeeTransferScalarWhereInput | EmployeeTransferScalarWhereInput[]
+  }
+
+  export type EmployeeTransferUpdateManyWithoutToDepartmentNestedInput = {
+    create?: XOR<EmployeeTransferCreateWithoutToDepartmentInput, EmployeeTransferUncheckedCreateWithoutToDepartmentInput> | EmployeeTransferCreateWithoutToDepartmentInput[] | EmployeeTransferUncheckedCreateWithoutToDepartmentInput[]
+    connectOrCreate?: EmployeeTransferCreateOrConnectWithoutToDepartmentInput | EmployeeTransferCreateOrConnectWithoutToDepartmentInput[]
+    upsert?: EmployeeTransferUpsertWithWhereUniqueWithoutToDepartmentInput | EmployeeTransferUpsertWithWhereUniqueWithoutToDepartmentInput[]
+    createMany?: EmployeeTransferCreateManyToDepartmentInputEnvelope
+    set?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    disconnect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    delete?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    connect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    update?: EmployeeTransferUpdateWithWhereUniqueWithoutToDepartmentInput | EmployeeTransferUpdateWithWhereUniqueWithoutToDepartmentInput[]
+    updateMany?: EmployeeTransferUpdateManyWithWhereWithoutToDepartmentInput | EmployeeTransferUpdateManyWithWhereWithoutToDepartmentInput[]
+    deleteMany?: EmployeeTransferScalarWhereInput | EmployeeTransferScalarWhereInput[]
+  }
+
+  export type ApprovalRouteUpdateManyWithoutDepartmentNestedInput = {
+    create?: XOR<ApprovalRouteCreateWithoutDepartmentInput, ApprovalRouteUncheckedCreateWithoutDepartmentInput> | ApprovalRouteCreateWithoutDepartmentInput[] | ApprovalRouteUncheckedCreateWithoutDepartmentInput[]
+    connectOrCreate?: ApprovalRouteCreateOrConnectWithoutDepartmentInput | ApprovalRouteCreateOrConnectWithoutDepartmentInput[]
+    upsert?: ApprovalRouteUpsertWithWhereUniqueWithoutDepartmentInput | ApprovalRouteUpsertWithWhereUniqueWithoutDepartmentInput[]
+    createMany?: ApprovalRouteCreateManyDepartmentInputEnvelope
+    set?: ApprovalRouteWhereUniqueInput | ApprovalRouteWhereUniqueInput[]
+    disconnect?: ApprovalRouteWhereUniqueInput | ApprovalRouteWhereUniqueInput[]
+    delete?: ApprovalRouteWhereUniqueInput | ApprovalRouteWhereUniqueInput[]
+    connect?: ApprovalRouteWhereUniqueInput | ApprovalRouteWhereUniqueInput[]
+    update?: ApprovalRouteUpdateWithWhereUniqueWithoutDepartmentInput | ApprovalRouteUpdateWithWhereUniqueWithoutDepartmentInput[]
+    updateMany?: ApprovalRouteUpdateManyWithWhereWithoutDepartmentInput | ApprovalRouteUpdateManyWithWhereWithoutDepartmentInput[]
+    deleteMany?: ApprovalRouteScalarWhereInput | ApprovalRouteScalarWhereInput[]
+  }
+
   export type EmployeeUncheckedUpdateManyWithoutDepartmentNestedInput = {
     create?: XOR<EmployeeCreateWithoutDepartmentInput, EmployeeUncheckedCreateWithoutDepartmentInput> | EmployeeCreateWithoutDepartmentInput[] | EmployeeUncheckedCreateWithoutDepartmentInput[]
     connectOrCreate?: EmployeeCreateOrConnectWithoutDepartmentInput | EmployeeCreateOrConnectWithoutDepartmentInput[]
@@ -67265,6 +78198,54 @@ export namespace Prisma {
     update?: EmployeeUpdateWithWhereUniqueWithoutDepartmentInput | EmployeeUpdateWithWhereUniqueWithoutDepartmentInput[]
     updateMany?: EmployeeUpdateManyWithWhereWithoutDepartmentInput | EmployeeUpdateManyWithWhereWithoutDepartmentInput[]
     deleteMany?: EmployeeScalarWhereInput | EmployeeScalarWhereInput[]
+  }
+
+  export type EmployeeTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput = {
+    create?: XOR<EmployeeTransferCreateWithoutFromDepartmentInput, EmployeeTransferUncheckedCreateWithoutFromDepartmentInput> | EmployeeTransferCreateWithoutFromDepartmentInput[] | EmployeeTransferUncheckedCreateWithoutFromDepartmentInput[]
+    connectOrCreate?: EmployeeTransferCreateOrConnectWithoutFromDepartmentInput | EmployeeTransferCreateOrConnectWithoutFromDepartmentInput[]
+    upsert?: EmployeeTransferUpsertWithWhereUniqueWithoutFromDepartmentInput | EmployeeTransferUpsertWithWhereUniqueWithoutFromDepartmentInput[]
+    createMany?: EmployeeTransferCreateManyFromDepartmentInputEnvelope
+    set?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    disconnect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    delete?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    connect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    update?: EmployeeTransferUpdateWithWhereUniqueWithoutFromDepartmentInput | EmployeeTransferUpdateWithWhereUniqueWithoutFromDepartmentInput[]
+    updateMany?: EmployeeTransferUpdateManyWithWhereWithoutFromDepartmentInput | EmployeeTransferUpdateManyWithWhereWithoutFromDepartmentInput[]
+    deleteMany?: EmployeeTransferScalarWhereInput | EmployeeTransferScalarWhereInput[]
+  }
+
+  export type EmployeeTransferUncheckedUpdateManyWithoutToDepartmentNestedInput = {
+    create?: XOR<EmployeeTransferCreateWithoutToDepartmentInput, EmployeeTransferUncheckedCreateWithoutToDepartmentInput> | EmployeeTransferCreateWithoutToDepartmentInput[] | EmployeeTransferUncheckedCreateWithoutToDepartmentInput[]
+    connectOrCreate?: EmployeeTransferCreateOrConnectWithoutToDepartmentInput | EmployeeTransferCreateOrConnectWithoutToDepartmentInput[]
+    upsert?: EmployeeTransferUpsertWithWhereUniqueWithoutToDepartmentInput | EmployeeTransferUpsertWithWhereUniqueWithoutToDepartmentInput[]
+    createMany?: EmployeeTransferCreateManyToDepartmentInputEnvelope
+    set?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    disconnect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    delete?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    connect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    update?: EmployeeTransferUpdateWithWhereUniqueWithoutToDepartmentInput | EmployeeTransferUpdateWithWhereUniqueWithoutToDepartmentInput[]
+    updateMany?: EmployeeTransferUpdateManyWithWhereWithoutToDepartmentInput | EmployeeTransferUpdateManyWithWhereWithoutToDepartmentInput[]
+    deleteMany?: EmployeeTransferScalarWhereInput | EmployeeTransferScalarWhereInput[]
+  }
+
+  export type ApprovalRouteUncheckedUpdateManyWithoutDepartmentNestedInput = {
+    create?: XOR<ApprovalRouteCreateWithoutDepartmentInput, ApprovalRouteUncheckedCreateWithoutDepartmentInput> | ApprovalRouteCreateWithoutDepartmentInput[] | ApprovalRouteUncheckedCreateWithoutDepartmentInput[]
+    connectOrCreate?: ApprovalRouteCreateOrConnectWithoutDepartmentInput | ApprovalRouteCreateOrConnectWithoutDepartmentInput[]
+    upsert?: ApprovalRouteUpsertWithWhereUniqueWithoutDepartmentInput | ApprovalRouteUpsertWithWhereUniqueWithoutDepartmentInput[]
+    createMany?: ApprovalRouteCreateManyDepartmentInputEnvelope
+    set?: ApprovalRouteWhereUniqueInput | ApprovalRouteWhereUniqueInput[]
+    disconnect?: ApprovalRouteWhereUniqueInput | ApprovalRouteWhereUniqueInput[]
+    delete?: ApprovalRouteWhereUniqueInput | ApprovalRouteWhereUniqueInput[]
+    connect?: ApprovalRouteWhereUniqueInput | ApprovalRouteWhereUniqueInput[]
+    update?: ApprovalRouteUpdateWithWhereUniqueWithoutDepartmentInput | ApprovalRouteUpdateWithWhereUniqueWithoutDepartmentInput[]
+    updateMany?: ApprovalRouteUpdateManyWithWhereWithoutDepartmentInput | ApprovalRouteUpdateManyWithWhereWithoutDepartmentInput[]
+    deleteMany?: ApprovalRouteScalarWhereInput | ApprovalRouteScalarWhereInput[]
+  }
+
+  export type FacilityCreateNestedOneWithoutEmployeesInput = {
+    create?: XOR<FacilityCreateWithoutEmployeesInput, FacilityUncheckedCreateWithoutEmployeesInput>
+    connectOrCreate?: FacilityCreateOrConnectWithoutEmployeesInput
+    connect?: FacilityWhereUniqueInput
   }
 
   export type DepartmentCreateNestedOneWithoutEmployeesInput = {
@@ -67392,6 +78373,34 @@ export namespace Prisma {
     connect?: LeaveTypeBalanceWhereUniqueInput | LeaveTypeBalanceWhereUniqueInput[]
   }
 
+  export type LateRecordCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<LateRecordCreateWithoutEmployeeInput, LateRecordUncheckedCreateWithoutEmployeeInput> | LateRecordCreateWithoutEmployeeInput[] | LateRecordUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: LateRecordCreateOrConnectWithoutEmployeeInput | LateRecordCreateOrConnectWithoutEmployeeInput[]
+    createMany?: LateRecordCreateManyEmployeeInputEnvelope
+    connect?: LateRecordWhereUniqueInput | LateRecordWhereUniqueInput[]
+  }
+
+  export type EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<EarlyLeaveRecordCreateWithoutEmployeeInput, EarlyLeaveRecordUncheckedCreateWithoutEmployeeInput> | EarlyLeaveRecordCreateWithoutEmployeeInput[] | EarlyLeaveRecordUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EarlyLeaveRecordCreateOrConnectWithoutEmployeeInput | EarlyLeaveRecordCreateOrConnectWithoutEmployeeInput[]
+    createMany?: EarlyLeaveRecordCreateManyEmployeeInputEnvelope
+    connect?: EarlyLeaveRecordWhereUniqueInput | EarlyLeaveRecordWhereUniqueInput[]
+  }
+
+  export type OutingRecordCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<OutingRecordCreateWithoutEmployeeInput, OutingRecordUncheckedCreateWithoutEmployeeInput> | OutingRecordCreateWithoutEmployeeInput[] | OutingRecordUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: OutingRecordCreateOrConnectWithoutEmployeeInput | OutingRecordCreateOrConnectWithoutEmployeeInput[]
+    createMany?: OutingRecordCreateManyEmployeeInputEnvelope
+    connect?: OutingRecordWhereUniqueInput | OutingRecordWhereUniqueInput[]
+  }
+
+  export type EmployeeTransferCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<EmployeeTransferCreateWithoutEmployeeInput, EmployeeTransferUncheckedCreateWithoutEmployeeInput> | EmployeeTransferCreateWithoutEmployeeInput[] | EmployeeTransferUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EmployeeTransferCreateOrConnectWithoutEmployeeInput | EmployeeTransferCreateOrConnectWithoutEmployeeInput[]
+    createMany?: EmployeeTransferCreateManyEmployeeInputEnvelope
+    connect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+  }
+
   export type EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput = {
     create?: XOR<EmployeeCertificationCreateWithoutEmployeeInput, EmployeeCertificationUncheckedCreateWithoutEmployeeInput> | EmployeeCertificationCreateWithoutEmployeeInput[] | EmployeeCertificationUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutEmployeeInput | EmployeeCertificationCreateOrConnectWithoutEmployeeInput[]
@@ -67505,6 +78514,34 @@ export namespace Prisma {
     connect?: LeaveTypeBalanceWhereUniqueInput | LeaveTypeBalanceWhereUniqueInput[]
   }
 
+  export type LateRecordUncheckedCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<LateRecordCreateWithoutEmployeeInput, LateRecordUncheckedCreateWithoutEmployeeInput> | LateRecordCreateWithoutEmployeeInput[] | LateRecordUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: LateRecordCreateOrConnectWithoutEmployeeInput | LateRecordCreateOrConnectWithoutEmployeeInput[]
+    createMany?: LateRecordCreateManyEmployeeInputEnvelope
+    connect?: LateRecordWhereUniqueInput | LateRecordWhereUniqueInput[]
+  }
+
+  export type EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<EarlyLeaveRecordCreateWithoutEmployeeInput, EarlyLeaveRecordUncheckedCreateWithoutEmployeeInput> | EarlyLeaveRecordCreateWithoutEmployeeInput[] | EarlyLeaveRecordUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EarlyLeaveRecordCreateOrConnectWithoutEmployeeInput | EarlyLeaveRecordCreateOrConnectWithoutEmployeeInput[]
+    createMany?: EarlyLeaveRecordCreateManyEmployeeInputEnvelope
+    connect?: EarlyLeaveRecordWhereUniqueInput | EarlyLeaveRecordWhereUniqueInput[]
+  }
+
+  export type OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<OutingRecordCreateWithoutEmployeeInput, OutingRecordUncheckedCreateWithoutEmployeeInput> | OutingRecordCreateWithoutEmployeeInput[] | OutingRecordUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: OutingRecordCreateOrConnectWithoutEmployeeInput | OutingRecordCreateOrConnectWithoutEmployeeInput[]
+    createMany?: OutingRecordCreateManyEmployeeInputEnvelope
+    connect?: OutingRecordWhereUniqueInput | OutingRecordWhereUniqueInput[]
+  }
+
+  export type EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<EmployeeTransferCreateWithoutEmployeeInput, EmployeeTransferUncheckedCreateWithoutEmployeeInput> | EmployeeTransferCreateWithoutEmployeeInput[] | EmployeeTransferUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EmployeeTransferCreateOrConnectWithoutEmployeeInput | EmployeeTransferCreateOrConnectWithoutEmployeeInput[]
+    createMany?: EmployeeTransferCreateManyEmployeeInputEnvelope
+    connect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+  }
+
   export type NullableEnumGenderFieldUpdateOperationsInput = {
     set?: $Enums.Gender | null
   }
@@ -67531,6 +78568,16 @@ export namespace Prisma {
 
   export type EnumEmployeeStatusFieldUpdateOperationsInput = {
     set?: $Enums.EmployeeStatus
+  }
+
+  export type FacilityUpdateOneWithoutEmployeesNestedInput = {
+    create?: XOR<FacilityCreateWithoutEmployeesInput, FacilityUncheckedCreateWithoutEmployeesInput>
+    connectOrCreate?: FacilityCreateOrConnectWithoutEmployeesInput
+    upsert?: FacilityUpsertWithoutEmployeesInput
+    disconnect?: FacilityWhereInput | boolean
+    delete?: FacilityWhereInput | boolean
+    connect?: FacilityWhereUniqueInput
+    update?: XOR<XOR<FacilityUpdateToOneWithWhereWithoutEmployeesInput, FacilityUpdateWithoutEmployeesInput>, FacilityUncheckedUpdateWithoutEmployeesInput>
   }
 
   export type DepartmentUpdateOneWithoutEmployeesNestedInput = {
@@ -67767,6 +78814,62 @@ export namespace Prisma {
     deleteMany?: LeaveTypeBalanceScalarWhereInput | LeaveTypeBalanceScalarWhereInput[]
   }
 
+  export type LateRecordUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<LateRecordCreateWithoutEmployeeInput, LateRecordUncheckedCreateWithoutEmployeeInput> | LateRecordCreateWithoutEmployeeInput[] | LateRecordUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: LateRecordCreateOrConnectWithoutEmployeeInput | LateRecordCreateOrConnectWithoutEmployeeInput[]
+    upsert?: LateRecordUpsertWithWhereUniqueWithoutEmployeeInput | LateRecordUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: LateRecordCreateManyEmployeeInputEnvelope
+    set?: LateRecordWhereUniqueInput | LateRecordWhereUniqueInput[]
+    disconnect?: LateRecordWhereUniqueInput | LateRecordWhereUniqueInput[]
+    delete?: LateRecordWhereUniqueInput | LateRecordWhereUniqueInput[]
+    connect?: LateRecordWhereUniqueInput | LateRecordWhereUniqueInput[]
+    update?: LateRecordUpdateWithWhereUniqueWithoutEmployeeInput | LateRecordUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: LateRecordUpdateManyWithWhereWithoutEmployeeInput | LateRecordUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: LateRecordScalarWhereInput | LateRecordScalarWhereInput[]
+  }
+
+  export type EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<EarlyLeaveRecordCreateWithoutEmployeeInput, EarlyLeaveRecordUncheckedCreateWithoutEmployeeInput> | EarlyLeaveRecordCreateWithoutEmployeeInput[] | EarlyLeaveRecordUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EarlyLeaveRecordCreateOrConnectWithoutEmployeeInput | EarlyLeaveRecordCreateOrConnectWithoutEmployeeInput[]
+    upsert?: EarlyLeaveRecordUpsertWithWhereUniqueWithoutEmployeeInput | EarlyLeaveRecordUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: EarlyLeaveRecordCreateManyEmployeeInputEnvelope
+    set?: EarlyLeaveRecordWhereUniqueInput | EarlyLeaveRecordWhereUniqueInput[]
+    disconnect?: EarlyLeaveRecordWhereUniqueInput | EarlyLeaveRecordWhereUniqueInput[]
+    delete?: EarlyLeaveRecordWhereUniqueInput | EarlyLeaveRecordWhereUniqueInput[]
+    connect?: EarlyLeaveRecordWhereUniqueInput | EarlyLeaveRecordWhereUniqueInput[]
+    update?: EarlyLeaveRecordUpdateWithWhereUniqueWithoutEmployeeInput | EarlyLeaveRecordUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: EarlyLeaveRecordUpdateManyWithWhereWithoutEmployeeInput | EarlyLeaveRecordUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: EarlyLeaveRecordScalarWhereInput | EarlyLeaveRecordScalarWhereInput[]
+  }
+
+  export type OutingRecordUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<OutingRecordCreateWithoutEmployeeInput, OutingRecordUncheckedCreateWithoutEmployeeInput> | OutingRecordCreateWithoutEmployeeInput[] | OutingRecordUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: OutingRecordCreateOrConnectWithoutEmployeeInput | OutingRecordCreateOrConnectWithoutEmployeeInput[]
+    upsert?: OutingRecordUpsertWithWhereUniqueWithoutEmployeeInput | OutingRecordUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: OutingRecordCreateManyEmployeeInputEnvelope
+    set?: OutingRecordWhereUniqueInput | OutingRecordWhereUniqueInput[]
+    disconnect?: OutingRecordWhereUniqueInput | OutingRecordWhereUniqueInput[]
+    delete?: OutingRecordWhereUniqueInput | OutingRecordWhereUniqueInput[]
+    connect?: OutingRecordWhereUniqueInput | OutingRecordWhereUniqueInput[]
+    update?: OutingRecordUpdateWithWhereUniqueWithoutEmployeeInput | OutingRecordUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: OutingRecordUpdateManyWithWhereWithoutEmployeeInput | OutingRecordUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: OutingRecordScalarWhereInput | OutingRecordScalarWhereInput[]
+  }
+
+  export type EmployeeTransferUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<EmployeeTransferCreateWithoutEmployeeInput, EmployeeTransferUncheckedCreateWithoutEmployeeInput> | EmployeeTransferCreateWithoutEmployeeInput[] | EmployeeTransferUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EmployeeTransferCreateOrConnectWithoutEmployeeInput | EmployeeTransferCreateOrConnectWithoutEmployeeInput[]
+    upsert?: EmployeeTransferUpsertWithWhereUniqueWithoutEmployeeInput | EmployeeTransferUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: EmployeeTransferCreateManyEmployeeInputEnvelope
+    set?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    disconnect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    delete?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    connect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    update?: EmployeeTransferUpdateWithWhereUniqueWithoutEmployeeInput | EmployeeTransferUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: EmployeeTransferUpdateManyWithWhereWithoutEmployeeInput | EmployeeTransferUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: EmployeeTransferScalarWhereInput | EmployeeTransferScalarWhereInput[]
+  }
+
   export type EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput = {
     create?: XOR<EmployeeCertificationCreateWithoutEmployeeInput, EmployeeCertificationUncheckedCreateWithoutEmployeeInput> | EmployeeCertificationCreateWithoutEmployeeInput[] | EmployeeCertificationUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutEmployeeInput | EmployeeCertificationCreateOrConnectWithoutEmployeeInput[]
@@ -67981,6 +79084,140 @@ export namespace Prisma {
     deleteMany?: LeaveTypeBalanceScalarWhereInput | LeaveTypeBalanceScalarWhereInput[]
   }
 
+  export type LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<LateRecordCreateWithoutEmployeeInput, LateRecordUncheckedCreateWithoutEmployeeInput> | LateRecordCreateWithoutEmployeeInput[] | LateRecordUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: LateRecordCreateOrConnectWithoutEmployeeInput | LateRecordCreateOrConnectWithoutEmployeeInput[]
+    upsert?: LateRecordUpsertWithWhereUniqueWithoutEmployeeInput | LateRecordUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: LateRecordCreateManyEmployeeInputEnvelope
+    set?: LateRecordWhereUniqueInput | LateRecordWhereUniqueInput[]
+    disconnect?: LateRecordWhereUniqueInput | LateRecordWhereUniqueInput[]
+    delete?: LateRecordWhereUniqueInput | LateRecordWhereUniqueInput[]
+    connect?: LateRecordWhereUniqueInput | LateRecordWhereUniqueInput[]
+    update?: LateRecordUpdateWithWhereUniqueWithoutEmployeeInput | LateRecordUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: LateRecordUpdateManyWithWhereWithoutEmployeeInput | LateRecordUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: LateRecordScalarWhereInput | LateRecordScalarWhereInput[]
+  }
+
+  export type EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<EarlyLeaveRecordCreateWithoutEmployeeInput, EarlyLeaveRecordUncheckedCreateWithoutEmployeeInput> | EarlyLeaveRecordCreateWithoutEmployeeInput[] | EarlyLeaveRecordUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EarlyLeaveRecordCreateOrConnectWithoutEmployeeInput | EarlyLeaveRecordCreateOrConnectWithoutEmployeeInput[]
+    upsert?: EarlyLeaveRecordUpsertWithWhereUniqueWithoutEmployeeInput | EarlyLeaveRecordUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: EarlyLeaveRecordCreateManyEmployeeInputEnvelope
+    set?: EarlyLeaveRecordWhereUniqueInput | EarlyLeaveRecordWhereUniqueInput[]
+    disconnect?: EarlyLeaveRecordWhereUniqueInput | EarlyLeaveRecordWhereUniqueInput[]
+    delete?: EarlyLeaveRecordWhereUniqueInput | EarlyLeaveRecordWhereUniqueInput[]
+    connect?: EarlyLeaveRecordWhereUniqueInput | EarlyLeaveRecordWhereUniqueInput[]
+    update?: EarlyLeaveRecordUpdateWithWhereUniqueWithoutEmployeeInput | EarlyLeaveRecordUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: EarlyLeaveRecordUpdateManyWithWhereWithoutEmployeeInput | EarlyLeaveRecordUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: EarlyLeaveRecordScalarWhereInput | EarlyLeaveRecordScalarWhereInput[]
+  }
+
+  export type OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<OutingRecordCreateWithoutEmployeeInput, OutingRecordUncheckedCreateWithoutEmployeeInput> | OutingRecordCreateWithoutEmployeeInput[] | OutingRecordUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: OutingRecordCreateOrConnectWithoutEmployeeInput | OutingRecordCreateOrConnectWithoutEmployeeInput[]
+    upsert?: OutingRecordUpsertWithWhereUniqueWithoutEmployeeInput | OutingRecordUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: OutingRecordCreateManyEmployeeInputEnvelope
+    set?: OutingRecordWhereUniqueInput | OutingRecordWhereUniqueInput[]
+    disconnect?: OutingRecordWhereUniqueInput | OutingRecordWhereUniqueInput[]
+    delete?: OutingRecordWhereUniqueInput | OutingRecordWhereUniqueInput[]
+    connect?: OutingRecordWhereUniqueInput | OutingRecordWhereUniqueInput[]
+    update?: OutingRecordUpdateWithWhereUniqueWithoutEmployeeInput | OutingRecordUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: OutingRecordUpdateManyWithWhereWithoutEmployeeInput | OutingRecordUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: OutingRecordScalarWhereInput | OutingRecordScalarWhereInput[]
+  }
+
+  export type EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<EmployeeTransferCreateWithoutEmployeeInput, EmployeeTransferUncheckedCreateWithoutEmployeeInput> | EmployeeTransferCreateWithoutEmployeeInput[] | EmployeeTransferUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: EmployeeTransferCreateOrConnectWithoutEmployeeInput | EmployeeTransferCreateOrConnectWithoutEmployeeInput[]
+    upsert?: EmployeeTransferUpsertWithWhereUniqueWithoutEmployeeInput | EmployeeTransferUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: EmployeeTransferCreateManyEmployeeInputEnvelope
+    set?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    disconnect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    delete?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    connect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+    update?: EmployeeTransferUpdateWithWhereUniqueWithoutEmployeeInput | EmployeeTransferUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: EmployeeTransferUpdateManyWithWhereWithoutEmployeeInput | EmployeeTransferUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: EmployeeTransferScalarWhereInput | EmployeeTransferScalarWhereInput[]
+  }
+
+  export type EmployeeCreateNestedOneWithoutTransferHistoriesInput = {
+    create?: XOR<EmployeeCreateWithoutTransferHistoriesInput, EmployeeUncheckedCreateWithoutTransferHistoriesInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutTransferHistoriesInput
+    connect?: EmployeeWhereUniqueInput
+  }
+
+  export type FacilityCreateNestedOneWithoutTransfersFromInput = {
+    create?: XOR<FacilityCreateWithoutTransfersFromInput, FacilityUncheckedCreateWithoutTransfersFromInput>
+    connectOrCreate?: FacilityCreateOrConnectWithoutTransfersFromInput
+    connect?: FacilityWhereUniqueInput
+  }
+
+  export type FacilityCreateNestedOneWithoutTransfersToInput = {
+    create?: XOR<FacilityCreateWithoutTransfersToInput, FacilityUncheckedCreateWithoutTransfersToInput>
+    connectOrCreate?: FacilityCreateOrConnectWithoutTransfersToInput
+    connect?: FacilityWhereUniqueInput
+  }
+
+  export type DepartmentCreateNestedOneWithoutTransfersFromInput = {
+    create?: XOR<DepartmentCreateWithoutTransfersFromInput, DepartmentUncheckedCreateWithoutTransfersFromInput>
+    connectOrCreate?: DepartmentCreateOrConnectWithoutTransfersFromInput
+    connect?: DepartmentWhereUniqueInput
+  }
+
+  export type DepartmentCreateNestedOneWithoutTransfersToInput = {
+    create?: XOR<DepartmentCreateWithoutTransfersToInput, DepartmentUncheckedCreateWithoutTransfersToInput>
+    connectOrCreate?: DepartmentCreateOrConnectWithoutTransfersToInput
+    connect?: DepartmentWhereUniqueInput
+  }
+
+  export type EmployeeUpdateOneRequiredWithoutTransferHistoriesNestedInput = {
+    create?: XOR<EmployeeCreateWithoutTransferHistoriesInput, EmployeeUncheckedCreateWithoutTransferHistoriesInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutTransferHistoriesInput
+    upsert?: EmployeeUpsertWithoutTransferHistoriesInput
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutTransferHistoriesInput, EmployeeUpdateWithoutTransferHistoriesInput>, EmployeeUncheckedUpdateWithoutTransferHistoriesInput>
+  }
+
+  export type FacilityUpdateOneWithoutTransfersFromNestedInput = {
+    create?: XOR<FacilityCreateWithoutTransfersFromInput, FacilityUncheckedCreateWithoutTransfersFromInput>
+    connectOrCreate?: FacilityCreateOrConnectWithoutTransfersFromInput
+    upsert?: FacilityUpsertWithoutTransfersFromInput
+    disconnect?: FacilityWhereInput | boolean
+    delete?: FacilityWhereInput | boolean
+    connect?: FacilityWhereUniqueInput
+    update?: XOR<XOR<FacilityUpdateToOneWithWhereWithoutTransfersFromInput, FacilityUpdateWithoutTransfersFromInput>, FacilityUncheckedUpdateWithoutTransfersFromInput>
+  }
+
+  export type FacilityUpdateOneWithoutTransfersToNestedInput = {
+    create?: XOR<FacilityCreateWithoutTransfersToInput, FacilityUncheckedCreateWithoutTransfersToInput>
+    connectOrCreate?: FacilityCreateOrConnectWithoutTransfersToInput
+    upsert?: FacilityUpsertWithoutTransfersToInput
+    disconnect?: FacilityWhereInput | boolean
+    delete?: FacilityWhereInput | boolean
+    connect?: FacilityWhereUniqueInput
+    update?: XOR<XOR<FacilityUpdateToOneWithWhereWithoutTransfersToInput, FacilityUpdateWithoutTransfersToInput>, FacilityUncheckedUpdateWithoutTransfersToInput>
+  }
+
+  export type DepartmentUpdateOneWithoutTransfersFromNestedInput = {
+    create?: XOR<DepartmentCreateWithoutTransfersFromInput, DepartmentUncheckedCreateWithoutTransfersFromInput>
+    connectOrCreate?: DepartmentCreateOrConnectWithoutTransfersFromInput
+    upsert?: DepartmentUpsertWithoutTransfersFromInput
+    disconnect?: DepartmentWhereInput | boolean
+    delete?: DepartmentWhereInput | boolean
+    connect?: DepartmentWhereUniqueInput
+    update?: XOR<XOR<DepartmentUpdateToOneWithWhereWithoutTransfersFromInput, DepartmentUpdateWithoutTransfersFromInput>, DepartmentUncheckedUpdateWithoutTransfersFromInput>
+  }
+
+  export type DepartmentUpdateOneWithoutTransfersToNestedInput = {
+    create?: XOR<DepartmentCreateWithoutTransfersToInput, DepartmentUncheckedCreateWithoutTransfersToInput>
+    connectOrCreate?: DepartmentCreateOrConnectWithoutTransfersToInput
+    upsert?: DepartmentUpsertWithoutTransfersToInput
+    disconnect?: DepartmentWhereInput | boolean
+    delete?: DepartmentWhereInput | boolean
+    connect?: DepartmentWhereUniqueInput
+    update?: XOR<XOR<DepartmentUpdateToOneWithWhereWithoutTransfersToInput, DepartmentUpdateWithoutTransfersToInput>, DepartmentUncheckedUpdateWithoutTransfersToInput>
+  }
+
   export type EmployeeCreateNestedOneWithoutDependentsInput = {
     create?: XOR<EmployeeCreateWithoutDependentsInput, EmployeeUncheckedCreateWithoutDependentsInput>
     connectOrCreate?: EmployeeCreateOrConnectWithoutDependentsInput
@@ -68193,6 +79430,13 @@ export namespace Prisma {
     connect?: RequestHistoryWhereUniqueInput | RequestHistoryWhereUniqueInput[]
   }
 
+  export type RequestApprovalCreateNestedManyWithoutRequestInput = {
+    create?: XOR<RequestApprovalCreateWithoutRequestInput, RequestApprovalUncheckedCreateWithoutRequestInput> | RequestApprovalCreateWithoutRequestInput[] | RequestApprovalUncheckedCreateWithoutRequestInput[]
+    connectOrCreate?: RequestApprovalCreateOrConnectWithoutRequestInput | RequestApprovalCreateOrConnectWithoutRequestInput[]
+    createMany?: RequestApprovalCreateManyRequestInputEnvelope
+    connect?: RequestApprovalWhereUniqueInput | RequestApprovalWhereUniqueInput[]
+  }
+
   export type RequestAttachmentUncheckedCreateNestedManyWithoutRequestInput = {
     create?: XOR<RequestAttachmentCreateWithoutRequestInput, RequestAttachmentUncheckedCreateWithoutRequestInput> | RequestAttachmentCreateWithoutRequestInput[] | RequestAttachmentUncheckedCreateWithoutRequestInput[]
     connectOrCreate?: RequestAttachmentCreateOrConnectWithoutRequestInput | RequestAttachmentCreateOrConnectWithoutRequestInput[]
@@ -68205,6 +79449,13 @@ export namespace Prisma {
     connectOrCreate?: RequestHistoryCreateOrConnectWithoutRequestInput | RequestHistoryCreateOrConnectWithoutRequestInput[]
     createMany?: RequestHistoryCreateManyRequestInputEnvelope
     connect?: RequestHistoryWhereUniqueInput | RequestHistoryWhereUniqueInput[]
+  }
+
+  export type RequestApprovalUncheckedCreateNestedManyWithoutRequestInput = {
+    create?: XOR<RequestApprovalCreateWithoutRequestInput, RequestApprovalUncheckedCreateWithoutRequestInput> | RequestApprovalCreateWithoutRequestInput[] | RequestApprovalUncheckedCreateWithoutRequestInput[]
+    connectOrCreate?: RequestApprovalCreateOrConnectWithoutRequestInput | RequestApprovalCreateOrConnectWithoutRequestInput[]
+    createMany?: RequestApprovalCreateManyRequestInputEnvelope
+    connect?: RequestApprovalWhereUniqueInput | RequestApprovalWhereUniqueInput[]
   }
 
   export type EnumRequestTypeFieldUpdateOperationsInput = {
@@ -68281,6 +79532,20 @@ export namespace Prisma {
     deleteMany?: RequestHistoryScalarWhereInput | RequestHistoryScalarWhereInput[]
   }
 
+  export type RequestApprovalUpdateManyWithoutRequestNestedInput = {
+    create?: XOR<RequestApprovalCreateWithoutRequestInput, RequestApprovalUncheckedCreateWithoutRequestInput> | RequestApprovalCreateWithoutRequestInput[] | RequestApprovalUncheckedCreateWithoutRequestInput[]
+    connectOrCreate?: RequestApprovalCreateOrConnectWithoutRequestInput | RequestApprovalCreateOrConnectWithoutRequestInput[]
+    upsert?: RequestApprovalUpsertWithWhereUniqueWithoutRequestInput | RequestApprovalUpsertWithWhereUniqueWithoutRequestInput[]
+    createMany?: RequestApprovalCreateManyRequestInputEnvelope
+    set?: RequestApprovalWhereUniqueInput | RequestApprovalWhereUniqueInput[]
+    disconnect?: RequestApprovalWhereUniqueInput | RequestApprovalWhereUniqueInput[]
+    delete?: RequestApprovalWhereUniqueInput | RequestApprovalWhereUniqueInput[]
+    connect?: RequestApprovalWhereUniqueInput | RequestApprovalWhereUniqueInput[]
+    update?: RequestApprovalUpdateWithWhereUniqueWithoutRequestInput | RequestApprovalUpdateWithWhereUniqueWithoutRequestInput[]
+    updateMany?: RequestApprovalUpdateManyWithWhereWithoutRequestInput | RequestApprovalUpdateManyWithWhereWithoutRequestInput[]
+    deleteMany?: RequestApprovalScalarWhereInput | RequestApprovalScalarWhereInput[]
+  }
+
   export type RequestAttachmentUncheckedUpdateManyWithoutRequestNestedInput = {
     create?: XOR<RequestAttachmentCreateWithoutRequestInput, RequestAttachmentUncheckedCreateWithoutRequestInput> | RequestAttachmentCreateWithoutRequestInput[] | RequestAttachmentUncheckedCreateWithoutRequestInput[]
     connectOrCreate?: RequestAttachmentCreateOrConnectWithoutRequestInput | RequestAttachmentCreateOrConnectWithoutRequestInput[]
@@ -68307,6 +79572,34 @@ export namespace Prisma {
     update?: RequestHistoryUpdateWithWhereUniqueWithoutRequestInput | RequestHistoryUpdateWithWhereUniqueWithoutRequestInput[]
     updateMany?: RequestHistoryUpdateManyWithWhereWithoutRequestInput | RequestHistoryUpdateManyWithWhereWithoutRequestInput[]
     deleteMany?: RequestHistoryScalarWhereInput | RequestHistoryScalarWhereInput[]
+  }
+
+  export type RequestApprovalUncheckedUpdateManyWithoutRequestNestedInput = {
+    create?: XOR<RequestApprovalCreateWithoutRequestInput, RequestApprovalUncheckedCreateWithoutRequestInput> | RequestApprovalCreateWithoutRequestInput[] | RequestApprovalUncheckedCreateWithoutRequestInput[]
+    connectOrCreate?: RequestApprovalCreateOrConnectWithoutRequestInput | RequestApprovalCreateOrConnectWithoutRequestInput[]
+    upsert?: RequestApprovalUpsertWithWhereUniqueWithoutRequestInput | RequestApprovalUpsertWithWhereUniqueWithoutRequestInput[]
+    createMany?: RequestApprovalCreateManyRequestInputEnvelope
+    set?: RequestApprovalWhereUniqueInput | RequestApprovalWhereUniqueInput[]
+    disconnect?: RequestApprovalWhereUniqueInput | RequestApprovalWhereUniqueInput[]
+    delete?: RequestApprovalWhereUniqueInput | RequestApprovalWhereUniqueInput[]
+    connect?: RequestApprovalWhereUniqueInput | RequestApprovalWhereUniqueInput[]
+    update?: RequestApprovalUpdateWithWhereUniqueWithoutRequestInput | RequestApprovalUpdateWithWhereUniqueWithoutRequestInput[]
+    updateMany?: RequestApprovalUpdateManyWithWhereWithoutRequestInput | RequestApprovalUpdateManyWithWhereWithoutRequestInput[]
+    deleteMany?: RequestApprovalScalarWhereInput | RequestApprovalScalarWhereInput[]
+  }
+
+  export type EmployeeRequestCreateNestedOneWithoutApprovalsInput = {
+    create?: XOR<EmployeeRequestCreateWithoutApprovalsInput, EmployeeRequestUncheckedCreateWithoutApprovalsInput>
+    connectOrCreate?: EmployeeRequestCreateOrConnectWithoutApprovalsInput
+    connect?: EmployeeRequestWhereUniqueInput
+  }
+
+  export type EmployeeRequestUpdateOneRequiredWithoutApprovalsNestedInput = {
+    create?: XOR<EmployeeRequestCreateWithoutApprovalsInput, EmployeeRequestUncheckedCreateWithoutApprovalsInput>
+    connectOrCreate?: EmployeeRequestCreateOrConnectWithoutApprovalsInput
+    upsert?: EmployeeRequestUpsertWithoutApprovalsInput
+    connect?: EmployeeRequestWhereUniqueInput
+    update?: XOR<XOR<EmployeeRequestUpdateToOneWithWhereWithoutApprovalsInput, EmployeeRequestUpdateWithoutApprovalsInput>, EmployeeRequestUncheckedUpdateWithoutApprovalsInput>
   }
 
   export type EmployeeRequestCreateNestedOneWithoutAttachmentsInput = {
@@ -68339,6 +79632,38 @@ export namespace Prisma {
     upsert?: EmployeeRequestUpsertWithoutHistoriesInput
     connect?: EmployeeRequestWhereUniqueInput
     update?: XOR<XOR<EmployeeRequestUpdateToOneWithWhereWithoutHistoriesInput, EmployeeRequestUpdateWithoutHistoriesInput>, EmployeeRequestUncheckedUpdateWithoutHistoriesInput>
+  }
+
+  export type FacilityCreateNestedOneWithoutApprovalRoutesInput = {
+    create?: XOR<FacilityCreateWithoutApprovalRoutesInput, FacilityUncheckedCreateWithoutApprovalRoutesInput>
+    connectOrCreate?: FacilityCreateOrConnectWithoutApprovalRoutesInput
+    connect?: FacilityWhereUniqueInput
+  }
+
+  export type DepartmentCreateNestedOneWithoutApprovalRoutesInput = {
+    create?: XOR<DepartmentCreateWithoutApprovalRoutesInput, DepartmentUncheckedCreateWithoutApprovalRoutesInput>
+    connectOrCreate?: DepartmentCreateOrConnectWithoutApprovalRoutesInput
+    connect?: DepartmentWhereUniqueInput
+  }
+
+  export type FacilityUpdateOneWithoutApprovalRoutesNestedInput = {
+    create?: XOR<FacilityCreateWithoutApprovalRoutesInput, FacilityUncheckedCreateWithoutApprovalRoutesInput>
+    connectOrCreate?: FacilityCreateOrConnectWithoutApprovalRoutesInput
+    upsert?: FacilityUpsertWithoutApprovalRoutesInput
+    disconnect?: FacilityWhereInput | boolean
+    delete?: FacilityWhereInput | boolean
+    connect?: FacilityWhereUniqueInput
+    update?: XOR<XOR<FacilityUpdateToOneWithWhereWithoutApprovalRoutesInput, FacilityUpdateWithoutApprovalRoutesInput>, FacilityUncheckedUpdateWithoutApprovalRoutesInput>
+  }
+
+  export type DepartmentUpdateOneWithoutApprovalRoutesNestedInput = {
+    create?: XOR<DepartmentCreateWithoutApprovalRoutesInput, DepartmentUncheckedCreateWithoutApprovalRoutesInput>
+    connectOrCreate?: DepartmentCreateOrConnectWithoutApprovalRoutesInput
+    upsert?: DepartmentUpsertWithoutApprovalRoutesInput
+    disconnect?: DepartmentWhereInput | boolean
+    delete?: DepartmentWhereInput | boolean
+    connect?: DepartmentWhereUniqueInput
+    update?: XOR<XOR<DepartmentUpdateToOneWithWhereWithoutApprovalRoutesInput, DepartmentUpdateWithoutApprovalRoutesInput>, DepartmentUncheckedUpdateWithoutApprovalRoutesInput>
   }
 
   export type EmployeeCertificationCreateNestedManyWithoutCertificationInput = {
@@ -68991,6 +80316,48 @@ export namespace Prisma {
     update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutRetirementCertificateInput, EmployeeUpdateWithoutRetirementCertificateInput>, EmployeeUncheckedUpdateWithoutRetirementCertificateInput>
   }
 
+  export type EmployeeCreateNestedOneWithoutLateRecordsInput = {
+    create?: XOR<EmployeeCreateWithoutLateRecordsInput, EmployeeUncheckedCreateWithoutLateRecordsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutLateRecordsInput
+    connect?: EmployeeWhereUniqueInput
+  }
+
+  export type EmployeeUpdateOneRequiredWithoutLateRecordsNestedInput = {
+    create?: XOR<EmployeeCreateWithoutLateRecordsInput, EmployeeUncheckedCreateWithoutLateRecordsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutLateRecordsInput
+    upsert?: EmployeeUpsertWithoutLateRecordsInput
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutLateRecordsInput, EmployeeUpdateWithoutLateRecordsInput>, EmployeeUncheckedUpdateWithoutLateRecordsInput>
+  }
+
+  export type EmployeeCreateNestedOneWithoutEarlyLeaveRecordsInput = {
+    create?: XOR<EmployeeCreateWithoutEarlyLeaveRecordsInput, EmployeeUncheckedCreateWithoutEarlyLeaveRecordsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutEarlyLeaveRecordsInput
+    connect?: EmployeeWhereUniqueInput
+  }
+
+  export type EmployeeUpdateOneRequiredWithoutEarlyLeaveRecordsNestedInput = {
+    create?: XOR<EmployeeCreateWithoutEarlyLeaveRecordsInput, EmployeeUncheckedCreateWithoutEarlyLeaveRecordsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutEarlyLeaveRecordsInput
+    upsert?: EmployeeUpsertWithoutEarlyLeaveRecordsInput
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutEarlyLeaveRecordsInput, EmployeeUpdateWithoutEarlyLeaveRecordsInput>, EmployeeUncheckedUpdateWithoutEarlyLeaveRecordsInput>
+  }
+
+  export type EmployeeCreateNestedOneWithoutOutingRecordsInput = {
+    create?: XOR<EmployeeCreateWithoutOutingRecordsInput, EmployeeUncheckedCreateWithoutOutingRecordsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutOutingRecordsInput
+    connect?: EmployeeWhereUniqueInput
+  }
+
+  export type EmployeeUpdateOneRequiredWithoutOutingRecordsNestedInput = {
+    create?: XOR<EmployeeCreateWithoutOutingRecordsInput, EmployeeUncheckedCreateWithoutOutingRecordsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutOutingRecordsInput
+    upsert?: EmployeeUpsertWithoutOutingRecordsInput
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutOutingRecordsInput, EmployeeUpdateWithoutOutingRecordsInput>, EmployeeUncheckedUpdateWithoutOutingRecordsInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -69530,6 +80897,7 @@ export namespace Prisma {
     retirementDate?: Date | string | null
     photoPath?: string | null
     emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
@@ -69548,6 +80916,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutUserInput = {
@@ -69558,6 +80930,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     departmentId?: string | null
+    facilityId?: string | null
     address?: string | null
     birthDate?: Date | string | null
     firstNameKana?: string | null
@@ -69596,6 +80969,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutUserInput = {
@@ -69612,6 +80989,8 @@ export namespace Prisma {
     rejectionReason?: string | null
     type: $Enums.RequestType
     status?: $Enums.RequestStatus
+    currentApprovalStep?: number
+    approvalCompleted?: boolean
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
@@ -69625,6 +81004,7 @@ export namespace Prisma {
     leaveType?: LeaveTypeCreateNestedOneWithoutEmployeeRequestsInput
     attachments?: RequestAttachmentCreateNestedManyWithoutRequestInput
     histories?: RequestHistoryCreateNestedManyWithoutRequestInput
+    approvals?: RequestApprovalCreateNestedManyWithoutRequestInput
   }
 
   export type EmployeeRequestUncheckedCreateWithoutUserInput = {
@@ -69637,6 +81017,8 @@ export namespace Prisma {
     rejectionReason?: string | null
     type: $Enums.RequestType
     status?: $Enums.RequestStatus
+    currentApprovalStep?: number
+    approvalCompleted?: boolean
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
@@ -69649,6 +81031,7 @@ export namespace Prisma {
     hours?: number | null
     attachments?: RequestAttachmentUncheckedCreateNestedManyWithoutRequestInput
     histories?: RequestHistoryUncheckedCreateNestedManyWithoutRequestInput
+    approvals?: RequestApprovalUncheckedCreateNestedManyWithoutRequestInput
   }
 
   export type EmployeeRequestCreateOrConnectWithoutUserInput = {
@@ -69700,6 +81083,7 @@ export namespace Prisma {
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
@@ -69718,6 +81102,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutUserInput = {
@@ -69728,6 +81116,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
@@ -69766,6 +81155,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeRequestUpsertWithWhereUniqueWithoutUserInput = {
@@ -69798,6 +81191,8 @@ export namespace Prisma {
     type?: EnumRequestTypeFilter<"EmployeeRequest"> | $Enums.RequestType
     userId?: StringNullableFilter<"EmployeeRequest"> | string | null
     status?: EnumRequestStatusFilter<"EmployeeRequest"> | $Enums.RequestStatus
+    currentApprovalStep?: IntFilter<"EmployeeRequest"> | number
+    approvalCompleted?: BoolFilter<"EmployeeRequest"> | boolean
     leaveDays?: FloatNullableFilter<"EmployeeRequest"> | number | null
     leaveEndDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
     leaveStartDate?: DateTimeNullableFilter<"EmployeeRequest"> | Date | string | null
@@ -69870,7 +81265,7 @@ export namespace Prisma {
     userInvitationId?: StringNullableFilter<"EmployeeCertificationAttachment"> | string | null
   }
 
-  export type EmployeeCreateWithoutDepartmentInput = {
+  export type EmployeeCreateWithoutFacilityInput = {
     id?: string
     employeeNo: string
     firstName: string
@@ -69898,6 +81293,7 @@ export namespace Prisma {
     retirementDate?: Date | string | null
     photoPath?: string | null
     emergencyContact?: string | null
+    department?: DepartmentCreateNestedOneWithoutEmployeesInput
     user?: UserCreateNestedOneWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
@@ -69916,15 +81312,20 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
   }
 
-  export type EmployeeUncheckedCreateWithoutDepartmentInput = {
+  export type EmployeeUncheckedCreateWithoutFacilityInput = {
     id?: string
     employeeNo: string
     firstName: string
     lastName: string
     email: string
     createdAt?: Date | string
+    departmentId?: string | null
     address?: string | null
     birthDate?: Date | string | null
     firstNameKana?: string | null
@@ -69964,32 +81365,132 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
-  export type EmployeeCreateOrConnectWithoutDepartmentInput = {
+  export type EmployeeCreateOrConnectWithoutFacilityInput = {
     where: EmployeeWhereUniqueInput
-    create: XOR<EmployeeCreateWithoutDepartmentInput, EmployeeUncheckedCreateWithoutDepartmentInput>
+    create: XOR<EmployeeCreateWithoutFacilityInput, EmployeeUncheckedCreateWithoutFacilityInput>
   }
 
-  export type EmployeeCreateManyDepartmentInputEnvelope = {
-    data: EmployeeCreateManyDepartmentInput | EmployeeCreateManyDepartmentInput[]
+  export type EmployeeCreateManyFacilityInputEnvelope = {
+    data: EmployeeCreateManyFacilityInput | EmployeeCreateManyFacilityInput[]
     skipDuplicates?: boolean
   }
 
-  export type EmployeeUpsertWithWhereUniqueWithoutDepartmentInput = {
-    where: EmployeeWhereUniqueInput
-    update: XOR<EmployeeUpdateWithoutDepartmentInput, EmployeeUncheckedUpdateWithoutDepartmentInput>
-    create: XOR<EmployeeCreateWithoutDepartmentInput, EmployeeUncheckedCreateWithoutDepartmentInput>
+  export type EmployeeTransferCreateWithoutFromFacilityInput = {
+    id?: string
+    effectiveDate: Date | string
+    reason?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutTransferHistoriesInput
+    toFacility?: FacilityCreateNestedOneWithoutTransfersToInput
+    fromDepartment?: DepartmentCreateNestedOneWithoutTransfersFromInput
+    toDepartment?: DepartmentCreateNestedOneWithoutTransfersToInput
   }
 
-  export type EmployeeUpdateWithWhereUniqueWithoutDepartmentInput = {
-    where: EmployeeWhereUniqueInput
-    data: XOR<EmployeeUpdateWithoutDepartmentInput, EmployeeUncheckedUpdateWithoutDepartmentInput>
+  export type EmployeeTransferUncheckedCreateWithoutFromFacilityInput = {
+    id?: string
+    employeeId: string
+    toFacilityId?: string | null
+    fromDepartmentId?: string | null
+    toDepartmentId?: string | null
+    effectiveDate: Date | string
+    reason?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
   }
 
-  export type EmployeeUpdateManyWithWhereWithoutDepartmentInput = {
+  export type EmployeeTransferCreateOrConnectWithoutFromFacilityInput = {
+    where: EmployeeTransferWhereUniqueInput
+    create: XOR<EmployeeTransferCreateWithoutFromFacilityInput, EmployeeTransferUncheckedCreateWithoutFromFacilityInput>
+  }
+
+  export type EmployeeTransferCreateManyFromFacilityInputEnvelope = {
+    data: EmployeeTransferCreateManyFromFacilityInput | EmployeeTransferCreateManyFromFacilityInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EmployeeTransferCreateWithoutToFacilityInput = {
+    id?: string
+    effectiveDate: Date | string
+    reason?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutTransferHistoriesInput
+    fromFacility?: FacilityCreateNestedOneWithoutTransfersFromInput
+    fromDepartment?: DepartmentCreateNestedOneWithoutTransfersFromInput
+    toDepartment?: DepartmentCreateNestedOneWithoutTransfersToInput
+  }
+
+  export type EmployeeTransferUncheckedCreateWithoutToFacilityInput = {
+    id?: string
+    employeeId: string
+    fromFacilityId?: string | null
+    fromDepartmentId?: string | null
+    toDepartmentId?: string | null
+    effectiveDate: Date | string
+    reason?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmployeeTransferCreateOrConnectWithoutToFacilityInput = {
+    where: EmployeeTransferWhereUniqueInput
+    create: XOR<EmployeeTransferCreateWithoutToFacilityInput, EmployeeTransferUncheckedCreateWithoutToFacilityInput>
+  }
+
+  export type EmployeeTransferCreateManyToFacilityInputEnvelope = {
+    data: EmployeeTransferCreateManyToFacilityInput | EmployeeTransferCreateManyToFacilityInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ApprovalRouteCreateWithoutFacilityInput = {
+    id?: string
+    stepNo: number
+    approverRole: $Enums.UserRole
+    isActive?: boolean
+    createdAt?: Date | string
+    department?: DepartmentCreateNestedOneWithoutApprovalRoutesInput
+  }
+
+  export type ApprovalRouteUncheckedCreateWithoutFacilityInput = {
+    id?: string
+    departmentId?: string | null
+    stepNo: number
+    approverRole: $Enums.UserRole
+    isActive?: boolean
+    createdAt?: Date | string
+  }
+
+  export type ApprovalRouteCreateOrConnectWithoutFacilityInput = {
+    where: ApprovalRouteWhereUniqueInput
+    create: XOR<ApprovalRouteCreateWithoutFacilityInput, ApprovalRouteUncheckedCreateWithoutFacilityInput>
+  }
+
+  export type ApprovalRouteCreateManyFacilityInputEnvelope = {
+    data: ApprovalRouteCreateManyFacilityInput | ApprovalRouteCreateManyFacilityInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EmployeeUpsertWithWhereUniqueWithoutFacilityInput = {
+    where: EmployeeWhereUniqueInput
+    update: XOR<EmployeeUpdateWithoutFacilityInput, EmployeeUncheckedUpdateWithoutFacilityInput>
+    create: XOR<EmployeeCreateWithoutFacilityInput, EmployeeUncheckedCreateWithoutFacilityInput>
+  }
+
+  export type EmployeeUpdateWithWhereUniqueWithoutFacilityInput = {
+    where: EmployeeWhereUniqueInput
+    data: XOR<EmployeeUpdateWithoutFacilityInput, EmployeeUncheckedUpdateWithoutFacilityInput>
+  }
+
+  export type EmployeeUpdateManyWithWhereWithoutFacilityInput = {
     where: EmployeeScalarWhereInput
-    data: XOR<EmployeeUpdateManyMutationInput, EmployeeUncheckedUpdateManyWithoutDepartmentInput>
+    data: XOR<EmployeeUpdateManyMutationInput, EmployeeUncheckedUpdateManyWithoutFacilityInput>
   }
 
   export type EmployeeScalarWhereInput = {
@@ -70003,6 +81504,7 @@ export namespace Prisma {
     email?: StringFilter<"Employee"> | string
     createdAt?: DateTimeFilter<"Employee"> | Date | string
     departmentId?: StringNullableFilter<"Employee"> | string | null
+    facilityId?: StringNullableFilter<"Employee"> | string | null
     address?: StringNullableFilter<"Employee"> | string | null
     birthDate?: DateTimeNullableFilter<"Employee"> | Date | string | null
     firstNameKana?: StringNullableFilter<"Employee"> | string | null
@@ -70027,16 +81529,400 @@ export namespace Prisma {
     emergencyContact?: StringNullableFilter<"Employee"> | string | null
   }
 
+  export type EmployeeTransferUpsertWithWhereUniqueWithoutFromFacilityInput = {
+    where: EmployeeTransferWhereUniqueInput
+    update: XOR<EmployeeTransferUpdateWithoutFromFacilityInput, EmployeeTransferUncheckedUpdateWithoutFromFacilityInput>
+    create: XOR<EmployeeTransferCreateWithoutFromFacilityInput, EmployeeTransferUncheckedCreateWithoutFromFacilityInput>
+  }
+
+  export type EmployeeTransferUpdateWithWhereUniqueWithoutFromFacilityInput = {
+    where: EmployeeTransferWhereUniqueInput
+    data: XOR<EmployeeTransferUpdateWithoutFromFacilityInput, EmployeeTransferUncheckedUpdateWithoutFromFacilityInput>
+  }
+
+  export type EmployeeTransferUpdateManyWithWhereWithoutFromFacilityInput = {
+    where: EmployeeTransferScalarWhereInput
+    data: XOR<EmployeeTransferUpdateManyMutationInput, EmployeeTransferUncheckedUpdateManyWithoutFromFacilityInput>
+  }
+
+  export type EmployeeTransferScalarWhereInput = {
+    AND?: EmployeeTransferScalarWhereInput | EmployeeTransferScalarWhereInput[]
+    OR?: EmployeeTransferScalarWhereInput[]
+    NOT?: EmployeeTransferScalarWhereInput | EmployeeTransferScalarWhereInput[]
+    id?: StringFilter<"EmployeeTransfer"> | string
+    employeeId?: StringFilter<"EmployeeTransfer"> | string
+    fromFacilityId?: StringNullableFilter<"EmployeeTransfer"> | string | null
+    toFacilityId?: StringNullableFilter<"EmployeeTransfer"> | string | null
+    fromDepartmentId?: StringNullableFilter<"EmployeeTransfer"> | string | null
+    toDepartmentId?: StringNullableFilter<"EmployeeTransfer"> | string | null
+    effectiveDate?: DateTimeFilter<"EmployeeTransfer"> | Date | string
+    reason?: StringNullableFilter<"EmployeeTransfer"> | string | null
+    createdBy?: StringNullableFilter<"EmployeeTransfer"> | string | null
+    createdAt?: DateTimeFilter<"EmployeeTransfer"> | Date | string
+  }
+
+  export type EmployeeTransferUpsertWithWhereUniqueWithoutToFacilityInput = {
+    where: EmployeeTransferWhereUniqueInput
+    update: XOR<EmployeeTransferUpdateWithoutToFacilityInput, EmployeeTransferUncheckedUpdateWithoutToFacilityInput>
+    create: XOR<EmployeeTransferCreateWithoutToFacilityInput, EmployeeTransferUncheckedCreateWithoutToFacilityInput>
+  }
+
+  export type EmployeeTransferUpdateWithWhereUniqueWithoutToFacilityInput = {
+    where: EmployeeTransferWhereUniqueInput
+    data: XOR<EmployeeTransferUpdateWithoutToFacilityInput, EmployeeTransferUncheckedUpdateWithoutToFacilityInput>
+  }
+
+  export type EmployeeTransferUpdateManyWithWhereWithoutToFacilityInput = {
+    where: EmployeeTransferScalarWhereInput
+    data: XOR<EmployeeTransferUpdateManyMutationInput, EmployeeTransferUncheckedUpdateManyWithoutToFacilityInput>
+  }
+
+  export type ApprovalRouteUpsertWithWhereUniqueWithoutFacilityInput = {
+    where: ApprovalRouteWhereUniqueInput
+    update: XOR<ApprovalRouteUpdateWithoutFacilityInput, ApprovalRouteUncheckedUpdateWithoutFacilityInput>
+    create: XOR<ApprovalRouteCreateWithoutFacilityInput, ApprovalRouteUncheckedCreateWithoutFacilityInput>
+  }
+
+  export type ApprovalRouteUpdateWithWhereUniqueWithoutFacilityInput = {
+    where: ApprovalRouteWhereUniqueInput
+    data: XOR<ApprovalRouteUpdateWithoutFacilityInput, ApprovalRouteUncheckedUpdateWithoutFacilityInput>
+  }
+
+  export type ApprovalRouteUpdateManyWithWhereWithoutFacilityInput = {
+    where: ApprovalRouteScalarWhereInput
+    data: XOR<ApprovalRouteUpdateManyMutationInput, ApprovalRouteUncheckedUpdateManyWithoutFacilityInput>
+  }
+
+  export type ApprovalRouteScalarWhereInput = {
+    AND?: ApprovalRouteScalarWhereInput | ApprovalRouteScalarWhereInput[]
+    OR?: ApprovalRouteScalarWhereInput[]
+    NOT?: ApprovalRouteScalarWhereInput | ApprovalRouteScalarWhereInput[]
+    id?: StringFilter<"ApprovalRoute"> | string
+    facilityId?: StringNullableFilter<"ApprovalRoute"> | string | null
+    departmentId?: StringNullableFilter<"ApprovalRoute"> | string | null
+    stepNo?: IntFilter<"ApprovalRoute"> | number
+    approverRole?: EnumUserRoleFilter<"ApprovalRoute"> | $Enums.UserRole
+    isActive?: BoolFilter<"ApprovalRoute"> | boolean
+    createdAt?: DateTimeFilter<"ApprovalRoute"> | Date | string
+  }
+
+  export type EmployeeCreateWithoutDepartmentInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
+    user?: UserCreateNestedOneWithoutEmployeeInput
+    certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeUncheckedCreateWithoutDepartmentInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    facilityId?: string | null
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    userId?: string | null
+    emergencyContact?: string | null
+    certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeCreateOrConnectWithoutDepartmentInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutDepartmentInput, EmployeeUncheckedCreateWithoutDepartmentInput>
+  }
+
+  export type EmployeeCreateManyDepartmentInputEnvelope = {
+    data: EmployeeCreateManyDepartmentInput | EmployeeCreateManyDepartmentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EmployeeTransferCreateWithoutFromDepartmentInput = {
+    id?: string
+    effectiveDate: Date | string
+    reason?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutTransferHistoriesInput
+    fromFacility?: FacilityCreateNestedOneWithoutTransfersFromInput
+    toFacility?: FacilityCreateNestedOneWithoutTransfersToInput
+    toDepartment?: DepartmentCreateNestedOneWithoutTransfersToInput
+  }
+
+  export type EmployeeTransferUncheckedCreateWithoutFromDepartmentInput = {
+    id?: string
+    employeeId: string
+    fromFacilityId?: string | null
+    toFacilityId?: string | null
+    toDepartmentId?: string | null
+    effectiveDate: Date | string
+    reason?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmployeeTransferCreateOrConnectWithoutFromDepartmentInput = {
+    where: EmployeeTransferWhereUniqueInput
+    create: XOR<EmployeeTransferCreateWithoutFromDepartmentInput, EmployeeTransferUncheckedCreateWithoutFromDepartmentInput>
+  }
+
+  export type EmployeeTransferCreateManyFromDepartmentInputEnvelope = {
+    data: EmployeeTransferCreateManyFromDepartmentInput | EmployeeTransferCreateManyFromDepartmentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EmployeeTransferCreateWithoutToDepartmentInput = {
+    id?: string
+    effectiveDate: Date | string
+    reason?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutTransferHistoriesInput
+    fromFacility?: FacilityCreateNestedOneWithoutTransfersFromInput
+    toFacility?: FacilityCreateNestedOneWithoutTransfersToInput
+    fromDepartment?: DepartmentCreateNestedOneWithoutTransfersFromInput
+  }
+
+  export type EmployeeTransferUncheckedCreateWithoutToDepartmentInput = {
+    id?: string
+    employeeId: string
+    fromFacilityId?: string | null
+    toFacilityId?: string | null
+    fromDepartmentId?: string | null
+    effectiveDate: Date | string
+    reason?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmployeeTransferCreateOrConnectWithoutToDepartmentInput = {
+    where: EmployeeTransferWhereUniqueInput
+    create: XOR<EmployeeTransferCreateWithoutToDepartmentInput, EmployeeTransferUncheckedCreateWithoutToDepartmentInput>
+  }
+
+  export type EmployeeTransferCreateManyToDepartmentInputEnvelope = {
+    data: EmployeeTransferCreateManyToDepartmentInput | EmployeeTransferCreateManyToDepartmentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ApprovalRouteCreateWithoutDepartmentInput = {
+    id?: string
+    stepNo: number
+    approverRole: $Enums.UserRole
+    isActive?: boolean
+    createdAt?: Date | string
+    facility?: FacilityCreateNestedOneWithoutApprovalRoutesInput
+  }
+
+  export type ApprovalRouteUncheckedCreateWithoutDepartmentInput = {
+    id?: string
+    facilityId?: string | null
+    stepNo: number
+    approverRole: $Enums.UserRole
+    isActive?: boolean
+    createdAt?: Date | string
+  }
+
+  export type ApprovalRouteCreateOrConnectWithoutDepartmentInput = {
+    where: ApprovalRouteWhereUniqueInput
+    create: XOR<ApprovalRouteCreateWithoutDepartmentInput, ApprovalRouteUncheckedCreateWithoutDepartmentInput>
+  }
+
+  export type ApprovalRouteCreateManyDepartmentInputEnvelope = {
+    data: ApprovalRouteCreateManyDepartmentInput | ApprovalRouteCreateManyDepartmentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EmployeeUpsertWithWhereUniqueWithoutDepartmentInput = {
+    where: EmployeeWhereUniqueInput
+    update: XOR<EmployeeUpdateWithoutDepartmentInput, EmployeeUncheckedUpdateWithoutDepartmentInput>
+    create: XOR<EmployeeCreateWithoutDepartmentInput, EmployeeUncheckedCreateWithoutDepartmentInput>
+  }
+
+  export type EmployeeUpdateWithWhereUniqueWithoutDepartmentInput = {
+    where: EmployeeWhereUniqueInput
+    data: XOR<EmployeeUpdateWithoutDepartmentInput, EmployeeUncheckedUpdateWithoutDepartmentInput>
+  }
+
+  export type EmployeeUpdateManyWithWhereWithoutDepartmentInput = {
+    where: EmployeeScalarWhereInput
+    data: XOR<EmployeeUpdateManyMutationInput, EmployeeUncheckedUpdateManyWithoutDepartmentInput>
+  }
+
+  export type EmployeeTransferUpsertWithWhereUniqueWithoutFromDepartmentInput = {
+    where: EmployeeTransferWhereUniqueInput
+    update: XOR<EmployeeTransferUpdateWithoutFromDepartmentInput, EmployeeTransferUncheckedUpdateWithoutFromDepartmentInput>
+    create: XOR<EmployeeTransferCreateWithoutFromDepartmentInput, EmployeeTransferUncheckedCreateWithoutFromDepartmentInput>
+  }
+
+  export type EmployeeTransferUpdateWithWhereUniqueWithoutFromDepartmentInput = {
+    where: EmployeeTransferWhereUniqueInput
+    data: XOR<EmployeeTransferUpdateWithoutFromDepartmentInput, EmployeeTransferUncheckedUpdateWithoutFromDepartmentInput>
+  }
+
+  export type EmployeeTransferUpdateManyWithWhereWithoutFromDepartmentInput = {
+    where: EmployeeTransferScalarWhereInput
+    data: XOR<EmployeeTransferUpdateManyMutationInput, EmployeeTransferUncheckedUpdateManyWithoutFromDepartmentInput>
+  }
+
+  export type EmployeeTransferUpsertWithWhereUniqueWithoutToDepartmentInput = {
+    where: EmployeeTransferWhereUniqueInput
+    update: XOR<EmployeeTransferUpdateWithoutToDepartmentInput, EmployeeTransferUncheckedUpdateWithoutToDepartmentInput>
+    create: XOR<EmployeeTransferCreateWithoutToDepartmentInput, EmployeeTransferUncheckedCreateWithoutToDepartmentInput>
+  }
+
+  export type EmployeeTransferUpdateWithWhereUniqueWithoutToDepartmentInput = {
+    where: EmployeeTransferWhereUniqueInput
+    data: XOR<EmployeeTransferUpdateWithoutToDepartmentInput, EmployeeTransferUncheckedUpdateWithoutToDepartmentInput>
+  }
+
+  export type EmployeeTransferUpdateManyWithWhereWithoutToDepartmentInput = {
+    where: EmployeeTransferScalarWhereInput
+    data: XOR<EmployeeTransferUpdateManyMutationInput, EmployeeTransferUncheckedUpdateManyWithoutToDepartmentInput>
+  }
+
+  export type ApprovalRouteUpsertWithWhereUniqueWithoutDepartmentInput = {
+    where: ApprovalRouteWhereUniqueInput
+    update: XOR<ApprovalRouteUpdateWithoutDepartmentInput, ApprovalRouteUncheckedUpdateWithoutDepartmentInput>
+    create: XOR<ApprovalRouteCreateWithoutDepartmentInput, ApprovalRouteUncheckedCreateWithoutDepartmentInput>
+  }
+
+  export type ApprovalRouteUpdateWithWhereUniqueWithoutDepartmentInput = {
+    where: ApprovalRouteWhereUniqueInput
+    data: XOR<ApprovalRouteUpdateWithoutDepartmentInput, ApprovalRouteUncheckedUpdateWithoutDepartmentInput>
+  }
+
+  export type ApprovalRouteUpdateManyWithWhereWithoutDepartmentInput = {
+    where: ApprovalRouteScalarWhereInput
+    data: XOR<ApprovalRouteUpdateManyMutationInput, ApprovalRouteUncheckedUpdateManyWithoutDepartmentInput>
+  }
+
+  export type FacilityCreateWithoutEmployeesInput = {
+    id?: string
+    code: string
+    name: string
+    createdAt?: Date | string
+    transfersFrom?: EmployeeTransferCreateNestedManyWithoutFromFacilityInput
+    transfersTo?: EmployeeTransferCreateNestedManyWithoutToFacilityInput
+    approvalRoutes?: ApprovalRouteCreateNestedManyWithoutFacilityInput
+  }
+
+  export type FacilityUncheckedCreateWithoutEmployeesInput = {
+    id?: string
+    code: string
+    name: string
+    createdAt?: Date | string
+    transfersFrom?: EmployeeTransferUncheckedCreateNestedManyWithoutFromFacilityInput
+    transfersTo?: EmployeeTransferUncheckedCreateNestedManyWithoutToFacilityInput
+    approvalRoutes?: ApprovalRouteUncheckedCreateNestedManyWithoutFacilityInput
+  }
+
+  export type FacilityCreateOrConnectWithoutEmployeesInput = {
+    where: FacilityWhereUniqueInput
+    create: XOR<FacilityCreateWithoutEmployeesInput, FacilityUncheckedCreateWithoutEmployeesInput>
+  }
+
   export type DepartmentCreateWithoutEmployeesInput = {
     id?: string
     name: string
     createdAt?: Date | string
+    transfersFrom?: EmployeeTransferCreateNestedManyWithoutFromDepartmentInput
+    transfersTo?: EmployeeTransferCreateNestedManyWithoutToDepartmentInput
+    approvalRoutes?: ApprovalRouteCreateNestedManyWithoutDepartmentInput
   }
 
   export type DepartmentUncheckedCreateWithoutEmployeesInput = {
     id?: string
     name: string
     createdAt?: Date | string
+    transfersFrom?: EmployeeTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
+    transfersTo?: EmployeeTransferUncheckedCreateNestedManyWithoutToDepartmentInput
+    approvalRoutes?: ApprovalRouteUncheckedCreateNestedManyWithoutDepartmentInput
   }
 
   export type DepartmentCreateOrConnectWithoutEmployeesInput = {
@@ -70141,6 +82027,8 @@ export namespace Prisma {
     rejectionReason?: string | null
     type: $Enums.RequestType
     status?: $Enums.RequestStatus
+    currentApprovalStep?: number
+    approvalCompleted?: boolean
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
@@ -70154,6 +82042,7 @@ export namespace Prisma {
     user?: UserCreateNestedOneWithoutRequestsInput
     attachments?: RequestAttachmentCreateNestedManyWithoutRequestInput
     histories?: RequestHistoryCreateNestedManyWithoutRequestInput
+    approvals?: RequestApprovalCreateNestedManyWithoutRequestInput
   }
 
   export type EmployeeRequestUncheckedCreateWithoutEmployeeInput = {
@@ -70166,6 +82055,8 @@ export namespace Prisma {
     type: $Enums.RequestType
     userId?: string | null
     status?: $Enums.RequestStatus
+    currentApprovalStep?: number
+    approvalCompleted?: boolean
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
@@ -70178,6 +82069,7 @@ export namespace Prisma {
     hours?: number | null
     attachments?: RequestAttachmentUncheckedCreateNestedManyWithoutRequestInput
     histories?: RequestHistoryUncheckedCreateNestedManyWithoutRequestInput
+    approvals?: RequestApprovalUncheckedCreateNestedManyWithoutRequestInput
   }
 
   export type EmployeeRequestCreateOrConnectWithoutEmployeeInput = {
@@ -70739,6 +82631,155 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type LateRecordCreateWithoutEmployeeInput = {
+    id?: string
+    requestId: string
+    targetDate: Date | string
+    scheduledTime: string
+    arrivalTime: string
+    createdAt?: Date | string
+  }
+
+  export type LateRecordUncheckedCreateWithoutEmployeeInput = {
+    id?: string
+    requestId: string
+    targetDate: Date | string
+    scheduledTime: string
+    arrivalTime: string
+    createdAt?: Date | string
+  }
+
+  export type LateRecordCreateOrConnectWithoutEmployeeInput = {
+    where: LateRecordWhereUniqueInput
+    create: XOR<LateRecordCreateWithoutEmployeeInput, LateRecordUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type LateRecordCreateManyEmployeeInputEnvelope = {
+    data: LateRecordCreateManyEmployeeInput | LateRecordCreateManyEmployeeInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EarlyLeaveRecordCreateWithoutEmployeeInput = {
+    id?: string
+    requestId: string
+    targetDate: Date | string
+    scheduledTime: string
+    leaveTime: string
+    createdAt?: Date | string
+  }
+
+  export type EarlyLeaveRecordUncheckedCreateWithoutEmployeeInput = {
+    id?: string
+    requestId: string
+    targetDate: Date | string
+    scheduledTime: string
+    leaveTime: string
+    createdAt?: Date | string
+  }
+
+  export type EarlyLeaveRecordCreateOrConnectWithoutEmployeeInput = {
+    where: EarlyLeaveRecordWhereUniqueInput
+    create: XOR<EarlyLeaveRecordCreateWithoutEmployeeInput, EarlyLeaveRecordUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type EarlyLeaveRecordCreateManyEmployeeInputEnvelope = {
+    data: EarlyLeaveRecordCreateManyEmployeeInput | EarlyLeaveRecordCreateManyEmployeeInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type OutingRecordCreateWithoutEmployeeInput = {
+    id?: string
+    requestId: string
+    targetDate: Date | string
+    startTime: string
+    endTime: string
+    createdAt?: Date | string
+  }
+
+  export type OutingRecordUncheckedCreateWithoutEmployeeInput = {
+    id?: string
+    requestId: string
+    targetDate: Date | string
+    startTime: string
+    endTime: string
+    createdAt?: Date | string
+  }
+
+  export type OutingRecordCreateOrConnectWithoutEmployeeInput = {
+    where: OutingRecordWhereUniqueInput
+    create: XOR<OutingRecordCreateWithoutEmployeeInput, OutingRecordUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type OutingRecordCreateManyEmployeeInputEnvelope = {
+    data: OutingRecordCreateManyEmployeeInput | OutingRecordCreateManyEmployeeInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EmployeeTransferCreateWithoutEmployeeInput = {
+    id?: string
+    effectiveDate: Date | string
+    reason?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+    fromFacility?: FacilityCreateNestedOneWithoutTransfersFromInput
+    toFacility?: FacilityCreateNestedOneWithoutTransfersToInput
+    fromDepartment?: DepartmentCreateNestedOneWithoutTransfersFromInput
+    toDepartment?: DepartmentCreateNestedOneWithoutTransfersToInput
+  }
+
+  export type EmployeeTransferUncheckedCreateWithoutEmployeeInput = {
+    id?: string
+    fromFacilityId?: string | null
+    toFacilityId?: string | null
+    fromDepartmentId?: string | null
+    toDepartmentId?: string | null
+    effectiveDate: Date | string
+    reason?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmployeeTransferCreateOrConnectWithoutEmployeeInput = {
+    where: EmployeeTransferWhereUniqueInput
+    create: XOR<EmployeeTransferCreateWithoutEmployeeInput, EmployeeTransferUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type EmployeeTransferCreateManyEmployeeInputEnvelope = {
+    data: EmployeeTransferCreateManyEmployeeInput | EmployeeTransferCreateManyEmployeeInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FacilityUpsertWithoutEmployeesInput = {
+    update: XOR<FacilityUpdateWithoutEmployeesInput, FacilityUncheckedUpdateWithoutEmployeesInput>
+    create: XOR<FacilityCreateWithoutEmployeesInput, FacilityUncheckedCreateWithoutEmployeesInput>
+    where?: FacilityWhereInput
+  }
+
+  export type FacilityUpdateToOneWithWhereWithoutEmployeesInput = {
+    where?: FacilityWhereInput
+    data: XOR<FacilityUpdateWithoutEmployeesInput, FacilityUncheckedUpdateWithoutEmployeesInput>
+  }
+
+  export type FacilityUpdateWithoutEmployeesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    transfersFrom?: EmployeeTransferUpdateManyWithoutFromFacilityNestedInput
+    transfersTo?: EmployeeTransferUpdateManyWithoutToFacilityNestedInput
+    approvalRoutes?: ApprovalRouteUpdateManyWithoutFacilityNestedInput
+  }
+
+  export type FacilityUncheckedUpdateWithoutEmployeesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    transfersFrom?: EmployeeTransferUncheckedUpdateManyWithoutFromFacilityNestedInput
+    transfersTo?: EmployeeTransferUncheckedUpdateManyWithoutToFacilityNestedInput
+    approvalRoutes?: ApprovalRouteUncheckedUpdateManyWithoutFacilityNestedInput
+  }
+
   export type DepartmentUpsertWithoutEmployeesInput = {
     update: XOR<DepartmentUpdateWithoutEmployeesInput, DepartmentUncheckedUpdateWithoutEmployeesInput>
     create: XOR<DepartmentCreateWithoutEmployeesInput, DepartmentUncheckedCreateWithoutEmployeesInput>
@@ -70754,12 +82795,18 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    transfersFrom?: EmployeeTransferUpdateManyWithoutFromDepartmentNestedInput
+    transfersTo?: EmployeeTransferUpdateManyWithoutToDepartmentNestedInput
+    approvalRoutes?: ApprovalRouteUpdateManyWithoutDepartmentNestedInput
   }
 
   export type DepartmentUncheckedUpdateWithoutEmployeesInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    transfersFrom?: EmployeeTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
+    transfersTo?: EmployeeTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
+    approvalRoutes?: ApprovalRouteUncheckedUpdateManyWithoutDepartmentNestedInput
   }
 
   export type UserUpsertWithoutEmployeeInput = {
@@ -71394,6 +83441,553 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"LeaveTypeBalance"> | Date | string
   }
 
+  export type LateRecordUpsertWithWhereUniqueWithoutEmployeeInput = {
+    where: LateRecordWhereUniqueInput
+    update: XOR<LateRecordUpdateWithoutEmployeeInput, LateRecordUncheckedUpdateWithoutEmployeeInput>
+    create: XOR<LateRecordCreateWithoutEmployeeInput, LateRecordUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type LateRecordUpdateWithWhereUniqueWithoutEmployeeInput = {
+    where: LateRecordWhereUniqueInput
+    data: XOR<LateRecordUpdateWithoutEmployeeInput, LateRecordUncheckedUpdateWithoutEmployeeInput>
+  }
+
+  export type LateRecordUpdateManyWithWhereWithoutEmployeeInput = {
+    where: LateRecordScalarWhereInput
+    data: XOR<LateRecordUpdateManyMutationInput, LateRecordUncheckedUpdateManyWithoutEmployeeInput>
+  }
+
+  export type LateRecordScalarWhereInput = {
+    AND?: LateRecordScalarWhereInput | LateRecordScalarWhereInput[]
+    OR?: LateRecordScalarWhereInput[]
+    NOT?: LateRecordScalarWhereInput | LateRecordScalarWhereInput[]
+    id?: StringFilter<"LateRecord"> | string
+    requestId?: StringFilter<"LateRecord"> | string
+    employeeId?: StringFilter<"LateRecord"> | string
+    targetDate?: DateTimeFilter<"LateRecord"> | Date | string
+    scheduledTime?: StringFilter<"LateRecord"> | string
+    arrivalTime?: StringFilter<"LateRecord"> | string
+    createdAt?: DateTimeFilter<"LateRecord"> | Date | string
+  }
+
+  export type EarlyLeaveRecordUpsertWithWhereUniqueWithoutEmployeeInput = {
+    where: EarlyLeaveRecordWhereUniqueInput
+    update: XOR<EarlyLeaveRecordUpdateWithoutEmployeeInput, EarlyLeaveRecordUncheckedUpdateWithoutEmployeeInput>
+    create: XOR<EarlyLeaveRecordCreateWithoutEmployeeInput, EarlyLeaveRecordUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type EarlyLeaveRecordUpdateWithWhereUniqueWithoutEmployeeInput = {
+    where: EarlyLeaveRecordWhereUniqueInput
+    data: XOR<EarlyLeaveRecordUpdateWithoutEmployeeInput, EarlyLeaveRecordUncheckedUpdateWithoutEmployeeInput>
+  }
+
+  export type EarlyLeaveRecordUpdateManyWithWhereWithoutEmployeeInput = {
+    where: EarlyLeaveRecordScalarWhereInput
+    data: XOR<EarlyLeaveRecordUpdateManyMutationInput, EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeInput>
+  }
+
+  export type EarlyLeaveRecordScalarWhereInput = {
+    AND?: EarlyLeaveRecordScalarWhereInput | EarlyLeaveRecordScalarWhereInput[]
+    OR?: EarlyLeaveRecordScalarWhereInput[]
+    NOT?: EarlyLeaveRecordScalarWhereInput | EarlyLeaveRecordScalarWhereInput[]
+    id?: StringFilter<"EarlyLeaveRecord"> | string
+    requestId?: StringFilter<"EarlyLeaveRecord"> | string
+    employeeId?: StringFilter<"EarlyLeaveRecord"> | string
+    targetDate?: DateTimeFilter<"EarlyLeaveRecord"> | Date | string
+    scheduledTime?: StringFilter<"EarlyLeaveRecord"> | string
+    leaveTime?: StringFilter<"EarlyLeaveRecord"> | string
+    createdAt?: DateTimeFilter<"EarlyLeaveRecord"> | Date | string
+  }
+
+  export type OutingRecordUpsertWithWhereUniqueWithoutEmployeeInput = {
+    where: OutingRecordWhereUniqueInput
+    update: XOR<OutingRecordUpdateWithoutEmployeeInput, OutingRecordUncheckedUpdateWithoutEmployeeInput>
+    create: XOR<OutingRecordCreateWithoutEmployeeInput, OutingRecordUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type OutingRecordUpdateWithWhereUniqueWithoutEmployeeInput = {
+    where: OutingRecordWhereUniqueInput
+    data: XOR<OutingRecordUpdateWithoutEmployeeInput, OutingRecordUncheckedUpdateWithoutEmployeeInput>
+  }
+
+  export type OutingRecordUpdateManyWithWhereWithoutEmployeeInput = {
+    where: OutingRecordScalarWhereInput
+    data: XOR<OutingRecordUpdateManyMutationInput, OutingRecordUncheckedUpdateManyWithoutEmployeeInput>
+  }
+
+  export type OutingRecordScalarWhereInput = {
+    AND?: OutingRecordScalarWhereInput | OutingRecordScalarWhereInput[]
+    OR?: OutingRecordScalarWhereInput[]
+    NOT?: OutingRecordScalarWhereInput | OutingRecordScalarWhereInput[]
+    id?: StringFilter<"OutingRecord"> | string
+    requestId?: StringFilter<"OutingRecord"> | string
+    employeeId?: StringFilter<"OutingRecord"> | string
+    targetDate?: DateTimeFilter<"OutingRecord"> | Date | string
+    startTime?: StringFilter<"OutingRecord"> | string
+    endTime?: StringFilter<"OutingRecord"> | string
+    createdAt?: DateTimeFilter<"OutingRecord"> | Date | string
+  }
+
+  export type EmployeeTransferUpsertWithWhereUniqueWithoutEmployeeInput = {
+    where: EmployeeTransferWhereUniqueInput
+    update: XOR<EmployeeTransferUpdateWithoutEmployeeInput, EmployeeTransferUncheckedUpdateWithoutEmployeeInput>
+    create: XOR<EmployeeTransferCreateWithoutEmployeeInput, EmployeeTransferUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type EmployeeTransferUpdateWithWhereUniqueWithoutEmployeeInput = {
+    where: EmployeeTransferWhereUniqueInput
+    data: XOR<EmployeeTransferUpdateWithoutEmployeeInput, EmployeeTransferUncheckedUpdateWithoutEmployeeInput>
+  }
+
+  export type EmployeeTransferUpdateManyWithWhereWithoutEmployeeInput = {
+    where: EmployeeTransferScalarWhereInput
+    data: XOR<EmployeeTransferUpdateManyMutationInput, EmployeeTransferUncheckedUpdateManyWithoutEmployeeInput>
+  }
+
+  export type EmployeeCreateWithoutTransferHistoriesInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
+    department?: DepartmentCreateNestedOneWithoutEmployeesInput
+    user?: UserCreateNestedOneWithoutEmployeeInput
+    certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeUncheckedCreateWithoutTransferHistoriesInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    departmentId?: string | null
+    facilityId?: string | null
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    userId?: string | null
+    emergencyContact?: string | null
+    certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeCreateOrConnectWithoutTransferHistoriesInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutTransferHistoriesInput, EmployeeUncheckedCreateWithoutTransferHistoriesInput>
+  }
+
+  export type FacilityCreateWithoutTransfersFromInput = {
+    id?: string
+    code: string
+    name: string
+    createdAt?: Date | string
+    employees?: EmployeeCreateNestedManyWithoutFacilityInput
+    transfersTo?: EmployeeTransferCreateNestedManyWithoutToFacilityInput
+    approvalRoutes?: ApprovalRouteCreateNestedManyWithoutFacilityInput
+  }
+
+  export type FacilityUncheckedCreateWithoutTransfersFromInput = {
+    id?: string
+    code: string
+    name: string
+    createdAt?: Date | string
+    employees?: EmployeeUncheckedCreateNestedManyWithoutFacilityInput
+    transfersTo?: EmployeeTransferUncheckedCreateNestedManyWithoutToFacilityInput
+    approvalRoutes?: ApprovalRouteUncheckedCreateNestedManyWithoutFacilityInput
+  }
+
+  export type FacilityCreateOrConnectWithoutTransfersFromInput = {
+    where: FacilityWhereUniqueInput
+    create: XOR<FacilityCreateWithoutTransfersFromInput, FacilityUncheckedCreateWithoutTransfersFromInput>
+  }
+
+  export type FacilityCreateWithoutTransfersToInput = {
+    id?: string
+    code: string
+    name: string
+    createdAt?: Date | string
+    employees?: EmployeeCreateNestedManyWithoutFacilityInput
+    transfersFrom?: EmployeeTransferCreateNestedManyWithoutFromFacilityInput
+    approvalRoutes?: ApprovalRouteCreateNestedManyWithoutFacilityInput
+  }
+
+  export type FacilityUncheckedCreateWithoutTransfersToInput = {
+    id?: string
+    code: string
+    name: string
+    createdAt?: Date | string
+    employees?: EmployeeUncheckedCreateNestedManyWithoutFacilityInput
+    transfersFrom?: EmployeeTransferUncheckedCreateNestedManyWithoutFromFacilityInput
+    approvalRoutes?: ApprovalRouteUncheckedCreateNestedManyWithoutFacilityInput
+  }
+
+  export type FacilityCreateOrConnectWithoutTransfersToInput = {
+    where: FacilityWhereUniqueInput
+    create: XOR<FacilityCreateWithoutTransfersToInput, FacilityUncheckedCreateWithoutTransfersToInput>
+  }
+
+  export type DepartmentCreateWithoutTransfersFromInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    employees?: EmployeeCreateNestedManyWithoutDepartmentInput
+    transfersTo?: EmployeeTransferCreateNestedManyWithoutToDepartmentInput
+    approvalRoutes?: ApprovalRouteCreateNestedManyWithoutDepartmentInput
+  }
+
+  export type DepartmentUncheckedCreateWithoutTransfersFromInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    employees?: EmployeeUncheckedCreateNestedManyWithoutDepartmentInput
+    transfersTo?: EmployeeTransferUncheckedCreateNestedManyWithoutToDepartmentInput
+    approvalRoutes?: ApprovalRouteUncheckedCreateNestedManyWithoutDepartmentInput
+  }
+
+  export type DepartmentCreateOrConnectWithoutTransfersFromInput = {
+    where: DepartmentWhereUniqueInput
+    create: XOR<DepartmentCreateWithoutTransfersFromInput, DepartmentUncheckedCreateWithoutTransfersFromInput>
+  }
+
+  export type DepartmentCreateWithoutTransfersToInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    employees?: EmployeeCreateNestedManyWithoutDepartmentInput
+    transfersFrom?: EmployeeTransferCreateNestedManyWithoutFromDepartmentInput
+    approvalRoutes?: ApprovalRouteCreateNestedManyWithoutDepartmentInput
+  }
+
+  export type DepartmentUncheckedCreateWithoutTransfersToInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    employees?: EmployeeUncheckedCreateNestedManyWithoutDepartmentInput
+    transfersFrom?: EmployeeTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
+    approvalRoutes?: ApprovalRouteUncheckedCreateNestedManyWithoutDepartmentInput
+  }
+
+  export type DepartmentCreateOrConnectWithoutTransfersToInput = {
+    where: DepartmentWhereUniqueInput
+    create: XOR<DepartmentCreateWithoutTransfersToInput, DepartmentUncheckedCreateWithoutTransfersToInput>
+  }
+
+  export type EmployeeUpsertWithoutTransferHistoriesInput = {
+    update: XOR<EmployeeUpdateWithoutTransferHistoriesInput, EmployeeUncheckedUpdateWithoutTransferHistoriesInput>
+    create: XOR<EmployeeCreateWithoutTransferHistoriesInput, EmployeeUncheckedCreateWithoutTransferHistoriesInput>
+    where?: EmployeeWhereInput
+  }
+
+  export type EmployeeUpdateToOneWithWhereWithoutTransferHistoriesInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutTransferHistoriesInput, EmployeeUncheckedUpdateWithoutTransferHistoriesInput>
+  }
+
+  export type EmployeeUpdateWithoutTransferHistoriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
+    department?: DepartmentUpdateOneWithoutEmployeesNestedInput
+    user?: UserUpdateOneWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateWithoutTransferHistoriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type FacilityUpsertWithoutTransfersFromInput = {
+    update: XOR<FacilityUpdateWithoutTransfersFromInput, FacilityUncheckedUpdateWithoutTransfersFromInput>
+    create: XOR<FacilityCreateWithoutTransfersFromInput, FacilityUncheckedCreateWithoutTransfersFromInput>
+    where?: FacilityWhereInput
+  }
+
+  export type FacilityUpdateToOneWithWhereWithoutTransfersFromInput = {
+    where?: FacilityWhereInput
+    data: XOR<FacilityUpdateWithoutTransfersFromInput, FacilityUncheckedUpdateWithoutTransfersFromInput>
+  }
+
+  export type FacilityUpdateWithoutTransfersFromInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employees?: EmployeeUpdateManyWithoutFacilityNestedInput
+    transfersTo?: EmployeeTransferUpdateManyWithoutToFacilityNestedInput
+    approvalRoutes?: ApprovalRouteUpdateManyWithoutFacilityNestedInput
+  }
+
+  export type FacilityUncheckedUpdateWithoutTransfersFromInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employees?: EmployeeUncheckedUpdateManyWithoutFacilityNestedInput
+    transfersTo?: EmployeeTransferUncheckedUpdateManyWithoutToFacilityNestedInput
+    approvalRoutes?: ApprovalRouteUncheckedUpdateManyWithoutFacilityNestedInput
+  }
+
+  export type FacilityUpsertWithoutTransfersToInput = {
+    update: XOR<FacilityUpdateWithoutTransfersToInput, FacilityUncheckedUpdateWithoutTransfersToInput>
+    create: XOR<FacilityCreateWithoutTransfersToInput, FacilityUncheckedCreateWithoutTransfersToInput>
+    where?: FacilityWhereInput
+  }
+
+  export type FacilityUpdateToOneWithWhereWithoutTransfersToInput = {
+    where?: FacilityWhereInput
+    data: XOR<FacilityUpdateWithoutTransfersToInput, FacilityUncheckedUpdateWithoutTransfersToInput>
+  }
+
+  export type FacilityUpdateWithoutTransfersToInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employees?: EmployeeUpdateManyWithoutFacilityNestedInput
+    transfersFrom?: EmployeeTransferUpdateManyWithoutFromFacilityNestedInput
+    approvalRoutes?: ApprovalRouteUpdateManyWithoutFacilityNestedInput
+  }
+
+  export type FacilityUncheckedUpdateWithoutTransfersToInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employees?: EmployeeUncheckedUpdateManyWithoutFacilityNestedInput
+    transfersFrom?: EmployeeTransferUncheckedUpdateManyWithoutFromFacilityNestedInput
+    approvalRoutes?: ApprovalRouteUncheckedUpdateManyWithoutFacilityNestedInput
+  }
+
+  export type DepartmentUpsertWithoutTransfersFromInput = {
+    update: XOR<DepartmentUpdateWithoutTransfersFromInput, DepartmentUncheckedUpdateWithoutTransfersFromInput>
+    create: XOR<DepartmentCreateWithoutTransfersFromInput, DepartmentUncheckedCreateWithoutTransfersFromInput>
+    where?: DepartmentWhereInput
+  }
+
+  export type DepartmentUpdateToOneWithWhereWithoutTransfersFromInput = {
+    where?: DepartmentWhereInput
+    data: XOR<DepartmentUpdateWithoutTransfersFromInput, DepartmentUncheckedUpdateWithoutTransfersFromInput>
+  }
+
+  export type DepartmentUpdateWithoutTransfersFromInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employees?: EmployeeUpdateManyWithoutDepartmentNestedInput
+    transfersTo?: EmployeeTransferUpdateManyWithoutToDepartmentNestedInput
+    approvalRoutes?: ApprovalRouteUpdateManyWithoutDepartmentNestedInput
+  }
+
+  export type DepartmentUncheckedUpdateWithoutTransfersFromInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employees?: EmployeeUncheckedUpdateManyWithoutDepartmentNestedInput
+    transfersTo?: EmployeeTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
+    approvalRoutes?: ApprovalRouteUncheckedUpdateManyWithoutDepartmentNestedInput
+  }
+
+  export type DepartmentUpsertWithoutTransfersToInput = {
+    update: XOR<DepartmentUpdateWithoutTransfersToInput, DepartmentUncheckedUpdateWithoutTransfersToInput>
+    create: XOR<DepartmentCreateWithoutTransfersToInput, DepartmentUncheckedCreateWithoutTransfersToInput>
+    where?: DepartmentWhereInput
+  }
+
+  export type DepartmentUpdateToOneWithWhereWithoutTransfersToInput = {
+    where?: DepartmentWhereInput
+    data: XOR<DepartmentUpdateWithoutTransfersToInput, DepartmentUncheckedUpdateWithoutTransfersToInput>
+  }
+
+  export type DepartmentUpdateWithoutTransfersToInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employees?: EmployeeUpdateManyWithoutDepartmentNestedInput
+    transfersFrom?: EmployeeTransferUpdateManyWithoutFromDepartmentNestedInput
+    approvalRoutes?: ApprovalRouteUpdateManyWithoutDepartmentNestedInput
+  }
+
+  export type DepartmentUncheckedUpdateWithoutTransfersToInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employees?: EmployeeUncheckedUpdateManyWithoutDepartmentNestedInput
+    transfersFrom?: EmployeeTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
+    approvalRoutes?: ApprovalRouteUncheckedUpdateManyWithoutDepartmentNestedInput
+  }
+
   export type EmployeeCreateWithoutDependentsInput = {
     id?: string
     employeeNo: string
@@ -71422,6 +84016,7 @@ export namespace Prisma {
     retirementDate?: Date | string | null
     photoPath?: string | null
     emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
     user?: UserCreateNestedOneWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
@@ -71440,6 +84035,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDependentsInput = {
@@ -71450,6 +84049,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     departmentId?: string | null
+    facilityId?: string | null
     address?: string | null
     birthDate?: Date | string | null
     firstNameKana?: string | null
@@ -71488,6 +84088,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDependentsInput = {
@@ -71570,6 +84174,7 @@ export namespace Prisma {
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
     user?: UserUpdateOneWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
@@ -71588,6 +84193,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDependentsInput = {
@@ -71598,6 +84207,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
@@ -71636,6 +84246,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmploymentContractConsentUpsertWithWhereUniqueWithoutDependentInput = {
@@ -71699,6 +84313,7 @@ export namespace Prisma {
     retirementDate?: Date | string | null
     photoPath?: string | null
     emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
     user?: UserCreateNestedOneWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
@@ -71717,6 +84332,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmploymentHistoriesInput = {
@@ -71727,6 +84346,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     departmentId?: string | null
+    facilityId?: string | null
     address?: string | null
     birthDate?: Date | string | null
     firstNameKana?: string | null
@@ -71765,6 +84385,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmploymentHistoriesInput = {
@@ -71811,6 +84435,7 @@ export namespace Prisma {
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
     user?: UserUpdateOneWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
@@ -71829,6 +84454,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmploymentHistoriesInput = {
@@ -71839,6 +84468,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
@@ -71877,6 +84507,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmployeeMyNumberInput = {
@@ -71907,6 +84541,7 @@ export namespace Prisma {
     retirementDate?: Date | string | null
     photoPath?: string | null
     emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
     user?: UserCreateNestedOneWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
@@ -71925,6 +84560,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmployeeMyNumberInput = {
@@ -71935,6 +84574,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     departmentId?: string | null
+    facilityId?: string | null
     address?: string | null
     birthDate?: Date | string | null
     firstNameKana?: string | null
@@ -71973,6 +84613,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmployeeMyNumberInput = {
@@ -72019,6 +84663,7 @@ export namespace Prisma {
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
     user?: UserUpdateOneWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
@@ -72037,6 +84682,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmployeeMyNumberInput = {
@@ -72047,6 +84696,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
@@ -72085,6 +84735,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmployeeSalaryInput = {
@@ -72115,6 +84769,7 @@ export namespace Prisma {
     retirementDate?: Date | string | null
     photoPath?: string | null
     emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
     user?: UserCreateNestedOneWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
@@ -72133,6 +84788,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmployeeSalaryInput = {
@@ -72143,6 +84802,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     departmentId?: string | null
+    facilityId?: string | null
     address?: string | null
     birthDate?: Date | string | null
     firstNameKana?: string | null
@@ -72181,6 +84841,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmployeeSalaryInput = {
@@ -72227,6 +84891,7 @@ export namespace Prisma {
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
     user?: UserUpdateOneWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
@@ -72245,6 +84910,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmployeeSalaryInput = {
@@ -72255,6 +84924,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
@@ -72293,6 +84963,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutSalaryHistoriesInput = {
@@ -72323,6 +84997,7 @@ export namespace Prisma {
     retirementDate?: Date | string | null
     photoPath?: string | null
     emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
     user?: UserCreateNestedOneWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
@@ -72341,6 +85016,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutSalaryHistoriesInput = {
@@ -72351,6 +85030,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     departmentId?: string | null
+    facilityId?: string | null
     address?: string | null
     birthDate?: Date | string | null
     firstNameKana?: string | null
@@ -72389,6 +85069,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutSalaryHistoriesInput = {
@@ -72435,6 +85119,7 @@ export namespace Prisma {
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
     user?: UserUpdateOneWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
@@ -72453,6 +85138,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutSalaryHistoriesInput = {
@@ -72463,6 +85152,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
@@ -72501,6 +85191,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutLeaveGrantHistoriesInput = {
@@ -72531,6 +85225,7 @@ export namespace Prisma {
     retirementDate?: Date | string | null
     photoPath?: string | null
     emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
     user?: UserCreateNestedOneWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
@@ -72549,6 +85244,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLeaveGrantHistoriesInput = {
@@ -72559,6 +85258,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     departmentId?: string | null
+    facilityId?: string | null
     address?: string | null
     birthDate?: Date | string | null
     firstNameKana?: string | null
@@ -72597,6 +85297,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLeaveGrantHistoriesInput = {
@@ -72612,6 +85316,11 @@ export namespace Prisma {
     expirationMonths?: number | null
     description?: string | null
     allowRequest?: boolean
+    allowDay?: boolean
+    allowAmHalf?: boolean
+    allowPmHalf?: boolean
+    allowHourly?: boolean
+    allowDateRange?: boolean
     manageBalance?: boolean
     sortOrder?: number
     isActive?: boolean
@@ -72629,6 +85338,11 @@ export namespace Prisma {
     expirationMonths?: number | null
     description?: string | null
     allowRequest?: boolean
+    allowDay?: boolean
+    allowAmHalf?: boolean
+    allowPmHalf?: boolean
+    allowHourly?: boolean
+    allowDateRange?: boolean
     manageBalance?: boolean
     sortOrder?: number
     isActive?: boolean
@@ -72682,6 +85396,7 @@ export namespace Prisma {
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
     user?: UserUpdateOneWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
@@ -72700,6 +85415,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLeaveGrantHistoriesInput = {
@@ -72710,6 +85429,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
@@ -72748,6 +85468,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type LeaveTypeUpsertWithoutLeaveGrantHistoriesInput = {
@@ -72769,6 +85493,11 @@ export namespace Prisma {
     expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     allowRequest?: BoolFieldUpdateOperationsInput | boolean
+    allowDay?: BoolFieldUpdateOperationsInput | boolean
+    allowAmHalf?: BoolFieldUpdateOperationsInput | boolean
+    allowPmHalf?: BoolFieldUpdateOperationsInput | boolean
+    allowHourly?: BoolFieldUpdateOperationsInput | boolean
+    allowDateRange?: BoolFieldUpdateOperationsInput | boolean
     manageBalance?: BoolFieldUpdateOperationsInput | boolean
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
@@ -72786,6 +85515,11 @@ export namespace Prisma {
     expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     allowRequest?: BoolFieldUpdateOperationsInput | boolean
+    allowDay?: BoolFieldUpdateOperationsInput | boolean
+    allowAmHalf?: BoolFieldUpdateOperationsInput | boolean
+    allowPmHalf?: BoolFieldUpdateOperationsInput | boolean
+    allowHourly?: BoolFieldUpdateOperationsInput | boolean
+    allowDateRange?: BoolFieldUpdateOperationsInput | boolean
     manageBalance?: BoolFieldUpdateOperationsInput | boolean
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
@@ -72823,6 +85557,7 @@ export namespace Prisma {
     retirementDate?: Date | string | null
     photoPath?: string | null
     emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
     user?: UserCreateNestedOneWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
@@ -72841,6 +85576,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLeaveBalanceInput = {
@@ -72851,6 +85590,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     departmentId?: string | null
+    facilityId?: string | null
     address?: string | null
     birthDate?: Date | string | null
     firstNameKana?: string | null
@@ -72889,6 +85629,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLeaveBalanceInput = {
@@ -72935,6 +85679,7 @@ export namespace Prisma {
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
     user?: UserUpdateOneWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
@@ -72953,6 +85698,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLeaveBalanceInput = {
@@ -72963,6 +85712,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
@@ -73001,6 +85751,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutRequestsInput = {
@@ -73031,6 +85785,7 @@ export namespace Prisma {
     retirementDate?: Date | string | null
     photoPath?: string | null
     emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
     user?: UserCreateNestedOneWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
@@ -73049,6 +85804,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutRequestsInput = {
@@ -73059,6 +85818,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     departmentId?: string | null
+    facilityId?: string | null
     address?: string | null
     birthDate?: Date | string | null
     firstNameKana?: string | null
@@ -73097,6 +85857,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutRequestsInput = {
@@ -73112,6 +85876,11 @@ export namespace Prisma {
     expirationMonths?: number | null
     description?: string | null
     allowRequest?: boolean
+    allowDay?: boolean
+    allowAmHalf?: boolean
+    allowPmHalf?: boolean
+    allowHourly?: boolean
+    allowDateRange?: boolean
     manageBalance?: boolean
     sortOrder?: number
     isActive?: boolean
@@ -73129,6 +85898,11 @@ export namespace Prisma {
     expirationMonths?: number | null
     description?: string | null
     allowRequest?: boolean
+    allowDay?: boolean
+    allowAmHalf?: boolean
+    allowPmHalf?: boolean
+    allowHourly?: boolean
+    allowDateRange?: boolean
     manageBalance?: boolean
     sortOrder?: number
     isActive?: boolean
@@ -73224,6 +85998,38 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type RequestApprovalCreateWithoutRequestInput = {
+    id?: string
+    stepNo: number
+    approverRole: $Enums.UserRole
+    approverId?: string | null
+    status?: $Enums.RequestStatus
+    comment?: string | null
+    approvedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type RequestApprovalUncheckedCreateWithoutRequestInput = {
+    id?: string
+    stepNo: number
+    approverRole: $Enums.UserRole
+    approverId?: string | null
+    status?: $Enums.RequestStatus
+    comment?: string | null
+    approvedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
+  export type RequestApprovalCreateOrConnectWithoutRequestInput = {
+    where: RequestApprovalWhereUniqueInput
+    create: XOR<RequestApprovalCreateWithoutRequestInput, RequestApprovalUncheckedCreateWithoutRequestInput>
+  }
+
+  export type RequestApprovalCreateManyRequestInputEnvelope = {
+    data: RequestApprovalCreateManyRequestInput | RequestApprovalCreateManyRequestInput[]
+    skipDuplicates?: boolean
+  }
+
   export type EmployeeUpsertWithoutRequestsInput = {
     update: XOR<EmployeeUpdateWithoutRequestsInput, EmployeeUncheckedUpdateWithoutRequestsInput>
     create: XOR<EmployeeCreateWithoutRequestsInput, EmployeeUncheckedCreateWithoutRequestsInput>
@@ -73263,6 +86069,7 @@ export namespace Prisma {
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
     user?: UserUpdateOneWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
@@ -73281,6 +86088,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutRequestsInput = {
@@ -73291,6 +86102,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
@@ -73329,6 +86141,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type LeaveTypeUpsertWithoutEmployeeRequestsInput = {
@@ -73350,6 +86166,11 @@ export namespace Prisma {
     expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     allowRequest?: BoolFieldUpdateOperationsInput | boolean
+    allowDay?: BoolFieldUpdateOperationsInput | boolean
+    allowAmHalf?: BoolFieldUpdateOperationsInput | boolean
+    allowPmHalf?: BoolFieldUpdateOperationsInput | boolean
+    allowHourly?: BoolFieldUpdateOperationsInput | boolean
+    allowDateRange?: BoolFieldUpdateOperationsInput | boolean
     manageBalance?: BoolFieldUpdateOperationsInput | boolean
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
@@ -73367,6 +86188,11 @@ export namespace Prisma {
     expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     allowRequest?: BoolFieldUpdateOperationsInput | boolean
+    allowDay?: BoolFieldUpdateOperationsInput | boolean
+    allowAmHalf?: BoolFieldUpdateOperationsInput | boolean
+    allowPmHalf?: BoolFieldUpdateOperationsInput | boolean
+    allowHourly?: BoolFieldUpdateOperationsInput | boolean
+    allowDateRange?: BoolFieldUpdateOperationsInput | boolean
     manageBalance?: BoolFieldUpdateOperationsInput | boolean
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
@@ -73466,6 +86292,161 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"RequestHistory"> | Date | string
   }
 
+  export type RequestApprovalUpsertWithWhereUniqueWithoutRequestInput = {
+    where: RequestApprovalWhereUniqueInput
+    update: XOR<RequestApprovalUpdateWithoutRequestInput, RequestApprovalUncheckedUpdateWithoutRequestInput>
+    create: XOR<RequestApprovalCreateWithoutRequestInput, RequestApprovalUncheckedCreateWithoutRequestInput>
+  }
+
+  export type RequestApprovalUpdateWithWhereUniqueWithoutRequestInput = {
+    where: RequestApprovalWhereUniqueInput
+    data: XOR<RequestApprovalUpdateWithoutRequestInput, RequestApprovalUncheckedUpdateWithoutRequestInput>
+  }
+
+  export type RequestApprovalUpdateManyWithWhereWithoutRequestInput = {
+    where: RequestApprovalScalarWhereInput
+    data: XOR<RequestApprovalUpdateManyMutationInput, RequestApprovalUncheckedUpdateManyWithoutRequestInput>
+  }
+
+  export type RequestApprovalScalarWhereInput = {
+    AND?: RequestApprovalScalarWhereInput | RequestApprovalScalarWhereInput[]
+    OR?: RequestApprovalScalarWhereInput[]
+    NOT?: RequestApprovalScalarWhereInput | RequestApprovalScalarWhereInput[]
+    id?: StringFilter<"RequestApproval"> | string
+    requestId?: StringFilter<"RequestApproval"> | string
+    stepNo?: IntFilter<"RequestApproval"> | number
+    approverRole?: EnumUserRoleFilter<"RequestApproval"> | $Enums.UserRole
+    approverId?: StringNullableFilter<"RequestApproval"> | string | null
+    status?: EnumRequestStatusFilter<"RequestApproval"> | $Enums.RequestStatus
+    comment?: StringNullableFilter<"RequestApproval"> | string | null
+    approvedAt?: DateTimeNullableFilter<"RequestApproval"> | Date | string | null
+    createdAt?: DateTimeFilter<"RequestApproval"> | Date | string
+  }
+
+  export type EmployeeRequestCreateWithoutApprovalsInput = {
+    id?: string
+    title: string
+    createdAt?: Date | string
+    comment?: string | null
+    approvalComment?: string | null
+    rejectionReason?: string | null
+    type: $Enums.RequestType
+    status?: $Enums.RequestStatus
+    currentApprovalStep?: number
+    approvalCompleted?: boolean
+    leaveDays?: number | null
+    leaveEndDate?: Date | string | null
+    leaveStartDate?: Date | string | null
+    requestCategory?: $Enums.RequestCategory | null
+    targetDate?: Date | string | null
+    unitType?: $Enums.RequestUnitType | null
+    startTime?: string | null
+    endTime?: string | null
+    hours?: number | null
+    employee?: EmployeeCreateNestedOneWithoutRequestsInput
+    leaveType?: LeaveTypeCreateNestedOneWithoutEmployeeRequestsInput
+    user?: UserCreateNestedOneWithoutRequestsInput
+    attachments?: RequestAttachmentCreateNestedManyWithoutRequestInput
+    histories?: RequestHistoryCreateNestedManyWithoutRequestInput
+  }
+
+  export type EmployeeRequestUncheckedCreateWithoutApprovalsInput = {
+    id?: string
+    title: string
+    employeeId?: string | null
+    createdAt?: Date | string
+    comment?: string | null
+    approvalComment?: string | null
+    rejectionReason?: string | null
+    type: $Enums.RequestType
+    userId?: string | null
+    status?: $Enums.RequestStatus
+    currentApprovalStep?: number
+    approvalCompleted?: boolean
+    leaveDays?: number | null
+    leaveEndDate?: Date | string | null
+    leaveStartDate?: Date | string | null
+    leaveTypeId?: string | null
+    requestCategory?: $Enums.RequestCategory | null
+    targetDate?: Date | string | null
+    unitType?: $Enums.RequestUnitType | null
+    startTime?: string | null
+    endTime?: string | null
+    hours?: number | null
+    attachments?: RequestAttachmentUncheckedCreateNestedManyWithoutRequestInput
+    histories?: RequestHistoryUncheckedCreateNestedManyWithoutRequestInput
+  }
+
+  export type EmployeeRequestCreateOrConnectWithoutApprovalsInput = {
+    where: EmployeeRequestWhereUniqueInput
+    create: XOR<EmployeeRequestCreateWithoutApprovalsInput, EmployeeRequestUncheckedCreateWithoutApprovalsInput>
+  }
+
+  export type EmployeeRequestUpsertWithoutApprovalsInput = {
+    update: XOR<EmployeeRequestUpdateWithoutApprovalsInput, EmployeeRequestUncheckedUpdateWithoutApprovalsInput>
+    create: XOR<EmployeeRequestCreateWithoutApprovalsInput, EmployeeRequestUncheckedCreateWithoutApprovalsInput>
+    where?: EmployeeRequestWhereInput
+  }
+
+  export type EmployeeRequestUpdateToOneWithWhereWithoutApprovalsInput = {
+    where?: EmployeeRequestWhereInput
+    data: XOR<EmployeeRequestUpdateWithoutApprovalsInput, EmployeeRequestUncheckedUpdateWithoutApprovalsInput>
+  }
+
+  export type EmployeeRequestUpdateWithoutApprovalsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalComment?: NullableStringFieldUpdateOperationsInput | string | null
+    rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    currentApprovalStep?: IntFieldUpdateOperationsInput | number
+    approvalCompleted?: BoolFieldUpdateOperationsInput | boolean
+    leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    requestCategory?: NullableEnumRequestCategoryFieldUpdateOperationsInput | $Enums.RequestCategory | null
+    targetDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    unitType?: NullableEnumRequestUnitTypeFieldUpdateOperationsInput | $Enums.RequestUnitType | null
+    startTime?: NullableStringFieldUpdateOperationsInput | string | null
+    endTime?: NullableStringFieldUpdateOperationsInput | string | null
+    hours?: NullableFloatFieldUpdateOperationsInput | number | null
+    employee?: EmployeeUpdateOneWithoutRequestsNestedInput
+    leaveType?: LeaveTypeUpdateOneWithoutEmployeeRequestsNestedInput
+    user?: UserUpdateOneWithoutRequestsNestedInput
+    attachments?: RequestAttachmentUpdateManyWithoutRequestNestedInput
+    histories?: RequestHistoryUpdateManyWithoutRequestNestedInput
+  }
+
+  export type EmployeeRequestUncheckedUpdateWithoutApprovalsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    employeeId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    approvalComment?: NullableStringFieldUpdateOperationsInput | string | null
+    rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
+    type?: EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    currentApprovalStep?: IntFieldUpdateOperationsInput | number
+    approvalCompleted?: BoolFieldUpdateOperationsInput | boolean
+    leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    leaveTypeId?: NullableStringFieldUpdateOperationsInput | string | null
+    requestCategory?: NullableEnumRequestCategoryFieldUpdateOperationsInput | $Enums.RequestCategory | null
+    targetDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    unitType?: NullableEnumRequestUnitTypeFieldUpdateOperationsInput | $Enums.RequestUnitType | null
+    startTime?: NullableStringFieldUpdateOperationsInput | string | null
+    endTime?: NullableStringFieldUpdateOperationsInput | string | null
+    hours?: NullableFloatFieldUpdateOperationsInput | number | null
+    attachments?: RequestAttachmentUncheckedUpdateManyWithoutRequestNestedInput
+    histories?: RequestHistoryUncheckedUpdateManyWithoutRequestNestedInput
+  }
+
   export type EmployeeRequestCreateWithoutAttachmentsInput = {
     id?: string
     title: string
@@ -73475,6 +86456,8 @@ export namespace Prisma {
     rejectionReason?: string | null
     type: $Enums.RequestType
     status?: $Enums.RequestStatus
+    currentApprovalStep?: number
+    approvalCompleted?: boolean
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
@@ -73488,6 +86471,7 @@ export namespace Prisma {
     leaveType?: LeaveTypeCreateNestedOneWithoutEmployeeRequestsInput
     user?: UserCreateNestedOneWithoutRequestsInput
     histories?: RequestHistoryCreateNestedManyWithoutRequestInput
+    approvals?: RequestApprovalCreateNestedManyWithoutRequestInput
   }
 
   export type EmployeeRequestUncheckedCreateWithoutAttachmentsInput = {
@@ -73501,6 +86485,8 @@ export namespace Prisma {
     type: $Enums.RequestType
     userId?: string | null
     status?: $Enums.RequestStatus
+    currentApprovalStep?: number
+    approvalCompleted?: boolean
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
@@ -73512,6 +86498,7 @@ export namespace Prisma {
     endTime?: string | null
     hours?: number | null
     histories?: RequestHistoryUncheckedCreateNestedManyWithoutRequestInput
+    approvals?: RequestApprovalUncheckedCreateNestedManyWithoutRequestInput
   }
 
   export type EmployeeRequestCreateOrConnectWithoutAttachmentsInput = {
@@ -73539,6 +86526,8 @@ export namespace Prisma {
     rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
     type?: EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    currentApprovalStep?: IntFieldUpdateOperationsInput | number
+    approvalCompleted?: BoolFieldUpdateOperationsInput | boolean
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -73552,6 +86541,7 @@ export namespace Prisma {
     leaveType?: LeaveTypeUpdateOneWithoutEmployeeRequestsNestedInput
     user?: UserUpdateOneWithoutRequestsNestedInput
     histories?: RequestHistoryUpdateManyWithoutRequestNestedInput
+    approvals?: RequestApprovalUpdateManyWithoutRequestNestedInput
   }
 
   export type EmployeeRequestUncheckedUpdateWithoutAttachmentsInput = {
@@ -73565,6 +86555,8 @@ export namespace Prisma {
     type?: EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    currentApprovalStep?: IntFieldUpdateOperationsInput | number
+    approvalCompleted?: BoolFieldUpdateOperationsInput | boolean
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -73576,6 +86568,7 @@ export namespace Prisma {
     endTime?: NullableStringFieldUpdateOperationsInput | string | null
     hours?: NullableFloatFieldUpdateOperationsInput | number | null
     histories?: RequestHistoryUncheckedUpdateManyWithoutRequestNestedInput
+    approvals?: RequestApprovalUncheckedUpdateManyWithoutRequestNestedInput
   }
 
   export type EmployeeRequestCreateWithoutHistoriesInput = {
@@ -73587,6 +86580,8 @@ export namespace Prisma {
     rejectionReason?: string | null
     type: $Enums.RequestType
     status?: $Enums.RequestStatus
+    currentApprovalStep?: number
+    approvalCompleted?: boolean
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
@@ -73600,6 +86595,7 @@ export namespace Prisma {
     leaveType?: LeaveTypeCreateNestedOneWithoutEmployeeRequestsInput
     user?: UserCreateNestedOneWithoutRequestsInput
     attachments?: RequestAttachmentCreateNestedManyWithoutRequestInput
+    approvals?: RequestApprovalCreateNestedManyWithoutRequestInput
   }
 
   export type EmployeeRequestUncheckedCreateWithoutHistoriesInput = {
@@ -73613,6 +86609,8 @@ export namespace Prisma {
     type: $Enums.RequestType
     userId?: string | null
     status?: $Enums.RequestStatus
+    currentApprovalStep?: number
+    approvalCompleted?: boolean
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
@@ -73624,6 +86622,7 @@ export namespace Prisma {
     endTime?: string | null
     hours?: number | null
     attachments?: RequestAttachmentUncheckedCreateNestedManyWithoutRequestInput
+    approvals?: RequestApprovalUncheckedCreateNestedManyWithoutRequestInput
   }
 
   export type EmployeeRequestCreateOrConnectWithoutHistoriesInput = {
@@ -73651,6 +86650,8 @@ export namespace Prisma {
     rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
     type?: EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    currentApprovalStep?: IntFieldUpdateOperationsInput | number
+    approvalCompleted?: BoolFieldUpdateOperationsInput | boolean
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -73664,6 +86665,7 @@ export namespace Prisma {
     leaveType?: LeaveTypeUpdateOneWithoutEmployeeRequestsNestedInput
     user?: UserUpdateOneWithoutRequestsNestedInput
     attachments?: RequestAttachmentUpdateManyWithoutRequestNestedInput
+    approvals?: RequestApprovalUpdateManyWithoutRequestNestedInput
   }
 
   export type EmployeeRequestUncheckedUpdateWithoutHistoriesInput = {
@@ -73677,6 +86679,8 @@ export namespace Prisma {
     type?: EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    currentApprovalStep?: IntFieldUpdateOperationsInput | number
+    approvalCompleted?: BoolFieldUpdateOperationsInput | boolean
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -73688,6 +86692,115 @@ export namespace Prisma {
     endTime?: NullableStringFieldUpdateOperationsInput | string | null
     hours?: NullableFloatFieldUpdateOperationsInput | number | null
     attachments?: RequestAttachmentUncheckedUpdateManyWithoutRequestNestedInput
+    approvals?: RequestApprovalUncheckedUpdateManyWithoutRequestNestedInput
+  }
+
+  export type FacilityCreateWithoutApprovalRoutesInput = {
+    id?: string
+    code: string
+    name: string
+    createdAt?: Date | string
+    employees?: EmployeeCreateNestedManyWithoutFacilityInput
+    transfersFrom?: EmployeeTransferCreateNestedManyWithoutFromFacilityInput
+    transfersTo?: EmployeeTransferCreateNestedManyWithoutToFacilityInput
+  }
+
+  export type FacilityUncheckedCreateWithoutApprovalRoutesInput = {
+    id?: string
+    code: string
+    name: string
+    createdAt?: Date | string
+    employees?: EmployeeUncheckedCreateNestedManyWithoutFacilityInput
+    transfersFrom?: EmployeeTransferUncheckedCreateNestedManyWithoutFromFacilityInput
+    transfersTo?: EmployeeTransferUncheckedCreateNestedManyWithoutToFacilityInput
+  }
+
+  export type FacilityCreateOrConnectWithoutApprovalRoutesInput = {
+    where: FacilityWhereUniqueInput
+    create: XOR<FacilityCreateWithoutApprovalRoutesInput, FacilityUncheckedCreateWithoutApprovalRoutesInput>
+  }
+
+  export type DepartmentCreateWithoutApprovalRoutesInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    employees?: EmployeeCreateNestedManyWithoutDepartmentInput
+    transfersFrom?: EmployeeTransferCreateNestedManyWithoutFromDepartmentInput
+    transfersTo?: EmployeeTransferCreateNestedManyWithoutToDepartmentInput
+  }
+
+  export type DepartmentUncheckedCreateWithoutApprovalRoutesInput = {
+    id?: string
+    name: string
+    createdAt?: Date | string
+    employees?: EmployeeUncheckedCreateNestedManyWithoutDepartmentInput
+    transfersFrom?: EmployeeTransferUncheckedCreateNestedManyWithoutFromDepartmentInput
+    transfersTo?: EmployeeTransferUncheckedCreateNestedManyWithoutToDepartmentInput
+  }
+
+  export type DepartmentCreateOrConnectWithoutApprovalRoutesInput = {
+    where: DepartmentWhereUniqueInput
+    create: XOR<DepartmentCreateWithoutApprovalRoutesInput, DepartmentUncheckedCreateWithoutApprovalRoutesInput>
+  }
+
+  export type FacilityUpsertWithoutApprovalRoutesInput = {
+    update: XOR<FacilityUpdateWithoutApprovalRoutesInput, FacilityUncheckedUpdateWithoutApprovalRoutesInput>
+    create: XOR<FacilityCreateWithoutApprovalRoutesInput, FacilityUncheckedCreateWithoutApprovalRoutesInput>
+    where?: FacilityWhereInput
+  }
+
+  export type FacilityUpdateToOneWithWhereWithoutApprovalRoutesInput = {
+    where?: FacilityWhereInput
+    data: XOR<FacilityUpdateWithoutApprovalRoutesInput, FacilityUncheckedUpdateWithoutApprovalRoutesInput>
+  }
+
+  export type FacilityUpdateWithoutApprovalRoutesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employees?: EmployeeUpdateManyWithoutFacilityNestedInput
+    transfersFrom?: EmployeeTransferUpdateManyWithoutFromFacilityNestedInput
+    transfersTo?: EmployeeTransferUpdateManyWithoutToFacilityNestedInput
+  }
+
+  export type FacilityUncheckedUpdateWithoutApprovalRoutesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employees?: EmployeeUncheckedUpdateManyWithoutFacilityNestedInput
+    transfersFrom?: EmployeeTransferUncheckedUpdateManyWithoutFromFacilityNestedInput
+    transfersTo?: EmployeeTransferUncheckedUpdateManyWithoutToFacilityNestedInput
+  }
+
+  export type DepartmentUpsertWithoutApprovalRoutesInput = {
+    update: XOR<DepartmentUpdateWithoutApprovalRoutesInput, DepartmentUncheckedUpdateWithoutApprovalRoutesInput>
+    create: XOR<DepartmentCreateWithoutApprovalRoutesInput, DepartmentUncheckedCreateWithoutApprovalRoutesInput>
+    where?: DepartmentWhereInput
+  }
+
+  export type DepartmentUpdateToOneWithWhereWithoutApprovalRoutesInput = {
+    where?: DepartmentWhereInput
+    data: XOR<DepartmentUpdateWithoutApprovalRoutesInput, DepartmentUncheckedUpdateWithoutApprovalRoutesInput>
+  }
+
+  export type DepartmentUpdateWithoutApprovalRoutesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employees?: EmployeeUpdateManyWithoutDepartmentNestedInput
+    transfersFrom?: EmployeeTransferUpdateManyWithoutFromDepartmentNestedInput
+    transfersTo?: EmployeeTransferUpdateManyWithoutToDepartmentNestedInput
+  }
+
+  export type DepartmentUncheckedUpdateWithoutApprovalRoutesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employees?: EmployeeUncheckedUpdateManyWithoutDepartmentNestedInput
+    transfersFrom?: EmployeeTransferUncheckedUpdateManyWithoutFromDepartmentNestedInput
+    transfersTo?: EmployeeTransferUncheckedUpdateManyWithoutToDepartmentNestedInput
   }
 
   export type EmployeeCertificationCreateWithoutCertificationInput = {
@@ -73785,6 +86898,7 @@ export namespace Prisma {
     retirementDate?: Date | string | null
     photoPath?: string | null
     emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
     user?: UserCreateNestedOneWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
@@ -73803,6 +86917,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutCertificationsInput = {
@@ -73813,6 +86931,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     departmentId?: string | null
+    facilityId?: string | null
     address?: string | null
     birthDate?: Date | string | null
     firstNameKana?: string | null
@@ -73851,6 +86970,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutCertificationsInput = {
@@ -73950,6 +87073,7 @@ export namespace Prisma {
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
     user?: UserUpdateOneWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
@@ -73968,6 +87092,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutCertificationsInput = {
@@ -73978,6 +87106,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
@@ -74016,6 +87145,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCertificationAttachmentUpsertWithWhereUniqueWithoutEmployeeCertificationInput = {
@@ -74206,6 +87339,7 @@ export namespace Prisma {
     retirementDate?: Date | string | null
     photoPath?: string | null
     emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
     user?: UserCreateNestedOneWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
@@ -74224,6 +87358,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutBankAccountInput = {
@@ -74234,6 +87372,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     departmentId?: string | null
+    facilityId?: string | null
     address?: string | null
     birthDate?: Date | string | null
     firstNameKana?: string | null
@@ -74272,6 +87411,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutBankAccountInput = {
@@ -74346,6 +87489,7 @@ export namespace Prisma {
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
     user?: UserUpdateOneWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
@@ -74364,6 +87508,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutBankAccountInput = {
@@ -74374,6 +87522,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
@@ -74412,6 +87561,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeBankAttachmentUpsertWithWhereUniqueWithoutBankAccountInput = {
@@ -74563,6 +87716,7 @@ export namespace Prisma {
     retirementDate?: Date | string | null
     photoPath?: string | null
     emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
     user?: UserCreateNestedOneWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
@@ -74581,6 +87735,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDependentRequestsInput = {
@@ -74591,6 +87749,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     departmentId?: string | null
+    facilityId?: string | null
     address?: string | null
     birthDate?: Date | string | null
     firstNameKana?: string | null
@@ -74629,6 +87788,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDependentRequestsInput = {
@@ -74703,6 +87866,7 @@ export namespace Prisma {
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
     user?: UserUpdateOneWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
@@ -74721,6 +87885,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDependentRequestsInput = {
@@ -74731,6 +87899,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
@@ -74769,6 +87938,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type DependentRequestAttachmentUpsertWithWhereUniqueWithoutDependentRequestInput = {
@@ -74932,6 +88105,7 @@ export namespace Prisma {
     retirementDate?: Date | string | null
     photoPath?: string | null
     emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
     user?: UserCreateNestedOneWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
@@ -74950,6 +88124,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutProfileChangeRequestsInput = {
@@ -74960,6 +88138,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     departmentId?: string | null
+    facilityId?: string | null
     address?: string | null
     birthDate?: Date | string | null
     firstNameKana?: string | null
@@ -74998,6 +88177,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutProfileChangeRequestsInput = {
@@ -75044,6 +88227,7 @@ export namespace Prisma {
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
     user?: UserUpdateOneWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
@@ -75062,6 +88246,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutProfileChangeRequestsInput = {
@@ -75072,6 +88260,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
@@ -75110,6 +88299,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmploymentContractsInput = {
@@ -75140,6 +88333,7 @@ export namespace Prisma {
     retirementDate?: Date | string | null
     photoPath?: string | null
     emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
     user?: UserCreateNestedOneWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
@@ -75158,6 +88352,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmploymentContractsInput = {
@@ -75168,6 +88366,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     departmentId?: string | null
+    facilityId?: string | null
     address?: string | null
     birthDate?: Date | string | null
     firstNameKana?: string | null
@@ -75206,6 +88405,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmploymentContractsInput = {
@@ -75320,6 +88523,7 @@ export namespace Prisma {
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
     user?: UserUpdateOneWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
@@ -75338,6 +88542,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmploymentContractsInput = {
@@ -75348,6 +88556,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
@@ -75386,6 +88595,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmploymentContractConsentUpsertWithWhereUniqueWithoutEmploymentContractInput = {
@@ -75911,6 +89124,7 @@ export namespace Prisma {
     retirementDate?: Date | string | null
     photoPath?: string | null
     emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
     user?: UserCreateNestedOneWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
@@ -75929,6 +89143,10 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLeaveTypeBalancesInput = {
@@ -75939,6 +89157,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     departmentId?: string | null
+    facilityId?: string | null
     address?: string | null
     birthDate?: Date | string | null
     firstNameKana?: string | null
@@ -75977,6 +89196,10 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLeaveTypeBalancesInput = {
@@ -75992,6 +89215,11 @@ export namespace Prisma {
     expirationMonths?: number | null
     description?: string | null
     allowRequest?: boolean
+    allowDay?: boolean
+    allowAmHalf?: boolean
+    allowPmHalf?: boolean
+    allowHourly?: boolean
+    allowDateRange?: boolean
     manageBalance?: boolean
     sortOrder?: number
     isActive?: boolean
@@ -76009,6 +89237,11 @@ export namespace Prisma {
     expirationMonths?: number | null
     description?: string | null
     allowRequest?: boolean
+    allowDay?: boolean
+    allowAmHalf?: boolean
+    allowPmHalf?: boolean
+    allowHourly?: boolean
+    allowDateRange?: boolean
     manageBalance?: boolean
     sortOrder?: number
     isActive?: boolean
@@ -76062,6 +89295,7 @@ export namespace Prisma {
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
     user?: UserUpdateOneWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
@@ -76080,6 +89314,10 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLeaveTypeBalancesInput = {
@@ -76090,6 +89328,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
@@ -76128,6 +89367,10 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type LeaveTypeUpsertWithoutLeaveTypeBalancesInput = {
@@ -76149,6 +89392,11 @@ export namespace Prisma {
     expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     allowRequest?: BoolFieldUpdateOperationsInput | boolean
+    allowDay?: BoolFieldUpdateOperationsInput | boolean
+    allowAmHalf?: BoolFieldUpdateOperationsInput | boolean
+    allowPmHalf?: BoolFieldUpdateOperationsInput | boolean
+    allowHourly?: BoolFieldUpdateOperationsInput | boolean
+    allowDateRange?: BoolFieldUpdateOperationsInput | boolean
     manageBalance?: BoolFieldUpdateOperationsInput | boolean
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
@@ -76166,6 +89414,11 @@ export namespace Prisma {
     expirationMonths?: NullableIntFieldUpdateOperationsInput | number | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     allowRequest?: BoolFieldUpdateOperationsInput | boolean
+    allowDay?: BoolFieldUpdateOperationsInput | boolean
+    allowAmHalf?: BoolFieldUpdateOperationsInput | boolean
+    allowPmHalf?: BoolFieldUpdateOperationsInput | boolean
+    allowHourly?: BoolFieldUpdateOperationsInput | boolean
+    allowDateRange?: BoolFieldUpdateOperationsInput | boolean
     manageBalance?: BoolFieldUpdateOperationsInput | boolean
     sortOrder?: IntFieldUpdateOperationsInput | number
     isActive?: BoolFieldUpdateOperationsInput | boolean
@@ -76216,6 +89469,8 @@ export namespace Prisma {
     rejectionReason?: string | null
     type: $Enums.RequestType
     status?: $Enums.RequestStatus
+    currentApprovalStep?: number
+    approvalCompleted?: boolean
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
@@ -76229,6 +89484,7 @@ export namespace Prisma {
     user?: UserCreateNestedOneWithoutRequestsInput
     attachments?: RequestAttachmentCreateNestedManyWithoutRequestInput
     histories?: RequestHistoryCreateNestedManyWithoutRequestInput
+    approvals?: RequestApprovalCreateNestedManyWithoutRequestInput
   }
 
   export type EmployeeRequestUncheckedCreateWithoutLeaveTypeInput = {
@@ -76242,6 +89498,8 @@ export namespace Prisma {
     type: $Enums.RequestType
     userId?: string | null
     status?: $Enums.RequestStatus
+    currentApprovalStep?: number
+    approvalCompleted?: boolean
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
@@ -76253,6 +89511,7 @@ export namespace Prisma {
     hours?: number | null
     attachments?: RequestAttachmentUncheckedCreateNestedManyWithoutRequestInput
     histories?: RequestHistoryUncheckedCreateNestedManyWithoutRequestInput
+    approvals?: RequestApprovalUncheckedCreateNestedManyWithoutRequestInput
   }
 
   export type EmployeeRequestCreateOrConnectWithoutLeaveTypeInput = {
@@ -76369,6 +89628,7 @@ export namespace Prisma {
     retirementDate?: Date | string | null
     photoPath?: string | null
     emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
     user?: UserCreateNestedOneWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
@@ -76387,6 +89647,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutRetirementChecklistInput = {
@@ -76397,6 +89661,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     departmentId?: string | null
+    facilityId?: string | null
     address?: string | null
     birthDate?: Date | string | null
     firstNameKana?: string | null
@@ -76435,6 +89700,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutRetirementChecklistInput = {
@@ -76481,6 +89750,7 @@ export namespace Prisma {
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
     user?: UserUpdateOneWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
@@ -76499,6 +89769,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutRetirementChecklistInput = {
@@ -76509,6 +89783,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
@@ -76547,6 +89822,10 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutLoanedAssetsInput = {
@@ -76577,6 +89856,7 @@ export namespace Prisma {
     retirementDate?: Date | string | null
     photoPath?: string | null
     emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
     user?: UserCreateNestedOneWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
@@ -76595,6 +89875,10 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLoanedAssetsInput = {
@@ -76605,6 +89889,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     departmentId?: string | null
+    facilityId?: string | null
     address?: string | null
     birthDate?: Date | string | null
     firstNameKana?: string | null
@@ -76643,6 +89928,10 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLoanedAssetsInput = {
@@ -76689,6 +89978,7 @@ export namespace Prisma {
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
     user?: UserUpdateOneWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
@@ -76707,6 +89997,10 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLoanedAssetsInput = {
@@ -76717,6 +90011,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
@@ -76755,6 +90050,10 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutRetirementCertificateInput = {
@@ -76785,6 +90084,7 @@ export namespace Prisma {
     retirementDate?: Date | string | null
     photoPath?: string | null
     emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
     user?: UserCreateNestedOneWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
@@ -76803,6 +90103,10 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutRetirementCertificateInput = {
@@ -76813,6 +90117,7 @@ export namespace Prisma {
     email: string
     createdAt?: Date | string
     departmentId?: string | null
+    facilityId?: string | null
     address?: string | null
     birthDate?: Date | string | null
     firstNameKana?: string | null
@@ -76851,6 +90156,10 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
     loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutRetirementCertificateInput = {
@@ -76897,6 +90206,7 @@ export namespace Prisma {
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
     user?: UserUpdateOneWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
@@ -76915,6 +90225,10 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutRetirementCertificateInput = {
@@ -76925,6 +90239,7 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
@@ -76963,6 +90278,694 @@ export namespace Prisma {
     retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeCreateWithoutLateRecordsInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
+    department?: DepartmentCreateNestedOneWithoutEmployeesInput
+    user?: UserCreateNestedOneWithoutEmployeeInput
+    certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeUncheckedCreateWithoutLateRecordsInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    departmentId?: string | null
+    facilityId?: string | null
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    userId?: string | null
+    emergencyContact?: string | null
+    certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeCreateOrConnectWithoutLateRecordsInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutLateRecordsInput, EmployeeUncheckedCreateWithoutLateRecordsInput>
+  }
+
+  export type EmployeeUpsertWithoutLateRecordsInput = {
+    update: XOR<EmployeeUpdateWithoutLateRecordsInput, EmployeeUncheckedUpdateWithoutLateRecordsInput>
+    create: XOR<EmployeeCreateWithoutLateRecordsInput, EmployeeUncheckedCreateWithoutLateRecordsInput>
+    where?: EmployeeWhereInput
+  }
+
+  export type EmployeeUpdateToOneWithWhereWithoutLateRecordsInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutLateRecordsInput, EmployeeUncheckedUpdateWithoutLateRecordsInput>
+  }
+
+  export type EmployeeUpdateWithoutLateRecordsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
+    department?: DepartmentUpdateOneWithoutEmployeesNestedInput
+    user?: UserUpdateOneWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateWithoutLateRecordsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeCreateWithoutEarlyLeaveRecordsInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
+    department?: DepartmentCreateNestedOneWithoutEmployeesInput
+    user?: UserCreateNestedOneWithoutEmployeeInput
+    certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeUncheckedCreateWithoutEarlyLeaveRecordsInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    departmentId?: string | null
+    facilityId?: string | null
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    userId?: string | null
+    emergencyContact?: string | null
+    certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeCreateOrConnectWithoutEarlyLeaveRecordsInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutEarlyLeaveRecordsInput, EmployeeUncheckedCreateWithoutEarlyLeaveRecordsInput>
+  }
+
+  export type EmployeeUpsertWithoutEarlyLeaveRecordsInput = {
+    update: XOR<EmployeeUpdateWithoutEarlyLeaveRecordsInput, EmployeeUncheckedUpdateWithoutEarlyLeaveRecordsInput>
+    create: XOR<EmployeeCreateWithoutEarlyLeaveRecordsInput, EmployeeUncheckedCreateWithoutEarlyLeaveRecordsInput>
+    where?: EmployeeWhereInput
+  }
+
+  export type EmployeeUpdateToOneWithWhereWithoutEarlyLeaveRecordsInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutEarlyLeaveRecordsInput, EmployeeUncheckedUpdateWithoutEarlyLeaveRecordsInput>
+  }
+
+  export type EmployeeUpdateWithoutEarlyLeaveRecordsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
+    department?: DepartmentUpdateOneWithoutEmployeesNestedInput
+    user?: UserUpdateOneWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateWithoutEarlyLeaveRecordsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeCreateWithoutOutingRecordsInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
+    department?: DepartmentCreateNestedOneWithoutEmployeesInput
+    user?: UserCreateNestedOneWithoutEmployeeInput
+    certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeUncheckedCreateWithoutOutingRecordsInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    departmentId?: string | null
+    facilityId?: string | null
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    userId?: string | null
+    emergencyContact?: string | null
+    certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeCreateOrConnectWithoutOutingRecordsInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutOutingRecordsInput, EmployeeUncheckedCreateWithoutOutingRecordsInput>
+  }
+
+  export type EmployeeUpsertWithoutOutingRecordsInput = {
+    update: XOR<EmployeeUpdateWithoutOutingRecordsInput, EmployeeUncheckedUpdateWithoutOutingRecordsInput>
+    create: XOR<EmployeeCreateWithoutOutingRecordsInput, EmployeeUncheckedCreateWithoutOutingRecordsInput>
+    where?: EmployeeWhereInput
+  }
+
+  export type EmployeeUpdateToOneWithWhereWithoutOutingRecordsInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutOutingRecordsInput, EmployeeUncheckedUpdateWithoutOutingRecordsInput>
+  }
+
+  export type EmployeeUpdateWithoutOutingRecordsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
+    department?: DepartmentUpdateOneWithoutEmployeesNestedInput
+    user?: UserUpdateOneWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateWithoutOutingRecordsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeRequestCreateManyUserInput = {
@@ -76975,6 +90978,8 @@ export namespace Prisma {
     rejectionReason?: string | null
     type: $Enums.RequestType
     status?: $Enums.RequestStatus
+    currentApprovalStep?: number
+    approvalCompleted?: boolean
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
@@ -76996,6 +91001,8 @@ export namespace Prisma {
     rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
     type?: EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    currentApprovalStep?: IntFieldUpdateOperationsInput | number
+    approvalCompleted?: BoolFieldUpdateOperationsInput | boolean
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -77009,6 +91016,7 @@ export namespace Prisma {
     leaveType?: LeaveTypeUpdateOneWithoutEmployeeRequestsNestedInput
     attachments?: RequestAttachmentUpdateManyWithoutRequestNestedInput
     histories?: RequestHistoryUpdateManyWithoutRequestNestedInput
+    approvals?: RequestApprovalUpdateManyWithoutRequestNestedInput
   }
 
   export type EmployeeRequestUncheckedUpdateWithoutUserInput = {
@@ -77021,6 +91029,8 @@ export namespace Prisma {
     rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
     type?: EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    currentApprovalStep?: IntFieldUpdateOperationsInput | number
+    approvalCompleted?: BoolFieldUpdateOperationsInput | boolean
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -77033,6 +91043,7 @@ export namespace Prisma {
     hours?: NullableFloatFieldUpdateOperationsInput | number | null
     attachments?: RequestAttachmentUncheckedUpdateManyWithoutRequestNestedInput
     histories?: RequestHistoryUncheckedUpdateManyWithoutRequestNestedInput
+    approvals?: RequestApprovalUncheckedUpdateManyWithoutRequestNestedInput
   }
 
   export type EmployeeRequestUncheckedUpdateManyWithoutUserInput = {
@@ -77045,6 +91056,8 @@ export namespace Prisma {
     rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
     type?: EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    currentApprovalStep?: IntFieldUpdateOperationsInput | number
+    approvalCompleted?: BoolFieldUpdateOperationsInput | boolean
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -77097,13 +91110,14 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type EmployeeCreateManyDepartmentInput = {
+  export type EmployeeCreateManyFacilityInput = {
     id?: string
     employeeNo: string
     firstName: string
     lastName: string
     email: string
     createdAt?: Date | string
+    departmentId?: string | null
     address?: string | null
     birthDate?: Date | string | null
     firstNameKana?: string | null
@@ -77128,7 +91142,40 @@ export namespace Prisma {
     emergencyContact?: string | null
   }
 
-  export type EmployeeUpdateWithoutDepartmentInput = {
+  export type EmployeeTransferCreateManyFromFacilityInput = {
+    id?: string
+    employeeId: string
+    toFacilityId?: string | null
+    fromDepartmentId?: string | null
+    toDepartmentId?: string | null
+    effectiveDate: Date | string
+    reason?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmployeeTransferCreateManyToFacilityInput = {
+    id?: string
+    employeeId: string
+    fromFacilityId?: string | null
+    fromDepartmentId?: string | null
+    toDepartmentId?: string | null
+    effectiveDate: Date | string
+    reason?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ApprovalRouteCreateManyFacilityInput = {
+    id?: string
+    departmentId?: string | null
+    stepNo: number
+    approverRole: $Enums.UserRole
+    isActive?: boolean
+    createdAt?: Date | string
+  }
+
+  export type EmployeeUpdateWithoutFacilityInput = {
     id?: StringFieldUpdateOperationsInput | string
     employeeNo?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
@@ -77156,6 +91203,7 @@ export namespace Prisma {
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    department?: DepartmentUpdateOneWithoutEmployeesNestedInput
     user?: UserUpdateOneWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
@@ -77174,15 +91222,20 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
   }
 
-  export type EmployeeUncheckedUpdateWithoutDepartmentInput = {
+  export type EmployeeUncheckedUpdateWithoutFacilityInput = {
     id?: StringFieldUpdateOperationsInput | string
     employeeNo?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
     lastName?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    departmentId?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
@@ -77222,9 +91275,209 @@ export namespace Prisma {
     loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
     retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
     leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
-  export type EmployeeUncheckedUpdateManyWithoutDepartmentInput = {
+  export type EmployeeUncheckedUpdateManyWithoutFacilityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EmployeeTransferUpdateWithoutFromFacilityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutTransferHistoriesNestedInput
+    toFacility?: FacilityUpdateOneWithoutTransfersToNestedInput
+    fromDepartment?: DepartmentUpdateOneWithoutTransfersFromNestedInput
+    toDepartment?: DepartmentUpdateOneWithoutTransfersToNestedInput
+  }
+
+  export type EmployeeTransferUncheckedUpdateWithoutFromFacilityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    toFacilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    fromDepartmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    toDepartmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeTransferUncheckedUpdateManyWithoutFromFacilityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    toFacilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    fromDepartmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    toDepartmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeTransferUpdateWithoutToFacilityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutTransferHistoriesNestedInput
+    fromFacility?: FacilityUpdateOneWithoutTransfersFromNestedInput
+    fromDepartment?: DepartmentUpdateOneWithoutTransfersFromNestedInput
+    toDepartment?: DepartmentUpdateOneWithoutTransfersToNestedInput
+  }
+
+  export type EmployeeTransferUncheckedUpdateWithoutToFacilityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    fromFacilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    fromDepartmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    toDepartmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeTransferUncheckedUpdateManyWithoutToFacilityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    fromFacilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    fromDepartmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    toDepartmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApprovalRouteUpdateWithoutFacilityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stepNo?: IntFieldUpdateOperationsInput | number
+    approverRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    department?: DepartmentUpdateOneWithoutApprovalRoutesNestedInput
+  }
+
+  export type ApprovalRouteUncheckedUpdateWithoutFacilityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    stepNo?: IntFieldUpdateOperationsInput | number
+    approverRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApprovalRouteUncheckedUpdateManyWithoutFacilityInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    stepNo?: IntFieldUpdateOperationsInput | number
+    approverRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeCreateManyDepartmentInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    facilityId?: string | null
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    userId?: string | null
+    emergencyContact?: string | null
+  }
+
+  export type EmployeeTransferCreateManyFromDepartmentInput = {
+    id?: string
+    employeeId: string
+    fromFacilityId?: string | null
+    toFacilityId?: string | null
+    toDepartmentId?: string | null
+    effectiveDate: Date | string
+    reason?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+  }
+
+  export type EmployeeTransferCreateManyToDepartmentInput = {
+    id?: string
+    employeeId: string
+    fromFacilityId?: string | null
+    toFacilityId?: string | null
+    fromDepartmentId?: string | null
+    effectiveDate: Date | string
+    reason?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ApprovalRouteCreateManyDepartmentInput = {
+    id?: string
+    facilityId?: string | null
+    stepNo: number
+    approverRole: $Enums.UserRole
+    isActive?: boolean
+    createdAt?: Date | string
+  }
+
+  export type EmployeeUpdateWithoutDepartmentInput = {
     id?: StringFieldUpdateOperationsInput | string
     employeeNo?: StringFieldUpdateOperationsInput | string
     firstName?: StringFieldUpdateOperationsInput | string
@@ -77251,8 +91504,214 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
+    user?: UserUpdateOneWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateWithoutDepartmentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateManyWithoutDepartmentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EmployeeTransferUpdateWithoutFromDepartmentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutTransferHistoriesNestedInput
+    fromFacility?: FacilityUpdateOneWithoutTransfersFromNestedInput
+    toFacility?: FacilityUpdateOneWithoutTransfersToNestedInput
+    toDepartment?: DepartmentUpdateOneWithoutTransfersToNestedInput
+  }
+
+  export type EmployeeTransferUncheckedUpdateWithoutFromDepartmentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    fromFacilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    toFacilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    toDepartmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeTransferUncheckedUpdateManyWithoutFromDepartmentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    fromFacilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    toFacilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    toDepartmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeTransferUpdateWithoutToDepartmentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutTransferHistoriesNestedInput
+    fromFacility?: FacilityUpdateOneWithoutTransfersFromNestedInput
+    toFacility?: FacilityUpdateOneWithoutTransfersToNestedInput
+    fromDepartment?: DepartmentUpdateOneWithoutTransfersFromNestedInput
+  }
+
+  export type EmployeeTransferUncheckedUpdateWithoutToDepartmentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    fromFacilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    toFacilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    fromDepartmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeTransferUncheckedUpdateManyWithoutToDepartmentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    fromFacilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    toFacilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    fromDepartmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApprovalRouteUpdateWithoutDepartmentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stepNo?: IntFieldUpdateOperationsInput | number
+    approverRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    facility?: FacilityUpdateOneWithoutApprovalRoutesNestedInput
+  }
+
+  export type ApprovalRouteUncheckedUpdateWithoutDepartmentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    stepNo?: IntFieldUpdateOperationsInput | number
+    approverRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ApprovalRouteUncheckedUpdateManyWithoutDepartmentInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    stepNo?: IntFieldUpdateOperationsInput | number
+    approverRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EmployeeCertificationCreateManyEmployeeInput = {
@@ -77276,6 +91735,8 @@ export namespace Prisma {
     type: $Enums.RequestType
     userId?: string | null
     status?: $Enums.RequestStatus
+    currentApprovalStep?: number
+    approvalCompleted?: boolean
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
@@ -77430,6 +91891,45 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type LateRecordCreateManyEmployeeInput = {
+    id?: string
+    requestId: string
+    targetDate: Date | string
+    scheduledTime: string
+    arrivalTime: string
+    createdAt?: Date | string
+  }
+
+  export type EarlyLeaveRecordCreateManyEmployeeInput = {
+    id?: string
+    requestId: string
+    targetDate: Date | string
+    scheduledTime: string
+    leaveTime: string
+    createdAt?: Date | string
+  }
+
+  export type OutingRecordCreateManyEmployeeInput = {
+    id?: string
+    requestId: string
+    targetDate: Date | string
+    startTime: string
+    endTime: string
+    createdAt?: Date | string
+  }
+
+  export type EmployeeTransferCreateManyEmployeeInput = {
+    id?: string
+    fromFacilityId?: string | null
+    toFacilityId?: string | null
+    fromDepartmentId?: string | null
+    toDepartmentId?: string | null
+    effectiveDate: Date | string
+    reason?: string | null
+    createdBy?: string | null
+    createdAt?: Date | string
+  }
+
   export type EmployeeCertificationUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
     acquiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -77474,6 +91974,8 @@ export namespace Prisma {
     rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
     type?: EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    currentApprovalStep?: IntFieldUpdateOperationsInput | number
+    approvalCompleted?: BoolFieldUpdateOperationsInput | boolean
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -77487,6 +91989,7 @@ export namespace Prisma {
     user?: UserUpdateOneWithoutRequestsNestedInput
     attachments?: RequestAttachmentUpdateManyWithoutRequestNestedInput
     histories?: RequestHistoryUpdateManyWithoutRequestNestedInput
+    approvals?: RequestApprovalUpdateManyWithoutRequestNestedInput
   }
 
   export type EmployeeRequestUncheckedUpdateWithoutEmployeeInput = {
@@ -77499,6 +92002,8 @@ export namespace Prisma {
     type?: EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    currentApprovalStep?: IntFieldUpdateOperationsInput | number
+    approvalCompleted?: BoolFieldUpdateOperationsInput | boolean
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -77511,6 +92016,7 @@ export namespace Prisma {
     hours?: NullableFloatFieldUpdateOperationsInput | number | null
     attachments?: RequestAttachmentUncheckedUpdateManyWithoutRequestNestedInput
     histories?: RequestHistoryUncheckedUpdateManyWithoutRequestNestedInput
+    approvals?: RequestApprovalUncheckedUpdateManyWithoutRequestNestedInput
   }
 
   export type EmployeeRequestUncheckedUpdateManyWithoutEmployeeInput = {
@@ -77523,6 +92029,8 @@ export namespace Prisma {
     type?: EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    currentApprovalStep?: IntFieldUpdateOperationsInput | number
+    approvalCompleted?: BoolFieldUpdateOperationsInput | boolean
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -77969,6 +92477,123 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type LateRecordUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    targetDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    scheduledTime?: StringFieldUpdateOperationsInput | string
+    arrivalTime?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LateRecordUncheckedUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    targetDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    scheduledTime?: StringFieldUpdateOperationsInput | string
+    arrivalTime?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type LateRecordUncheckedUpdateManyWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    targetDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    scheduledTime?: StringFieldUpdateOperationsInput | string
+    arrivalTime?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EarlyLeaveRecordUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    targetDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    scheduledTime?: StringFieldUpdateOperationsInput | string
+    leaveTime?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EarlyLeaveRecordUncheckedUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    targetDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    scheduledTime?: StringFieldUpdateOperationsInput | string
+    leaveTime?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    targetDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    scheduledTime?: StringFieldUpdateOperationsInput | string
+    leaveTime?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OutingRecordUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    targetDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: StringFieldUpdateOperationsInput | string
+    endTime?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OutingRecordUncheckedUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    targetDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: StringFieldUpdateOperationsInput | string
+    endTime?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OutingRecordUncheckedUpdateManyWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    requestId?: StringFieldUpdateOperationsInput | string
+    targetDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    startTime?: StringFieldUpdateOperationsInput | string
+    endTime?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeTransferUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fromFacility?: FacilityUpdateOneWithoutTransfersFromNestedInput
+    toFacility?: FacilityUpdateOneWithoutTransfersToNestedInput
+    fromDepartment?: DepartmentUpdateOneWithoutTransfersFromNestedInput
+    toDepartment?: DepartmentUpdateOneWithoutTransfersToNestedInput
+  }
+
+  export type EmployeeTransferUncheckedUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromFacilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    toFacilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    fromDepartmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    toDepartmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeTransferUncheckedUpdateManyWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fromFacilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    toFacilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    fromDepartmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    toDepartmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    reason?: NullableStringFieldUpdateOperationsInput | string | null
+    createdBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type EmploymentContractConsentCreateManyDependentInput = {
     id?: string
     employmentContractId: string
@@ -78038,6 +92663,17 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
+  export type RequestApprovalCreateManyRequestInput = {
+    id?: string
+    stepNo: number
+    approverRole: $Enums.UserRole
+    approverId?: string | null
+    status?: $Enums.RequestStatus
+    comment?: string | null
+    approvedAt?: Date | string | null
+    createdAt?: Date | string
+  }
+
   export type RequestAttachmentUpdateWithoutRequestInput = {
     id?: StringFieldUpdateOperationsInput | string
     fileName?: StringFieldUpdateOperationsInput | string
@@ -78086,6 +92722,39 @@ export namespace Prisma {
     action?: EnumRequestHistoryActionFieldUpdateOperationsInput | $Enums.RequestHistoryAction
     comment?: NullableStringFieldUpdateOperationsInput | string | null
     actor?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RequestApprovalUpdateWithoutRequestInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stepNo?: IntFieldUpdateOperationsInput | number
+    approverRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    approverId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RequestApprovalUncheckedUpdateWithoutRequestInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stepNo?: IntFieldUpdateOperationsInput | number
+    approverRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    approverId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type RequestApprovalUncheckedUpdateManyWithoutRequestInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    stepNo?: IntFieldUpdateOperationsInput | number
+    approverRole?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    approverId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    comment?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -78365,6 +93034,8 @@ export namespace Prisma {
     type: $Enums.RequestType
     userId?: string | null
     status?: $Enums.RequestStatus
+    currentApprovalStep?: number
+    approvalCompleted?: boolean
     leaveDays?: number | null
     leaveEndDate?: Date | string | null
     leaveStartDate?: Date | string | null
@@ -78427,6 +93098,8 @@ export namespace Prisma {
     rejectionReason?: NullableStringFieldUpdateOperationsInput | string | null
     type?: EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    currentApprovalStep?: IntFieldUpdateOperationsInput | number
+    approvalCompleted?: BoolFieldUpdateOperationsInput | boolean
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -78440,6 +93113,7 @@ export namespace Prisma {
     user?: UserUpdateOneWithoutRequestsNestedInput
     attachments?: RequestAttachmentUpdateManyWithoutRequestNestedInput
     histories?: RequestHistoryUpdateManyWithoutRequestNestedInput
+    approvals?: RequestApprovalUpdateManyWithoutRequestNestedInput
   }
 
   export type EmployeeRequestUncheckedUpdateWithoutLeaveTypeInput = {
@@ -78453,6 +93127,8 @@ export namespace Prisma {
     type?: EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    currentApprovalStep?: IntFieldUpdateOperationsInput | number
+    approvalCompleted?: BoolFieldUpdateOperationsInput | boolean
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -78464,6 +93140,7 @@ export namespace Prisma {
     hours?: NullableFloatFieldUpdateOperationsInput | number | null
     attachments?: RequestAttachmentUncheckedUpdateManyWithoutRequestNestedInput
     histories?: RequestHistoryUncheckedUpdateManyWithoutRequestNestedInput
+    approvals?: RequestApprovalUncheckedUpdateManyWithoutRequestNestedInput
   }
 
   export type EmployeeRequestUncheckedUpdateManyWithoutLeaveTypeInput = {
@@ -78477,6 +93154,8 @@ export namespace Prisma {
     type?: EnumRequestTypeFieldUpdateOperationsInput | $Enums.RequestType
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    currentApprovalStep?: IntFieldUpdateOperationsInput | number
+    approvalCompleted?: BoolFieldUpdateOperationsInput | boolean
     leaveDays?: NullableFloatFieldUpdateOperationsInput | number | null
     leaveEndDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     leaveStartDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null

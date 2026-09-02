@@ -1,0 +1,143 @@
+import BackLink from "@/components/BackLink";
+import { revalidatePath } from "next/cache";
+
+import { requireHRManager } from "@/lib/auth-guard";
+import { prisma } from "@/lib/prisma";
+
+const roleLabels: Record<string, string> = {
+  MANAGER: "部署責任者",
+  HR_MANAGER: "人事管理者",
+  ADMIN: "システム管理者",
+};
+
+const selectableRoles = [
+  { value: "MANAGER", label: "部署責任者" },
+  { value: "HR_MANAGER", label: "人事管理者" },
+  { value: "ADMIN", label: "システム管理者" },
+] as const;
+
+async function saveRoute(formData: FormData) {
+  "use server";
+
+  await requireHRManager();
+
+  const facilityId = String(formData.get("facilityId") ?? "");
+
+  if (!facilityId) {
+    throw new Error("施設が指定されていません。");
+  }
+
+  const steps = [1, 2, 3]
+    .map((stepNo) => ({
+      stepNo,
+      approverRole: String(formData.get(`step${stepNo}`) ?? ""),
+    }))
+    .filter((step) =>
+      ["MANAGER", "HR_MANAGER", "ADMIN"].includes(step.approverRole),
+    );
+
+  if (steps.length === 0) {
+    throw new Error("承認者を1段階以上設定してください。");
+  }
+
+  await prisma.$transaction(async (tx) => {
+    await tx.approvalRoute.deleteMany({
+      where: {
+        facilityId,
+        departmentId: null,
+      },
+    });
+
+    await tx.approvalRoute.createMany({
+      data: steps.map((step) => ({
+        facilityId,
+        departmentId: null,
+        stepNo: step.stepNo,
+        approverRole: step.approverRole as any,
+      })),
+    });
+  });
+
+  revalidatePath("/approval-routes");
+}
+
+export default async function ApprovalRoutesPage() {
+  await requireHRManager();
+
+  const [facilities, routes] = await Promise.all([
+    prisma.facility.findMany({
+      orderBy: { name: "asc" },
+    }),
+    prisma.approvalRoute.findMany({
+      where: { departmentId: null },
+      orderBy: [{ facilityId: "asc" }, { stepNo: "asc" }],
+    }),
+  ]);
+
+  const routeMap = new Map<string, typeof routes>();
+  for (const r of routes) {
+    if (!r.facilityId) continue;
+    const list = routeMap.get(r.facilityId) ?? [];
+    list.push(r);
+    routeMap.set(r.facilityId, list);
+  }
+
+  return (
+    <div className="max-w-4xl mx-auto py-8 px-4">
+      <BackLink href="/" label="ダッシュボードに戻る" />
+      <h1 className="text-2xl font-bold mt-4 mb-6">承認ルート設定（施設別）</h1>
+
+      <div className="space-y-8">
+        {facilities.map((facility) => {
+          const currentSteps = routeMap.get(facility.id) ?? [];
+          return (
+            <div
+              key={facility.id}
+              className="bg-white border rounded-lg shadow-sm p-6"
+            >
+              <h2 className="text-lg font-semibold mb-4">{facility.name}</h2>
+              <form action={saveRoute} className="space-y-4">
+                <input type="hidden" name="facilityId" value={facility.id} />
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {[1, 2, 3].map((stepNo) => {
+                    const existing = currentSteps.find(
+                      (s) => s.stepNo === stepNo,
+                    );
+                    const defaultValue = existing ? existing.approverRole : "";
+                    return (
+                      <div key={stepNo} className="space-y-1">
+                        <label className="block text-sm font-medium text-gray-700">
+                          第 {stepNo} 段階承認者
+                        </label>
+                        <select
+                          name={`step${stepNo}`}
+                          defaultValue={defaultValue}
+                          className="w-full border rounded-md px-3 py-2 text-sm"
+                        >
+                          <option value="">（設定なし）</option>
+                          {selectableRoles.map((role) => (
+                            <option key={role.value} value={role.value}>
+                              {role.label}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div className="flex justify-end pt-2">
+                  <button
+                    type="submit"
+                    className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700"
+                  >
+                    保存する
+                  </button>
+                </div>
+              </form>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}

@@ -40,11 +40,28 @@ model UserInvitation {
   @@index([acceptedAt])
 }
 
+model Facility {
+  id        String   @id @default(uuid())
+  code      String   @unique
+  name      String
+  createdAt DateTime @default(now())
+
+  employees Employee[]
+
+  transfersFrom  EmployeeTransfer[] @relation("TransferFromFacility")
+  transfersTo    EmployeeTransfer[] @relation("TransferToFacility")
+  approvalRoutes ApprovalRoute[]
+}
+
 model Department {
   id        String     @id @default(uuid())
   name      String     @unique
   createdAt DateTime   @default(now())
   employees Employee[]
+
+  transfersFrom  EmployeeTransfer[] @relation("TransferFromDepartment")
+  transfersTo    EmployeeTransfer[] @relation("TransferToDepartment")
+  approvalRoutes ApprovalRoute[]
 }
 
 model Employee {
@@ -55,6 +72,7 @@ model Employee {
   email          String          @unique
   createdAt      DateTime        @default(now())
   departmentId   String?
+  facilityId     String?
   address        String?
   birthDate      DateTime?
   firstNameKana  String?
@@ -79,6 +97,7 @@ model Employee {
   photoPath             String?
   userId                String?                 @unique
   emergencyContact      String?
+  facility              Facility?               @relation(fields: [facilityId], references: [id])
   department            Department?             @relation(fields: [departmentId], references: [id])
   user                  User?                   @relation(fields: [userId], references: [id])
   certifications        EmployeeCertification[]
@@ -98,6 +117,39 @@ model Employee {
   loanedAssets          LoanedAsset[]
   retirementCertificate RetirementCertificate?
   leaveTypeBalances     LeaveTypeBalance[]
+
+  lateRecords       LateRecord[]
+  earlyLeaveRecords EarlyLeaveRecord[]
+  outingRecords     OutingRecord[]
+  transferHistories EmployeeTransfer[]
+}
+
+model EmployeeTransfer {
+  id         String @id @default(uuid())
+  employeeId String
+
+  fromFacilityId   String?
+  toFacilityId     String?
+  fromDepartmentId String?
+  toDepartmentId   String?
+
+  effectiveDate DateTime
+  reason        String?
+  createdBy     String?
+  createdAt     DateTime @default(now())
+
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  fromFacility Facility? @relation("TransferFromFacility", fields: [fromFacilityId], references: [id], onDelete: SetNull)
+  toFacility   Facility? @relation("TransferToFacility", fields: [toFacilityId], references: [id], onDelete: SetNull)
+
+  fromDepartment Department? @relation("TransferFromDepartment", fields: [fromDepartmentId], references: [id], onDelete: SetNull)
+  toDepartment   Department? @relation("TransferToDepartment", fields: [toDepartmentId], references: [id], onDelete: SetNull)
+
+  @@index([employeeId])
+  @@index([effectiveDate])
+  @@index([fromFacilityId])
+  @@index([toFacilityId])
 }
 
 model Dependent {
@@ -223,10 +275,14 @@ model EmployeeRequest {
   type            RequestType
   userId          String?
   status          RequestStatus @default(PENDING)
-  leaveDays       Float?
-  leaveEndDate    DateTime?
-  leaveStartDate  DateTime?
-  leaveTypeId     String?
+
+  currentApprovalStep Int @default(1)
+
+  approvalCompleted Boolean   @default(false)
+  leaveDays         Float?
+  leaveEndDate      DateTime?
+  leaveStartDate    DateTime?
+  leaveTypeId       String?
 
   requestCategory RequestCategory?
 
@@ -243,8 +299,35 @@ model EmployeeRequest {
   user        User?               @relation(fields: [userId], references: [id])
   attachments RequestAttachment[]
   histories   RequestHistory[]
+  approvals   RequestApproval[]
 
   @@index([leaveTypeId])
+}
+
+model RequestApproval {
+  id String @id @default(uuid())
+
+  requestId String
+
+  stepNo Int
+
+  approverRole UserRole
+  approverId   String?
+
+  status RequestStatus @default(PENDING)
+
+  comment String?
+
+  approvedAt DateTime?
+
+  createdAt DateTime @default(now())
+
+  request EmployeeRequest @relation(fields: [requestId], references: [id], onDelete: Cascade)
+
+  @@unique([requestId, stepNo])
+  @@index([requestId])
+  @@index([stepNo])
+  @@index([approverRole, status])
 }
 
 model RequestAttachment {
@@ -266,6 +349,28 @@ model RequestHistory {
   requestId String
   createdAt DateTime             @default(now())
   request   EmployeeRequest      @relation(fields: [requestId], references: [id], onDelete: Cascade)
+}
+
+model ApprovalRoute {
+  id String @id @default(uuid())
+
+  facilityId   String?
+  departmentId String?
+
+  stepNo Int
+
+  approverRole UserRole
+
+  isActive Boolean @default(true)
+
+  createdAt DateTime @default(now())
+
+  facility   Facility?   @relation(fields: [facilityId], references: [id])
+  department Department? @relation(fields: [departmentId], references: [id])
+
+  @@index([facilityId])
+  @@index([departmentId])
+  @@index([stepNo])
 }
 
 model AuditLog {
@@ -490,6 +595,8 @@ enum RequestCategory {
 enum RequestUnitType {
   DAY
   HALF_DAY
+  AM_HALF
+  PM_HALF
   HOUR
 }
 
@@ -858,6 +965,12 @@ model LeaveType {
 
   allowRequest Boolean @default(true)
 
+  allowDay       Boolean @default(true)
+  allowAmHalf    Boolean @default(false)
+  allowPmHalf    Boolean @default(false)
+  allowHourly    Boolean @default(false)
+  allowDateRange Boolean @default(false)
+
   manageBalance Boolean @default(true)
 
   sortOrder Int @default(0)
@@ -1023,4 +1136,64 @@ model PartTimeAnnualLeaveRule {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model LateRecord {
+  id String @id @default(uuid())
+
+  requestId String @unique
+
+  employeeId String
+
+  targetDate DateTime
+
+  scheduledTime String
+  arrivalTime   String
+
+  createdAt DateTime @default(now())
+
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@index([employeeId])
+  @@index([targetDate])
+}
+
+model EarlyLeaveRecord {
+  id String @id @default(uuid())
+
+  requestId String @unique
+
+  employeeId String
+
+  targetDate DateTime
+
+  scheduledTime String
+  leaveTime     String
+
+  createdAt DateTime @default(now())
+
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@index([employeeId])
+  @@index([targetDate])
+}
+
+model OutingRecord {
+  id String @id @default(uuid())
+
+  requestId String @unique
+
+  employeeId String
+
+  targetDate DateTime
+
+  startTime String
+  endTime   String
+
+  createdAt DateTime @default(now())
+
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@index([employeeId])
+  @@index([targetDate])
 }

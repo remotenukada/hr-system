@@ -2,6 +2,7 @@ import BackLink from "@/components/BackLink";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { requireHRManager } from "@/lib/auth-guard";
 
@@ -36,7 +37,9 @@ function StatusBadge({ status }: { status: string }) {
         : "border-yellow-200 bg-yellow-50 text-yellow-700";
 
   return (
-    <span className={`rounded border px-2 py-1 text-xs font-medium ${className}`}>
+    <span
+      className={`rounded border px-2 py-1 text-xs font-medium ${className}`}
+    >
       {formatStatus(status)}
     </span>
   );
@@ -48,10 +51,30 @@ export default async function ProfileChangeRequestsPage({
   const session = await requireHRManager();
   const params = await searchParams;
 
+  const cookieStore = await cookies();
+
+  const facilityScope = cookieStore.get("facilityScope")?.value ?? "ALL";
+
+  const scopedFacility =
+    facilityScope !== "ALL"
+      ? await prisma.facility.findUnique({
+          where: { id: facilityScope },
+        })
+      : null;
+
   const requests = await prisma.profileChangeRequest.findMany({
+    where:
+      facilityScope === "ALL"
+        ? undefined
+        : {
+            employee: {
+              facilityId: facilityScope,
+            },
+          },
     include: {
       employee: {
         include: {
+          facility: true,
           department: true,
           user: true,
         },
@@ -67,9 +90,7 @@ export default async function ProfileChangeRequestsPage({
 
     const currentSession = await requireHRManager();
 
-    const requestId = String(
-      formData.get("requestId") ?? "",
-    ).trim();
+    const requestId = String(formData.get("requestId") ?? "").trim();
 
     if (!requestId) {
       redirect("/profile-change-requests");
@@ -121,12 +142,10 @@ export default async function ProfileChangeRequestsPage({
         },
         data: {
           address: request.newAddress ?? request.employee.address,
-          phoneNumber:
-            request.newPhoneNumber ?? request.employee.phoneNumber,
+          phoneNumber: request.newPhoneNumber ?? request.employee.phoneNumber,
           email: request.newEmail ?? request.employee.email,
           emergencyContact:
-            request.newEmergencyContact ??
-            request.employee.emergencyContact,
+            request.newEmergencyContact ?? request.employee.emergencyContact,
         },
       });
 
@@ -168,9 +187,7 @@ export default async function ProfileChangeRequestsPage({
 
     const currentSession = await requireHRManager();
 
-    const requestId = String(
-      formData.get("requestId") ?? "",
-    ).trim();
+    const requestId = String(formData.get("requestId") ?? "").trim();
 
     if (!requestId) {
       redirect("/profile-change-requests");
@@ -209,13 +226,14 @@ export default async function ProfileChangeRequestsPage({
     <main className="p-8">
       <BackLink href="/" label="ダッシュボードへ戻る" />
       <div className="mb-6">
-
-        <h1 className="mt-2 text-3xl font-bold">
-          プロフィール変更申請
-        </h1>
+        <h1 className="mt-2 text-3xl font-bold">プロフィール変更申請</h1>
 
         <p className="mt-1 text-sm text-gray-500">
           職員から提出された住所、電話番号、メールアドレス、緊急連絡先の変更申請を確認できます。
+        </p>
+
+        <p className="mt-1 text-sm font-medium text-blue-700">
+          表示対象：{scopedFacility?.name ?? "法人全体"}
         </p>
 
         <p className="mt-1 text-xs text-gray-400">
@@ -254,10 +272,7 @@ export default async function ProfileChangeRequestsPage({
       ) : (
         <div className="space-y-6">
           {requests.map((request) => (
-            <section
-              key={request.id}
-              className="rounded border bg-white p-6"
-            >
+            <section key={request.id} className="rounded border bg-white p-6">
               <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
                 <div>
                   <h2 className="text-xl font-bold">
@@ -327,11 +342,7 @@ export default async function ProfileChangeRequestsPage({
               {request.status === "PENDING" && (
                 <div className="flex gap-3">
                   <form action={approveRequest}>
-                    <input
-                      type="hidden"
-                      name="requestId"
-                      value={request.id}
-                    />
+                    <input type="hidden" name="requestId" value={request.id} />
 
                     <button
                       type="submit"
@@ -342,11 +353,7 @@ export default async function ProfileChangeRequestsPage({
                   </form>
 
                   <form action={rejectRequest}>
-                    <input
-                      type="hidden"
-                      name="requestId"
-                      value={request.id}
-                    />
+                    <input type="hidden" name="requestId" value={request.id} />
 
                     <button
                       type="submit"

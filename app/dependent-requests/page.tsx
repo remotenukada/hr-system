@@ -1,6 +1,7 @@
 import BackLink from "@/components/BackLink";
 import Link from "next/link";
 import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
 
 import { prisma } from "@/lib/prisma";
 import { requireHRManager } from "@/lib/auth-guard";
@@ -25,6 +26,17 @@ function formatDate(date: Date | null | undefined) {
 
 export default async function DependentRequestsPage() {
   await requireHRManager();
+
+  const cookieStore = await cookies();
+
+  const facilityScope = cookieStore.get("facilityScope")?.value ?? "ALL";
+
+  const scopedFacility =
+    facilityScope !== "ALL"
+      ? await prisma.facility.findUnique({
+          where: { id: facilityScope },
+        })
+      : null;
 
   async function approveRequest(formData: FormData) {
     "use server";
@@ -101,9 +113,7 @@ export default async function DependentRequestsPage() {
 
     const session = await requireHRManager();
     const requestId = String(formData.get("requestId") ?? "").trim();
-    const reviewComment = String(
-      formData.get("reviewComment") ?? "",
-    ).trim();
+    const reviewComment = String(formData.get("reviewComment") ?? "").trim();
 
     if (!requestId || !reviewComment) {
       return;
@@ -148,9 +158,18 @@ export default async function DependentRequestsPage() {
   }
 
   const requests = await prisma.dependentRequest.findMany({
+    where:
+      facilityScope === "ALL"
+        ? undefined
+        : {
+            employee: {
+              facilityId: facilityScope,
+            },
+          },
     include: {
       employee: {
         include: {
+          facility: true,
           department: true,
         },
       },
@@ -170,11 +189,13 @@ export default async function DependentRequestsPage() {
       <BackLink href="/" label="ダッシュボードへ戻る" />
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">
-            扶養家族申請
-          </h1>
+          <h1 className="text-3xl font-bold">扶養家族申請</h1>
           <p className="mt-2 text-sm text-gray-600">
             社員本人から提出された扶養家族追加申請を確認します。
+          </p>
+
+          <p className="mt-1 text-sm font-medium text-blue-700">
+            表示対象：{scopedFacility?.name ?? "法人全体"}
           </p>
         </div>
       </div>
@@ -222,6 +243,9 @@ export default async function DependentRequestsPage() {
                     {request.employee.employeeNo}
                   </div>
                   <div className="text-xs text-gray-500">
+                    {request.employee.facility?.name ?? "-"}
+                  </div>
+                  <div className="text-xs text-gray-500">
                     {request.employee.department?.name ?? "-"}
                   </div>
                 </td>
@@ -235,9 +259,7 @@ export default async function DependentRequestsPage() {
                   )}
                 </td>
 
-                <td className="border-b p-3">
-                  {request.relationship}
-                </td>
+                <td className="border-b p-3">{request.relationship}</td>
 
                 <td className="border-b p-3">
                   {formatDate(request.birthDate)}

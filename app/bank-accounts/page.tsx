@@ -1,6 +1,7 @@
 import BackLink from "@/components/BackLink";
 import Link from "next/link";
 import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { requireHRManager } from "@/lib/auth-guard";
 import { logAudit } from "@/lib/audit-log";
@@ -38,22 +39,30 @@ export default async function BankAccountsPage({
 }) {
   await requireHRManager();
 
+  const cookieStore = await cookies();
+  const facilityScope = cookieStore.get("facilityScope")?.value ?? "ALL";
+
+  const employeeScope =
+    facilityScope !== "ALL"
+      ? {
+          employee: {
+            facilityId: facilityScope,
+          },
+        }
+      : {};
+
   const params = await searchParams;
   const status = params?.status;
   const validStatuses = ["PENDING", "APPROVED", "REJECTED"];
   const statusFilter =
-    status && validStatuses.includes(status)
-      ? status
-      : undefined;
+    status && validStatuses.includes(status) ? status : undefined;
 
   async function approveBankAccount(formData: FormData) {
     "use server";
 
     const session = await requireHRManager();
 
-    const bankAccountId = String(
-      formData.get("bankAccountId") ?? "",
-    ).trim();
+    const bankAccountId = String(formData.get("bankAccountId") ?? "").trim();
 
     if (!bankAccountId) {
       return;
@@ -70,7 +79,6 @@ export default async function BankAccountsPage({
         reviewComment: null,
       },
     });
-
 
     await logAudit({
       userId: session.user.id,
@@ -90,13 +98,9 @@ export default async function BankAccountsPage({
 
     const session = await requireHRManager();
 
-    const bankAccountId = String(
-      formData.get("bankAccountId") ?? "",
-    ).trim();
+    const bankAccountId = String(formData.get("bankAccountId") ?? "").trim();
 
-    const reviewComment = String(
-      formData.get("reviewComment") ?? "",
-    ).trim();
+    const reviewComment = String(formData.get("reviewComment") ?? "").trim();
 
     if (!bankAccountId || !reviewComment) {
       return;
@@ -114,7 +118,6 @@ export default async function BankAccountsPage({
       },
     });
 
-
     await logAudit({
       userId: session.user.id,
       userName: session.user.name,
@@ -128,56 +131,70 @@ export default async function BankAccountsPage({
     revalidatePath("/");
   }
 
-  const [
-    totalCount,
-    pendingCount,
-    approvedCount,
-    rejectedCount,
-  ] = await Promise.all([
-    prisma.employeeBankAccount.count(),
-    prisma.employeeBankAccount.count({
-      where: {
-        status: "PENDING",
-      },
-    }),
-    prisma.employeeBankAccount.count({
-      where: {
-        status: "APPROVED",
-      },
-    }),
-    prisma.employeeBankAccount.count({
-      where: {
-        status: "REJECTED",
-      },
-    }),
-  ]);
+  const [totalCount, pendingCount, approvedCount, rejectedCount] =
+    await Promise.all([
+      prisma.employeeBankAccount.count({
+        where: employeeScope,
+      }),
+      prisma.employeeBankAccount.count({
+        where: {
+          ...employeeScope,
+          status: "PENDING",
+        },
+      }),
+      prisma.employeeBankAccount.count({
+        where: {
+          ...employeeScope,
+          status: "APPROVED",
+        },
+      }),
+      prisma.employeeBankAccount.count({
+        where: {
+          ...employeeScope,
+          status: "REJECTED",
+        },
+      }),
+    ]);
 
-  const bankAccounts =
-    await prisma.employeeBankAccount.findMany({
-      where: statusFilter
+  const selectedFacility =
+    facilityScope !== "ALL"
+      ? await prisma.facility.findUnique({
+          where: { id: facilityScope },
+          select: { name: true },
+        })
+      : null;
+
+  const bankAccounts = await prisma.employeeBankAccount.findMany({
+    where: {
+      ...employeeScope,
+      ...(statusFilter
         ? {
             status: statusFilter,
           }
-        : undefined,
-      include: {
-        employee: {
-          include: {
-            department: true,
-          },
+        : {}),
+    },
+    include: {
+      employee: {
+        include: {
+          facility: true,
+          department: true,
         },
-        attachments: true,
       },
-      orderBy: {
-        updatedAt: "desc",
-      },
-    });
+      attachments: true,
+    },
+    orderBy: {
+      updatedAt: "desc",
+    },
+  });
 
   return (
     <main className="mx-auto max-w-7xl p-8">
       <BackLink href="/" label="ダッシュボードへ戻る" />
-      <h1 className="mb-6 text-3xl font-bold">
-        口座情報確認
-      </h1>
+      <h1 className="text-3xl font-bold">口座情報確認</h1>
+
+      <p className="mb-6 mt-2 text-sm text-gray-600">
+        表示対象: {selectedFacility?.name ?? "法人全体"}
+      </p>
     </main>
   );
 }

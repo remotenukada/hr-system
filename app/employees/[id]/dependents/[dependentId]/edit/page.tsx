@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
 
 import { prisma } from "@/lib/prisma";
 import { requireHRManager } from "@/lib/auth-guard";
@@ -24,6 +25,9 @@ function toDateInputValue(date: Date | null | undefined) {
 
 export default async function EditDependentPage({ params }: Props) {
   await requireHRManager();
+
+  const cookieStore = await cookies();
+  const facilityScope = cookieStore.get("facilityScope")?.value ?? "ALL";
   const { id, dependentId } = await params;
 
   const employee = await prisma.employee.findUnique({
@@ -34,6 +38,10 @@ export default async function EditDependentPage({ params }: Props) {
 
   if (!employee) {
     redirect("/employees");
+  }
+
+  if (facilityScope !== "ALL" && employee.facilityId !== facilityScope) {
+    notFound();
   }
 
   const dependent = await prisma.dependent.findUnique({
@@ -50,6 +58,30 @@ export default async function EditDependentPage({ params }: Props) {
     "use server";
 
     const currentSession = await requireHRManager();
+
+    const actionCookieStore = await cookies();
+    const actionFacilityScope =
+      actionCookieStore.get("facilityScope")?.value ?? "ALL";
+
+    const targetEmployee = await prisma.employee.findUnique({
+      where: {
+        id,
+      },
+      select: {
+        facilityId: true,
+      },
+    });
+
+    if (!targetEmployee) {
+      notFound();
+    }
+
+    if (
+      actionFacilityScope !== "ALL" &&
+      targetEmployee.facilityId !== actionFacilityScope
+    ) {
+      notFound();
+    }
 
     const name = String(formData.get("name") ?? "").trim();
     const nameKana = String(formData.get("nameKana") ?? "").trim();
@@ -132,7 +164,10 @@ export default async function EditDependentPage({ params }: Props) {
         </Link>
       </div>
 
-      <form action={updateDependent} className="space-y-6 rounded border bg-white p-6 shadow">
+      <form
+        action={updateDependent}
+        className="space-y-6 rounded border bg-white p-6 shadow"
+      >
         <div>
           <label className="block text-sm font-medium text-gray-700">
             氏名 <span className="text-red-500">*</span>

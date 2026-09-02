@@ -146,6 +146,13 @@ exports.Prisma.UserInvitationScalarFieldEnum = {
   cancelledAt: 'cancelledAt'
 };
 
+exports.Prisma.FacilityScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.DepartmentScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -160,6 +167,7 @@ exports.Prisma.EmployeeScalarFieldEnum = {
   email: 'email',
   createdAt: 'createdAt',
   departmentId: 'departmentId',
+  facilityId: 'facilityId',
   address: 'address',
   birthDate: 'birthDate',
   firstNameKana: 'firstNameKana',
@@ -182,6 +190,19 @@ exports.Prisma.EmployeeScalarFieldEnum = {
   photoPath: 'photoPath',
   userId: 'userId',
   emergencyContact: 'emergencyContact'
+};
+
+exports.Prisma.EmployeeTransferScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  fromFacilityId: 'fromFacilityId',
+  toFacilityId: 'toFacilityId',
+  fromDepartmentId: 'fromDepartmentId',
+  toDepartmentId: 'toDepartmentId',
+  effectiveDate: 'effectiveDate',
+  reason: 'reason',
+  createdBy: 'createdBy',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.DependentScalarFieldEnum = {
@@ -276,6 +297,8 @@ exports.Prisma.EmployeeRequestScalarFieldEnum = {
   type: 'type',
   userId: 'userId',
   status: 'status',
+  currentApprovalStep: 'currentApprovalStep',
+  approvalCompleted: 'approvalCompleted',
   leaveDays: 'leaveDays',
   leaveEndDate: 'leaveEndDate',
   leaveStartDate: 'leaveStartDate',
@@ -286,6 +309,18 @@ exports.Prisma.EmployeeRequestScalarFieldEnum = {
   startTime: 'startTime',
   endTime: 'endTime',
   hours: 'hours'
+};
+
+exports.Prisma.RequestApprovalScalarFieldEnum = {
+  id: 'id',
+  requestId: 'requestId',
+  stepNo: 'stepNo',
+  approverRole: 'approverRole',
+  approverId: 'approverId',
+  status: 'status',
+  comment: 'comment',
+  approvedAt: 'approvedAt',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.RequestAttachmentScalarFieldEnum = {
@@ -304,6 +339,16 @@ exports.Prisma.RequestHistoryScalarFieldEnum = {
   comment: 'comment',
   actor: 'actor',
   requestId: 'requestId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ApprovalRouteScalarFieldEnum = {
+  id: 'id',
+  facilityId: 'facilityId',
+  departmentId: 'departmentId',
+  stepNo: 'stepNo',
+  approverRole: 'approverRole',
+  isActive: 'isActive',
   createdAt: 'createdAt'
 };
 
@@ -620,6 +665,11 @@ exports.Prisma.LeaveTypeScalarFieldEnum = {
   expirationMonths: 'expirationMonths',
   description: 'description',
   allowRequest: 'allowRequest',
+  allowDay: 'allowDay',
+  allowAmHalf: 'allowAmHalf',
+  allowPmHalf: 'allowPmHalf',
+  allowHourly: 'allowHourly',
+  allowDateRange: 'allowDateRange',
   manageBalance: 'manageBalance',
   sortOrder: 'sortOrder',
   isActive: 'isActive',
@@ -729,6 +779,36 @@ exports.Prisma.PartTimeAnnualLeaveRuleScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.LateRecordScalarFieldEnum = {
+  id: 'id',
+  requestId: 'requestId',
+  employeeId: 'employeeId',
+  targetDate: 'targetDate',
+  scheduledTime: 'scheduledTime',
+  arrivalTime: 'arrivalTime',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.EarlyLeaveRecordScalarFieldEnum = {
+  id: 'id',
+  requestId: 'requestId',
+  employeeId: 'employeeId',
+  targetDate: 'targetDate',
+  scheduledTime: 'scheduledTime',
+  leaveTime: 'leaveTime',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.OutingRecordScalarFieldEnum = {
+  id: 'id',
+  requestId: 'requestId',
+  employeeId: 'employeeId',
+  targetDate: 'targetDate',
+  startTime: 'startTime',
+  endTime: 'endTime',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -825,6 +905,8 @@ exports.RequestCategory = exports.$Enums.RequestCategory = {
 exports.RequestUnitType = exports.$Enums.RequestUnitType = {
   DAY: 'DAY',
   HALF_DAY: 'HALF_DAY',
+  AM_HALF: 'AM_HALF',
+  PM_HALF: 'PM_HALF',
   HOUR: 'HOUR'
 };
 
@@ -862,8 +944,10 @@ exports.ConsentMethod = exports.$Enums.ConsentMethod = {
 exports.Prisma.ModelName = {
   User: 'User',
   UserInvitation: 'UserInvitation',
+  Facility: 'Facility',
   Department: 'Department',
   Employee: 'Employee',
+  EmployeeTransfer: 'EmployeeTransfer',
   Dependent: 'Dependent',
   EmploymentHistory: 'EmploymentHistory',
   EmployeeMyNumber: 'EmployeeMyNumber',
@@ -872,8 +956,10 @@ exports.Prisma.ModelName = {
   LeaveGrantHistory: 'LeaveGrantHistory',
   LeaveBalance: 'LeaveBalance',
   EmployeeRequest: 'EmployeeRequest',
+  RequestApproval: 'RequestApproval',
   RequestAttachment: 'RequestAttachment',
   RequestHistory: 'RequestHistory',
+  ApprovalRoute: 'ApprovalRoute',
   AuditLog: 'AuditLog',
   Certification: 'Certification',
   EmployeeCertification: 'EmployeeCertification',
@@ -901,7 +987,10 @@ exports.Prisma.ModelName = {
   RetirementCertificate: 'RetirementCertificate',
   AnnualLeaveServiceRule: 'AnnualLeaveServiceRule',
   AnnualLeaveEntryRule: 'AnnualLeaveEntryRule',
-  PartTimeAnnualLeaveRule: 'PartTimeAnnualLeaveRule'
+  PartTimeAnnualLeaveRule: 'PartTimeAnnualLeaveRule',
+  LateRecord: 'LateRecord',
+  EarlyLeaveRecord: 'EarlyLeaveRecord',
+  OutingRecord: 'OutingRecord'
 };
 
 /**

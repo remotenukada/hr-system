@@ -1,0 +1,6 @@
+-- AlterTable
+ALTER TABLE "LeaveType" ADD COLUMN     "allowAmHalf" BOOLEAN NOT NULL DEFAULT false,
+ADD COLUMN     "allowDateRange" BOOLEAN NOT NULL DEFAULT false,
+ADD COLUMN     "allowDay" BOOLEAN NOT NULL DEFAULT true,
+ADD COLUMN     "allowHourly" BOOLEAN NOT NULL DEFAULT false,
+ADD COLUMN     "allowPmHalf" BOOLEAN NOT NULL DEFAULT false;

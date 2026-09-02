@@ -19,6 +19,8 @@ export default function HRManagementMenu({
           <Link href="/employees">社員一覧</Link>
           <Link href="/employees/new">新規社員登録</Link>
           <Link href="/departments">部署一覧</Link>
+          <Link href="/approval-routes">承認ルート管理</Link>
+          <Link href="/facility-switch">表示対象切替</Link>
         </div>
       </section>
 

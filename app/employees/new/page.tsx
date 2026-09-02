@@ -7,6 +7,10 @@ import { prisma } from "@/lib/prisma";
 export default async function NewEmployeePage() {
   await requireHRManager();
 
+  const facilities = await prisma.facility.findMany({
+    orderBy: { name: "asc" },
+  });
+
   const departments = await prisma.department.findMany({
     orderBy: { name: "asc" },
   });
@@ -161,6 +165,25 @@ export default async function NewEmployeePage() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-medium text-slate-700 mb-1">
+                所属施設
+              </label>
+
+              <select
+                name="facilityId"
+                className="border p-2 w-full rounded focus:outline-indigo-500 bg-white"
+              >
+                <option value="">施設を選択</option>
+
+                {facilities.map((facility) => (
+                  <option key={facility.id} value={facility.id}>
+                    {facility.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
             <div>
               <label className="block text-xs font-medium text-slate-700 mb-1">
                 部署

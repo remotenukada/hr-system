@@ -7,16 +7,13 @@ import { requireHRManager } from "@/lib/auth-guard";
 export default async function EmployeeTransfersPage() {
   await requireHRManager();
 
-  const transfers = await prisma.employmentHistory.findMany({
-    where: {
-      action: "TRANSFER",
-    },
+  const transfers = await prisma.employeeTransfer.findMany({
     include: {
-      employee: {
-        include: {
-          department: true,
-        },
-      },
+      employee: true,
+      fromFacility: true,
+      toFacility: true,
+      fromDepartment: true,
+      toDepartment: true,
     },
     orderBy: {
       effectiveDate: "desc",
@@ -28,9 +25,7 @@ export default async function EmployeeTransfersPage() {
       <BackLink href="/" label="ダッシュボードへ戻る" />
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">
-            人事異動一覧
-          </h1>
+          <h1 className="text-3xl font-bold text-gray-900">人事異動一覧</h1>
           <p className="mt-1 text-sm text-gray-500">
             部署異動の履歴を一覧表示します。
           </p>
@@ -51,15 +46,16 @@ export default async function EmployeeTransfersPage() {
               <th className="border-b p-3">異動日</th>
               <th className="border-b p-3">社員番号</th>
               <th className="border-b p-3">氏名</th>
-              <th className="border-b p-3">部署</th>
-              <th className="border-b p-3">内容</th>
+              <th className="border-b p-3">変更前</th>
+              <th className="border-b p-3">変更後</th>
+              <th className="border-b p-3">理由</th>
             </tr>
           </thead>
 
           <tbody>
             {transfers.length === 0 ? (
               <tr>
-                <td colSpan={5} className="p-4 text-center text-gray-500">
+                <td colSpan={6} className="p-4 text-center text-gray-500">
                   人事異動履歴はありません。
                 </td>
               </tr>
@@ -70,9 +66,7 @@ export default async function EmployeeTransfersPage() {
                     {new Date(item.effectiveDate).toLocaleDateString("ja-JP")}
                   </td>
 
-                  <td className="border-b p-3">
-                    {item.employee.employeeNo}
-                  </td>
+                  <td className="border-b p-3">{item.employee.employeeNo}</td>
 
                   <td className="border-b p-3 font-medium">
                     <Link
@@ -84,12 +78,24 @@ export default async function EmployeeTransfersPage() {
                   </td>
 
                   <td className="border-b p-3">
-                    {item.employee.department?.name ?? "-"}
+                    <div className="font-medium">
+                      {item.fromFacility?.name ?? "－"}
+                    </div>
+                    <div className="text-xs text-gray-500">
+                      {item.fromDepartment?.name ?? "－"}
+                    </div>
                   </td>
 
                   <td className="border-b p-3">
-                    {item.reason ?? "-"}
+                    <div className="font-medium">
+                      {item.toFacility?.name ?? "－"}
+                    </div>
+                    <div className="text-xs text-gray-500">
+                      {item.toDepartment?.name ?? "－"}
+                    </div>
                   </td>
+
+                  <td className="border-b p-3">{item.reason ?? "－"}</td>
                 </tr>
               ))
             )}

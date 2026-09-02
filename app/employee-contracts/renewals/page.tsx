@@ -20,7 +20,6 @@ export default async function ContractRenewalsPage() {
     where: {
       isCurrent: true,
       endDate: {
-        gte: today,
         lte: limitDate,
       },
     },
@@ -66,7 +65,8 @@ export default async function ContractRenewalsPage() {
             ) : (
               contracts.map((contract) => {
                 const daysRemaining = Math.ceil(
-                  (new Date(contract.endDate!).getTime() - today.getTime()) / DAY_MS,
+                  (new Date(contract.endDate!).getTime() - today.getTime()) /
+                    DAY_MS,
                 );
 
                 return (
@@ -83,12 +83,18 @@ export default async function ContractRenewalsPage() {
                     <td className="p-3 text-center">
                       <span
                         className={`inline-block rounded-full px-2 py-0.5 text-xs font-semibold ${
-                          daysRemaining <= 30
-                            ? "bg-red-100 text-red-800"
-                            : "bg-yellow-100 text-yellow-800"
+                          daysRemaining < 0
+                            ? "bg-red-700 text-white"
+                            : daysRemaining <= 30
+                              ? "bg-red-100 text-red-800"
+                              : daysRemaining <= 60
+                                ? "bg-yellow-100 text-yellow-800"
+                                : "bg-blue-100 text-blue-800"
                         }`}
                       >
-                        あと {daysRemaining} 日
+                        {daysRemaining < 0
+                          ? `期限切れ ${Math.abs(daysRemaining)}日`
+                          : `あと ${daysRemaining} 日`}
                       </span>
                     </td>
                     <td className="p-3 text-center">

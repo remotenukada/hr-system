@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
 
 import { prisma } from "@/lib/prisma";
 import { requireHRManager } from "@/lib/auth-guard";
@@ -15,6 +16,9 @@ type Props = {
 
 export default async function NewDependentPage({ params }: Props) {
   await requireHRManager();
+
+  const cookieStore = await cookies();
+  const facilityScope = cookieStore.get("facilityScope")?.value ?? "ALL";
 
   const { id } = await params;
 
@@ -31,6 +35,10 @@ export default async function NewDependentPage({ params }: Props) {
     redirect("/employees");
   }
 
+  if (facilityScope !== "ALL" && employee.facilityId !== facilityScope) {
+    notFound();
+  }
+
   async function createDependent(formData: FormData) {
     "use server";
 
@@ -43,7 +51,18 @@ export default async function NewDependentPage({ params }: Props) {
     });
 
     if (!targetEmployee) {
-      throw new Error("対象社員が見つかりません。");
+      notFound();
+    }
+
+    const actionCookieStore = await cookies();
+    const actionFacilityScope =
+      actionCookieStore.get("facilityScope")?.value ?? "ALL";
+
+    if (
+      actionFacilityScope !== "ALL" &&
+      targetEmployee.facilityId !== actionFacilityScope
+    ) {
+      notFound();
     }
 
     const name = String(formData.get("name") ?? "").trim();
@@ -117,11 +136,10 @@ export default async function NewDependentPage({ params }: Props) {
       </div>
 
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900">
-          扶養家族登録
-        </h1>
+        <h1 className="text-3xl font-bold text-gray-900">扶養家族登録</h1>
         <p className="mt-2 text-sm text-gray-600">
-          {employee.lastName} {employee.firstName} さんの扶養家族情報を登録します。
+          {employee.lastName} {employee.firstName}{" "}
+          さんの扶養家族情報を登録します。
         </p>
       </div>
 
@@ -147,10 +165,7 @@ export default async function NewDependentPage({ params }: Props) {
               <label className="mb-1 block text-sm font-medium text-gray-700">
                 ふりがな
               </label>
-              <input
-                name="nameKana"
-                className="w-full rounded border p-2"
-              />
+              <input name="nameKana" className="w-full rounded border p-2" />
             </div>
 
             <div>
@@ -238,10 +253,7 @@ export default async function NewDependentPage({ params }: Props) {
           <label className="mb-1 block text-sm font-medium text-gray-700">
             備考
           </label>
-          <textarea
-            name="note"
-            className="h-24 w-full rounded border p-2"
-          />
+          <textarea name="note" className="h-24 w-full rounded border p-2" />
         </section>
 
         <div className="flex justify-end gap-3">

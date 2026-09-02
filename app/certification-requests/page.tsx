@@ -2,6 +2,7 @@ import BackLink from "@/components/BackLink";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { requireHRManager } from "@/lib/auth-guard";
 
@@ -36,7 +37,9 @@ function StatusBadge({ status }: { status: string }) {
         : "border-yellow-200 bg-yellow-50 text-yellow-700";
 
   return (
-    <span className={`rounded border px-2 py-1 text-xs font-medium ${className}`}>
+    <span
+      className={`rounded border px-2 py-1 text-xs font-medium ${className}`}
+    >
       {formatStatus(status)}
     </span>
   );
@@ -48,10 +51,30 @@ export default async function CertificationRequestsPage({
   const session = await requireHRManager();
   const params = await searchParams;
 
+  const cookieStore = await cookies();
+
+  const facilityScope = cookieStore.get("facilityScope")?.value ?? "ALL";
+
+  const scopedFacility =
+    facilityScope !== "ALL"
+      ? await prisma.facility.findUnique({
+          where: { id: facilityScope },
+        })
+      : null;
+
   const requests = await prisma.employeeCertification.findMany({
+    where:
+      facilityScope === "ALL"
+        ? undefined
+        : {
+            employee: {
+              facilityId: facilityScope,
+            },
+          },
     include: {
       employee: {
         include: {
+          facility: true,
           department: true,
         },
       },
@@ -159,13 +182,14 @@ export default async function CertificationRequestsPage({
     <main className="p-8">
       <BackLink href="/" label="ダッシュボードへ戻る" />
       <div className="mb-6">
-
-        <h1 className="mt-2 text-3xl font-bold">
-          資格・免許証確認
-        </h1>
+        <h1 className="mt-2 text-3xl font-bold">資格・免許証確認</h1>
 
         <p className="mt-1 text-sm text-gray-500">
           職員が登録した資格と添付された資格証・免許証を確認できます。
+        </p>
+
+        <p className="mt-1 text-sm font-medium text-blue-700">
+          表示対象：{scopedFacility?.name ?? "法人全体"}
         </p>
 
         <p className="mt-1 text-xs text-gray-400">
@@ -192,16 +216,11 @@ export default async function CertificationRequestsPage({
       )}
 
       {requests.length === 0 ? (
-        <p className="text-sm text-gray-500">
-          資格申請はありません。
-        </p>
+        <p className="text-sm text-gray-500">資格申請はありません。</p>
       ) : (
         <div className="space-y-6">
           {requests.map((request) => (
-            <section
-              key={request.id}
-              className="rounded border bg-white p-6"
-            >
+            <section key={request.id} className="rounded border bg-white p-6">
               <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
                 <div>
                   <h2 className="text-xl font-bold">
@@ -212,6 +231,8 @@ export default async function CertificationRequestsPage({
                     {request.employee.lastName} {request.employee.firstName}
                     {" / "}
                     社員番号: {request.employee.employeeNo}
+                    {" / "}
+                    施設: {request.employee.facility?.name ?? "-"}
                     {" / "}
                     部署: {request.employee.department?.name ?? "-"}
                   </p>
@@ -238,9 +259,7 @@ export default async function CertificationRequestsPage({
               </dl>
 
               <div className="mb-4">
-                <h3 className="mb-2 text-sm font-semibold">
-                  添付ファイル
-                </h3>
+                <h3 className="mb-2 text-sm font-semibold">添付ファイル</h3>
 
                 {request.employeeCertificationAttachments.length === 0 ? (
                   <p className="text-sm text-gray-500">
@@ -248,18 +267,20 @@ export default async function CertificationRequestsPage({
                   </p>
                 ) : (
                   <ul className="space-y-1 text-sm">
-                    {request.employeeCertificationAttachments.map((attachment) => (
-                      <li key={attachment.id}>
-                        <a
-                          href={attachment.filePath}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-blue-600 hover:underline"
-                        >
-                          {attachment.fileName}
-                        </a>
-                      </li>
-                    ))}
+                    {request.employeeCertificationAttachments.map(
+                      (attachment) => (
+                        <li key={attachment.id}>
+                          <a
+                            href={attachment.filePath}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-600 hover:underline"
+                          >
+                            {attachment.fileName}
+                          </a>
+                        </li>
+                      ),
+                    )}
                   </ul>
                 )}
               </div>

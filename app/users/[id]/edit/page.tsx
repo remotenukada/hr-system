@@ -16,8 +16,7 @@ type Props = {
   }>;
 };
 
-type UserRoleValue =
-  (typeof UserRole)[keyof typeof UserRole];
+type UserRoleValue = (typeof UserRole)[keyof typeof UserRole];
 
 const USER_ROLES = [
   UserRole.ADMIN,
@@ -31,9 +30,7 @@ function isValidRole(role: string): role is UserRoleValue {
 }
 
 function redirectWithError(id: string, message: string) {
-  redirect(
-    `/users/${id}/edit?error=${encodeURIComponent(message)}`,
-  );
+  redirect(`/users/${id}/edit?error=${encodeURIComponent(message)}`);
 }
 
 async function updateUser(formData: FormData) {
@@ -48,22 +45,14 @@ async function updateUser(formData: FormData) {
   const isActive = formData.get("isActive") === "on";
   const roleRaw = String(formData.get("role") ?? UserRole.USER);
 
-  const role = isValidRole(roleRaw)
-    ? roleRaw
-    : UserRole.USER;
+  const role = isValidRole(roleRaw) ? roleRaw : UserRole.USER;
 
   if (!id || !name || !email) {
-    redirectWithError(
-      id,
-      "氏名とメールアドレスは必須です。",
-    );
+    redirectWithError(id, "氏名とメールアドレスは必須です。");
   }
 
   if (password && password.length < 8) {
-    redirectWithError(
-      id,
-      "新しいパスワードは8文字以上にしてください。",
-    );
+    redirectWithError(id, "新しいパスワードは8文字以上にしてください。");
   }
 
   const existingUser = await prisma.user.findUnique({
@@ -73,10 +62,7 @@ async function updateUser(formData: FormData) {
   });
 
   if (existingUser && existingUser.id !== id) {
-    redirectWithError(
-      id,
-      "このメールアドレスは既に登録されています。",
-    );
+    redirectWithError(id, "このメールアドレスは既に登録されています。");
   }
 
   const beforeUser = await prisma.user.findUnique({
@@ -86,10 +72,7 @@ async function updateUser(formData: FormData) {
   });
 
   if (!beforeUser) {
-    redirectWithError(
-      id,
-      "対象ユーザーが見つかりません。",
-    );
+    redirectWithError(id, "対象ユーザーが見つかりません。");
   }
 
   const data: {
@@ -158,9 +141,7 @@ async function updateUser(formData: FormData) {
     await logAudit({
       userId: session.user.id,
       userName: session.user.name,
-      action: updatedUser.isActive
-        ? "USER_ACTIVATED"
-        : "USER_DEACTIVATED",
+      action: updatedUser.isActive ? "USER_ACTIVATED" : "USER_DEACTIVATED",
       targetType: "User",
       targetId: updatedUser.id,
       description: updatedUser.isActive
@@ -191,19 +172,16 @@ async function updateUser(formData: FormData) {
 
 function formatRole(role: string) {
   const labels: Record<string, string> = {
-    ADMIN: "管理者",
-    HR_MANAGER: "人事担当",
-    MANAGER: "管理職",
-    USER: "一般ユーザー",
+    ADMIN: "システム管理者",
+    HR_MANAGER: "人事管理者",
+    MANAGER: "部署責任者",
+    USER: "一般利用者",
   };
 
   return labels[role] ?? role;
 }
 
-export default async function EditUserPage({
-  params,
-  searchParams,
-}: Props) {
+export default async function EditUserPage({ params, searchParams }: Props) {
   await requireAdmin();
 
   const { id } = await params;
@@ -223,16 +201,11 @@ export default async function EditUserPage({
     <main className="mx-auto max-w-2xl p-8">
       <BackLink href="/users" label="ユーザー一覧へ戻る" />
       <div className="mb-6">
-        <Link
-          href="/users"
-          className="text-sm text-gray-500 hover:underline"
-        >
+        <Link href="/users" className="text-sm text-gray-500 hover:underline">
           ← ユーザー一覧へ戻る
         </Link>
 
-        <h1 className="mt-2 text-3xl font-bold">
-          ユーザー編集
-        </h1>
+        <h1 className="mt-2 text-3xl font-bold">ユーザー編集</h1>
 
         <p className="mt-1 text-sm text-gray-500">
           ユーザー情報、権限、パスワードを変更します。
@@ -245,17 +218,14 @@ export default async function EditUserPage({
         </div>
       )}
 
-      <form action={updateUser} className="space-y-4 rounded border bg-white p-6 shadow-sm">
-        <input
-          type="hidden"
-          name="id"
-          value={user.id}
-        />
+      <form
+        action={updateUser}
+        className="space-y-4 rounded border bg-white p-6 shadow-sm"
+      >
+        <input type="hidden" name="id" value={user.id} />
 
         <div>
-          <label className="mb-1 block text-sm font-medium">
-            氏名
-          </label>
+          <label className="mb-1 block text-sm font-medium">氏名</label>
           <input
             name="name"
             defaultValue={user.name}
@@ -278,18 +248,16 @@ export default async function EditUserPage({
         </div>
 
         <div>
-          <label className="mb-1 block text-sm font-medium">
-            権限
-          </label>
+          <label className="mb-1 block text-sm font-medium">権限</label>
           <select
             name="role"
             className="w-full rounded border bg-white p-2"
             defaultValue={user.role}
           >
-            <option value={UserRole.ADMIN}>管理者</option>
-            <option value={UserRole.HR_MANAGER}>人事担当</option>
-            <option value={UserRole.MANAGER}>管理職</option>
-            <option value={UserRole.USER}>一般ユーザー</option>
+            <option value={UserRole.ADMIN}>システム管理者</option>
+            <option value={UserRole.HR_MANAGER}>人事管理者</option>
+            <option value={UserRole.MANAGER}>部署責任者</option>
+            <option value={UserRole.USER}>一般利用者</option>
           </select>
           <p className="mt-1 text-xs text-gray-500">
             現在の権限: {formatRole(user.role)}

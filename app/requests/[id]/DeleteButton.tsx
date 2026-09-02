@@ -2,8 +2,8 @@
 
 export default function DeleteButton() {
   return (
-    <button 
-      type="submit" 
+    <button
+      type="submit"
       onClick={(e) => {
         if (!confirm("この申請データを完全に削除しますか？")) {
           e.preventDefault();

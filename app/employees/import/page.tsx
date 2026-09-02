@@ -1,13 +1,14 @@
 import BackLink from "@/components/BackLink";
 import Link from "next/link";
+import { requireHRManager } from "@/lib/auth-guard";
 
-export default function EmployeeImportPage() {
+export default async function EmployeeImportPage() {
+  await requireHRManager();
   return (
     <main className="mx-auto max-w-2xl p-8">
       <BackLink href="/" label="ダッシュボードへ戻る" />
       <div className="rounded-lg border bg-white p-6 shadow-sm">
         <div className="mb-6">
-
           <h1 className="mt-3 text-2xl font-bold text-gray-900">
             社員CSVインポート
           </h1>
@@ -37,13 +38,11 @@ export default function EmployeeImportPage() {
           </div>
 
           <div className="rounded bg-gray-50 p-4 text-sm text-gray-600">
-            <p className="font-medium text-gray-700">
-              CSV形式例
-            </p>
+            <p className="font-medium text-gray-700">CSV形式例</p>
             <pre className="mt-2 overflow-x-auto text-xs">
-employeeNo,lastName,firstName,email
-EMP-100,山田,太郎,yamada@example.com
-EMP-101,佐藤,花子,sato@example.com
+              employeeNo,lastName,firstName,email
+              EMP-100,山田,太郎,yamada@example.com
+              EMP-101,佐藤,花子,sato@example.com
             </pre>
           </div>
 

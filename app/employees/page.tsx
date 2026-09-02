@@ -1,11 +1,14 @@
 import BackLink from "@/components/BackLink";
 import Image from "next/image";
 import Link from "next/link";
+import { cookies } from "next/headers";
+import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 
 type Props = {
   searchParams: Promise<{
     q?: string;
+    facilityId?: string;
     departmentId?: string;
     status?: string;
     employmentType?: string;
@@ -68,14 +71,44 @@ function mapJapaneseStatusToEnum(q?: string) {
 }
 
 export default async function EmployeesPage({ searchParams }: Props) {
-  const {
-    q,
-    departmentId,
-    status,
-    employmentType,
-  } = await searchParams;
+  const { q, facilityId, departmentId, status, employmentType } =
+    await searchParams;
+
+  const cookieStore = await cookies();
+
+  const facilityScope = cookieStore.get("facilityScope")?.value ?? "ALL";
+
+  const scopedFacility =
+    facilityScope !== "ALL"
+      ? await prisma.facility.findUnique({
+          where: { id: facilityScope },
+        })
+      : null;
+
+  const effectiveFacilityId =
+    facilityId || (facilityScope !== "ALL" ? facilityScope : undefined);
+
+  const session = await auth();
+
+  let securedFacilityId = effectiveFacilityId;
+
+  if (session?.user?.role === "MANAGER") {
+    const currentEmployee = await prisma.employee.findFirst({
+      where: {
+        userId: session.user.id,
+      },
+    });
+
+    securedFacilityId = currentEmployee?.facilityId ?? undefined;
+  }
 
   const statusQuery = status || mapJapaneseStatusToEnum(q);
+
+  const facilities = await prisma.facility.findMany({
+    orderBy: {
+      name: "asc",
+    },
+  });
 
   const departments = await prisma.department.findMany({
     orderBy: {
@@ -147,6 +180,12 @@ export default async function EmployeesPage({ searchParams }: Props) {
             ],
           }
         : {}),
+      ...(securedFacilityId
+        ? {
+            facilityId: securedFacilityId,
+          }
+        : {}),
+
       ...(departmentId
         ? {
             departmentId,
@@ -154,24 +193,18 @@ export default async function EmployeesPage({ searchParams }: Props) {
         : {}),
       ...(statusQuery
         ? {
-            status: statusQuery as
-              | "PRE_HIRE"
-              | "ACTIVE"
-              | "LEAVE"
-              | "RETIRED",
+            status: statusQuery as "PRE_HIRE" | "ACTIVE" | "LEAVE" | "RETIRED",
           }
         : {}),
       ...(employmentType
         ? {
             employmentType: employmentType as
-              | "FULL_TIME"
-              | "CONTRACT"
-              | "PART_TIME"
-              | "TEMPORARY",
+              "FULL_TIME" | "CONTRACT" | "PART_TIME" | "TEMPORARY",
           }
         : {}),
     },
     include: {
+      facility: true,
       department: true,
     },
     orderBy: {
@@ -183,11 +216,14 @@ export default async function EmployeesPage({ searchParams }: Props) {
       <BackLink href="/" label="ダッシュボードへ戻る" />
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">
-            社員一覧
-          </h1>
+          <h1 className="text-3xl font-bold">社員一覧</h1>
           <p className="mt-1 text-sm text-gray-500">
             社員マスタを確認・検索できます。
+          </p>
+
+          <p className="mt-2 text-sm font-medium text-blue-700">
+            表示対象：
+            {scopedFacility?.name ?? "法人全体"}
           </p>
         </div>
 
@@ -200,12 +236,18 @@ export default async function EmployeesPage({ searchParams }: Props) {
           </Link>
 
           <a
-            href="/api/employees/export"
-            className="rounded border bg-white px-4 py-2 font-medium text-gray-700 transition-colors hover:bg-gray-50"
+            href="/api/employees/export-excel"
+            className="rounded border bg-green-50 px-4 py-2 font-medium text-green-700rounded border bg-white px-4 py-2 font-medium text-gray-700 transition-colors hover:bg-gray-50"
           >
             CSV出力
           </a>
 
+          <Link
+            href="/employee-transfers/import"
+            className="rounded border border-blue-300 bg-blue-50 px-4 py-2 font-medium text-blue-700 transition-colors hover:bg-blue-100"
+          >
+            人事異動CSVインポート
+          </Link>
           <Link
             href="/employees/import"
             className="rounded border border-gray-300 bg-white px-4 py-2 font-medium text-gray-700 transition-colors hover:bg-gray-50"
@@ -222,6 +264,20 @@ export default async function EmployeesPage({ searchParams }: Props) {
           placeholder="氏名、ふりがな、番号、メール、部署、職種、役職、状態で検索..."
           className="w-full rounded border p-2 md:w-[420px]"
         />
+
+        <select
+          name="facilityId"
+          defaultValue={effectiveFacilityId}
+          className="rounded border p-2"
+        >
+          <option value="">全施設</option>
+
+          {facilities.map((facility) => (
+            <option key={facility.id} value={facility.id}>
+              {facility.name}
+            </option>
+          ))}
+        </select>
 
         <select
           name="departmentId"
@@ -288,6 +344,7 @@ export default async function EmployeesPage({ searchParams }: Props) {
               <th className="border-b p-3">写真</th>
               <th className="border-b p-3">社員番号</th>
               <th className="border-b p-3">氏名</th>
+              <th className="border-b p-3">施設</th>
               <th className="border-b p-3">部署</th>
               <th className="border-b p-3">職種</th>
               <th className="border-b p-3">役職</th>
@@ -299,10 +356,7 @@ export default async function EmployeesPage({ searchParams }: Props) {
           <tbody>
             {employees.length === 0 ? (
               <tr>
-                <td
-                  colSpan={8}
-                  className="p-8 text-center text-gray-500"
-                >
+                <td colSpan={9} className="p-8 text-center text-gray-500">
                   該当する社員が見つかりません。
                 </td>
               </tr>
@@ -312,7 +366,6 @@ export default async function EmployeesPage({ searchParams }: Props) {
                   key={employee.id}
                   className="transition-colors hover:bg-gray-50"
                 >
-                  
                   <td className="border-b p-3">
                     {employee.photoPath ? (
                       <Image
@@ -328,7 +381,7 @@ export default async function EmployeesPage({ searchParams }: Props) {
                       </div>
                     )}
                   </td>
-<td className="border-b p-3 font-mono">
+                  <td className="border-b p-3 font-mono">
                     {employee.employeeNo}
                   </td>
 
@@ -342,40 +395,39 @@ export default async function EmployeesPage({ searchParams }: Props) {
 
                     {(employee.lastNameKana || employee.firstNameKana) && (
                       <div className="mt-1 text-xs text-gray-400">
-                        {employee.lastNameKana ?? ""} {employee.firstNameKana ?? ""}
+                        {employee.lastNameKana ?? ""}{" "}
+                        {employee.firstNameKana ?? ""}
                       </div>
                     )}
                   </td>
 
                   <td className="border-b p-3">
-                    {employee.department?.name ?? (
-                      <span className="text-gray-400">
-                        未所属
-                      </span>
+                    {employee.facility?.name ?? (
+                      <span className="text-gray-400">未設定</span>
                     )}
                   </td>
 
                   <td className="border-b p-3">
-                    {employee.occupation ?? "-"}
+                    {employee.department?.name ?? (
+                      <span className="text-gray-400">未所属</span>
+                    )}
                   </td>
 
-                  <td className="border-b p-3">
-                    {employee.position ?? "-"}
-                  </td>
+                  <td className="border-b p-3">{employee.occupation ?? "-"}</td>
+
+                  <td className="border-b p-3">{employee.position ?? "-"}</td>
 
                   <td className="border-b p-3">
                     <span
                       className={`inline-flex rounded-full border px-2 py-1 text-xs font-medium ${getStatusClass(
-                        employee.status
+                        employee.status,
                       )}`}
                     >
                       {formatStatus(employee.status)}
                     </span>
                   </td>
 
-                  <td className="border-b p-3">
-                    {employee.email}
-                  </td>
+                  <td className="border-b p-3">{employee.email}</td>
                 </tr>
               ))
             )}
@@ -383,10 +435,7 @@ export default async function EmployeesPage({ searchParams }: Props) {
         </table>
       </div>
       <div className="mt-6">
-        <Link
-          href="/"
-          className="text-sm text-blue-600 hover:underline"
-        >
+        <Link href="/" className="text-sm text-blue-600 hover:underline">
           ← ダッシュボードに戻る
         </Link>
       </div>

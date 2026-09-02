@@ -40,6 +40,7 @@ export default async function LeaveTypeBalancesPage() {
               <th className="p-3 text-right">付与</th>
               <th className="p-3 text-right">使用</th>
               <th className="p-3 text-right">残数</th>
+              <th className="p-3 text-right">利用率</th>
             </tr>
           </thead>
 
@@ -60,6 +61,12 @@ export default async function LeaveTypeBalancesPage() {
 
                 <td className="p-3 text-right font-bold">
                   {row.grantedDays - row.usedDays}
+                </td>
+
+                <td className="p-3 text-right">
+                  {row.grantedDays > 0
+                    ? `${((row.usedDays / row.grantedDays) * 100).toFixed(1)}%`
+                    : "-"}
                 </td>
               </tr>
             ))}

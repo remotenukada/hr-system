@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
+import { requestStatusLabels } from "@/lib/display-labels";
 
 type Props = {
   searchParams: Promise<{
@@ -35,9 +36,7 @@ async function getCurrentEmployee() {
   return employee;
 }
 
-export default async function ProfileChangePage({
-  searchParams,
-}: Props) {
+export default async function ProfileChangePage({ searchParams }: Props) {
   const employee = await getCurrentEmployee();
   const params = await searchParams;
 
@@ -56,27 +55,18 @@ export default async function ProfileChangePage({
 
     const currentEmployee = await getCurrentEmployee();
 
-    const newAddress = String(
-      formData.get("newAddress") ?? "",
-    ).trim();
+    const newAddress = String(formData.get("newAddress") ?? "").trim();
 
-    const newPhoneNumber = String(
-      formData.get("newPhoneNumber") ?? "",
-    ).trim();
+    const newPhoneNumber = String(formData.get("newPhoneNumber") ?? "").trim();
 
-    const newEmail = String(
-      formData.get("newEmail") ?? "",
-    ).trim();
+    const newEmail = String(formData.get("newEmail") ?? "").trim();
 
     const newEmergencyContact = String(
       formData.get("newEmergencyContact") ?? "",
     ).trim();
 
     const hasChange =
-      newAddress ||
-      newPhoneNumber ||
-      newEmail ||
-      newEmergencyContact;
+      newAddress || newPhoneNumber || newEmail || newEmergencyContact;
 
     if (!hasChange) {
       redirect("/mypage/profile-change?error=empty");
@@ -104,16 +94,11 @@ export default async function ProfileChangePage({
   return (
     <main className="mx-auto max-w-4xl p-8">
       <div className="mb-6">
-        <Link
-          href="/mypage"
-          className="text-sm text-blue-600 hover:underline"
-        >
+        <Link href="/mypage" className="text-sm text-blue-600 hover:underline">
           ← ダッシュボードへ戻る
         </Link>
 
-        <h1 className="mt-2 text-3xl font-bold">
-          プロフィール変更申請
-        </h1>
+        <h1 className="mt-2 text-3xl font-bold">プロフィール変更申請</h1>
 
         <p className="mt-1 text-sm text-gray-500">
           住所、電話番号、メールアドレス、緊急連絡先の変更を申請できます。
@@ -133,22 +118,16 @@ export default async function ProfileChangePage({
       )}
 
       <section className="mb-8 rounded border bg-white p-6">
-        <h2 className="mb-4 text-xl font-bold">
-          現在の登録情報
-        </h2>
+        <h2 className="mb-4 text-xl font-bold">現在の登録情報</h2>
 
         <dl className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <div>
-            <dt className="text-sm font-medium text-gray-500">
-              住所
-            </dt>
+            <dt className="text-sm font-medium text-gray-500">住所</dt>
             <dd>{employee.address ?? "-"}</dd>
           </div>
 
           <div>
-            <dt className="text-sm font-medium text-gray-500">
-              電話番号
-            </dt>
+            <dt className="text-sm font-medium text-gray-500">電話番号</dt>
             <dd>{employee.phoneNumber ?? "-"}</dd>
           </div>
 
@@ -160,24 +139,18 @@ export default async function ProfileChangePage({
           </div>
 
           <div>
-            <dt className="text-sm font-medium text-gray-500">
-              緊急連絡先
-            </dt>
+            <dt className="text-sm font-medium text-gray-500">緊急連絡先</dt>
             <dd>{employee.emergencyContact ?? "-"}</dd>
           </div>
         </dl>
       </section>
 
       <section className="mb-8 rounded border bg-white p-6">
-        <h2 className="mb-4 text-xl font-bold">
-          変更申請
-        </h2>
+        <h2 className="mb-4 text-xl font-bold">変更申請</h2>
 
         <form action={submitProfileChange} className="space-y-4">
           <div>
-            <label className="mb-1 block text-sm font-medium">
-              変更後住所
-            </label>
+            <label className="mb-1 block text-sm font-medium">変更後住所</label>
             <input
               name="newAddress"
               className="w-full rounded border p-2"
@@ -229,9 +202,7 @@ export default async function ProfileChangePage({
       </section>
 
       <section className="rounded border bg-white p-6">
-        <h2 className="mb-4 text-xl font-bold">
-          申請履歴
-        </h2>
+        <h2 className="mb-4 text-xl font-bold">申請履歴</h2>
 
         {requests.length === 0 ? (
           <p className="text-sm text-gray-500">
@@ -252,24 +223,14 @@ export default async function ProfileChangePage({
             <tbody>
               {requests.map((request) => (
                 <tr key={request.id} className="border-b">
+                  <td className="p-2">{formatDate(request.createdAt)}</td>
                   <td className="p-2">
-                    {formatDate(request.createdAt)}
+                    {requestStatusLabels[request.status] ?? request.status}
                   </td>
-                  <td className="p-2">
-                    {request.status}
-                  </td>
-                  <td className="p-2">
-                    {request.newAddress ?? "-"}
-                  </td>
-                  <td className="p-2">
-                    {request.newPhoneNumber ?? "-"}
-                  </td>
-                  <td className="p-2">
-                    {request.newEmail ?? "-"}
-                  </td>
-                  <td className="p-2">
-                    {request.newEmergencyContact ?? "-"}
-                  </td>
+                  <td className="p-2">{request.newAddress ?? "-"}</td>
+                  <td className="p-2">{request.newPhoneNumber ?? "-"}</td>
+                  <td className="p-2">{request.newEmail ?? "-"}</td>
+                  <td className="p-2">{request.newEmergencyContact ?? "-"}</td>
                 </tr>
               ))}
             </tbody>

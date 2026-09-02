@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -41,8 +42,27 @@ export default function LoginPage() {
   return (
     <div style={styles.container}>
       <div style={styles.card}>
-        <h1 style={styles.title}>社内人事システム</h1>
-        <p style={styles.subtitle}>ログインしてください</p>
+        <div style={styles.logoWrap}>
+          <Image
+            src="/fy-nexus-one-logo.svg"
+            alt="FY Nexus One Logo"
+            style={styles.logoImage}
+            priority
+          />
+          <p
+            style={{
+              marginTop: "6px",
+              marginBottom: "10px",
+              fontSize: "11px",
+              color: "#94A3B8",
+              letterSpacing: "0.08em",
+            }}
+          >
+            Version 1.0
+          </p>
+
+          <p style={styles.subtitle}>サインインしてください</p>
+        </div>
 
         {error && <div style={styles.error}>{error}</div>}
 
@@ -97,6 +117,18 @@ const styles = {
     boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
     width: "100%",
     maxWidth: "400px",
+  },
+  logoWrap: {
+    display: "flex",
+    flexDirection: "column" as const,
+    alignItems: "center",
+    marginBottom: "24px",
+  },
+  logoImage: {
+    display: "block",
+    width: "100%",
+    maxWidth: "320px",
+    height: "auto",
   },
   title: {
     margin: "0 0 8px 0",

@@ -1,7 +1,8 @@
 import BackLink from "@/components/BackLink";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { requireHRManager } from "@/lib/auth-guard";
 import { logAudit } from "@/lib/audit-log";
@@ -37,46 +38,74 @@ function getStatusClass(status: string) {
   return "bg-yellow-100 text-yellow-800";
 }
 
-export default async function MyNumberDetailPage({
-  params,
-}: Props) {
+export default async function MyNumberDetailPage({ params }: Props) {
   await requireHRManager();
+
+  const cookieStore = await cookies();
+  const facilityScope = cookieStore.get("facilityScope")?.value ?? "ALL";
 
   const { id } = await params;
 
-  const myNumber =
-    await prisma.employeeMyNumber.findUnique({
-      where: {
-        id,
-      },
-      include: {
-        employee: {
-          include: {
-            department: true,
-          },
+  const myNumber = await prisma.employeeMyNumber.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      employee: {
+        include: {
+          facility: true,
+          department: true,
         },
       },
-    });
+    },
+  });
 
   if (!myNumber) {
     redirect("/my-numbers");
   }
 
-  const decryptedMyNumber = decryptMyNumber(
-    myNumber.encryptedNumber,
-  );
+  if (
+    facilityScope !== "ALL" &&
+    myNumber.employee.facilityId !== facilityScope
+  ) {
+    notFound();
+  }
+
+  const decryptedMyNumber = decryptMyNumber(myNumber.encryptedNumber);
 
   async function approveMyNumber(formData: FormData) {
     "use server";
 
     const session = await requireHRManager();
 
-    const myNumberId = String(
-      formData.get("myNumberId") ?? "",
-    ).trim();
+    const myNumberId = String(formData.get("myNumberId") ?? "").trim();
 
     if (!myNumberId) {
       return;
+    }
+
+    const actionCookieStore = await cookies();
+    const actionFacilityScope =
+      actionCookieStore.get("facilityScope")?.value ?? "ALL";
+
+    const targetMyNumber = await prisma.employeeMyNumber.findUnique({
+      where: {
+        id: myNumberId,
+      },
+      include: {
+        employee: true,
+      },
+    });
+
+    if (!targetMyNumber) {
+      notFound();
+    }
+
+    if (
+      actionFacilityScope !== "ALL" &&
+      targetMyNumber.employee.facilityId !== actionFacilityScope
+    ) {
+      notFound();
     }
 
     await prisma.employeeMyNumber.update({
@@ -110,16 +139,36 @@ export default async function MyNumberDetailPage({
 
     const session = await requireHRManager();
 
-    const myNumberId = String(
-      formData.get("myNumberId") ?? "",
-    ).trim();
+    const myNumberId = String(formData.get("myNumberId") ?? "").trim();
 
-    const reviewComment = String(
-      formData.get("reviewComment") ?? "",
-    ).trim();
+    const reviewComment = String(formData.get("reviewComment") ?? "").trim();
 
     if (!myNumberId || !reviewComment) {
       return;
+    }
+
+    const actionCookieStore = await cookies();
+    const actionFacilityScope =
+      actionCookieStore.get("facilityScope")?.value ?? "ALL";
+
+    const targetMyNumber = await prisma.employeeMyNumber.findUnique({
+      where: {
+        id: myNumberId,
+      },
+      include: {
+        employee: true,
+      },
+    });
+
+    if (!targetMyNumber) {
+      notFound();
+    }
+
+    if (
+      actionFacilityScope !== "ALL" &&
+      targetMyNumber.employee.facilityId !== actionFacilityScope
+    ) {
+      notFound();
     }
 
     await prisma.employeeMyNumber.update({
@@ -154,9 +203,7 @@ export default async function MyNumberDetailPage({
 
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-3xl font-bold">
-            マイナンバー詳細
-          </h1>
+          <h1 className="text-3xl font-bold">マイナンバー詳細</h1>
 
           <p className="mt-2 text-sm text-gray-600">
             社員のマイナンバー提出状況を確認できます。番号は人事担当者のみ確認できます。
@@ -174,106 +221,75 @@ export default async function MyNumberDetailPage({
 
           {myNumber.verifiedAt && (
             <div className="mt-2 text-sm text-gray-600">
-              <div>
-                確認者: {myNumber.verifiedBy ?? "-"}
-              </div>
+              <div>確認者: {myNumber.verifiedBy ?? "-"}</div>
 
-              <div>
-                確認日時:{" "}
-                {myNumber.verifiedAt.toLocaleString(
-                  "ja-JP",
-                )}
-              </div>
+              <div>確認日時: {myNumber.verifiedAt.toLocaleString("ja-JP")}</div>
             </div>
           )}
         </div>
       </div>
 
       <section className="rounded-lg border bg-white p-6 shadow-sm">
-        <h2 className="mb-4 text-xl font-semibold">
-          社員情報
-        </h2>
+        <h2 className="mb-4 text-xl font-semibold">社員情報</h2>
 
         <dl className="grid grid-cols-1 gap-4 text-sm md:grid-cols-2">
           <div>
-            <dt className="font-medium text-gray-600">
-              社員番号
-            </dt>
+            <dt className="font-medium text-gray-600">社員番号</dt>
+            <dd className="mt-1">{myNumber.employee.employeeNo}</dd>
+          </div>
+
+          <div>
+            <dt className="font-medium text-gray-600">氏名</dt>
             <dd className="mt-1">
-              {myNumber.employee.employeeNo}
+              {myNumber.employee.lastName} {myNumber.employee.firstName}
             </dd>
           </div>
 
           <div>
-            <dt className="font-medium text-gray-600">
-              氏名
-            </dt>
-            <dd className="mt-1">
-              {myNumber.employee.lastName}{" "}
-              {myNumber.employee.firstName}
-            </dd>
+            <dt className="font-medium text-gray-600">施設</dt>
+            <dd className="mt-1">{myNumber.employee.facility?.name ?? "-"}</dd>
           </div>
 
           <div>
-            <dt className="font-medium text-gray-600">
-              部署
-            </dt>
+            <dt className="font-medium text-gray-600">部署</dt>
             <dd className="mt-1">
               {myNumber.employee.department?.name ?? "-"}
             </dd>
           </div>
 
           <div>
-            <dt className="font-medium text-gray-600">
-              メール
-            </dt>
-            <dd className="mt-1">
-              {myNumber.employee.email}
-            </dd>
+            <dt className="font-medium text-gray-600">メール</dt>
+            <dd className="mt-1">{myNumber.employee.email}</dd>
           </div>
         </dl>
       </section>
 
       <section className="mt-6 rounded-lg border bg-white p-6 shadow-sm">
-        <h2 className="mb-4 text-xl font-semibold">
-          提出情報
-        </h2>
+        <h2 className="mb-4 text-xl font-semibold">提出情報</h2>
 
         <dl className="grid grid-cols-1 gap-4 text-sm md:grid-cols-2">
           <div>
-            <dt className="font-medium text-gray-600">
-              登録状況
-            </dt>
-            <dd className="mt-1">
-              登録済み
-            </dd>
+            <dt className="font-medium text-gray-600">登録状況</dt>
+            <dd className="mt-1">登録済み</dd>
           </div>
 
           <div>
-            <dt className="font-medium text-gray-600">
-              マイナンバー
-            </dt>
+            <dt className="font-medium text-gray-600">マイナンバー</dt>
             <dd className="mt-1 font-mono text-lg tracking-wider text-red-700">
               {decryptedMyNumber}
             </dd>
-            <dd className="mt-1 text-xs text-gray-500">
-              人事担当者確認用
-            </dd>
+            <dd className="mt-1 text-xs text-gray-500">人事担当者確認用</dd>
           </div>
 
           <div>
-            <dt className="font-medium text-gray-600">
-              更新日時
-            </dt>
+            <dt className="font-medium text-gray-600">更新日時</dt>
             <dd className="mt-1">
               {myNumber.updatedAt.toLocaleString("ja-JP")}
             </dd>
           </div>
 
           <div>
-            <dt className="font-medium text-gray-600">
-              状態
-            </dt>
+            <dt className="font-medium text-gray-600">状態</dt>
             <dd className="mt-1">
               <span
                 className={`rounded px-2 py-1 text-xs font-medium ${getStatusClass(
@@ -293,19 +309,18 @@ export default async function MyNumberDetailPage({
             差戻しコメント
           </h2>
 
-          <p className="text-sm text-red-700">
-            {myNumber.reviewComment}
-          </p>
+          <p className="text-sm text-red-700">{myNumber.reviewComment}</p>
         </section>
       )}
 
       <section className="mt-6 rounded-lg border bg-white p-6 shadow-sm">
-        <h2 className="mb-4 text-xl font-semibold">
-          確認操作
-        </h2>
+        <h2 className="mb-4 text-xl font-semibold">確認操作</h2>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          <form action={approveMyNumber} className="flex flex-col justify-between rounded border p-4">
+          <form
+            action={approveMyNumber}
+            className="flex flex-col justify-between rounded border p-4"
+          >
             <div>
               <h3 className="font-semibold text-green-700">承認</h3>
               <p className="mt-1 text-xs text-gray-500">
@@ -313,11 +328,7 @@ export default async function MyNumberDetailPage({
               </p>
             </div>
 
-            <input
-              type="hidden"
-              name="myNumberId"
-              value={myNumber.id}
-            />
+            <input type="hidden" name="myNumberId" value={myNumber.id} />
 
             <button
               type="submit"
@@ -327,7 +338,10 @@ export default async function MyNumberDetailPage({
             </button>
           </form>
 
-          <form action={rejectMyNumber} className="space-y-3 rounded border p-4">
+          <form
+            action={rejectMyNumber}
+            className="space-y-3 rounded border p-4"
+          >
             <div>
               <h3 className="font-semibold text-red-700">差戻し</h3>
               <p className="mt-1 text-xs text-gray-500">
@@ -335,11 +349,7 @@ export default async function MyNumberDetailPage({
               </p>
             </div>
 
-            <input
-              type="hidden"
-              name="myNumberId"
-              value={myNumber.id}
-            />
+            <input type="hidden" name="myNumberId" value={myNumber.id} />
 
             <textarea
               name="reviewComment"

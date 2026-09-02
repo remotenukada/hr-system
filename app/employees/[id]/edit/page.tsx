@@ -2,6 +2,7 @@ import BackLink from "@/components/BackLink";
 import Image from "next/image";
 import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { requireHRManager } from "@/lib/auth-guard";
 import { logAudit } from "@/lib/audit-log";
@@ -27,6 +28,10 @@ function toDateInputValue(date: Date | null) {
 export default async function EmployeeEditPage({ params }: Props) {
   await requireHRManager();
 
+  const cookieStore = await cookies();
+
+  const facilityScope = cookieStore.get("facilityScope")?.value ?? "ALL";
+
   const { id } = await params;
 
   const employee = await prisma.employee.findUnique({
@@ -38,6 +43,16 @@ export default async function EmployeeEditPage({ params }: Props) {
   if (!employee) {
     notFound();
   }
+
+  if (facilityScope !== "ALL" && employee.facilityId !== facilityScope) {
+    notFound();
+  }
+
+  const facilities = await prisma.facility.findMany({
+    orderBy: {
+      name: "asc",
+    },
+  });
 
   const departments = await prisma.department.findMany({
     orderBy: {
@@ -63,6 +78,7 @@ export default async function EmployeeEditPage({ params }: Props) {
     const firstName = formData.get("firstName") as string;
     const email = formData.get("email") as string;
     const departmentId = formData.get("departmentId") as string;
+    const facilityId = formData.get("facilityId") as string;
 
     const lastNameKana = formData.get("lastNameKana") as string;
     const firstNameKana = formData.get("firstNameKana") as string;
@@ -102,6 +118,7 @@ export default async function EmployeeEditPage({ params }: Props) {
         phoneNumber: phoneNumber || null,
         address: address || null,
 
+        facilityId: facilityId || null,
         departmentId: departmentId || null,
         occupation: occupation || null,
         position: position || null,
@@ -135,42 +152,51 @@ export default async function EmployeeEditPage({ params }: Props) {
       },
     });
 
-    if (
-      (employee?.departmentId ?? "") !== (updatedEmployee.departmentId ?? "")
-    ) {
-      const oldDepartment = employee?.departmentId
-        ? await prisma.department.findUnique({
-            where: { id: employee.departmentId },
-          })
-        : null;
+    const facilityChanged =
+      (employee?.facilityId ?? "") !== (updatedEmployee.facilityId ?? "");
 
-      const newDepartment = updatedEmployee.departmentId
-        ? await prisma.department.findUnique({
-            where: { id: updatedEmployee.departmentId },
-          })
-        : null;
+    const departmentChanged =
+      (employee?.departmentId ?? "") !== (updatedEmployee.departmentId ?? "");
 
-      await prisma.employmentHistory.create({
+    if (facilityChanged || departmentChanged) {
+      const [oldFacility, newFacility, oldDepartment, newDepartment] =
+        await Promise.all([
+          employee?.facilityId
+            ? prisma.facility.findUnique({
+                where: { id: employee.facilityId },
+              })
+            : null,
+          updatedEmployee.facilityId
+            ? prisma.facility.findUnique({
+                where: { id: updatedEmployee.facilityId },
+              })
+            : null,
+          employee?.departmentId
+            ? prisma.department.findUnique({
+                where: { id: employee.departmentId },
+              })
+            : null,
+          updatedEmployee.departmentId
+            ? prisma.department.findUnique({
+                where: { id: updatedEmployee.departmentId },
+              })
+            : null,
+        ]);
+
+      const transferReason =
+        `所属変更: ` +
+        `${oldFacility?.name ?? "未設定"} / ${oldDepartment?.name ?? "未設定"}` +
+        ` → ${newFacility?.name ?? "未設定"} / ${newDepartment?.name ?? "未設定"}`;
+
+      await prisma.employeeTransfer.create({
         data: {
           employeeId: updatedEmployee.id,
-          action: EmploymentAction.TRANSFER,
+          fromFacilityId: employee?.facilityId ?? null,
+          toFacilityId: updatedEmployee.facilityId ?? null,
+          fromDepartmentId: employee?.departmentId ?? null,
+          toDepartmentId: updatedEmployee.departmentId ?? null,
           effectiveDate: new Date(),
-          reason: `部署異動: ${oldDepartment?.name ?? "未所属"} → ${newDepartment?.name ?? "未所属"}`,
-        },
-      });
-
-      await logAudit({
-        action: "EMPLOYEE_TRANSFER",
-        targetType: "Employee",
-        targetId: updatedEmployee.id,
-        description: `${updatedEmployee.employeeNo} の部署を変更`,
-        beforeData: {
-          departmentId: employee?.departmentId ?? null,
-          departmentName: oldDepartment?.name ?? null,
-        },
-        afterData: {
-          departmentId: updatedEmployee.departmentId ?? null,
-          departmentName: newDepartment?.name ?? null,
+          reason: transferReason,
         },
       });
     }
@@ -444,6 +470,26 @@ export default async function EmployeeEditPage({ params }: Props) {
             </h2>
 
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              <div>
+                <label className="mb-1 block text-xs font-medium text-slate-700">
+                  所属施設
+                </label>
+
+                <select
+                  name="facilityId"
+                  defaultValue={employee.facilityId ?? ""}
+                  className="w-full rounded border bg-white p-2 focus:outline-indigo-500"
+                >
+                  <option value="">施設を選択</option>
+
+                  {facilities.map((facility) => (
+                    <option key={facility.id} value={facility.id}>
+                      {facility.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
               <div>
                 <label className="mb-1 block text-xs font-medium text-slate-700">
                   部署

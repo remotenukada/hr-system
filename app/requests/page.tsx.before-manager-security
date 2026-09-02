@@ -1,0 +1,333 @@
+import BackLink from "@/components/BackLink";
+import Link from "next/link";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { auth } from "../../auth";
+import { prisma } from "../../lib/prisma";
+import { Prisma } from "../../generated/prisma";
+
+type Props = {
+  searchParams: Promise<{
+    q?: string;
+    status?: string;
+  }>;
+};
+
+// 申請種別の日本語ラベルとスタイルのマッピング
+function getRequestTypeDetails(type: string) {
+  switch (type) {
+    case "ONBOARDING":
+      return {
+        label: "入社申請",
+        badge: "bg-teal-50 text-teal-700 border-teal-100",
+      };
+    case "DEPARTMENT_CHANGE":
+      return {
+        label: "部署変更申請",
+        badge: "bg-indigo-50 text-indigo-700 border-indigo-100",
+      };
+    case "OTHER":
+      return {
+        label: "その他",
+        badge: "bg-gray-50 text-gray-700 border-gray-100",
+      };
+    default:
+      return { label: type, badge: "bg-gray-50 text-gray-700 border-gray-100" };
+  }
+}
+
+// 申請ステータスの日本語ラベルとスタイルのマッピング
+function getRequestStatusDetails(status: string) {
+  switch (status) {
+    case "PENDING":
+      return { label: "未対応", badge: "bg-amber-100 text-amber-800" };
+    case "APPROVED":
+      return { label: "承認済み", badge: "bg-green-100 text-green-800" };
+    case "REJECTED":
+      return { label: "却下", badge: "bg-rose-100 text-rose-800" };
+    default:
+      return { label: status, badge: "bg-gray-100 text-gray-800" };
+  }
+}
+
+export default async function RequestsPage({ searchParams }: Props) {
+  const session = await auth();
+
+  if (!session?.user) {
+    redirect("/login");
+  }
+
+  const canViewAll =
+    session.user.role === "ADMIN" ||
+    session.user.role === "HR_MANAGER" ||
+    session.user.role === "MANAGER";
+
+  if (!canViewAll) {
+    redirect("/requests/my");
+  }
+
+  const { q, status } = await searchParams;
+
+  const cookieStore = await cookies();
+
+  const facilityScope = cookieStore.get("facilityScope")?.value ?? "ALL";
+
+  const scopedFacility =
+    facilityScope !== "ALL"
+      ? await prisma.facility.findUnique({
+          where: { id: facilityScope },
+        })
+      : null;
+
+  // 日本語の検索ワードからEnumのキーワードを推測して検索条件を生成
+  const getSearchConditions = (
+    query: string,
+  ): Prisma.EmployeeRequestWhereInput[] => {
+    const conditions: Prisma.EmployeeRequestWhereInput[] = [
+      { title: { contains: query, mode: "insensitive" } },
+      {
+        employee: {
+          OR: [
+            { lastName: { contains: query, mode: "insensitive" } },
+            { firstName: { contains: query, mode: "insensitive" } },
+          ],
+        },
+      },
+    ];
+
+    if ("入社申請".includes(query) || "入社".includes(query)) {
+      conditions.push({ type: "ONBOARDING" });
+    }
+    if (
+      "部署変更申請".includes(query) ||
+      "部署".includes(query) ||
+      "組織変更".includes(query)
+    ) {
+      conditions.push({ type: "DEPARTMENT_CHANGE" });
+    }
+    if ("その他".includes(query)) {
+      conditions.push({ type: "OTHER" });
+    }
+
+    if ("未対応".includes(query) || "保留".includes(query)) {
+      conditions.push({ status: "PENDING" });
+    }
+    if ("承認済み".includes(query) || "承認".includes(query)) {
+      conditions.push({ status: "APPROVED" });
+    }
+    if ("却下".includes(query)) {
+      conditions.push({ status: "REJECTED" });
+    }
+
+    return conditions;
+  };
+
+  // URLから渡ってきたstatus文字列が有効なEnum値かどうかチェック
+  const isValidStatus =
+    status && ["PENDING", "APPROVED", "REJECTED"].includes(status);
+
+  // 複合検索条件の組み立て（anyを排除）
+  const requests = await prisma.employeeRequest.findMany({
+    where: {
+      ...(q ? { OR: getSearchConditions(q) } : {}),
+      ...(isValidStatus
+        ? { status: status as "PENDING" | "APPROVED" | "REJECTED" }
+        : {}),
+      ...(facilityScope !== "ALL"
+        ? {
+            employee: {
+              facilityId: facilityScope,
+            },
+          }
+        : {}),
+    },
+    include: {
+      employee: true,
+      leaveType: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  // フィルターボタンのアクティブ状態を判定するヘルパー
+  const getFilterClass = (isActive: boolean) => {
+    return isActive
+      ? "bg-gray-800 text-white font-medium text-xs px-3 py-1.5 rounded-full shadow-sm border border-transparent transition-colors"
+      : "bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 text-xs px-3 py-1.5 rounded-full transition-colors";
+  };
+
+  // 検索キーワードをURLに維持するためのヘルパークエリ
+  const queryParam = q ? `&q=${encodeURIComponent(q)}` : "";
+
+  const categoryLabels: Record<string, string> = {
+    LEAVE: "休暇申請",
+    LATE: "遅刻申請",
+    EARLY: "早退申請",
+    OUTING: "外出申請",
+    CHILD_CARE: "子の看護休暇",
+    FAMILY_CARE: "介護休暇",
+  };
+
+  const unitLabels: Record<string, string> = {
+    DAY: "全日",
+    HALF_DAY: "半日",
+    AM_HALF: "午前休",
+    PM_HALF: "午後休",
+    HOUR: "時間",
+  };
+
+  function formatDate(value: Date | null) {
+    return value ? new Intl.DateTimeFormat("ja-JP").format(value) : "－";
+  }
+
+  return (
+    <main className="mx-auto max-w-7xl space-y-6 p-4 sm:p-8">
+      <BackLink href="/" label="ダッシュボードに戻る" />
+
+      <div>
+        <h1 className="text-3xl font-bold text-gray-800">申請一覧</h1>
+        <p className="mt-1 text-sm text-gray-500">
+          職員から提出された申請を確認・承認します。
+        </p>
+
+        <p className="mt-2 text-sm font-medium text-blue-700">
+          表示対象：
+          {scopedFacility?.name ?? "法人全体"}
+        </p>
+      </div>
+
+      <form className="flex flex-wrap gap-3 rounded-xl border bg-white p-4">
+        <input
+          name="q"
+          defaultValue={q ?? ""}
+          placeholder="職員名・申請内容を検索"
+          className="min-w-64 flex-1 rounded border p-2"
+        />
+
+        <select
+          name="status"
+          defaultValue={status ?? ""}
+          className="rounded border bg-white p-2"
+        >
+          <option value="">すべての状態</option>
+          <option value="PENDING">未対応</option>
+          <option value="APPROVED">承認済み</option>
+          <option value="REJECTED">却下</option>
+        </select>
+
+        <button
+          type="submit"
+          className="rounded bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700"
+        >
+          検索
+        </button>
+        <Link
+          href="/requests"
+          className="rounded border px-3 py-2 text-sm text-gray-600 hover:bg-gray-50"
+        >
+          解除
+        </Link>
+      </form>
+
+      <div className="rounded-lg border bg-white p-4 font-medium">
+        申請件数: {requests.length}件
+      </div>
+
+      <div className="overflow-x-auto rounded-xl border bg-white shadow-sm">
+        <table className="min-w-full text-sm">
+          <thead className="bg-gray-50 text-left">
+            <tr>
+              <th className="p-3">申請日</th>
+              <th className="p-3">職員</th>
+              <th className="p-3">申請区分</th>
+              <th className="p-3">休暇種別</th>
+              <th className="p-3">対象日</th>
+              <th className="p-3">取得単位</th>
+              <th className="p-3">状態</th>
+              <th className="p-3">操作</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {requests.length === 0 ? (
+              <tr>
+                <td colSpan={8} className="p-8 text-center text-gray-500">
+                  該当する申請はありません。
+                </td>
+              </tr>
+            ) : (
+              requests.map((request) => {
+                const category = request.requestCategory
+                  ? categoryLabels[request.requestCategory]
+                  : getRequestTypeDetails(request.type).label;
+
+                const targetDate =
+                  request.requestCategory === "LEAVE"
+                    ? request.leaveStartDate
+                    : request.targetDate;
+
+                let unit = "－";
+
+                if (request.unitType) {
+                  unit = unitLabels[request.unitType] ?? request.unitType;
+
+                  if (request.unitType === "HOUR" && request.hours) {
+                    unit = `${request.hours}時間`;
+                  }
+                } else if (request.leaveDays) {
+                  unit = `${request.leaveDays}日`;
+                }
+
+                const requestStatus = getRequestStatusDetails(request.status);
+
+                return (
+                  <tr key={request.id} className="border-t hover:bg-gray-50">
+                    <td className="whitespace-nowrap p-3">
+                      {formatDate(request.createdAt)}
+                    </td>
+
+                    <td className="whitespace-nowrap p-3 font-medium">
+                      {request.employee
+                        ? `${request.employee.lastName} ${request.employee.firstName}`
+                        : "－"}
+                    </td>
+
+                    <td className="whitespace-nowrap p-3">{category}</td>
+
+                    <td className="whitespace-nowrap p-3">
+                      {request.leaveType?.name ?? "－"}
+                    </td>
+
+                    <td className="whitespace-nowrap p-3">
+                      {formatDate(targetDate)}
+                    </td>
+
+                    <td className="whitespace-nowrap p-3">{unit}</td>
+
+                    <td className="whitespace-nowrap p-3">
+                      <span
+                        className={`rounded-full px-2.5 py-1 text-xs font-medium ${requestStatus.badge}`}
+                      >
+                        {requestStatus.label}
+                      </span>
+                    </td>
+
+                    <td className="whitespace-nowrap p-3">
+                      <Link
+                        href={`/requests/${request.id}`}
+                        className="text-blue-600 hover:underline font-medium"
+                      >
+                        詳細・承認
+                      </Link>
+                    </td>
+                  </tr>
+                );
+              })
+            )}
+          </tbody>
+        </table>
+      </div>
+    </main>
+  );
+}

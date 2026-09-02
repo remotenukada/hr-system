@@ -5,10 +5,10 @@ import { requireAdmin } from "@/lib/auth-guard";
 
 function formatRole(role: string) {
   const labels: Record<string, string> = {
-    ADMIN: "管理者",
-    HR_MANAGER: "人事担当",
-    MANAGER: "管理職",
-    USER: "一般ユーザー",
+    ADMIN: "システム管理者",
+    HR_MANAGER: "人事管理者",
+    MANAGER: "部署責任者",
+    USER: "一般利用者",
   };
 
   return labels[role] ?? role;
@@ -28,9 +28,7 @@ export default async function UsersPage() {
       <BackLink href="/" label="ダッシュボードへ戻る" />
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">
-            ユーザー管理
-          </h1>
+          <h1 className="text-3xl font-bold">ユーザー管理</h1>
           <p className="mt-1 text-sm text-gray-500">
             ログインユーザーと権限を管理します。
           </p>
@@ -69,30 +67,18 @@ export default async function UsersPage() {
           <tbody>
             {users.length === 0 ? (
               <tr>
-                <td
-                  colSpan={6}
-                  className="p-8 text-center text-gray-500"
-                >
+                <td colSpan={6} className="p-8 text-center text-gray-500">
                   ユーザーが登録されていません。
                 </td>
               </tr>
             ) : (
               users.map((user) => (
-                <tr
-                  key={user.id}
-                  className="border-t"
-                >
-                  <td className="p-3 font-medium">
-                    {user.name}
-                  </td>
+                <tr key={user.id} className="border-t">
+                  <td className="p-3 font-medium">{user.name}</td>
 
-                  <td className="p-3">
-                    {user.email}
-                  </td>
+                  <td className="p-3">{user.email}</td>
 
-                  <td className="p-3">
-                    {formatRole(user.role)}
-                  </td>
+                  <td className="p-3">{formatRole(user.role)}</td>
 
                   <td className="p-3">
                     <span

@@ -1,0 +1,403 @@
+import BackLink from "@/components/BackLink";
+import Image from "next/image";
+import Link from "next/link";
+import { prisma } from "@/lib/prisma";
+
+type Props = {
+  searchParams: Promise<{
+    q?: string;
+    facilityId?: string;
+    departmentId?: string;
+    status?: string;
+    employmentType?: string;
+  }>;
+};
+
+function formatStatus(status: string | null) {
+  if (!status) return "-";
+
+  const labels: Record<string, string> = {
+    PRE_HIRE: "採用予定者",
+    ACTIVE: "在職",
+    LEAVE: "休職",
+    RETIRED: "退職",
+  };
+
+  return labels[status] ?? status;
+}
+
+function getStatusClass(status: string | null) {
+  if (status === "PRE_HIRE") {
+    return "bg-blue-50 text-blue-700 border-blue-200";
+  }
+
+  if (status === "ACTIVE") {
+    return "bg-green-50 text-green-700 border-green-200";
+  }
+
+  if (status === "LEAVE") {
+    return "bg-yellow-50 text-yellow-700 border-yellow-200";
+  }
+
+  if (status === "RETIRED") {
+    return "bg-gray-100 text-gray-600 border-gray-300";
+  }
+
+  return "bg-gray-50 text-gray-600 border-gray-200";
+}
+
+function mapJapaneseStatusToEnum(q?: string) {
+  if (!q) return undefined;
+
+  if (q.includes("採用予定")) {
+    return "PRE_HIRE";
+  }
+
+  if (q.includes("在職")) {
+    return "ACTIVE";
+  }
+
+  if (q.includes("休職")) {
+    return "LEAVE";
+  }
+
+  if (q.includes("退職")) {
+    return "RETIRED";
+  }
+
+  return undefined;
+}
+
+export default async function EmployeesPage({ searchParams }: Props) {
+  const { q, facilityId, departmentId, status, employmentType } =
+    await searchParams;
+
+  const statusQuery = status || mapJapaneseStatusToEnum(q);
+
+  const facilities = await prisma.facility.findMany({
+    orderBy: {
+      name: "asc",
+    },
+  });
+
+  const departments = await prisma.department.findMany({
+    orderBy: {
+      name: "asc",
+    },
+  });
+
+  const employees = await prisma.employee.findMany({
+    where: {
+      ...(q
+        ? {
+            OR: [
+              {
+                lastName: {
+                  contains: q,
+                  mode: "insensitive",
+                },
+              },
+              {
+                firstName: {
+                  contains: q,
+                  mode: "insensitive",
+                },
+              },
+              {
+                lastNameKana: {
+                  contains: q,
+                  mode: "insensitive",
+                },
+              },
+              {
+                firstNameKana: {
+                  contains: q,
+                  mode: "insensitive",
+                },
+              },
+              {
+                employeeNo: {
+                  contains: q,
+                  mode: "insensitive",
+                },
+              },
+              {
+                email: {
+                  contains: q,
+                  mode: "insensitive",
+                },
+              },
+              {
+                occupation: {
+                  contains: q,
+                  mode: "insensitive",
+                },
+              },
+              {
+                position: {
+                  contains: q,
+                  mode: "insensitive",
+                },
+              },
+              {
+                department: {
+                  name: {
+                    contains: q,
+                    mode: "insensitive",
+                  },
+                },
+              },
+            ],
+          }
+        : {}),
+      ...(facilityId
+        ? {
+            facilityId,
+          }
+        : {}),
+
+      ...(departmentId
+        ? {
+            departmentId,
+          }
+        : {}),
+      ...(statusQuery
+        ? {
+            status: statusQuery as "PRE_HIRE" | "ACTIVE" | "LEAVE" | "RETIRED",
+          }
+        : {}),
+      ...(employmentType
+        ? {
+            employmentType: employmentType as
+              "FULL_TIME" | "CONTRACT" | "PART_TIME" | "TEMPORARY",
+          }
+        : {}),
+    },
+    include: {
+      facility: true,
+      department: true,
+    },
+    orderBy: {
+      employeeNo: "asc",
+    },
+  });
+  return (
+    <main className="p-8">
+      <BackLink href="/" label="ダッシュボードへ戻る" />
+      <div className="mb-6 flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold">社員一覧</h1>
+          <p className="mt-1 text-sm text-gray-500">
+            社員マスタを確認・検索できます。
+          </p>
+        </div>
+
+        <div className="flex gap-3">
+          <Link
+            href="/employees/new"
+            className="rounded bg-blue-600 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-700"
+          >
+            新規登録
+          </Link>
+
+          <a
+            href="/api/employees/export-excel"
+            className="rounded border bg-green-50 px-4 py-2 font-medium text-green-700rounded border bg-white px-4 py-2 font-medium text-gray-700 transition-colors hover:bg-gray-50"
+          >
+            CSV出力
+          </a>
+
+          <Link
+            href="/employees/import"
+            className="rounded border border-gray-300 bg-white px-4 py-2 font-medium text-gray-700 transition-colors hover:bg-gray-50"
+          >
+            CSVインポート
+          </Link>
+        </div>
+      </div>
+
+      <form className="mb-6 flex flex-wrap items-center gap-2">
+        <input
+          name="q"
+          defaultValue={q}
+          placeholder="氏名、ふりがな、番号、メール、部署、職種、役職、状態で検索..."
+          className="w-full rounded border p-2 md:w-[420px]"
+        />
+
+        <select
+          name="facilityId"
+          defaultValue={facilityId}
+          className="rounded border p-2"
+        >
+          <option value="">全施設</option>
+
+          {facilities.map((facility) => (
+            <option key={facility.id} value={facility.id}>
+              {facility.name}
+            </option>
+          ))}
+        </select>
+
+        <select
+          name="departmentId"
+          defaultValue={departmentId}
+          className="rounded border p-2"
+        >
+          <option value="">全部署</option>
+          {departments.map((department) => (
+            <option key={department.id} value={department.id}>
+              {department.name}
+            </option>
+          ))}
+        </select>
+
+        <select
+          name="status"
+          defaultValue={status}
+          className="rounded border p-2"
+        >
+          <option value="">全状態</option>
+          <option value="PRE_HIRE">採用予定者</option>
+          <option value="ACTIVE">在職</option>
+          <option value="LEAVE">休職</option>
+          <option value="RETIRED">退職</option>
+        </select>
+
+        <select
+          name="employmentType"
+          defaultValue={employmentType}
+          className="rounded border p-2"
+        >
+          <option value="">全雇用形態</option>
+          <option value="FULL_TIME">正職員</option>
+          <option value="CONTRACT">契約職員</option>
+          <option value="PART_TIME">非常勤職員</option>
+          <option value="TEMPORARY">派遣</option>
+        </select>
+
+        <button
+          type="submit"
+          className="rounded bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700"
+        >
+          検索
+        </button>
+
+        {q && (
+          <Link
+            href="/employees"
+            className="rounded border bg-white px-4 py-2 text-gray-600 transition-colors hover:bg-gray-50"
+          >
+            クリア
+          </Link>
+        )}
+      </form>
+
+      <p className="mb-4 font-medium text-gray-600">
+        検索結果: {employees.length}件
+      </p>
+
+      <div className="overflow-x-auto rounded-lg border bg-white">
+        <table className="w-full border-collapse text-sm">
+          <thead>
+            <tr className="bg-gray-50 text-left">
+              <th className="border-b p-3">写真</th>
+              <th className="border-b p-3">社員番号</th>
+              <th className="border-b p-3">氏名</th>
+              <th className="border-b p-3">施設</th>
+              <th className="border-b p-3">部署</th>
+              <th className="border-b p-3">職種</th>
+              <th className="border-b p-3">役職</th>
+              <th className="border-b p-3">状態</th>
+              <th className="border-b p-3">メール</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {employees.length === 0 ? (
+              <tr>
+                <td colSpan={9} className="p-8 text-center text-gray-500">
+                  該当する社員が見つかりません。
+                </td>
+              </tr>
+            ) : (
+              employees.map((employee) => (
+                <tr
+                  key={employee.id}
+                  className="transition-colors hover:bg-gray-50"
+                >
+                  <td className="border-b p-3">
+                    {employee.photoPath ? (
+                      <Image
+                        src={employee.photoPath}
+                        alt={`${employee.lastName} ${employee.firstName}`}
+                        width={40}
+                        height={40}
+                        className="h-10 w-10 rounded-full object-cover border"
+                      />
+                    ) : (
+                      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-xs text-gray-400 border">
+                        なし
+                      </div>
+                    )}
+                  </td>
+                  <td className="border-b p-3 font-mono">
+                    {employee.employeeNo}
+                  </td>
+
+                  <td className="border-b p-3">
+                    <Link
+                      href={`/employees/${employee.id}`}
+                      className="font-medium text-blue-600 hover:underline"
+                    >
+                      {employee.lastName} {employee.firstName}
+                    </Link>
+
+                    {(employee.lastNameKana || employee.firstNameKana) && (
+                      <div className="mt-1 text-xs text-gray-400">
+                        {employee.lastNameKana ?? ""}{" "}
+                        {employee.firstNameKana ?? ""}
+                      </div>
+                    )}
+                  </td>
+
+                  <td className="border-b p-3">
+                    {employee.facility?.name ?? (
+                      <span className="text-gray-400">未設定</span>
+                    )}
+                  </td>
+
+                  <td className="border-b p-3">
+                    {employee.department?.name ?? (
+                      <span className="text-gray-400">未所属</span>
+                    )}
+                  </td>
+
+                  <td className="border-b p-3">{employee.occupation ?? "-"}</td>
+
+                  <td className="border-b p-3">{employee.position ?? "-"}</td>
+
+                  <td className="border-b p-3">
+                    <span
+                      className={`inline-flex rounded-full border px-2 py-1 text-xs font-medium ${getStatusClass(
+                        employee.status,
+                      )}`}
+                    >
+                      {formatStatus(employee.status)}
+                    </span>
+                  </td>
+
+                  <td className="border-b p-3">{employee.email}</td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+      <div className="mt-6">
+        <Link href="/" className="text-sm text-blue-600 hover:underline">
+          ← ダッシュボードに戻る
+        </Link>
+      </div>
+    </main>
+  );
+}

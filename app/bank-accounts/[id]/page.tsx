@@ -1,7 +1,8 @@
 import BackLink from "@/components/BackLink";
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { requireHRManager } from "@/lib/auth-guard";
 
@@ -35,34 +36,42 @@ function getStatusClass(status: string) {
   return "bg-yellow-100 text-yellow-800";
 }
 
-export default async function BankAccountDetailPage({
-  params,
-}: Props) {
+export default async function BankAccountDetailPage({ params }: Props) {
   await requireHRManager();
+
+  const cookieStore = await cookies();
+  const facilityScope = cookieStore.get("facilityScope")?.value ?? "ALL";
 
   const { id } = await params;
 
-  const bankAccount =
-    await prisma.employeeBankAccount.findUnique({
-      where: {
-        id,
-      },
-      include: {
-        employee: {
-          include: {
-            department: true,
-          },
-        },
-        attachments: {
-          orderBy: {
-            createdAt: "desc",
-          },
+  const bankAccount = await prisma.employeeBankAccount.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      employee: {
+        include: {
+          facility: true,
+          department: true,
         },
       },
-    });
+      attachments: {
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
+    },
+  });
 
   if (!bankAccount) {
     redirect("/bank-accounts");
+  }
+
+  if (
+    facilityScope !== "ALL" &&
+    bankAccount.employee.facilityId !== facilityScope
+  ) {
+    notFound();
   }
 
   async function approveBankAccount(formData: FormData) {
@@ -70,12 +79,34 @@ export default async function BankAccountDetailPage({
 
     const session = await requireHRManager();
 
-    const bankAccountId = String(
-      formData.get("bankAccountId") ?? "",
-    ).trim();
+    const bankAccountId = String(formData.get("bankAccountId") ?? "").trim();
 
     if (!bankAccountId) {
       return;
+    }
+
+    const actionCookieStore = await cookies();
+    const actionFacilityScope =
+      actionCookieStore.get("facilityScope")?.value ?? "ALL";
+
+    const targetBankAccount = await prisma.employeeBankAccount.findUnique({
+      where: {
+        id: bankAccountId,
+      },
+      include: {
+        employee: true,
+      },
+    });
+
+    if (!targetBankAccount) {
+      notFound();
+    }
+
+    if (
+      actionFacilityScope !== "ALL" &&
+      targetBankAccount.employee.facilityId !== actionFacilityScope
+    ) {
+      notFound();
     }
 
     await prisma.employeeBankAccount.update({
@@ -100,16 +131,36 @@ export default async function BankAccountDetailPage({
 
     await requireHRManager();
 
-    const bankAccountId = String(
-      formData.get("bankAccountId") ?? "",
-    ).trim();
+    const bankAccountId = String(formData.get("bankAccountId") ?? "").trim();
 
-    const reviewComment = String(
-      formData.get("reviewComment") ?? "",
-    ).trim();
+    const reviewComment = String(formData.get("reviewComment") ?? "").trim();
 
     if (!bankAccountId || !reviewComment) {
       return;
+    }
+
+    const actionCookieStore = await cookies();
+    const actionFacilityScope =
+      actionCookieStore.get("facilityScope")?.value ?? "ALL";
+
+    const targetBankAccount = await prisma.employeeBankAccount.findUnique({
+      where: {
+        id: bankAccountId,
+      },
+      include: {
+        employee: true,
+      },
+    });
+
+    if (!targetBankAccount) {
+      notFound();
+    }
+
+    if (
+      actionFacilityScope !== "ALL" &&
+      targetBankAccount.employee.facilityId !== actionFacilityScope
+    ) {
+      notFound();
     }
 
     await prisma.employeeBankAccount.update({
@@ -130,9 +181,8 @@ export default async function BankAccountDetailPage({
   }
 
   const maskedAccountNumber =
-    "*".repeat(
-      Math.max(bankAccount.accountNumber.length - 4, 0),
-    ) + bankAccount.accountNumber.slice(-4);
+    "*".repeat(Math.max(bankAccount.accountNumber.length - 4, 0)) +
+    bankAccount.accountNumber.slice(-4);
 
   return (
     <main className="mx-auto max-w-5xl p-8">
@@ -140,9 +190,7 @@ export default async function BankAccountDetailPage({
 
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-3xl font-bold">
-            口座情報詳細
-          </h1>
+          <h1 className="text-3xl font-bold">口座情報詳細</h1>
 
           <p className="mt-2 text-sm text-gray-600">
             社員の口座情報と確認書類を確認できます。
@@ -159,145 +207,98 @@ export default async function BankAccountDetailPage({
 
         {bankAccount.verifiedAt && (
           <div className="text-right text-sm text-gray-600">
-            <div>
-              確認者: {bankAccount.verifiedBy ?? "-"}
-            </div>
+            <div>確認者: {bankAccount.verifiedBy ?? "-"}</div>
 
             <div>
-              確認日時:{" "}
-              {bankAccount.verifiedAt.toLocaleString(
-                "ja-JP",
-              )}
+              確認日時: {bankAccount.verifiedAt.toLocaleString("ja-JP")}
             </div>
           </div>
         )}
       </div>
 
       <section className="rounded-lg border bg-white p-6 shadow-sm">
-        <h2 className="mb-4 text-xl font-semibold">
-          社員情報
-        </h2>
+        <h2 className="mb-4 text-xl font-semibold">社員情報</h2>
 
         <dl className="grid grid-cols-1 gap-4 text-sm md:grid-cols-2">
           <div>
-            <dt className="font-medium text-gray-600">
-              社員番号
-            </dt>
+            <dt className="font-medium text-gray-600">社員番号</dt>
+            <dd className="mt-1">{bankAccount.employee.employeeNo}</dd>
+          </div>
+
+          <div>
+            <dt className="font-medium text-gray-600">氏名</dt>
             <dd className="mt-1">
-              {bankAccount.employee.employeeNo}
+              {bankAccount.employee.lastName} {bankAccount.employee.firstName}
             </dd>
           </div>
 
           <div>
-            <dt className="font-medium text-gray-600">
-              氏名
-            </dt>
+            <dt className="font-medium text-gray-600">施設</dt>
             <dd className="mt-1">
-              {bankAccount.employee.lastName}{" "}
-              {bankAccount.employee.firstName}
+              {bankAccount.employee.facility?.name ?? "-"}
             </dd>
           </div>
 
           <div>
-            <dt className="font-medium text-gray-600">
-              部署
-            </dt>
+            <dt className="font-medium text-gray-600">部署</dt>
             <dd className="mt-1">
               {bankAccount.employee.department?.name ?? "-"}
             </dd>
           </div>
 
           <div>
-            <dt className="font-medium text-gray-600">
-              メール
-            </dt>
-            <dd className="mt-1">
-              {bankAccount.employee.email}
-            </dd>
+            <dt className="font-medium text-gray-600">メール</dt>
+            <dd className="mt-1">{bankAccount.employee.email}</dd>
           </div>
         </dl>
       </section>
 
       <section className="mt-6 rounded-lg border bg-white p-6 shadow-sm">
-        <h2 className="mb-4 text-xl font-semibold">
-          口座情報
-        </h2>
+        <h2 className="mb-4 text-xl font-semibold">口座情報</h2>
 
         <dl className="grid grid-cols-1 gap-4 text-sm md:grid-cols-2">
           <div>
-            <dt className="font-medium text-gray-600">
-              銀行種別
-            </dt>
+            <dt className="font-medium text-gray-600">銀行種別</dt>
             <dd className="mt-1">
-              {bankAccount.bankType === "YUCHO"
-                ? "ゆうちょ銀行"
-                : "一般銀行"}
+              {bankAccount.bankType === "YUCHO" ? "ゆうちょ銀行" : "一般銀行"}
             </dd>
           </div>
 
           <div>
-            <dt className="font-medium text-gray-600">
-              金融機関名
-            </dt>
-            <dd className="mt-1">
-              {bankAccount.bankName}
-            </dd>
+            <dt className="font-medium text-gray-600">金融機関名</dt>
+            <dd className="mt-1">{bankAccount.bankName}</dd>
           </div>
 
           <div>
-            <dt className="font-medium text-gray-600">
-              支店名
-            </dt>
-            <dd className="mt-1">
-              {bankAccount.branchName}
-            </dd>
+            <dt className="font-medium text-gray-600">支店名</dt>
+            <dd className="mt-1">{bankAccount.branchName}</dd>
           </div>
 
           <div>
-            <dt className="font-medium text-gray-600">
-              口座種別
-            </dt>
-            <dd className="mt-1">
-              {bankAccount.accountType}
-            </dd>
+            <dt className="font-medium text-gray-600">口座種別</dt>
+            <dd className="mt-1">{bankAccount.accountType}</dd>
           </div>
 
           <div>
-            <dt className="font-medium text-gray-600">
-              口座番号
-            </dt>
-            <dd className="mt-1">
-              {maskedAccountNumber}
-            </dd>
+            <dt className="font-medium text-gray-600">口座番号</dt>
+            <dd className="mt-1">{maskedAccountNumber}</dd>
           </div>
 
           <div>
-            <dt className="font-medium text-gray-600">
-              口座名義
-            </dt>
-            <dd className="mt-1">
-              {bankAccount.accountHolder}
-            </dd>
+            <dt className="font-medium text-gray-600">口座名義</dt>
+            <dd className="mt-1">{bankAccount.accountHolder}</dd>
           </div>
 
           {bankAccount.bankType === "YUCHO" && (
             <>
               <div>
-                <dt className="font-medium text-gray-600">
-                  ゆうちょ記号
-                </dt>
-                <dd className="mt-1">
-                  {bankAccount.yuchoSymbol ?? "-"}
-                </dd>
+                <dt className="font-medium text-gray-600">ゆうちょ記号</dt>
+                <dd className="mt-1">{bankAccount.yuchoSymbol ?? "-"}</dd>
               </div>
 
               <div>
-                <dt className="font-medium text-gray-600">
-                  ゆうちょ番号
-                </dt>
-                <dd className="mt-1">
-                  {bankAccount.yuchoNumber ?? "-"}
-                </dd>
+                <dt className="font-medium text-gray-600">ゆうちょ番号</dt>
+                <dd className="mt-1">{bankAccount.yuchoNumber ?? "-"}</dd>
               </div>
             </>
           )}
@@ -305,21 +306,14 @@ export default async function BankAccountDetailPage({
       </section>
 
       <section className="mt-6 rounded-lg border bg-white p-6 shadow-sm">
-        <h2 className="mb-4 text-xl font-semibold">
-          確認書類
-        </h2>
+        <h2 className="mb-4 text-xl font-semibold">確認書類</h2>
 
         {bankAccount.attachments.length === 0 ? (
-          <p className="text-sm text-gray-500">
-            添付書類はありません。
-          </p>
+          <p className="text-sm text-gray-500">添付書類はありません。</p>
         ) : (
           <ul className="space-y-2 text-sm">
             {bankAccount.attachments.map((attachment) => (
-              <li
-                key={attachment.id}
-                className="rounded border p-3"
-              >
+              <li key={attachment.id} className="rounded border p-3">
                 <a
                   href={attachment.filePath}
                   target="_blank"
@@ -344,24 +338,16 @@ export default async function BankAccountDetailPage({
             差戻しコメント
           </h2>
 
-          <p className="text-sm text-red-700">
-            {bankAccount.reviewComment}
-          </p>
+          <p className="text-sm text-red-700">{bankAccount.reviewComment}</p>
         </section>
       )}
 
       <section className="mt-6 rounded-lg border bg-white p-6 shadow-sm">
-        <h2 className="mb-4 text-xl font-semibold">
-          確認操作
-        </h2>
+        <h2 className="mb-4 text-xl font-semibold">確認操作</h2>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <form action={approveBankAccount} className="flex flex-col gap-2">
-            <input
-              type="hidden"
-              name="bankAccountId"
-              value={bankAccount.id}
-            />
+            <input type="hidden" name="bankAccountId" value={bankAccount.id} />
 
             <button
               type="submit"
@@ -372,11 +358,7 @@ export default async function BankAccountDetailPage({
           </form>
 
           <form action={rejectBankAccount} className="flex flex-col gap-2">
-            <input
-              type="hidden"
-              name="bankAccountId"
-              value={bankAccount.id}
-            />
+            <input type="hidden" name="bankAccountId" value={bankAccount.id} />
 
             <textarea
               name="reviewComment"

@@ -4,11 +4,23 @@ import { prisma } from "@/lib/prisma";
 import { requireHRManager } from "@/lib/auth-guard";
 import { logAudit } from "@/lib/audit-log";
 import { buildFullTimeInitialLeaveGrantPlan } from "@/lib/leave-grant-rules";
+import {
+  grantSummerLeave,
+  grantWinterLeave,
+} from "@/app/actions/seasonal-leave-grant";
 
 async function grantInitialFullTimeLeave() {
   "use server";
 
   const session = await requireHRManager();
+
+  const annualType = await prisma.leaveType.findUnique({
+    where: { code: "ANNUAL" },
+  });
+
+  if (!annualType) {
+    throw new Error("年次有給休暇マスタが見つかりません。");
+  }
 
   const employees = await prisma.employee.findMany({
     where: {
@@ -48,11 +60,39 @@ async function grantInitialFullTimeLeave() {
     await prisma.leaveGrantHistory.createMany({
       data: plan.map((item) => ({
         employeeId: employee.id,
+        leaveTypeId: annualType.id,
         grantDate: item.grantDate,
         grantedDays: item.grantedDays,
         grantType: item.grantType,
         note: item.note,
       })),
+    });
+
+    const currentTypeBalance = await prisma.leaveTypeBalance.findUnique({
+      where: {
+        employeeId_leaveTypeId: {
+          employeeId: employee.id,
+          leaveTypeId: annualType.id,
+        },
+      },
+    });
+
+    await prisma.leaveTypeBalance.upsert({
+      where: {
+        employeeId_leaveTypeId: {
+          employeeId: employee.id,
+          leaveTypeId: annualType.id,
+        },
+      },
+      update: {
+        grantedDays: (currentTypeBalance?.grantedDays ?? 0) + totalGrantedDays,
+      },
+      create: {
+        employeeId: employee.id,
+        leaveTypeId: annualType.id,
+        grantedDays: totalGrantedDays,
+        usedDays: 0,
+      },
     });
 
     const currentBalance = await prisma.leaveBalance.findUnique({
@@ -372,6 +412,15 @@ export default async function LeaveGrantHistoryPage() {
   return (
     <main className="p-8">
       <BackLink href="/" label="ダッシュボードへ戻る" />
+      <div className="mb-4">
+        <a
+          href="/leave-grants/seasonal-preview"
+          className="inline-flex items-center rounded border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
+        >
+          夏季・冬季休暇の付与対象者を確認
+        </a>
+      </div>
+
       <div className="mb-6 flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">有給付与履歴</h1>

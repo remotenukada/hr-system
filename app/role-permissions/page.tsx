@@ -44,52 +44,33 @@ export default async function RolePermissionsPage() {
       <BackLink href="/" label="ダッシュボードへ戻る" />
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">
-            権限マトリクス
-          </h1>
+          <h1 className="text-3xl font-bold text-gray-900">権限マトリクス</h1>
 
           <p className="mt-2 text-sm text-gray-500">
             各ロールが利用できる機能を確認できます。
           </p>
         </div>
-
       </div>
 
       <div className="mb-8 grid gap-4 md:grid-cols-4">
         <div className="rounded-lg border bg-white p-4 shadow-sm">
-          <h3 className="font-semibold text-red-700">
-            ADMIN
-          </h3>
-          <p className="mt-2 text-sm text-gray-600">
-            システム管理者
-          </p>
+          <h3 className="font-semibold text-red-700">システム管理者</h3>
+          <p className="mt-2 text-sm text-gray-600">システム管理者</p>
         </div>
 
         <div className="rounded-lg border bg-white p-4 shadow-sm">
-          <h3 className="font-semibold text-blue-700">
-            HR_MANAGER
-          </h3>
-          <p className="mt-2 text-sm text-gray-600">
-            人事担当者
-          </p>
+          <h3 className="font-semibold text-blue-700">人事管理者</h3>
+          <p className="mt-2 text-sm text-gray-600">人事担当者</p>
         </div>
 
         <div className="rounded-lg border bg-white p-4 shadow-sm">
-          <h3 className="font-semibold text-green-700">
-            MANAGER
-          </h3>
-          <p className="mt-2 text-sm text-gray-600">
-            所属長
-          </p>
+          <h3 className="font-semibold text-green-700">部署責任者</h3>
+          <p className="mt-2 text-sm text-gray-600">所属長</p>
         </div>
 
         <div className="rounded-lg border bg-white p-4 shadow-sm">
-          <h3 className="font-semibold text-gray-700">
-            USER
-          </h3>
-          <p className="mt-2 text-sm text-gray-600">
-            一般利用者
-          </p>
+          <h3 className="font-semibold text-gray-700">一般利用者</h3>
+          <p className="mt-2 text-sm text-gray-600">一般利用者</p>
         </div>
       </div>
 
@@ -118,25 +99,15 @@ export default async function RolePermissionsPage() {
           <tbody>
             {permissions.map((row) => (
               <tr key={row[0]} className="hover:bg-gray-50">
-                <td className="border-b p-3 font-medium">
-                  {row[0]}
-                </td>
+                <td className="border-b p-3 font-medium">{row[0]}</td>
 
-                <td className="border-b p-3 text-center">
-                  {row[1]}
-                </td>
+                <td className="border-b p-3 text-center">{row[1]}</td>
 
-                <td className="border-b p-3 text-center">
-                  {row[2]}
-                </td>
+                <td className="border-b p-3 text-center">{row[2]}</td>
 
-                <td className="border-b p-3 text-center">
-                  {row[3]}
-                </td>
+                <td className="border-b p-3 text-center">{row[3]}</td>
 
-                <td className="border-b p-3 text-center">
-                  {row[4]}
-                </td>
+                <td className="border-b p-3 text-center">{row[4]}</td>
               </tr>
             ))}
           </tbody>
