@@ -54,3 +54,6 @@ public/uploads/*
 # migration backup files
 backup.sql
 uploads-backup.tar.gz
+
+# Private uploaded files
+storage/
