@@ -1,3 +1,4 @@
+import { auth } from "@/auth";
 import { NextResponse } from "next/server";
 import { mkdir, writeFile } from "fs/promises";
 import path from "path";
@@ -22,6 +23,15 @@ function getExtension(fileName: string) {
 }
 
 export async function POST(request: Request) {
+  const session = await auth();
+
+  if (!session?.user) {
+    return NextResponse.json(
+      { error: "ログインが必要です。" },
+      { status: 401 }
+    );
+  }
+
   try {
     const formData = await request.formData();
     const file = formData.get("file");

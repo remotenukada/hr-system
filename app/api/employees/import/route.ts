@@ -1,10 +1,19 @@
+import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { logAudit } from "@/lib/audit-log";
-import { requireHRManager } from "@/lib/auth-guard";
 
 export async function POST(req: Request) {
+  const session = await auth();
+
+  if (!session?.user) {
+    return Response.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  if (!["ADMIN","HR_MANAGER"].includes(session.user.role)) {
+    return Response.json({ error: "Forbidden" }, { status: 403 });
+  }
+
   try {
-    const session = await requireHRManager();
     const formData = await req.formData();
 
     const file = formData.get("file");
@@ -12,7 +21,7 @@ export async function POST(req: Request) {
     if (!(file instanceof File)) {
       return Response.json(
         { error: "CSVファイルが選択されていません" },
-        { status: 400 },
+        { status: 400 }
       );
     }
 
@@ -30,10 +39,10 @@ export async function POST(req: Request) {
 
       const employee = await prisma.employee.create({
         data: {
-          employeeNo: cols[0]?.replaceAll('"', ""),
-          lastName: cols[1]?.replaceAll('"', ""),
-          firstName: cols[2]?.replaceAll('"', ""),
-          email: cols[3]?.replaceAll('"', ""),
+          employeeNo: cols[0]?.replaceAll('"', ''),
+          lastName: cols[1]?.replaceAll('"', ''),
+          firstName: cols[2]?.replaceAll('"', ''),
+          email: cols[3]?.replaceAll('"', ''),
         },
       });
 
@@ -45,10 +54,15 @@ export async function POST(req: Request) {
       });
     }
 
-    return Response.redirect(new URL("/employees", req.url));
+    return Response.redirect(
+      new URL("/employees", req.url)
+    );
   } catch (error) {
     console.error(error);
 
-    return Response.json({ error: "インポート失敗" }, { status: 500 });
+    return Response.json(
+      { error: "インポート失敗" },
+      { status: 500 }
+    );
   }
 }

@@ -1,7 +1,18 @@
+import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import ExcelJS from "exceljs";
 
 export async function GET() {
+  const session = await auth();
+
+  if (!session?.user) {
+    return new Response("Unauthorized", { status: 401 });
+  }
+
+  if (!["ADMIN","HR_MANAGER"].includes(session.user.role)) {
+    return new Response("Forbidden", { status: 403 });
+  }
+
   const employees = await prisma.employee.findMany({
     include: {
       department: true,

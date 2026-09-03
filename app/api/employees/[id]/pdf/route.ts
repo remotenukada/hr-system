@@ -1,3 +1,4 @@
+import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { PDFDocument, rgb } from "pdf-lib";
 import fontkit from "@pdf-lib/fontkit";
@@ -29,6 +30,16 @@ export async function GET(
   _request: Request,
   { params }: RouteContext,
 ) {
+  const session = await auth();
+
+  if (!session?.user) {
+    return new Response("Unauthorized", { status: 401 });
+  }
+
+  if (!["ADMIN", "HR_MANAGER"].includes(session.user.role)) {
+    return new Response("Forbidden", { status: 403 });
+  }
+
   const { id } = await params;
 
   const employee = await prisma.employee.findUnique({
