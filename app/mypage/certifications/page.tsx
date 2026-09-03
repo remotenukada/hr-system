@@ -54,8 +54,17 @@ async function getCurrentEmployee() {
   return employee;
 }
 
-export default async function MyCertificationsPage() {
+type Props = {
+  searchParams: Promise<{
+    error?: string;
+  }>;
+};
+
+export default async function MyCertificationsPage({
+  searchParams,
+}: Props) {
   const employee = await getCurrentEmployee();
+  const { error } = await searchParams;
 
   const certifications = await prisma.certification.findMany({
     orderBy: {
@@ -118,7 +127,37 @@ export default async function MyCertificationsPage() {
       redirect("/mypage/certifications?error=duplicate");
     }
 
-    const files = formData.getAll("certificateFiles");
+    const certificationInfo =
+      await prisma.certification.findUnique({
+        where: {
+          id: targetCertificationId,
+        },
+        select: {
+          name: true,
+        },
+      });
+
+    const isDoctorCertification =
+      certificationInfo?.name.trim() === "医師";
+
+    const doctorFiles = [
+      formData.get("doctorLicenseFile"),
+      formData.get("clinicalTrainingFile"),
+      formData.get("insuranceDoctorFile"),
+    ];
+
+    if (
+      isDoctorCertification &&
+      doctorFiles.some(
+        (file) => !(file instanceof File) || file.size === 0,
+      )
+    ) {
+      redirect("/mypage/certifications?error=doctorAttachments");
+    }
+
+    const files = isDoctorCertification
+      ? doctorFiles
+      : formData.getAll("certificateFiles");
 
     const savedAttachments: {
       fileName: string;
@@ -286,6 +325,13 @@ export default async function MyCertificationsPage() {
         </p>
       </div>
 
+      {error === "doctorAttachments" && (
+        <div className="mb-4 max-w-xl rounded border border-red-300 bg-red-50 p-3 text-sm text-red-700">
+          医師資格登録には「医師免許証」「臨床研修修了登録証」
+          「保険医登録票」の3点すべてが必要です。
+        </div>
+      )}
+
       <section className="mb-8 max-w-xl rounded border bg-white p-6">
         <h2 className="mb-4 text-xl font-bold">
           資格を追加
@@ -348,6 +394,55 @@ export default async function MyCertificationsPage() {
               name="expiryDate"
               className="w-full rounded border p-2"
             />
+          </div>
+
+          <div className="rounded border border-blue-200 bg-blue-50 p-4">
+            <p className="mb-3 text-sm font-bold text-blue-900">
+              医師資格を登録する場合の必須書類
+            </p>
+
+            <div className="space-y-3">
+              <div>
+                <label className="mb-1 block text-sm font-medium">
+                  ① 医師免許証
+                </label>
+                <input
+                  type="file"
+                  name="doctorLicenseFile"
+                  accept="application/pdf,image/jpeg,image/png,image/webp"
+                  className="w-full rounded border bg-white p-2"
+                />
+              </div>
+
+              <div>
+                <label className="mb-1 block text-sm font-medium">
+                  ② 臨床研修修了登録証
+                </label>
+                <input
+                  type="file"
+                  name="clinicalTrainingFile"
+                  accept="application/pdf,image/jpeg,image/png,image/webp"
+                  className="w-full rounded border bg-white p-2"
+                />
+              </div>
+
+              <div>
+                <label className="mb-1 block text-sm font-medium">
+                  ③ 保険医登録票
+                </label>
+                <input
+                  type="file"
+                  name="insuranceDoctorFile"
+                  accept="application/pdf,image/jpeg,image/png,image/webp"
+                  className="w-full rounded border bg-white p-2"
+                />
+              </div>
+            </div>
+
+            <p className="mt-3 text-xs text-blue-800">
+              資格名が「医師」の場合のみ、3点すべてが必須です。
+              各ファイルは5MB以下にしてください。
+            </p>
           </div>
 
           <div>
