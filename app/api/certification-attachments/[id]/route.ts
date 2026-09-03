@@ -82,7 +82,7 @@ export async function GET(
         "Content-Disposition": `inline; filename="${encodeURIComponent(attachment.fileName)}"`,
       },
     });
-  } catch (error) {
+  } catch {
     return new Response("File Not Found", { status: 404 });
   }
 }
