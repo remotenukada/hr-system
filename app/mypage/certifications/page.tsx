@@ -146,8 +146,7 @@ export default async function MyCertificationsPage() {
 
       const uploadDir = path.join(
         process.cwd(),
-        "public",
-        "uploads",
+        "storage",
         "certifications",
       );
 
@@ -165,7 +164,7 @@ export default async function MyCertificationsPage() {
 
       savedAttachments.push({
         fileName: file.name,
-        filePath: `/uploads/certifications/${storedFileName}`,
+        filePath: storedFileName,
         fileType: file.type,
         fileSize: file.size,
       });
@@ -255,15 +254,15 @@ export default async function MyCertificationsPage() {
       },
     });
 
-    if (attachment.filePath.startsWith("/uploads/certifications/")) {
-      const absolutePath = path.join(
-        process.cwd(),
-        "public",
-        attachment.filePath,
-      );
+    const storedFileName = path.basename(attachment.filePath);
+    const absolutePath = path.join(
+      process.cwd(),
+      "storage",
+      "certifications",
+      storedFileName,
+    );
 
-      await unlink(absolutePath).catch(() => undefined);
-    }
+    await unlink(absolutePath).catch(() => undefined);
 
     revalidatePath("/mypage");
     revalidatePath("/mypage/certifications");
@@ -425,7 +424,7 @@ export default async function MyCertificationsPage() {
                             className="flex items-center gap-2"
                           >
                             <a
-                              href={attachment.filePath}
+                              href={`/api/certification-attachments/${attachment.id}`}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="text-blue-600 hover:underline"

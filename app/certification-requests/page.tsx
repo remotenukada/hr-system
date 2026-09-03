@@ -271,7 +271,7 @@ export default async function CertificationRequestsPage({
                       (attachment) => (
                         <li key={attachment.id}>
                           <a
-                            href={attachment.filePath}
+                            href={`/api/certification-attachments/${attachment.id}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-blue-600 hover:underline"

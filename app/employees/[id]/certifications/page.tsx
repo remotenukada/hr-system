@@ -174,8 +174,7 @@ export default async function EmployeeCertificationsPage({
 
       const uploadDir = path.join(
         process.cwd(),
-        "public",
-        "uploads",
+        "storage",
         "certifications",
       );
 
@@ -192,7 +191,7 @@ export default async function EmployeeCertificationsPage({
 
       savedAttachments.push({
         fileName: file.name,
-        filePath: `/uploads/certifications/${storedFileName}`,
+        filePath: storedFileName,
         fileType: file.type,
         fileSize: file.size,
       });
@@ -275,12 +274,15 @@ export default async function EmployeeCertificationsPage({
       },
     });
 
-    if (attachment.filePath.startsWith("/uploads/certifications/")) {
-      const relativePath = attachment.filePath.replace(/^\//, "");
-      const absolutePath = path.join(process.cwd(), "public", relativePath);
+    const storedFileName = path.basename(attachment.filePath);
+    const absolutePath = path.join(
+      process.cwd(),
+      "storage",
+      "certifications",
+      storedFileName,
+    );
 
-      await unlink(absolutePath).catch(() => undefined);
-    }
+    await unlink(absolutePath).catch(() => undefined);
 
     revalidatePath(`/employees/${id}`);
     revalidatePath(`/employees/${id}/certifications`);
@@ -451,7 +453,7 @@ export default async function EmployeeCertificationsPage({
                               className="flex items-center gap-2"
                             >
                               <a
-                                href={attachment.filePath}
+                                href={`/api/certification-attachments/${attachment.id}`}
                                 target="_blank"
                                 rel="noreferrer"
                                 className="text-blue-600 hover:underline"
