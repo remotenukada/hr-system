@@ -8,6 +8,9 @@ async function createCertification(formData: FormData) {
 
   const name = String(formData.get("name") ?? "").trim();
 
+  const expiryManaged =
+    formData.get("expiryManaged") === "on";
+
   if (!name) {
     return;
   }
@@ -15,6 +18,7 @@ async function createCertification(formData: FormData) {
   await prisma.certification.create({
     data: {
       name,
+      expiryManaged,
     },
   });
 
@@ -40,6 +44,16 @@ export default function NewCertificationPage() {
             placeholder="介護福祉士"
             required
           />
+        </div>
+
+        <div>
+          <label className="flex items-center gap-2">
+            <input
+              type="checkbox"
+              name="expiryManaged"
+            />
+            有効期限を管理する
+          </label>
         </div>
 
         <button

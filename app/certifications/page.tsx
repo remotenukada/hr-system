@@ -27,6 +27,7 @@ export default async function CertificationsPage() {
         <thead>
           <tr className="bg-gray-50">
             <th className="border p-2 text-left">資格名</th>
+            <th className="border p-2 text-left">期限管理</th>
           </tr>
         </thead>
 
@@ -34,6 +35,9 @@ export default async function CertificationsPage() {
           {certifications.map((certification) => (
             <tr key={certification.id}>
               <td className="border p-2">{certification.name}</td>
+              <td className="border p-2">
+                {certification.expiryManaged ? "あり" : "なし"}
+              </td>
             </tr>
           ))}
           {certifications.length === 0 && (
