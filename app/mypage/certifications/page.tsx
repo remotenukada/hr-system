@@ -6,6 +6,7 @@ import path from "path";
 import { mkdir, writeFile, unlink } from "fs/promises";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
+import CertificationAttachmentFields from "@/components/CertificationAttachmentFields";
 
 const allowedFileTypes = [
   "application/pdf",
@@ -396,72 +397,7 @@ export default async function MyCertificationsPage({
             />
           </div>
 
-          <div className="rounded border border-blue-200 bg-blue-50 p-4">
-            <p className="mb-3 text-sm font-bold text-blue-900">
-              医師資格を登録する場合の必須書類
-            </p>
-
-            <div className="space-y-3">
-              <div>
-                <label className="mb-1 block text-sm font-medium">
-                  ① 医師免許証
-                </label>
-                <input
-                  type="file"
-                  name="doctorLicenseFile"
-                  accept="application/pdf,image/jpeg,image/png,image/webp"
-                  className="w-full rounded border bg-white p-2"
-                />
-              </div>
-
-              <div>
-                <label className="mb-1 block text-sm font-medium">
-                  ② 臨床研修修了登録証
-                </label>
-                <input
-                  type="file"
-                  name="clinicalTrainingFile"
-                  accept="application/pdf,image/jpeg,image/png,image/webp"
-                  className="w-full rounded border bg-white p-2"
-                />
-              </div>
-
-              <div>
-                <label className="mb-1 block text-sm font-medium">
-                  ③ 保険医登録票
-                </label>
-                <input
-                  type="file"
-                  name="insuranceDoctorFile"
-                  accept="application/pdf,image/jpeg,image/png,image/webp"
-                  className="w-full rounded border bg-white p-2"
-                />
-              </div>
-            </div>
-
-            <p className="mt-3 text-xs text-blue-800">
-              資格名が「医師」の場合のみ、3点すべてが必須です。
-              各ファイルは5MB以下にしてください。
-            </p>
-          </div>
-
-          <div>
-            <label className="mb-1 block text-sm font-medium">
-              資格証・免許証ファイル
-            </label>
-
-            <input
-              type="file"
-              name="certificateFiles"
-              accept="application/pdf,image/jpeg,image/png,image/webp"
-              multiple
-              className="w-full rounded border p-2"
-            />
-
-            <p className="mt-1 text-xs text-gray-500">
-              PDF、JPG、PNG、WebPを複数添付できます。1ファイル最大5MBです。
-            </p>
-          </div>
+          <CertificationAttachmentFields />
 
           <button
             type="submit"
