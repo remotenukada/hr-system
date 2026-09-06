@@ -3,6 +3,7 @@ import Link from "next/link";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { requireHRManager } from "@/lib/auth-guard";
+import { decryptMyNumber, maskMyNumber } from "@/lib/mynumber";
 
 type Props = {
   searchParams?: Promise<{
@@ -199,6 +200,7 @@ export default async function MyNumbersPage({ searchParams }: Props) {
               <th className="border-b p-3 text-left font-medium">施設</th>
               <th className="border-b p-3 text-left font-medium">部署</th>
               <th className="border-b p-3 text-left font-medium">登録状況</th>
+              <th className="border-b p-3 text-left font-medium">マイナンバー</th>
               <th className="border-b p-3 text-left font-medium">状態</th>
               <th className="border-b p-3 text-left font-medium">更新日</th>
               <th className="border-b p-3 text-left font-medium">確認日時</th>
@@ -210,7 +212,7 @@ export default async function MyNumbersPage({ searchParams }: Props) {
           <tbody className="divide-y">
             {myNumbers.length === 0 ? (
               <tr>
-                <td colSpan={10} className="p-8 text-center text-gray-500">
+                <td colSpan={11} className="p-8 text-center text-gray-500">
                   該当するマイナンバー申請情報はありません。
                 </td>
               </tr>
@@ -232,6 +234,10 @@ export default async function MyNumbersPage({ searchParams }: Props) {
                   </td>
 
                   <td className="p-3 text-gray-600">登録済み</td>
+
+                  <td className="p-3 font-mono text-gray-700">
+                    {maskMyNumber(decryptMyNumber(item.encryptedNumber))}
+                  </td>
 
                   <td className="p-3">
                     <span

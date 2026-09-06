@@ -6,11 +6,14 @@ import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { requireHRManager } from "@/lib/auth-guard";
 import { logAudit } from "@/lib/audit-log";
-import { decryptMyNumber } from "@/lib/mynumber";
+import { decryptMyNumber, maskMyNumber } from "@/lib/mynumber";
 
 type Props = {
   params: Promise<{
     id: string;
+  }>;
+  searchParams?: Promise<{
+    show?: string;
   }>;
 };
 
@@ -38,8 +41,13 @@ function getStatusClass(status: string) {
   return "bg-yellow-100 text-yellow-800";
 }
 
-export default async function MyNumberDetailPage({ params }: Props) {
-  await requireHRManager();
+export default async function MyNumberDetailPage({
+  params,
+  searchParams,
+}: Props) {
+  const session = await requireHRManager();
+  const query = await searchParams;
+  const showFullNumber = query?.show === "1";
 
   const cookieStore = await cookies();
   const facilityScope = cookieStore.get("facilityScope")?.value ?? "ALL";
@@ -72,6 +80,20 @@ export default async function MyNumberDetailPage({ params }: Props) {
   }
 
   const decryptedMyNumber = decryptMyNumber(myNumber.encryptedNumber);
+  const displayedMyNumber = showFullNumber
+    ? decryptedMyNumber
+    : maskMyNumber(decryptedMyNumber);
+
+  if (showFullNumber) {
+    await logAudit({
+      userId: session.user.id,
+      userName: session.user.name ?? "管理者",
+      action: "VIEW_MYNUMBER",
+      targetType: "EmployeeMyNumber",
+      targetId: myNumber.id,
+      description: `${myNumber.employee.employeeNo} のマイナンバー実番号を閲覧`,
+    });
+  }
 
   async function approveMyNumber(formData: FormData) {
     "use server";
@@ -276,9 +298,24 @@ export default async function MyNumberDetailPage({ params }: Props) {
           <div>
             <dt className="font-medium text-gray-600">マイナンバー</dt>
             <dd className="mt-1 font-mono text-lg tracking-wider text-red-700">
-              {decryptedMyNumber}
+              {displayedMyNumber}
             </dd>
-            <dd className="mt-1 text-xs text-gray-500">人事担当者確認用</dd>
+
+            <dd className="mt-2">
+              {showFullNumber ? (
+                <Link href={`/my-numbers/${myNumber.id}`} className="text-sm text-blue-600 hover:underline">
+                  マスク表示に戻す
+                </Link>
+              ) : (
+                <Link href={`/my-numbers/${myNumber.id}?show=1`} className="text-sm text-blue-600 hover:underline">
+                  実番号を表示
+                </Link>
+              )}
+            </dd>
+
+            <dd className="mt-1 text-xs text-gray-500">
+              実番号の表示操作は監査ログに記録されます。
+            </dd>
           </div>
 
           <div>

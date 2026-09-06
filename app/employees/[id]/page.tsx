@@ -396,17 +396,6 @@ export default async function EmployeeDetailPage({ params }: Props) {
     ? maskMyNumber(decryptMyNumber(employee.employeeMyNumber.encryptedNumber))
     : null;
 
-  if (employee.employeeMyNumber && canManageMyNumber) {
-    await logAudit({
-      userId: session?.user?.id,
-      userName: session?.user?.name,
-      action: "VIEW_MYNUMBER",
-      targetType: "Employee",
-      targetId: employee.id,
-      description: `${employee?.employeeNo} のマイナンバーを閲覧`,
-    });
-  }
-
   async function updateMyNumber(formData: FormData) {
     "use server";
 
@@ -1306,9 +1295,16 @@ export default async function EmployeeDetailPage({ params }: Props) {
 
             <div className="mb-4 rounded border bg-white p-3">
               <p className="text-xs font-medium text-gray-500">登録状況</p>
-              <p className="mt-1 text-sm font-semibold text-gray-900">
+              <p className="mt-1 font-mono text-sm font-semibold text-gray-900">
                 {maskedMyNumber ?? "未登録"}
               </p>
+
+              {employee.employeeMyNumber && (
+                <Link href={`/my-numbers/${employee.employeeMyNumber.id}`} className="mt-1 block text-xs text-blue-600 hover:underline">
+                  マイナンバー詳細を確認
+                </Link>
+              )}
+
               <p className="mt-1 text-xs text-red-600">
                 ※
                 マイナンバーは暗号化して保存されます。画面には下4桁のみ表示します。
