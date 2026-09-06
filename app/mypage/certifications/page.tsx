@@ -7,6 +7,7 @@ import { mkdir, writeFile, unlink } from "fs/promises";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import CertificationAttachmentFields from "@/components/CertificationAttachmentFields";
+import CertificationExpiryField from "@/components/CertificationExpiryField";
 
 const allowedFileTypes = [
   "application/pdf",
@@ -358,7 +359,13 @@ export default async function MyCertificationsPage({
             >
               <option value="">選択してください</option>
               {certifications.map((certification) => (
-                <option key={certification.id} value={certification.id}>
+                <option
+                  key={certification.id}
+                  value={certification.id}
+                  data-expiry-managed={
+                    certification.expiryManaged ? "true" : "false"
+                  }
+                >
                   {certification.name}
                 </option>
               ))}
@@ -393,17 +400,7 @@ export default async function MyCertificationsPage({
             />
           </div>
 
-          <div>
-            <label className="mb-1 block text-sm font-medium">
-              有効期限
-            </label>
-
-            <input
-              type="date"
-              name="expiryDate"
-              className="w-full rounded border p-2"
-            />
-          </div>
+          <CertificationExpiryField />
 
           <CertificationAttachmentFields />
 

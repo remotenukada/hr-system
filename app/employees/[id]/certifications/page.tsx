@@ -8,6 +8,7 @@ import { mkdir, writeFile, unlink } from "fs/promises";
 import { prisma } from "../../../../lib/prisma";
 import { requireHRManager } from "@/lib/auth-guard";
 import CertificationAttachmentFields from "@/components/CertificationAttachmentFields";
+import CertificationExpiryField from "@/components/CertificationExpiryField";
 
 type Props = {
   params: Promise<{
@@ -400,7 +401,13 @@ export default async function EmployeeCertificationsPage({
             >
               <option value="">既存の資格を選択</option>
               {certifications.map((certification) => (
-                <option key={certification.id} value={certification.id}>
+                <option
+                  key={certification.id}
+                  value={certification.id}
+                  data-expiry-managed={
+                    certification.expiryManaged ? "true" : "false"
+                  }
+                >
                   {certification.name}
                 </option>
               ))}
@@ -430,15 +437,7 @@ export default async function EmployeeCertificationsPage({
             />
           </div>
 
-          <div>
-            <label className="mb-1 block text-sm font-medium">有効期限</label>
-
-            <input
-              type="date"
-              name="expiryDate"
-              className="w-full rounded border p-2"
-            />
-          </div>
+          <CertificationExpiryField />
 
           <CertificationAttachmentFields />
 
