@@ -19,6 +19,11 @@ export default function MastersPage() {
       href: "/contract-type-masters",
       name: "契約区分マスタ",
     },
+
+    {
+      href: "/certifications",
+      name: "資格マスタ",
+    },
     {
       href: "/job-title-masters",
       name: "職種マスタ",
