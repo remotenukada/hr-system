@@ -69,6 +69,13 @@ export default async function MyCertificationsPage({
   const { error } = await searchParams;
 
   const certifications = await prisma.certification.findMany({
+    include: {
+      documentRules: {
+        orderBy: {
+          sortOrder: "asc",
+        },
+      },
+    },
     orderBy: {
       name: "asc",
     },
