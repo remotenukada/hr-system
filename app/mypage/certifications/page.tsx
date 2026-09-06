@@ -144,6 +144,11 @@ export default async function MyCertificationsPage({
         select: {
           name: true,
           expiryManaged: true,
+          documentRules: {
+            orderBy: {
+              sortOrder: "asc",
+            },
+          },
         },
       });
 
@@ -156,36 +161,41 @@ export default async function MyCertificationsPage({
         ? new Date(`${expiryDateRaw}T00:00:00`)
         : null;
 
-    const isDoctorCertification =
-      certificationInfo?.name.trim() === "医師";
+    const documentRules =
+      certificationInfo?.documentRules ?? [];
 
-    const doctorFiles = [
-      formData.get("doctorLicenseFile"),
-      formData.get("clinicalTrainingFile"),
-      formData.get("insuranceDoctorFile"),
-    ];
+    const fileEntries =
+      documentRules.length > 0
+        ? documentRules.map((rule) => ({
+            file: formData.get(`documentRuleFile:${rule.id}`),
+            documentRuleId: rule.id,
+            required: rule.required,
+          }))
+        : formData.getAll("certificateFiles").map((file) => ({
+            file,
+            documentRuleId: null,
+            required: false,
+          }));
 
     if (
-      isDoctorCertification &&
-      doctorFiles.some(
-        (file) => !(file instanceof File) || file.size === 0,
+      fileEntries.some(
+        ({ file, required }) =>
+          required &&
+          (!(file instanceof File) || file.size === 0),
       )
     ) {
       redirect("/mypage/certifications?error=doctorAttachments");
     }
-
-    const files = isDoctorCertification
-      ? doctorFiles
-      : formData.getAll("certificateFiles");
 
     const savedAttachments: {
       fileName: string;
       filePath: string;
       fileType: string;
       fileSize: number;
+      documentRuleId: string | null;
     }[] = [];
 
-    for (const file of files) {
+    for (const { file, documentRuleId } of fileEntries) {
       if (!(file instanceof File) || file.size === 0) {
         continue;
       }
@@ -225,6 +235,7 @@ export default async function MyCertificationsPage({
         filePath: storedFileName,
         fileType: file.type,
         fileSize: file.size,
+        documentRuleId,
       });
     }
 
@@ -409,7 +420,7 @@ export default async function MyCertificationsPage({
 
           <CertificationExpiryField />
 
-          <CertificationAttachmentFields />
+          <CertificationAttachmentFields certifications={certifications} />
 
           <button
             type="submit"

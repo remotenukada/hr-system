@@ -5,13 +5,31 @@ import { useEffect, useRef, useState } from "react";
 const ACCEPTED_FILE_TYPES =
   "application/pdf,image/jpeg,image/png,image/webp";
 
-function normalizeCertificationName(value: string) {
-  return value.replace(/\s+/g, "").trim();
-}
+type DocumentRule = {
+  id: string;
+  documentName: string;
+  required: boolean;
+  sortOrder: number;
+};
 
-export default function CertificationAttachmentFields() {
+type CertificationOption = {
+  id: string;
+  name: string;
+  expiryManaged: boolean;
+  documentRules: DocumentRule[];
+};
+
+type Props = {
+  certifications: CertificationOption[];
+};
+
+export default function CertificationAttachmentFields({
+  certifications,
+}: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isDoctor, setIsDoctor] = useState(false);
+  const [documentRules, setDocumentRules] = useState<DocumentRule[]>([]);
+  const [usesNewCertificationName, setUsesNewCertificationName] =
+    useState(false);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -21,27 +39,34 @@ export default function CertificationAttachmentFields() {
       return;
     }
 
-    const select =
-      form.querySelector<HTMLSelectElement>(
-        'select[name="certificationId"]',
-      );
+    const select = form.querySelector<HTMLSelectElement>(
+      'select[name="certificationId"]',
+    );
 
-    const newNameInput =
-      form.querySelector<HTMLInputElement>(
-        'input[name="newCertificationName"]',
-      );
+    const newNameInput = form.querySelector<HTMLInputElement>(
+      'input[name="newCertificationName"]',
+    );
 
     const update = () => {
-      const selectedName =
-        select?.selectedOptions[0]?.textContent ?? "";
+      const newName = (newNameInput?.value ?? "").trim();
+      const selectedCertificationId = select?.value ?? "";
 
-      const enteredName = newNameInput?.value ?? "";
+      if (newName) {
+        setUsesNewCertificationName(true);
+        setDocumentRules([]);
+        return;
+      }
 
-      const effectiveName =
-        normalizeCertificationName(enteredName) ||
-        normalizeCertificationName(selectedName);
+      setUsesNewCertificationName(false);
 
-      setIsDoctor(effectiveName === "医師");
+      const selectedCertification = certifications.find(
+        (certification) =>
+          certification.id === selectedCertificationId,
+      );
+
+      setDocumentRules(
+        selectedCertification?.documentRules ?? [],
+      );
     };
 
     update();
@@ -53,59 +78,40 @@ export default function CertificationAttachmentFields() {
       select?.removeEventListener("change", update);
       newNameInput?.removeEventListener("input", update);
     };
-  }, []);
+  }, [certifications]);
 
   return (
     <div ref={containerRef}>
-      {isDoctor ? (
+      {!usesNewCertificationName && documentRules.length > 0 ? (
         <div className="rounded border border-blue-200 bg-blue-50 p-4">
           <p className="mb-3 text-sm font-bold text-blue-900">
-            医師資格の必須書類
+            この資格の必要書類
           </p>
 
           <div className="space-y-3">
-            <div>
-              <label className="mb-1 block text-sm font-medium">
-                ① 医師免許証
-              </label>
-              <input
-                type="file"
-                name="doctorLicenseFile"
-                accept={ACCEPTED_FILE_TYPES}
-                required
-                className="w-full rounded border bg-white p-2"
-              />
-            </div>
+            {documentRules.map((rule, index) => (
+              <div key={rule.id}>
+                <label className="mb-1 block text-sm font-medium">
+                  {index + 1}. {rule.documentName}
+                  {rule.required && (
+                    <span className="ml-1 text-red-600">必須</span>
+                  )}
+                </label>
 
-            <div>
-              <label className="mb-1 block text-sm font-medium">
-                ② 臨床研修修了登録証
-              </label>
-              <input
-                type="file"
-                name="clinicalTrainingFile"
-                accept={ACCEPTED_FILE_TYPES}
-                required
-                className="w-full rounded border bg-white p-2"
-              />
-            </div>
-
-            <div>
-              <label className="mb-1 block text-sm font-medium">
-                ③ 保険医登録票
-              </label>
-              <input
-                type="file"
-                name="insuranceDoctorFile"
-                accept={ACCEPTED_FILE_TYPES}
-                required
-                className="w-full rounded border bg-white p-2"
-              />
-            </div>
+                <input
+                  type="file"
+                  name={`documentRuleFile:${rule.id}`}
+                  accept={ACCEPTED_FILE_TYPES}
+                  required={rule.required}
+                  className="w-full rounded border bg-white p-2"
+                />
+              </div>
+            ))}
           </div>
 
           <p className="mt-3 text-xs text-blue-800">
-            医師資格では3点すべて必須です。各ファイルは5MB以下にしてください。
+            必須と表示された書類を添付してください。
+            各ファイルは5MB以下にしてください。
           </p>
         </div>
       ) : (
@@ -123,7 +129,8 @@ export default function CertificationAttachmentFields() {
           />
 
           <p className="mt-1 text-xs text-gray-500">
-            PDF、JPG、PNG、WebPを複数添付できます。1ファイル最大5MBです。
+            PDF、JPG、PNG、WebPを複数添付できます。
+            1ファイル最大5MBです。
           </p>
         </div>
       )}
