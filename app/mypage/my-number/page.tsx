@@ -206,10 +206,6 @@ export default async function MyNumberPage({
 
       <form action={saveMyNumber} className="mt-6 space-y-4">
         <div>
-          <label className="mb-1 block text-sm font-medium">
-            マイナンバー（個人番号 12桁）
-          </label>
-
           <MyNumberInput />
         </div>
 
