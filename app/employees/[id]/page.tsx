@@ -198,6 +198,33 @@ export default async function EmployeeDetailPage({ params }: Props) {
     notFound();
   }
 
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const certificationAlerts = employee.certifications
+    .filter(
+      (item) =>
+        item.certification.expiryManaged &&
+        item.expiryDate,
+    )
+    .map((item) => {
+      const targetDate = new Date(item.expiryDate!);
+      targetDate.setHours(0, 0, 0, 0);
+
+      const remainingDays = Math.ceil(
+        (targetDate.getTime() - today.getTime()) /
+          (24 * 60 * 60 * 1000),
+      );
+
+      return {
+        ...item,
+        remainingDays,
+      };
+    })
+    .filter((item) => item.remainingDays <= 90)
+    .sort((a, b) => a.remainingDays - b.remainingDays);
+
   const inactiveDependents = await prisma.dependent.findMany({
     where: {
       employeeId: employee.id,
@@ -733,6 +760,35 @@ export default async function EmployeeDetailPage({ params }: Props) {
                 >
                   {item.certification.name}
                 </span>
+              ))}
+            </div>
+          )}
+
+          {certificationAlerts.length > 0 && (
+            <div className="mt-4 space-y-2 rounded-lg border border-yellow-200 bg-yellow-50 p-4">
+              <p className="font-semibold text-yellow-800">
+                資格期限アラート
+              </p>
+
+              {certificationAlerts.map((item) => (
+                <div key={item.id} className="text-sm">
+                  {item.remainingDays < 0 ? (
+                    <span className="font-medium text-red-700">
+                      🔴 {item.certification.name}
+                      （期限切れ {Math.abs(item.remainingDays)}日）
+                    </span>
+                  ) : item.remainingDays <= 30 ? (
+                    <span className="font-medium text-orange-700">
+                      🟠 {item.certification.name}
+                      （期限まで {item.remainingDays}日）
+                    </span>
+                  ) : (
+                    <span className="font-medium text-yellow-700">
+                      🟡 {item.certification.name}
+                      （期限まで {item.remainingDays}日）
+                    </span>
+                  )}
+                </div>
               ))}
             </div>
           )}
