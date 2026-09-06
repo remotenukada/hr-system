@@ -372,6 +372,16 @@ exports.Prisma.CertificationScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.CertificationDocumentRuleScalarFieldEnum = {
+  id: 'id',
+  certificationId: 'certificationId',
+  documentName: 'documentName',
+  required: 'required',
+  sortOrder: 'sortOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.EmployeeCertificationScalarFieldEnum = {
   id: 'id',
   employeeId: 'employeeId',
@@ -387,6 +397,7 @@ exports.Prisma.EmployeeCertificationScalarFieldEnum = {
 exports.Prisma.EmployeeCertificationAttachmentScalarFieldEnum = {
   id: 'id',
   employeeCertificationId: 'employeeCertificationId',
+  documentRuleId: 'documentRuleId',
   fileName: 'fileName',
   filePath: 'filePath',
   fileType: 'fileType',
@@ -963,6 +974,7 @@ exports.Prisma.ModelName = {
   ApprovalRoute: 'ApprovalRoute',
   AuditLog: 'AuditLog',
   Certification: 'Certification',
+  CertificationDocumentRule: 'CertificationDocumentRule',
   EmployeeCertification: 'EmployeeCertification',
   EmployeeCertificationAttachment: 'EmployeeCertificationAttachment',
   EmployeeBankAccount: 'EmployeeBankAccount',

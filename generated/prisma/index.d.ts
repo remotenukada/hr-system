@@ -114,6 +114,11 @@ export type AuditLog = $Result.DefaultSelection<Prisma.$AuditLogPayload>
  */
 export type Certification = $Result.DefaultSelection<Prisma.$CertificationPayload>
 /**
+ * Model CertificationDocumentRule
+ * 
+ */
+export type CertificationDocumentRule = $Result.DefaultSelection<Prisma.$CertificationDocumentRulePayload>
+/**
  * Model EmployeeCertification
  * 
  */
@@ -796,6 +801,16 @@ export class PrismaClient<
     * ```
     */
   get certification(): Prisma.CertificationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.certificationDocumentRule`: Exposes CRUD operations for the **CertificationDocumentRule** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CertificationDocumentRules
+    * const certificationDocumentRules = await prisma.certificationDocumentRule.findMany()
+    * ```
+    */
+  get certificationDocumentRule(): Prisma.CertificationDocumentRuleDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.employeeCertification`: Exposes CRUD operations for the **EmployeeCertification** model.
@@ -1540,6 +1555,7 @@ export namespace Prisma {
     ApprovalRoute: 'ApprovalRoute',
     AuditLog: 'AuditLog',
     Certification: 'Certification',
+    CertificationDocumentRule: 'CertificationDocumentRule',
     EmployeeCertification: 'EmployeeCertification',
     EmployeeCertificationAttachment: 'EmployeeCertificationAttachment',
     EmployeeBankAccount: 'EmployeeBankAccount',
@@ -1584,7 +1600,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "userInvitation" | "facility" | "department" | "employee" | "employeeTransfer" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestApproval" | "requestAttachment" | "requestHistory" | "approvalRoute" | "auditLog" | "certification" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster" | "contractTypeMaster" | "jobTitleMaster" | "positionMaster" | "leaveTypeBalance" | "leaveType" | "retirementChecklist" | "loanedAsset" | "retirementCertificate" | "annualLeaveServiceRule" | "annualLeaveEntryRule" | "partTimeAnnualLeaveRule" | "lateRecord" | "earlyLeaveRecord" | "outingRecord"
+      modelProps: "user" | "userInvitation" | "facility" | "department" | "employee" | "employeeTransfer" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestApproval" | "requestAttachment" | "requestHistory" | "approvalRoute" | "auditLog" | "certification" | "certificationDocumentRule" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster" | "contractTypeMaster" | "jobTitleMaster" | "positionMaster" | "leaveTypeBalance" | "leaveType" | "retirementChecklist" | "loanedAsset" | "retirementCertificate" | "annualLeaveServiceRule" | "annualLeaveEntryRule" | "partTimeAnnualLeaveRule" | "lateRecord" | "earlyLeaveRecord" | "outingRecord"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3065,6 +3081,80 @@ export namespace Prisma {
           count: {
             args: Prisma.CertificationCountArgs<ExtArgs>
             result: $Utils.Optional<CertificationCountAggregateOutputType> | number
+          }
+        }
+      }
+      CertificationDocumentRule: {
+        payload: Prisma.$CertificationDocumentRulePayload<ExtArgs>
+        fields: Prisma.CertificationDocumentRuleFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CertificationDocumentRuleFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CertificationDocumentRulePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CertificationDocumentRuleFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CertificationDocumentRulePayload>
+          }
+          findFirst: {
+            args: Prisma.CertificationDocumentRuleFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CertificationDocumentRulePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CertificationDocumentRuleFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CertificationDocumentRulePayload>
+          }
+          findMany: {
+            args: Prisma.CertificationDocumentRuleFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CertificationDocumentRulePayload>[]
+          }
+          create: {
+            args: Prisma.CertificationDocumentRuleCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CertificationDocumentRulePayload>
+          }
+          createMany: {
+            args: Prisma.CertificationDocumentRuleCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CertificationDocumentRuleCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CertificationDocumentRulePayload>[]
+          }
+          delete: {
+            args: Prisma.CertificationDocumentRuleDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CertificationDocumentRulePayload>
+          }
+          update: {
+            args: Prisma.CertificationDocumentRuleUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CertificationDocumentRulePayload>
+          }
+          deleteMany: {
+            args: Prisma.CertificationDocumentRuleDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CertificationDocumentRuleUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CertificationDocumentRuleUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CertificationDocumentRulePayload>[]
+          }
+          upsert: {
+            args: Prisma.CertificationDocumentRuleUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CertificationDocumentRulePayload>
+          }
+          aggregate: {
+            args: Prisma.CertificationDocumentRuleAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCertificationDocumentRule>
+          }
+          groupBy: {
+            args: Prisma.CertificationDocumentRuleGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CertificationDocumentRuleGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CertificationDocumentRuleCountArgs<ExtArgs>
+            result: $Utils.Optional<CertificationDocumentRuleCountAggregateOutputType> | number
           }
         }
       }
@@ -5342,6 +5432,7 @@ export namespace Prisma {
     approvalRoute?: ApprovalRouteOmit
     auditLog?: AuditLogOmit
     certification?: CertificationOmit
+    certificationDocumentRule?: CertificationDocumentRuleOmit
     employeeCertification?: EmployeeCertificationOmit
     employeeCertificationAttachment?: EmployeeCertificationAttachmentOmit
     employeeBankAccount?: EmployeeBankAccountOmit
@@ -5867,10 +5958,12 @@ export namespace Prisma {
 
   export type CertificationCountOutputType = {
     employeeCertifications: number
+    documentRules: number
   }
 
   export type CertificationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employeeCertifications?: boolean | CertificationCountOutputTypeCountEmployeeCertificationsArgs
+    documentRules?: boolean | CertificationCountOutputTypeCountDocumentRulesArgs
   }
 
   // Custom InputTypes
@@ -5889,6 +5982,44 @@ export namespace Prisma {
    */
   export type CertificationCountOutputTypeCountEmployeeCertificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: EmployeeCertificationWhereInput
+  }
+
+  /**
+   * CertificationCountOutputType without action
+   */
+  export type CertificationCountOutputTypeCountDocumentRulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CertificationDocumentRuleWhereInput
+  }
+
+
+  /**
+   * Count Type CertificationDocumentRuleCountOutputType
+   */
+
+  export type CertificationDocumentRuleCountOutputType = {
+    attachments: number
+  }
+
+  export type CertificationDocumentRuleCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    attachments?: boolean | CertificationDocumentRuleCountOutputTypeCountAttachmentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CertificationDocumentRuleCountOutputType without action
+   */
+  export type CertificationDocumentRuleCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CertificationDocumentRuleCountOutputType
+     */
+    select?: CertificationDocumentRuleCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CertificationDocumentRuleCountOutputType without action
+   */
+  export type CertificationDocumentRuleCountOutputTypeCountAttachmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: EmployeeCertificationAttachmentWhereInput
   }
 
 
@@ -29192,6 +29323,7 @@ export namespace Prisma {
     expiryManaged?: boolean
     createdAt?: boolean
     employeeCertifications?: boolean | Certification$employeeCertificationsArgs<ExtArgs>
+    documentRules?: boolean | Certification$documentRulesArgs<ExtArgs>
     _count?: boolean | CertificationCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["certification"]>
 
@@ -29219,6 +29351,7 @@ export namespace Prisma {
   export type CertificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "expiryManaged" | "createdAt", ExtArgs["result"]["certification"]>
   export type CertificationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employeeCertifications?: boolean | Certification$employeeCertificationsArgs<ExtArgs>
+    documentRules?: boolean | Certification$documentRulesArgs<ExtArgs>
     _count?: boolean | CertificationCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type CertificationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -29228,6 +29361,7 @@ export namespace Prisma {
     name: "Certification"
     objects: {
       employeeCertifications: Prisma.$EmployeeCertificationPayload<ExtArgs>[]
+      documentRules: Prisma.$CertificationDocumentRulePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -29629,6 +29763,7 @@ export namespace Prisma {
   export interface Prisma__CertificationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     employeeCertifications<T extends Certification$employeeCertificationsArgs<ExtArgs> = {}>(args?: Subset<T, Certification$employeeCertificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeCertificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    documentRules<T extends Certification$documentRulesArgs<ExtArgs> = {}>(args?: Subset<T, Certification$documentRulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CertificationDocumentRulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -30079,6 +30214,30 @@ export namespace Prisma {
   }
 
   /**
+   * Certification.documentRules
+   */
+  export type Certification$documentRulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CertificationDocumentRule
+     */
+    select?: CertificationDocumentRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CertificationDocumentRule
+     */
+    omit?: CertificationDocumentRuleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CertificationDocumentRuleInclude<ExtArgs> | null
+    where?: CertificationDocumentRuleWhereInput
+    orderBy?: CertificationDocumentRuleOrderByWithRelationInput | CertificationDocumentRuleOrderByWithRelationInput[]
+    cursor?: CertificationDocumentRuleWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CertificationDocumentRuleScalarFieldEnum | CertificationDocumentRuleScalarFieldEnum[]
+  }
+
+  /**
    * Certification without action
    */
   export type CertificationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -30094,6 +30253,1159 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: CertificationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CertificationDocumentRule
+   */
+
+  export type AggregateCertificationDocumentRule = {
+    _count: CertificationDocumentRuleCountAggregateOutputType | null
+    _avg: CertificationDocumentRuleAvgAggregateOutputType | null
+    _sum: CertificationDocumentRuleSumAggregateOutputType | null
+    _min: CertificationDocumentRuleMinAggregateOutputType | null
+    _max: CertificationDocumentRuleMaxAggregateOutputType | null
+  }
+
+  export type CertificationDocumentRuleAvgAggregateOutputType = {
+    sortOrder: number | null
+  }
+
+  export type CertificationDocumentRuleSumAggregateOutputType = {
+    sortOrder: number | null
+  }
+
+  export type CertificationDocumentRuleMinAggregateOutputType = {
+    id: string | null
+    certificationId: string | null
+    documentName: string | null
+    required: boolean | null
+    sortOrder: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CertificationDocumentRuleMaxAggregateOutputType = {
+    id: string | null
+    certificationId: string | null
+    documentName: string | null
+    required: boolean | null
+    sortOrder: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CertificationDocumentRuleCountAggregateOutputType = {
+    id: number
+    certificationId: number
+    documentName: number
+    required: number
+    sortOrder: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type CertificationDocumentRuleAvgAggregateInputType = {
+    sortOrder?: true
+  }
+
+  export type CertificationDocumentRuleSumAggregateInputType = {
+    sortOrder?: true
+  }
+
+  export type CertificationDocumentRuleMinAggregateInputType = {
+    id?: true
+    certificationId?: true
+    documentName?: true
+    required?: true
+    sortOrder?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CertificationDocumentRuleMaxAggregateInputType = {
+    id?: true
+    certificationId?: true
+    documentName?: true
+    required?: true
+    sortOrder?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CertificationDocumentRuleCountAggregateInputType = {
+    id?: true
+    certificationId?: true
+    documentName?: true
+    required?: true
+    sortOrder?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type CertificationDocumentRuleAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CertificationDocumentRule to aggregate.
+     */
+    where?: CertificationDocumentRuleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CertificationDocumentRules to fetch.
+     */
+    orderBy?: CertificationDocumentRuleOrderByWithRelationInput | CertificationDocumentRuleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CertificationDocumentRuleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CertificationDocumentRules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CertificationDocumentRules.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CertificationDocumentRules
+    **/
+    _count?: true | CertificationDocumentRuleCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CertificationDocumentRuleAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CertificationDocumentRuleSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CertificationDocumentRuleMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CertificationDocumentRuleMaxAggregateInputType
+  }
+
+  export type GetCertificationDocumentRuleAggregateType<T extends CertificationDocumentRuleAggregateArgs> = {
+        [P in keyof T & keyof AggregateCertificationDocumentRule]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCertificationDocumentRule[P]>
+      : GetScalarType<T[P], AggregateCertificationDocumentRule[P]>
+  }
+
+
+
+
+  export type CertificationDocumentRuleGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CertificationDocumentRuleWhereInput
+    orderBy?: CertificationDocumentRuleOrderByWithAggregationInput | CertificationDocumentRuleOrderByWithAggregationInput[]
+    by: CertificationDocumentRuleScalarFieldEnum[] | CertificationDocumentRuleScalarFieldEnum
+    having?: CertificationDocumentRuleScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CertificationDocumentRuleCountAggregateInputType | true
+    _avg?: CertificationDocumentRuleAvgAggregateInputType
+    _sum?: CertificationDocumentRuleSumAggregateInputType
+    _min?: CertificationDocumentRuleMinAggregateInputType
+    _max?: CertificationDocumentRuleMaxAggregateInputType
+  }
+
+  export type CertificationDocumentRuleGroupByOutputType = {
+    id: string
+    certificationId: string
+    documentName: string
+    required: boolean
+    sortOrder: number
+    createdAt: Date
+    updatedAt: Date
+    _count: CertificationDocumentRuleCountAggregateOutputType | null
+    _avg: CertificationDocumentRuleAvgAggregateOutputType | null
+    _sum: CertificationDocumentRuleSumAggregateOutputType | null
+    _min: CertificationDocumentRuleMinAggregateOutputType | null
+    _max: CertificationDocumentRuleMaxAggregateOutputType | null
+  }
+
+  type GetCertificationDocumentRuleGroupByPayload<T extends CertificationDocumentRuleGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CertificationDocumentRuleGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CertificationDocumentRuleGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CertificationDocumentRuleGroupByOutputType[P]>
+            : GetScalarType<T[P], CertificationDocumentRuleGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CertificationDocumentRuleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    certificationId?: boolean
+    documentName?: boolean
+    required?: boolean
+    sortOrder?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    certification?: boolean | CertificationDefaultArgs<ExtArgs>
+    attachments?: boolean | CertificationDocumentRule$attachmentsArgs<ExtArgs>
+    _count?: boolean | CertificationDocumentRuleCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["certificationDocumentRule"]>
+
+  export type CertificationDocumentRuleSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    certificationId?: boolean
+    documentName?: boolean
+    required?: boolean
+    sortOrder?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    certification?: boolean | CertificationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["certificationDocumentRule"]>
+
+  export type CertificationDocumentRuleSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    certificationId?: boolean
+    documentName?: boolean
+    required?: boolean
+    sortOrder?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    certification?: boolean | CertificationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["certificationDocumentRule"]>
+
+  export type CertificationDocumentRuleSelectScalar = {
+    id?: boolean
+    certificationId?: boolean
+    documentName?: boolean
+    required?: boolean
+    sortOrder?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type CertificationDocumentRuleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "certificationId" | "documentName" | "required" | "sortOrder" | "createdAt" | "updatedAt", ExtArgs["result"]["certificationDocumentRule"]>
+  export type CertificationDocumentRuleInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    certification?: boolean | CertificationDefaultArgs<ExtArgs>
+    attachments?: boolean | CertificationDocumentRule$attachmentsArgs<ExtArgs>
+    _count?: boolean | CertificationDocumentRuleCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type CertificationDocumentRuleIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    certification?: boolean | CertificationDefaultArgs<ExtArgs>
+  }
+  export type CertificationDocumentRuleIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    certification?: boolean | CertificationDefaultArgs<ExtArgs>
+  }
+
+  export type $CertificationDocumentRulePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CertificationDocumentRule"
+    objects: {
+      certification: Prisma.$CertificationPayload<ExtArgs>
+      attachments: Prisma.$EmployeeCertificationAttachmentPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      certificationId: string
+      documentName: string
+      required: boolean
+      sortOrder: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["certificationDocumentRule"]>
+    composites: {}
+  }
+
+  type CertificationDocumentRuleGetPayload<S extends boolean | null | undefined | CertificationDocumentRuleDefaultArgs> = $Result.GetResult<Prisma.$CertificationDocumentRulePayload, S>
+
+  type CertificationDocumentRuleCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CertificationDocumentRuleFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CertificationDocumentRuleCountAggregateInputType | true
+    }
+
+  export interface CertificationDocumentRuleDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CertificationDocumentRule'], meta: { name: 'CertificationDocumentRule' } }
+    /**
+     * Find zero or one CertificationDocumentRule that matches the filter.
+     * @param {CertificationDocumentRuleFindUniqueArgs} args - Arguments to find a CertificationDocumentRule
+     * @example
+     * // Get one CertificationDocumentRule
+     * const certificationDocumentRule = await prisma.certificationDocumentRule.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CertificationDocumentRuleFindUniqueArgs>(args: SelectSubset<T, CertificationDocumentRuleFindUniqueArgs<ExtArgs>>): Prisma__CertificationDocumentRuleClient<$Result.GetResult<Prisma.$CertificationDocumentRulePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CertificationDocumentRule that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CertificationDocumentRuleFindUniqueOrThrowArgs} args - Arguments to find a CertificationDocumentRule
+     * @example
+     * // Get one CertificationDocumentRule
+     * const certificationDocumentRule = await prisma.certificationDocumentRule.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CertificationDocumentRuleFindUniqueOrThrowArgs>(args: SelectSubset<T, CertificationDocumentRuleFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CertificationDocumentRuleClient<$Result.GetResult<Prisma.$CertificationDocumentRulePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CertificationDocumentRule that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CertificationDocumentRuleFindFirstArgs} args - Arguments to find a CertificationDocumentRule
+     * @example
+     * // Get one CertificationDocumentRule
+     * const certificationDocumentRule = await prisma.certificationDocumentRule.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CertificationDocumentRuleFindFirstArgs>(args?: SelectSubset<T, CertificationDocumentRuleFindFirstArgs<ExtArgs>>): Prisma__CertificationDocumentRuleClient<$Result.GetResult<Prisma.$CertificationDocumentRulePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CertificationDocumentRule that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CertificationDocumentRuleFindFirstOrThrowArgs} args - Arguments to find a CertificationDocumentRule
+     * @example
+     * // Get one CertificationDocumentRule
+     * const certificationDocumentRule = await prisma.certificationDocumentRule.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CertificationDocumentRuleFindFirstOrThrowArgs>(args?: SelectSubset<T, CertificationDocumentRuleFindFirstOrThrowArgs<ExtArgs>>): Prisma__CertificationDocumentRuleClient<$Result.GetResult<Prisma.$CertificationDocumentRulePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CertificationDocumentRules that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CertificationDocumentRuleFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CertificationDocumentRules
+     * const certificationDocumentRules = await prisma.certificationDocumentRule.findMany()
+     * 
+     * // Get first 10 CertificationDocumentRules
+     * const certificationDocumentRules = await prisma.certificationDocumentRule.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const certificationDocumentRuleWithIdOnly = await prisma.certificationDocumentRule.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CertificationDocumentRuleFindManyArgs>(args?: SelectSubset<T, CertificationDocumentRuleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CertificationDocumentRulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CertificationDocumentRule.
+     * @param {CertificationDocumentRuleCreateArgs} args - Arguments to create a CertificationDocumentRule.
+     * @example
+     * // Create one CertificationDocumentRule
+     * const CertificationDocumentRule = await prisma.certificationDocumentRule.create({
+     *   data: {
+     *     // ... data to create a CertificationDocumentRule
+     *   }
+     * })
+     * 
+     */
+    create<T extends CertificationDocumentRuleCreateArgs>(args: SelectSubset<T, CertificationDocumentRuleCreateArgs<ExtArgs>>): Prisma__CertificationDocumentRuleClient<$Result.GetResult<Prisma.$CertificationDocumentRulePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CertificationDocumentRules.
+     * @param {CertificationDocumentRuleCreateManyArgs} args - Arguments to create many CertificationDocumentRules.
+     * @example
+     * // Create many CertificationDocumentRules
+     * const certificationDocumentRule = await prisma.certificationDocumentRule.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CertificationDocumentRuleCreateManyArgs>(args?: SelectSubset<T, CertificationDocumentRuleCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CertificationDocumentRules and returns the data saved in the database.
+     * @param {CertificationDocumentRuleCreateManyAndReturnArgs} args - Arguments to create many CertificationDocumentRules.
+     * @example
+     * // Create many CertificationDocumentRules
+     * const certificationDocumentRule = await prisma.certificationDocumentRule.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CertificationDocumentRules and only return the `id`
+     * const certificationDocumentRuleWithIdOnly = await prisma.certificationDocumentRule.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CertificationDocumentRuleCreateManyAndReturnArgs>(args?: SelectSubset<T, CertificationDocumentRuleCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CertificationDocumentRulePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CertificationDocumentRule.
+     * @param {CertificationDocumentRuleDeleteArgs} args - Arguments to delete one CertificationDocumentRule.
+     * @example
+     * // Delete one CertificationDocumentRule
+     * const CertificationDocumentRule = await prisma.certificationDocumentRule.delete({
+     *   where: {
+     *     // ... filter to delete one CertificationDocumentRule
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CertificationDocumentRuleDeleteArgs>(args: SelectSubset<T, CertificationDocumentRuleDeleteArgs<ExtArgs>>): Prisma__CertificationDocumentRuleClient<$Result.GetResult<Prisma.$CertificationDocumentRulePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CertificationDocumentRule.
+     * @param {CertificationDocumentRuleUpdateArgs} args - Arguments to update one CertificationDocumentRule.
+     * @example
+     * // Update one CertificationDocumentRule
+     * const certificationDocumentRule = await prisma.certificationDocumentRule.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CertificationDocumentRuleUpdateArgs>(args: SelectSubset<T, CertificationDocumentRuleUpdateArgs<ExtArgs>>): Prisma__CertificationDocumentRuleClient<$Result.GetResult<Prisma.$CertificationDocumentRulePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CertificationDocumentRules.
+     * @param {CertificationDocumentRuleDeleteManyArgs} args - Arguments to filter CertificationDocumentRules to delete.
+     * @example
+     * // Delete a few CertificationDocumentRules
+     * const { count } = await prisma.certificationDocumentRule.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CertificationDocumentRuleDeleteManyArgs>(args?: SelectSubset<T, CertificationDocumentRuleDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CertificationDocumentRules.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CertificationDocumentRuleUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CertificationDocumentRules
+     * const certificationDocumentRule = await prisma.certificationDocumentRule.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CertificationDocumentRuleUpdateManyArgs>(args: SelectSubset<T, CertificationDocumentRuleUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CertificationDocumentRules and returns the data updated in the database.
+     * @param {CertificationDocumentRuleUpdateManyAndReturnArgs} args - Arguments to update many CertificationDocumentRules.
+     * @example
+     * // Update many CertificationDocumentRules
+     * const certificationDocumentRule = await prisma.certificationDocumentRule.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CertificationDocumentRules and only return the `id`
+     * const certificationDocumentRuleWithIdOnly = await prisma.certificationDocumentRule.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CertificationDocumentRuleUpdateManyAndReturnArgs>(args: SelectSubset<T, CertificationDocumentRuleUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CertificationDocumentRulePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CertificationDocumentRule.
+     * @param {CertificationDocumentRuleUpsertArgs} args - Arguments to update or create a CertificationDocumentRule.
+     * @example
+     * // Update or create a CertificationDocumentRule
+     * const certificationDocumentRule = await prisma.certificationDocumentRule.upsert({
+     *   create: {
+     *     // ... data to create a CertificationDocumentRule
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CertificationDocumentRule we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CertificationDocumentRuleUpsertArgs>(args: SelectSubset<T, CertificationDocumentRuleUpsertArgs<ExtArgs>>): Prisma__CertificationDocumentRuleClient<$Result.GetResult<Prisma.$CertificationDocumentRulePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CertificationDocumentRules.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CertificationDocumentRuleCountArgs} args - Arguments to filter CertificationDocumentRules to count.
+     * @example
+     * // Count the number of CertificationDocumentRules
+     * const count = await prisma.certificationDocumentRule.count({
+     *   where: {
+     *     // ... the filter for the CertificationDocumentRules we want to count
+     *   }
+     * })
+    **/
+    count<T extends CertificationDocumentRuleCountArgs>(
+      args?: Subset<T, CertificationDocumentRuleCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CertificationDocumentRuleCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CertificationDocumentRule.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CertificationDocumentRuleAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CertificationDocumentRuleAggregateArgs>(args: Subset<T, CertificationDocumentRuleAggregateArgs>): Prisma.PrismaPromise<GetCertificationDocumentRuleAggregateType<T>>
+
+    /**
+     * Group by CertificationDocumentRule.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CertificationDocumentRuleGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CertificationDocumentRuleGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CertificationDocumentRuleGroupByArgs['orderBy'] }
+        : { orderBy?: CertificationDocumentRuleGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CertificationDocumentRuleGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCertificationDocumentRuleGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CertificationDocumentRule model
+   */
+  readonly fields: CertificationDocumentRuleFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CertificationDocumentRule.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CertificationDocumentRuleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    certification<T extends CertificationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CertificationDefaultArgs<ExtArgs>>): Prisma__CertificationClient<$Result.GetResult<Prisma.$CertificationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    attachments<T extends CertificationDocumentRule$attachmentsArgs<ExtArgs> = {}>(args?: Subset<T, CertificationDocumentRule$attachmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeCertificationAttachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CertificationDocumentRule model
+   */
+  interface CertificationDocumentRuleFieldRefs {
+    readonly id: FieldRef<"CertificationDocumentRule", 'String'>
+    readonly certificationId: FieldRef<"CertificationDocumentRule", 'String'>
+    readonly documentName: FieldRef<"CertificationDocumentRule", 'String'>
+    readonly required: FieldRef<"CertificationDocumentRule", 'Boolean'>
+    readonly sortOrder: FieldRef<"CertificationDocumentRule", 'Int'>
+    readonly createdAt: FieldRef<"CertificationDocumentRule", 'DateTime'>
+    readonly updatedAt: FieldRef<"CertificationDocumentRule", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CertificationDocumentRule findUnique
+   */
+  export type CertificationDocumentRuleFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CertificationDocumentRule
+     */
+    select?: CertificationDocumentRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CertificationDocumentRule
+     */
+    omit?: CertificationDocumentRuleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CertificationDocumentRuleInclude<ExtArgs> | null
+    /**
+     * Filter, which CertificationDocumentRule to fetch.
+     */
+    where: CertificationDocumentRuleWhereUniqueInput
+  }
+
+  /**
+   * CertificationDocumentRule findUniqueOrThrow
+   */
+  export type CertificationDocumentRuleFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CertificationDocumentRule
+     */
+    select?: CertificationDocumentRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CertificationDocumentRule
+     */
+    omit?: CertificationDocumentRuleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CertificationDocumentRuleInclude<ExtArgs> | null
+    /**
+     * Filter, which CertificationDocumentRule to fetch.
+     */
+    where: CertificationDocumentRuleWhereUniqueInput
+  }
+
+  /**
+   * CertificationDocumentRule findFirst
+   */
+  export type CertificationDocumentRuleFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CertificationDocumentRule
+     */
+    select?: CertificationDocumentRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CertificationDocumentRule
+     */
+    omit?: CertificationDocumentRuleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CertificationDocumentRuleInclude<ExtArgs> | null
+    /**
+     * Filter, which CertificationDocumentRule to fetch.
+     */
+    where?: CertificationDocumentRuleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CertificationDocumentRules to fetch.
+     */
+    orderBy?: CertificationDocumentRuleOrderByWithRelationInput | CertificationDocumentRuleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CertificationDocumentRules.
+     */
+    cursor?: CertificationDocumentRuleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CertificationDocumentRules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CertificationDocumentRules.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CertificationDocumentRules.
+     */
+    distinct?: CertificationDocumentRuleScalarFieldEnum | CertificationDocumentRuleScalarFieldEnum[]
+  }
+
+  /**
+   * CertificationDocumentRule findFirstOrThrow
+   */
+  export type CertificationDocumentRuleFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CertificationDocumentRule
+     */
+    select?: CertificationDocumentRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CertificationDocumentRule
+     */
+    omit?: CertificationDocumentRuleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CertificationDocumentRuleInclude<ExtArgs> | null
+    /**
+     * Filter, which CertificationDocumentRule to fetch.
+     */
+    where?: CertificationDocumentRuleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CertificationDocumentRules to fetch.
+     */
+    orderBy?: CertificationDocumentRuleOrderByWithRelationInput | CertificationDocumentRuleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CertificationDocumentRules.
+     */
+    cursor?: CertificationDocumentRuleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CertificationDocumentRules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CertificationDocumentRules.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CertificationDocumentRules.
+     */
+    distinct?: CertificationDocumentRuleScalarFieldEnum | CertificationDocumentRuleScalarFieldEnum[]
+  }
+
+  /**
+   * CertificationDocumentRule findMany
+   */
+  export type CertificationDocumentRuleFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CertificationDocumentRule
+     */
+    select?: CertificationDocumentRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CertificationDocumentRule
+     */
+    omit?: CertificationDocumentRuleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CertificationDocumentRuleInclude<ExtArgs> | null
+    /**
+     * Filter, which CertificationDocumentRules to fetch.
+     */
+    where?: CertificationDocumentRuleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CertificationDocumentRules to fetch.
+     */
+    orderBy?: CertificationDocumentRuleOrderByWithRelationInput | CertificationDocumentRuleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CertificationDocumentRules.
+     */
+    cursor?: CertificationDocumentRuleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CertificationDocumentRules from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CertificationDocumentRules.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CertificationDocumentRules.
+     */
+    distinct?: CertificationDocumentRuleScalarFieldEnum | CertificationDocumentRuleScalarFieldEnum[]
+  }
+
+  /**
+   * CertificationDocumentRule create
+   */
+  export type CertificationDocumentRuleCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CertificationDocumentRule
+     */
+    select?: CertificationDocumentRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CertificationDocumentRule
+     */
+    omit?: CertificationDocumentRuleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CertificationDocumentRuleInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CertificationDocumentRule.
+     */
+    data: XOR<CertificationDocumentRuleCreateInput, CertificationDocumentRuleUncheckedCreateInput>
+  }
+
+  /**
+   * CertificationDocumentRule createMany
+   */
+  export type CertificationDocumentRuleCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CertificationDocumentRules.
+     */
+    data: CertificationDocumentRuleCreateManyInput | CertificationDocumentRuleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CertificationDocumentRule createManyAndReturn
+   */
+  export type CertificationDocumentRuleCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CertificationDocumentRule
+     */
+    select?: CertificationDocumentRuleSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CertificationDocumentRule
+     */
+    omit?: CertificationDocumentRuleOmit<ExtArgs> | null
+    /**
+     * The data used to create many CertificationDocumentRules.
+     */
+    data: CertificationDocumentRuleCreateManyInput | CertificationDocumentRuleCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CertificationDocumentRuleIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CertificationDocumentRule update
+   */
+  export type CertificationDocumentRuleUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CertificationDocumentRule
+     */
+    select?: CertificationDocumentRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CertificationDocumentRule
+     */
+    omit?: CertificationDocumentRuleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CertificationDocumentRuleInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CertificationDocumentRule.
+     */
+    data: XOR<CertificationDocumentRuleUpdateInput, CertificationDocumentRuleUncheckedUpdateInput>
+    /**
+     * Choose, which CertificationDocumentRule to update.
+     */
+    where: CertificationDocumentRuleWhereUniqueInput
+  }
+
+  /**
+   * CertificationDocumentRule updateMany
+   */
+  export type CertificationDocumentRuleUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CertificationDocumentRules.
+     */
+    data: XOR<CertificationDocumentRuleUpdateManyMutationInput, CertificationDocumentRuleUncheckedUpdateManyInput>
+    /**
+     * Filter which CertificationDocumentRules to update
+     */
+    where?: CertificationDocumentRuleWhereInput
+    /**
+     * Limit how many CertificationDocumentRules to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CertificationDocumentRule updateManyAndReturn
+   */
+  export type CertificationDocumentRuleUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CertificationDocumentRule
+     */
+    select?: CertificationDocumentRuleSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CertificationDocumentRule
+     */
+    omit?: CertificationDocumentRuleOmit<ExtArgs> | null
+    /**
+     * The data used to update CertificationDocumentRules.
+     */
+    data: XOR<CertificationDocumentRuleUpdateManyMutationInput, CertificationDocumentRuleUncheckedUpdateManyInput>
+    /**
+     * Filter which CertificationDocumentRules to update
+     */
+    where?: CertificationDocumentRuleWhereInput
+    /**
+     * Limit how many CertificationDocumentRules to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CertificationDocumentRuleIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CertificationDocumentRule upsert
+   */
+  export type CertificationDocumentRuleUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CertificationDocumentRule
+     */
+    select?: CertificationDocumentRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CertificationDocumentRule
+     */
+    omit?: CertificationDocumentRuleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CertificationDocumentRuleInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CertificationDocumentRule to update in case it exists.
+     */
+    where: CertificationDocumentRuleWhereUniqueInput
+    /**
+     * In case the CertificationDocumentRule found by the `where` argument doesn't exist, create a new CertificationDocumentRule with this data.
+     */
+    create: XOR<CertificationDocumentRuleCreateInput, CertificationDocumentRuleUncheckedCreateInput>
+    /**
+     * In case the CertificationDocumentRule was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CertificationDocumentRuleUpdateInput, CertificationDocumentRuleUncheckedUpdateInput>
+  }
+
+  /**
+   * CertificationDocumentRule delete
+   */
+  export type CertificationDocumentRuleDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CertificationDocumentRule
+     */
+    select?: CertificationDocumentRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CertificationDocumentRule
+     */
+    omit?: CertificationDocumentRuleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CertificationDocumentRuleInclude<ExtArgs> | null
+    /**
+     * Filter which CertificationDocumentRule to delete.
+     */
+    where: CertificationDocumentRuleWhereUniqueInput
+  }
+
+  /**
+   * CertificationDocumentRule deleteMany
+   */
+  export type CertificationDocumentRuleDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CertificationDocumentRules to delete
+     */
+    where?: CertificationDocumentRuleWhereInput
+    /**
+     * Limit how many CertificationDocumentRules to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CertificationDocumentRule.attachments
+   */
+  export type CertificationDocumentRule$attachmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the EmployeeCertificationAttachment
+     */
+    select?: EmployeeCertificationAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the EmployeeCertificationAttachment
+     */
+    omit?: EmployeeCertificationAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: EmployeeCertificationAttachmentInclude<ExtArgs> | null
+    where?: EmployeeCertificationAttachmentWhereInput
+    orderBy?: EmployeeCertificationAttachmentOrderByWithRelationInput | EmployeeCertificationAttachmentOrderByWithRelationInput[]
+    cursor?: EmployeeCertificationAttachmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: EmployeeCertificationAttachmentScalarFieldEnum | EmployeeCertificationAttachmentScalarFieldEnum[]
+  }
+
+  /**
+   * CertificationDocumentRule without action
+   */
+  export type CertificationDocumentRuleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CertificationDocumentRule
+     */
+    select?: CertificationDocumentRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CertificationDocumentRule
+     */
+    omit?: CertificationDocumentRuleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CertificationDocumentRuleInclude<ExtArgs> | null
   }
 
 
@@ -31273,6 +32585,7 @@ export namespace Prisma {
   export type EmployeeCertificationAttachmentMinAggregateOutputType = {
     id: string | null
     employeeCertificationId: string | null
+    documentRuleId: string | null
     fileName: string | null
     filePath: string | null
     fileType: string | null
@@ -31284,6 +32597,7 @@ export namespace Prisma {
   export type EmployeeCertificationAttachmentMaxAggregateOutputType = {
     id: string | null
     employeeCertificationId: string | null
+    documentRuleId: string | null
     fileName: string | null
     filePath: string | null
     fileType: string | null
@@ -31295,6 +32609,7 @@ export namespace Prisma {
   export type EmployeeCertificationAttachmentCountAggregateOutputType = {
     id: number
     employeeCertificationId: number
+    documentRuleId: number
     fileName: number
     filePath: number
     fileType: number
@@ -31316,6 +32631,7 @@ export namespace Prisma {
   export type EmployeeCertificationAttachmentMinAggregateInputType = {
     id?: true
     employeeCertificationId?: true
+    documentRuleId?: true
     fileName?: true
     filePath?: true
     fileType?: true
@@ -31327,6 +32643,7 @@ export namespace Prisma {
   export type EmployeeCertificationAttachmentMaxAggregateInputType = {
     id?: true
     employeeCertificationId?: true
+    documentRuleId?: true
     fileName?: true
     filePath?: true
     fileType?: true
@@ -31338,6 +32655,7 @@ export namespace Prisma {
   export type EmployeeCertificationAttachmentCountAggregateInputType = {
     id?: true
     employeeCertificationId?: true
+    documentRuleId?: true
     fileName?: true
     filePath?: true
     fileType?: true
@@ -31436,6 +32754,7 @@ export namespace Prisma {
   export type EmployeeCertificationAttachmentGroupByOutputType = {
     id: string
     employeeCertificationId: string
+    documentRuleId: string | null
     fileName: string
     filePath: string
     fileType: string | null
@@ -31466,6 +32785,7 @@ export namespace Prisma {
   export type EmployeeCertificationAttachmentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     employeeCertificationId?: boolean
+    documentRuleId?: boolean
     fileName?: boolean
     filePath?: boolean
     fileType?: boolean
@@ -31473,12 +32793,14 @@ export namespace Prisma {
     createdAt?: boolean
     userInvitationId?: boolean
     employeeCertification?: boolean | EmployeeCertificationDefaultArgs<ExtArgs>
+    documentRule?: boolean | EmployeeCertificationAttachment$documentRuleArgs<ExtArgs>
     userInvitation?: boolean | EmployeeCertificationAttachment$userInvitationArgs<ExtArgs>
   }, ExtArgs["result"]["employeeCertificationAttachment"]>
 
   export type EmployeeCertificationAttachmentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     employeeCertificationId?: boolean
+    documentRuleId?: boolean
     fileName?: boolean
     filePath?: boolean
     fileType?: boolean
@@ -31486,12 +32808,14 @@ export namespace Prisma {
     createdAt?: boolean
     userInvitationId?: boolean
     employeeCertification?: boolean | EmployeeCertificationDefaultArgs<ExtArgs>
+    documentRule?: boolean | EmployeeCertificationAttachment$documentRuleArgs<ExtArgs>
     userInvitation?: boolean | EmployeeCertificationAttachment$userInvitationArgs<ExtArgs>
   }, ExtArgs["result"]["employeeCertificationAttachment"]>
 
   export type EmployeeCertificationAttachmentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     employeeCertificationId?: boolean
+    documentRuleId?: boolean
     fileName?: boolean
     filePath?: boolean
     fileType?: boolean
@@ -31499,12 +32823,14 @@ export namespace Prisma {
     createdAt?: boolean
     userInvitationId?: boolean
     employeeCertification?: boolean | EmployeeCertificationDefaultArgs<ExtArgs>
+    documentRule?: boolean | EmployeeCertificationAttachment$documentRuleArgs<ExtArgs>
     userInvitation?: boolean | EmployeeCertificationAttachment$userInvitationArgs<ExtArgs>
   }, ExtArgs["result"]["employeeCertificationAttachment"]>
 
   export type EmployeeCertificationAttachmentSelectScalar = {
     id?: boolean
     employeeCertificationId?: boolean
+    documentRuleId?: boolean
     fileName?: boolean
     filePath?: boolean
     fileType?: boolean
@@ -31513,17 +32839,20 @@ export namespace Prisma {
     userInvitationId?: boolean
   }
 
-  export type EmployeeCertificationAttachmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeCertificationId" | "fileName" | "filePath" | "fileType" | "fileSize" | "createdAt" | "userInvitationId", ExtArgs["result"]["employeeCertificationAttachment"]>
+  export type EmployeeCertificationAttachmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeCertificationId" | "documentRuleId" | "fileName" | "filePath" | "fileType" | "fileSize" | "createdAt" | "userInvitationId", ExtArgs["result"]["employeeCertificationAttachment"]>
   export type EmployeeCertificationAttachmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employeeCertification?: boolean | EmployeeCertificationDefaultArgs<ExtArgs>
+    documentRule?: boolean | EmployeeCertificationAttachment$documentRuleArgs<ExtArgs>
     userInvitation?: boolean | EmployeeCertificationAttachment$userInvitationArgs<ExtArgs>
   }
   export type EmployeeCertificationAttachmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employeeCertification?: boolean | EmployeeCertificationDefaultArgs<ExtArgs>
+    documentRule?: boolean | EmployeeCertificationAttachment$documentRuleArgs<ExtArgs>
     userInvitation?: boolean | EmployeeCertificationAttachment$userInvitationArgs<ExtArgs>
   }
   export type EmployeeCertificationAttachmentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employeeCertification?: boolean | EmployeeCertificationDefaultArgs<ExtArgs>
+    documentRule?: boolean | EmployeeCertificationAttachment$documentRuleArgs<ExtArgs>
     userInvitation?: boolean | EmployeeCertificationAttachment$userInvitationArgs<ExtArgs>
   }
 
@@ -31531,11 +32860,13 @@ export namespace Prisma {
     name: "EmployeeCertificationAttachment"
     objects: {
       employeeCertification: Prisma.$EmployeeCertificationPayload<ExtArgs>
+      documentRule: Prisma.$CertificationDocumentRulePayload<ExtArgs> | null
       userInvitation: Prisma.$UserInvitationPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       employeeCertificationId: string
+      documentRuleId: string | null
       fileName: string
       filePath: string
       fileType: string | null
@@ -31937,6 +33268,7 @@ export namespace Prisma {
   export interface Prisma__EmployeeCertificationAttachmentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     employeeCertification<T extends EmployeeCertificationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeCertificationDefaultArgs<ExtArgs>>): Prisma__EmployeeCertificationClient<$Result.GetResult<Prisma.$EmployeeCertificationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    documentRule<T extends EmployeeCertificationAttachment$documentRuleArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeCertificationAttachment$documentRuleArgs<ExtArgs>>): Prisma__CertificationDocumentRuleClient<$Result.GetResult<Prisma.$CertificationDocumentRulePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     userInvitation<T extends EmployeeCertificationAttachment$userInvitationArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeCertificationAttachment$userInvitationArgs<ExtArgs>>): Prisma__UserInvitationClient<$Result.GetResult<Prisma.$UserInvitationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -31969,6 +33301,7 @@ export namespace Prisma {
   interface EmployeeCertificationAttachmentFieldRefs {
     readonly id: FieldRef<"EmployeeCertificationAttachment", 'String'>
     readonly employeeCertificationId: FieldRef<"EmployeeCertificationAttachment", 'String'>
+    readonly documentRuleId: FieldRef<"EmployeeCertificationAttachment", 'String'>
     readonly fileName: FieldRef<"EmployeeCertificationAttachment", 'String'>
     readonly filePath: FieldRef<"EmployeeCertificationAttachment", 'String'>
     readonly fileType: FieldRef<"EmployeeCertificationAttachment", 'String'>
@@ -32373,6 +33706,25 @@ export namespace Prisma {
      * Limit how many EmployeeCertificationAttachments to delete.
      */
     limit?: number
+  }
+
+  /**
+   * EmployeeCertificationAttachment.documentRule
+   */
+  export type EmployeeCertificationAttachment$documentRuleArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CertificationDocumentRule
+     */
+    select?: CertificationDocumentRuleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CertificationDocumentRule
+     */
+    omit?: CertificationDocumentRuleOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CertificationDocumentRuleInclude<ExtArgs> | null
+    where?: CertificationDocumentRuleWhereInput
   }
 
   /**
@@ -64295,6 +65647,19 @@ export namespace Prisma {
   export type CertificationScalarFieldEnum = (typeof CertificationScalarFieldEnum)[keyof typeof CertificationScalarFieldEnum]
 
 
+  export const CertificationDocumentRuleScalarFieldEnum: {
+    id: 'id',
+    certificationId: 'certificationId',
+    documentName: 'documentName',
+    required: 'required',
+    sortOrder: 'sortOrder',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type CertificationDocumentRuleScalarFieldEnum = (typeof CertificationDocumentRuleScalarFieldEnum)[keyof typeof CertificationDocumentRuleScalarFieldEnum]
+
+
   export const EmployeeCertificationScalarFieldEnum: {
     id: 'id',
     employeeId: 'employeeId',
@@ -64313,6 +65678,7 @@ export namespace Prisma {
   export const EmployeeCertificationAttachmentScalarFieldEnum: {
     id: 'id',
     employeeCertificationId: 'employeeCertificationId',
+    documentRuleId: 'documentRuleId',
     fileName: 'fileName',
     filePath: 'filePath',
     fileType: 'fileType',
@@ -66819,6 +68185,7 @@ export namespace Prisma {
     expiryManaged?: BoolFilter<"Certification"> | boolean
     createdAt?: DateTimeFilter<"Certification"> | Date | string
     employeeCertifications?: EmployeeCertificationListRelationFilter
+    documentRules?: CertificationDocumentRuleListRelationFilter
   }
 
   export type CertificationOrderByWithRelationInput = {
@@ -66827,6 +68194,7 @@ export namespace Prisma {
     expiryManaged?: SortOrder
     createdAt?: SortOrder
     employeeCertifications?: EmployeeCertificationOrderByRelationAggregateInput
+    documentRules?: CertificationDocumentRuleOrderByRelationAggregateInput
   }
 
   export type CertificationWhereUniqueInput = Prisma.AtLeast<{
@@ -66838,6 +68206,7 @@ export namespace Prisma {
     expiryManaged?: BoolFilter<"Certification"> | boolean
     createdAt?: DateTimeFilter<"Certification"> | Date | string
     employeeCertifications?: EmployeeCertificationListRelationFilter
+    documentRules?: CertificationDocumentRuleListRelationFilter
   }, "id" | "name">
 
   export type CertificationOrderByWithAggregationInput = {
@@ -66858,6 +68227,77 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Certification"> | string
     expiryManaged?: BoolWithAggregatesFilter<"Certification"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Certification"> | Date | string
+  }
+
+  export type CertificationDocumentRuleWhereInput = {
+    AND?: CertificationDocumentRuleWhereInput | CertificationDocumentRuleWhereInput[]
+    OR?: CertificationDocumentRuleWhereInput[]
+    NOT?: CertificationDocumentRuleWhereInput | CertificationDocumentRuleWhereInput[]
+    id?: StringFilter<"CertificationDocumentRule"> | string
+    certificationId?: StringFilter<"CertificationDocumentRule"> | string
+    documentName?: StringFilter<"CertificationDocumentRule"> | string
+    required?: BoolFilter<"CertificationDocumentRule"> | boolean
+    sortOrder?: IntFilter<"CertificationDocumentRule"> | number
+    createdAt?: DateTimeFilter<"CertificationDocumentRule"> | Date | string
+    updatedAt?: DateTimeFilter<"CertificationDocumentRule"> | Date | string
+    certification?: XOR<CertificationScalarRelationFilter, CertificationWhereInput>
+    attachments?: EmployeeCertificationAttachmentListRelationFilter
+  }
+
+  export type CertificationDocumentRuleOrderByWithRelationInput = {
+    id?: SortOrder
+    certificationId?: SortOrder
+    documentName?: SortOrder
+    required?: SortOrder
+    sortOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    certification?: CertificationOrderByWithRelationInput
+    attachments?: EmployeeCertificationAttachmentOrderByRelationAggregateInput
+  }
+
+  export type CertificationDocumentRuleWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    certificationId_documentName?: CertificationDocumentRuleCertificationIdDocumentNameCompoundUniqueInput
+    AND?: CertificationDocumentRuleWhereInput | CertificationDocumentRuleWhereInput[]
+    OR?: CertificationDocumentRuleWhereInput[]
+    NOT?: CertificationDocumentRuleWhereInput | CertificationDocumentRuleWhereInput[]
+    certificationId?: StringFilter<"CertificationDocumentRule"> | string
+    documentName?: StringFilter<"CertificationDocumentRule"> | string
+    required?: BoolFilter<"CertificationDocumentRule"> | boolean
+    sortOrder?: IntFilter<"CertificationDocumentRule"> | number
+    createdAt?: DateTimeFilter<"CertificationDocumentRule"> | Date | string
+    updatedAt?: DateTimeFilter<"CertificationDocumentRule"> | Date | string
+    certification?: XOR<CertificationScalarRelationFilter, CertificationWhereInput>
+    attachments?: EmployeeCertificationAttachmentListRelationFilter
+  }, "id" | "certificationId_documentName">
+
+  export type CertificationDocumentRuleOrderByWithAggregationInput = {
+    id?: SortOrder
+    certificationId?: SortOrder
+    documentName?: SortOrder
+    required?: SortOrder
+    sortOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: CertificationDocumentRuleCountOrderByAggregateInput
+    _avg?: CertificationDocumentRuleAvgOrderByAggregateInput
+    _max?: CertificationDocumentRuleMaxOrderByAggregateInput
+    _min?: CertificationDocumentRuleMinOrderByAggregateInput
+    _sum?: CertificationDocumentRuleSumOrderByAggregateInput
+  }
+
+  export type CertificationDocumentRuleScalarWhereWithAggregatesInput = {
+    AND?: CertificationDocumentRuleScalarWhereWithAggregatesInput | CertificationDocumentRuleScalarWhereWithAggregatesInput[]
+    OR?: CertificationDocumentRuleScalarWhereWithAggregatesInput[]
+    NOT?: CertificationDocumentRuleScalarWhereWithAggregatesInput | CertificationDocumentRuleScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CertificationDocumentRule"> | string
+    certificationId?: StringWithAggregatesFilter<"CertificationDocumentRule"> | string
+    documentName?: StringWithAggregatesFilter<"CertificationDocumentRule"> | string
+    required?: BoolWithAggregatesFilter<"CertificationDocumentRule"> | boolean
+    sortOrder?: IntWithAggregatesFilter<"CertificationDocumentRule"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"CertificationDocumentRule"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"CertificationDocumentRule"> | Date | string
   }
 
   export type EmployeeCertificationWhereInput = {
@@ -66948,6 +68388,7 @@ export namespace Prisma {
     NOT?: EmployeeCertificationAttachmentWhereInput | EmployeeCertificationAttachmentWhereInput[]
     id?: StringFilter<"EmployeeCertificationAttachment"> | string
     employeeCertificationId?: StringFilter<"EmployeeCertificationAttachment"> | string
+    documentRuleId?: StringNullableFilter<"EmployeeCertificationAttachment"> | string | null
     fileName?: StringFilter<"EmployeeCertificationAttachment"> | string
     filePath?: StringFilter<"EmployeeCertificationAttachment"> | string
     fileType?: StringNullableFilter<"EmployeeCertificationAttachment"> | string | null
@@ -66955,12 +68396,14 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"EmployeeCertificationAttachment"> | Date | string
     userInvitationId?: StringNullableFilter<"EmployeeCertificationAttachment"> | string | null
     employeeCertification?: XOR<EmployeeCertificationScalarRelationFilter, EmployeeCertificationWhereInput>
+    documentRule?: XOR<CertificationDocumentRuleNullableScalarRelationFilter, CertificationDocumentRuleWhereInput> | null
     userInvitation?: XOR<UserInvitationNullableScalarRelationFilter, UserInvitationWhereInput> | null
   }
 
   export type EmployeeCertificationAttachmentOrderByWithRelationInput = {
     id?: SortOrder
     employeeCertificationId?: SortOrder
+    documentRuleId?: SortOrderInput | SortOrder
     fileName?: SortOrder
     filePath?: SortOrder
     fileType?: SortOrderInput | SortOrder
@@ -66968,6 +68411,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     userInvitationId?: SortOrderInput | SortOrder
     employeeCertification?: EmployeeCertificationOrderByWithRelationInput
+    documentRule?: CertificationDocumentRuleOrderByWithRelationInput
     userInvitation?: UserInvitationOrderByWithRelationInput
   }
 
@@ -66977,6 +68421,7 @@ export namespace Prisma {
     OR?: EmployeeCertificationAttachmentWhereInput[]
     NOT?: EmployeeCertificationAttachmentWhereInput | EmployeeCertificationAttachmentWhereInput[]
     employeeCertificationId?: StringFilter<"EmployeeCertificationAttachment"> | string
+    documentRuleId?: StringNullableFilter<"EmployeeCertificationAttachment"> | string | null
     fileName?: StringFilter<"EmployeeCertificationAttachment"> | string
     filePath?: StringFilter<"EmployeeCertificationAttachment"> | string
     fileType?: StringNullableFilter<"EmployeeCertificationAttachment"> | string | null
@@ -66984,12 +68429,14 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"EmployeeCertificationAttachment"> | Date | string
     userInvitationId?: StringNullableFilter<"EmployeeCertificationAttachment"> | string | null
     employeeCertification?: XOR<EmployeeCertificationScalarRelationFilter, EmployeeCertificationWhereInput>
+    documentRule?: XOR<CertificationDocumentRuleNullableScalarRelationFilter, CertificationDocumentRuleWhereInput> | null
     userInvitation?: XOR<UserInvitationNullableScalarRelationFilter, UserInvitationWhereInput> | null
   }, "id">
 
   export type EmployeeCertificationAttachmentOrderByWithAggregationInput = {
     id?: SortOrder
     employeeCertificationId?: SortOrder
+    documentRuleId?: SortOrderInput | SortOrder
     fileName?: SortOrder
     filePath?: SortOrder
     fileType?: SortOrderInput | SortOrder
@@ -67009,6 +68456,7 @@ export namespace Prisma {
     NOT?: EmployeeCertificationAttachmentScalarWhereWithAggregatesInput | EmployeeCertificationAttachmentScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"EmployeeCertificationAttachment"> | string
     employeeCertificationId?: StringWithAggregatesFilter<"EmployeeCertificationAttachment"> | string
+    documentRuleId?: StringNullableWithAggregatesFilter<"EmployeeCertificationAttachment"> | string | null
     fileName?: StringWithAggregatesFilter<"EmployeeCertificationAttachment"> | string
     filePath?: StringWithAggregatesFilter<"EmployeeCertificationAttachment"> | string
     fileType?: StringNullableWithAggregatesFilter<"EmployeeCertificationAttachment"> | string | null
@@ -71367,6 +72815,7 @@ export namespace Prisma {
     expiryManaged?: boolean
     createdAt?: Date | string
     employeeCertifications?: EmployeeCertificationCreateNestedManyWithoutCertificationInput
+    documentRules?: CertificationDocumentRuleCreateNestedManyWithoutCertificationInput
   }
 
   export type CertificationUncheckedCreateInput = {
@@ -71375,6 +72824,7 @@ export namespace Prisma {
     expiryManaged?: boolean
     createdAt?: Date | string
     employeeCertifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutCertificationInput
+    documentRules?: CertificationDocumentRuleUncheckedCreateNestedManyWithoutCertificationInput
   }
 
   export type CertificationUpdateInput = {
@@ -71383,6 +72833,7 @@ export namespace Prisma {
     expiryManaged?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeCertifications?: EmployeeCertificationUpdateManyWithoutCertificationNestedInput
+    documentRules?: CertificationDocumentRuleUpdateManyWithoutCertificationNestedInput
   }
 
   export type CertificationUncheckedUpdateInput = {
@@ -71391,6 +72842,7 @@ export namespace Prisma {
     expiryManaged?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeCertifications?: EmployeeCertificationUncheckedUpdateManyWithoutCertificationNestedInput
+    documentRules?: CertificationDocumentRuleUncheckedUpdateManyWithoutCertificationNestedInput
   }
 
   export type CertificationCreateManyInput = {
@@ -71412,6 +72864,79 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     expiryManaged?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CertificationDocumentRuleCreateInput = {
+    id?: string
+    documentName: string
+    required?: boolean
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    certification: CertificationCreateNestedOneWithoutDocumentRulesInput
+    attachments?: EmployeeCertificationAttachmentCreateNestedManyWithoutDocumentRuleInput
+  }
+
+  export type CertificationDocumentRuleUncheckedCreateInput = {
+    id?: string
+    certificationId: string
+    documentName: string
+    required?: boolean
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    attachments?: EmployeeCertificationAttachmentUncheckedCreateNestedManyWithoutDocumentRuleInput
+  }
+
+  export type CertificationDocumentRuleUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    documentName?: StringFieldUpdateOperationsInput | string
+    required?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    certification?: CertificationUpdateOneRequiredWithoutDocumentRulesNestedInput
+    attachments?: EmployeeCertificationAttachmentUpdateManyWithoutDocumentRuleNestedInput
+  }
+
+  export type CertificationDocumentRuleUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    certificationId?: StringFieldUpdateOperationsInput | string
+    documentName?: StringFieldUpdateOperationsInput | string
+    required?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attachments?: EmployeeCertificationAttachmentUncheckedUpdateManyWithoutDocumentRuleNestedInput
+  }
+
+  export type CertificationDocumentRuleCreateManyInput = {
+    id?: string
+    certificationId: string
+    documentName: string
+    required?: boolean
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CertificationDocumentRuleUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    documentName?: StringFieldUpdateOperationsInput | string
+    required?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CertificationDocumentRuleUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    certificationId?: StringFieldUpdateOperationsInput | string
+    documentName?: StringFieldUpdateOperationsInput | string
+    required?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EmployeeCertificationCreateInput = {
@@ -71508,12 +73033,14 @@ export namespace Prisma {
     fileSize?: number | null
     createdAt?: Date | string
     employeeCertification: EmployeeCertificationCreateNestedOneWithoutEmployeeCertificationAttachmentsInput
+    documentRule?: CertificationDocumentRuleCreateNestedOneWithoutAttachmentsInput
     userInvitation?: UserInvitationCreateNestedOneWithoutAttachmentsInput
   }
 
   export type EmployeeCertificationAttachmentUncheckedCreateInput = {
     id?: string
     employeeCertificationId: string
+    documentRuleId?: string | null
     fileName: string
     filePath: string
     fileType?: string | null
@@ -71530,12 +73057,14 @@ export namespace Prisma {
     fileSize?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeCertification?: EmployeeCertificationUpdateOneRequiredWithoutEmployeeCertificationAttachmentsNestedInput
+    documentRule?: CertificationDocumentRuleUpdateOneWithoutAttachmentsNestedInput
     userInvitation?: UserInvitationUpdateOneWithoutAttachmentsNestedInput
   }
 
   export type EmployeeCertificationAttachmentUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     employeeCertificationId?: StringFieldUpdateOperationsInput | string
+    documentRuleId?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: StringFieldUpdateOperationsInput | string
     filePath?: StringFieldUpdateOperationsInput | string
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
@@ -71547,6 +73076,7 @@ export namespace Prisma {
   export type EmployeeCertificationAttachmentCreateManyInput = {
     id?: string
     employeeCertificationId: string
+    documentRuleId?: string | null
     fileName: string
     filePath: string
     fileType?: string | null
@@ -71567,6 +73097,7 @@ export namespace Prisma {
   export type EmployeeCertificationAttachmentUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     employeeCertificationId?: StringFieldUpdateOperationsInput | string
+    documentRuleId?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: StringFieldUpdateOperationsInput | string
     filePath?: StringFieldUpdateOperationsInput | string
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
@@ -76090,6 +77621,16 @@ export namespace Prisma {
     _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
+  export type CertificationDocumentRuleListRelationFilter = {
+    every?: CertificationDocumentRuleWhereInput
+    some?: CertificationDocumentRuleWhereInput
+    none?: CertificationDocumentRuleWhereInput
+  }
+
+  export type CertificationDocumentRuleOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type CertificationCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -76111,16 +77652,59 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
+  export type CertificationScalarRelationFilter = {
+    is?: CertificationWhereInput
+    isNot?: CertificationWhereInput
+  }
+
+  export type CertificationDocumentRuleCertificationIdDocumentNameCompoundUniqueInput = {
+    certificationId: string
+    documentName: string
+  }
+
+  export type CertificationDocumentRuleCountOrderByAggregateInput = {
+    id?: SortOrder
+    certificationId?: SortOrder
+    documentName?: SortOrder
+    required?: SortOrder
+    sortOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CertificationDocumentRuleAvgOrderByAggregateInput = {
+    sortOrder?: SortOrder
+  }
+
+  export type CertificationDocumentRuleMaxOrderByAggregateInput = {
+    id?: SortOrder
+    certificationId?: SortOrder
+    documentName?: SortOrder
+    required?: SortOrder
+    sortOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CertificationDocumentRuleMinOrderByAggregateInput = {
+    id?: SortOrder
+    certificationId?: SortOrder
+    documentName?: SortOrder
+    required?: SortOrder
+    sortOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CertificationDocumentRuleSumOrderByAggregateInput = {
+    sortOrder?: SortOrder
+  }
+
   export type EnumCertificationStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.CertificationStatus | EnumCertificationStatusFieldRefInput<$PrismaModel>
     in?: $Enums.CertificationStatus[] | ListEnumCertificationStatusFieldRefInput<$PrismaModel>
     notIn?: $Enums.CertificationStatus[] | ListEnumCertificationStatusFieldRefInput<$PrismaModel>
     not?: NestedEnumCertificationStatusFilter<$PrismaModel> | $Enums.CertificationStatus
-  }
-
-  export type CertificationScalarRelationFilter = {
-    is?: CertificationWhereInput
-    isNot?: CertificationWhereInput
   }
 
   export type EmployeeCertificationEmployeeIdCertificationIdCompoundUniqueInput = {
@@ -76179,6 +77763,11 @@ export namespace Prisma {
     isNot?: EmployeeCertificationWhereInput
   }
 
+  export type CertificationDocumentRuleNullableScalarRelationFilter = {
+    is?: CertificationDocumentRuleWhereInput | null
+    isNot?: CertificationDocumentRuleWhereInput | null
+  }
+
   export type UserInvitationNullableScalarRelationFilter = {
     is?: UserInvitationWhereInput | null
     isNot?: UserInvitationWhereInput | null
@@ -76187,6 +77776,7 @@ export namespace Prisma {
   export type EmployeeCertificationAttachmentCountOrderByAggregateInput = {
     id?: SortOrder
     employeeCertificationId?: SortOrder
+    documentRuleId?: SortOrder
     fileName?: SortOrder
     filePath?: SortOrder
     fileType?: SortOrder
@@ -76202,6 +77792,7 @@ export namespace Prisma {
   export type EmployeeCertificationAttachmentMaxOrderByAggregateInput = {
     id?: SortOrder
     employeeCertificationId?: SortOrder
+    documentRuleId?: SortOrder
     fileName?: SortOrder
     filePath?: SortOrder
     fileType?: SortOrder
@@ -76213,6 +77804,7 @@ export namespace Prisma {
   export type EmployeeCertificationAttachmentMinOrderByAggregateInput = {
     id?: SortOrder
     employeeCertificationId?: SortOrder
+    documentRuleId?: SortOrder
     fileName?: SortOrder
     filePath?: SortOrder
     fileType?: SortOrder
@@ -79702,11 +81294,25 @@ export namespace Prisma {
     connect?: EmployeeCertificationWhereUniqueInput | EmployeeCertificationWhereUniqueInput[]
   }
 
+  export type CertificationDocumentRuleCreateNestedManyWithoutCertificationInput = {
+    create?: XOR<CertificationDocumentRuleCreateWithoutCertificationInput, CertificationDocumentRuleUncheckedCreateWithoutCertificationInput> | CertificationDocumentRuleCreateWithoutCertificationInput[] | CertificationDocumentRuleUncheckedCreateWithoutCertificationInput[]
+    connectOrCreate?: CertificationDocumentRuleCreateOrConnectWithoutCertificationInput | CertificationDocumentRuleCreateOrConnectWithoutCertificationInput[]
+    createMany?: CertificationDocumentRuleCreateManyCertificationInputEnvelope
+    connect?: CertificationDocumentRuleWhereUniqueInput | CertificationDocumentRuleWhereUniqueInput[]
+  }
+
   export type EmployeeCertificationUncheckedCreateNestedManyWithoutCertificationInput = {
     create?: XOR<EmployeeCertificationCreateWithoutCertificationInput, EmployeeCertificationUncheckedCreateWithoutCertificationInput> | EmployeeCertificationCreateWithoutCertificationInput[] | EmployeeCertificationUncheckedCreateWithoutCertificationInput[]
     connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutCertificationInput | EmployeeCertificationCreateOrConnectWithoutCertificationInput[]
     createMany?: EmployeeCertificationCreateManyCertificationInputEnvelope
     connect?: EmployeeCertificationWhereUniqueInput | EmployeeCertificationWhereUniqueInput[]
+  }
+
+  export type CertificationDocumentRuleUncheckedCreateNestedManyWithoutCertificationInput = {
+    create?: XOR<CertificationDocumentRuleCreateWithoutCertificationInput, CertificationDocumentRuleUncheckedCreateWithoutCertificationInput> | CertificationDocumentRuleCreateWithoutCertificationInput[] | CertificationDocumentRuleUncheckedCreateWithoutCertificationInput[]
+    connectOrCreate?: CertificationDocumentRuleCreateOrConnectWithoutCertificationInput | CertificationDocumentRuleCreateOrConnectWithoutCertificationInput[]
+    createMany?: CertificationDocumentRuleCreateManyCertificationInputEnvelope
+    connect?: CertificationDocumentRuleWhereUniqueInput | CertificationDocumentRuleWhereUniqueInput[]
   }
 
   export type EmployeeCertificationUpdateManyWithoutCertificationNestedInput = {
@@ -79723,6 +81329,20 @@ export namespace Prisma {
     deleteMany?: EmployeeCertificationScalarWhereInput | EmployeeCertificationScalarWhereInput[]
   }
 
+  export type CertificationDocumentRuleUpdateManyWithoutCertificationNestedInput = {
+    create?: XOR<CertificationDocumentRuleCreateWithoutCertificationInput, CertificationDocumentRuleUncheckedCreateWithoutCertificationInput> | CertificationDocumentRuleCreateWithoutCertificationInput[] | CertificationDocumentRuleUncheckedCreateWithoutCertificationInput[]
+    connectOrCreate?: CertificationDocumentRuleCreateOrConnectWithoutCertificationInput | CertificationDocumentRuleCreateOrConnectWithoutCertificationInput[]
+    upsert?: CertificationDocumentRuleUpsertWithWhereUniqueWithoutCertificationInput | CertificationDocumentRuleUpsertWithWhereUniqueWithoutCertificationInput[]
+    createMany?: CertificationDocumentRuleCreateManyCertificationInputEnvelope
+    set?: CertificationDocumentRuleWhereUniqueInput | CertificationDocumentRuleWhereUniqueInput[]
+    disconnect?: CertificationDocumentRuleWhereUniqueInput | CertificationDocumentRuleWhereUniqueInput[]
+    delete?: CertificationDocumentRuleWhereUniqueInput | CertificationDocumentRuleWhereUniqueInput[]
+    connect?: CertificationDocumentRuleWhereUniqueInput | CertificationDocumentRuleWhereUniqueInput[]
+    update?: CertificationDocumentRuleUpdateWithWhereUniqueWithoutCertificationInput | CertificationDocumentRuleUpdateWithWhereUniqueWithoutCertificationInput[]
+    updateMany?: CertificationDocumentRuleUpdateManyWithWhereWithoutCertificationInput | CertificationDocumentRuleUpdateManyWithWhereWithoutCertificationInput[]
+    deleteMany?: CertificationDocumentRuleScalarWhereInput | CertificationDocumentRuleScalarWhereInput[]
+  }
+
   export type EmployeeCertificationUncheckedUpdateManyWithoutCertificationNestedInput = {
     create?: XOR<EmployeeCertificationCreateWithoutCertificationInput, EmployeeCertificationUncheckedCreateWithoutCertificationInput> | EmployeeCertificationCreateWithoutCertificationInput[] | EmployeeCertificationUncheckedCreateWithoutCertificationInput[]
     connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutCertificationInput | EmployeeCertificationCreateOrConnectWithoutCertificationInput[]
@@ -79735,6 +81355,76 @@ export namespace Prisma {
     update?: EmployeeCertificationUpdateWithWhereUniqueWithoutCertificationInput | EmployeeCertificationUpdateWithWhereUniqueWithoutCertificationInput[]
     updateMany?: EmployeeCertificationUpdateManyWithWhereWithoutCertificationInput | EmployeeCertificationUpdateManyWithWhereWithoutCertificationInput[]
     deleteMany?: EmployeeCertificationScalarWhereInput | EmployeeCertificationScalarWhereInput[]
+  }
+
+  export type CertificationDocumentRuleUncheckedUpdateManyWithoutCertificationNestedInput = {
+    create?: XOR<CertificationDocumentRuleCreateWithoutCertificationInput, CertificationDocumentRuleUncheckedCreateWithoutCertificationInput> | CertificationDocumentRuleCreateWithoutCertificationInput[] | CertificationDocumentRuleUncheckedCreateWithoutCertificationInput[]
+    connectOrCreate?: CertificationDocumentRuleCreateOrConnectWithoutCertificationInput | CertificationDocumentRuleCreateOrConnectWithoutCertificationInput[]
+    upsert?: CertificationDocumentRuleUpsertWithWhereUniqueWithoutCertificationInput | CertificationDocumentRuleUpsertWithWhereUniqueWithoutCertificationInput[]
+    createMany?: CertificationDocumentRuleCreateManyCertificationInputEnvelope
+    set?: CertificationDocumentRuleWhereUniqueInput | CertificationDocumentRuleWhereUniqueInput[]
+    disconnect?: CertificationDocumentRuleWhereUniqueInput | CertificationDocumentRuleWhereUniqueInput[]
+    delete?: CertificationDocumentRuleWhereUniqueInput | CertificationDocumentRuleWhereUniqueInput[]
+    connect?: CertificationDocumentRuleWhereUniqueInput | CertificationDocumentRuleWhereUniqueInput[]
+    update?: CertificationDocumentRuleUpdateWithWhereUniqueWithoutCertificationInput | CertificationDocumentRuleUpdateWithWhereUniqueWithoutCertificationInput[]
+    updateMany?: CertificationDocumentRuleUpdateManyWithWhereWithoutCertificationInput | CertificationDocumentRuleUpdateManyWithWhereWithoutCertificationInput[]
+    deleteMany?: CertificationDocumentRuleScalarWhereInput | CertificationDocumentRuleScalarWhereInput[]
+  }
+
+  export type CertificationCreateNestedOneWithoutDocumentRulesInput = {
+    create?: XOR<CertificationCreateWithoutDocumentRulesInput, CertificationUncheckedCreateWithoutDocumentRulesInput>
+    connectOrCreate?: CertificationCreateOrConnectWithoutDocumentRulesInput
+    connect?: CertificationWhereUniqueInput
+  }
+
+  export type EmployeeCertificationAttachmentCreateNestedManyWithoutDocumentRuleInput = {
+    create?: XOR<EmployeeCertificationAttachmentCreateWithoutDocumentRuleInput, EmployeeCertificationAttachmentUncheckedCreateWithoutDocumentRuleInput> | EmployeeCertificationAttachmentCreateWithoutDocumentRuleInput[] | EmployeeCertificationAttachmentUncheckedCreateWithoutDocumentRuleInput[]
+    connectOrCreate?: EmployeeCertificationAttachmentCreateOrConnectWithoutDocumentRuleInput | EmployeeCertificationAttachmentCreateOrConnectWithoutDocumentRuleInput[]
+    createMany?: EmployeeCertificationAttachmentCreateManyDocumentRuleInputEnvelope
+    connect?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+  }
+
+  export type EmployeeCertificationAttachmentUncheckedCreateNestedManyWithoutDocumentRuleInput = {
+    create?: XOR<EmployeeCertificationAttachmentCreateWithoutDocumentRuleInput, EmployeeCertificationAttachmentUncheckedCreateWithoutDocumentRuleInput> | EmployeeCertificationAttachmentCreateWithoutDocumentRuleInput[] | EmployeeCertificationAttachmentUncheckedCreateWithoutDocumentRuleInput[]
+    connectOrCreate?: EmployeeCertificationAttachmentCreateOrConnectWithoutDocumentRuleInput | EmployeeCertificationAttachmentCreateOrConnectWithoutDocumentRuleInput[]
+    createMany?: EmployeeCertificationAttachmentCreateManyDocumentRuleInputEnvelope
+    connect?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+  }
+
+  export type CertificationUpdateOneRequiredWithoutDocumentRulesNestedInput = {
+    create?: XOR<CertificationCreateWithoutDocumentRulesInput, CertificationUncheckedCreateWithoutDocumentRulesInput>
+    connectOrCreate?: CertificationCreateOrConnectWithoutDocumentRulesInput
+    upsert?: CertificationUpsertWithoutDocumentRulesInput
+    connect?: CertificationWhereUniqueInput
+    update?: XOR<XOR<CertificationUpdateToOneWithWhereWithoutDocumentRulesInput, CertificationUpdateWithoutDocumentRulesInput>, CertificationUncheckedUpdateWithoutDocumentRulesInput>
+  }
+
+  export type EmployeeCertificationAttachmentUpdateManyWithoutDocumentRuleNestedInput = {
+    create?: XOR<EmployeeCertificationAttachmentCreateWithoutDocumentRuleInput, EmployeeCertificationAttachmentUncheckedCreateWithoutDocumentRuleInput> | EmployeeCertificationAttachmentCreateWithoutDocumentRuleInput[] | EmployeeCertificationAttachmentUncheckedCreateWithoutDocumentRuleInput[]
+    connectOrCreate?: EmployeeCertificationAttachmentCreateOrConnectWithoutDocumentRuleInput | EmployeeCertificationAttachmentCreateOrConnectWithoutDocumentRuleInput[]
+    upsert?: EmployeeCertificationAttachmentUpsertWithWhereUniqueWithoutDocumentRuleInput | EmployeeCertificationAttachmentUpsertWithWhereUniqueWithoutDocumentRuleInput[]
+    createMany?: EmployeeCertificationAttachmentCreateManyDocumentRuleInputEnvelope
+    set?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+    disconnect?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+    delete?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+    connect?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+    update?: EmployeeCertificationAttachmentUpdateWithWhereUniqueWithoutDocumentRuleInput | EmployeeCertificationAttachmentUpdateWithWhereUniqueWithoutDocumentRuleInput[]
+    updateMany?: EmployeeCertificationAttachmentUpdateManyWithWhereWithoutDocumentRuleInput | EmployeeCertificationAttachmentUpdateManyWithWhereWithoutDocumentRuleInput[]
+    deleteMany?: EmployeeCertificationAttachmentScalarWhereInput | EmployeeCertificationAttachmentScalarWhereInput[]
+  }
+
+  export type EmployeeCertificationAttachmentUncheckedUpdateManyWithoutDocumentRuleNestedInput = {
+    create?: XOR<EmployeeCertificationAttachmentCreateWithoutDocumentRuleInput, EmployeeCertificationAttachmentUncheckedCreateWithoutDocumentRuleInput> | EmployeeCertificationAttachmentCreateWithoutDocumentRuleInput[] | EmployeeCertificationAttachmentUncheckedCreateWithoutDocumentRuleInput[]
+    connectOrCreate?: EmployeeCertificationAttachmentCreateOrConnectWithoutDocumentRuleInput | EmployeeCertificationAttachmentCreateOrConnectWithoutDocumentRuleInput[]
+    upsert?: EmployeeCertificationAttachmentUpsertWithWhereUniqueWithoutDocumentRuleInput | EmployeeCertificationAttachmentUpsertWithWhereUniqueWithoutDocumentRuleInput[]
+    createMany?: EmployeeCertificationAttachmentCreateManyDocumentRuleInputEnvelope
+    set?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+    disconnect?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+    delete?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+    connect?: EmployeeCertificationAttachmentWhereUniqueInput | EmployeeCertificationAttachmentWhereUniqueInput[]
+    update?: EmployeeCertificationAttachmentUpdateWithWhereUniqueWithoutDocumentRuleInput | EmployeeCertificationAttachmentUpdateWithWhereUniqueWithoutDocumentRuleInput[]
+    updateMany?: EmployeeCertificationAttachmentUpdateManyWithWhereWithoutDocumentRuleInput | EmployeeCertificationAttachmentUpdateManyWithWhereWithoutDocumentRuleInput[]
+    deleteMany?: EmployeeCertificationAttachmentScalarWhereInput | EmployeeCertificationAttachmentScalarWhereInput[]
   }
 
   export type CertificationCreateNestedOneWithoutEmployeeCertificationsInput = {
@@ -79817,6 +81507,12 @@ export namespace Prisma {
     connect?: EmployeeCertificationWhereUniqueInput
   }
 
+  export type CertificationDocumentRuleCreateNestedOneWithoutAttachmentsInput = {
+    create?: XOR<CertificationDocumentRuleCreateWithoutAttachmentsInput, CertificationDocumentRuleUncheckedCreateWithoutAttachmentsInput>
+    connectOrCreate?: CertificationDocumentRuleCreateOrConnectWithoutAttachmentsInput
+    connect?: CertificationDocumentRuleWhereUniqueInput
+  }
+
   export type UserInvitationCreateNestedOneWithoutAttachmentsInput = {
     create?: XOR<UserInvitationCreateWithoutAttachmentsInput, UserInvitationUncheckedCreateWithoutAttachmentsInput>
     connectOrCreate?: UserInvitationCreateOrConnectWithoutAttachmentsInput
@@ -79829,6 +81525,16 @@ export namespace Prisma {
     upsert?: EmployeeCertificationUpsertWithoutEmployeeCertificationAttachmentsInput
     connect?: EmployeeCertificationWhereUniqueInput
     update?: XOR<XOR<EmployeeCertificationUpdateToOneWithWhereWithoutEmployeeCertificationAttachmentsInput, EmployeeCertificationUpdateWithoutEmployeeCertificationAttachmentsInput>, EmployeeCertificationUncheckedUpdateWithoutEmployeeCertificationAttachmentsInput>
+  }
+
+  export type CertificationDocumentRuleUpdateOneWithoutAttachmentsNestedInput = {
+    create?: XOR<CertificationDocumentRuleCreateWithoutAttachmentsInput, CertificationDocumentRuleUncheckedCreateWithoutAttachmentsInput>
+    connectOrCreate?: CertificationDocumentRuleCreateOrConnectWithoutAttachmentsInput
+    upsert?: CertificationDocumentRuleUpsertWithoutAttachmentsInput
+    disconnect?: CertificationDocumentRuleWhereInput | boolean
+    delete?: CertificationDocumentRuleWhereInput | boolean
+    connect?: CertificationDocumentRuleWhereUniqueInput
+    update?: XOR<XOR<CertificationDocumentRuleUpdateToOneWithWhereWithoutAttachmentsInput, CertificationDocumentRuleUpdateWithoutAttachmentsInput>, CertificationDocumentRuleUncheckedUpdateWithoutAttachmentsInput>
   }
 
   export type UserInvitationUpdateOneWithoutAttachmentsNestedInput = {
@@ -81242,11 +82948,13 @@ export namespace Prisma {
     fileSize?: number | null
     createdAt?: Date | string
     employeeCertification: EmployeeCertificationCreateNestedOneWithoutEmployeeCertificationAttachmentsInput
+    documentRule?: CertificationDocumentRuleCreateNestedOneWithoutAttachmentsInput
   }
 
   export type EmployeeCertificationAttachmentUncheckedCreateWithoutUserInvitationInput = {
     id?: string
     employeeCertificationId: string
+    documentRuleId?: string | null
     fileName: string
     filePath: string
     fileType?: string | null
@@ -81286,6 +82994,7 @@ export namespace Prisma {
     NOT?: EmployeeCertificationAttachmentScalarWhereInput | EmployeeCertificationAttachmentScalarWhereInput[]
     id?: StringFilter<"EmployeeCertificationAttachment"> | string
     employeeCertificationId?: StringFilter<"EmployeeCertificationAttachment"> | string
+    documentRuleId?: StringNullableFilter<"EmployeeCertificationAttachment"> | string | null
     fileName?: StringFilter<"EmployeeCertificationAttachment"> | string
     filePath?: StringFilter<"EmployeeCertificationAttachment"> | string
     fileType?: StringNullableFilter<"EmployeeCertificationAttachment"> | string | null
@@ -86866,6 +88575,36 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type CertificationDocumentRuleCreateWithoutCertificationInput = {
+    id?: string
+    documentName: string
+    required?: boolean
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    attachments?: EmployeeCertificationAttachmentCreateNestedManyWithoutDocumentRuleInput
+  }
+
+  export type CertificationDocumentRuleUncheckedCreateWithoutCertificationInput = {
+    id?: string
+    documentName: string
+    required?: boolean
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    attachments?: EmployeeCertificationAttachmentUncheckedCreateNestedManyWithoutDocumentRuleInput
+  }
+
+  export type CertificationDocumentRuleCreateOrConnectWithoutCertificationInput = {
+    where: CertificationDocumentRuleWhereUniqueInput
+    create: XOR<CertificationDocumentRuleCreateWithoutCertificationInput, CertificationDocumentRuleUncheckedCreateWithoutCertificationInput>
+  }
+
+  export type CertificationDocumentRuleCreateManyCertificationInputEnvelope = {
+    data: CertificationDocumentRuleCreateManyCertificationInput | CertificationDocumentRuleCreateManyCertificationInput[]
+    skipDuplicates?: boolean
+  }
+
   export type EmployeeCertificationUpsertWithWhereUniqueWithoutCertificationInput = {
     where: EmployeeCertificationWhereUniqueInput
     update: XOR<EmployeeCertificationUpdateWithoutCertificationInput, EmployeeCertificationUncheckedUpdateWithoutCertificationInput>
@@ -86882,11 +88621,137 @@ export namespace Prisma {
     data: XOR<EmployeeCertificationUpdateManyMutationInput, EmployeeCertificationUncheckedUpdateManyWithoutCertificationInput>
   }
 
+  export type CertificationDocumentRuleUpsertWithWhereUniqueWithoutCertificationInput = {
+    where: CertificationDocumentRuleWhereUniqueInput
+    update: XOR<CertificationDocumentRuleUpdateWithoutCertificationInput, CertificationDocumentRuleUncheckedUpdateWithoutCertificationInput>
+    create: XOR<CertificationDocumentRuleCreateWithoutCertificationInput, CertificationDocumentRuleUncheckedCreateWithoutCertificationInput>
+  }
+
+  export type CertificationDocumentRuleUpdateWithWhereUniqueWithoutCertificationInput = {
+    where: CertificationDocumentRuleWhereUniqueInput
+    data: XOR<CertificationDocumentRuleUpdateWithoutCertificationInput, CertificationDocumentRuleUncheckedUpdateWithoutCertificationInput>
+  }
+
+  export type CertificationDocumentRuleUpdateManyWithWhereWithoutCertificationInput = {
+    where: CertificationDocumentRuleScalarWhereInput
+    data: XOR<CertificationDocumentRuleUpdateManyMutationInput, CertificationDocumentRuleUncheckedUpdateManyWithoutCertificationInput>
+  }
+
+  export type CertificationDocumentRuleScalarWhereInput = {
+    AND?: CertificationDocumentRuleScalarWhereInput | CertificationDocumentRuleScalarWhereInput[]
+    OR?: CertificationDocumentRuleScalarWhereInput[]
+    NOT?: CertificationDocumentRuleScalarWhereInput | CertificationDocumentRuleScalarWhereInput[]
+    id?: StringFilter<"CertificationDocumentRule"> | string
+    certificationId?: StringFilter<"CertificationDocumentRule"> | string
+    documentName?: StringFilter<"CertificationDocumentRule"> | string
+    required?: BoolFilter<"CertificationDocumentRule"> | boolean
+    sortOrder?: IntFilter<"CertificationDocumentRule"> | number
+    createdAt?: DateTimeFilter<"CertificationDocumentRule"> | Date | string
+    updatedAt?: DateTimeFilter<"CertificationDocumentRule"> | Date | string
+  }
+
+  export type CertificationCreateWithoutDocumentRulesInput = {
+    id?: string
+    name: string
+    expiryManaged?: boolean
+    createdAt?: Date | string
+    employeeCertifications?: EmployeeCertificationCreateNestedManyWithoutCertificationInput
+  }
+
+  export type CertificationUncheckedCreateWithoutDocumentRulesInput = {
+    id?: string
+    name: string
+    expiryManaged?: boolean
+    createdAt?: Date | string
+    employeeCertifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutCertificationInput
+  }
+
+  export type CertificationCreateOrConnectWithoutDocumentRulesInput = {
+    where: CertificationWhereUniqueInput
+    create: XOR<CertificationCreateWithoutDocumentRulesInput, CertificationUncheckedCreateWithoutDocumentRulesInput>
+  }
+
+  export type EmployeeCertificationAttachmentCreateWithoutDocumentRuleInput = {
+    id?: string
+    fileName: string
+    filePath: string
+    fileType?: string | null
+    fileSize?: number | null
+    createdAt?: Date | string
+    employeeCertification: EmployeeCertificationCreateNestedOneWithoutEmployeeCertificationAttachmentsInput
+    userInvitation?: UserInvitationCreateNestedOneWithoutAttachmentsInput
+  }
+
+  export type EmployeeCertificationAttachmentUncheckedCreateWithoutDocumentRuleInput = {
+    id?: string
+    employeeCertificationId: string
+    fileName: string
+    filePath: string
+    fileType?: string | null
+    fileSize?: number | null
+    createdAt?: Date | string
+    userInvitationId?: string | null
+  }
+
+  export type EmployeeCertificationAttachmentCreateOrConnectWithoutDocumentRuleInput = {
+    where: EmployeeCertificationAttachmentWhereUniqueInput
+    create: XOR<EmployeeCertificationAttachmentCreateWithoutDocumentRuleInput, EmployeeCertificationAttachmentUncheckedCreateWithoutDocumentRuleInput>
+  }
+
+  export type EmployeeCertificationAttachmentCreateManyDocumentRuleInputEnvelope = {
+    data: EmployeeCertificationAttachmentCreateManyDocumentRuleInput | EmployeeCertificationAttachmentCreateManyDocumentRuleInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CertificationUpsertWithoutDocumentRulesInput = {
+    update: XOR<CertificationUpdateWithoutDocumentRulesInput, CertificationUncheckedUpdateWithoutDocumentRulesInput>
+    create: XOR<CertificationCreateWithoutDocumentRulesInput, CertificationUncheckedCreateWithoutDocumentRulesInput>
+    where?: CertificationWhereInput
+  }
+
+  export type CertificationUpdateToOneWithWhereWithoutDocumentRulesInput = {
+    where?: CertificationWhereInput
+    data: XOR<CertificationUpdateWithoutDocumentRulesInput, CertificationUncheckedUpdateWithoutDocumentRulesInput>
+  }
+
+  export type CertificationUpdateWithoutDocumentRulesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    expiryManaged?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employeeCertifications?: EmployeeCertificationUpdateManyWithoutCertificationNestedInput
+  }
+
+  export type CertificationUncheckedUpdateWithoutDocumentRulesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    expiryManaged?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employeeCertifications?: EmployeeCertificationUncheckedUpdateManyWithoutCertificationNestedInput
+  }
+
+  export type EmployeeCertificationAttachmentUpsertWithWhereUniqueWithoutDocumentRuleInput = {
+    where: EmployeeCertificationAttachmentWhereUniqueInput
+    update: XOR<EmployeeCertificationAttachmentUpdateWithoutDocumentRuleInput, EmployeeCertificationAttachmentUncheckedUpdateWithoutDocumentRuleInput>
+    create: XOR<EmployeeCertificationAttachmentCreateWithoutDocumentRuleInput, EmployeeCertificationAttachmentUncheckedCreateWithoutDocumentRuleInput>
+  }
+
+  export type EmployeeCertificationAttachmentUpdateWithWhereUniqueWithoutDocumentRuleInput = {
+    where: EmployeeCertificationAttachmentWhereUniqueInput
+    data: XOR<EmployeeCertificationAttachmentUpdateWithoutDocumentRuleInput, EmployeeCertificationAttachmentUncheckedUpdateWithoutDocumentRuleInput>
+  }
+
+  export type EmployeeCertificationAttachmentUpdateManyWithWhereWithoutDocumentRuleInput = {
+    where: EmployeeCertificationAttachmentScalarWhereInput
+    data: XOR<EmployeeCertificationAttachmentUpdateManyMutationInput, EmployeeCertificationAttachmentUncheckedUpdateManyWithoutDocumentRuleInput>
+  }
+
   export type CertificationCreateWithoutEmployeeCertificationsInput = {
     id?: string
     name: string
     expiryManaged?: boolean
     createdAt?: Date | string
+    documentRules?: CertificationDocumentRuleCreateNestedManyWithoutCertificationInput
   }
 
   export type CertificationUncheckedCreateWithoutEmployeeCertificationsInput = {
@@ -86894,6 +88759,7 @@ export namespace Prisma {
     name: string
     expiryManaged?: boolean
     createdAt?: Date | string
+    documentRules?: CertificationDocumentRuleUncheckedCreateNestedManyWithoutCertificationInput
   }
 
   export type CertificationCreateOrConnectWithoutEmployeeCertificationsInput = {
@@ -87019,11 +88885,13 @@ export namespace Prisma {
     fileType?: string | null
     fileSize?: number | null
     createdAt?: Date | string
+    documentRule?: CertificationDocumentRuleCreateNestedOneWithoutAttachmentsInput
     userInvitation?: UserInvitationCreateNestedOneWithoutAttachmentsInput
   }
 
   export type EmployeeCertificationAttachmentUncheckedCreateWithoutEmployeeCertificationInput = {
     id?: string
+    documentRuleId?: string | null
     fileName: string
     filePath: string
     fileType?: string | null
@@ -87058,6 +88926,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     expiryManaged?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    documentRules?: CertificationDocumentRuleUpdateManyWithoutCertificationNestedInput
   }
 
   export type CertificationUncheckedUpdateWithoutEmployeeCertificationsInput = {
@@ -87065,6 +88934,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     expiryManaged?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    documentRules?: CertificationDocumentRuleUncheckedUpdateManyWithoutCertificationNestedInput
   }
 
   export type EmployeeUpsertWithoutCertificationsInput = {
@@ -87229,6 +89099,31 @@ export namespace Prisma {
     create: XOR<EmployeeCertificationCreateWithoutEmployeeCertificationAttachmentsInput, EmployeeCertificationUncheckedCreateWithoutEmployeeCertificationAttachmentsInput>
   }
 
+  export type CertificationDocumentRuleCreateWithoutAttachmentsInput = {
+    id?: string
+    documentName: string
+    required?: boolean
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    certification: CertificationCreateNestedOneWithoutDocumentRulesInput
+  }
+
+  export type CertificationDocumentRuleUncheckedCreateWithoutAttachmentsInput = {
+    id?: string
+    certificationId: string
+    documentName: string
+    required?: boolean
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CertificationDocumentRuleCreateOrConnectWithoutAttachmentsInput = {
+    where: CertificationDocumentRuleWhereUniqueInput
+    create: XOR<CertificationDocumentRuleCreateWithoutAttachmentsInput, CertificationDocumentRuleUncheckedCreateWithoutAttachmentsInput>
+  }
+
   export type UserInvitationCreateWithoutAttachmentsInput = {
     id?: string
     employeeNo: string
@@ -87299,6 +89194,37 @@ export namespace Prisma {
     reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
+  }
+
+  export type CertificationDocumentRuleUpsertWithoutAttachmentsInput = {
+    update: XOR<CertificationDocumentRuleUpdateWithoutAttachmentsInput, CertificationDocumentRuleUncheckedUpdateWithoutAttachmentsInput>
+    create: XOR<CertificationDocumentRuleCreateWithoutAttachmentsInput, CertificationDocumentRuleUncheckedCreateWithoutAttachmentsInput>
+    where?: CertificationDocumentRuleWhereInput
+  }
+
+  export type CertificationDocumentRuleUpdateToOneWithWhereWithoutAttachmentsInput = {
+    where?: CertificationDocumentRuleWhereInput
+    data: XOR<CertificationDocumentRuleUpdateWithoutAttachmentsInput, CertificationDocumentRuleUncheckedUpdateWithoutAttachmentsInput>
+  }
+
+  export type CertificationDocumentRuleUpdateWithoutAttachmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    documentName?: StringFieldUpdateOperationsInput | string
+    required?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    certification?: CertificationUpdateOneRequiredWithoutDocumentRulesNestedInput
+  }
+
+  export type CertificationDocumentRuleUncheckedUpdateWithoutAttachmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    certificationId?: StringFieldUpdateOperationsInput | string
+    documentName?: StringFieldUpdateOperationsInput | string
+    required?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserInvitationUpsertWithoutAttachmentsInput = {
@@ -91106,6 +93032,7 @@ export namespace Prisma {
   export type EmployeeCertificationAttachmentCreateManyUserInvitationInput = {
     id?: string
     employeeCertificationId: string
+    documentRuleId?: string | null
     fileName: string
     filePath: string
     fileType?: string | null
@@ -91121,11 +93048,13 @@ export namespace Prisma {
     fileSize?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeCertification?: EmployeeCertificationUpdateOneRequiredWithoutEmployeeCertificationAttachmentsNestedInput
+    documentRule?: CertificationDocumentRuleUpdateOneWithoutAttachmentsNestedInput
   }
 
   export type EmployeeCertificationAttachmentUncheckedUpdateWithoutUserInvitationInput = {
     id?: StringFieldUpdateOperationsInput | string
     employeeCertificationId?: StringFieldUpdateOperationsInput | string
+    documentRuleId?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: StringFieldUpdateOperationsInput | string
     filePath?: StringFieldUpdateOperationsInput | string
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
@@ -91136,6 +93065,7 @@ export namespace Prisma {
   export type EmployeeCertificationAttachmentUncheckedUpdateManyWithoutUserInvitationInput = {
     id?: StringFieldUpdateOperationsInput | string
     employeeCertificationId?: StringFieldUpdateOperationsInput | string
+    documentRuleId?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: StringFieldUpdateOperationsInput | string
     filePath?: StringFieldUpdateOperationsInput | string
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
@@ -92802,6 +94732,15 @@ export namespace Prisma {
     status?: $Enums.CertificationStatus
   }
 
+  export type CertificationDocumentRuleCreateManyCertificationInput = {
+    id?: string
+    documentName: string
+    required?: boolean
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type EmployeeCertificationUpdateWithoutCertificationInput = {
     id?: StringFieldUpdateOperationsInput | string
     acquiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -92837,8 +94776,82 @@ export namespace Prisma {
     status?: EnumCertificationStatusFieldUpdateOperationsInput | $Enums.CertificationStatus
   }
 
+  export type CertificationDocumentRuleUpdateWithoutCertificationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    documentName?: StringFieldUpdateOperationsInput | string
+    required?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attachments?: EmployeeCertificationAttachmentUpdateManyWithoutDocumentRuleNestedInput
+  }
+
+  export type CertificationDocumentRuleUncheckedUpdateWithoutCertificationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    documentName?: StringFieldUpdateOperationsInput | string
+    required?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attachments?: EmployeeCertificationAttachmentUncheckedUpdateManyWithoutDocumentRuleNestedInput
+  }
+
+  export type CertificationDocumentRuleUncheckedUpdateManyWithoutCertificationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    documentName?: StringFieldUpdateOperationsInput | string
+    required?: BoolFieldUpdateOperationsInput | boolean
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeCertificationAttachmentCreateManyDocumentRuleInput = {
+    id?: string
+    employeeCertificationId: string
+    fileName: string
+    filePath: string
+    fileType?: string | null
+    fileSize?: number | null
+    createdAt?: Date | string
+    userInvitationId?: string | null
+  }
+
+  export type EmployeeCertificationAttachmentUpdateWithoutDocumentRuleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employeeCertification?: EmployeeCertificationUpdateOneRequiredWithoutEmployeeCertificationAttachmentsNestedInput
+    userInvitation?: UserInvitationUpdateOneWithoutAttachmentsNestedInput
+  }
+
+  export type EmployeeCertificationAttachmentUncheckedUpdateWithoutDocumentRuleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeCertificationId?: StringFieldUpdateOperationsInput | string
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userInvitationId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type EmployeeCertificationAttachmentUncheckedUpdateManyWithoutDocumentRuleInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeCertificationId?: StringFieldUpdateOperationsInput | string
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userInvitationId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
   export type EmployeeCertificationAttachmentCreateManyEmployeeCertificationInput = {
     id?: string
+    documentRuleId?: string | null
     fileName: string
     filePath: string
     fileType?: string | null
@@ -92854,11 +94867,13 @@ export namespace Prisma {
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    documentRule?: CertificationDocumentRuleUpdateOneWithoutAttachmentsNestedInput
     userInvitation?: UserInvitationUpdateOneWithoutAttachmentsNestedInput
   }
 
   export type EmployeeCertificationAttachmentUncheckedUpdateWithoutEmployeeCertificationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    documentRuleId?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: StringFieldUpdateOperationsInput | string
     filePath?: StringFieldUpdateOperationsInput | string
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
@@ -92869,6 +94884,7 @@ export namespace Prisma {
 
   export type EmployeeCertificationAttachmentUncheckedUpdateManyWithoutEmployeeCertificationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    documentRuleId?: NullableStringFieldUpdateOperationsInput | string | null
     fileName?: StringFieldUpdateOperationsInput | string
     filePath?: StringFieldUpdateOperationsInput | string
     fileType?: NullableStringFieldUpdateOperationsInput | string | null

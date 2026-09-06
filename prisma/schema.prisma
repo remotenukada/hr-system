@@ -391,11 +391,27 @@ model AuditLog {
 }
 
 model Certification {
-  id                     String                  @id @default(uuid())
-  name                   String                  @unique
-  expiryManaged          Boolean                 @default(false)
-  createdAt              DateTime                @default(now())
+  id                     String                      @id @default(uuid())
+  name                   String                      @unique
+  expiryManaged          Boolean                     @default(false)
+  createdAt              DateTime                    @default(now())
   employeeCertifications EmployeeCertification[]
+  documentRules          CertificationDocumentRule[]
+}
+
+model CertificationDocumentRule {
+  id              String                            @id @default(uuid())
+  certificationId String
+  documentName    String
+  required        Boolean                           @default(true)
+  sortOrder       Int                               @default(0)
+  createdAt       DateTime                          @default(now())
+  updatedAt       DateTime                          @updatedAt
+  certification   Certification                     @relation(fields: [certificationId], references: [id], onDelete: Cascade)
+  attachments     EmployeeCertificationAttachment[]
+
+  @@unique([certificationId, documentName])
+  @@index([certificationId])
 }
 
 model EmployeeCertification {
@@ -416,18 +432,21 @@ model EmployeeCertification {
 }
 
 model EmployeeCertificationAttachment {
-  id                      String                @id @default(uuid())
+  id                      String                     @id @default(uuid())
   employeeCertificationId String
+  documentRuleId          String?
   fileName                String
   filePath                String
   fileType                String?
   fileSize                Int?
-  createdAt               DateTime              @default(now())
+  createdAt               DateTime                   @default(now())
   userInvitationId        String?
-  employeeCertification   EmployeeCertification @relation(fields: [employeeCertificationId], references: [id], onDelete: Cascade)
-  userInvitation          UserInvitation?       @relation(fields: [userInvitationId], references: [id])
+  employeeCertification   EmployeeCertification      @relation(fields: [employeeCertificationId], references: [id], onDelete: Cascade)
+  documentRule            CertificationDocumentRule? @relation(fields: [documentRuleId], references: [id], onDelete: SetNull)
+  userInvitation          UserInvitation?            @relation(fields: [userInvitationId], references: [id])
 
   @@index([employeeCertificationId])
+  @@index([documentRuleId])
 }
 
 model EmployeeBankAccount {
