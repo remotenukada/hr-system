@@ -472,6 +472,64 @@ export default async function DashboardPage() {
     }),
   ]);
 
+  const certificationExpiryToday = getTodayOnly();
+
+  const certificationExpiry30DaysLater =
+    new Date(certificationExpiryToday);
+  certificationExpiry30DaysLater.setDate(
+    certificationExpiry30DaysLater.getDate() + 30,
+  );
+  certificationExpiry30DaysLater.setHours(23, 59, 59, 999);
+
+  const certificationExpiry90DaysLater =
+    new Date(certificationExpiryToday);
+  certificationExpiry90DaysLater.setDate(
+    certificationExpiry90DaysLater.getDate() + 90,
+  );
+  certificationExpiry90DaysLater.setHours(23, 59, 59, 999);
+
+  const [
+    expiredCertificationCount,
+    warning30CertificationCount,
+    warning90CertificationCount,
+  ] = await Promise.all([
+    prisma.employeeCertification.count({
+      where: {
+        certification: {
+          expiryManaged: true,
+        },
+        expiryDate: {
+          lt: certificationExpiryToday,
+        },
+        employee: employeeFacilityWhere,
+      },
+    }),
+    prisma.employeeCertification.count({
+      where: {
+        certification: {
+          expiryManaged: true,
+        },
+        expiryDate: {
+          gte: certificationExpiryToday,
+          lte: certificationExpiry30DaysLater,
+        },
+        employee: employeeFacilityWhere,
+      },
+    }),
+    prisma.employeeCertification.count({
+      where: {
+        certification: {
+          expiryManaged: true,
+        },
+        expiryDate: {
+          gte: certificationExpiryToday,
+          lte: certificationExpiry90DaysLater,
+        },
+        employee: employeeFacilityWhere,
+      },
+    }),
+  ]);
+
   const retirementAlerts = await prisma.employee.findMany({
     where: {
       ...employeeFacilityWhere,
@@ -1069,6 +1127,25 @@ export default async function DashboardPage() {
               value={warning90LeaveCount}
               description="90日以内に失効予定の付与履歴"
               color="blue"
+            />
+
+            <StatCard
+              title="資格期限切れ"
+              value={expiredCertificationCount}
+              href="/certification-reports"
+              color="red"
+            />
+            <StatCard
+              title="資格期限30日以内"
+              value={warning30CertificationCount}
+              href="/certification-reports"
+              color="yellow"
+            />
+            <StatCard
+              title="資格期限90日以内"
+              value={warning90CertificationCount}
+              href="/certification-reports"
+              color="yellow"
             />
             <StatCard
               title="失効実行対象件数"
