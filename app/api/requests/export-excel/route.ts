@@ -29,7 +29,7 @@ export async function GET() {
   worksheet.columns = [
     { header: "タイトル", key: "title", width: 40 },
     { header: "種別", key: "type", width: 20 },
-    { header: "対象社員", key: "employee", width: 25 },
+    { header: "対象職員", key: "employee", width: 25 },
     { header: "申請者", key: "user", width: 25 },
     { header: "ステータス", key: "status", width: 15 },
     { header: "作成日", key: "createdAt", width: 20 },

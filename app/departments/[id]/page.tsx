@@ -14,7 +14,7 @@ export default async function DepartmentDetailPage({
 }: Props) {
   const { id } = await params;
 
-  // Prismaで部署データと一緒に所属する社員一覧も取得
+  // Prismaで部署データと一緒に所属する職員一覧も取得
   const department = await prisma.department.findUnique({
     where: {
       id,
@@ -57,11 +57,11 @@ export default async function DepartmentDetailPage({
       </div>
 
       <h2 className="text-xl font-semibold mb-3">
-        所属社員一覧
+        所属職員一覧
       </h2>
 
       {department.employees.length === 0 ? (
-        <p className="text-gray-500 mb-6">- 所属している社員はいません -</p>
+        <p className="text-gray-500 mb-6">- 所属している職員はいません -</p>
       ) : (
         <ul className="list-disc pl-6 space-y-1 mb-6 text-gray-700">
           {department.employees.map((employee) => (

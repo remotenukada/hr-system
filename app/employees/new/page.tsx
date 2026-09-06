@@ -27,8 +27,8 @@ export default async function NewEmployeePage() {
 
   return (
     <main className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-sm border my-8">
-      <BackLink href="/employees" label="社員一覧へ戻る" />
-      <h1 className="text-xl font-bold mb-6 text-slate-800">新規社員登録</h1>
+      <BackLink href="/employees" label="職員一覧へ戻る" />
+      <h1 className="text-xl font-bold mb-6 text-slate-800">新規職員登録</h1>
 
       <form action={createEmployee} className="space-y-6">
         <section className="space-y-4">
@@ -39,7 +39,7 @@ export default async function NewEmployeePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-xs font-medium text-slate-700 mb-1">
-                社員番号 <span className="text-red-500">*</span>
+                職員番号 <span className="text-red-500">*</span>
               </label>
               <input
                 required

@@ -16,8 +16,8 @@ export default function HRManagementMenu({
       <section className="rounded-lg border bg-gray-50 p-4">
         <h4 className="mb-2 font-semibold">職員管理</h4>
         <div className="flex flex-wrap gap-3">
-          <Link href="/employees">社員一覧</Link>
-          <Link href="/employees/new">新規社員登録</Link>
+          <Link href="/employees">職員一覧</Link>
+          <Link href="/employees/new">新規職員登録</Link>
           <Link href="/departments">部署一覧</Link>
           <Link href="/approval-routes">承認ルート管理</Link>
           <Link href="/facility-switch">表示対象切替</Link>

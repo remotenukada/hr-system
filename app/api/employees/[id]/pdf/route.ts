@@ -106,7 +106,7 @@ export async function GET(
     y -= 22;
   }
 
-  drawText("社員台帳", 250, y, 22, rgb(0.07, 0.09, 0.15));
+  drawText("職員台帳", 250, y, 22, rgb(0.07, 0.09, 0.15));
   y -= 20;
 
   if (employee.photoPath) {
@@ -140,7 +140,7 @@ export async function GET(
 
   sectionTitle("基本情報");
 
-  row("社員番号", employee.employeeNo);
+  row("職員番号", employee.employeeNo);
   row("氏名", `${employee.lastName} ${employee.firstName}`);
   row(
     "ふりがな",

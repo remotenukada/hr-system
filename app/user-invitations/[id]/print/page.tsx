@@ -60,7 +60,7 @@ export default async function InvitationPrintPage({
 
         <div className="mb-8 rounded border bg-gray-50 p-4 text-sm">
           <p>
-            <strong>社員番号:</strong> {invitation.employeeNo}
+            <strong>職員番号:</strong> {invitation.employeeNo}
           </p>
 
           <p>

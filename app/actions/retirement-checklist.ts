@@ -15,7 +15,7 @@ export async function updateRetirementChecklist(
   );
 
   if (!employeeId) {
-    throw new Error("社員IDがありません");
+    throw new Error("職員IDがありません");
   }
 
   const data = {

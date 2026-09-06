@@ -23,10 +23,10 @@ export async function GET() {
   });
 
   const workbook = new ExcelJS.Workbook();
-  const worksheet = workbook.addWorksheet("社員台帳");
+  const worksheet = workbook.addWorksheet("職員台帳");
 
   worksheet.columns = [
-    { header: "社員番号", key: "employeeNo", width: 15 },
+    { header: "職員番号", key: "employeeNo", width: 15 },
     { header: "氏名", key: "name", width: 20 },
     { header: "メール", key: "email", width: 30 },
     { header: "部署", key: "department", width: 20 },

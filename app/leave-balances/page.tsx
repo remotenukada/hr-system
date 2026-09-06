@@ -22,7 +22,7 @@ export default async function LeaveBalancesPage() {
 
   return (
     <main className="p-8">
-      <BackLink href="/employees" label="社員一覧に戻る" />
+      <BackLink href="/employees" label="職員一覧に戻る" />
 
       <div className="mb-6 flex items-center justify-between">
         <div>
@@ -44,7 +44,7 @@ export default async function LeaveBalancesPage() {
         <table className="w-full text-sm">
           <thead>
             <tr className="bg-gray-50">
-              <th className="p-3 text-left">社員番号</th>
+              <th className="p-3 text-left">職員番号</th>
               <th className="p-3 text-left">氏名</th>
               <th className="p-3 text-left">部署</th>
               <th className="p-3 text-right">付与日数</th>

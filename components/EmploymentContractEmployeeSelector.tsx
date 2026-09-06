@@ -32,7 +32,7 @@ export function EmploymentContractEmployeeSelector({
   return (
     <div>
       <label className="mb-1 block text-sm font-medium text-gray-700">
-        対象社員 <span className="text-red-500">*</span>
+        対象職員 <span className="text-red-500">*</span>
       </label>
 
       <select

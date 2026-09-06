@@ -213,7 +213,7 @@ export default async function LeaveReportsPage() {
         <table className="w-full text-sm">
           <thead>
             <tr className="bg-gray-50">
-              <th className="p-3 text-left">社員名</th>
+              <th className="p-3 text-left">職員名</th>
               <th className="p-3 text-right">付与</th>
               <th className="p-3 text-right">使用</th>
               <th className="p-3 text-right">残数</th>

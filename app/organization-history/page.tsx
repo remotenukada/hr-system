@@ -62,7 +62,7 @@ export default async function OrganizationHistoryPage() {
           <thead>
             <tr className="bg-gray-50 text-left">
               <th className="border-b p-3">日付</th>
-              <th className="border-b p-3">社員番号</th>
+              <th className="border-b p-3">職員番号</th>
               <th className="border-b p-3">氏名</th>
               <th className="border-b p-3">部署</th>
               <th className="border-b p-3">区分</th>

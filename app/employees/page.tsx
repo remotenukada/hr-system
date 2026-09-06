@@ -216,9 +216,9 @@ export default async function EmployeesPage({ searchParams }: Props) {
       <BackLink href="/" label="ダッシュボードへ戻る" />
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold">社員一覧</h1>
+          <h1 className="text-3xl font-bold">職員一覧</h1>
           <p className="mt-1 text-sm text-gray-500">
-            社員マスタを確認・検索できます。
+            職員マスタを確認・検索できます。
           </p>
 
           <p className="mt-2 text-sm font-medium text-blue-700">
@@ -342,7 +342,7 @@ export default async function EmployeesPage({ searchParams }: Props) {
           <thead>
             <tr className="bg-gray-50 text-left">
               <th className="border-b p-3">写真</th>
-              <th className="border-b p-3">社員番号</th>
+              <th className="border-b p-3">職員番号</th>
               <th className="border-b p-3">氏名</th>
               <th className="border-b p-3">施設</th>
               <th className="border-b p-3">部署</th>
@@ -357,7 +357,7 @@ export default async function EmployeesPage({ searchParams }: Props) {
             {employees.length === 0 ? (
               <tr>
                 <td colSpan={9} className="p-8 text-center text-gray-500">
-                  該当する社員が見つかりません。
+                  該当する職員が見つかりません。
                 </td>
               </tr>
             ) : (

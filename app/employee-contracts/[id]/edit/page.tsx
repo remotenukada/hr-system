@@ -174,7 +174,7 @@ export default async function EditEmploymentContractPage(
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div className="md:col-span-2">
               <label className="mb-1 block text-sm font-medium text-gray-700">
-                対象社員
+                対象職員
               </label>
               <input
                 value={`${contract.employee.employeeNo} ${contract.employee.lastName} ${contract.employee.firstName}`}

@@ -230,7 +230,7 @@ export default async function CertificationRequestsPage({
                   <p className="mt-1 text-sm text-gray-500">
                     {request.employee.lastName} {request.employee.firstName}
                     {" / "}
-                    社員番号: {request.employee.employeeNo}
+                    職員番号: {request.employee.employeeNo}
                     {" / "}
                     施設: {request.employee.facility?.name ?? "-"}
                     {" / "}

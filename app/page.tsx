@@ -1039,25 +1039,25 @@ export default async function DashboardPage() {
             <StatCard
               title="総職員数"
               value={totalEmployees}
-              description="登録されている社員数"
+              description="登録されている職員数"
               color="blue"
             />
             <StatCard
               title="在職者数"
               value={activeEmployees}
-              description="現在在職中の社員"
+              description="現在在職中の職員"
               color="green"
             />
             <StatCard
               title="休職者数"
               value={leaveEmployees}
-              description="休職中の社員"
+              description="休職中の職員"
               color="yellow"
             />
             <StatCard
               title="退職者数"
               value={retiredEmployees}
-              description="退職済みの社員"
+              description="退職済みの職員"
               color="gray"
             />
             <StatCard
@@ -1093,19 +1093,19 @@ export default async function DashboardPage() {
             <StatCard
               title="総有給付与日数"
               value={totalGrantedLeaveDays.toFixed(1)}
-              description="全社員の付与日数合計"
+              description="全職員の付与日数合計"
               color="blue"
             />
             <StatCard
               title="総有給使用日数"
               value={totalUsedLeaveDays.toFixed(1)}
-              description="全社員の使用日数合計"
+              description="全職員の使用日数合計"
               color="yellow"
             />
             <StatCard
               title="総有給残日数"
               value={totalRemainingLeaveDays.toFixed(1)}
-              description="全社員の残日数合計"
+              description="全職員の残日数合計"
               color="green"
             />
             <StatCard
@@ -1390,7 +1390,7 @@ export default async function DashboardPage() {
 
           <div className="space-y-2 text-sm text-gray-700">
             <div>
-              <span className="font-medium">社員番号:</span>{" "}
+              <span className="font-medium">職員番号:</span>{" "}
               {myEmployee?.employeeNo ?? "-"}
             </div>
 

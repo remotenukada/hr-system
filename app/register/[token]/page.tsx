@@ -107,7 +107,7 @@ async function completeRegistration(formData: FormData) {
   if (existingEmployee) {
     redirectWithError(
       token,
-      "この社員番号の職員は既に存在します。",
+      "この職員番号の職員は既に存在します。",
     );
   }
 
@@ -231,7 +231,7 @@ export default async function RegisterPage({
 
           <div className="rounded bg-gray-50 p-3 text-sm">
             <p>
-              <strong>社員番号:</strong> {invitation.employeeNo}
+              <strong>職員番号:</strong> {invitation.employeeNo}
             </p>
             <p>
               <strong>メール:</strong> {invitation.email}

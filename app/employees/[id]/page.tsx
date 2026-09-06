@@ -579,13 +579,13 @@ export default async function EmployeeDetailPage({ params }: Props) {
 
   return (
     <main className="mx-auto max-w-5xl p-8">
-      <BackLink href="/employees" label="社員一覧へ戻る" />
+      <BackLink href="/employees" label="職員一覧へ戻る" />
       <div className="mb-6 flex items-start justify-between gap-4">
         <div>
-          <h1 className="mt-3 text-3xl font-bold text-gray-900">社員詳細</h1>
+          <h1 className="mt-3 text-3xl font-bold text-gray-900">職員詳細</h1>
 
           <p className="mt-1 text-gray-500">
-            {employee.lastName} {employee.firstName} さんの社員情報
+            {employee.lastName} {employee.firstName} さんの職員情報
           </p>
         </div>
 
@@ -647,7 +647,7 @@ export default async function EmployeeDetailPage({ params }: Props) {
           </h2>
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <InfoItem label="社員番号" value={employee?.employeeNo} />
+            <InfoItem label="職員番号" value={employee?.employeeNo} />
             <InfoItem label="メールアドレス" value={employee.email} />
             <InfoItem
               label="氏名"

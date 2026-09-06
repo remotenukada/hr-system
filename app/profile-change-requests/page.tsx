@@ -280,7 +280,7 @@ export default async function ProfileChangeRequestsPage({
                   </h2>
 
                   <p className="mt-1 text-sm text-gray-500">
-                    社員番号: {request.employee.employeeNo}
+                    職員番号: {request.employee.employeeNo}
                     {" / "}
                     部署: {request.employee.department?.name ?? "-"}
                     {" / "}

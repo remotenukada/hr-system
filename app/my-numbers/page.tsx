@@ -195,7 +195,7 @@ export default async function MyNumbersPage({ searchParams }: Props) {
         <table className="min-w-full text-sm">
           <thead className="bg-gray-50 text-gray-700">
             <tr>
-              <th className="border-b p-3 text-left font-medium">社員番号</th>
+              <th className="border-b p-3 text-left font-medium">職員番号</th>
               <th className="border-b p-3 text-left font-medium">氏名</th>
               <th className="border-b p-3 text-left font-medium">施設</th>
               <th className="border-b p-3 text-left font-medium">部署</th>

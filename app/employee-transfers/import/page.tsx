@@ -107,7 +107,7 @@ export default async function EmployeeTransferImportPage({
             </pre>
 
             <ul className="mt-3 space-y-1 text-xs text-gray-600">
-              <li>・社員番号と異動先施設コードは必須です。</li>
+              <li>・職員番号と異動先施設コードは必須です。</li>
               <li>・部署名を空欄にすると未所属になります。</li>
               <li>・異動日は YYYY-MM-DD 形式です。</li>
               <li>・異動日を空欄にすると実行日になります。</li>

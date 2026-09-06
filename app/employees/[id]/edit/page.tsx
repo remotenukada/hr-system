@@ -325,9 +325,9 @@ export default async function EmployeeEditPage({ params }: Props) {
 
   return (
     <main className="mx-auto max-w-3xl p-8">
-      <BackLink href="/employees" label="社員一覧へ戻る" />
+      <BackLink href="/employees" label="職員一覧へ戻る" />
       <div className="rounded-lg border bg-white p-6 shadow-sm">
-        <h1 className="mb-6 text-2xl font-bold text-slate-800">社員編集</h1>
+        <h1 className="mb-6 text-2xl font-bold text-slate-800">職員編集</h1>
 
         <form action={updateEmployee} className="space-y-6">
           <section className="space-y-4">
@@ -338,7 +338,7 @@ export default async function EmployeeEditPage({ params }: Props) {
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               <div>
                 <label className="mb-1 block text-xs font-medium text-slate-700">
-                  社員番号 <span className="text-red-500">*</span>
+                  職員番号 <span className="text-red-500">*</span>
                 </label>
                 <input
                   required

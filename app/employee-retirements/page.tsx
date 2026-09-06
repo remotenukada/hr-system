@@ -84,7 +84,7 @@ export default async function EmployeeRetirementsPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-gray-50 text-left">
-                  <th className="border-b p-3">社員番号</th>
+                  <th className="border-b p-3">職員番号</th>
                   <th className="border-b p-3">氏名</th>
                   <th className="border-b p-3">部署</th>
                   <th className="border-b p-3">役職</th>
@@ -145,7 +145,7 @@ export default async function EmployeeRetirementsPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-gray-50 text-left">
-                  <th className="border-b p-3">社員番号</th>
+                  <th className="border-b p-3">職員番号</th>
                   <th className="border-b p-3">氏名</th>
                   <th className="border-b p-3">最終所属部署</th>
                   <th className="border-b p-3">最終役職</th>

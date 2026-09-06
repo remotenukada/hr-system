@@ -51,7 +51,7 @@ export default async function InvitationQrPage({
       <section className="rounded border bg-white p-6 text-center shadow-sm">
         <div className="mb-4 text-left text-sm text-gray-700">
           <p>
-            <strong>社員番号:</strong> {invitation.employeeNo}
+            <strong>職員番号:</strong> {invitation.employeeNo}
           </p>
           <p>
             <strong>氏名:</strong> {invitation.lastName} {invitation.firstName}

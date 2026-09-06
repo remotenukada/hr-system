@@ -160,7 +160,7 @@ export default async function EditDependentPage({ params }: Props) {
           href={`/employees/${id}`}
           className="text-sm text-gray-600 hover:underline"
         >
-          ← 社員詳細へ戻る
+          ← 職員詳細へ戻る
         </Link>
       </div>
 

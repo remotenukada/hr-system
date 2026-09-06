@@ -191,7 +191,7 @@ export default async function DependentRequestsPage() {
         <div>
           <h1 className="text-3xl font-bold">扶養家族申請</h1>
           <p className="mt-2 text-sm text-gray-600">
-            社員本人から提出された扶養家族追加申請を確認します。
+            職員本人から提出された扶養家族追加申請を確認します。
           </p>
 
           <p className="mt-1 text-sm font-medium text-blue-700">
@@ -205,7 +205,7 @@ export default async function DependentRequestsPage() {
           <thead>
             <tr className="bg-gray-50 text-left">
               <th className="border-b p-3">状態</th>
-              <th className="border-b p-3">社員</th>
+              <th className="border-b p-3">職員</th>
               <th className="border-b p-3">扶養家族</th>
               <th className="border-b p-3">続柄</th>
               <th className="border-b p-3">生年月日</th>

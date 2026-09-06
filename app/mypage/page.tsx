@@ -25,7 +25,7 @@ export default async function MyPage() {
       <main className="mx-auto max-w-4xl p-8">
         <h1 className="text-2xl font-bold">マイページ</h1>
         <p className="mt-4 text-gray-600">
-          社員情報が紐付けられていません。管理者に連絡してください。
+          職員情報が紐付けられていません。管理者に連絡してください。
         </p>
       </main>
     );
@@ -56,7 +56,7 @@ export default async function MyPage() {
 
         <dl className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
-            <dt className="text-xs text-gray-500">社員番号</dt>
+            <dt className="text-xs text-gray-500">職員番号</dt>
             <dd className="text-sm font-medium text-gray-900">{employee.employeeNo}</dd>
           </div>
           <div>

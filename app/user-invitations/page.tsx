@@ -85,7 +85,7 @@ export default async function UserInvitationsPage() {
         <table className="w-full text-sm">
           <thead>
             <tr className="bg-gray-50">
-              <th className="p-3 text-left">社員番号</th>
+              <th className="p-3 text-left">職員番号</th>
               <th className="p-3 text-left">氏名</th>
               <th className="p-3 text-left">メール</th>
               <th className="p-3 text-left">入職予定日</th>

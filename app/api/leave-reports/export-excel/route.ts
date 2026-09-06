@@ -22,8 +22,8 @@ export async function GET() {
   const worksheet = workbook.addWorksheet("有給取得レポート");
 
   worksheet.columns = [
-    { header: "社員番号", key: "employeeNo", width: 15 },
-    { header: "社員名", key: "employeeName", width: 25 },
+    { header: "職員番号", key: "employeeNo", width: 15 },
+    { header: "職員名", key: "employeeName", width: 25 },
     { header: "部署", key: "departmentName", width: 25 },
     { header: "付与日数", key: "grantedDays", width: 15 },
     { header: "使用日数", key: "usedDays", width: 15 },

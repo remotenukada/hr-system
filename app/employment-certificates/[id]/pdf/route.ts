@@ -128,7 +128,7 @@ export async function GET(_request: Request, { params }: Context) {
 
   line(`氏名：${employee.lastName} ${employee.firstName}`, 690);
 
-  line(`社員番号：${employee.employeeNo}`, 660);
+  line(`職員番号：${employee.employeeNo}`, 660);
 
   let y = 620;
 

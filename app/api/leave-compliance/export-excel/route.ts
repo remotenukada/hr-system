@@ -91,8 +91,8 @@ export async function GET() {
   const worksheet = workbook.addWorksheet("年5日取得義務管理");
 
   worksheet.columns = [
-    { header: "社員番号", key: "employeeNo", width: 15 },
-    { header: "社員名", key: "employeeName", width: 25 },
+    { header: "職員番号", key: "employeeNo", width: 15 },
+    { header: "職員名", key: "employeeName", width: 25 },
     { header: "付与日", key: "grantDate", width: 15 },
     { header: "期限日", key: "dueDate", width: 15 },
     { header: "付与日数", key: "grantedDays", width: 12 },

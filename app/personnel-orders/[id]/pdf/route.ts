@@ -100,7 +100,7 @@ export async function GET(
   );
 
   page.drawText(
-    `社員番号 ${history.employee.employeeNo}`,
+    `職員番号 ${history.employee.employeeNo}`,
     {
       x: 80,
       y: height - 225,

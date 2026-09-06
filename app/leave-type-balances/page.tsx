@@ -34,7 +34,7 @@ export default async function LeaveTypeBalancesPage() {
         <table className="w-full text-sm">
           <thead>
             <tr className="bg-gray-50">
-              <th className="p-3 text-left">社員番号</th>
+              <th className="p-3 text-left">職員番号</th>
               <th className="p-3 text-left">氏名</th>
               <th className="p-3 text-left">休暇種別</th>
               <th className="p-3 text-right">付与</th>

@@ -274,8 +274,8 @@ export default async function LeaveCompliancePage() {
         <table className="w-full text-sm">
           <thead>
             <tr className="bg-gray-50">
-              <th className="p-3 text-left">社員番号</th>
-              <th className="p-3 text-left">社員</th>
+              <th className="p-3 text-left">職員番号</th>
+              <th className="p-3 text-left">職員</th>
               <th className="p-3 text-left">付与日</th>
               <th className="p-3 text-left">期限日</th>
               <th className="p-3 text-right">付与日数</th>

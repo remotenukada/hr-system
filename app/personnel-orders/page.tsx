@@ -53,7 +53,7 @@ export default async function PersonnelOrdersPage() {
           <thead className="bg-gray-50">
             <tr>
               <th className="border p-2 text-left">発令日</th>
-              <th className="border p-2 text-left">社員番号</th>
+              <th className="border p-2 text-left">職員番号</th>
               <th className="border p-2 text-left">氏名</th>
               <th className="border p-2 text-left">区分</th>
               <th className="border p-2 text-left">内容</th>

@@ -147,7 +147,7 @@ export default async function EmployeeLeavesPage() {
               <thead className="bg-gray-50">
                 <tr>
                   <th className="border p-2 text-left font-medium text-gray-700">
-                    社員番号
+                    職員番号
                   </th>
                   <th className="border p-2 text-left font-medium text-gray-700">
                     氏名

@@ -310,7 +310,7 @@ export default async function PendingLeaveGrantPage() {
         <table className="w-full text-sm">
           <thead>
             <tr className="bg-gray-50 text-left">
-              <th className="border-b p-3">社員番号</th>
+              <th className="border-b p-3">職員番号</th>
               <th className="border-b p-3">氏名</th>
               <th className="border-b p-3">雇用形態</th>
               <th className="border-b p-3">次回付与日</th>
@@ -402,7 +402,7 @@ export default async function PendingLeaveGrantPage() {
                         href={`/employees/${employee.id}`}
                         className="text-blue-600 hover:underline"
                       >
-                        社員詳細
+                        職員詳細
                       </Link>
                     </td>
                   </tr>

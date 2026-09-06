@@ -100,7 +100,7 @@ export default async function EmploymentContractDetailPage(
 
           <div>
             <dt className="text-sm text-gray-500">
-              社員番号
+              職員番号
             </dt>
             <dd className="mt-1 font-medium text-gray-900">
               {contract.employee.employeeNo}

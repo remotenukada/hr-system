@@ -447,7 +447,7 @@ export default async function LeaveGrantHistoryPage() {
 
         <div className="flex flex-wrap gap-3">
           <select name="employeeId" className="rounded border p-2" required>
-            <option value="">社員を選択</option>
+            <option value="">職員を選択</option>
 
             {employees.map((employee) => (
               <option key={employee.id} value={employee.id}>
@@ -507,7 +507,7 @@ export default async function LeaveGrantHistoryPage() {
         <table className="w-full text-sm">
           <thead>
             <tr className="bg-gray-50">
-              <th className="p-3 text-left">社員番号</th>
+              <th className="p-3 text-left">職員番号</th>
               <th className="p-3 text-left">氏名</th>
               <th className="p-3 text-left">休暇種別</th>
               <th className="p-3 text-left">付与日</th>

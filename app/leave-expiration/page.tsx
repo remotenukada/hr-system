@@ -372,7 +372,7 @@ export default async function LeaveExpirationPage() {
         <table className="w-full text-sm">
           <thead>
             <tr className="bg-gray-50 text-left">
-              <th className="p-3">社員番号</th>
+              <th className="p-3">職員番号</th>
               <th className="p-3">氏名</th>
               <th className="p-3">休暇種別</th>
               <th className="p-3">付与日</th>

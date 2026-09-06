@@ -67,7 +67,7 @@ export async function GET() {
   });
 
   const header = [
-    "社員番号",
+    "職員番号",
     "氏名",
     "ふりがな",
     "性別",

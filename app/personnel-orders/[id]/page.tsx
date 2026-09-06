@@ -75,7 +75,7 @@ export default async function PersonnelOrderDetailPage(
 
           <div>
             <dt className="text-sm text-gray-500">
-              社員番号
+              職員番号
             </dt>
             <dd className="font-medium">
               {history.employee.employeeNo}
@@ -117,7 +117,7 @@ export default async function PersonnelOrderDetailPage(
             href={`/employees/${history.employee.id}`}
             className="text-blue-600 hover:underline"
           >
-            社員詳細へ
+            職員詳細へ
           </Link>
         </div>
       </div>

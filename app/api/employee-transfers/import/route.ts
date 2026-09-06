@@ -180,7 +180,7 @@ export async function POST(request: Request) {
     const inputReason = parsed.values[4]?.trim() ?? "";
 
     if (!employeeNo) {
-      validationErrors.push(`${rowNumber}行目: 社員番号が未入力です。`);
+      validationErrors.push(`${rowNumber}行目: 職員番号が未入力です。`);
       continue;
     }
 
@@ -191,7 +191,7 @@ export async function POST(request: Request) {
 
     if (importedEmployeeNos.has(employeeNo)) {
       validationErrors.push(
-        `${rowNumber}行目: 社員番号 ${employeeNo} がCSV内で重複しています。`,
+        `${rowNumber}行目: 職員番号 ${employeeNo} がCSV内で重複しています。`,
       );
       continue;
     }
@@ -233,7 +233,7 @@ export async function POST(request: Request) {
 
     if (!employee) {
       validationErrors.push(
-        `${rowNumber}行目: 社員番号 ${employeeNo} が見つかりません。`,
+        `${rowNumber}行目: 職員番号 ${employeeNo} が見つかりません。`,
       );
       continue;
     }
@@ -328,7 +328,7 @@ export async function POST(request: Request) {
         if (!currentEmployee) {
           throw new Error(
             `${transfer.rowNumber}行目: ` +
-              `社員番号 ${transfer.employeeNo} が見つかりません。`,
+              `職員番号 ${transfer.employeeNo} が見つかりません。`,
           );
         }
 
@@ -342,7 +342,7 @@ export async function POST(request: Request) {
         ) {
           throw new Error(
             `${transfer.rowNumber}行目: ` +
-              `社員番号 ${transfer.employeeNo} の所属情報が` +
+              `職員番号 ${transfer.employeeNo} の所属情報が` +
               `検証後に変更されました。再度CSVを実行してください。`,
           );
         }

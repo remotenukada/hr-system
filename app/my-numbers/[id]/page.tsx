@@ -228,7 +228,7 @@ export default async function MyNumberDetailPage({
           <h1 className="text-3xl font-bold">マイナンバー詳細</h1>
 
           <p className="mt-2 text-sm text-gray-600">
-            社員のマイナンバー提出状況を確認できます。番号は人事担当者のみ確認できます。
+            職員のマイナンバー提出状況を確認できます。番号は人事担当者のみ確認できます。
           </p>
         </div>
 
@@ -252,11 +252,11 @@ export default async function MyNumberDetailPage({
       </div>
 
       <section className="rounded-lg border bg-white p-6 shadow-sm">
-        <h2 className="mb-4 text-xl font-semibold">社員情報</h2>
+        <h2 className="mb-4 text-xl font-semibold">職員情報</h2>
 
         <dl className="grid grid-cols-1 gap-4 text-sm md:grid-cols-2">
           <div>
-            <dt className="font-medium text-gray-600">社員番号</dt>
+            <dt className="font-medium text-gray-600">職員番号</dt>
             <dd className="mt-1">{myNumber.employee.employeeNo}</dd>
           </div>
 

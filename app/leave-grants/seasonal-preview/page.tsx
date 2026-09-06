@@ -139,7 +139,7 @@ export default async function SeasonalLeavePreviewPage() {
         <table className="w-full text-left text-sm text-gray-600">
           <thead className="bg-gray-50 text-xs uppercase text-gray-700">
             <tr>
-              <th className="px-4 py-3">社員番号</th>
+              <th className="px-4 py-3">職員番号</th>
               <th className="px-4 py-3">氏名</th>
               <th className="px-4 py-3">部署</th>
               <th className="px-4 py-3">入社日</th>

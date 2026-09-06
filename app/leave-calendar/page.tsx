@@ -77,7 +77,7 @@ export default async function LeaveCalendarPage({
             <tr className="bg-gray-50">
               <th className="p-3 text-left">開始日</th>
               <th className="p-3 text-left">終了日</th>
-              <th className="p-3 text-left">社員</th>
+              <th className="p-3 text-left">職員</th>
               <th className="p-3 text-left">日数</th>
               <th className="p-3 text-left">タイトル</th>
             </tr>

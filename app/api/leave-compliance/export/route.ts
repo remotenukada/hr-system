@@ -101,8 +101,8 @@ export async function GET() {
     });
 
   const header = [
-    "社員番号",
-    "社員名",
+    "職員番号",
+    "職員名",
     "付与日",
     "期限日",
     "付与日数",

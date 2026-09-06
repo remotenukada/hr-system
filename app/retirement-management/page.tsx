@@ -38,7 +38,7 @@ export default async function RetirementManagementPage() {
         <table className="min-w-full text-sm">
           <thead className="bg-gray-50">
             <tr>
-              <th className="border p-2 text-left">社員番号</th>
+              <th className="border p-2 text-left">職員番号</th>
               <th className="border p-2 text-left">氏名</th>
               <th className="border p-2 text-left">部署</th>
               <th className="border p-2 text-left">退職予定日</th>

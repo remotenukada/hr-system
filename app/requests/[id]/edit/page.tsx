@@ -110,7 +110,7 @@ export default async function EditRequestPage({ params }: Props) {
             htmlFor="employeeId"
             className="text-sm font-semibold text-gray-700 block"
           >
-            対象社員
+            対象職員
           </label>
           <select
             id="employeeId"

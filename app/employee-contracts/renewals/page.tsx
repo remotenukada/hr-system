@@ -46,7 +46,7 @@ export default async function ContractRenewalsPage() {
         <table className="min-w-full text-sm">
           <thead className="bg-gray-50">
             <tr>
-              <th className="border-b p-3 text-left">社員番号</th>
+              <th className="border-b p-3 text-left">職員番号</th>
               <th className="border-b p-3 text-left">氏名</th>
               <th className="border-b p-3 text-left">契約区分</th>
               <th className="border-b p-3 text-center">Version</th>

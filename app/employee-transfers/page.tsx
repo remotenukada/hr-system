@@ -44,7 +44,7 @@ export default async function EmployeeTransfersPage() {
           <thead>
             <tr className="bg-gray-50 text-left">
               <th className="border-b p-3">異動日</th>
-              <th className="border-b p-3">社員番号</th>
+              <th className="border-b p-3">職員番号</th>
               <th className="border-b p-3">氏名</th>
               <th className="border-b p-3">変更前</th>
               <th className="border-b p-3">変更後</th>

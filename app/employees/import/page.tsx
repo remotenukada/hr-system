@@ -10,11 +10,11 @@ export default async function EmployeeImportPage() {
       <div className="rounded-lg border bg-white p-6 shadow-sm">
         <div className="mb-6">
           <h1 className="mt-3 text-2xl font-bold text-gray-900">
-            社員CSVインポート
+            職員CSVインポート
           </h1>
 
           <p className="mt-2 text-sm text-gray-600">
-            CSVファイルから社員情報を一括登録します。
+            CSVファイルから職員情報を一括登録します。
           </p>
         </div>
 

@@ -58,7 +58,7 @@ export default async function DepartmentEditPage({
       },
     });
 
-    // 💡 所属社員がいる場合は、クエリパラメータを付与して編集画面にリダイレクト
+    // 💡 所属職員がいる場合は、クエリパラメータを付与して編集画面にリダイレクト
     if (employeeCount > 0) {
       redirect(`/departments/${id}/edit?error=hasEmployees`);
     }
@@ -85,7 +85,7 @@ export default async function DepartmentEditPage({
       {/* 💡 ユーザー体験を高めるエラーアラート表示 */}
       {error === "hasEmployees" && (
         <div className="mb-4 rounded border border-red-300 bg-red-50 p-3 text-red-700 max-w-md">
-          所属社員がいるため、この部署は削除できません。
+          所属職員がいるため、この部署は削除できません。
         </div>
       )}
 

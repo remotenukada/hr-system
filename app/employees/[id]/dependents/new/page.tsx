@@ -131,7 +131,7 @@ export default async function NewDependentPage({ params }: Props) {
           href={`/employees/${id}`}
           className="text-sm text-blue-600 hover:underline"
         >
-          ← 社員詳細へ戻る
+          ← 職員詳細へ戻る
         </Link>
       </div>
 

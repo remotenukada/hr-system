@@ -73,7 +73,7 @@ export default async function CertificationEmployeesPage({
           <thead>
             <tr className="bg-gray-50">
               <th className="border p-2 text-left">
-                社員番号
+                職員番号
               </th>
               <th className="border p-2 text-left">
                 氏名

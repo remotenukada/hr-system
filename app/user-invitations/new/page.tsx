@@ -50,7 +50,7 @@ async function createInvitation(formData: FormData) {
     });
 
     if (existingEmployee) {
-      redirectWithError("この社員番号（入職後採番可）の職員は既に存在します。");
+      redirectWithError("この職員番号（入職後採番可）の職員は既に存在します。");
     }
   }
 
@@ -123,7 +123,7 @@ export default async function NewUserInvitationPage({ searchParams }: Props) {
       <form action={createInvitation} className="space-y-4">
         <div>
           <label className="mb-1 block text-sm font-medium">
-            社員番号（入職後採番可）
+            職員番号（入職後採番可）
           </label>
           <input
             name="employeeNo"
