@@ -393,6 +393,7 @@ model AuditLog {
 model Certification {
   id                     String                  @id @default(uuid())
   name                   String                  @unique
+  expiryManaged          Boolean                 @default(false)
   createdAt              DateTime                @default(now())
   employeeCertifications EmployeeCertification[]
 }

@@ -368,6 +368,7 @@ exports.Prisma.AuditLogScalarFieldEnum = {
 exports.Prisma.CertificationScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  expiryManaged: 'expiryManaged',
   createdAt: 'createdAt'
 };
 

@@ -29048,18 +29048,21 @@ export namespace Prisma {
   export type CertificationMinAggregateOutputType = {
     id: string | null
     name: string | null
+    expiryManaged: boolean | null
     createdAt: Date | null
   }
 
   export type CertificationMaxAggregateOutputType = {
     id: string | null
     name: string | null
+    expiryManaged: boolean | null
     createdAt: Date | null
   }
 
   export type CertificationCountAggregateOutputType = {
     id: number
     name: number
+    expiryManaged: number
     createdAt: number
     _all: number
   }
@@ -29068,18 +29071,21 @@ export namespace Prisma {
   export type CertificationMinAggregateInputType = {
     id?: true
     name?: true
+    expiryManaged?: true
     createdAt?: true
   }
 
   export type CertificationMaxAggregateInputType = {
     id?: true
     name?: true
+    expiryManaged?: true
     createdAt?: true
   }
 
   export type CertificationCountAggregateInputType = {
     id?: true
     name?: true
+    expiryManaged?: true
     createdAt?: true
     _all?: true
   }
@@ -29159,6 +29165,7 @@ export namespace Prisma {
   export type CertificationGroupByOutputType = {
     id: string
     name: string
+    expiryManaged: boolean
     createdAt: Date
     _count: CertificationCountAggregateOutputType | null
     _min: CertificationMinAggregateOutputType | null
@@ -29182,6 +29189,7 @@ export namespace Prisma {
   export type CertificationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    expiryManaged?: boolean
     createdAt?: boolean
     employeeCertifications?: boolean | Certification$employeeCertificationsArgs<ExtArgs>
     _count?: boolean | CertificationCountOutputTypeDefaultArgs<ExtArgs>
@@ -29190,22 +29198,25 @@ export namespace Prisma {
   export type CertificationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    expiryManaged?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["certification"]>
 
   export type CertificationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
+    expiryManaged?: boolean
     createdAt?: boolean
   }, ExtArgs["result"]["certification"]>
 
   export type CertificationSelectScalar = {
     id?: boolean
     name?: boolean
+    expiryManaged?: boolean
     createdAt?: boolean
   }
 
-  export type CertificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt", ExtArgs["result"]["certification"]>
+  export type CertificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "expiryManaged" | "createdAt", ExtArgs["result"]["certification"]>
   export type CertificationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employeeCertifications?: boolean | Certification$employeeCertificationsArgs<ExtArgs>
     _count?: boolean | CertificationCountOutputTypeDefaultArgs<ExtArgs>
@@ -29221,6 +29232,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
+      expiryManaged: boolean
       createdAt: Date
     }, ExtArgs["result"]["certification"]>
     composites: {}
@@ -29648,6 +29660,7 @@ export namespace Prisma {
   interface CertificationFieldRefs {
     readonly id: FieldRef<"Certification", 'String'>
     readonly name: FieldRef<"Certification", 'String'>
+    readonly expiryManaged: FieldRef<"Certification", 'Boolean'>
     readonly createdAt: FieldRef<"Certification", 'DateTime'>
   }
     
@@ -64275,6 +64288,7 @@ export namespace Prisma {
   export const CertificationScalarFieldEnum: {
     id: 'id',
     name: 'name',
+    expiryManaged: 'expiryManaged',
     createdAt: 'createdAt'
   };
 
@@ -66802,6 +66816,7 @@ export namespace Prisma {
     NOT?: CertificationWhereInput | CertificationWhereInput[]
     id?: StringFilter<"Certification"> | string
     name?: StringFilter<"Certification"> | string
+    expiryManaged?: BoolFilter<"Certification"> | boolean
     createdAt?: DateTimeFilter<"Certification"> | Date | string
     employeeCertifications?: EmployeeCertificationListRelationFilter
   }
@@ -66809,6 +66824,7 @@ export namespace Prisma {
   export type CertificationOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
+    expiryManaged?: SortOrder
     createdAt?: SortOrder
     employeeCertifications?: EmployeeCertificationOrderByRelationAggregateInput
   }
@@ -66819,6 +66835,7 @@ export namespace Prisma {
     AND?: CertificationWhereInput | CertificationWhereInput[]
     OR?: CertificationWhereInput[]
     NOT?: CertificationWhereInput | CertificationWhereInput[]
+    expiryManaged?: BoolFilter<"Certification"> | boolean
     createdAt?: DateTimeFilter<"Certification"> | Date | string
     employeeCertifications?: EmployeeCertificationListRelationFilter
   }, "id" | "name">
@@ -66826,6 +66843,7 @@ export namespace Prisma {
   export type CertificationOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
+    expiryManaged?: SortOrder
     createdAt?: SortOrder
     _count?: CertificationCountOrderByAggregateInput
     _max?: CertificationMaxOrderByAggregateInput
@@ -66838,6 +66856,7 @@ export namespace Prisma {
     NOT?: CertificationScalarWhereWithAggregatesInput | CertificationScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Certification"> | string
     name?: StringWithAggregatesFilter<"Certification"> | string
+    expiryManaged?: BoolWithAggregatesFilter<"Certification"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Certification"> | Date | string
   }
 
@@ -71345,6 +71364,7 @@ export namespace Prisma {
   export type CertificationCreateInput = {
     id?: string
     name: string
+    expiryManaged?: boolean
     createdAt?: Date | string
     employeeCertifications?: EmployeeCertificationCreateNestedManyWithoutCertificationInput
   }
@@ -71352,6 +71372,7 @@ export namespace Prisma {
   export type CertificationUncheckedCreateInput = {
     id?: string
     name: string
+    expiryManaged?: boolean
     createdAt?: Date | string
     employeeCertifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutCertificationInput
   }
@@ -71359,6 +71380,7 @@ export namespace Prisma {
   export type CertificationUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    expiryManaged?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeCertifications?: EmployeeCertificationUpdateManyWithoutCertificationNestedInput
   }
@@ -71366,6 +71388,7 @@ export namespace Prisma {
   export type CertificationUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    expiryManaged?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employeeCertifications?: EmployeeCertificationUncheckedUpdateManyWithoutCertificationNestedInput
   }
@@ -71373,18 +71396,21 @@ export namespace Prisma {
   export type CertificationCreateManyInput = {
     id?: string
     name: string
+    expiryManaged?: boolean
     createdAt?: Date | string
   }
 
   export type CertificationUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    expiryManaged?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CertificationUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    expiryManaged?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -76067,18 +76093,21 @@ export namespace Prisma {
   export type CertificationCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    expiryManaged?: SortOrder
     createdAt?: SortOrder
   }
 
   export type CertificationMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    expiryManaged?: SortOrder
     createdAt?: SortOrder
   }
 
   export type CertificationMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
+    expiryManaged?: SortOrder
     createdAt?: SortOrder
   }
 
@@ -86856,12 +86885,14 @@ export namespace Prisma {
   export type CertificationCreateWithoutEmployeeCertificationsInput = {
     id?: string
     name: string
+    expiryManaged?: boolean
     createdAt?: Date | string
   }
 
   export type CertificationUncheckedCreateWithoutEmployeeCertificationsInput = {
     id?: string
     name: string
+    expiryManaged?: boolean
     createdAt?: Date | string
   }
 
@@ -87025,12 +87056,14 @@ export namespace Prisma {
   export type CertificationUpdateWithoutEmployeeCertificationsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    expiryManaged?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CertificationUncheckedUpdateWithoutEmployeeCertificationsInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    expiryManaged?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
