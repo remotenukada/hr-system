@@ -114,6 +114,9 @@ export default async function EmployeeCertificationsPage({
 
     const expiryDateRaw = String(formData.get("expiryDate") ?? "");
 
+
+
+
     if (!certificationId && !newCertificationName) {
       redirect(`/employees/${id}/certifications?error=required`);
     }
@@ -154,8 +157,18 @@ export default async function EmployeeCertificationsPage({
         },
         select: {
           name: true,
+          expiryManaged: true,
         },
       });
+
+    if (certificationInfo?.expiryManaged && !expiryDateRaw.trim()) {
+      redirect(`/employees/${id}/certifications?error=expiryRequired`);
+    }
+
+    const effectiveExpiryDate =
+      certificationInfo?.expiryManaged && expiryDateRaw.trim()
+        ? new Date(`${expiryDateRaw}T00:00:00`)
+        : null;
 
     const isDoctorCertification =
       certificationInfo?.name.trim() === "医師";
@@ -237,9 +250,7 @@ export default async function EmployeeCertificationsPage({
         acquiredDate: acquiredDateRaw
           ? new Date(`${acquiredDateRaw}T00:00:00`)
           : null,
-        expiryDate: expiryDateRaw
-          ? new Date(`${expiryDateRaw}T00:00:00`)
-          : null,
+        expiryDate: effectiveExpiryDate,
         employeeCertificationAttachments:
           savedAttachments.length > 0
             ? {
