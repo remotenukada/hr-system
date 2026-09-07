@@ -17,7 +17,7 @@ export default async function CompanySettingsPage({ searchParams }: Props) {
   return (
     <main className="mx-auto max-w-4xl p-6">
       <BackLink href="/" label="ダッシュボードへ戻る" />
-      <h1 className="mb-6 text-2xl font-bold">会社設定</h1>
+      <h1 className="mb-6 text-2xl font-bold">法人設定</h1>
 
       <form
         action={saveCompanySetting}
@@ -25,7 +25,7 @@ export default async function CompanySettingsPage({ searchParams }: Props) {
       >
         <div>
           <label className="mb-1 block text-sm font-medium">
-            会社名 <span className="text-red-500">*</span>
+            法人名 <span className="text-red-500">*</span>
           </label>
           <input
             name="companyName"
