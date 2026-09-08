@@ -122,6 +122,18 @@ export default async function CompanySettingsPage({ searchParams }: Props) {
           />
         </div>
 
+        <div>
+          <label className="mb-1 block text-sm font-medium">
+            SMTPパスワード
+          </label>
+          <input
+            name="smtpPassword"
+            type="password"
+            defaultValue={current?.smtpPassword ?? ""}
+            className="w-full rounded border p-2"
+          />
+        </div>
+
         <label className="flex items-center gap-2">
           <input
             name="smtpSecure"

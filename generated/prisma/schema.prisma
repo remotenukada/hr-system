@@ -760,6 +760,7 @@ model CompanySetting {
   smtpHost           String?
   smtpPort           Int?
   smtpUser           String?
+  smtpPassword       String?
   smtpSecure         Boolean @default(false)
   sealImagePath      String?
 

@@ -25,7 +25,6 @@ export async function saveCompanySetting(formData: FormData) {
   const smtpPortRaw = formData.get("smtpPort") as string;
 
   const smtpUser = formData.get("smtpUser") as string;
-  const smtpPassword = formData.get("smtpPassword") as string;
 
   const smtpSecure = formData.get("smtpSecure") === "on";
 
@@ -74,7 +73,6 @@ export async function saveCompanySetting(formData: FormData) {
         smtpHost: smtpHost || null,
         smtpPort: smtpPortRaw ? Number(smtpPortRaw) : null,
         smtpUser: smtpUser || null,
-        smtpPassword: smtpPassword || null,
         smtpSecure,
         consultationDesk: consultationDesk || null,
         workRuleLocation: workRuleLocation || null,
@@ -93,7 +91,6 @@ export async function saveCompanySetting(formData: FormData) {
         smtpHost: smtpHost || null,
         smtpPort: smtpPortRaw ? Number(smtpPortRaw) : null,
         smtpUser: smtpUser || null,
-        smtpPassword: smtpPassword || null,
         smtpSecure,
         consultationDesk: consultationDesk || null,
         workRuleLocation: workRuleLocation || null,

@@ -41359,6 +41359,7 @@ export namespace Prisma {
     smtpHost: string | null
     smtpPort: number | null
     smtpUser: string | null
+    smtpPassword: string | null
     smtpSecure: boolean | null
     sealImagePath: string | null
     consultationDesk: string | null
@@ -41378,6 +41379,7 @@ export namespace Prisma {
     smtpHost: string | null
     smtpPort: number | null
     smtpUser: string | null
+    smtpPassword: string | null
     smtpSecure: boolean | null
     sealImagePath: string | null
     consultationDesk: string | null
@@ -41397,6 +41399,7 @@ export namespace Prisma {
     smtpHost: number
     smtpPort: number
     smtpUser: number
+    smtpPassword: number
     smtpSecure: number
     sealImagePath: number
     consultationDesk: number
@@ -41426,6 +41429,7 @@ export namespace Prisma {
     smtpHost?: true
     smtpPort?: true
     smtpUser?: true
+    smtpPassword?: true
     smtpSecure?: true
     sealImagePath?: true
     consultationDesk?: true
@@ -41445,6 +41449,7 @@ export namespace Prisma {
     smtpHost?: true
     smtpPort?: true
     smtpUser?: true
+    smtpPassword?: true
     smtpSecure?: true
     sealImagePath?: true
     consultationDesk?: true
@@ -41464,6 +41469,7 @@ export namespace Prisma {
     smtpHost?: true
     smtpPort?: true
     smtpUser?: true
+    smtpPassword?: true
     smtpSecure?: true
     sealImagePath?: true
     consultationDesk?: true
@@ -41570,6 +41576,7 @@ export namespace Prisma {
     smtpHost: string | null
     smtpPort: number | null
     smtpUser: string | null
+    smtpPassword: string | null
     smtpSecure: boolean
     sealImagePath: string | null
     consultationDesk: string | null
@@ -41608,6 +41615,7 @@ export namespace Prisma {
     smtpHost?: boolean
     smtpPort?: boolean
     smtpUser?: boolean
+    smtpPassword?: boolean
     smtpSecure?: boolean
     sealImagePath?: boolean
     consultationDesk?: boolean
@@ -41627,6 +41635,7 @@ export namespace Prisma {
     smtpHost?: boolean
     smtpPort?: boolean
     smtpUser?: boolean
+    smtpPassword?: boolean
     smtpSecure?: boolean
     sealImagePath?: boolean
     consultationDesk?: boolean
@@ -41646,6 +41655,7 @@ export namespace Prisma {
     smtpHost?: boolean
     smtpPort?: boolean
     smtpUser?: boolean
+    smtpPassword?: boolean
     smtpSecure?: boolean
     sealImagePath?: boolean
     consultationDesk?: boolean
@@ -41665,6 +41675,7 @@ export namespace Prisma {
     smtpHost?: boolean
     smtpPort?: boolean
     smtpUser?: boolean
+    smtpPassword?: boolean
     smtpSecure?: boolean
     sealImagePath?: boolean
     consultationDesk?: boolean
@@ -41673,7 +41684,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type CompanySettingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "companyName" | "postalCode" | "address" | "phoneNumber" | "representativeName" | "mailFrom" | "smtpHost" | "smtpPort" | "smtpUser" | "smtpSecure" | "sealImagePath" | "consultationDesk" | "workRuleLocation" | "createdAt" | "updatedAt", ExtArgs["result"]["companySetting"]>
+  export type CompanySettingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "companyName" | "postalCode" | "address" | "phoneNumber" | "representativeName" | "mailFrom" | "smtpHost" | "smtpPort" | "smtpUser" | "smtpPassword" | "smtpSecure" | "sealImagePath" | "consultationDesk" | "workRuleLocation" | "createdAt" | "updatedAt", ExtArgs["result"]["companySetting"]>
 
   export type $CompanySettingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "CompanySetting"
@@ -41689,6 +41700,7 @@ export namespace Prisma {
       smtpHost: string | null
       smtpPort: number | null
       smtpUser: string | null
+      smtpPassword: string | null
       smtpSecure: boolean
       sealImagePath: string | null
       consultationDesk: string | null
@@ -42128,6 +42140,7 @@ export namespace Prisma {
     readonly smtpHost: FieldRef<"CompanySetting", 'String'>
     readonly smtpPort: FieldRef<"CompanySetting", 'Int'>
     readonly smtpUser: FieldRef<"CompanySetting", 'String'>
+    readonly smtpPassword: FieldRef<"CompanySetting", 'String'>
     readonly smtpSecure: FieldRef<"CompanySetting", 'Boolean'>
     readonly sealImagePath: FieldRef<"CompanySetting", 'String'>
     readonly consultationDesk: FieldRef<"CompanySetting", 'String'>
@@ -65838,6 +65851,7 @@ export namespace Prisma {
     smtpHost: 'smtpHost',
     smtpPort: 'smtpPort',
     smtpUser: 'smtpUser',
+    smtpPassword: 'smtpPassword',
     smtpSecure: 'smtpSecure',
     sealImagePath: 'sealImagePath',
     consultationDesk: 'consultationDesk',
@@ -69184,6 +69198,7 @@ export namespace Prisma {
     smtpHost?: StringNullableFilter<"CompanySetting"> | string | null
     smtpPort?: IntNullableFilter<"CompanySetting"> | number | null
     smtpUser?: StringNullableFilter<"CompanySetting"> | string | null
+    smtpPassword?: StringNullableFilter<"CompanySetting"> | string | null
     smtpSecure?: BoolFilter<"CompanySetting"> | boolean
     sealImagePath?: StringNullableFilter<"CompanySetting"> | string | null
     consultationDesk?: StringNullableFilter<"CompanySetting"> | string | null
@@ -69203,6 +69218,7 @@ export namespace Prisma {
     smtpHost?: SortOrderInput | SortOrder
     smtpPort?: SortOrderInput | SortOrder
     smtpUser?: SortOrderInput | SortOrder
+    smtpPassword?: SortOrderInput | SortOrder
     smtpSecure?: SortOrder
     sealImagePath?: SortOrderInput | SortOrder
     consultationDesk?: SortOrderInput | SortOrder
@@ -69225,6 +69241,7 @@ export namespace Prisma {
     smtpHost?: StringNullableFilter<"CompanySetting"> | string | null
     smtpPort?: IntNullableFilter<"CompanySetting"> | number | null
     smtpUser?: StringNullableFilter<"CompanySetting"> | string | null
+    smtpPassword?: StringNullableFilter<"CompanySetting"> | string | null
     smtpSecure?: BoolFilter<"CompanySetting"> | boolean
     sealImagePath?: StringNullableFilter<"CompanySetting"> | string | null
     consultationDesk?: StringNullableFilter<"CompanySetting"> | string | null
@@ -69244,6 +69261,7 @@ export namespace Prisma {
     smtpHost?: SortOrderInput | SortOrder
     smtpPort?: SortOrderInput | SortOrder
     smtpUser?: SortOrderInput | SortOrder
+    smtpPassword?: SortOrderInput | SortOrder
     smtpSecure?: SortOrder
     sealImagePath?: SortOrderInput | SortOrder
     consultationDesk?: SortOrderInput | SortOrder
@@ -69271,6 +69289,7 @@ export namespace Prisma {
     smtpHost?: StringNullableWithAggregatesFilter<"CompanySetting"> | string | null
     smtpPort?: IntNullableWithAggregatesFilter<"CompanySetting"> | number | null
     smtpUser?: StringNullableWithAggregatesFilter<"CompanySetting"> | string | null
+    smtpPassword?: StringNullableWithAggregatesFilter<"CompanySetting"> | string | null
     smtpSecure?: BoolWithAggregatesFilter<"CompanySetting"> | boolean
     sealImagePath?: StringNullableWithAggregatesFilter<"CompanySetting"> | string | null
     consultationDesk?: StringNullableWithAggregatesFilter<"CompanySetting"> | string | null
@@ -73960,6 +73979,7 @@ export namespace Prisma {
     smtpHost?: string | null
     smtpPort?: number | null
     smtpUser?: string | null
+    smtpPassword?: string | null
     smtpSecure?: boolean
     sealImagePath?: string | null
     consultationDesk?: string | null
@@ -73979,6 +73999,7 @@ export namespace Prisma {
     smtpHost?: string | null
     smtpPort?: number | null
     smtpUser?: string | null
+    smtpPassword?: string | null
     smtpSecure?: boolean
     sealImagePath?: string | null
     consultationDesk?: string | null
@@ -73998,6 +74019,7 @@ export namespace Prisma {
     smtpHost?: NullableStringFieldUpdateOperationsInput | string | null
     smtpPort?: NullableIntFieldUpdateOperationsInput | number | null
     smtpUser?: NullableStringFieldUpdateOperationsInput | string | null
+    smtpPassword?: NullableStringFieldUpdateOperationsInput | string | null
     smtpSecure?: BoolFieldUpdateOperationsInput | boolean
     sealImagePath?: NullableStringFieldUpdateOperationsInput | string | null
     consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
@@ -74017,6 +74039,7 @@ export namespace Prisma {
     smtpHost?: NullableStringFieldUpdateOperationsInput | string | null
     smtpPort?: NullableIntFieldUpdateOperationsInput | number | null
     smtpUser?: NullableStringFieldUpdateOperationsInput | string | null
+    smtpPassword?: NullableStringFieldUpdateOperationsInput | string | null
     smtpSecure?: BoolFieldUpdateOperationsInput | boolean
     sealImagePath?: NullableStringFieldUpdateOperationsInput | string | null
     consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
@@ -74036,6 +74059,7 @@ export namespace Prisma {
     smtpHost?: string | null
     smtpPort?: number | null
     smtpUser?: string | null
+    smtpPassword?: string | null
     smtpSecure?: boolean
     sealImagePath?: string | null
     consultationDesk?: string | null
@@ -74055,6 +74079,7 @@ export namespace Prisma {
     smtpHost?: NullableStringFieldUpdateOperationsInput | string | null
     smtpPort?: NullableIntFieldUpdateOperationsInput | number | null
     smtpUser?: NullableStringFieldUpdateOperationsInput | string | null
+    smtpPassword?: NullableStringFieldUpdateOperationsInput | string | null
     smtpSecure?: BoolFieldUpdateOperationsInput | boolean
     sealImagePath?: NullableStringFieldUpdateOperationsInput | string | null
     consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
@@ -74074,6 +74099,7 @@ export namespace Prisma {
     smtpHost?: NullableStringFieldUpdateOperationsInput | string | null
     smtpPort?: NullableIntFieldUpdateOperationsInput | number | null
     smtpUser?: NullableStringFieldUpdateOperationsInput | string | null
+    smtpPassword?: NullableStringFieldUpdateOperationsInput | string | null
     smtpSecure?: BoolFieldUpdateOperationsInput | boolean
     sealImagePath?: NullableStringFieldUpdateOperationsInput | string | null
     consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
@@ -78295,6 +78321,7 @@ export namespace Prisma {
     smtpHost?: SortOrder
     smtpPort?: SortOrder
     smtpUser?: SortOrder
+    smtpPassword?: SortOrder
     smtpSecure?: SortOrder
     sealImagePath?: SortOrder
     consultationDesk?: SortOrder
@@ -78318,6 +78345,7 @@ export namespace Prisma {
     smtpHost?: SortOrder
     smtpPort?: SortOrder
     smtpUser?: SortOrder
+    smtpPassword?: SortOrder
     smtpSecure?: SortOrder
     sealImagePath?: SortOrder
     consultationDesk?: SortOrder
@@ -78337,6 +78365,7 @@ export namespace Prisma {
     smtpHost?: SortOrder
     smtpPort?: SortOrder
     smtpUser?: SortOrder
+    smtpPassword?: SortOrder
     smtpSecure?: SortOrder
     sealImagePath?: SortOrder
     consultationDesk?: SortOrder

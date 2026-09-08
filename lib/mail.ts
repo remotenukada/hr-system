@@ -8,7 +8,7 @@ async function createMailTransporter() {
   const port = company?.smtpPort || Number(process.env.SMTP_PORT ?? 587);
   const secure = company?.smtpSecure ?? process.env.SMTP_SECURE === "true";
   const user = company?.smtpUser || process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
+  const pass = company?.smtpPassword || process.env.SMTP_PASS;
 
   if (!host || !user || !pass) {
     throw new Error(

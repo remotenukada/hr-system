@@ -536,6 +536,7 @@ exports.Prisma.CompanySettingScalarFieldEnum = {
   smtpHost: 'smtpHost',
   smtpPort: 'smtpPort',
   smtpUser: 'smtpUser',
+  smtpPassword: 'smtpPassword',
   smtpSecure: 'smtpSecure',
   sealImagePath: 'sealImagePath',
   consultationDesk: 'consultationDesk',
