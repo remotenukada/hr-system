@@ -132,6 +132,115 @@ export default async function EditEmploymentContractTemplatePage(
           </select>
         </div>
 
+        <section className="space-y-4 rounded-lg border bg-gray-50 p-5">
+          <div>
+            <h2 className="text-lg font-semibold text-gray-900">
+              労務・福利厚生条件
+            </h2>
+            <p className="mt-1 text-sm text-gray-500">
+              常勤・非常勤など、テンプレートごとの条件を設定します。
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div>
+              <label className="mb-1 block text-sm font-medium">
+                昇給
+              </label>
+              <textarea
+                name="raiseRule"
+                rows={3}
+                defaultValue={template.raiseRule ?? ""}
+                className="w-full rounded border p-2"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium">
+                賞与
+              </label>
+              <textarea
+                name="bonusRule"
+                rows={3}
+                defaultValue={template.bonusRule ?? ""}
+                className="w-full rounded border p-2"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium">
+                退職事項
+              </label>
+              <textarea
+                name="retirementRule"
+                rows={3}
+                defaultValue={template.retirementRule ?? ""}
+                className="w-full rounded border p-2"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium">
+                退職金
+              </label>
+              <textarea
+                name="retirementAllowanceRule"
+                rows={3}
+                defaultValue={template.retirementAllowanceRule ?? ""}
+                className="w-full rounded border p-2"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium">
+                社会保険
+              </label>
+              <textarea
+                name="socialInsuranceRule"
+                rows={3}
+                defaultValue={template.socialInsuranceRule ?? ""}
+                className="w-full rounded border p-2"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium">
+                雇用保険
+              </label>
+              <textarea
+                name="employmentInsuranceRule"
+                rows={3}
+                defaultValue={template.employmentInsuranceRule ?? ""}
+                className="w-full rounded border p-2"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium">
+                相談窓口
+              </label>
+              <textarea
+                name="consultationDesk"
+                rows={3}
+                defaultValue={template.consultationDesk ?? ""}
+                className="w-full rounded border p-2"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium">
+                就業規則保管場所・確認方法
+              </label>
+              <textarea
+                name="workRuleLocation"
+                rows={3}
+                defaultValue={template.workRuleLocation ?? ""}
+                className="w-full rounded border p-2"
+              />
+            </div>
+          </div>
+        </section>
+
         <div>
           <label className="mb-1 block text-sm font-medium">
             試用期間

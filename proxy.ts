@@ -4,14 +4,20 @@ import authConfig from "./auth.config";
 const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {
-  const isLoggedIn = !!req.auth;
-  const isLoginPage = req.nextUrl.pathname === "/login";
+  const isLoggedIn = Boolean(req.auth);
+  const pathname = req.nextUrl.pathname;
+
+  const isLoginPage = pathname === "/login";
+
+  const isPublicPage =
+    pathname === "/fy-nexus-one-logo.svg" ||
+    pathname.startsWith("/register/");
 
   if (isLoginPage && isLoggedIn) {
     return Response.redirect(new URL("/", req.nextUrl));
   }
 
-  if (!isLoggedIn && !isLoginPage) {
+  if (!isLoggedIn && !isLoginPage && !isPublicPage) {
     return Response.redirect(new URL("/login", req.nextUrl));
   }
 });

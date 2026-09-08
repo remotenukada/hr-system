@@ -1331,7 +1331,8 @@ export default async function DashboardPage() {
               className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
             >
               マイ申請
-            </Link>
+            </Link>{isHRManager && (
+
 
             <Link
               href="/mypage/employment-contracts"
@@ -1339,6 +1340,7 @@ export default async function DashboardPage() {
             >
               雇用条件書
             </Link>
+            )}
           </div>
         </div>
 
@@ -1381,6 +1383,13 @@ export default async function DashboardPage() {
               className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
             >
               扶養家族申請
+            </Link>
+
+            <Link
+              href="/mypage/employment-contracts"
+              className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            >
+              雇用条件書
             </Link>
           </div>
         </div>

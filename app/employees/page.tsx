@@ -91,6 +91,7 @@ export default async function EmployeesPage({ searchParams }: Props) {
   const session = await auth();
 
   let securedFacilityId = effectiveFacilityId;
+  let securedDepartmentId = departmentId;
 
   if (session?.user?.role === "MANAGER") {
     const currentEmployee = await prisma.employee.findFirst({
@@ -100,6 +101,7 @@ export default async function EmployeesPage({ searchParams }: Props) {
     });
 
     securedFacilityId = currentEmployee?.facilityId ?? undefined;
+    securedDepartmentId = currentEmployee?.departmentId ?? undefined;
   }
 
   const statusQuery = status || mapJapaneseStatusToEnum(q);
@@ -186,9 +188,9 @@ export default async function EmployeesPage({ searchParams }: Props) {
           }
         : {}),
 
-      ...(departmentId
+      ...(securedDepartmentId
         ? {
-            departmentId,
+            departmentId: securedDepartmentId,
           }
         : {}),
       ...(statusQuery
