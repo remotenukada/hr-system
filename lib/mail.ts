@@ -29,6 +29,7 @@ export async function testSmtpConnection() {
   await transporter.verify();
 }
 
+
 export async function sendInvitationMail(
   email: string,
   name: string,
@@ -40,13 +41,17 @@ export async function sendInvitationMail(
   await transporter.sendMail({
     from: company?.mailFrom || process.env.MAIL_FROM,
     to: email,
-    subject: "職員登録のご案内",
+    subject: "FY Nexus One 職員登録のご案内",
     text: `${name} 様
 
-職員登録用URLです。
+職員登録のご案内です。
 
+登録URL:
 ${invitationUrl}
 
-有効期限がありますのでお早めに登録してください。`,
+有効期限がありますのでお早めにご登録ください。
+
+${company?.companyName ?? "法人"}
+人事担当`,
   });
 }
