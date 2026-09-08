@@ -443,7 +443,116 @@ export default async function NewEmploymentContractPage() {
           </div>
         </section>
 
-        <div className="flex justify-end gap-3 pt-4">
+                <section className="space-y-4 rounded-lg border bg-gray-50 p-5">
+          <div className="border-b pb-2">
+            <h2 className="text-sm font-semibold text-gray-600">
+              労務・福利厚生条件
+            </h2>
+            <p className="mt-1 text-xs text-gray-500">
+              テンプレート選択時に内容が反映されます。必要に応じて個別に修正できます。
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                昇給
+              </label>
+              <textarea
+                name="raiseRule"
+                rows={3}
+                placeholder="例: 年1回（人事考課及び法人業績による）"
+                className="w-full rounded border p-2"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                賞与
+              </label>
+              <textarea
+                name="bonusRule"
+                rows={3}
+                placeholder="例: 年2回（法人規程による）"
+                className="w-full rounded border p-2"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                退職事項
+              </label>
+              <textarea
+                name="retirementRule"
+                rows={3}
+                placeholder="例: 定年、自己都合退職その他は就業規則による"
+                className="w-full rounded border p-2"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                退職金
+              </label>
+              <textarea
+                name="retirementAllowanceRule"
+                rows={3}
+                placeholder="例: あり（退職金規程による）"
+                className="w-full rounded border p-2"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                社会保険
+              </label>
+              <textarea
+                name="socialInsuranceRule"
+                rows={3}
+                placeholder="例: 健康保険・厚生年金に加入"
+                className="w-full rounded border p-2"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                雇用保険
+              </label>
+              <textarea
+                name="employmentInsuranceRule"
+                rows={3}
+                placeholder="例: 加入、または法定要件による"
+                className="w-full rounded border p-2"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                相談窓口
+              </label>
+              <textarea
+                name="consultationDesk"
+                rows={3}
+                placeholder="例: 法人人事担当"
+                className="w-full rounded border p-2"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                就業規則保管場所・確認方法
+              </label>
+              <textarea
+                name="workRuleLocation"
+                rows={3}
+                placeholder="例: 各施設事務所で閲覧可能"
+                className="w-full rounded border p-2"
+              />
+            </div>
+          </div>
+        </section>
+
+<div className="flex justify-end gap-3 pt-4">
           <Link
             href="/employee-contracts"
             className="rounded border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"

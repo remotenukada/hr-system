@@ -108,6 +108,9 @@ export async function createEmploymentContract(
   const contractRenewalCriteria =
     formData.get('contractRenewalCriteria') as string
 
+  const retirementRule =
+    formData.get('retirementRule') as string
+
   const retirementAllowanceRule =
     formData.get('retirementAllowanceRule') as string
 
@@ -184,7 +187,7 @@ export async function createEmploymentContract(
       contractRenewalCriteria:
         contractRenewalCriteria || null,
 
-      retirementRule: null,
+      retirementRule: retirementRule || null,
 
       retirementAllowanceRule:
         retirementAllowanceRule || null,
