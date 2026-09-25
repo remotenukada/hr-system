@@ -1,5 +1,7 @@
 'use server'
 
+import { requireHRManager } from "@/lib/auth-guard";
+
 import { prisma } from '@/lib/prisma'
 import { logAudit } from '@/lib/audit-log'
 
@@ -454,4 +456,136 @@ export async function updateEmploymentContract(
   revalidatePath('/employee-contracts')
   revalidatePath('/employee-contracts/renewals')
   redirect(`/employee-contracts/${newContract.id}`)
+}
+
+
+export async function cancelEmploymentContract(
+  formData: FormData,
+) {
+  const session = await requireHRManager();
+
+  const id = String(formData.get("id") ?? "");
+  const reason = String(formData.get("reason") ?? "").trim();
+
+  if (!id || !reason) {
+    throw new Error("取消理由は必須です。");
+  }
+
+  const result = await prisma.$transaction(async (tx) => {
+    const current = await tx.employmentContract.findUnique({
+      where: { id },
+      include: {
+        employmentContractConsents: {
+          select: { id: true },
+        },
+      },
+    });
+
+    if (!current?.isCurrent) {
+      throw new Error("現行契約が見つかりません。");
+    }
+
+    if (current.employmentContractConsents.length > 0) {
+      throw new Error("同意済み契約は取り消せません。");
+    }
+
+    const previous = await tx.employmentContract.findFirst({
+      where: {
+        employeeId: current.employeeId,
+        isCurrent: false,
+        version: { lt: current.version },
+      },
+      orderBy: { version: "desc" },
+    });
+
+    if (!previous) {
+      throw new Error("復元可能な直前契約がありません。");
+    }
+
+    await tx.employmentContract.update({
+      where: { id: previous.id },
+      data: {
+        isCurrent: true,
+        supersededAt: null,
+      },
+    });
+
+    await tx.employmentContract.delete({
+      where: { id: current.id },
+    });
+
+    return { current, previous };
+  });
+
+  await logAudit({
+    userId: session.user.id,
+    userName: session.user.name,
+    action: "EMPLOYMENT_CONTRACT_CANCELLED",
+    targetType: "EmploymentContract",
+    targetId: result.current.id,
+    description:
+      `契約更新取消: v${result.current.version} → ` +
+      `v${result.previous.version}、理由: ${reason}`,
+    beforeData: result.current,
+    afterData: {
+      restoredContractId: result.previous.id,
+      restoredVersion: result.previous.version,
+      reason,
+    },
+  });
+
+  revalidatePath("/employee-contracts");
+  redirect("/employee-contracts");
+}
+
+export async function deleteEmploymentContractHistory(
+  formData: FormData,
+) {
+  const session = await requireHRManager();
+
+  const id = String(formData.get("id") ?? "");
+  const reason = String(formData.get("reason") ?? "").trim();
+
+  if (!id || !reason) {
+    throw new Error("削除理由は必須です。");
+  }
+
+  const contract = await prisma.employmentContract.findUnique({
+    where: { id },
+    include: {
+      employmentContractConsents: {
+        select: { id: true },
+      },
+    },
+  });
+
+  if (!contract) {
+    throw new Error("契約が見つかりません。");
+  }
+
+  if (contract.isCurrent) {
+    throw new Error("現行契約は削除できません。");
+  }
+
+  if (contract.employmentContractConsents.length > 0) {
+    throw new Error("同意済み契約は削除できません。");
+  }
+
+  await prisma.employmentContract.delete({
+    where: { id },
+  });
+
+  await logAudit({
+    userId: session.user.id,
+    userName: session.user.name,
+    action: "EMPLOYMENT_CONTRACT_DELETED",
+    targetType: "EmploymentContract",
+    targetId: contract.id,
+    description:
+      `履歴契約削除: v${contract.version}、理由: ${reason}`,
+    beforeData: contract,
+  });
+
+  revalidatePath("/employee-contracts");
+  redirect("/employee-contracts");
 }
