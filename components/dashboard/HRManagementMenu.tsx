@@ -80,6 +80,9 @@ export default function HRManagementMenu({
           <Link href="/role-permissions">権限マトリクス</Link>
           <Link href="/masters">マスタ管理</Link>
           <Link href="/company-settings">法人設定</Link>
+          <Link href="/employee-documents">
+            給与明細・個人文書管理
+          </Link>
 
           {userRole === "ADMIN" && (
             <>

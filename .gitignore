@@ -57,3 +57,5 @@ uploads-backup.tar.gz
 
 # Private uploaded files
 storage/
+# 個人文書・給与明細
+/storage/

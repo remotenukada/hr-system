@@ -97,6 +97,15 @@ export default async function MyPage() {
           </Link>
 
           <Link
+            href="/mypage/documents"
+            className="flex items-center justify-between rounded-lg border bg-white p-4 shadow-sm hover:border-gray-400"
+          >
+            <div>
+              <p className="font-medium text-gray-900">給与明細</p>
+              <p className="text-xs text-gray-500">配信用PDFを閲覧</p>
+            </div>
+          </Link>
+          <Link
             href="/mypage/employment-contracts"
             className="rounded border border-gray-300 bg-white px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
           >
