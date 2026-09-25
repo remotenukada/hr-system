@@ -18,6 +18,13 @@ export default async function UsersPage() {
   await requireAdmin();
 
   const users = await prisma.user.findMany({
+    include: {
+      employee: {
+        select: {
+          employeeNo: true,
+        },
+      },
+    },
     orderBy: {
       createdAt: "desc",
     },
@@ -56,6 +63,7 @@ export default async function UsersPage() {
           <thead>
             <tr className="bg-gray-50">
               <th className="p-3 text-left">氏名</th>
+              <th className="p-3 text-left">職員番号</th>
               <th className="p-3 text-left">メールアドレス</th>
               <th className="p-3 text-left">権限</th>
               <th className="p-3 text-left">状態</th>
@@ -67,7 +75,7 @@ export default async function UsersPage() {
           <tbody>
             {users.length === 0 ? (
               <tr>
-                <td colSpan={6} className="p-8 text-center text-gray-500">
+                <td colSpan={7} className="p-8 text-center text-gray-500">
                   ユーザーが登録されていません。
                 </td>
               </tr>
@@ -75,6 +83,9 @@ export default async function UsersPage() {
               users.map((user) => (
                 <tr key={user.id} className="border-t">
                   <td className="p-3 font-medium">{user.name}</td>
+                  <td className="p-3">
+                    {user.employee?.employeeNo ?? "未紐付け"}
+                  </td>
 
                   <td className="p-3">{user.email}</td>
 
