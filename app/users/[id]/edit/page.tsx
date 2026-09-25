@@ -188,6 +188,9 @@ export default async function EditUserPage({ params, searchParams }: Props) {
   const sp = await searchParams;
 
   const user = await prisma.user.findUnique({
+    include: {
+      employee: true,
+    },
     where: {
       id,
     },
@@ -196,6 +199,24 @@ export default async function EditUserPage({ params, searchParams }: Props) {
   if (!user) {
     notFound();
   }
+
+  const employees = await prisma.employee.findMany({
+    where: {
+      OR: [
+        { userId: null },
+        { userId: user.id },
+      ],
+    },
+    select: {
+      id: true,
+      employeeNo: true,
+      lastName: true,
+      firstName: true,
+    },
+    orderBy: {
+      employeeNo: "asc",
+    },
+  });
 
   return (
     <main className="mx-auto max-w-2xl p-8">
@@ -223,6 +244,30 @@ export default async function EditUserPage({ params, searchParams }: Props) {
         className="space-y-4 rounded border bg-white p-6 shadow-sm"
       >
         <input type="hidden" name="id" value={user.id} />
+
+        <div>
+          <label className="mb-1 block text-sm font-medium">
+            紐付け職員
+          </label>
+
+          <select
+            disabled
+            className="w-full rounded border bg-gray-50 p-2"
+            defaultValue={user.employee?.id ?? ""}
+          >
+            {employees.map((employee) => (
+              <option key={employee.id} value={employee.id}>
+                {employee.employeeNo}{" "}
+                {employee.lastName}{" "}
+                {employee.firstName}
+              </option>
+            ))}
+          </select>
+
+          <p className="mt-1 text-xs text-gray-500">
+            次のステップで変更機能を有効化します
+          </p>
+        </div>
 
         <div>
           <label className="mb-1 block text-sm font-medium">氏名</label>
