@@ -38,12 +38,13 @@ async function createUser(formData: FormData) {
   const name = String(formData.get("name") ?? "").trim();
   const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");
+  const employeeId = String(formData.get("employeeId") ?? "").trim();
   const roleRaw = String(formData.get("role") ?? UserRole.USER);
 
   const role = isValidRole(roleRaw) ? roleRaw : UserRole.USER;
 
-  if (!name || !email || !password) {
-    redirectWithError("氏名、メールアドレス、パスワードは必須です。");
+  if (!name || !email || !password || !employeeId) {
+    redirectWithError("氏名、メールアドレス、パスワード、職員選択は必須です。");
   }
 
   if (password.length < 8) {
@@ -71,6 +72,15 @@ async function createUser(formData: FormData) {
     },
   });
 
+  await prisma.employee.update({
+    where: {
+      id: employeeId,
+    },
+    data: {
+      userId: createdUser.id,
+    },
+  });
+
   await logAudit({
     userId: session.user.id,
     userName: session.user.name,
@@ -92,6 +102,21 @@ export default async function NewUserPage({ searchParams }: Props) {
   await requireAdmin();
 
   const params = await searchParams;
+
+  const employees = await prisma.employee.findMany({
+    where: {
+      userId: null,
+    },
+    select: {
+      id: true,
+      employeeNo: true,
+      lastName: true,
+      firstName: true,
+    },
+    orderBy: {
+      employeeNo: "asc",
+    },
+  });
   const error = params.error;
 
   return (
@@ -119,6 +144,31 @@ export default async function NewUserPage({ searchParams }: Props) {
         action={createUser}
         className="space-y-4 rounded border bg-white p-6 shadow-sm"
       >
+        <div>
+          <label className="mb-1 block text-sm font-medium">
+            紐付け職員 *
+          </label>
+
+          <select
+            name="employeeId"
+            required
+            defaultValue=""
+            className="w-full rounded border bg-white p-2"
+          >
+            <option value="" disabled>
+              職員を選択してください
+            </option>
+
+            {employees.map((employee) => (
+              <option key={employee.id} value={employee.id}>
+                {employee.employeeNo}{" "}
+                {employee.lastName}{" "}
+                {employee.firstName}
+              </option>
+            ))}
+          </select>
+        </div>
+
         <div>
           <label className="mb-1 block text-sm font-medium">氏名</label>
           <input name="name" className="w-full rounded border p-2" required />
