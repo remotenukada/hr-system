@@ -227,7 +227,51 @@ export default async function EditEmploymentContractTemplatePage(
               />
             </div>
 
-            <div>
+                        <div className="md:col-span-2 rounded border border-blue-200 bg-blue-50 p-4">
+              <h3 className="mb-3 font-semibold text-blue-900">
+                待遇差説明専用窓口
+              </h3>
+              <p className="mb-4 text-xs text-blue-700">
+                2026年10月改正対応用です。通常の相談窓口とは別に設定します。
+              </p>
+
+              <div className="grid gap-4 md:grid-cols-2">
+                <label className="text-sm font-medium text-gray-700">
+                  待遇差説明窓口部署
+                  <input
+                    type="text"
+                    name="treatmentDeskDepartment" defaultValue={template.treatmentDeskDepartment ?? ""}
+                    className="mt-1 w-full rounded border bg-white p-2"
+                  />
+                </label>
+                <label className="text-sm font-medium text-gray-700">
+                  待遇差説明担当者
+                  <input
+                    type="text"
+                    name="treatmentDeskPerson" defaultValue={template.treatmentDeskPerson ?? ""}
+                    className="mt-1 w-full rounded border bg-white p-2"
+                  />
+                </label>
+                <label className="text-sm font-medium text-gray-700">
+                  待遇差説明電話番号
+                  <input
+                    type="text"
+                    name="treatmentDeskPhone" defaultValue={template.treatmentDeskPhone ?? ""}
+                    className="mt-1 w-full rounded border bg-white p-2"
+                  />
+                </label>
+                <label className="text-sm font-medium text-gray-700">
+                  待遇差説明メールアドレス
+                  <input
+                    type="email"
+                    name="treatmentDeskEmail" defaultValue={template.treatmentDeskEmail ?? ""}
+                    className="mt-1 w-full rounded border bg-white p-2"
+                  />
+                </label>
+              </div>
+            </div>
+
+<div>
               <label className="mb-1 block text-sm font-medium">
                 就業規則保管場所・確認方法
               </label>

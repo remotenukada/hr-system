@@ -39932,6 +39932,10 @@ export namespace Prisma {
     socialInsuranceRule: string | null
     employmentInsuranceRule: string | null
     consultationDesk: string | null
+    treatmentDeskDepartment: string | null
+    treatmentDeskPerson: string | null
+    treatmentDeskPhone: string | null
+    treatmentDeskEmail: string | null
     workRuleLocation: string | null
     remarks: string | null
     version: number | null
@@ -39972,6 +39976,10 @@ export namespace Prisma {
     socialInsuranceRule: string | null
     employmentInsuranceRule: string | null
     consultationDesk: string | null
+    treatmentDeskDepartment: string | null
+    treatmentDeskPerson: string | null
+    treatmentDeskPhone: string | null
+    treatmentDeskEmail: string | null
     workRuleLocation: string | null
     remarks: string | null
     version: number | null
@@ -40012,6 +40020,10 @@ export namespace Prisma {
     socialInsuranceRule: number
     employmentInsuranceRule: number
     consultationDesk: number
+    treatmentDeskDepartment: number
+    treatmentDeskPerson: number
+    treatmentDeskPhone: number
+    treatmentDeskEmail: number
     workRuleLocation: number
     remarks: number
     version: number
@@ -40066,6 +40078,10 @@ export namespace Prisma {
     socialInsuranceRule?: true
     employmentInsuranceRule?: true
     consultationDesk?: true
+    treatmentDeskDepartment?: true
+    treatmentDeskPerson?: true
+    treatmentDeskPhone?: true
+    treatmentDeskEmail?: true
     workRuleLocation?: true
     remarks?: true
     version?: true
@@ -40106,6 +40122,10 @@ export namespace Prisma {
     socialInsuranceRule?: true
     employmentInsuranceRule?: true
     consultationDesk?: true
+    treatmentDeskDepartment?: true
+    treatmentDeskPerson?: true
+    treatmentDeskPhone?: true
+    treatmentDeskEmail?: true
     workRuleLocation?: true
     remarks?: true
     version?: true
@@ -40146,6 +40166,10 @@ export namespace Prisma {
     socialInsuranceRule?: true
     employmentInsuranceRule?: true
     consultationDesk?: true
+    treatmentDeskDepartment?: true
+    treatmentDeskPerson?: true
+    treatmentDeskPhone?: true
+    treatmentDeskEmail?: true
     workRuleLocation?: true
     remarks?: true
     version?: true
@@ -40273,6 +40297,10 @@ export namespace Prisma {
     socialInsuranceRule: string | null
     employmentInsuranceRule: string | null
     consultationDesk: string | null
+    treatmentDeskDepartment: string | null
+    treatmentDeskPerson: string | null
+    treatmentDeskPhone: string | null
+    treatmentDeskEmail: string | null
     workRuleLocation: string | null
     remarks: string | null
     version: number
@@ -40332,6 +40360,10 @@ export namespace Prisma {
     socialInsuranceRule?: boolean
     employmentInsuranceRule?: boolean
     consultationDesk?: boolean
+    treatmentDeskDepartment?: boolean
+    treatmentDeskPerson?: boolean
+    treatmentDeskPhone?: boolean
+    treatmentDeskEmail?: boolean
     workRuleLocation?: boolean
     remarks?: boolean
     version?: boolean
@@ -40376,6 +40408,10 @@ export namespace Prisma {
     socialInsuranceRule?: boolean
     employmentInsuranceRule?: boolean
     consultationDesk?: boolean
+    treatmentDeskDepartment?: boolean
+    treatmentDeskPerson?: boolean
+    treatmentDeskPhone?: boolean
+    treatmentDeskEmail?: boolean
     workRuleLocation?: boolean
     remarks?: boolean
     version?: boolean
@@ -40417,6 +40453,10 @@ export namespace Prisma {
     socialInsuranceRule?: boolean
     employmentInsuranceRule?: boolean
     consultationDesk?: boolean
+    treatmentDeskDepartment?: boolean
+    treatmentDeskPerson?: boolean
+    treatmentDeskPhone?: boolean
+    treatmentDeskEmail?: boolean
     workRuleLocation?: boolean
     remarks?: boolean
     version?: boolean
@@ -40458,6 +40498,10 @@ export namespace Prisma {
     socialInsuranceRule?: boolean
     employmentInsuranceRule?: boolean
     consultationDesk?: boolean
+    treatmentDeskDepartment?: boolean
+    treatmentDeskPerson?: boolean
+    treatmentDeskPhone?: boolean
+    treatmentDeskEmail?: boolean
     workRuleLocation?: boolean
     remarks?: boolean
     version?: boolean
@@ -40467,7 +40511,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type EmploymentContractOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "contractType" | "employmentCategory" | "startDate" | "endDate" | "workplace" | "jobDescription" | "occupation" | "position" | "workStartTime" | "workEndTime" | "breakMinutes" | "holidayRule" | "leaveRule" | "wageType" | "baseSalary" | "allowanceNote" | "payClosingDay" | "payDate" | "bonusRule" | "raiseRule" | "probationPeriod" | "contractRenewalRule" | "contractRenewalCriteria" | "retirementRule" | "retirementAllowanceRule" | "socialInsuranceRule" | "employmentInsuranceRule" | "consultationDesk" | "workRuleLocation" | "remarks" | "version" | "isCurrent" | "supersededAt" | "createdAt" | "updatedAt", ExtArgs["result"]["employmentContract"]>
+  export type EmploymentContractOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "contractType" | "employmentCategory" | "startDate" | "endDate" | "workplace" | "jobDescription" | "occupation" | "position" | "workStartTime" | "workEndTime" | "breakMinutes" | "holidayRule" | "leaveRule" | "wageType" | "baseSalary" | "allowanceNote" | "payClosingDay" | "payDate" | "bonusRule" | "raiseRule" | "probationPeriod" | "contractRenewalRule" | "contractRenewalCriteria" | "retirementRule" | "retirementAllowanceRule" | "socialInsuranceRule" | "employmentInsuranceRule" | "consultationDesk" | "treatmentDeskDepartment" | "treatmentDeskPerson" | "treatmentDeskPhone" | "treatmentDeskEmail" | "workRuleLocation" | "remarks" | "version" | "isCurrent" | "supersededAt" | "createdAt" | "updatedAt", ExtArgs["result"]["employmentContract"]>
   export type EmploymentContractInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
     employmentContractConsents?: boolean | EmploymentContract$employmentContractConsentsArgs<ExtArgs>
@@ -40519,6 +40563,10 @@ export namespace Prisma {
       socialInsuranceRule: string | null
       employmentInsuranceRule: string | null
       consultationDesk: string | null
+      treatmentDeskDepartment: string | null
+      treatmentDeskPerson: string | null
+      treatmentDeskPhone: string | null
+      treatmentDeskEmail: string | null
       workRuleLocation: string | null
       remarks: string | null
       version: number
@@ -40982,6 +41030,10 @@ export namespace Prisma {
     readonly socialInsuranceRule: FieldRef<"EmploymentContract", 'String'>
     readonly employmentInsuranceRule: FieldRef<"EmploymentContract", 'String'>
     readonly consultationDesk: FieldRef<"EmploymentContract", 'String'>
+    readonly treatmentDeskDepartment: FieldRef<"EmploymentContract", 'String'>
+    readonly treatmentDeskPerson: FieldRef<"EmploymentContract", 'String'>
+    readonly treatmentDeskPhone: FieldRef<"EmploymentContract", 'String'>
+    readonly treatmentDeskEmail: FieldRef<"EmploymentContract", 'String'>
     readonly workRuleLocation: FieldRef<"EmploymentContract", 'String'>
     readonly remarks: FieldRef<"EmploymentContract", 'String'>
     readonly version: FieldRef<"EmploymentContract", 'Int'>
@@ -42693,6 +42745,10 @@ export namespace Prisma {
     socialInsuranceRule: string | null
     employmentInsuranceRule: string | null
     consultationDesk: string | null
+    treatmentDeskDepartment: string | null
+    treatmentDeskPerson: string | null
+    treatmentDeskPhone: string | null
+    treatmentDeskEmail: string | null
     workRuleLocation: string | null
     remarks: string | null
     isActive: boolean | null
@@ -42725,6 +42781,10 @@ export namespace Prisma {
     socialInsuranceRule: string | null
     employmentInsuranceRule: string | null
     consultationDesk: string | null
+    treatmentDeskDepartment: string | null
+    treatmentDeskPerson: string | null
+    treatmentDeskPhone: string | null
+    treatmentDeskEmail: string | null
     workRuleLocation: string | null
     remarks: string | null
     isActive: boolean | null
@@ -42757,6 +42817,10 @@ export namespace Prisma {
     socialInsuranceRule: number
     employmentInsuranceRule: number
     consultationDesk: number
+    treatmentDeskDepartment: number
+    treatmentDeskPerson: number
+    treatmentDeskPhone: number
+    treatmentDeskEmail: number
     workRuleLocation: number
     remarks: number
     isActive: number
@@ -42801,6 +42865,10 @@ export namespace Prisma {
     socialInsuranceRule?: true
     employmentInsuranceRule?: true
     consultationDesk?: true
+    treatmentDeskDepartment?: true
+    treatmentDeskPerson?: true
+    treatmentDeskPhone?: true
+    treatmentDeskEmail?: true
     workRuleLocation?: true
     remarks?: true
     isActive?: true
@@ -42833,6 +42901,10 @@ export namespace Prisma {
     socialInsuranceRule?: true
     employmentInsuranceRule?: true
     consultationDesk?: true
+    treatmentDeskDepartment?: true
+    treatmentDeskPerson?: true
+    treatmentDeskPhone?: true
+    treatmentDeskEmail?: true
     workRuleLocation?: true
     remarks?: true
     isActive?: true
@@ -42865,6 +42937,10 @@ export namespace Prisma {
     socialInsuranceRule?: true
     employmentInsuranceRule?: true
     consultationDesk?: true
+    treatmentDeskDepartment?: true
+    treatmentDeskPerson?: true
+    treatmentDeskPhone?: true
+    treatmentDeskEmail?: true
     workRuleLocation?: true
     remarks?: true
     isActive?: true
@@ -42984,6 +43060,10 @@ export namespace Prisma {
     socialInsuranceRule: string | null
     employmentInsuranceRule: string | null
     consultationDesk: string | null
+    treatmentDeskDepartment: string | null
+    treatmentDeskPerson: string | null
+    treatmentDeskPhone: string | null
+    treatmentDeskEmail: string | null
     workRuleLocation: string | null
     remarks: string | null
     isActive: boolean
@@ -43035,6 +43115,10 @@ export namespace Prisma {
     socialInsuranceRule?: boolean
     employmentInsuranceRule?: boolean
     consultationDesk?: boolean
+    treatmentDeskDepartment?: boolean
+    treatmentDeskPerson?: boolean
+    treatmentDeskPhone?: boolean
+    treatmentDeskEmail?: boolean
     workRuleLocation?: boolean
     remarks?: boolean
     isActive?: boolean
@@ -43067,6 +43151,10 @@ export namespace Prisma {
     socialInsuranceRule?: boolean
     employmentInsuranceRule?: boolean
     consultationDesk?: boolean
+    treatmentDeskDepartment?: boolean
+    treatmentDeskPerson?: boolean
+    treatmentDeskPhone?: boolean
+    treatmentDeskEmail?: boolean
     workRuleLocation?: boolean
     remarks?: boolean
     isActive?: boolean
@@ -43099,6 +43187,10 @@ export namespace Prisma {
     socialInsuranceRule?: boolean
     employmentInsuranceRule?: boolean
     consultationDesk?: boolean
+    treatmentDeskDepartment?: boolean
+    treatmentDeskPerson?: boolean
+    treatmentDeskPhone?: boolean
+    treatmentDeskEmail?: boolean
     workRuleLocation?: boolean
     remarks?: boolean
     isActive?: boolean
@@ -43131,6 +43223,10 @@ export namespace Prisma {
     socialInsuranceRule?: boolean
     employmentInsuranceRule?: boolean
     consultationDesk?: boolean
+    treatmentDeskDepartment?: boolean
+    treatmentDeskPerson?: boolean
+    treatmentDeskPhone?: boolean
+    treatmentDeskEmail?: boolean
     workRuleLocation?: boolean
     remarks?: boolean
     isActive?: boolean
@@ -43138,7 +43234,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type EmploymentContractTemplateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "contractType" | "workStartTime" | "workEndTime" | "breakMinutes" | "holidayRule" | "leaveRule" | "wageType" | "baseSalary" | "allowanceNote" | "payClosingDay" | "payDate" | "bonusRule" | "raiseRule" | "probationPeriod" | "contractRenewalRule" | "contractRenewalCriteria" | "retirementRule" | "retirementAllowanceRule" | "socialInsuranceRule" | "employmentInsuranceRule" | "consultationDesk" | "workRuleLocation" | "remarks" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["employmentContractTemplate"]>
+  export type EmploymentContractTemplateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "contractType" | "workStartTime" | "workEndTime" | "breakMinutes" | "holidayRule" | "leaveRule" | "wageType" | "baseSalary" | "allowanceNote" | "payClosingDay" | "payDate" | "bonusRule" | "raiseRule" | "probationPeriod" | "contractRenewalRule" | "contractRenewalCriteria" | "retirementRule" | "retirementAllowanceRule" | "socialInsuranceRule" | "employmentInsuranceRule" | "consultationDesk" | "treatmentDeskDepartment" | "treatmentDeskPerson" | "treatmentDeskPhone" | "treatmentDeskEmail" | "workRuleLocation" | "remarks" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["employmentContractTemplate"]>
 
   export type $EmploymentContractTemplatePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "EmploymentContractTemplate"
@@ -43168,6 +43264,10 @@ export namespace Prisma {
       socialInsuranceRule: string | null
       employmentInsuranceRule: string | null
       consultationDesk: string | null
+      treatmentDeskDepartment: string | null
+      treatmentDeskPerson: string | null
+      treatmentDeskPhone: string | null
+      treatmentDeskEmail: string | null
       workRuleLocation: string | null
       remarks: string | null
       isActive: boolean
@@ -43620,6 +43720,10 @@ export namespace Prisma {
     readonly socialInsuranceRule: FieldRef<"EmploymentContractTemplate", 'String'>
     readonly employmentInsuranceRule: FieldRef<"EmploymentContractTemplate", 'String'>
     readonly consultationDesk: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly treatmentDeskDepartment: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly treatmentDeskPerson: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly treatmentDeskPhone: FieldRef<"EmploymentContractTemplate", 'String'>
+    readonly treatmentDeskEmail: FieldRef<"EmploymentContractTemplate", 'String'>
     readonly workRuleLocation: FieldRef<"EmploymentContractTemplate", 'String'>
     readonly remarks: FieldRef<"EmploymentContractTemplate", 'String'>
     readonly isActive: FieldRef<"EmploymentContractTemplate", 'Boolean'>
@@ -67178,6 +67282,10 @@ export namespace Prisma {
     socialInsuranceRule: 'socialInsuranceRule',
     employmentInsuranceRule: 'employmentInsuranceRule',
     consultationDesk: 'consultationDesk',
+    treatmentDeskDepartment: 'treatmentDeskDepartment',
+    treatmentDeskPerson: 'treatmentDeskPerson',
+    treatmentDeskPhone: 'treatmentDeskPhone',
+    treatmentDeskEmail: 'treatmentDeskEmail',
     workRuleLocation: 'workRuleLocation',
     remarks: 'remarks',
     version: 'version',
@@ -67238,6 +67346,10 @@ export namespace Prisma {
     socialInsuranceRule: 'socialInsuranceRule',
     employmentInsuranceRule: 'employmentInsuranceRule',
     consultationDesk: 'consultationDesk',
+    treatmentDeskDepartment: 'treatmentDeskDepartment',
+    treatmentDeskPerson: 'treatmentDeskPerson',
+    treatmentDeskPhone: 'treatmentDeskPhone',
+    treatmentDeskEmail: 'treatmentDeskEmail',
     workRuleLocation: 'workRuleLocation',
     remarks: 'remarks',
     isActive: 'isActive',
@@ -70368,6 +70480,10 @@ export namespace Prisma {
     socialInsuranceRule?: StringNullableFilter<"EmploymentContract"> | string | null
     employmentInsuranceRule?: StringNullableFilter<"EmploymentContract"> | string | null
     consultationDesk?: StringNullableFilter<"EmploymentContract"> | string | null
+    treatmentDeskDepartment?: StringNullableFilter<"EmploymentContract"> | string | null
+    treatmentDeskPerson?: StringNullableFilter<"EmploymentContract"> | string | null
+    treatmentDeskPhone?: StringNullableFilter<"EmploymentContract"> | string | null
+    treatmentDeskEmail?: StringNullableFilter<"EmploymentContract"> | string | null
     workRuleLocation?: StringNullableFilter<"EmploymentContract"> | string | null
     remarks?: StringNullableFilter<"EmploymentContract"> | string | null
     version?: IntFilter<"EmploymentContract"> | number
@@ -70411,6 +70527,10 @@ export namespace Prisma {
     socialInsuranceRule?: SortOrderInput | SortOrder
     employmentInsuranceRule?: SortOrderInput | SortOrder
     consultationDesk?: SortOrderInput | SortOrder
+    treatmentDeskDepartment?: SortOrderInput | SortOrder
+    treatmentDeskPerson?: SortOrderInput | SortOrder
+    treatmentDeskPhone?: SortOrderInput | SortOrder
+    treatmentDeskEmail?: SortOrderInput | SortOrder
     workRuleLocation?: SortOrderInput | SortOrder
     remarks?: SortOrderInput | SortOrder
     version?: SortOrder
@@ -70457,6 +70577,10 @@ export namespace Prisma {
     socialInsuranceRule?: StringNullableFilter<"EmploymentContract"> | string | null
     employmentInsuranceRule?: StringNullableFilter<"EmploymentContract"> | string | null
     consultationDesk?: StringNullableFilter<"EmploymentContract"> | string | null
+    treatmentDeskDepartment?: StringNullableFilter<"EmploymentContract"> | string | null
+    treatmentDeskPerson?: StringNullableFilter<"EmploymentContract"> | string | null
+    treatmentDeskPhone?: StringNullableFilter<"EmploymentContract"> | string | null
+    treatmentDeskEmail?: StringNullableFilter<"EmploymentContract"> | string | null
     workRuleLocation?: StringNullableFilter<"EmploymentContract"> | string | null
     remarks?: StringNullableFilter<"EmploymentContract"> | string | null
     version?: IntFilter<"EmploymentContract"> | number
@@ -70500,6 +70624,10 @@ export namespace Prisma {
     socialInsuranceRule?: SortOrderInput | SortOrder
     employmentInsuranceRule?: SortOrderInput | SortOrder
     consultationDesk?: SortOrderInput | SortOrder
+    treatmentDeskDepartment?: SortOrderInput | SortOrder
+    treatmentDeskPerson?: SortOrderInput | SortOrder
+    treatmentDeskPhone?: SortOrderInput | SortOrder
+    treatmentDeskEmail?: SortOrderInput | SortOrder
     workRuleLocation?: SortOrderInput | SortOrder
     remarks?: SortOrderInput | SortOrder
     version?: SortOrder
@@ -70548,6 +70676,10 @@ export namespace Prisma {
     socialInsuranceRule?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
     employmentInsuranceRule?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
     consultationDesk?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
+    treatmentDeskDepartment?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
+    treatmentDeskPerson?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
+    treatmentDeskPhone?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
+    treatmentDeskEmail?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
     workRuleLocation?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
     remarks?: StringNullableWithAggregatesFilter<"EmploymentContract"> | string | null
     version?: IntWithAggregatesFilter<"EmploymentContract"> | number
@@ -70699,6 +70831,10 @@ export namespace Prisma {
     socialInsuranceRule?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
     employmentInsuranceRule?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
     consultationDesk?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    treatmentDeskDepartment?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    treatmentDeskPerson?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    treatmentDeskPhone?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    treatmentDeskEmail?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
     workRuleLocation?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
     remarks?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
     isActive?: BoolFilter<"EmploymentContractTemplate"> | boolean
@@ -70731,6 +70867,10 @@ export namespace Prisma {
     socialInsuranceRule?: SortOrderInput | SortOrder
     employmentInsuranceRule?: SortOrderInput | SortOrder
     consultationDesk?: SortOrderInput | SortOrder
+    treatmentDeskDepartment?: SortOrderInput | SortOrder
+    treatmentDeskPerson?: SortOrderInput | SortOrder
+    treatmentDeskPhone?: SortOrderInput | SortOrder
+    treatmentDeskEmail?: SortOrderInput | SortOrder
     workRuleLocation?: SortOrderInput | SortOrder
     remarks?: SortOrderInput | SortOrder
     isActive?: SortOrder
@@ -70766,6 +70906,10 @@ export namespace Prisma {
     socialInsuranceRule?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
     employmentInsuranceRule?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
     consultationDesk?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    treatmentDeskDepartment?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    treatmentDeskPerson?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    treatmentDeskPhone?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
+    treatmentDeskEmail?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
     workRuleLocation?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
     remarks?: StringNullableFilter<"EmploymentContractTemplate"> | string | null
     isActive?: BoolFilter<"EmploymentContractTemplate"> | boolean
@@ -70798,6 +70942,10 @@ export namespace Prisma {
     socialInsuranceRule?: SortOrderInput | SortOrder
     employmentInsuranceRule?: SortOrderInput | SortOrder
     consultationDesk?: SortOrderInput | SortOrder
+    treatmentDeskDepartment?: SortOrderInput | SortOrder
+    treatmentDeskPerson?: SortOrderInput | SortOrder
+    treatmentDeskPhone?: SortOrderInput | SortOrder
+    treatmentDeskEmail?: SortOrderInput | SortOrder
     workRuleLocation?: SortOrderInput | SortOrder
     remarks?: SortOrderInput | SortOrder
     isActive?: SortOrder
@@ -70838,6 +70986,10 @@ export namespace Prisma {
     socialInsuranceRule?: StringNullableWithAggregatesFilter<"EmploymentContractTemplate"> | string | null
     employmentInsuranceRule?: StringNullableWithAggregatesFilter<"EmploymentContractTemplate"> | string | null
     consultationDesk?: StringNullableWithAggregatesFilter<"EmploymentContractTemplate"> | string | null
+    treatmentDeskDepartment?: StringNullableWithAggregatesFilter<"EmploymentContractTemplate"> | string | null
+    treatmentDeskPerson?: StringNullableWithAggregatesFilter<"EmploymentContractTemplate"> | string | null
+    treatmentDeskPhone?: StringNullableWithAggregatesFilter<"EmploymentContractTemplate"> | string | null
+    treatmentDeskEmail?: StringNullableWithAggregatesFilter<"EmploymentContractTemplate"> | string | null
     workRuleLocation?: StringNullableWithAggregatesFilter<"EmploymentContractTemplate"> | string | null
     remarks?: StringNullableWithAggregatesFilter<"EmploymentContractTemplate"> | string | null
     isActive?: BoolWithAggregatesFilter<"EmploymentContractTemplate"> | boolean
@@ -75190,6 +75342,10 @@ export namespace Prisma {
     socialInsuranceRule?: string | null
     employmentInsuranceRule?: string | null
     consultationDesk?: string | null
+    treatmentDeskDepartment?: string | null
+    treatmentDeskPerson?: string | null
+    treatmentDeskPhone?: string | null
+    treatmentDeskEmail?: string | null
     workRuleLocation?: string | null
     remarks?: string | null
     version?: number
@@ -75233,6 +75389,10 @@ export namespace Prisma {
     socialInsuranceRule?: string | null
     employmentInsuranceRule?: string | null
     consultationDesk?: string | null
+    treatmentDeskDepartment?: string | null
+    treatmentDeskPerson?: string | null
+    treatmentDeskPhone?: string | null
+    treatmentDeskEmail?: string | null
     workRuleLocation?: string | null
     remarks?: string | null
     version?: number
@@ -75274,6 +75434,10 @@ export namespace Prisma {
     socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskDepartment?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPerson?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskEmail?: NullableStringFieldUpdateOperationsInput | string | null
     workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     version?: IntFieldUpdateOperationsInput | number
@@ -75317,6 +75481,10 @@ export namespace Prisma {
     socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskDepartment?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPerson?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskEmail?: NullableStringFieldUpdateOperationsInput | string | null
     workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     version?: IntFieldUpdateOperationsInput | number
@@ -75359,6 +75527,10 @@ export namespace Prisma {
     socialInsuranceRule?: string | null
     employmentInsuranceRule?: string | null
     consultationDesk?: string | null
+    treatmentDeskDepartment?: string | null
+    treatmentDeskPerson?: string | null
+    treatmentDeskPhone?: string | null
+    treatmentDeskEmail?: string | null
     workRuleLocation?: string | null
     remarks?: string | null
     version?: number
@@ -75398,6 +75570,10 @@ export namespace Prisma {
     socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskDepartment?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPerson?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskEmail?: NullableStringFieldUpdateOperationsInput | string | null
     workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     version?: IntFieldUpdateOperationsInput | number
@@ -75438,6 +75614,10 @@ export namespace Prisma {
     socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskDepartment?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPerson?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskEmail?: NullableStringFieldUpdateOperationsInput | string | null
     workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     version?: IntFieldUpdateOperationsInput | number
@@ -75612,6 +75792,10 @@ export namespace Prisma {
     socialInsuranceRule?: string | null
     employmentInsuranceRule?: string | null
     consultationDesk?: string | null
+    treatmentDeskDepartment?: string | null
+    treatmentDeskPerson?: string | null
+    treatmentDeskPhone?: string | null
+    treatmentDeskEmail?: string | null
     workRuleLocation?: string | null
     remarks?: string | null
     isActive?: boolean
@@ -75644,6 +75828,10 @@ export namespace Prisma {
     socialInsuranceRule?: string | null
     employmentInsuranceRule?: string | null
     consultationDesk?: string | null
+    treatmentDeskDepartment?: string | null
+    treatmentDeskPerson?: string | null
+    treatmentDeskPhone?: string | null
+    treatmentDeskEmail?: string | null
     workRuleLocation?: string | null
     remarks?: string | null
     isActive?: boolean
@@ -75676,6 +75864,10 @@ export namespace Prisma {
     socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskDepartment?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPerson?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskEmail?: NullableStringFieldUpdateOperationsInput | string | null
     workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
@@ -75708,6 +75900,10 @@ export namespace Prisma {
     socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskDepartment?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPerson?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskEmail?: NullableStringFieldUpdateOperationsInput | string | null
     workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
@@ -75740,6 +75936,10 @@ export namespace Prisma {
     socialInsuranceRule?: string | null
     employmentInsuranceRule?: string | null
     consultationDesk?: string | null
+    treatmentDeskDepartment?: string | null
+    treatmentDeskPerson?: string | null
+    treatmentDeskPhone?: string | null
+    treatmentDeskEmail?: string | null
     workRuleLocation?: string | null
     remarks?: string | null
     isActive?: boolean
@@ -75772,6 +75972,10 @@ export namespace Prisma {
     socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskDepartment?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPerson?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskEmail?: NullableStringFieldUpdateOperationsInput | string | null
     workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
@@ -75804,6 +76008,10 @@ export namespace Prisma {
     socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskDepartment?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPerson?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskEmail?: NullableStringFieldUpdateOperationsInput | string | null
     workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     isActive?: BoolFieldUpdateOperationsInput | boolean
@@ -79816,6 +80024,10 @@ export namespace Prisma {
     socialInsuranceRule?: SortOrder
     employmentInsuranceRule?: SortOrder
     consultationDesk?: SortOrder
+    treatmentDeskDepartment?: SortOrder
+    treatmentDeskPerson?: SortOrder
+    treatmentDeskPhone?: SortOrder
+    treatmentDeskEmail?: SortOrder
     workRuleLocation?: SortOrder
     remarks?: SortOrder
     version?: SortOrder
@@ -79862,6 +80074,10 @@ export namespace Prisma {
     socialInsuranceRule?: SortOrder
     employmentInsuranceRule?: SortOrder
     consultationDesk?: SortOrder
+    treatmentDeskDepartment?: SortOrder
+    treatmentDeskPerson?: SortOrder
+    treatmentDeskPhone?: SortOrder
+    treatmentDeskEmail?: SortOrder
     workRuleLocation?: SortOrder
     remarks?: SortOrder
     version?: SortOrder
@@ -79902,6 +80118,10 @@ export namespace Prisma {
     socialInsuranceRule?: SortOrder
     employmentInsuranceRule?: SortOrder
     consultationDesk?: SortOrder
+    treatmentDeskDepartment?: SortOrder
+    treatmentDeskPerson?: SortOrder
+    treatmentDeskPhone?: SortOrder
+    treatmentDeskEmail?: SortOrder
     workRuleLocation?: SortOrder
     remarks?: SortOrder
     version?: SortOrder
@@ -80010,6 +80230,10 @@ export namespace Prisma {
     socialInsuranceRule?: SortOrder
     employmentInsuranceRule?: SortOrder
     consultationDesk?: SortOrder
+    treatmentDeskDepartment?: SortOrder
+    treatmentDeskPerson?: SortOrder
+    treatmentDeskPhone?: SortOrder
+    treatmentDeskEmail?: SortOrder
     workRuleLocation?: SortOrder
     remarks?: SortOrder
     isActive?: SortOrder
@@ -80047,6 +80271,10 @@ export namespace Prisma {
     socialInsuranceRule?: SortOrder
     employmentInsuranceRule?: SortOrder
     consultationDesk?: SortOrder
+    treatmentDeskDepartment?: SortOrder
+    treatmentDeskPerson?: SortOrder
+    treatmentDeskPhone?: SortOrder
+    treatmentDeskEmail?: SortOrder
     workRuleLocation?: SortOrder
     remarks?: SortOrder
     isActive?: SortOrder
@@ -80079,6 +80307,10 @@ export namespace Prisma {
     socialInsuranceRule?: SortOrder
     employmentInsuranceRule?: SortOrder
     consultationDesk?: SortOrder
+    treatmentDeskDepartment?: SortOrder
+    treatmentDeskPerson?: SortOrder
+    treatmentDeskPhone?: SortOrder
+    treatmentDeskEmail?: SortOrder
     workRuleLocation?: SortOrder
     remarks?: SortOrder
     isActive?: SortOrder
@@ -85932,6 +86164,10 @@ export namespace Prisma {
     socialInsuranceRule?: string | null
     employmentInsuranceRule?: string | null
     consultationDesk?: string | null
+    treatmentDeskDepartment?: string | null
+    treatmentDeskPerson?: string | null
+    treatmentDeskPhone?: string | null
+    treatmentDeskEmail?: string | null
     workRuleLocation?: string | null
     remarks?: string | null
     version?: number
@@ -85973,6 +86209,10 @@ export namespace Prisma {
     socialInsuranceRule?: string | null
     employmentInsuranceRule?: string | null
     consultationDesk?: string | null
+    treatmentDeskDepartment?: string | null
+    treatmentDeskPerson?: string | null
+    treatmentDeskPhone?: string | null
+    treatmentDeskEmail?: string | null
     workRuleLocation?: string | null
     remarks?: string | null
     version?: number
@@ -86825,6 +87065,10 @@ export namespace Prisma {
     socialInsuranceRule?: StringNullableFilter<"EmploymentContract"> | string | null
     employmentInsuranceRule?: StringNullableFilter<"EmploymentContract"> | string | null
     consultationDesk?: StringNullableFilter<"EmploymentContract"> | string | null
+    treatmentDeskDepartment?: StringNullableFilter<"EmploymentContract"> | string | null
+    treatmentDeskPerson?: StringNullableFilter<"EmploymentContract"> | string | null
+    treatmentDeskPhone?: StringNullableFilter<"EmploymentContract"> | string | null
+    treatmentDeskEmail?: StringNullableFilter<"EmploymentContract"> | string | null
     workRuleLocation?: StringNullableFilter<"EmploymentContract"> | string | null
     remarks?: StringNullableFilter<"EmploymentContract"> | string | null
     version?: IntFilter<"EmploymentContract"> | number
@@ -92534,6 +92778,10 @@ export namespace Prisma {
     socialInsuranceRule?: string | null
     employmentInsuranceRule?: string | null
     consultationDesk?: string | null
+    treatmentDeskDepartment?: string | null
+    treatmentDeskPerson?: string | null
+    treatmentDeskPhone?: string | null
+    treatmentDeskEmail?: string | null
     workRuleLocation?: string | null
     remarks?: string | null
     version?: number
@@ -92576,6 +92824,10 @@ export namespace Prisma {
     socialInsuranceRule?: string | null
     employmentInsuranceRule?: string | null
     consultationDesk?: string | null
+    treatmentDeskDepartment?: string | null
+    treatmentDeskPerson?: string | null
+    treatmentDeskPhone?: string | null
+    treatmentDeskEmail?: string | null
     workRuleLocation?: string | null
     remarks?: string | null
     version?: number
@@ -92673,6 +92925,10 @@ export namespace Prisma {
     socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskDepartment?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPerson?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskEmail?: NullableStringFieldUpdateOperationsInput | string | null
     workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     version?: IntFieldUpdateOperationsInput | number
@@ -92715,6 +92971,10 @@ export namespace Prisma {
     socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskDepartment?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPerson?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskEmail?: NullableStringFieldUpdateOperationsInput | string | null
     workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     version?: IntFieldUpdateOperationsInput | number
@@ -92802,6 +93062,10 @@ export namespace Prisma {
     socialInsuranceRule?: string | null
     employmentInsuranceRule?: string | null
     consultationDesk?: string | null
+    treatmentDeskDepartment?: string | null
+    treatmentDeskPerson?: string | null
+    treatmentDeskPhone?: string | null
+    treatmentDeskEmail?: string | null
     workRuleLocation?: string | null
     remarks?: string | null
     version?: number
@@ -92844,6 +93108,10 @@ export namespace Prisma {
     socialInsuranceRule?: string | null
     employmentInsuranceRule?: string | null
     consultationDesk?: string | null
+    treatmentDeskDepartment?: string | null
+    treatmentDeskPerson?: string | null
+    treatmentDeskPhone?: string | null
+    treatmentDeskEmail?: string | null
     workRuleLocation?: string | null
     remarks?: string | null
     version?: number
@@ -92900,6 +93168,10 @@ export namespace Prisma {
     socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskDepartment?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPerson?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskEmail?: NullableStringFieldUpdateOperationsInput | string | null
     workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     version?: IntFieldUpdateOperationsInput | number
@@ -92942,6 +93214,10 @@ export namespace Prisma {
     socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskDepartment?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPerson?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskEmail?: NullableStringFieldUpdateOperationsInput | string | null
     workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     version?: IntFieldUpdateOperationsInput | number
@@ -95986,6 +96262,10 @@ export namespace Prisma {
     socialInsuranceRule?: string | null
     employmentInsuranceRule?: string | null
     consultationDesk?: string | null
+    treatmentDeskDepartment?: string | null
+    treatmentDeskPerson?: string | null
+    treatmentDeskPhone?: string | null
+    treatmentDeskEmail?: string | null
     workRuleLocation?: string | null
     remarks?: string | null
     version?: number
@@ -96466,6 +96746,10 @@ export namespace Prisma {
     socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskDepartment?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPerson?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskEmail?: NullableStringFieldUpdateOperationsInput | string | null
     workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     version?: IntFieldUpdateOperationsInput | number
@@ -96507,6 +96791,10 @@ export namespace Prisma {
     socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskDepartment?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPerson?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskEmail?: NullableStringFieldUpdateOperationsInput | string | null
     workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     version?: IntFieldUpdateOperationsInput | number
@@ -96548,6 +96836,10 @@ export namespace Prisma {
     socialInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     employmentInsuranceRule?: NullableStringFieldUpdateOperationsInput | string | null
     consultationDesk?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskDepartment?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPerson?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskPhone?: NullableStringFieldUpdateOperationsInput | string | null
+    treatmentDeskEmail?: NullableStringFieldUpdateOperationsInput | string | null
     workRuleLocation?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     version?: IntFieldUpdateOperationsInput | number

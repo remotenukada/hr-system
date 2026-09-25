@@ -120,6 +120,10 @@ export async function createEmploymentContract(
   const employmentInsuranceRule =
     formData.get('employmentInsuranceRule') as string
 
+  const treatmentDeskDepartment = formData.get('treatmentDeskDepartment') as string
+  const treatmentDeskPerson = formData.get('treatmentDeskPerson') as string
+  const treatmentDeskPhone = formData.get('treatmentDeskPhone') as string
+  const treatmentDeskEmail = formData.get('treatmentDeskEmail') as string
   const consultationDesk =
     formData.get('consultationDesk') as string
 
@@ -200,6 +204,14 @@ export async function createEmploymentContract(
 
       consultationDesk:
         consultationDesk || null,
+      treatmentDeskDepartment:
+        treatmentDeskDepartment || null,
+      treatmentDeskPerson:
+        treatmentDeskPerson || null,
+      treatmentDeskPhone:
+        treatmentDeskPhone || null,
+      treatmentDeskEmail:
+        treatmentDeskEmail || null,
 
       workRuleLocation:
         workRuleLocation || null,
@@ -326,6 +338,10 @@ export async function updateEmploymentContract(
   const employmentInsuranceRule =
     formData.get('employmentInsuranceRule') as string
 
+  const treatmentDeskDepartment = formData.get('treatmentDeskDepartment') as string
+  const treatmentDeskPerson = formData.get('treatmentDeskPerson') as string
+  const treatmentDeskPhone = formData.get('treatmentDeskPhone') as string
+  const treatmentDeskEmail = formData.get('treatmentDeskEmail') as string
   const consultationDesk =
     formData.get('consultationDesk') as string
 
@@ -407,6 +423,14 @@ export async function updateEmploymentContract(
             employmentInsuranceRule:
               employmentInsuranceRule || null,
             consultationDesk: consultationDesk || null,
+            treatmentDeskDepartment:
+              treatmentDeskDepartment || null,
+            treatmentDeskPerson:
+              treatmentDeskPerson || null,
+            treatmentDeskPhone:
+              treatmentDeskPhone || null,
+            treatmentDeskEmail:
+              treatmentDeskEmail || null,
             workRuleLocation: workRuleLocation || null,
             remarks: remarks || null,
           },

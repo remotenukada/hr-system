@@ -727,6 +727,11 @@ model EmploymentContract {
 
   consultationDesk String?
 
+  treatmentDeskDepartment String?
+  treatmentDeskPerson     String?
+  treatmentDeskPhone      String?
+  treatmentDeskEmail      String?
+
   workRuleLocation String?
 
   remarks String?
@@ -812,7 +817,12 @@ model EmploymentContractTemplate {
   employmentInsuranceRule String?
 
   consultationDesk String?
-  workRuleLocation String?
+
+  treatmentDeskDepartment String?
+  treatmentDeskPerson     String?
+  treatmentDeskPhone      String?
+  treatmentDeskEmail      String?
+  workRuleLocation        String?
 
   remarks String?
 

@@ -24,6 +24,10 @@ type Template = {
   socialInsuranceRule: string | null;
   employmentInsuranceRule: string | null;
   consultationDesk: string | null;
+  treatmentDeskDepartment: string | null;
+  treatmentDeskPerson: string | null;
+  treatmentDeskPhone: string | null;
+  treatmentDeskEmail: string | null;
   workRuleLocation: string | null;
   remarks: string | null;
 };
@@ -99,6 +103,10 @@ export function EmploymentContractTemplateSelector({
             template.employmentInsuranceRule,
           );
           setFieldValue("consultationDesk", template.consultationDesk);
+          setFieldValue("treatmentDeskDepartment", template.treatmentDeskDepartment);
+          setFieldValue("treatmentDeskPerson", template.treatmentDeskPerson);
+          setFieldValue("treatmentDeskPhone", template.treatmentDeskPhone);
+          setFieldValue("treatmentDeskEmail", template.treatmentDeskEmail);
           setFieldValue("workRuleLocation", template.workRuleLocation);
           setFieldValue("remarks", template.remarks);
         }}
