@@ -1,3 +1,4 @@
+import DeleteDocumentButton from "@/components/DeleteDocumentButton";
 import Link from "next/link";
 import { cookies } from "next/headers";
 
@@ -60,6 +61,7 @@ export default async function EmployeeDocumentsPage() {
     include: {
       employee: {
         select: {
+          id: true,
           employeeNo: true,
           lastName: true,
           firstName: true,
@@ -76,6 +78,44 @@ export default async function EmployeeDocumentsPage() {
 
   const now = new Date();
 
+  const unreadSummary = {
+    PAYSLIP: documents.filter(
+      (d) =>
+        d.documentType === "PAYSLIP" &&
+        d.viewCount === 0,
+    ).length,
+
+    WITHHOLDING: documents.filter(
+      (d) =>
+        d.documentType === "WITHHOLDING" &&
+        d.viewCount === 0,
+    ).length,
+
+    INSURANCE: documents.filter(
+      (d) =>
+        d.documentType === "INSURANCE" &&
+        d.viewCount === 0,
+    ).length,
+  };
+
+  const unreadEmployees = {
+    PAYSLIP: documents.filter(
+      (d) =>
+        d.documentType === "PAYSLIP" &&
+        d.viewCount === 0,
+    ),
+    WITHHOLDING: documents.filter(
+      (d) =>
+        d.documentType === "WITHHOLDING" &&
+        d.viewCount === 0,
+    ),
+    INSURANCE: documents.filter(
+      (d) =>
+        d.documentType === "INSURANCE" &&
+        d.viewCount === 0,
+    ),
+  };
+
   return (
     <main className="mx-auto max-w-7xl p-8">
       <BackLink href="/" label="ダッシュボードへ" />
@@ -88,12 +128,91 @@ export default async function EmployeeDocumentsPage() {
           </p>
         </div>
 
-        <Link
-          href="/employee-documents/upload"
-          className="rounded bg-blue-600 px-4 py-2 text-white"
-        >
-          給与明細一括アップロード
-        </Link>
+        <div className="flex gap-2">
+          <Link
+            href="/employee-documents/upload"
+            className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+          >
+            一括アップロード
+          </Link>
+          <Link
+            href="/employee-documents/new"
+            className="rounded bg-green-600 px-4 py-2 text-white hover:bg-green-700"
+          >
+            個別登録
+          </Link>
+        </div>
+      </div>
+
+      <div className="mb-6 grid gap-4 md:grid-cols-3">
+        <div className="rounded border border-blue-200 bg-blue-50 p-4">
+          <div className="text-sm text-blue-700">
+            給与明細 未閲覧
+          </div>
+          <div className="mt-2 text-3xl font-bold text-blue-800">
+            {unreadSummary.PAYSLIP}
+          </div>
+        </div>
+
+        <div className="rounded border border-green-200 bg-green-50 p-4">
+          <div className="text-sm text-green-700">
+            源泉徴収票 未閲覧
+          </div>
+          <div className="mt-2 text-3xl font-bold text-green-800">
+            {unreadSummary.WITHHOLDING}
+          </div>
+        </div>
+
+        <div className="rounded border border-orange-200 bg-orange-50 p-4">
+          <div className="text-sm text-orange-700">
+            社会保険通知 未閲覧
+          </div>
+          <div className="mt-2 text-3xl font-bold text-orange-800">
+            {unreadSummary.INSURANCE}
+          </div>
+        </div>
+      </div>
+
+      <div className="mb-6 grid gap-4 lg:grid-cols-3">
+        {[
+          {
+            title: "給与明細",
+            items: unreadEmployees.PAYSLIP,
+          },
+          {
+            title: "源泉徴収票",
+            items: unreadEmployees.WITHHOLDING,
+          },
+          {
+            title: "社会保険通知",
+            items: unreadEmployees.INSURANCE,
+          },
+        ].map((group) => (
+          <div
+            key={group.title}
+            className="rounded border bg-white p-4"
+          >
+            <h3 className="mb-3 font-semibold">
+              {group.title} 未閲覧者
+            </h3>
+
+            {group.items.length === 0 ? (
+              <div className="text-sm text-green-600">
+                全員閲覧済み
+              </div>
+            ) : (
+              <div className="space-y-1 text-sm text-gray-700">
+                {group.items.map((item) => (
+                  <div key={item.id}>
+                    {item.employee.employeeNo}{" "}
+                    {item.employee.lastName}{" "}
+                    {item.employee.firstName}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
       </div>
 
       <div className="overflow-x-auto rounded border bg-white">
@@ -180,7 +299,8 @@ export default async function EmployeeDocumentsPage() {
                     >
                       PDF確認
                     </a>
-                  </td>
+                  
+                    <DeleteDocumentButton id={document.id} /></td>
                 </tr>
               );
             })}
