@@ -80,6 +80,22 @@ export async function GET(
 
     const file = await readFile(resolvedFilePath);
 
+    if (!isHR) {
+      await prisma.personalDocument.update({
+        where: {
+          id: document.id,
+        },
+        data: {
+          firstViewedAt:
+            document.firstViewedAt ?? new Date(),
+          lastViewedAt: new Date(),
+          viewCount: {
+            increment: 1,
+          },
+        },
+      });
+    }
+
     const rawFileName =
       document.originalFileName ??
       `${document.title}.pdf`;

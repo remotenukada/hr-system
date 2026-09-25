@@ -1239,6 +1239,10 @@ model PersonalDocument {
 
   originalFileName String?
 
+  firstViewedAt DateTime?
+  lastViewedAt  DateTime?
+  viewCount     Int       @default(0)
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

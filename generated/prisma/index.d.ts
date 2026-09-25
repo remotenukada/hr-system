@@ -65477,11 +65477,13 @@ export namespace Prisma {
   export type PersonalDocumentAvgAggregateOutputType = {
     targetYear: number | null
     targetMonth: number | null
+    viewCount: number | null
   }
 
   export type PersonalDocumentSumAggregateOutputType = {
     targetYear: number | null
     targetMonth: number | null
+    viewCount: number | null
   }
 
   export type PersonalDocumentMinAggregateOutputType = {
@@ -65494,6 +65496,9 @@ export namespace Prisma {
     publishAt: Date | null
     filePath: string | null
     originalFileName: string | null
+    firstViewedAt: Date | null
+    lastViewedAt: Date | null
+    viewCount: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -65508,6 +65513,9 @@ export namespace Prisma {
     publishAt: Date | null
     filePath: string | null
     originalFileName: string | null
+    firstViewedAt: Date | null
+    lastViewedAt: Date | null
+    viewCount: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -65522,6 +65530,9 @@ export namespace Prisma {
     publishAt: number
     filePath: number
     originalFileName: number
+    firstViewedAt: number
+    lastViewedAt: number
+    viewCount: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -65531,11 +65542,13 @@ export namespace Prisma {
   export type PersonalDocumentAvgAggregateInputType = {
     targetYear?: true
     targetMonth?: true
+    viewCount?: true
   }
 
   export type PersonalDocumentSumAggregateInputType = {
     targetYear?: true
     targetMonth?: true
+    viewCount?: true
   }
 
   export type PersonalDocumentMinAggregateInputType = {
@@ -65548,6 +65561,9 @@ export namespace Prisma {
     publishAt?: true
     filePath?: true
     originalFileName?: true
+    firstViewedAt?: true
+    lastViewedAt?: true
+    viewCount?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -65562,6 +65578,9 @@ export namespace Prisma {
     publishAt?: true
     filePath?: true
     originalFileName?: true
+    firstViewedAt?: true
+    lastViewedAt?: true
+    viewCount?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -65576,6 +65595,9 @@ export namespace Prisma {
     publishAt?: true
     filePath?: true
     originalFileName?: true
+    firstViewedAt?: true
+    lastViewedAt?: true
+    viewCount?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -65677,6 +65699,9 @@ export namespace Prisma {
     publishAt: Date
     filePath: string
     originalFileName: string | null
+    firstViewedAt: Date | null
+    lastViewedAt: Date | null
+    viewCount: number
     createdAt: Date
     updatedAt: Date
     _count: PersonalDocumentCountAggregateOutputType | null
@@ -65710,6 +65735,9 @@ export namespace Prisma {
     publishAt?: boolean
     filePath?: boolean
     originalFileName?: boolean
+    firstViewedAt?: boolean
+    lastViewedAt?: boolean
+    viewCount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
@@ -65725,6 +65753,9 @@ export namespace Prisma {
     publishAt?: boolean
     filePath?: boolean
     originalFileName?: boolean
+    firstViewedAt?: boolean
+    lastViewedAt?: boolean
+    viewCount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
@@ -65740,6 +65771,9 @@ export namespace Prisma {
     publishAt?: boolean
     filePath?: boolean
     originalFileName?: boolean
+    firstViewedAt?: boolean
+    lastViewedAt?: boolean
+    viewCount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
@@ -65755,11 +65789,14 @@ export namespace Prisma {
     publishAt?: boolean
     filePath?: boolean
     originalFileName?: boolean
+    firstViewedAt?: boolean
+    lastViewedAt?: boolean
+    viewCount?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type PersonalDocumentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "documentType" | "title" | "targetYear" | "targetMonth" | "publishAt" | "filePath" | "originalFileName" | "createdAt" | "updatedAt", ExtArgs["result"]["personalDocument"]>
+  export type PersonalDocumentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "documentType" | "title" | "targetYear" | "targetMonth" | "publishAt" | "filePath" | "originalFileName" | "firstViewedAt" | "lastViewedAt" | "viewCount" | "createdAt" | "updatedAt", ExtArgs["result"]["personalDocument"]>
   export type PersonalDocumentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
   }
@@ -65785,6 +65822,9 @@ export namespace Prisma {
       publishAt: Date
       filePath: string
       originalFileName: string | null
+      firstViewedAt: Date | null
+      lastViewedAt: Date | null
+      viewCount: number
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["personalDocument"]>
@@ -66220,6 +66260,9 @@ export namespace Prisma {
     readonly publishAt: FieldRef<"PersonalDocument", 'DateTime'>
     readonly filePath: FieldRef<"PersonalDocument", 'String'>
     readonly originalFileName: FieldRef<"PersonalDocument", 'String'>
+    readonly firstViewedAt: FieldRef<"PersonalDocument", 'DateTime'>
+    readonly lastViewedAt: FieldRef<"PersonalDocument", 'DateTime'>
+    readonly viewCount: FieldRef<"PersonalDocument", 'Int'>
     readonly createdAt: FieldRef<"PersonalDocument", 'DateTime'>
     readonly updatedAt: FieldRef<"PersonalDocument", 'DateTime'>
   }
@@ -67517,6 +67560,9 @@ export namespace Prisma {
     publishAt: 'publishAt',
     filePath: 'filePath',
     originalFileName: 'originalFileName',
+    firstViewedAt: 'firstViewedAt',
+    lastViewedAt: 'lastViewedAt',
+    viewCount: 'viewCount',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -72333,6 +72379,9 @@ export namespace Prisma {
     publishAt?: DateTimeFilter<"PersonalDocument"> | Date | string
     filePath?: StringFilter<"PersonalDocument"> | string
     originalFileName?: StringNullableFilter<"PersonalDocument"> | string | null
+    firstViewedAt?: DateTimeNullableFilter<"PersonalDocument"> | Date | string | null
+    lastViewedAt?: DateTimeNullableFilter<"PersonalDocument"> | Date | string | null
+    viewCount?: IntFilter<"PersonalDocument"> | number
     createdAt?: DateTimeFilter<"PersonalDocument"> | Date | string
     updatedAt?: DateTimeFilter<"PersonalDocument"> | Date | string
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
@@ -72348,6 +72397,9 @@ export namespace Prisma {
     publishAt?: SortOrder
     filePath?: SortOrder
     originalFileName?: SortOrderInput | SortOrder
+    firstViewedAt?: SortOrderInput | SortOrder
+    lastViewedAt?: SortOrderInput | SortOrder
+    viewCount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     employee?: EmployeeOrderByWithRelationInput
@@ -72366,6 +72418,9 @@ export namespace Prisma {
     publishAt?: DateTimeFilter<"PersonalDocument"> | Date | string
     filePath?: StringFilter<"PersonalDocument"> | string
     originalFileName?: StringNullableFilter<"PersonalDocument"> | string | null
+    firstViewedAt?: DateTimeNullableFilter<"PersonalDocument"> | Date | string | null
+    lastViewedAt?: DateTimeNullableFilter<"PersonalDocument"> | Date | string | null
+    viewCount?: IntFilter<"PersonalDocument"> | number
     createdAt?: DateTimeFilter<"PersonalDocument"> | Date | string
     updatedAt?: DateTimeFilter<"PersonalDocument"> | Date | string
     employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
@@ -72381,6 +72436,9 @@ export namespace Prisma {
     publishAt?: SortOrder
     filePath?: SortOrder
     originalFileName?: SortOrderInput | SortOrder
+    firstViewedAt?: SortOrderInput | SortOrder
+    lastViewedAt?: SortOrderInput | SortOrder
+    viewCount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: PersonalDocumentCountOrderByAggregateInput
@@ -72403,6 +72461,9 @@ export namespace Prisma {
     publishAt?: DateTimeWithAggregatesFilter<"PersonalDocument"> | Date | string
     filePath?: StringWithAggregatesFilter<"PersonalDocument"> | string
     originalFileName?: StringNullableWithAggregatesFilter<"PersonalDocument"> | string | null
+    firstViewedAt?: DateTimeNullableWithAggregatesFilter<"PersonalDocument"> | Date | string | null
+    lastViewedAt?: DateTimeNullableWithAggregatesFilter<"PersonalDocument"> | Date | string | null
+    viewCount?: IntWithAggregatesFilter<"PersonalDocument"> | number
     createdAt?: DateTimeWithAggregatesFilter<"PersonalDocument"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"PersonalDocument"> | Date | string
   }
@@ -77475,6 +77536,9 @@ export namespace Prisma {
     publishAt: Date | string
     filePath: string
     originalFileName?: string | null
+    firstViewedAt?: Date | string | null
+    lastViewedAt?: Date | string | null
+    viewCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     employee: EmployeeCreateNestedOneWithoutPersonalDocumentsInput
@@ -77490,6 +77554,9 @@ export namespace Prisma {
     publishAt: Date | string
     filePath: string
     originalFileName?: string | null
+    firstViewedAt?: Date | string | null
+    lastViewedAt?: Date | string | null
+    viewCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -77503,6 +77570,9 @@ export namespace Prisma {
     publishAt?: DateTimeFieldUpdateOperationsInput | Date | string
     filePath?: StringFieldUpdateOperationsInput | string
     originalFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstViewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastViewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    viewCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     employee?: EmployeeUpdateOneRequiredWithoutPersonalDocumentsNestedInput
@@ -77518,6 +77588,9 @@ export namespace Prisma {
     publishAt?: DateTimeFieldUpdateOperationsInput | Date | string
     filePath?: StringFieldUpdateOperationsInput | string
     originalFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstViewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastViewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    viewCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -77532,6 +77605,9 @@ export namespace Prisma {
     publishAt: Date | string
     filePath: string
     originalFileName?: string | null
+    firstViewedAt?: Date | string | null
+    lastViewedAt?: Date | string | null
+    viewCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -77545,6 +77621,9 @@ export namespace Prisma {
     publishAt?: DateTimeFieldUpdateOperationsInput | Date | string
     filePath?: StringFieldUpdateOperationsInput | string
     originalFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstViewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastViewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    viewCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -77559,6 +77638,9 @@ export namespace Prisma {
     publishAt?: DateTimeFieldUpdateOperationsInput | Date | string
     filePath?: StringFieldUpdateOperationsInput | string
     originalFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstViewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastViewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    viewCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -80951,6 +81033,9 @@ export namespace Prisma {
     publishAt?: SortOrder
     filePath?: SortOrder
     originalFileName?: SortOrder
+    firstViewedAt?: SortOrder
+    lastViewedAt?: SortOrder
+    viewCount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -80958,6 +81043,7 @@ export namespace Prisma {
   export type PersonalDocumentAvgOrderByAggregateInput = {
     targetYear?: SortOrder
     targetMonth?: SortOrder
+    viewCount?: SortOrder
   }
 
   export type PersonalDocumentMaxOrderByAggregateInput = {
@@ -80970,6 +81056,9 @@ export namespace Prisma {
     publishAt?: SortOrder
     filePath?: SortOrder
     originalFileName?: SortOrder
+    firstViewedAt?: SortOrder
+    lastViewedAt?: SortOrder
+    viewCount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -80984,6 +81073,9 @@ export namespace Prisma {
     publishAt?: SortOrder
     filePath?: SortOrder
     originalFileName?: SortOrder
+    firstViewedAt?: SortOrder
+    lastViewedAt?: SortOrder
+    viewCount?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -80991,6 +81083,7 @@ export namespace Prisma {
   export type PersonalDocumentSumOrderByAggregateInput = {
     targetYear?: SortOrder
     targetMonth?: SortOrder
+    viewCount?: SortOrder
   }
 
   export type EmployeeCreateNestedOneWithoutUserInput = {
@@ -86166,6 +86259,9 @@ export namespace Prisma {
     publishAt: Date | string
     filePath: string
     originalFileName?: string | null
+    firstViewedAt?: Date | string | null
+    lastViewedAt?: Date | string | null
+    viewCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -86179,6 +86275,9 @@ export namespace Prisma {
     publishAt: Date | string
     filePath: string
     originalFileName?: string | null
+    firstViewedAt?: Date | string | null
+    lastViewedAt?: Date | string | null
+    viewCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -87017,6 +87116,9 @@ export namespace Prisma {
     publishAt?: DateTimeFilter<"PersonalDocument"> | Date | string
     filePath?: StringFilter<"PersonalDocument"> | string
     originalFileName?: StringNullableFilter<"PersonalDocument"> | string | null
+    firstViewedAt?: DateTimeNullableFilter<"PersonalDocument"> | Date | string | null
+    lastViewedAt?: DateTimeNullableFilter<"PersonalDocument"> | Date | string | null
+    viewCount?: IntFilter<"PersonalDocument"> | number
     createdAt?: DateTimeFilter<"PersonalDocument"> | Date | string
     updatedAt?: DateTimeFilter<"PersonalDocument"> | Date | string
   }
@@ -95961,6 +96063,9 @@ export namespace Prisma {
     publishAt: Date | string
     filePath: string
     originalFileName?: string | null
+    firstViewedAt?: Date | string | null
+    lastViewedAt?: Date | string | null
+    viewCount?: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -96638,6 +96743,9 @@ export namespace Prisma {
     publishAt?: DateTimeFieldUpdateOperationsInput | Date | string
     filePath?: StringFieldUpdateOperationsInput | string
     originalFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstViewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastViewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    viewCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -96651,6 +96759,9 @@ export namespace Prisma {
     publishAt?: DateTimeFieldUpdateOperationsInput | Date | string
     filePath?: StringFieldUpdateOperationsInput | string
     originalFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstViewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastViewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    viewCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -96664,6 +96775,9 @@ export namespace Prisma {
     publishAt?: DateTimeFieldUpdateOperationsInput | Date | string
     filePath?: StringFieldUpdateOperationsInput | string
     originalFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    firstViewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastViewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    viewCount?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

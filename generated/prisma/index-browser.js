@@ -832,6 +832,9 @@ exports.Prisma.PersonalDocumentScalarFieldEnum = {
   publishAt: 'publishAt',
   filePath: 'filePath',
   originalFileName: 'originalFileName',
+  firstViewedAt: 'firstViewedAt',
+  lastViewedAt: 'lastViewedAt',
+  viewCount: 'viewCount',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

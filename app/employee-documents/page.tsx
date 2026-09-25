@@ -60,6 +60,7 @@ export default async function EmployeeDocumentsPage() {
               <th className="p-3 text-left">対象年月</th>
               <th className="p-3 text-left">公開日</th>
               <th className="p-3 text-left">状態</th>
+              <th className="p-3 text-left">閲覧状況</th>
               <th className="p-3 text-left">操作</th>
             </tr>
           </thead>
@@ -92,6 +93,27 @@ export default async function EmployeeDocumentsPage() {
                   <td className="p-3">
                     {published ? "公開済み" : "公開予約"}
                   </td>
+                  <td className="p-3 text-xs">
+                    {document.viewCount === 0 ? (
+                      <span className="text-red-600">
+                        未閲覧
+                      </span>
+                    ) : (
+                      <div>
+                        <div>
+                          初回:{" "}
+                          {document.firstViewedAt?.toLocaleString("ja-JP")}
+                        </div>
+                        <div>
+                          最終:{" "}
+                          {document.lastViewedAt?.toLocaleString("ja-JP")}
+                        </div>
+                        <div>
+                          閲覧回数: {document.viewCount}回
+                        </div>
+                      </div>
+                    )}
+                  </td>
 
                   <td className="p-3">
                     <a
@@ -109,7 +131,7 @@ export default async function EmployeeDocumentsPage() {
 
             {documents.length === 0 && (
               <tr>
-                <td colSpan={6} className="p-8 text-center text-gray-500">
+                <td colSpan={7} className="p-8 text-center text-gray-500">
                   個人文書は登録されていません。
                 </td>
               </tr>
