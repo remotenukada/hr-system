@@ -3,6 +3,7 @@ import { mkdir, writeFile } from "fs/promises";
 import path from "path";
 
 import JSZip from "jszip";
+import { PDFParse } from "pdf-parse";
 import { NextResponse } from "next/server";
 
 import { auth } from "@/auth";
@@ -10,6 +11,70 @@ import { prisma } from "@/lib/prisma";
 
 const MAX_ZIP_SIZE = 100 * 1024 * 1024;
 const MAX_PDF_SIZE = 10 * 1024 * 1024;
+
+function normalizeName(value: string) {
+  return value
+    .normalize("NFKC")
+    .replace(/\s+/g, "")
+    .replace(/殿$/u, "")
+    .trim();
+}
+
+function extractEmployeeNoFromFileName(fileName: string) {
+  const baseName = path.basename(
+    fileName,
+    path.extname(fileName),
+  );
+
+  const exactSixDigits = baseName.match(/(?:^|\D)(\d{6})(?:\D|$)/);
+
+  return exactSixDigits?.[1] ?? null;
+}
+
+function extractNameFromFileName(fileName: string) {
+  const baseName = path.basename(
+    fileName,
+    path.extname(fileName),
+  );
+
+  const match = baseName.match(
+    /給与明細書?:令和|平成|\d{4}年/u,
+  );
+
+  return match?.[1]
+    ? normalizeName(match[1])
+    : null;
+}
+
+async function extractEmployeeNoFromPdf(pdfBuffer: Buffer) {
+  const parser = new PDFParse({
+    data: pdfBuffer,
+  });
+
+  try {
+    const result = await parser.getText();
+    const normalizedText = result.text.normalize("NFKC");
+
+    const patterns = [
+      /社員コード\s*[:：]?\s*(\d{6})/u,
+      /職員コード\s*[:：]?\s*(\d{6})/u,
+      /社員番号\s*[:：]?\s*(\d{6})/u,
+      /職員番号\s*[:：]?\s*(\d{6})/u,
+    ];
+
+    for (const pattern of patterns) {
+      const match = normalizedText.match(pattern);
+
+      if (match?.[1]) {
+        return match[1];
+      }
+    }
+
+    return null;
+  } finally {
+    await parser.destroy();
+  }
+}
 
 export async function POST(request: Request) {
   const session = await auth();
@@ -108,24 +173,77 @@ export async function POST(request: Request) {
 
     for (const entry of entries) {
       const originalFileName = path.basename(entry.name);
-      const employeeNo = path.basename(
-        originalFileName,
-        path.extname(originalFileName),
-      ).trim();
+      const pdfBuffer = await entry.async("nodebuffer");
 
-      if (!employeeNo) {
-        failures.push(`${originalFileName}: 職員番号を判定できません。`);
+      if (pdfBuffer.length > MAX_PDF_SIZE) {
+        failures.push(
+          `${originalFileName}: PDFは10MB以下にしてください。`,
+        );
         continue;
       }
 
-      const employee = await prisma.employee.findUnique({
-        where: { employeeNo },
-        select: { id: true },
-      });
+      if (pdfBuffer.subarray(0, 4).toString() !== "%PDF") {
+        failures.push(
+          `${originalFileName}: PDF形式を確認できません。`,
+        );
+        continue;
+      }
+      const fileEmployeeNo =
+        extractEmployeeNoFromFileName(originalFileName);
+
+      const pdfEmployeeNo =
+        fileEmployeeNo ??
+        await extractEmployeeNoFromPdf(pdfBuffer);
+
+      let employee = pdfEmployeeNo
+        ? await prisma.employee.findUnique({
+            where: {
+              employeeNo: pdfEmployeeNo,
+            },
+            select: {
+              id: true,
+              employeeNo: true,
+            },
+          })
+        : null;
+
+      if (!employee) {
+        const fileNamePerson =
+          extractNameFromFileName(originalFileName);
+
+        if (fileNamePerson) {
+          const candidates = await prisma.employee.findMany({
+            select: {
+              id: true,
+              employeeNo: true,
+              lastName: true,
+              firstName: true,
+            },
+          });
+
+          const matched = candidates.filter((candidate) =>
+            normalizeName(
+              `${candidate.lastName}${candidate.firstName}`,
+            ) === fileNamePerson
+          );
+
+          if (matched.length === 1) {
+            employee = {
+              id: matched[0].id,
+              employeeNo: matched[0].employeeNo,
+            };
+          } else if (matched.length > 1) {
+            failures.push(
+              `${originalFileName}: 同姓同名の職員が複数います。`,
+            );
+            continue;
+          }
+        }
+      }
 
       if (!employee) {
         failures.push(
-          `${originalFileName}: 職員番号 ${employeeNo} が見つかりません。`,
+          `${originalFileName}: 職員番号または氏名を照合できません。`,
         );
         continue;
       }
@@ -146,21 +264,6 @@ export async function POST(request: Request) {
         continue;
       }
 
-      const pdfBuffer = await entry.async("nodebuffer");
-
-      if (pdfBuffer.length > MAX_PDF_SIZE) {
-        failures.push(
-          `${originalFileName}: PDFは10MB以下にしてください。`,
-        );
-        continue;
-      }
-
-      if (pdfBuffer.subarray(0, 4).toString() !== "%PDF") {
-        failures.push(
-          `${originalFileName}: PDF形式を確認できません。`,
-        );
-        continue;
-      }
 
       const storedFileName = `${randomUUID()}.pdf`;
       const absolutePath = path.join(uploadDir, storedFileName);
