@@ -1346,10 +1346,10 @@ export default async function DashboardPage() {
 
         <div className="rounded-lg border bg-white p-6 shadow-sm">
           <h3 className="mb-3 text-lg font-semibold text-gray-800">
-            マイページ
+            職員ポータル
           </h3>
           <p className="text-sm text-gray-600">
-            個人情報、資格・免許、有給履歴の確認を行います。
+            給与明細、雇用条件書、資格情報、各種個人手続きを利用できます。
           </p>
 
           <div className="mt-4 flex flex-wrap gap-3">
