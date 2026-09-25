@@ -1,0 +1,131 @@
+                className="w-full rounded border p-2"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium">
+                賞与
+              </label>
+              <textarea
+                name="bonusRule"
+                rows={3}
+                defaultValue={template.bonusRule ?? ""}
+                className="w-full rounded border p-2"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium">
+                退職事項
+              </label>
+              <textarea
+                name="retirementRule"
+                rows={3}
+                defaultValue={template.retirementRule ?? ""}
+                className="w-full rounded border p-2"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium">
+                退職金
+              </label>
+              <textarea
+                name="retirementAllowanceRule"
+                rows={3}
+                defaultValue={template.retirementAllowanceRule ?? ""}
+                className="w-full rounded border p-2"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium">
+                社会保険
+              </label>
+              <textarea
+                name="socialInsuranceRule"
+                rows={3}
+                defaultValue={template.socialInsuranceRule ?? ""}
+                className="w-full rounded border p-2"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium">
+                雇用保険
+              </label>
+              <textarea
+                name="employmentInsuranceRule"
+                rows={3}
+                defaultValue={template.employmentInsuranceRule ?? ""}
+                className="w-full rounded border p-2"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium">
+                相談窓口
+              </label>
+              <textarea
+                name="consultationDesk"
+                rows={3}
+                defaultValue={template.consultationDesk ?? ""}
+                className="w-full rounded border p-2"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium">
+                就業規則保管場所・確認方法
+              </label>
+              <textarea
+                name="workRuleLocation"
+                rows={3}
+                defaultValue={template.workRuleLocation ?? ""}
+                className="w-full rounded border p-2"
+              />
+            </div>
+          </div>
+        </section>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium">
+            試用期間
+          </label>
+          <input
+            name="probationPeriod"
+            defaultValue={template.probationPeriod ?? ""}
+            className="w-full rounded border p-2"
+          />
+        </div>
+
+        <div className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            id="isActive"
+            name="isActive"
+            defaultChecked={template.isActive}
+            className="h-4 w-4 rounded border-gray-300"
+          />
+          <label htmlFor="isActive" className="text-sm font-medium">
+            有効にする
+          </label>
+        </div>
+
+        <div className="flex justify-end gap-3">
+          <Link
+            href="/employee-contract-templates"
+            className="rounded border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+          >
+            キャンセル
+          </Link>
+
+          <DirtySubmitButton
+            label="更新する"
+            pendingLabel="更新中..."
+          />
+        </div>
+      </form>
+    </main>
+  );
+}

@@ -1,0 +1,8 @@
+app/certificates/employment/page.tsx
+app/certificates/page.tsx
+app/certificates/retirement/page.tsx
+app/employee-retirements/page.tsx
+app/retirement-management/[id]/assets/page.tsx
+app/retirement-management/[id]/certificate/page.tsx
+app/retirement-management/[id]/page.tsx
+app/retirement-management/page.tsx

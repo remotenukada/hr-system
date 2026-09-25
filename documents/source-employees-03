@@ -1,0 +1,1029 @@
+                <label className="mb-1 block text-xs font-medium text-slate-700">
+                  1日所定労働時間
+                </label>
+                <input
+                  type="number"
+                  step="0.5"
+                  name="dailyScheduledHours"
+                  defaultValue={employee.dailyScheduledHours ?? ""}
+                  className="w-full rounded border p-2 focus:outline-indigo-500"
+                />
+              </div>
+
+              <div>
+                <label className="mb-1 block text-xs font-medium text-slate-700">
+                  入職日
+                </label>
+                <input
+                  type="date"
+                  name="hireDate"
+                  defaultValue={toDateInputValue(employee.hireDate)}
+                  className="w-full rounded border p-2 focus:outline-indigo-500"
+                />
+              </div>
+
+              <div>
+                <label className="mb-1 block text-xs font-medium text-slate-700">
+                  退職日
+                </label>
+                <input
+                  type="date"
+                  name="retirementDate"
+                  defaultValue={toDateInputValue(employee.retirementDate)}
+                  className="w-full rounded border p-2 focus:outline-indigo-500"
+                />
+              </div>
+
+              <div>
+                <label className="mb-1 block text-xs font-medium text-slate-700">
+                  通勤区分
+                </label>
+                <input
+                  name="commutingType"
+                  defaultValue={employee.commutingType ?? ""}
+                  className="w-full rounded border p-2 focus:outline-indigo-500"
+                />
+              </div>
+
+              <div>
+                <label className="mb-1 block text-xs font-medium text-slate-700">
+                  ステータス
+                </label>
+                <select
+                  name="status"
+                  defaultValue={employee.status ?? "ACTIVE"}
+                  className="w-full rounded border bg-white p-2 focus:outline-indigo-500"
+                >
+                  <option value="ACTIVE">在職</option>
+                  <option value="LEAVE">休職</option>
+                  <option value="RETIRED">退職</option>
+                </select>
+              </div>
+            </div>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="border-b pb-1 text-sm font-semibold text-slate-500">
+              保険情報
+            </h2>
+
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              <div>
+                <label className="mb-1 block text-xs font-medium text-slate-700">
+                  被保険者番号
+                </label>
+                <input
+                  name="healthInsuranceNo"
+                  defaultValue={employee.healthInsuranceNo ?? ""}
+                  className="w-full rounded border p-2 focus:outline-indigo-500"
+                />
+              </div>
+
+              <div>
+                <label className="mb-1 block text-xs font-medium text-slate-700">
+                  雇用保険番号
+                </label>
+                <input
+                  name="employmentInsuranceNo"
+                  defaultValue={employee.employmentInsuranceNo ?? ""}
+                  className="w-full rounded border p-2 focus:outline-indigo-500"
+                />
+              </div>
+            </div>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="border-b pb-1 text-sm font-semibold text-slate-500">
+              プロフィール写真
+            </h2>
+
+            <div className="space-y-3">
+              {employee.photoPath && (
+                <div>
+                  <p className="mb-2 text-xs font-medium text-slate-700">
+                    現在の写真
+                  </p>
+                  <Image
+                    src={employee.photoPath}
+                    alt="プロフィール写真"
+                    width={80}
+                    height={80}
+                    className="h-20 w-20 rounded-full object-cover border"
+                  />
+                </div>
+              )}
+
+              <PhotoUploadField initialPath={employee.photoPath} />
+            </div>
+          </section>
+
+          <div className="flex justify-end border-t pt-4">
+            <button
+              type="submit"
+              className="rounded bg-blue-600 px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700"
+            >
+              更新する
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+  );
+}
+
+
+===== FILE: app/employees/import/page.tsx =====
+
+import BackLink from "@/components/BackLink";
+import Link from "next/link";
+import { requireHRManager } from "@/lib/auth-guard";
+
+export default async function EmployeeImportPage() {
+  await requireHRManager();
+  return (
+    <main className="mx-auto max-w-2xl p-8">
+      <BackLink href="/" label="ダッシュボードへ戻る" />
+      <div className="rounded-lg border bg-white p-6 shadow-sm">
+        <div className="mb-6">
+          <h1 className="mt-3 text-2xl font-bold text-gray-900">
+            職員CSVインポート
+          </h1>
+
+          <p className="mt-2 text-sm text-gray-600">
+            CSVファイルから職員情報を一括登録します。
+          </p>
+        </div>
+
+        <form
+          action="/api/employees/import"
+          method="post"
+          className="space-y-6"
+        >
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700">
+              CSVファイル
+            </label>
+
+            <input
+              type="file"
+              name="file"
+              accept=".csv"
+              required
+              className="block w-full rounded border p-2 text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-green-50 file:text-green-700 hover:file:bg-green-100"
+            />
+          </div>
+
+          <div className="rounded bg-gray-50 p-4 text-sm text-gray-600">
+            <p className="font-medium text-gray-700">CSV形式例</p>
+            <pre className="mt-2 overflow-x-auto text-xs">
+              employeeNo,lastName,firstName,email
+              EMP-100,山田,太郎,yamada@example.com
+              EMP-101,佐藤,花子,sato@example.com
+            </pre>
+          </div>
+
+          <button
+            type="submit"
+            className="rounded bg-green-600 px-4 py-2 text-white hover:bg-green-700"
+          >
+            インポート実行
+          </button>
+        </form>
+      </div>
+    </main>
+  );
+}
+
+
+===== FILE: app/employees/[id]/dependents/new/page.tsx =====
+
+import Link from "next/link";
+import { notFound, redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
+
+import { prisma } from "@/lib/prisma";
+import { requireHRManager } from "@/lib/auth-guard";
+import { logAudit } from "@/lib/audit-log";
+import { encryptMyNumber } from "@/lib/mynumber";
+
+type Props = {
+  params: Promise<{
+    id: string;
+  }>;
+};
+
+export default async function NewDependentPage({ params }: Props) {
+  await requireHRManager();
+
+  const cookieStore = await cookies();
+  const facilityScope = cookieStore.get("facilityScope")?.value ?? "ALL";
+
+  const { id } = await params;
+
+  const employee = await prisma.employee.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      department: true,
+    },
+  });
+
+  if (!employee) {
+    redirect("/employees");
+  }
+
+  if (facilityScope !== "ALL" && employee.facilityId !== facilityScope) {
+    notFound();
+  }
+
+  async function createDependent(formData: FormData) {
+    "use server";
+
+    const session = await requireHRManager();
+
+    const targetEmployee = await prisma.employee.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (!targetEmployee) {
+      notFound();
+    }
+
+    const actionCookieStore = await cookies();
+    const actionFacilityScope =
+      actionCookieStore.get("facilityScope")?.value ?? "ALL";
+
+    if (
+      actionFacilityScope !== "ALL" &&
+      targetEmployee.facilityId !== actionFacilityScope
+    ) {
+      notFound();
+    }
+
+    const name = String(formData.get("name") ?? "").trim();
+    const nameKana = String(formData.get("nameKana") ?? "").trim();
+    const relationship = String(formData.get("relationship") ?? "").trim();
+    const birthDate = String(formData.get("birthDate") ?? "").trim();
+    const annualIncomeRaw = String(formData.get("annualIncome") ?? "").trim();
+    const myNumberRaw = String(formData.get("myNumber") ?? "").trim();
+    const note = String(formData.get("note") ?? "").trim();
+
+    const cohabiting = formData.get("cohabiting") === "on";
+    const healthInsuranceDependent =
+      formData.get("healthInsuranceDependent") === "on";
+
+    if (!name || !relationship) {
+      throw new Error("氏名と続柄は必須です。");
+    }
+
+    const normalizedMyNumber = myNumberRaw.replace(/\D/g, "");
+
+    if (normalizedMyNumber && normalizedMyNumber.length !== 12) {
+      throw new Error("マイナンバーは12桁で入力してください。");
+    }
+
+    const dependent = await prisma.dependent.create({
+      data: {
+        employeeId: id,
+        name,
+        nameKana: nameKana || null,
+        relationship,
+        birthDate: birthDate ? new Date(birthDate) : null,
+        annualIncome: annualIncomeRaw ? Number(annualIncomeRaw) : null,
+        cohabiting,
+        healthInsuranceDependent,
+        encryptedMyNumber: normalizedMyNumber
+          ? encryptMyNumber(normalizedMyNumber)
+          : null,
+        note: note || null,
+      },
+    });
+
+    await logAudit({
+      userId: session.user.id,
+      userName: session.user.name,
+      action: "DEPENDENT_CREATED",
+      targetType: "Dependent",
+      targetId: dependent.id,
+      description: `${targetEmployee.employeeNo} ${targetEmployee.lastName} ${targetEmployee.firstName} の扶養家族を登録`,
+      afterData: {
+        employeeId: id,
+        dependentId: dependent.id,
+        name,
+        relationship,
+        hasMyNumber: Boolean(normalizedMyNumber),
+      },
+    });
+
+    revalidatePath(`/employees/${id}`);
+    redirect(`/employees/${id}`);
+  }
+
+  return (
+    <main className="mx-auto max-w-4xl p-8">
+      <div className="mb-6">
+        <Link
+          href={`/employees/${id}`}
+          className="text-sm text-blue-600 hover:underline"
+        >
+          ← 職員詳細へ戻る
+        </Link>
+      </div>
+
+      <div className="mb-6">
+        <h1 className="text-3xl font-bold text-gray-900">扶養家族登録</h1>
+        <p className="mt-2 text-sm text-gray-600">
+          {employee.lastName} {employee.firstName}{" "}
+          さんの扶養家族情報を登録します。
+        </p>
+      </div>
+
+      <form action={createDependent} className="space-y-6">
+        <section className="rounded-lg border bg-white p-6 shadow-sm">
+          <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
+            基本情報
+          </h2>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                氏名 <span className="text-red-500">*</span>
+              </label>
+              <input
+                name="name"
+                required
+                className="w-full rounded border p-2"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                ふりがな
+              </label>
+              <input name="nameKana" className="w-full rounded border p-2" />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                続柄 <span className="text-red-500">*</span>
+              </label>
+              <input
+                name="relationship"
+                required
+                placeholder="配偶者、長男、長女など"
+                className="w-full rounded border p-2"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                生年月日
+              </label>
+              <input
+                type="date"
+                name="birthDate"
+                className="w-full rounded border p-2"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                年間収入 (円)
+              </label>
+              <input
+                type="number"
+                name="annualIncome"
+                min="0"
+                className="w-full rounded border p-2"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                個人番号（マイナンバー）
+              </label>
+              <input
+                name="myNumber"
+                inputMode="numeric"
+                maxLength={12}
+                placeholder="12桁の半角数字"
+                className="w-full rounded border p-2"
+              />
+              <p className="mt-1 text-xs text-gray-500">
+                入力された個人番号は暗号化して安全に保存されます。
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="rounded-lg border bg-white p-6 shadow-sm">
+          <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
+            扶養・健保情報
+          </h2>
+
+          <div className="space-y-3">
+            <label className="flex items-center gap-2 text-sm text-gray-700">
+              <input
+                type="checkbox"
+                name="cohabiting"
+                defaultChecked
+                className="rounded border-gray-300"
+              />
+              同居している
+            </label>
+
+            <label className="flex items-center gap-2 text-sm text-gray-700">
+              <input
+                type="checkbox"
+                name="healthInsuranceDependent"
+                defaultChecked
+                className="rounded border-gray-300"
+              />
+              健康保険の扶養対象
+            </label>
+          </div>
+        </section>
+
+        <section className="rounded-lg border bg-white p-6 shadow-sm">
+          <label className="mb-1 block text-sm font-medium text-gray-700">
+            備考
+          </label>
+          <textarea name="note" className="h-24 w-full rounded border p-2" />
+        </section>
+
+        <div className="flex justify-end gap-3">
+          <Link
+            href={`/employees/${id}`}
+            className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+          >
+            キャンセル
+          </Link>
+
+          <button
+            type="submit"
+            className="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+          >
+            登録する
+          </button>
+        </div>
+      </form>
+    </main>
+  );
+}
+
+
+===== FILE: app/employees/[id]/dependents/[dependentId]/edit/page.tsx =====
+
+import Link from "next/link";
+import { notFound, redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
+
+import { prisma } from "@/lib/prisma";
+import { requireHRManager } from "@/lib/auth-guard";
+import { logAudit } from "@/lib/audit-log";
+import { encryptMyNumber } from "@/lib/mynumber";
+
+type Props = {
+  params: Promise<{
+    id: string;
+    dependentId: string;
+  }>;
+};
+
+function toDateInputValue(date: Date | null | undefined) {
+  if (!date) {
+    return "";
+  }
+
+  return new Date(date).toISOString().slice(0, 10);
+}
+
+export default async function EditDependentPage({ params }: Props) {
+  await requireHRManager();
+
+  const cookieStore = await cookies();
+  const facilityScope = cookieStore.get("facilityScope")?.value ?? "ALL";
+  const { id, dependentId } = await params;
+
+  const employee = await prisma.employee.findUnique({
+    where: {
+      id,
+    },
+  });
+
+  if (!employee) {
+    redirect("/employees");
+  }
+
+  if (facilityScope !== "ALL" && employee.facilityId !== facilityScope) {
+    notFound();
+  }
+
+  const dependent = await prisma.dependent.findUnique({
+    where: {
+      id: dependentId,
+    },
+  });
+
+  if (!dependent || dependent.employeeId !== id) {
+    redirect(`/employees/${id}`);
+  }
+
+  async function updateDependent(formData: FormData) {
+    "use server";
+
+    const currentSession = await requireHRManager();
+
+    const actionCookieStore = await cookies();
+    const actionFacilityScope =
+      actionCookieStore.get("facilityScope")?.value ?? "ALL";
+
+    const targetEmployee = await prisma.employee.findUnique({
+      where: {
+        id,
+      },
+      select: {
+        facilityId: true,
+      },
+    });
+
+    if (!targetEmployee) {
+      notFound();
+    }
+
+    if (
+      actionFacilityScope !== "ALL" &&
+      targetEmployee.facilityId !== actionFacilityScope
+    ) {
+      notFound();
+    }
+
+    const name = String(formData.get("name") ?? "").trim();
+    const nameKana = String(formData.get("nameKana") ?? "").trim();
+    const relationship = String(formData.get("relationship") ?? "").trim();
+    const birthDate = String(formData.get("birthDate") ?? "").trim();
+    const annualIncomeRaw = String(formData.get("annualIncome") ?? "").trim();
+    const myNumberRaw = String(formData.get("myNumber") ?? "").trim();
+    const note = String(formData.get("note") ?? "").trim();
+
+    const cohabiting = formData.get("cohabiting") === "on";
+    const healthInsuranceDependent =
+      formData.get("healthInsuranceDependent") === "on";
+
+    if (!name || !relationship) {
+      throw new Error("氏名と続柄は必須です。");
+    }
+
+    const normalizedMyNumber = myNumberRaw.replace(/\D/g, "");
+
+    if (normalizedMyNumber && normalizedMyNumber.length !== 12) {
+      throw new Error("個人番号は12桁で入力してください。");
+    }
+
+    const beforeDependent = await prisma.dependent.findUnique({
+      where: {
+        id: dependentId,
+      },
+      include: {
+        employee: true,
+      },
+    });
+
+    if (!beforeDependent || beforeDependent.employeeId !== id) {
+      redirect(`/employees/${id}`);
+    }
+
+    const updatedDependent = await prisma.dependent.update({
+      where: {
+        id: dependentId,
+      },
+      data: {
+        name,
+        nameKana: nameKana || null,
+        relationship,
+        birthDate: birthDate ? new Date(birthDate) : null,
+        cohabiting,
+        healthInsuranceDependent,
+        annualIncome: annualIncomeRaw ? parseInt(annualIncomeRaw, 10) : null,
+        note: note || null,
+        encryptedMyNumber: normalizedMyNumber
+          ? encryptMyNumber(normalizedMyNumber)
+          : beforeDependent.encryptedMyNumber,
+      },
+    });
+
+    await logAudit({
+      userId: currentSession.user.id,
+      userName: currentSession.user.name,
+      action: "DEPENDENT_UPDATED",
+      targetType: "Dependent",
+      targetId: dependentId,
+      description: `${beforeDependent.employee.employeeNo} の扶養家族（${name}）情報を更新`,
+      beforeData: beforeDependent,
+      afterData: updatedDependent,
+    });
+
+    revalidatePath(`/employees/${id}`);
+    redirect(`/employees/${id}`);
+  }
+
+  return (
+    <main className="mx-auto max-w-2xl p-8">
+      <div className="mb-6 flex items-center justify-between">
+        <h1 className="text-2xl font-bold">扶養家族情報の編集</h1>
+        <Link
+          href={`/employees/${id}`}
+          className="text-sm text-gray-600 hover:underline"
+        >
+          ← 職員詳細へ戻る
+        </Link>
+      </div>
+
+      <form
+        action={updateDependent}
+        className="space-y-6 rounded border bg-white p-6 shadow"
+      >
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            氏名 <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            name="name"
+            defaultValue={dependent.name}
+            required
+            className="mt-1 w-full rounded border p-2"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            フリガナ
+          </label>
+          <input
+            type="text"
+            name="nameKana"
+            defaultValue={dependent.nameKana ?? ""}
+            className="mt-1 w-full rounded border p-2"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            続柄 <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            name="relationship"
+            defaultValue={dependent.relationship}
+            required
+            className="mt-1 w-full rounded border p-2"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            生年月日
+          </label>
+          <input
+            type="date"
+            name="birthDate"
+            defaultValue={toDateInputValue(dependent.birthDate)}
+            className="mt-1 w-full rounded border p-2"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            年収（円）
+          </label>
+          <input
+            type="number"
+            name="annualIncome"
+            defaultValue={dependent.annualIncome ?? ""}
+            className="mt-1 w-full rounded border p-2"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <label className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              name="cohabiting"
+              defaultChecked={dependent.cohabiting}
+              className="rounded border-gray-300"
+            />
+            <span className="text-sm text-gray-700">同居している</span>
+          </label>
+
+          <label className="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              name="healthInsuranceDependent"
+              defaultChecked={dependent.healthInsuranceDependent}
+              className="rounded border-gray-300"
+            />
+            <span className="text-sm text-gray-700">健康保険の扶養対象</span>
+          </label>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            個人番号 (更新時のみ入力)
+          </label>
+          <input
+            type="password"
+            name="myNumber"
+            maxLength={12}
+            placeholder="変更しない場合は空欄のまま"
+            className="mt-1 w-full rounded border p-2"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700">
+            備考
+          </label>
+          <textarea
+            name="note"
+            rows={3}
+            defaultValue={dependent.note ?? ""}
+            className="mt-1 w-full rounded border p-2"
+          />
+        </div>
+
+        <div className="flex justify-end space-x-4">
+          <Link
+            href={`/employees/${id}`}
+            className="rounded border px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+          >
+            キャンセル
+          </Link>
+          <button
+            type="submit"
+            className="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+          >
+            更新する
+          </button>
+        </div>
+      </form>
+    </main>
+  );
+}
+
+
+===== FILE: app/employees/[id]/certifications/page.tsx =====
+
+import Link from "next/link";
+import { notFound, redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
+import { cookies } from "next/headers";
+import { randomUUID } from "crypto";
+import path from "path";
+import { mkdir, writeFile, unlink } from "fs/promises";
+import { prisma } from "../../../../lib/prisma";
+import { requireHRManager } from "@/lib/auth-guard";
+import CertificationAttachmentFields from "@/components/CertificationAttachmentFields";
+import CertificationExpiryField from "@/components/CertificationExpiryField";
+
+type Props = {
+  params: Promise<{
+    id: string;
+  }>;
+  searchParams: Promise<{
+    error?: string;
+  }>;
+};
+
+const allowedFileTypes = [
+  "application/pdf",
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+];
+
+function formatDate(date: Date | null) {
+  if (!date) return "-";
+  return date.toLocaleDateString("ja-JP");
+}
+
+export default async function EmployeeCertificationsPage({
+  params,
+  searchParams,
+}: Props) {
+  await requireHRManager();
+
+  const cookieStore = await cookies();
+  const facilityScope = cookieStore.get("facilityScope")?.value ?? "ALL";
+
+  const { id } = await params;
+  const { error } = await searchParams;
+
+  const employee = await prisma.employee.findUnique({
+    where: {
+      id,
+    },
+    include: {
+      certifications: {
+        include: {
+          certification: true,
+          employeeCertificationAttachments: {
+            orderBy: {
+              createdAt: "desc",
+            },
+          },
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
+    },
+  });
+
+  if (!employee) {
+    notFound();
+  }
+
+  if (facilityScope !== "ALL" && employee.facilityId !== facilityScope) {
+    notFound();
+  }
+
+  const certifications = await prisma.certification.findMany({
+    include: {
+      documentRules: {
+        orderBy: {
+          sortOrder: "asc",
+        },
+      },
+    },
+    orderBy: {
+      name: "asc",
+    },
+  });
+
+  async function addEmployeeCertification(formData: FormData) {
+    "use server";
+
+    await requireHRManager();
+
+    const actionCookieStore = await cookies();
+    const actionFacilityScope =
+      actionCookieStore.get("facilityScope")?.value ?? "ALL";
+
+    const targetEmployee = await prisma.employee.findUnique({
+      where: { id },
+      select: { facilityId: true },
+    });
+
+    if (!targetEmployee) {
+      notFound();
+    }
+
+    if (
+      actionFacilityScope !== "ALL" &&
+      targetEmployee.facilityId !== actionFacilityScope
+    ) {
+      notFound();
+    }
+
+    const certificationId = String(
+      formData.get("certificationId") ?? "",
+    ).trim();
+
+    const newCertificationName = String(
+      formData.get("newCertificationName") ?? "",
+    ).trim();
+
+    const acquiredDateRaw = String(formData.get("acquiredDate") ?? "");
+
+    const expiryDateRaw = String(formData.get("expiryDate") ?? "");
+
+
+
+
+    if (!certificationId && !newCertificationName) {
+      redirect(`/employees/${id}/certifications?error=required`);
+    }
+
+    let targetCertificationId = certificationId;
+
+    if (newCertificationName) {
+      const certification = await prisma.certification.upsert({
+        where: {
+          name: newCertificationName,
+        },
+        update: {},
+        create: {
+          name: newCertificationName,
+        },
+      });
+
+      targetCertificationId = certification.id;
+    }
+
+    const existing = await prisma.employeeCertification.findUnique({
+      where: {
+        employeeId_certificationId: {
+          employeeId: id,
+          certificationId: targetCertificationId,
+        },
+      },
+    });
+
+    if (existing) {
+      redirect(`/employees/${id}/certifications?error=duplicate`);
+    }
+
+    const certificationInfo =
+      await prisma.certification.findUnique({
+        where: {
+          id: targetCertificationId,
+        },
+        select: {
+          name: true,
+          expiryManaged: true,
+          documentRules: {
+            orderBy: {
+              sortOrder: "asc",
+            },
+          },
+        },
+      });
+
+    if (certificationInfo?.expiryManaged && !expiryDateRaw.trim()) {
+      redirect(`/employees/${id}/certifications?error=expiryRequired`);
+    }
+
+    const effectiveExpiryDate =
+      certificationInfo?.expiryManaged && expiryDateRaw.trim()
+        ? new Date(`${expiryDateRaw}T00:00:00`)
+        : null;
+
+    const documentRules =
+      certificationInfo?.documentRules ?? [];
+
+    const fileEntries =
+      documentRules.length > 0
+        ? documentRules.map((rule) => ({
+            file: formData.get(`documentRuleFile:${rule.id}`),
+            documentRuleId: rule.id,
+            required: rule.required,
+          }))
+        : formData.getAll("certificateFiles").map((file) => ({
+            file,
+            documentRuleId: null,
+            required: false,
+          }));
+
+    if (
+      fileEntries.some(
+        ({ file, required }) =>
+          required &&
+          (!(file instanceof File) || file.size === 0),
+      )
+    ) {
+      redirect(
+        `/employees/${id}/certifications?error=doctorAttachments`,
+      );
+    }
+
+    const savedAttachments: {
+      fileName: string;
+      filePath: string;
+      fileType: string;
+      fileSize: number;
+      documentRuleId: string | null;
+    }[] = [];
+
+    for (const { file, documentRuleId } of fileEntries) {
+      if (!(file instanceof File) || file.size === 0) {
+        continue;
+      }
+
+      if (!allowedFileTypes.includes(file.type)) {
+        redirect(`/employees/${id}/certifications?error=invalidFile`);
+      }
+
+      if (file.size > 5 * 1024 * 1024) {
+        redirect(`/employees/${id}/certifications?error=fileTooLarge`);
+      }
+
+      const extension =
+        path.extname(file.name).toLowerCase() ||
+        (file.type === "application/pdf" ? ".pdf" : ".jpg");
+
+      const uploadDir = path.join(
+        process.cwd(),
+        "storage",
+        "certifications",
+      );
+
+      await mkdir(uploadDir, {
+        recursive: true,
+      });
+

@@ -1,0 +1,519 @@
+      const storedFileName = `${id}-${targetCertificationId}-${randomUUID()}${extension}`;
+
+      const filePath = path.join(uploadDir, storedFileName);
+
+      const bytes = await file.arrayBuffer();
+      await writeFile(filePath, Buffer.from(bytes));
+
+      savedAttachments.push({
+        fileName: file.name,
+        filePath: storedFileName,
+        fileType: file.type,
+        fileSize: file.size,
+        documentRuleId,
+      });
+    }
+
+    await prisma.employeeCertification.create({
+      data: {
+        employeeId: id,
+        certificationId: targetCertificationId,
+        acquiredDate: acquiredDateRaw
+          ? new Date(`${acquiredDateRaw}T00:00:00`)
+          : null,
+        expiryDate: effectiveExpiryDate,
+        employeeCertificationAttachments:
+          savedAttachments.length > 0
+            ? {
+                create: savedAttachments,
+              }
+            : undefined,
+      },
+    });
+
+    revalidatePath(`/employees/${id}`);
+    revalidatePath(`/employees/${id}/certifications`);
+
+    redirect(`/employees/${id}/certifications`);
+  }
+
+  async function deleteEmployeeCertification(formData: FormData) {
+    "use server";
+
+    const employeeCertificationId = String(
+      formData.get("employeeCertificationId") ?? "",
+    ).trim();
+
+    if (!employeeCertificationId) {
+      redirect(`/employees/${id}/certifications`);
+    }
+
+    await prisma.employeeCertification.deleteMany({
+      where: {
+        id: employeeCertificationId,
+        employeeId: id,
+      },
+    });
+
+    revalidatePath(`/employees/${id}`);
+    revalidatePath(`/employees/${id}/certifications`);
+
+    redirect(`/employees/${id}/certifications`);
+  }
+
+  async function deleteEmployeeCertificationAttachment(formData: FormData) {
+    "use server";
+
+    const attachmentId = String(formData.get("attachmentId") ?? "").trim();
+
+    if (!attachmentId) {
+      redirect(`/employees/${id}/certifications`);
+    }
+
+    const attachment = await prisma.employeeCertificationAttachment.findFirst({
+      where: {
+        id: attachmentId,
+        employeeCertification: {
+          employeeId: id,
+        },
+      },
+    });
+
+    if (!attachment) {
+      redirect(`/employees/${id}/certifications`);
+    }
+
+    await prisma.employeeCertificationAttachment.delete({
+      where: {
+        id: attachment.id,
+      },
+    });
+
+    const storedFileName = path.basename(attachment.filePath);
+    const absolutePath = path.join(
+      process.cwd(),
+      "storage",
+      "certifications",
+      storedFileName,
+    );
+
+    await unlink(absolutePath).catch(() => undefined);
+
+    revalidatePath(`/employees/${id}`);
+    revalidatePath(`/employees/${id}/certifications`);
+
+    redirect(`/employees/${id}/certifications`);
+  }
+
+  return (
+    <main className="p-8">
+      <div className="mb-6">
+        <Link
+          href={`/employees/${employee.id}`}
+          className="text-sm text-blue-600 hover:underline"
+        >
+          ← 職員詳細へ戻る
+        </Link>
+
+        <h1 className="mt-2 text-3xl font-bold">職員資格管理</h1>
+
+        <p className="mt-1 text-sm text-gray-500">
+          {employee.lastName} {employee.firstName} さんの保有資格を管理します。
+        </p>
+      </div>
+
+      {error === "required" && (
+        <div className="mb-4 max-w-xl rounded border border-red-300 bg-red-50 p-3 text-sm text-red-700">
+          資格を選択するか、新しい資格名を入力してください。
+        </div>
+      )}
+
+      {error === "duplicate" && (
+        <div className="mb-4 max-w-xl rounded border border-red-300 bg-red-50 p-3 text-sm text-red-700">
+          この資格は既に登録されています。
+        </div>
+      )}
+
+      {error === "doctorAttachments" && (
+        <div className="mb-4 max-w-xl rounded border border-red-300 bg-red-50 p-3 text-sm text-red-700">
+          医師資格登録には
+          「医師免許証」
+          「臨床研修修了登録証」
+          「保険医登録票」
+          の3点添付が必要です。
+        </div>
+      )}
+
+      {error === "invalidFile" && (
+        <div className="mb-4 max-w-xl rounded border border-red-300 bg-red-50 p-3 text-sm text-red-700">
+          添付できるファイルは PDF、JPG、PNG、WebP のみです。
+        </div>
+      )}
+
+      {error === "fileTooLarge" && (
+        <div className="mb-4 max-w-xl rounded border border-red-300 bg-red-50 p-3 text-sm text-red-700">
+          添付ファイルは1ファイルあたり5MB以下にしてください。
+        </div>
+      )}
+
+      <section className="mb-8 max-w-xl rounded border bg-white p-6">
+        <h2 className="mb-4 text-xl font-bold">資格を追加</h2>
+
+        <form action={addEmployeeCertification} className="space-y-4">
+          <div>
+            <label className="mb-1 block text-sm font-medium">
+              既存資格から選択
+            </label>
+
+            <select
+              name="certificationId"
+              className="w-full rounded border p-2"
+            >
+              <option value="">既存の資格を選択</option>
+              {certifications.map((certification) => (
+                <option
+                  key={certification.id}
+                  value={certification.id}
+                  data-expiry-managed={
+                    certification.expiryManaged ? "true" : "false"
+                  }
+                >
+                  {certification.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="mb-1 block text-sm font-medium">
+              または 新しい資格名を入力
+            </label>
+
+            <input
+              type="text"
+              name="newCertificationName"
+              placeholder="リストにない場合は入力してください"
+              className="w-full rounded border p-2"
+            />
+          </div>
+
+          <div>
+            <label className="mb-1 block text-sm font-medium">取得日</label>
+
+            <input
+              type="date"
+              name="acquiredDate"
+              className="w-full rounded border p-2"
+            />
+          </div>
+
+          <CertificationExpiryField />
+
+          <CertificationAttachmentFields certifications={certifications} />
+
+          <button
+            type="submit"
+            className="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+          >
+            追加
+          </button>
+        </form>
+      </section>
+
+      <section>
+        <h2 className="mb-4 text-xl font-bold">保有資格一覧</h2>
+
+        {employee.certifications.length === 0 ? (
+          <p className="text-sm text-gray-500">登録済みの資格はありません。</p>
+        ) : (
+          <table className="w-full max-w-6xl border-collapse border">
+            <thead>
+              <tr className="bg-gray-50">
+                <th className="border p-2 text-left">資格名</th>
+                <th className="border p-2 text-left">取得日</th>
+                <th className="border p-2 text-left">有効期限</th>
+                <th className="border p-2 text-left">添付ファイル</th>
+                <th className="border p-2 text-center">操作</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {employee.certifications.map((item) => (
+                <tr key={item.id}>
+                  <td className="border p-2">{item.certification.name}</td>
+
+                  <td className="border p-2">
+                    {formatDate(item.acquiredDate)}
+                  </td>
+
+                  <td className="border p-2">{formatDate(item.expiryDate)}</td>
+
+                  <td className="border p-2">
+                    {item.employeeCertificationAttachments.length === 0 ? (
+                      "-"
+                    ) : (
+                      <ul className="space-y-1">
+                        {item.employeeCertificationAttachments.map(
+                          (attachment) => (
+                            <li
+                              key={attachment.id}
+                              className="flex items-center gap-2"
+                            >
+                              <a
+                                href={`/api/certification-attachments/${attachment.id}`}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="text-blue-600 hover:underline"
+                              >
+                                {attachment.fileName}
+                              </a>
+
+                              <form
+                                action={deleteEmployeeCertificationAttachment}
+                              >
+                                <input
+                                  type="hidden"
+                                  name="attachmentId"
+                                  value={attachment.id}
+                                />
+
+                                <button
+                                  type="submit"
+                                  className="rounded bg-red-50 px-2 py-0.5 text-xs text-red-700 hover:bg-red-100"
+                                >
+                                  削除
+                                </button>
+                              </form>
+                            </li>
+                          ),
+                        )}
+                      </ul>
+                    )}
+                  </td>
+
+                  <td className="border p-2 text-center">
+                    <form action={deleteEmployeeCertification}>
+                      <input
+                        type="hidden"
+                        name="employeeCertificationId"
+                        value={item.id}
+                      />
+
+                      <button
+                        type="submit"
+                        className="rounded bg-red-600 px-3 py-1 text-sm text-white hover:bg-red-700"
+                      >
+                        削除
+                      </button>
+                    </form>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </section>
+    </main>
+  );
+}
+
+
+===== FILE: app/actions/employee.ts =====
+
+"use server";
+
+import { prisma } from "@/lib/prisma";
+import { logAudit } from "@/lib/audit-log";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+import {
+  Gender,
+  EmploymentType,
+  EmployeeStatus,
+  EmploymentAction,
+} from "@/generated/prisma";
+
+export async function createEmployee(formData: FormData) {
+  const employeeNo = formData.get("employeeNo") as string;
+  const lastName = formData.get("lastName") as string;
+  const firstName = formData.get("firstName") as string;
+  const email = formData.get("email") as string;
+  const departmentId = formData.get("departmentId") as string;
+  const facilityId = formData.get("facilityId") as string;
+
+  const lastNameKana = formData.get("lastNameKana") as string;
+  const firstNameKana = formData.get("firstNameKana") as string;
+
+  const genderRaw = formData.get("gender") as string;
+
+  const birthDate = formData.get("birthDate") as string;
+
+  const phoneNumber = formData.get("phoneNumber") as string;
+
+  const address = formData.get("address") as string;
+
+  const occupation = formData.get("occupation") as string;
+
+  const position = formData.get("position") as string;
+
+  const hireDate = formData.get("hireDate") as string;
+
+  const employmentTypeRaw = formData.get("employmentType") as string;
+
+  const commutingType = formData.get("commutingType") as string;
+
+  const statusRaw = formData.get("status") as string;
+
+  const retirementDate = formData.get("retirementDate") as string;
+
+  const healthInsuranceNo = formData.get("healthInsuranceNo") as string;
+
+  const employmentInsuranceNo = formData.get("employmentInsuranceNo") as string;
+
+  const employee = await prisma.employee.create({
+    data: {
+      employeeNo,
+
+      lastName,
+      firstName,
+
+      lastNameKana: lastNameKana || null,
+      firstNameKana: firstNameKana || null,
+
+      gender: genderRaw ? (genderRaw as Gender) : null,
+
+      birthDate: birthDate ? new Date(birthDate) : null,
+
+      phoneNumber: phoneNumber || null,
+
+      address: address || null,
+
+      email,
+
+      facilityId: facilityId || null,
+
+      departmentId: departmentId || null,
+
+      occupation: occupation || null,
+
+      position: position || null,
+
+      hireDate: hireDate ? new Date(hireDate) : null,
+
+      employmentType: employmentTypeRaw
+        ? (employmentTypeRaw as EmploymentType)
+        : null,
+
+      weeklyScheduledDays: Number(formData.get("weeklyScheduledDays")) || null,
+
+      weeklyScheduledHours:
+        Number(formData.get("weeklyScheduledHours")) || null,
+
+      annualScheduledDays: Number(formData.get("annualScheduledDays")) || null,
+
+      dailyScheduledHours: Number(formData.get("dailyScheduledHours")) || null,
+
+      commutingType: commutingType || null,
+
+      status: statusRaw ? (statusRaw as EmployeeStatus) : "ACTIVE",
+
+      retirementDate: retirementDate ? new Date(retirementDate) : null,
+
+      healthInsuranceNo: healthInsuranceNo || null,
+
+      employmentInsuranceNo: employmentInsuranceNo || null,
+    },
+  });
+
+  await prisma.employmentHistory.create({
+    data: {
+      employeeId: employee.id,
+      action: EmploymentAction.HIRED,
+      effectiveDate: employee.hireDate ?? new Date(),
+      reason: "職員登録",
+    },
+  });
+
+  await logAudit({
+    action: "EMPLOYEE_CREATED",
+    targetType: "Employee",
+    targetId: employee.id,
+    description: `${employee.employeeNo} ${employee.lastName} ${employee.firstName} を登録`,
+  });
+
+  revalidatePath("/employees");
+
+  redirect("/employees");
+}
+
+
+===== FILE: app/api/employees/import/route.ts =====
+
+import { auth } from "@/auth";
+import { prisma } from "@/lib/prisma";
+import { logAudit } from "@/lib/audit-log";
+
+export async function POST(req: Request) {
+  const session = await auth();
+
+  if (!session?.user) {
+    return Response.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  if (!["ADMIN","HR_MANAGER"].includes(session.user.role)) {
+    return Response.json({ error: "Forbidden" }, { status: 403 });
+  }
+
+  try {
+    const formData = await req.formData();
+
+    const file = formData.get("file");
+
+    if (!(file instanceof File)) {
+      return Response.json(
+        { error: "CSVファイルが選択されていません" },
+        { status: 400 }
+      );
+    }
+
+    const text = await file.text();
+
+    const rows = text
+      .split("\n")
+      .map((row) => row.trim())
+      .filter(Boolean);
+
+    const dataRows = rows.slice(1);
+
+    for (const row of dataRows) {
+      const cols = row.split(",");
+
+      const employee = await prisma.employee.create({
+        data: {
+          employeeNo: cols[0]?.replaceAll('"', ''),
+          lastName: cols[1]?.replaceAll('"', ''),
+          firstName: cols[2]?.replaceAll('"', ''),
+          email: cols[3]?.replaceAll('"', ''),
+        },
+      });
+
+      await logAudit({
+        action: "EMPLOYEE_IMPORTED",
+        targetType: "Employee",
+        targetId: employee.id,
+        description: `${employee.employeeNo} をCSVインポート`,
+      });
+    }
+
+    return Response.redirect(
+      new URL("/employees", req.url)
+    );
+  } catch (error) {
+    console.error(error);
+
+    return Response.json(
+      { error: "インポート失敗" },
+      { status: 500 }
+    );
+  }
+}

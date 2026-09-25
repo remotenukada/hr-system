@@ -1,0 +1,2345 @@
+
+==================================================
+FILE: app/allowance-masters/[id]/edit/page.tsx
+==================================================
+23:    notFound();
+28:      <BackLink href="/allowance-masters" label="手当マスタ一覧へ戻る" />
+29:      <h1 className="mb-6 text-2xl font-bold">
+36:          name="id"
+41:          name="name"
+46:        <button
+
+==================================================
+FILE: app/allowance-masters/new/page.tsx
+==================================================
+7:      <BackLink href="/allowance-masters" label="手当マスタ一覧へ戻る" />
+8:      <h1 className="mb-6 text-2xl font-bold">
+17:          <label className="block text-sm font-medium">
+22:            name="name"
+23:            required
+28:        <button
+
+==================================================
+FILE: app/allowance-masters/page.tsx
+==================================================
+18:      <Link
+19:        href="/masters"
+25:        <h1 className="text-2xl font-bold">
+30:          href="/allowance-masters/new"
+65:                  <Link
+66:                    href={`/allowance-masters/${item.id}/edit`}
+75:                      name="id"
+78:                    <button
+89:                      name="id"
+92:                    <button
+
+==================================================
+FILE: app/annual-leave-entry-rules/[id]/edit/page.tsx
+==================================================
+25:        href="/annual-leave-entry-rules"
+29:      <h1 className="mb-6 text-2xl font-bold">入職月別ルール編集</h1>
+32:        <input type="hidden" name="id" value={rule.id} />
+35:          <label>法定付与日数</label>
+37:            name="legalDays"
+46:          <label>特別休暇①</label>
+48:            name="specialGrant1Days"
+57:          <label>特別休暇②</label>
+59:            name="specialGrant2Days"
+68:          <label>特別休暇③</label>
+70:            name="specialGrant3Days"
+79:          <label>初年度合計</label>
+81:            name="firstYearTotalDays"
+90:          <label>翌年度4月付与</label>
+92:            name="nextAprilDays"
+100:        <label className="flex gap-2">
+103:            name="allowManualSpecialAdjustment"
+109:        <label className="flex gap-2">
+112:            name="isActive"
+118:        <button
+
+==================================================
+FILE: app/annual-leave-entry-rules/page.tsx
+==================================================
+12:      <BackLink href="/masters" label="マスタ一覧へ戻る" />
+14:      <h1 className="mb-6 text-2xl font-bold">入職月別有給付与ルール</h1>
+51:                  <Link
+52:                    href={`/annual-leave-entry-rules/${rule.id}/edit`}
+
+==================================================
+FILE: app/annual-leave-service-rules/[id]/edit/page.tsx
+==================================================
+27:        href="/annual-leave-service-rules"
+31:      <h1 className="mb-6 text-2xl font-bold">年次有給付与ルール編集</h1>
+34:        <input type="hidden" name="id" value={rule.id} />
+37:          <label>勤続月数</label>
+39:            name="serviceMonths"
+41:            required
+48:          <label>法定付与日数</label>
+50:            name="legalDays"
+53:            required
+60:          <label>特別休暇日数</label>
+62:            name="specialDays"
+65:            required
+72:          <label>年間上限日数</label>
+74:            name="maxTotalDays"
+77:            required
+83:        <label className="flex gap-2">
+86:            name="allowManualSpecialAdjustment"
+92:        <label className="flex gap-2">
+95:            name="isActive"
+101:        <button
+
+==================================================
+FILE: app/annual-leave-service-rules/new/page.tsx
+==================================================
+8:        href="/annual-leave-service-rules"
+12:      <h1 className="mb-6 text-2xl font-bold">年次有給付与ルール登録</h1>
+16:          <label>勤続月数</label>
+18:            name="serviceMonths"
+20:            required
+26:          <label>法定付与日数</label>
+28:            name="legalDays"
+31:            required
+37:          <label>特別休暇日数</label>
+39:            name="specialDays"
+42:            required
+48:          <label>年間上限日数</label>
+50:            name="maxTotalDays"
+54:            required
+59:        <label className="flex gap-2">
+62:            name="allowManualSpecialAdjustment"
+68:        <label className="flex gap-2">
+69:          <input type="checkbox" name="isActive" defaultChecked />
+73:        <button
+
+==================================================
+FILE: app/annual-leave-service-rules/page.tsx
+==================================================
+12:      <BackLink href="/masters" label="マスタ一覧へ戻る" />
+14:        <h1 className="text-2xl font-bold">年次有給付与ルール</h1>
+16:        <Link
+17:          href="/annual-leave-service-rules/new"
+60:                    <Link
+61:                      href={`/annual-leave-service-rules/${rule.id}/edit`}
+
+==================================================
+FILE: app/approval-routes/page.tsx
+==================================================
+4:import { requireHRManager } from "@/lib/auth-guard";
+23:  await requireHRManager();
+66:  await requireHRManager();
+98:      <BackLink href="/" label="ダッシュボードに戻る" />
+99:      <h1 className="text-2xl font-bold mt-4 mb-2">承認ルート設定（施設別）</h1>
+114:              <h2 className="text-lg font-semibold mb-4">{facility.name}</h2>
+116:                <input type="hidden" name="facilityId" value={facility.id} />
+125:                        <label className="block text-sm font-medium text-gray-700">
+129:                          name={`step${stepNo}`}
+145:                  <button
+
+==================================================
+FILE: app/audit-logs/[id]/page.tsx
+==================================================
+5:import { requireHRManager } from "@/lib/auth-guard";
+104:  await requireHRManager();
+115:    notFound();
+122:      <BackLink href="/audit-logs" label="監査ログ一覧へ戻る" />
+124:      <h1 className="mt-4 mb-6 text-3xl font-bold">
+151:        <h2 className="mb-4 text-xl font-semibold">
+
+==================================================
+FILE: app/audit-logs/page.tsx
+==================================================
+4:import { requireHRManager } from "@/lib/auth-guard";
+19:  await requireHRManager();
+114:      <BackLink href="/" label="ダッシュボードへ戻る" />
+116:        <h1 className="text-3xl font-bold">
+122:            href={`/api/audit-logs/export?${exportQuery}`}
+129:            href={`/api/audit-logs/export-excel?${exportQuery}`}
+138:        <Link
+139:          href="/audit-logs"
+145:        <Link
+146:          href="/audit-logs?action=CERTIFICATE_ISSUED"
+152:        <Link
+153:          href="/audit-logs?action=CERTIFICATE_ISSUED&targetType=EMPLOYMENT_CERTIFICATE"
+159:        <Link
+160:          href="/audit-logs?action=CERTIFICATE_ISSUED&targetType=RETIREMENT_CERTIFICATE"
+170:            name="q"
+177:            name="action"
+194:            name="targetType"
+212:            name="from"
+219:            name="to"
+224:          <button
+281:                  <Link href={`/audit-logs/${log.id}`}>
+291:        <Link
+292:          href="/"
+
+==================================================
+FILE: app/bank-accounts/[id]/page.tsx
+==================================================
+7:import { requireHRManager } from "@/lib/auth-guard";
+40:  await requireHRManager();
+67:    redirect("/bank-accounts");
+74:    notFound();
+80:    const session = await requireHRManager();
+102:      notFound();
+109:      notFound();
+132:    await requireHRManager();
+156:      notFound();
+163:      notFound();
+189:      <BackLink href="/bank-accounts" label="口座情報一覧へ戻る" />
+193:          <h1 className="text-3xl font-bold">口座情報詳細</h1>
+220:        <h2 className="mb-4 text-xl font-semibold">職員情報</h2>
+257:        <h2 className="mb-4 text-xl font-semibold">口座情報</h2>
+309:        <h2 className="mb-4 text-xl font-semibold">確認書類</h2>
+318:                  href={attachment.filePath}
+337:          <h2 className="mb-2 text-lg font-semibold text-red-700">
+346:        <h2 className="mb-4 text-xl font-semibold">確認操作</h2>
+350:            <input type="hidden" name="bankAccountId" value={bankAccount.id} />
+352:            <button
+361:            <input type="hidden" name="bankAccountId" value={bankAccount.id} />
+364:              name="reviewComment"
+367:              required
+370:            <button
+
+==================================================
+FILE: app/bank-accounts/page.tsx
+==================================================
+6:import { requireHRManager } from "@/lib/auth-guard";
+7:import { logAudit } from "@/lib/audit-log";
+40:  await requireHRManager();
+63:    const session = await requireHRManager();
+83:    await logAudit({
+99:    const session = await requireHRManager();
+121:    await logAudit({
+192:      <BackLink href="/" label="ダッシュボードへ戻る" />
+193:      <h1 className="text-3xl font-bold">口座情報確認</h1>
+
+==================================================
+FILE: app/certificates/employment/page.tsx
+==================================================
+3:import { requireHRManager } from "@/lib/auth-guard";
+7:  await requireHRManager();
+15:      <BackLink href="/certificates" label="戻る" />
+16:      <h1 className="mb-2 text-2xl font-bold">在職証明書</h1>
+24:          <Link
+26:            href={`/employment-certificates/${employee.id}/pdf`}
+
+==================================================
+FILE: app/certificates/page.tsx
+==================================================
+20:      <BackLink href="/" label="ダッシュボードへ戻る" />
+21:      <h1 className="mb-2 text-3xl font-bold">証明書センター</h1>
+27:          <Link
+29:            href={card.href}
+32:            <h2 className="mb-2 text-xl font-semibold">{card.title}</h2>
+
+==================================================
+FILE: app/certificates/retirement/page.tsx
+==================================================
+3:import { requireHRManager } from "@/lib/auth-guard";
+7:  await requireHRManager();
+15:      <BackLink href="/certificates" label="証明書センターへ" />
+16:      <h1 className="mb-2 text-2xl font-bold">退職証明書</h1>
+24:          <Link
+26:            href={`/retirement-management/${employee.id}/certificate`}
+
+==================================================
+FILE: app/certification-reports/page.tsx
+==================================================
+5:import { requireHRManager } from "@/lib/auth-guard";
+78:  await requireHRManager();
+162:      <BackLink href="/certifications" label="資格マスタへ戻る" />
+164:      <h1 className="text-2xl font-bold">資格レポート・期限管理</h1>
+167:        <h2 className="text-xl font-semibold">資格別保有状況</h2>
+189:        <h2 className="text-xl font-semibold">期限切れ・90日以内期限到来リスト</h2>
+212:                    <Link href={`/employees/${item.employee.id}`} className="text-blue-600 hover:underline">
+
+==================================================
+FILE: app/certification-requests/page.tsx
+==================================================
+7:import { requireHRManager } from "@/lib/auth-guard";
+51:  const session = await requireHRManager();
+96:    const currentSession = await requireHRManager();
+103:      redirect("/certification-requests");
+113:      redirect("/certification-requests?error=notPending");
+134:    redirect("/certification-requests?success=approved");
+140:    const currentSession = await requireHRManager();
+147:      redirect("/certification-requests");
+157:      redirect("/certification-requests?error=notPending");
+178:    redirect("/certification-requests?success=rejected");
+183:      <BackLink href="/" label="ダッシュボードへ戻る" />
+185:        <h1 className="mt-2 text-3xl font-bold">資格・免許証確認</h1>
+226:                  <h2 className="text-xl font-bold">
+274:                            href={`/api/certification-attachments/${attachment.id}`}
+301:                      name="certificationRequestId"
+305:                    <button
+316:                      name="certificationRequestId"
+320:                    <button
+
+==================================================
+FILE: app/certifications/[id]/edit/page.tsx
+==================================================
+5:import { requireHRManager } from "@/lib/auth-guard";
+23:  await requireHRManager();
+47:    notFound();
+53:    await requireHRManager();
+60:      redirect(`<certifications/${id}/edit?error=required`);
+87:    redirect(`/certifications/${id}/edit`);
+93:    await requireHRManager();
+99:    const required =
+100:      formData.get("required") === "on";
+112:      redirect(
+125:        required,
+131:        required,
+139:    redirect(`/certifications/${id}/edit`);
+145:    await requireHRManager();
+152:      redirect(`/certifications/${id}/edit`);
+165:    redirect(`/certifications/${id}/edit`);
+173:        <h1 className="text-3xl font-bold">資格マスタ設定</h1>
+179:      {error === "required" && (
+192:        <h2 className="mb-4 text-xl font-bold">基本設定</h2>
+196:            <label className="mb-1 block text-sm font-medium">
+201:              name="name"
+204:              required
+209:            <label className="flex items-center gap-2">
+212:                name="expiryManaged"
+227:          <button
+237:        <h2 className="mb-2 text-xl font-bold">
+247:            <label className="mb-1 block text-sm font-medium">
+252:              name="documentName"
+255:              required
+260:            <label className="mb-1 block text-sm font-medium">
+266:              name="sortOrder"
+275:          <label className="flex items-end gap-2 pb-2">
+278:              name="required"
+286:            <button
+297:        <h2 className="mb-4 text-xl font-bold">
+329:                      {rule.required ? "必須" : "任意"}
+336:                          name="ruleId"
+340:                        <button
+
+==================================================
+FILE: app/certifications/[id]/employees/page.tsx
+==================================================
+45:    notFound();
+51:        <Link
+52:          href="/certification-reports"
+58:        <h1 className="mt-2 text-3xl font-bold">
+100:                  <Link
+101:                    href={`/employees/${item.employee.id}`}
+
+==================================================
+FILE: app/certifications/new/page.tsx
+==================================================
+5:import { requireHRManager } from "@/lib/auth-guard";
+11:  await requireHRManager();
+18:    redirect("/certifications/new?error=required");
+29:  redirect("/certifications");
+33:  await requireHRManager();
+39:      <h1 className="mb-2 text-3xl font-bold">資格登録</h1>
+47:          <label className="mb-1 block text-sm font-medium">
+52:            name="name"
+55:            required
+60:          <label className="flex items-center gap-2">
+63:              name="expiryManaged"
+76:        <button
+
+==================================================
+FILE: app/certifications/page.tsx
+==================================================
+4:import { requireHRManager } from "@/lib/auth-guard";
+10:  await requireHRManager();
+36:          <h1 className="text-3xl font-bold">資格マスタ</h1>
+42:        <Link
+43:          href="/certifications/new"
+100:                              {rule.required ? "必須" : "任意"}
+113:                    <Link
+114:                      href={`/certifications/${certification.id}/edit`}
+
+==================================================
+FILE: app/company-settings/page.tsx
+==================================================
+19:      <BackLink href="/" label="ダッシュボードへ戻る" />
+20:      <h1 className="mb-6 text-2xl font-bold">法人設定</h1>
+27:          <label className="mb-1 block text-sm font-medium">
+31:            name="companyName"
+33:            required
+40:          <label className="mb-1 block text-sm font-medium">郵便番号</label>
+42:            name="postalCode"
+50:          <label className="mb-1 block text-sm font-medium">所在地</label>
+52:            name="address"
+60:          <label className="mb-1 block text-sm font-medium">電話番号</label>
+62:            name="phoneNumber"
+70:          <label className="mb-1 block text-sm font-medium">代表者名</label>
+72:            name="representativeName"
+80:          <label className="mb-1 block text-sm font-medium">
+84:            name="mailFrom"
+93:        <h2 className="text-lg font-semibold">メール設定</h2>
+96:          <label className="mb-1 block text-sm font-medium">SMTPホスト</label>
+98:            name="smtpHost"
+106:          <label className="mb-1 block text-sm font-medium">SMTPポート</label>
+108:            name="smtpPort"
+116:          <label className="mb-1 block text-sm font-medium">SMTPユーザー</label>
+118:            name="smtpUser"
+126:          <label className="mb-1 block text-sm font-medium">
+130:            name="smtpPassword"
+137:        <label className="flex items-center gap-2">
+139:            name="smtpSecure"
+147:          <label className="mb-1 block text-sm font-medium">相談窓口</label>
+149:            name="consultationDesk"
+157:          <label className="mb-1 block text-sm font-medium">
+161:            name="workRuleLocation"
+169:          <label className="mb-1 block text-sm font-medium">
+173:            name="sealImage"
+186:        <h2 className="text-lg font-semibold">SMTP接続テスト</h2>
+210:          <button
+
+==================================================
+FILE: app/contract-type-masters/[id]/edit/page.tsx
+==================================================
+23:    notFound();
+28:      <BackLink href="/contract-type-masters" label="契約区分マスタ一覧へ戻る" />
+29:      <h1 className="mb-6 text-2xl font-bold">
+34:        <input type="hidden" name="id" value={item.id} />
+37:          <label className="mb-1 block text-sm font-medium">
+42:            name="name"
+44:            required
+49:        <button
+
+==================================================
+FILE: app/contract-type-masters/new/page.tsx
+==================================================
+7:      <BackLink href="/contract-type-masters" label="契約区分マスタ一覧へ戻る" />
+8:      <h1 className="mb-6 text-2xl font-bold">
+14:          <label className="mb-1 block text-sm font-medium">
+19:            name="name"
+20:            required
+25:        <button
+
+==================================================
+FILE: app/contract-type-masters/page.tsx
+==================================================
+18:      <Link
+19:        href="/masters"
+25:        <h1 className="text-2xl font-bold">
+30:          href="/contract-type-masters/new"
+67:                  <Link
+68:                    href={`/contract-type-masters/${item.id}/edit`}
+77:                      name="id"
+81:                    <button
+92:                      name="id"
+96:                    <button
+
+==================================================
+FILE: app/departments/[id]/edit/page.tsx
+==================================================
+29:    notFound();
+49:    redirect("/departments");
+63:      redirect(`/departments/${id}/edit?error=hasEmployees`);
+75:    redirect("/departments");
+80:      <BackLink href="/departments" label="部署一覧へ戻る" />
+81:      <h1 className="text-3xl font-bold mb-6">
+95:          <label className="block text-sm font-medium text-gray-700 mb-1">
+100:            name="name"
+104:            required
+108:        <button
+118:        <button
+
+==================================================
+FILE: app/departments/[id]/page.tsx
+==================================================
+32:    notFound();
+37:      <BackLink href="/departments" label="部署一覧へ戻る" />
+38:      <h1 className="text-3xl font-bold mb-6">
+59:      <h2 className="text-xl font-semibold mb-3">
+69:              <Link
+70:                href={`/employees/${employee.id}`}
+82:        <Link
+83:          href="/departments"
+88:        <Link
+89:          href={`/departments/${department.id}/edit`}
+
+==================================================
+FILE: app/departments/new/page.tsx
+==================================================
+20:  redirect("/departments");
+26:      <BackLink href="/departments" label="部署一覧へ戻る" />
+27:      <h1 className="text-3xl font-bold mb-6">
+34:          <label className="block text-sm font-medium text-gray-700 mb-1">
+38:            name="name"
+41:            required
+45:        <button
+
+==================================================
+FILE: app/departments/page.tsx
+==================================================
+21:      <BackLink href="/" label="ダッシュボードへ戻る" />
+22:      <h1 className="text-3xl font-bold mb-6">
+46:                <Link
+47:                  href={`/departments/${department.id}`}
+63:        <Link
+64:          href="/"
+
+==================================================
+FILE: app/dependent-requests/page.tsx
+==================================================
+7:import { requireHRManager } from "@/lib/auth-guard";
+8:import { logAudit } from "@/lib/audit-log";
+28:  await requireHRManager();
+44:    const session = await requireHRManager();
+91:    await logAudit({
+114:    const session = await requireHRManager();
+147:    await logAudit({
+189:      <BackLink href="/" label="ダッシュボードへ戻る" />
+192:          <h1 className="text-3xl font-bold">扶養家族申請</h1>
+236:                  <Link
+237:                    href={`/employees/${request.employeeId}`}
+294:                          href={attachment.filePath}
+316:                          name="requestId"
+319:                        <button
+330:                          name="requestId"
+334:                          name="reviewComment"
+337:                          required
+339:                        <button
+
+==================================================
+FILE: app/employee-contracts/[id]/edit/page.tsx
+==================================================
+6:import { requireHRManager } from "@/lib/auth-guard";
+27:  await requireHRManager();
+29:  await requireHRManager();
+60:    notFound();
+156:      <BackLink href="/employee-contracts" label="雇用条件書一覧へ戻る" />
+158:      <h1 className="mb-6 text-2xl font-bold">
+165:          name="id"
+170:          <h2 className="border-b pb-2 text-sm font-semibold text-gray-600">
+176:              <label className="mb-1 block text-sm font-medium text-gray-700">
+187:              <label className="mb-1 block text-sm font-medium text-gray-700">
+191:                name="employmentCategory"
+209:              <label className="mb-1 block text-sm font-medium text-gray-700">
+213:                name="contractType"
+215:                required
+232:              <label className="mb-1 block text-sm font-medium text-gray-700">
+236:                name="occupation"
+250:              <label className="mb-1 block text-sm font-medium text-gray-700">
+254:                name="position"
+268:              <label className="mb-1 block text-sm font-medium text-gray-700">
+272:                name="wageType"
+284:              <label className="mb-1 block text-sm font-medium text-gray-700">
+289:                name="startDate"
+291:                required
+297:              <label className="mb-1 block text-sm font-medium text-gray-700">
+302:                name="endDate"
+311:          <h2 className="border-b pb-2 text-sm font-semibold text-gray-600">
+317:              <label className="mb-1 block text-sm font-medium text-gray-700">
+321:                name="workplace"
+323:                required
+329:              <label className="mb-1 block text-sm font-medium text-gray-700">
+333:                name="jobDescription"
+335:                required
+341:              <label className="mb-1 block text-sm font-medium text-gray-700">
+346:                name="baseSalary"
+348:                required
+355:              <label className="mb-2 block text-sm font-medium text-gray-700">
+371:                      name="allowanceName"
+376:                      name="allowanceValue"
+388:            <input type="hidden" name="workStartTime" value={contract.workStartTime} />
+389:            <input type="hidden" name="workEndTime" value={contract.workEndTime} />
+390:            <input type="hidden" name="breakMinutes" value={contract.breakMinutes} />
+393:              <label className="mb-2 block text-sm font-medium text-gray-700">
+411:                      name="workScheduleName"
+417:                      name="workScheduleStartTime"
+423:                      name="workScheduleEndTime"
+429:                      name="workScheduleBreakMinutes"
+440:              <label className="mb-1 block text-sm font-medium text-gray-700">
+444:                name="holidayRule"
+451:              <label className="mb-1 block text-sm font-medium text-gray-700">
+455:                name="leaveRule"
+462:              <label className="mb-1 block text-sm font-medium text-gray-700">
+466:                name="payClosingDay"
+473:              <label className="mb-1 block text-sm font-medium text-gray-700">
+477:                name="payDate"
+486:          <h2 className="border-b pb-2 text-sm font-semibold text-gray-600">
+492:              <label className="mb-1 block text-sm font-medium text-gray-700">
+496:                name="bonusRule"
+503:              <label className="mb-1 block text-sm font-medium text-gray-700">
+507:                name="raiseRule"
+514:              <label className="mb-1 block text-sm font-medium text-gray-700">
+518:                name="probationPeriod"
+525:              <label className="mb-1 block text-sm font-medium text-gray-700">
+529:                name="contractRenewalRule"
+536:              <label className="mb-1 block text-sm font-medium text-gray-700">
+540:                name="contractRenewalCriteria"
+547:              <label className="mb-1 block text-sm font-medium text-gray-700">
+551:                name="retirementAllowanceRule"
+558:              <label className="mb-1 block text-sm font-medium text-gray-700">
+562:                name="retirementRule"
+569:              <label className="mb-1 block text-sm font-medium text-gray-700">
+573:                name="socialInsuranceRule"
+580:              <label className="mb-1 block text-sm font-medium text-gray-700">
+584:                name="employmentInsuranceRule"
+591:              <label className="mb-1 block text-sm font-medium text-gray-700">
+595:                name="consultationDesk"
+602:              <label className="mb-1 block text-sm font-medium text-gray-700">
+606:                name="workRuleLocation"
+613:              <label className="mb-1 block text-sm font-medium text-gray-700">
+617:                name="remarks"
+626:          <Link
+627:            href={`/employee-contracts/${contract.id}`}
+
+==================================================
+FILE: app/employee-contracts/[id]/page.tsx
+==================================================
+36:    notFound();
+74:      <BackLink href="/employee-contracts" label="雇用条件書一覧へ戻る" />
+78:            href={`/employee-contracts/${contract.id}/pdf`}
+85:          <Link
+86:            href={`/employee-contracts/${contract.id}/edit`}
+94:      <h1 className="mb-6 text-2xl font-bold">
+266:        <h2 className="mb-4 text-lg font-semibold">
+328:                      <Link
+329:                        href={`/employee-contracts/${item.id}`}
+336:                        href={`/employee-contracts/${item.id}/pdf`}
+354:        <h2 className="mb-4 text-lg font-semibold">
+373:                  name="employmentContractId"
+377:                <label className="mb-1 block text-sm">
+382:                  name="signerName"
+384:                  required
+388:                <label className="mb-1 block text-sm">
+394:                  name="signedPdf"
+396:                  required
+400:                <button
+479:                          href={`/api/employment-contracts/${contract.id}/paper-consent`}
+498:        <h2 className="mb-4 text-lg font-semibold">
+528:                      href={`/employee-contracts/${contract.id}/saved-pdf/${encodeURIComponent(fileName)}`}
+
+==================================================
+FILE: app/employee-contracts/new/page.tsx
+==================================================
+4:import { requireHRManager } from "@/lib/auth-guard";
+11:  await requireHRManager();
+134:      <BackLink href="/employee-contracts" label="雇用条件書一覧へ戻る" />
+136:      <h1 className="mb-6 text-2xl font-bold">
+142:          <h2 className="border-b pb-2 text-sm font-semibold text-gray-600">
+153:              <label className="mb-1 block text-sm font-medium text-gray-700">
+157:                name="employmentCategory"
+175:              <label className="mb-1 block text-sm font-medium text-gray-700">
+179:                name="contractType"
+180:                required
+201:              <label className="mb-1 block text-sm font-medium text-gray-700">
+205:                name="occupation"
+218:              <label className="mb-1 block text-sm font-medium text-gray-700">
+222:                name="position"
+235:              <label className="mb-1 block text-sm font-medium text-gray-700">
+240:                name="startDate"
+241:                required
+247:              <label className="mb-1 block text-sm font-medium text-gray-700">
+252:                name="endDate"
+260:          <h2 className="border-b pb-2 text-sm font-semibold text-gray-600">
+266:              <label className="mb-1 block text-sm font-medium text-gray-700">
+271:                name="workplace"
+272:                required
+279:              <label className="mb-1 block text-sm font-medium text-gray-700">
+284:                name="jobDescription"
+285:                required
+292:              <label className="mb-1 block text-sm font-medium text-gray-700">
+296:                name="wageType"
+308:              <label className="mb-1 block text-sm font-medium text-gray-700">
+313:                name="baseSalary"
+314:                required
+322:              <label className="mb-2 block text-sm font-medium text-gray-700">
+338:                      name="allowanceName"
+343:                      name="allowanceValue"
+352:            <input type="hidden" name="workStartTime" value="08:30" />
+353:            <input type="hidden" name="workEndTime" value="17:30" />
+354:            <input type="hidden" name="breakMinutes" value="60" />
+357:              <label className="mb-2 block text-sm font-medium text-gray-700">
+375:                      name="workScheduleName"
+381:                      name="workScheduleStartTime"
+387:                      name="workScheduleEndTime"
+393:                      name="workScheduleBreakMinutes"
+404:              <label className="mb-1 block text-sm font-medium text-gray-700">
+408:                name="holidayRule"
+415:              <label className="mb-1 block text-sm font-medium text-gray-700">
+419:                name="leaveRule"
+425:              <label className="mb-1 block text-sm font-medium text-gray-700">
+429:                name="payClosingDay"
+435:              <label className="mb-1 block text-sm font-medium text-gray-700">
+439:                name="payDate"
+448:            <h2 className="text-sm font-semibold text-gray-600">
+458:              <label className="mb-1 block text-sm font-medium text-gray-700">
+462:                name="raiseRule"
+470:              <label className="mb-1 block text-sm font-medium text-gray-700">
+474:                name="bonusRule"
+482:              <label className="mb-1 block text-sm font-medium text-gray-700">
+486:                name="retirementRule"
+494:              <label className="mb-1 block text-sm font-medium text-gray-700">
+498:                name="retirementAllowanceRule"
+506:              <label className="mb-1 block text-sm font-medium text-gray-700">
+510:                name="socialInsuranceRule"
+518:              <label className="mb-1 block text-sm font-medium text-gray-700">
+522:                name="employmentInsuranceRule"
+530:              <label className="mb-1 block text-sm font-medium text-gray-700">
+534:                name="consultationDesk"
+542:              <label className="mb-1 block text-sm font-medium text-gray-700">
+546:                name="workRuleLocation"
+556:          <Link
+557:            href="/employee-contracts"
+562:          <button
+
+==================================================
+FILE: app/employee-contracts/page.tsx
+==================================================
+18:      <BackLink href="/" label="ダッシュボードへ戻る" />
+20:        <h1 className="text-2xl font-bold">
+24:        <Link
+25:          href="/employee-contracts/new"
+87:                  <Link
+88:                    href={`/employee-contracts/${contract.id}`}
+
+==================================================
+FILE: app/employee-contracts/renewals/page.tsx
+==================================================
+4:import { requireHRManager } from "@/lib/auth-guard";
+10:  await requireHRManager();
+36:      <BackLink href="/employee-contracts" label="雇用条件書一覧に戻る" />
+39:        <h1 className="text-2xl font-bold">契約更新管理</h1>
+101:                      <Link
+102:                        href={`/employee-contracts/${contract.id}/edit?mode=renewal`}
+
+==================================================
+FILE: app/employee-contract-templates/[id]/edit/page.tsx
+==================================================
+28:    notFound();
+33:      <BackLink href="/employee-contract-templates" label="テンプレート一覧へ戻る" />
+35:      <h1 className="mb-6 text-2xl font-bold">
+42:          name="id"
+47:          <label className="mb-1 block text-sm font-medium">
+51:            name="name"
+52:            required
+59:          <label className="mb-1 block text-sm font-medium">
+63:            name="contractType"
+64:            required
+72:            <label className="mb-1 block text-sm font-medium">
+77:              name="workStartTime"
+84:            <label className="mb-1 block text-sm font-medium">
+89:              name="workEndTime"
+96:            <label className="mb-1 block text-sm font-medium">
+101:              name="breakMinutes"
+109:          <label className="mb-1 block text-sm font-medium">
+113:            name="holidayRule"
+120:          <label className="mb-1 block text-sm font-medium">
+124:            name="wageType"
+137:            <h2 className="text-lg font-semibold text-gray-900">
+147:              <label className="mb-1 block text-sm font-medium">
+151:                name="raiseRule"
+159:              <label className="mb-1 block text-sm font-medium">
+163:                name="bonusRule"
+171:              <label className="mb-1 block text-sm font-medium">
+175:                name="retirementRule"
+183:              <label className="mb-1 block text-sm font-medium">
+187:                name="retirementAllowanceRule"
+195:              <label className="mb-1 block text-sm font-medium">
+199:                name="socialInsuranceRule"
+207:              <label className="mb-1 block text-sm font-medium">
+211:                name="employmentInsuranceRule"
+219:              <label className="mb-1 block text-sm font-medium">
+223:                name="consultationDesk"
+231:              <label className="mb-1 block text-sm font-medium">
+235:                name="workRuleLocation"
+245:          <label className="mb-1 block text-sm font-medium">
+249:            name="probationPeriod"
+259:            name="isActive"
+263:          <label htmlFor="isActive" className="text-sm font-medium">
+269:          <Link
+270:            href="/employee-contract-templates"
+
+==================================================
+FILE: app/employee-contract-templates/new/page.tsx
+==================================================
+9:      <BackLink href="/employee-contract-templates" label="テンプレート一覧へ戻る" />
+11:      <h1 className="mb-6 text-2xl font-bold">
+17:          <label className="mb-1 block text-sm font-medium">
+22:            name="name"
+23:            required
+30:          <label className="mb-1 block text-sm font-medium">
+35:            name="contractType"
+36:            required
+44:            <label className="mb-1 block text-sm font-medium">
+50:              name="workStartTime"
+57:            <label className="mb-1 block text-sm font-medium">
+63:              name="workEndTime"
+70:            <label className="mb-1 block text-sm font-medium">
+76:              name="breakMinutes"
+84:          <label className="mb-1 block text-sm font-medium">
+89:            name="holidayRule"
+96:          <label className="mb-1 block text-sm font-medium">
+101:            name="wageType"
+113:            <h2 className="text-lg font-semibold text-gray-900">
+123:              <label className="mb-1 block text-sm font-medium">
+127:                name="raiseRule"
+135:              <label className="mb-1 block text-sm font-medium">
+139:                name="bonusRule"
+147:              <label className="mb-1 block text-sm font-medium">
+151:                name="retirementRule"
+159:              <label className="mb-1 block text-sm font-medium">
+163:                name="retirementAllowanceRule"
+171:              <label className="mb-1 block text-sm font-medium">
+175:                name="socialInsuranceRule"
+183:              <label className="mb-1 block text-sm font-medium">
+187:                name="employmentInsuranceRule"
+195:              <label className="mb-1 block text-sm font-medium">
+199:                name="consultationDesk"
+207:              <label className="mb-1 block text-sm font-medium">
+211:                name="workRuleLocation"
+221:          <label className="mb-1 block text-sm font-medium">
+226:            name="probationPeriod"
+233:          <button
+
+==================================================
+FILE: app/employee-contract-templates/page.tsx
+==================================================
+46:      <BackLink href="/" label="ダッシュボードへ戻る" />
+48:        <h1 className="text-2xl font-bold">
+52:        <Link
+53:          href="/employee-contract-templates/new"
+119:                      name="id"
+123:                    <button
+136:                    <Link
+137:                      href={`/employee-contract-templates/${template.id}/edit`}
+146:                        name="id"
+149:                      <button
+
+==================================================
+FILE: app/employee-leaves/page.tsx
+==================================================
+6:import { requireHRManager } from "@/lib/auth-guard";
+7:import { logAudit } from "@/lib/audit-log";
+18:  await requireHRManager();
+23:    const session = await requireHRManager();
+66:    await logAudit({
+110:      <BackLink href="/" label="ダッシュボードへ戻る" />
+113:          <h1 className="text-3xl font-bold text-gray-900">
+121:        <Link
+122:          href="/"
+131:          <h2 className="text-lg font-semibold text-gray-800">
+199:                          <Link
+200:                            href={`/employees/${employee.id}`}
+209:                              name="employeeId"
+212:                            <button
+
+==================================================
+FILE: app/employee-retirements/page.tsx
+==================================================
+5:import { requireHRManager } from "@/lib/auth-guard";
+14:  await requireHRManager();
+50:      <BackLink href="/" label="ダッシュボードへ戻る" />
+53:          <h1 className="text-3xl font-bold">
+61:        <Link
+62:          href="/"
+70:        <h2 className="mb-2 text-xl font-semibold text-gray-800">
+103:                      <Link
+104:                        href={`/employees/${employee.id}`}
+131:        <h2 className="mb-2 text-xl font-semibold text-gray-800">
+164:                      <Link
+165:                        href={`/employees/${employee.id}`}
+
+==================================================
+FILE: app/employees/[id]/certifications/page.tsx
+==================================================
+9:import { requireHRManager } from "@/lib/auth-guard";
+38:  await requireHRManager();
+68:    notFound();
+72:    notFound();
+91:    await requireHRManager();
+103:      notFound();
+110:      notFound();
+129:      redirect(`/employees/${id}/certifications?error=required`);
+158:      redirect(`/employees/${id}/certifications?error=duplicate`);
+178:      redirect(`/employees/${id}/certifications?error=expiryRequired`);
+194:            required: rule.required,
+199:            required: false,
+204:        ({ file, required }) =>
+205:          required &&
+209:      redirect(
+228:        redirect(`/employees/${id}/certifications?error=invalidFile`);
+232:        redirect(`/employees/${id}/certifications?error=fileTooLarge`);
+285:    redirect(`/employees/${id}/certifications`);
+296:      redirect(`/employees/${id}/certifications`);
+309:    redirect(`/employees/${id}/certifications`);
+318:      redirect(`/employees/${id}/certifications`);
+331:      redirect(`/employees/${id}/certifications`);
+353:    redirect(`/employees/${id}/certifications`);
+359:        <Link
+360:          href={`/employees/${employee.id}`}
+366:        <h1 className="mt-2 text-3xl font-bold">職員資格管理</h1>
+373:      {error === "required" && (
+408:        <h2 className="mb-4 text-xl font-bold">資格を追加</h2>
+412:            <label className="mb-1 block text-sm font-medium">
+417:              name="certificationId"
+436:            <label className="mb-1 block text-sm font-medium">
+442:              name="newCertificationName"
+449:            <label className="mb-1 block text-sm font-medium">取得日</label>
+453:              name="acquiredDate"
+462:          <button
+472:        <h2 className="mb-4 text-xl font-bold">保有資格一覧</h2>
+511:                                href={`/api/certification-attachments/${attachment.id}`}
+524:                                  name="attachmentId"
+528:                                <button
+546:                        name="employeeCertificationId"
+550:                      <button
+
+==================================================
+FILE: app/employees/[id]/dependents/[dependentId]/edit/page.tsx
+==================================================
+7:import { requireHRManager } from "@/lib/auth-guard";
+8:import { logAudit } from "@/lib/audit-log";
+27:  await requireHRManager();
+40:    redirect("/employees");
+44:    notFound();
+54:    redirect(`/employees/${id}`);
+60:    const currentSession = await requireHRManager();
+76:      notFound();
+83:      notFound();
+118:      redirect(`/employees/${id}`);
+140:    await logAudit({
+152:    redirect(`/employees/${id}`);
+158:        <h1 className="text-2xl font-bold">扶養家族情報の編集</h1>
+159:        <Link
+160:          href={`/employees/${id}`}
+172:          <label className="block text-sm font-medium text-gray-700">
+177:            name="name"
+179:            required
+185:          <label className="block text-sm font-medium text-gray-700">
+190:            name="nameKana"
+197:          <label className="block text-sm font-medium text-gray-700">
+202:            name="relationship"
+204:            required
+210:          <label className="block text-sm font-medium text-gray-700">
+215:            name="birthDate"
+222:          <label className="block text-sm font-medium text-gray-700">
+227:            name="annualIncome"
+234:          <label className="flex items-center space-x-2">
+237:              name="cohabiting"
+244:          <label className="flex items-center space-x-2">
+247:              name="healthInsuranceDependent"
+256:          <label className="block text-sm font-medium text-gray-700">
+261:            name="myNumber"
+269:          <label className="block text-sm font-medium text-gray-700">
+273:            name="note"
+281:          <Link
+282:            href={`/employees/${id}`}
+287:          <button
+
+==================================================
+FILE: app/employees/[id]/dependents/new/page.tsx
+==================================================
+7:import { requireHRManager } from "@/lib/auth-guard";
+8:import { logAudit } from "@/lib/audit-log";
+18:  await requireHRManager();
+35:    redirect("/employees");
+39:    notFound();
+45:    const session = await requireHRManager();
+54:      notFound();
+65:      notFound();
+107:    await logAudit({
+124:    redirect(`/employees/${id}`);
+130:        <Link
+131:          href={`/employees/${id}`}
+139:        <h1 className="text-3xl font-bold text-gray-900">扶養家族登録</h1>
+148:          <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
+154:              <label className="mb-1 block text-sm font-medium text-gray-700">
+158:                name="name"
+159:                required
+165:              <label className="mb-1 block text-sm font-medium text-gray-700">
+168:              <input name="nameKana" className="w-full rounded border p-2" />
+172:              <label className="mb-1 block text-sm font-medium text-gray-700">
+176:                name="relationship"
+177:                required
+184:              <label className="mb-1 block text-sm font-medium text-gray-700">
+189:                name="birthDate"
+195:              <label className="mb-1 block text-sm font-medium text-gray-700">
+200:                name="annualIncome"
+207:              <label className="mb-1 block text-sm font-medium text-gray-700">
+211:                name="myNumber"
+225:          <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
+230:            <label className="flex items-center gap-2 text-sm text-gray-700">
+233:                name="cohabiting"
+240:            <label className="flex items-center gap-2 text-sm text-gray-700">
+243:                name="healthInsuranceDependent"
+253:          <label className="mb-1 block text-sm font-medium text-gray-700">
+256:          <textarea name="note" className="h-24 w-full rounded border p-2" />
+260:          <Link
+261:            href={`/employees/${id}`}
+267:          <button
+
+==================================================
+FILE: app/employees/[id]/edit/page.tsx
+==================================================
+7:import { requireHRManager } from "@/lib/auth-guard";
+8:import { logAudit } from "@/lib/audit-log";
+29:  await requireHRManager();
+44:    notFound();
+48:    notFound();
+214:      await logAudit({
+263:      await logAudit({
+281:      await logAudit({
+302:      await logAudit({
+310:    await logAudit({
+323:    redirect(`/employees/${id}`);
+328:      <BackLink href="/employees" label="職員一覧へ戻る" />
+330:        <h1 className="mb-6 text-2xl font-bold text-slate-800">職員編集</h1>
+334:            <h2 className="border-b pb-1 text-sm font-semibold text-slate-500">
+340:                <label className="mb-1 block text-xs font-medium text-slate-700">
+344:                  required
+345:                  name="employeeNo"
+352:                <label className="mb-1 block text-xs font-medium text-slate-700">
+356:                  required
+358:                  name="email"
+365:                <label className="mb-1 block text-xs font-medium text-slate-700">
+370:                    required
+371:                    name="lastName"
+377:                    required
+378:                    name="firstName"
+387:                <label className="mb-1 block text-xs font-medium text-slate-700">
+392:                    name="lastNameKana"
+398:                    name="firstNameKana"
+407:                <label className="mb-1 block text-xs font-medium text-slate-700">
+411:                  name="gender"
+423:                <label className="mb-1 block text-xs font-medium text-slate-700">
+428:                  name="birthDate"
+437:            <h2 className="border-b pb-1 text-sm font-semibold text-slate-500">
+443:                <label className="mb-1 block text-xs font-medium text-slate-700">
+447:                  name="phoneNumber"
+454:                <label className="mb-1 block text-xs font-medium text-slate-700">
+458:                  name="address"
+468:            <h2 className="border-b pb-1 text-sm font-semibold text-slate-500">
+474:                <label className="mb-1 block text-xs font-medium text-slate-700">
+479:                  name="facilityId"
+494:                <label className="mb-1 block text-xs font-medium text-slate-700">
+498:                  name="departmentId"
+512:                <label className="mb-1 block text-xs font-medium text-slate-700">
+516:                  name="occupation"
+530:                <label className="mb-1 block text-xs font-medium text-slate-700">
+534:                  name="position"
+548:                <label className="mb-1 block text-xs font-medium text-slate-700">
+552:                  name="employmentType"
+565:                <label className="mb-1 block text-xs font-medium text-slate-700">
+571:                  name="weeklyScheduledDays"
+578:                <label className="mb-1 block text-xs font-medium text-slate-700">
+584:                  name="weeklyScheduledHours"
+591:                <label className="mb-1 block text-xs font-medium text-slate-700">
+596:                  name="annualScheduledDays"
+603:                <label className="mb-1 block text-xs font-medium text-slate-700">
+609:                  name="dailyScheduledHours"
+616:                <label className="mb-1 block text-xs font-medium text-slate-700">
+621:                  name="hireDate"
+628:                <label className="mb-1 block text-xs font-medium text-slate-700">
+633:                  name="retirementDate"
+640:                <label className="mb-1 block text-xs font-medium text-slate-700">
+644:                  name="commutingType"
+651:                <label className="mb-1 block text-xs font-medium text-slate-700">
+655:                  name="status"
+668:            <h2 className="border-b pb-1 text-sm font-semibold text-slate-500">
+674:                <label className="mb-1 block text-xs font-medium text-slate-700">
+678:                  name="healthInsuranceNo"
+685:                <label className="mb-1 block text-xs font-medium text-slate-700">
+689:                  name="employmentInsuranceNo"
+698:            <h2 className="border-b pb-1 text-sm font-semibold text-slate-500">
+723:            <button
+
+==================================================
+FILE: app/employees/[id]/page.tsx
+==================================================
+9:import { logAudit } from "@/lib/audit-log";
+10:import { requireHRManager } from "@/lib/auth-guard";
+126:    redirect("/login");
+194:    notFound();
+198:    notFound();
+241:    const currentSession = await requireHRManager();
+272:    await logAudit({
+292:    const currentSession = await requireHRManager();
+323:    await logAudit({
+343:    const currentSession = await requireHRManager();
+382:    await logAudit({
+402:    await requireHRManager();
+437:    await logAudit({
+459:    await requireHRManager();
+501:    await logAudit({
+518:    await requireHRManager();
+544:    await logAudit({
+561:    await requireHRManager();
+569:    await logAudit({
+577:    redirect("/employees");
+582:      <BackLink href="/employees" label="職員一覧へ戻る" />
+585:          <h1 className="mt-3 text-3xl font-bold text-gray-900">職員詳細</h1>
+594:            href={`/api/employees/${employee.id}/pdf`}
+602:              <Link
+603:                href={`/employees/${employee.id}/edit`}
+610:                <button
+624:          <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
+645:          <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
+671:                <input type="hidden" name="id" value={employee.id} />
+672:                <button
+684:          <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
+695:          <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
+721:          <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
+735:          <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
+786:            <Link href={`/employees/${employee.id}/certifications`}>
+795:              <h2 className="text-lg font-semibold text-gray-800">扶養家族</h2>
+799:                  href={`/employees/${employee.id}/dependents/export`}
+804:                <Link
+805:                  href={`/employees/${employee.id}/dependents/new`}
+858:                            <Link
+859:                              href={`/employees/${employee.id}/dependents/${dependent.id}/edit`}
+868:                                name="dependentId"
+871:                              <button
+891:            <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
+949:                              name="dependentId"
+952:                            <button
+971:            <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
+1018:            <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
+1070:            <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
+1128:            <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-blue-800">
+1134:                <label className="mb-1 block text-sm font-medium">
+1141:                  name="grantedDays"
+1148:                <label className="mb-1 block text-sm font-medium">
+1155:                  name="usedDays"
+1173:              <button
+1185:            <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-green-800">
+1194:                <label className="mb-1 block text-sm font-medium">基本給</label>
+1198:                  name="baseSalary"
+1201:                  required
+1206:                <label className="mb-1 block text-sm font-medium">手当</label>
+1210:                  name="allowance"
+1217:                <label className="mb-1 block text-sm font-medium">賞与</label>
+1221:                  name="bonus"
+1228:                <button
+1240:          <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
+1292:            <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-red-800">
+1303:                <Link href={`/my-numbers/${employee.employeeMyNumber.id}`} className="mt-1 block text-xs text-blue-600 hover:underline">
+1316:                <label className="mb-1 block text-sm font-medium text-gray-700">
+1320:                  name="myNumber"
+1325:                  required
+1329:              <button
+
+==================================================
+FILE: app/employees/import/page.tsx
+==================================================
+3:import { requireHRManager } from "@/lib/auth-guard";
+6:  await requireHRManager();
+9:      <BackLink href="/" label="ダッシュボードへ戻る" />
+12:          <h1 className="mt-3 text-2xl font-bold text-gray-900">
+27:            <label className="mb-1 block text-sm font-medium text-gray-700">
+33:              name="file"
+35:              required
+49:          <button
+
+==================================================
+FILE: app/employees/new/page.tsx
+==================================================
+2:import { requireHRManager } from "@/lib/auth-guard";
+8:  await requireHRManager();
+30:      <BackLink href="/employees" label="職員一覧へ戻る" />
+31:      <h1 className="text-xl font-bold mb-6 text-slate-800">新規職員登録</h1>
+35:          <h2 className="text-sm font-semibold text-slate-500 border-b pb-1">
+41:              <label className="block text-xs font-medium text-slate-700 mb-1">
+45:                required
+46:                name="employeeNo"
+53:              <label className="block text-xs font-medium text-slate-700 mb-1">
+57:                required
+59:                name="email"
+66:              <label className="block text-xs font-medium text-slate-700 mb-1">
+71:                  required
+72:                  name="lastName"
+77:                  required
+78:                  name="firstName"
+86:              <label className="block text-xs font-medium text-slate-700 mb-1">
+91:                  name="lastNameKana"
+96:                  name="firstNameKana"
+104:              <label className="block text-xs font-medium text-slate-700 mb-1">
+108:                name="gender"
+119:              <label className="block text-xs font-medium text-slate-700 mb-1">
+124:                name="birthDate"
+132:          <h2 className="text-sm font-semibold text-slate-500 border-b pb-1">
+138:              <label className="block text-xs font-medium text-slate-700 mb-1">
+142:                name="phoneNumber"
+149:              <label className="block text-xs font-medium text-slate-700 mb-1">
+153:                name="address"
+163:          <h2 className="text-sm font-semibold text-slate-500 border-b pb-1">
+169:              <label className="block text-xs font-medium text-slate-700 mb-1">
+174:                name="facilityId"
+188:              <label className="block text-xs font-medium text-slate-700 mb-1">
+192:                name="departmentId"
+205:              <label className="block text-xs font-medium text-slate-700 mb-1">
+209:                name="occupation"
+222:              <label className="block text-xs font-medium text-slate-700 mb-1">
+226:                name="position"
+239:              <label className="block text-xs font-medium text-slate-700 mb-1">
+243:                name="employmentType"
+255:              <label className="block text-xs font-medium text-slate-700 mb-1">
+261:                name="weeklyScheduledDays"
+267:              <label className="block text-xs font-medium text-slate-700 mb-1">
+273:                name="weeklyScheduledHours"
+279:              <label className="block text-xs font-medium text-slate-700 mb-1">
+284:                name="annualScheduledDays"
+290:              <label className="block text-xs font-medium text-slate-700 mb-1">
+296:                name="dailyScheduledHours"
+302:              <label className="block text-xs font-medium text-slate-700 mb-1">
+307:                name="hireDate"
+313:              <label className="block text-xs font-medium text-slate-700 mb-1">
+318:                name="retirementDate"
+324:              <label className="block text-xs font-medium text-slate-700 mb-1">
+328:                name="commutingType"
+335:              <label className="block text-xs font-medium text-slate-700 mb-1">
+339:                name="status"
+353:          <h2 className="text-sm font-semibold text-slate-500 border-b pb-1">
+359:              <label className="block text-xs font-medium text-slate-700 mb-1">
+363:                name="healthInsuranceNo"
+370:              <label className="block text-xs font-medium text-slate-700 mb-1">
+374:                name="employmentInsuranceNo"
+383:          <button
+
+==================================================
+FILE: app/employees/page.tsx
+==================================================
+218:      <BackLink href="/" label="ダッシュボードへ戻る" />
+221:          <h1 className="text-3xl font-bold">職員一覧</h1>
+233:          <Link
+234:            href="/employees/new"
+241:            href="/api/employees/export-excel"
+247:          <Link
+248:            href="/employee-transfers/import"
+253:          <Link
+254:            href="/employees/import"
+264:          name="q"
+271:          name="facilityId"
+285:          name="departmentId"
+298:          name="status"
+310:          name="employmentType"
+321:        <button
+329:          <Link
+330:            href="/employees"
+391:                    <Link
+392:                      href={`/employees/${employee.id}`}
+440:        <Link href="/" className="text-sm text-blue-600 hover:underline">
+
+==================================================
+FILE: app/employee-transfers/import/page.tsx
+==================================================
+2:import { requireHRManager } from "@/lib/auth-guard";
+15:  await requireHRManager();
+30:      <BackLink href="/employee-transfers" label="人事異動履歴一覧へ戻る" />
+33:        <h1 className="text-3xl font-bold text-gray-900">
+43:            <h2 className="font-semibold text-blue-900">インポート結果</h2>
+83:            <label className="mb-1 block text-sm font-medium text-gray-700">
+89:              name="file"
+91:              required
+97:            <h2 className="font-semibold text-gray-800">CSV形式</h2>
+118:          <button
+
+==================================================
+FILE: app/employee-transfers/page.tsx
+==================================================
+5:import { requireHRManager } from "@/lib/auth-guard";
+8:  await requireHRManager();
+25:      <BackLink href="/" label="ダッシュボードへ戻る" />
+28:          <h1 className="text-3xl font-bold text-gray-900">人事異動一覧</h1>
+34:        <Link
+35:          href="/"
+72:                    <Link
+73:                      href={`/employees/${item.employee.id}`}
+
+==================================================
+FILE: app/employment-category-masters/new/page.tsx
+==================================================
+7:      <BackLink href="/employment-category-masters" label="雇用形態マスタ一覧へ戻る" />
+8:      <h1 className="mb-6 text-2xl font-bold">
+17:          <label className="mb-1 block text-sm font-medium">
+22:            name="name"
+23:            required
+28:        <button
+
+==================================================
+FILE: app/employment-category-masters/page.tsx
+==================================================
+18:      <Link
+19:        href="/masters"
+25:        <h1 className="text-2xl font-bold">
+30:          href="/employment-category-masters/new"
+67:                  <Link
+68:                    href={`/employment-category-masters/${item.id}/edit`}
+77:                      name="id"
+81:                    <button
+92:                      name="id"
+96:                    <button
+
+==================================================
+FILE: app/exports/page.tsx
+==================================================
+6:      <BackLink href="/" label="ダッシュボードに戻る" />
+9:        <h1 className="text-3xl font-bold">帳票・出力</h1>
+17:          href="/api/employees/export"
+27:          href="/api/employees/export-excel"
+37:          href="/api/requests/export-excel"
+47:          href="/api/leave-reports/export-excel"
+57:          href="/api/leave-compliance/export-excel"
+
+==================================================
+FILE: app/facility-switch/page.tsx
+==================================================
+6:import { requireHRManager } from "@/lib/auth-guard";
+11:  await requireHRManager();
+39:      <BackLink href="/" label="ダッシュボードに戻る" />
+41:      <h1 className="mb-6 text-3xl font-bold">表示対象切替</h1>
+44:        <label className="flex gap-2 items-center cursor-pointer">
+47:            name="facilityId"
+60:          <label
+66:              name="facilityId"
+75:          <button
+
+==================================================
+FILE: app/job-title-masters/[id]/edit/page.tsx
+==================================================
+23:    notFound();
+28:      <BackLink href="/job-title-masters" label="職種マスタ一覧へ戻る" />
+29:      <h1 className="mb-6 text-2xl font-bold">
+36:          name="id"
+41:          name="name"
+46:        <button
+
+==================================================
+FILE: app/job-title-masters/new/page.tsx
+==================================================
+7:      <BackLink href="/job-title-masters" label="職種マスタ一覧へ戻る" />
+8:      <h1 className="mb-6 text-2xl font-bold">
+17:          <label className="block text-sm font-medium">
+22:            name="name"
+23:            required
+28:        <button
+
+==================================================
+FILE: app/job-title-masters/page.tsx
+==================================================
+18:      <Link
+19:        href="/masters"
+25:        <h1 className="text-2xl font-bold">
+30:          href="/job-title-masters/new"
+65:                  <Link
+66:                    href={`/job-title-masters/${item.id}/edit`}
+75:                      name="id"
+78:                    <button
+89:                      name="id"
+92:                    <button
+
+==================================================
+FILE: app/leave-balances/page.tsx
+==================================================
+3:import { requireHRManager } from "@/lib/auth-guard";
+6:  await requireHRManager();
+25:      <BackLink href="/employees" label="職員一覧に戻る" />
+29:          <h1 className="text-3xl font-bold">年次有給休暇残高一覧</h1>
+36:          href="/api/leave-reports/export-excel"
+
+==================================================
+FILE: app/leave-calendar/page.tsx
+==================================================
+4:import { requireManager } from "@/lib/auth-guard";
+15:  await requireManager();
+47:      <BackLink href="/" label="ダッシュボードへ戻る" />
+49:        <h1 className="text-3xl font-bold">
+56:            name="month"
+61:          <button
+108:                  <Link href={`/requests/${request.id}`}>
+119:        <Link href="/">
+
+==================================================
+FILE: app/leave-compliance/page.tsx
+==================================================
+4:import { requireManager } from "@/lib/auth-guard";
+81:  await requireManager();
+208:      <BackLink href="/" label="ダッシュボードへ戻る" />
+211:          <h1 className="text-3xl font-bold">
+222:            href="/api/leave-compliance/export"
+229:            href="/api/leave-compliance/export-excel"
+235:          <Link
+236:            href="/"
+
+==================================================
+FILE: app/leave-expiration/page.tsx
+==================================================
+5:import { requireHRManager } from "@/lib/auth-guard";
+6:import { logAudit } from "@/lib/audit-log";
+88:  const session = await requireHRManager();
+234:  await requireHRManager();
+304:      <BackLink href="/" label="ダッシュボードへ戻る" />
+307:          <h1 className="text-3xl font-bold">有給失効管理</h1>
+346:            <button
+355:          <Link
+356:            href="/leave-balances"
+362:          <Link
+363:            href="/leave-grants"
+
+==================================================
+FILE: app/leave-grants/page.tsx
+==================================================
+4:import { requireHRManager } from "@/lib/auth-guard";
+5:import { logAudit } from "@/lib/audit-log";
+15:  const session = await requireHRManager();
+118:    await logAudit({
+137:  const session = await requireHRManager();
+251:  await logAudit({
+277:  const session = await requireHRManager();
+352:  await logAudit({
+368:  await requireHRManager();
+414:      <BackLink href="/" label="ダッシュボードへ戻る" />
+417:          href="/leave-grants/seasonal-preview"
+426:          <h1 className="text-3xl font-bold">有給付与履歴</h1>
+433:          <button
+446:        <h2 className="mb-3 text-lg font-bold">手動付与</h2>
+449:          <select name="employeeId" className="rounded border p-2" required>
+459:          <select name="leaveTypeId" className="rounded border p-2" required>
+469:            name="grantDate"
+474:          <select name="adjustType" className="rounded border p-2">
+482:            name="days"
+487:            required
+492:            name="note"
+497:          <button
+554:                        <input type="hidden" name="grantId" value={x.id} />
+556:                        <button
+
+==================================================
+FILE: app/leave-grants/pending/page.tsx
+==================================================
+5:import { requireHRManager } from "@/lib/auth-guard";
+6:import { logAudit } from "@/lib/audit-log";
+23:  const session = await requireHRManager();
+175:      await logAudit({
+214:  await requireHRManager();
+268:      <BackLink href="/" label="ダッシュボードへ戻る" />
+271:          <h1 className="text-3xl font-bold">有給付与対象者一覧</h1>
+284:            <button
+293:          <Link
+294:            href="/leave-balances"
+300:          <Link
+301:            href="/leave-grants"
+401:                      <Link
+402:                        href={`/employees/${employee.id}`}
+
+==================================================
+FILE: app/leave-grants/seasonal-preview/page.tsx
+==================================================
+6:import { requireHRManager } from "@/lib/auth-guard";
+14:  await requireHRManager();
+92:      <BackLink href="/leave-grants" label="有休付与管理に戻る" />
+95:        <h1 className="text-2xl font-bold">季節休暇付与対象者確認</h1>
+110:            <button
+127:            <button
+
+==================================================
+FILE: app/leave-reports/page.tsx
+==================================================
+4:import { requireManager } from "@/lib/auth-guard";
+7:  await requireManager();
+104:      <BackLink href="/" label="ダッシュボードへ戻る" />
+106:        <h1 className="text-3xl font-bold">
+111:          href="/api/leave-reports/export"
+118:          href="/api/leave-reports/export-excel"
+126:        <h2 className="mb-3 text-lg font-semibold">
+158:        <h2 className="mb-3 text-lg font-semibold">
+
+==================================================
+FILE: app/leave-type-balances/page.tsx
+==================================================
+3:import { requireHRManager } from "@/lib/auth-guard";
+6:  await requireHRManager();
+29:      <BackLink href="/" label="ダッシュボードへ戻る" />
+31:      <h1 className="mb-6 text-3xl font-bold">休暇別残高一覧</h1>
+
+==================================================
+FILE: app/leave-type-masters/[id]/edit/page.tsx
+==================================================
+23:      <h1 className="mb-6 text-2xl font-bold">休暇種別編集</h1>
+25:        <input type="hidden" name="id" value={item.id} />
+28:          <label className="mb-1 block text-sm font-medium">コード</label>
+30:            name="code"
+32:            required
+38:          <label className="mb-1 block text-sm font-medium">名称</label>
+40:            name="name"
+42:            required
+48:          <label className="mb-1 block text-sm font-medium">説明</label>
+50:            name="description"
+58:          <label className="mb-1 block text-sm font-medium">失効月数</label>
+60:            name="expirationMonths"
+70:          <label className="mb-1 block text-sm font-medium">表示順</label>
+72:            name="sortOrder"
+75:            required
+81:          <label className="flex items-center space-x-2">
+84:              name="isPaid"
+91:          <label className="flex items-center space-x-2">
+94:              name="allowRequest"
+101:          <label className="flex items-center space-x-2">
+104:              name="manageBalance"
+113:          <button
+
+==================================================
+FILE: app/leave-type-masters/new/page.tsx
+==================================================
+7:      <BackLink href="/leave-type-masters" label="一覧へ戻る" />
+9:      <h1 className="mb-6 text-2xl font-bold">休暇種別マスタ登録</h1>
+13:          <label className="mb-1 block text-sm font-medium">コード</label>
+15:            name="code"
+16:            required
+23:          <label className="mb-1 block text-sm font-medium">休暇種別名</label>
+25:            name="name"
+26:            required
+33:          <label className="mb-1 block text-sm font-medium">説明</label>
+36:            name="description"
+43:          <label className="mb-1 block text-sm font-medium">失効月数</label>
+46:            name="expirationMonths"
+54:          <label className="mb-1 block text-sm font-medium">表示順</label>
+56:            name="sortOrder"
+63:        <label className="flex items-center gap-2">
+64:          <input name="allowRequest" type="checkbox" defaultChecked={true} />
+68:        <label className="flex items-center gap-2">
+69:          <input name="manageBalance" type="checkbox" defaultChecked={true} />
+73:        <label className="flex items-center gap-2">
+74:          <input name="isPaid" type="checkbox" defaultChecked={true} />
+78:        <button
+
+==================================================
+FILE: app/leave-type-masters/page.tsx
+==================================================
+23:      <BackLink href="/masters" label="マスタ管理へ戻る" />
+25:        <h1 className="text-2xl font-bold">休暇種別マスタ</h1>
+26:        <Link
+27:          href="/leave-type-masters/new"
+75:                  <Link
+76:                    href={`/leave-type-masters/${item.id}/edit`}
+85:                    <input type="hidden" name="id" value={item.id} />
+86:                    <button
+97:                    <input type="hidden" name="id" value={item.id} />
+98:                    <button
+
+==================================================
+FILE: app/login/page.tsx
+==================================================
+71:            <label style={styles.label}>メールアドレス</label>
+77:              required
+83:            <label style={styles.label}>パスワード</label>
+89:              required
+94:          <button type="submit" disabled={loading} style={styles.button}>
+
+==================================================
+FILE: app/masters/page.tsx
+==================================================
+55:      <BackLink href="/" label="ダッシュボードへ戻る" />
+56:      <h1 className="mb-6 text-2xl font-bold">マスタ管理</h1>
+60:          <Link
+62:            href={menu.href}
+
+==================================================
+FILE: app/my-numbers/[id]/page.tsx
+==================================================
+7:import { requireHRManager } from "@/lib/auth-guard";
+8:import { logAudit } from "@/lib/audit-log";
+48:  const session = await requireHRManager();
+72:    redirect("/my-numbers");
+79:    notFound();
+88:    await logAudit({
+101:    const session = await requireHRManager();
+123:      notFound();
+130:      notFound();
+145:    await logAudit({
+162:    const session = await requireHRManager();
+186:      notFound();
+193:      notFound();
+208:    await logAudit({
+224:      <BackLink href="/my-numbers" label="マイナンバー一覧へ戻る" />
+228:          <h1 className="text-3xl font-bold">マイナンバー詳細</h1>
+255:        <h2 className="mb-4 text-xl font-semibold">職員情報</h2>
+290:        <h2 className="mb-4 text-xl font-semibold">提出情報</h2>
+306:                <Link href={`/my-numbers/${myNumber.id}`} className="text-sm text-blue-600 hover:underline">
+310:                <Link href={`/my-numbers/${myNumber.id}?show=1`} className="text-sm text-blue-600 hover:underline">
+345:          <h2 className="mb-2 text-lg font-semibold text-red-700">
+354:        <h2 className="mb-4 text-xl font-semibold">確認操作</h2>
+368:            <input type="hidden" name="myNumberId" value={myNumber.id} />
+370:            <button
+389:            <input type="hidden" name="myNumberId" value={myNumber.id} />
+392:              name="reviewComment"
+395:              required
+398:            <button
+
+==================================================
+FILE: app/my-numbers/page.tsx
+==================================================
+5:import { requireHRManager } from "@/lib/auth-guard";
+39:  await requireHRManager();
+139:      <BackLink href="/" label="ダッシュボードへ戻る" />
+141:      <h1 className="mb-2 text-3xl font-bold">マイナンバー確認一覧</h1>
+149:        <Link
+150:          href="/my-numbers"
+160:        <Link
+161:          href="/my-numbers?status=PENDING"
+171:        <Link
+172:          href="/my-numbers?status=APPROVED"
+182:        <Link
+183:          href="/my-numbers?status=REJECTED"
+267:                    <Link
+268:                      href={`/my-numbers/${item.id}`}
+
+==================================================
+FILE: app/mypage/bank-account/page.tsx
+==================================================
+10:import { logAudit } from "@/lib/audit-log";
+23:    redirect("/login");
+33:    redirect("/mypage");
+85:      redirect("/mypage/bank-account?error=required");
+135:    await logAudit({
+152:    redirect("/mypage/bank-account?updated=1");
+168:      redirect("/mypage/bank-account?error=noBankAccount");
+179:        redirect("/mypage/bank-account?error=invalidFile");
+183:        redirect("/mypage/bank-account?error=fileTooLarge");
+221:    redirect("/mypage/bank-account?uploaded=1");
+234:      redirect("/mypage/bank-account");
+248:      redirect("/mypage/bank-account");
+268:    redirect("/mypage/bank-account?deleted=1");
+274:        <Link
+275:          href="/mypage"
+282:      <h1 className="text-3xl font-bold">
+292:          <h2 className="mb-4 text-xl font-semibold">
+408:        <h2 className="mb-4 text-xl font-semibold">
+421:            <label className="mb-1 block text-sm font-medium">
+425:              name="bankName"
+429:              required
+434:            <label className="mb-1 block text-sm font-medium">
+438:              name="branchName"
+442:              required
+447:            <label className="mb-1 block text-sm font-medium">
+451:              name="accountType"
+454:              required
+464:            <label className="mb-1 block text-sm font-medium">
+468:              name="accountNumber"
+472:              required
+478:            <label className="mb-1 block text-sm font-medium">
+482:              name="accountHolder"
+486:              required
+493:          <button
+503:        <h2 className="mb-4 text-xl font-semibold">
+517:                name="bankFiles"
+523:              <button
+548:                        href={attachment.filePath}
+559:                          name="attachmentId"
+563:                        <button
+
+==================================================
+FILE: app/mypage/certifications/page.tsx
+==================================================
+28:    redirect("/login");
+53:    redirect("/mypage");
+106:      redirect("/mypage/certifications?error=required");
+136:      redirect("/mypage/certifications?error=duplicate");
+156:      redirect("/mypage/certifications?error=expiryRequired");
+172:            required: rule.required,
+177:            required: false,
+182:        ({ file, required }) =>
+183:          required &&
+187:      redirect("/mypage/certifications?error=doctorAttachments");
+204:        redirect("/mypage/certifications?error=invalidFile");
+208:        redirect("/mypage/certifications?error=fileTooLarge");
+262:    redirect("/mypage/certifications");
+275:      redirect("/mypage/certifications");
+288:    redirect("/mypage/certifications");
+301:      redirect("/mypage/certifications");
+315:      redirect("/mypage/certifications");
+337:    redirect("/mypage/certifications");
+343:        <Link href="/mypage" className="text-sm text-blue-600 hover:underline">
+347:        <h1 className="mt-2 text-3xl font-bold">
+364:        <h2 className="mb-4 text-xl font-bold">
+370:            <label className="mb-1 block text-sm font-medium">
+375:              name="certificationId"
+394:            <label className="mb-1 block text-sm font-medium">
+399:              name="newCertificationName"
+410:            <label className="mb-1 block text-sm font-medium">
+416:              name="acquiredDate"
+425:          <button
+435:        <h2 className="mb-4 text-xl font-bold">
+481:                              href={`/api/certification-attachments/${attachment.id}`}
+492:                                name="attachmentId"
+496:                              <button
+513:                        name="employeeCertificationId"
+517:                      <button
+
+==================================================
+FILE: app/mypage/dependent-requests/new/page.tsx
+==================================================
+11:import { logAudit } from "@/lib/audit-log";
+72:    redirect("/login");
+85:    redirect("/mypage");
+177:    await logAudit({
+196:    redirect("/mypage");
+201:      <BackLink href="/mypage/dependent-requests" label="扶養家族申請一覧へ戻る" />
+204:        <h1 className="text-3xl font-bold text-gray-900">
+215:          <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
+221:              <label className="mb-1 block text-sm font-medium text-gray-700">
+225:                name="name"
+226:                required
+232:              <label className="mb-1 block text-sm font-medium text-gray-700">
+236:                name="nameKana"
+242:              <label className="mb-1 block text-sm font-medium text-gray-700">
+246:                name="relationship"
+247:                required
+254:              <label className="mb-1 block text-sm font-medium text-gray-700">
+259:                name="birthDate"
+265:              <label className="mb-1 block text-sm font-medium text-gray-700">
+270:                name="annualIncome"
+277:              <label className="mb-1 block text-sm font-medium text-gray-700">
+281:                name="myNumber"
+295:          <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
+300:            <label className="flex items-center gap-2 text-sm text-gray-700">
+303:                name="cohabiting"
+310:            <label className="flex items-center gap-2 text-sm text-gray-700">
+313:                name="healthInsuranceDependent"
+323:          <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
+329:            name="attachments"
+341:          <label className="mb-1 block text-sm font-medium text-gray-700">
+345:            name="note"
+351:          <Link
+352:            href="/mypage"
+358:          <button
+
+==================================================
+FILE: app/mypage/dependent-requests/page.tsx
+==================================================
+28:    redirect("/login");
+38:    redirect("/mypage");
+54:          <h1 className="text-3xl font-bold text-gray-900">
+63:          <Link
+64:            href="/mypage/dependent-requests/new"
+70:          <Link
+71:            href="/mypage"
+
+==================================================
+FILE: app/mypage/employment-contracts/[id]/page.tsx
+==================================================
+21:    redirect("/login");
+32:    redirect("/mypage");
+49:    notFound();
+60:      <BackLink href="/mypage/employment-contracts" label="雇用条件書一覧へ戻る" />
+62:      <h1 className="mb-6 text-2xl font-bold">
+85:            href={`/employee-contracts/${contract.id}/pdf`}
+103:                  href={`/api/employment-contracts/${contract.id}/paper-consent`}
+
+==================================================
+FILE: app/mypage/employment-contracts/page.tsx
+==================================================
+12:    redirect("/login");
+23:    redirect("/mypage");
+42:      <h1 className="mb-6 text-2xl font-bold">
+94:                  href={`/employee-contracts/${item.id}/pdf`}
+117:                  <Link
+118:                    href={`/mypage/employment-contracts/${item.id}`}
+
+==================================================
+FILE: app/mypage/leave-history/page.tsx
+==================================================
+26:    redirect("/login");
+44:    redirect("/mypage");
+55:        <Link
+56:          href="/mypage"
+62:        <h1 className="mt-2 text-3xl font-bold">
+68:        <h2 className="mb-4 text-xl font-bold">
+83:        <h2 className="mb-4 text-xl font-bold">
+
+==================================================
+FILE: app/mypage/my-number/page.tsx
+==================================================
+12:import { logAudit } from "@/lib/audit-log";
+81:    redirect("/login");
+91:    redirect("/mypage");
+124:      redirect("/mypage/my-number?error=invalid");
+149:    await logAudit({
+159:    redirect("/mypage/my-number?updated=1");
+164:      <Link
+165:        href="/mypage"
+171:      <h1 className="mt-4 text-3xl font-bold">
+212:        <button
+
+==================================================
+FILE: app/mypage/page.tsx
+==================================================
+11:    redirect("/login");
+26:        <h1 className="text-2xl font-bold">マイページ</h1>
+38:          <h1 className="text-3xl font-bold text-gray-900">マイページ</h1>
+44:        <Link
+45:          href="/"
+53:        <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
+80:        <h2 className="mb-4 border-b pb-2 text-lg font-semibold text-gray-800">
+85:          <Link
+86:            href="/mypage/my-number"
+92:          <Link
+93:            href="/mypage/dependent-requests"
+99:          <Link
+100:            href="/mypage/employment-contracts"
+106:          <Link
+107:            href="/mypage/dependent-requests/new"
+
+==================================================
+FILE: app/mypage/profile-change/page.tsx
+==================================================
+23:    redirect("/login");
+33:    redirect("/mypage");
+72:      redirect("/mypage/profile-change?error=empty");
+91:    redirect("/mypage/profile-change?success=created");
+97:        <Link href="/mypage" className="text-sm text-blue-600 hover:underline">
+101:        <h1 className="mt-2 text-3xl font-bold">プロフィール変更申請</h1>
+121:        <h2 className="mb-4 text-xl font-bold">現在の登録情報</h2>
+149:        <h2 className="mb-4 text-xl font-bold">変更申請</h2>
+153:            <label className="mb-1 block text-sm font-medium">変更後住所</label>
+155:              name="newAddress"
+162:            <label className="mb-1 block text-sm font-medium">
+166:              name="newPhoneNumber"
+173:            <label className="mb-1 block text-sm font-medium">
+178:              name="newEmail"
+185:            <label className="mb-1 block text-sm font-medium">
+189:              name="newEmergencyContact"
+195:          <button
+205:        <h2 className="mb-4 text-xl font-bold">申請履歴</h2>
+
+==================================================
+FILE: app/organization-history/page.tsx
+==================================================
+5:import { requireHRManager } from "@/lib/auth-guard";
+19:  await requireHRManager();
+41:      <BackLink href="/" label="ダッシュボードへ戻る" />
+44:          <h1 className="text-3xl font-bold">
+52:        <Link
+53:          href="/"
+92:                    <Link
+93:                      href={`/employees/${history.employee.id}`}
+
+==================================================
+FILE: app/page.tsx
+==================================================
+96:    return <Link href={href}>{card}</Link>;
+153:    redirect("/login");
+956:          <h1 className="text-3xl font-bold text-gray-900">FY Nexus One</h1>
+971:          <button
+982:          <h2 className="text-xl font-semibold text-gray-800">
+993:              <Link
+994:                href="/facility-switch"
+1116:              href="/leave-type-balances"
+1135:              href="/certification-reports"
+1141:              href="/certification-reports"
+1147:              href="/certification-reports"
+1161:              href="/leave-compliance"
+1168:              href="/leave-compliance"
+1175:              href="/leave-compliance"
+1183:              href="/personnel-orders"
+1191:              href="/personnel-orders"
+1199:              href="/personnel-orders"
+1207:              href="/personnel-orders"
+1239:              href="/employees"
+1246:              href="/employees"
+1322:            <Link
+1323:              href="/requests/new"
+1329:            <Link
+1330:              href="/requests/my"
+1337:            <Link
+1338:              href="/mypage/employment-contracts"
+1356:            <Link
+1357:              href="/mypage/certifications"
+1362:            <Link
+1363:              href="/mypage/profile-change"
+1368:            <Link
+1369:              href="/mypage/bank-account"
+1375:            <Link
+1376:              href="/mypage/my-number"
+1381:            <Link
+1382:              href="/mypage/dependent-requests/new"
+1388:            <Link
+1389:              href="/mypage/employment-contracts"
+1463:              <Link
+1464:                href="/requests?status=PENDING"
+1470:              <Link
+1471:                href="/profile-change-requests"
+1476:              <Link
+1477:                href="/dependent-requests"
+1483:              <Link
+1484:                href="/certification-requests"
+1490:              <Link
+1491:                href="/requests"
+1508:              <Link
+1509:                href="/employees"
+1556:                <Link
+1557:                  href="/exports"
+1570:          <h2 className="mb-4 text-xl font-semibold text-gray-800">グラフ</h2>
+1676:                        <Link
+1677:                          href={`/requests/${request.id}`}
+
+==================================================
+FILE: app/personnel-orders/[id]/page.tsx
+==================================================
+42:    notFound();
+47:      <BackLink href="/personnel-orders" label="人事発令一覧に戻る" />
+49:      <h1 className="mb-6 text-2xl font-bold">
+108:            href={`/personnel-orders/${history.id}/pdf`}
+116:          <Link
+117:            href={`/employees/${history.employee.id}`}
+
+==================================================
+FILE: app/personnel-orders/page.tsx
+==================================================
+45:      <BackLink href="/" label="ダッシュボードに戻る" />
+47:      <h1 className="mb-6 text-2xl font-bold">
+89:                  <Link
+90:                    href={`/personnel-orders/${history.id}`}
+
+==================================================
+FILE: app/position-masters/[id]/edit/page.tsx
+==================================================
+23:    notFound();
+28:      <BackLink href="/position-masters" label="役職マスタ一覧へ戻る" />
+29:      <h1 className="mb-6 text-2xl font-bold">
+36:          name="id"
+41:          name="name"
+46:        <button
+
+==================================================
+FILE: app/position-masters/new/page.tsx
+==================================================
+7:      <BackLink href="/position-masters" label="役職マスタ一覧へ戻る" />
+8:      <h1 className="mb-6 text-2xl font-bold">
+17:          <label className="block text-sm font-medium">
+22:            name="name"
+23:            required
+28:        <button
+
+==================================================
+FILE: app/position-masters/page.tsx
+==================================================
+18:      <Link
+19:        href="/masters"
+25:        <h1 className="text-2xl font-bold">
+30:          href="/position-masters/new"
+65:                  <Link
+66:                    href={`/position-masters/${item.id}/edit`}
+75:                      name="id"
+78:                    <button
+89:                      name="id"
+92:                    <button
+
+==================================================
+FILE: app/profile-change-requests/page.tsx
+==================================================
+7:import { requireHRManager } from "@/lib/auth-guard";
+51:  const session = await requireHRManager();
+91:    const currentSession = await requireHRManager();
+96:      redirect("/profile-change-requests");
+109:      redirect("/profile-change-requests?error=notPending");
+134:        redirect("/profile-change-requests?error=emailExists");
+182:    redirect("/profile-change-requests?success=approved");
+188:    const currentSession = await requireHRManager();
+193:      redirect("/profile-change-requests");
+203:      redirect("/profile-change-requests?error=notPending");
+222:    redirect("/profile-change-requests?success=rejected");
+227:      <BackLink href="/" label="ダッシュボードへ戻る" />
+229:        <h1 className="mt-2 text-3xl font-bold">プロフィール変更申請</h1>
+278:                  <h2 className="text-xl font-bold">
+345:                    <input type="hidden" name="requestId" value={request.id} />
+347:                    <button
+356:                    <input type="hidden" name="requestId" value={request.id} />
+358:                    <button
+
+==================================================
+FILE: app/register/[token]/page.tsx
+==================================================
+5:import { logAudit } from "@/lib/audit-log";
+17:  redirect(
+43:    notFound();
+164:  await logAudit({
+178:  redirect("/login");
+195:    notFound();
+202:      <h1 className="text-3xl font-bold">
+228:            name="token"
+243:              <label className="mb-1 block text-sm font-medium">
+247:                name="lastName"
+250:                required
+255:              <label className="mb-1 block text-sm font-medium">
+259:                name="firstName"
+262:                required
+269:              <label className="mb-1 block text-sm font-medium">
+273:                name="lastNameKana"
+279:              <label className="mb-1 block text-sm font-medium">
+283:                name="firstNameKana"
+290:            <label className="mb-1 block text-sm font-medium">
+295:              name="birthDate"
+301:            <label className="mb-1 block text-sm font-medium">
+305:              name="phoneNumber"
+311:            <label className="mb-1 block text-sm font-medium">
+315:              name="address"
+322:            <label className="mb-1 block text-sm font-medium">
+327:              name="password"
+330:              required
+335:            <label className="mb-1 block text-sm font-medium">
+340:              name="passwordConfirm"
+343:              required
+347:          <button
+
+==================================================
+FILE: app/requests/[id]/edit/page.tsx
+==================================================
+20:    notFound();
+54:    redirect(`/requests/${id}`);
+59:      <BackLink href="/requests" label="申請一覧へ戻る" />
+61:        <h1 className="text-2xl font-bold text-gray-800">申請内容の編集</h1>
+72:          <label
+80:            name="title"
+82:            required
+89:          <label
+97:            name="type"
+98:            required
+109:          <label
+117:            name="employeeId"
+131:          <label
+139:            name="comment"
+147:          <Link
+148:            href={`/requests/${id}`}
+153:          <button
+
+==================================================
+FILE: app/requests/[id]/page.tsx
+==================================================
+7:import { requireManager } from "@/lib/auth-guard";
+8:import { logAudit } from "@/lib/audit-log";
+73:    redirect("/login");
+103:    await requireManager();
+375:      await logAudit({
+400:    await requireManager();
+516:    await logAudit({
+539:    await requireManager();
+572:      <BackLink href="/requests" label="申請一覧へ戻る" />
+574:        <h1 className="text-3xl font-bold mt-2">{request.title}</h1>
+584:        <h2 className="mb-4 text-xl font-bold">申請情報</h2>
+642:        <h2 className="text-xl font-bold mb-2">申請内容</h2>
+649:        <h2 className="text-xl font-bold mb-4">添付ファイル</h2>
+673:                  href={attachment.filePath}
+687:        <h2 className="mb-4 text-xl font-bold">承認状況</h2>
+765:          <h2 className="text-xl font-bold">承認操作</h2>
+771:              name="approvalComment"
+775:            <button
+789:              name="rejectionReason"
+793:            <button
+805:          <h2 className="mb-3 text-xl font-bold">承認取消</h2>
+810:              name="cancelReason"
+815:            <button
+827:        <h2 className="text-xl font-bold mb-4">処理履歴</h2>
+
+==================================================
+FILE: app/requests/my/page.tsx
+==================================================
+51:    redirect("/login");
+68:      <BackLink href="/" label="ダッシュボードへ戻る" />
+72:          <h1 className="text-2xl font-bold text-gray-900">マイ申請履歴</h1>
+78:        <Link
+79:          href="/requests/new"
+166:                      <Link
+167:                        href={`/requests/${request.id}`}
+
+==================================================
+FILE: app/requests/new/page.tsx
+==================================================
+54:  redirect(`/requests/new?error=${encodeURIComponent(message)}`);
+90:    redirect("/login");
+454:  redirect("/requests/my");
+469:    redirect("/login");
+487:    redirect(
+538:      <BackLink href="/requests/my" label="申請一覧へ戻る" />
+541:        <h1 className="text-2xl font-bold text-gray-900">各種申請</h1>
+
+==================================================
+FILE: app/requests/page.tsx
+==================================================
+57:    redirect("/login");
+66:    redirect("/requests/my");
+200:      <BackLink href="/" label="ダッシュボードに戻る" />
+203:        <h1 className="text-3xl font-bold text-gray-800">申請一覧</h1>
+216:          name="q"
+223:          name="status"
+233:        <button
+239:        <Link
+240:          href="/requests"
+331:                      <Link
+332:                        href={`/requests/${request.id}`}
+
+==================================================
+FILE: app/retirement-management/[id]/assets/page.tsx
+==================================================
+55:        href={`/retirement-management/${id}`}
+59:      <h1 className="mb-6 text-2xl font-bold">
+80:          name="employeeId"
+87:              <label
+93:                  name={asset.assetName}
+138:            <label className="mb-2 block text-sm font-medium">
+144:              name="returnedBy"
+151:            <label className="mb-2 block text-sm font-medium">
+156:              name="memo"
+163:          <button
+
+==================================================
+FILE: app/retirement-management/[id]/certificate/page.tsx
+==================================================
+3:import { requireHRManager } from "@/lib/auth-guard";
+18:  await requireHRManager();
+30:    notFound();
+38:      <BackLink href={`/retirement-management/${id}`} label="退職管理へ戻る" />
+40:      <h1 className="mb-2 text-2xl font-bold">
+73:          name="employeeId"
+78:          <label className="text-sm font-medium">
+81:              name="certificateDate"
+83:              required
+92:          <label className="text-sm font-medium">
+95:              name="retirementDate"
+97:              required
+110:          <label className="flex gap-3">
+111:            <input type="checkbox" name="showEmploymentPeriod"
+116:          <label className="block">
+118:              <input type="checkbox" name="showJobType"
+122:            <input name="jobType"
+128:          <label className="flex gap-3">
+129:            <input type="checkbox" name="showPosition"
+134:          <label className="block">
+136:              <input type="checkbox" name="showWage"
+140:            <input name="wageInfo"
+146:          <label className="block">
+148:              <input type="checkbox" name="showRetirementReason"
+152:            <textarea name="retirementReason" rows={3}
+160:          <button
+167:            href={`/retirement-management/${id}/certificate/pdf`}
+
+==================================================
+FILE: app/retirement-management/[id]/page.tsx
+==================================================
+3:import { requireHRManager } from "@/lib/auth-guard";
+14:  await requireHRManager();
+27:    notFound();
+64:        href="/retirement-management"
+68:      <h1 className="mb-2 text-2xl font-bold">
+87:          name="employeeId"
+93:            <label
+99:                name={name}
+109:          <label className="mb-1 block text-sm font-medium">
+113:            name="memo"
+120:        <button
+
+==================================================
+FILE: app/retirement-management/page.tsx
+==================================================
+33:      <BackLink href="/" label="ダッシュボードに戻る" />
+35:      <h1 className="mb-6 text-2xl font-bold">退職予定者管理</h1>
+88:                  <Link
+89:                    href={`/employees/${employee.id}`}
+
+==================================================
+FILE: app/role-permissions/page.tsx
+==================================================
+4:import { requireHRManager } from "@/lib/auth-guard";
+47:  await requireHRManager();
+51:      <BackLink href="/" label="ダッシュボードへ戻る" />
+54:          <h1 className="text-3xl font-bold text-gray-900">権限マトリクス</h1>
+
+==================================================
+FILE: app/user-invitations/[id]/print/page.tsx
+==================================================
+4:import { requireAdmin } from "@/lib/auth-guard";
+15:  await requireAdmin();
+26:    notFound();
+35:        <Link
+36:          href="/user-invitations"
+43:          href="javascript:window.print()"
+52:          <h1 className="text-3xl font-bold">
+100:          <h2 className="mb-3 text-lg font-semibold">
+
+==================================================
+FILE: app/user-invitations/[id]/qr/page.tsx
+==================================================
+4:import { requireAdmin } from "@/lib/auth-guard";
+15:  await requireAdmin();
+26:    notFound();
+35:        <Link
+36:          href="/user-invitations"
+42:        <h1 className="mt-2 text-3xl font-bold">
+79:          <Link
+80:            href={registerPath}
+
+==================================================
+FILE: app/user-invitations/new/page.tsx
+==================================================
+6:import { requireAdmin } from "@/lib/auth-guard";
+7:import { logAudit } from "@/lib/audit-log";
+17:  redirect(`/user-invitations/new?error=${encodeURIComponent(message)}`);
+23:  const session = await requireAdmin();
+80:  await logAudit({
+97:  redirect("/user-invitations");
+101:  await requireAdmin();
+108:      <BackLink href="/user-invitations" label="ユーザー招待一覧へ戻る" />
+110:        <h1 className="mt-2 text-3xl font-bold">招待作成</h1>
+125:          <label className="mb-1 block text-sm font-medium">
+129:            name="employeeNo"
+137:            <label className="mb-1 block text-sm font-medium">姓</label>
+139:              name="lastName"
+141:              required
+146:            <label className="mb-1 block text-sm font-medium">名</label>
+148:              name="firstName"
+150:              required
+156:          <label className="mb-1 block text-sm font-medium">
+161:            name="email"
+163:            required
+168:          <label className="mb-1 block text-sm font-medium">入職予定日</label>
+171:            name="expectedHireDate"
+177:          <button
+184:          <Link
+185:            href="/user-invitations"
+
+==================================================
+FILE: app/user-invitations/page.tsx
+==================================================
+4:import { requireAdmin } from "@/lib/auth-guard";
+47:  await requireAdmin();
+57:      <BackLink href="/" label="ダッシュボードへ戻る" />
+60:          <h1 className="text-3xl font-bold">
+69:          <Link
+70:            href="/user-invitations/new"
+75:          <Link
+76:            href="/users"
+147:                    <Link
+148:                      href={`/register/${invitation.token}`}
+155:                    <Link
+156:                      href={`/user-invitations/${invitation.id}/qr`}
+163:                    <Link
+164:                      href={`/user-invitations/${invitation.id}/print`}
+176:                        <button
+194:                        <button
+
+==================================================
+FILE: app/users/[id]/edit/page.tsx
+==================================================
+6:import { requireAdmin } from "@/lib/auth-guard";
+7:import { logAudit } from "@/lib/audit-log";
+33:  redirect(`/users/${id}/edit?error=${encodeURIComponent(message)}`);
+39:  const session = await requireAdmin();
+102:  await logAudit({
+124:    await logAudit({
+141:    await logAudit({
+160:    await logAudit({
+170:  redirect("/users");
+185:  await requireAdmin();
+197:    notFound();
+202:      <BackLink href="/users" label="ユーザー一覧へ戻る" />
+204:        <Link href="/users" className="text-sm text-gray-500 hover:underline">
+208:        <h1 className="mt-2 text-3xl font-bold">ユーザー編集</h1>
+225:        <input type="hidden" name="id" value={user.id} />
+228:          <label className="mb-1 block text-sm font-medium">氏名</label>
+230:            name="name"
+233:            required
+238:          <label className="mb-1 block text-sm font-medium">
+243:            name="email"
+246:            required
+251:          <label className="mb-1 block text-sm font-medium">権限</label>
+253:            name="role"
+268:          <label className="flex items-center gap-2 text-sm font-medium">
+271:              name="isActive"
+282:          <label className="mb-1 block text-sm font-medium">
+287:            name="password"
+298:          <button
+305:          <Link
+306:            href="/users"
+
+==================================================
+FILE: app/users/new/page.tsx
+==================================================
+6:import { requireAdmin } from "@/lib/auth-guard";
+7:import { logAudit } from "@/lib/audit-log";
+30:  redirect(`/users/new?error=${encodeURIComponent(message)}`);
+36:  const session = await requireAdmin();
+74:  await logAudit({
+88:  redirect("/users");
+92:  await requireAdmin();
+99:      <BackLink href="/users" label="ユーザー一覧へ戻る" />
+101:        <Link href="/users" className="text-sm text-gray-500 hover:underline">
+105:        <h1 className="mt-2 text-3xl font-bold">新規ユーザー作成</h1>
+123:          <label className="mb-1 block text-sm font-medium">氏名</label>
+124:          <input name="name" className="w-full rounded border p-2" required />
+128:          <label className="mb-1 block text-sm font-medium">
+133:            name="email"
+135:            required
+140:          <label className="mb-1 block text-sm font-medium">パスワード</label>
+143:            name="password"
+146:            required
+154:          <label className="mb-1 block text-sm font-medium">権限</label>
+156:            name="role"
+168:          <button
+175:          <Link
+176:            href="/users"
+
+==================================================
+FILE: app/users/page.tsx
+==================================================
+4:import { requireAdmin } from "@/lib/auth-guard";
+18:  await requireAdmin();
+28:      <BackLink href="/" label="ダッシュボードへ戻る" />
+31:          <h1 className="text-3xl font-bold">ユーザー管理</h1>
+38:          <Link
+39:            href="/users/new"
+45:          <Link
+46:            href="/"
+100:                    <Link
+101:                      href={`/users/${user.id}/edit`}
+
+==================================================
+FILE: app/work-schedule-masters/[id]/edit/page.tsx
+==================================================
+23:    notFound();
+28:      <BackLink href="/work-schedule-masters" label="勤務帯マスタ一覧へ戻る" />
+29:      <h1 className="mb-6 text-2xl font-bold">
+39:          name="id"
+44:          <label className="block text-sm font-medium">名称</label>
+46:            name="name"
+53:          <label className="block text-sm font-medium">開始時刻</label>
+56:            name="startTime"
+63:          <label className="block text-sm font-medium">終了時刻</label>
+66:            name="endTime"
+73:          <label className="block text-sm font-medium">休憩時間（分）</label>
+76:            name="breakMinutes"
+82:        <button
+
+==================================================
+FILE: app/work-schedule-masters/new/page.tsx
+==================================================
+7:      <BackLink href="/work-schedule-masters" label="勤務帯マスタ一覧へ戻る" />
+8:      <h1 className="mb-6 text-2xl font-bold">
+17:          <label className="block text-sm font-medium">
+21:            name="name"
+22:            required
+28:          <label className="block text-sm font-medium">
+33:            name="startTime"
+34:            required
+40:          <label className="block text-sm font-medium">
+45:            name="endTime"
+46:            required
+52:          <label className="block text-sm font-medium">
+57:            name="breakMinutes"
+64:        <button
+
+==================================================
+FILE: app/work-schedule-masters/page.tsx
+==================================================
+15:      <Link
+16:        href="/masters"
+22:        <h1 className="text-2xl font-bold">
+27:          href="/work-schedule-masters/new"
+70:                      name="id"
+73:                    <button
+82:                    href={`/work-schedule-masters/${item.id}/edit`}
+91:                      name="id"
+94:                    <button

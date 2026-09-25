@@ -1,0 +1,934 @@
+
+
+===== FILE: app/certificates/page.tsx =====
+
+import Link from "next/link";
+import BackLink from "@/components/BackLink";
+
+const cards = [
+  {
+    href: "/certificates/employment",
+    title: "在職証明書",
+    description: "職員を選択して在職証明書を発行します。",
+  },
+  {
+    href: "/certificates/retirement",
+    title: "退職証明書",
+    description: "職員を選択して退職証明書を発行します。",
+  },
+];
+
+export default function CertificateCenterPage() {
+  return (
+    <main className="mx-auto max-w-5xl p-6">
+      <BackLink href="/" label="ダッシュボードへ戻る" />
+      <h1 className="mb-2 text-3xl font-bold">証明書センター</h1>
+
+      <p className="mb-8 text-gray-600">発行する証明書を選択してください。</p>
+
+      <div className="grid gap-6 md:grid-cols-2">
+        {cards.map((card) => (
+          <Link
+            key={card.href}
+            href={card.href}
+            className="block rounded-lg border bg-white p-6 shadow-sm hover:border-gray-300"
+          >
+            <h2 className="mb-2 text-xl font-semibold">{card.title}</h2>
+
+            <p className="mb-6 text-sm text-gray-600">{card.description}</p>
+
+            <span className="inline-flex rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white">
+              職員を選択
+            </span>
+          </Link>
+        ))}
+      </div>
+    </main>
+  );
+}
+
+
+===== FILE: app/certificates/employment/page.tsx =====
+
+import Link from "next/link";
+import BackLink from "@/components/BackLink";
+import { requireHRManager } from "@/lib/auth-guard";
+import { prisma } from "@/lib/prisma";
+
+export default async function EmploymentCertificateSelectPage() {
+  await requireHRManager();
+
+  const employees = await prisma.employee.findMany({
+    orderBy: [{ lastName: "asc" }, { firstName: "asc" }],
+  });
+
+  return (
+    <main className="mx-auto max-w-4xl p-6">
+      <BackLink href="/certificates" label="戻る" />
+      <h1 className="mb-2 text-2xl font-bold">在職証明書</h1>
+
+      <p className="mb-6 text-gray-600">
+        証明書を発行する職員を選択してください。
+      </p>
+
+      <div className="space-y-2">
+        {employees.map((employee) => (
+          <Link
+            key={employee.id}
+            href={`/employment-certificates/${employee.id}/pdf`}
+            className="flex items-center justify-between rounded-lg border p-4 hover:bg-gray-50"
+          >
+            <div className="flex items-center space-x-4">
+              <div className="text-sm text-gray-500">{employee.employeeNo}</div>
+              <div className="font-medium">
+                {employee.lastName} {employee.firstName}
+              </div>
+            </div>
+
+            <span className="text-blue-600">PDF発行</span>
+          </Link>
+        ))}
+      </div>
+    </main>
+  );
+}
+
+
+===== FILE: app/certificates/retirement/page.tsx =====
+
+import Link from "next/link";
+import BackLink from "@/components/BackLink";
+import { requireHRManager } from "@/lib/auth-guard";
+import { prisma } from "@/lib/prisma";
+
+export default async function RetirementCertificateSelectPage() {
+  await requireHRManager();
+
+  const employees = await prisma.employee.findMany({
+    orderBy: [{ lastName: "asc" }, { firstName: "asc" }],
+  });
+
+  return (
+    <main className="mx-auto max-w-4xl p-6">
+      <BackLink href="/certificates" label="証明書センターへ" />
+      <h1 className="mb-2 text-2xl font-bold">退職証明書</h1>
+
+      <p className="mb-6 text-gray-600">
+        証明書を発行する職員を選択してください。
+      </p>
+
+      <div className="space-y-2">
+        {employees.map((employee) => (
+          <Link
+            key={employee.id}
+            href={`/retirement-management/${employee.id}/certificate`}
+            className="flex items-center justify-between rounded-lg border p-4 hover:bg-gray-50"
+          >
+            <div className="flex items-center space-x-4">
+              <div className="text-sm text-gray-500">{employee.employeeNo}</div>
+              <div className="font-medium">
+                {employee.lastName} {employee.firstName}
+              </div>
+            </div>
+
+            <span className="text-blue-600">選択 →</span>
+          </Link>
+        ))}
+      </div>
+    </main>
+  );
+}
+
+
+===== FILE: app/employee-retirements/page.tsx =====
+
+import BackLink from "@/components/BackLink";
+import Link from "next/link";
+
+import { prisma } from "@/lib/prisma";
+import { requireHRManager } from "@/lib/auth-guard";
+
+function formatDate(date: Date | null | undefined) {
+  if (!date) return "-";
+
+  return new Date(date).toLocaleDateString("ja-JP");
+}
+
+export default async function EmployeeRetirementsPage() {
+  await requireHRManager();
+
+  const [plannedRetirements, retiredEmployees] =
+    await Promise.all([
+      prisma.employee.findMany({
+        where: {
+          retirementDate: {
+            not: null,
+          },
+          NOT: {
+            status: "RETIRED",
+          },
+        },
+        include: {
+          department: true,
+        },
+        orderBy: {
+          retirementDate: "asc",
+        },
+      }),
+
+      prisma.employee.findMany({
+        where: {
+          status: "RETIRED",
+        },
+        include: {
+          department: true,
+        },
+        orderBy: {
+          retirementDate: "desc",
+        },
+      }),
+    ]);
+
+  return (
+    <main className="mx-auto max-w-7xl p-8">
+      <BackLink href="/" label="ダッシュボードへ戻る" />
+      <div className="mb-6 flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold">
+            退職管理
+          </h1>
+          <p className="mt-1 text-sm text-gray-500">
+            退職予定者および退職済職員を管理します。
+          </p>
+        </div>
+
+        <Link
+          href="/"
+          className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+        >
+          ダッシュボードへ戻る
+        </Link>
+      </div>
+
+      <section className="mb-8 rounded-lg border bg-white p-6 shadow-sm">
+        <h2 className="mb-2 text-xl font-semibold text-gray-800">
+          退職予定者
+        </h2>
+
+        <p className="mb-4 text-sm text-gray-500">
+          {plannedRetirements.length}名
+        </p>
+
+        {plannedRetirements.length === 0 ? (
+          <p className="text-sm text-gray-500">
+            退職予定者はいません。
+          </p>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-gray-50 text-left">
+                  <th className="border-b p-3">職員番号</th>
+                  <th className="border-b p-3">氏名</th>
+                  <th className="border-b p-3">部署</th>
+                  <th className="border-b p-3">役職</th>
+                  <th className="border-b p-3">退職予定日</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {plannedRetirements.map((employee) => (
+                  <tr key={employee.id} className="hover:bg-gray-50">
+                    <td className="border-b p-3">
+                      {employee.employeeNo}
+                    </td>
+
+                    <td className="border-b p-3 font-medium">
+                      <Link
+                        href={`/employees/${employee.id}`}
+                        className="text-blue-600 hover:underline"
+                      >
+                        {employee.lastName} {employee.firstName}
+                      </Link>
+                    </td>
+
+                    <td className="border-b p-3">
+                      {employee.department?.name ?? "-"}
+                    </td>
+
+                    <td className="border-b p-3">
+                      {employee.position ?? "-"}
+                    </td>
+
+                    <td className="border-b p-3">
+                      {formatDate(employee.retirementDate)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
+
+      <section className="rounded-lg border bg-white p-6 shadow-sm">
+        <h2 className="mb-2 text-xl font-semibold text-gray-800">
+          退職済職員
+        </h2>
+
+        <p className="mb-4 text-sm text-gray-500">
+          {retiredEmployees.length}名
+        </p>
+
+        {retiredEmployees.length === 0 ? (
+          <p className="text-sm text-gray-500">
+            退職済の職員はいません。
+          </p>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-gray-50 text-left">
+                  <th className="border-b p-3">職員番号</th>
+                  <th className="border-b p-3">氏名</th>
+                  <th className="border-b p-3">最終所属部署</th>
+                  <th className="border-b p-3">最終役職</th>
+                  <th className="border-b p-3">退職日</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {retiredEmployees.map((employee) => (
+                  <tr key={employee.id} className="hover:bg-gray-50">
+                    <td className="border-b p-3">
+                      {employee.employeeNo}
+                    </td>
+
+                    <td className="border-b p-3 font-medium">
+                      <Link
+                        href={`/employees/${employee.id}`}
+                        className="text-blue-600 hover:underline"
+                      >
+                        {employee.lastName} {employee.firstName}
+                      </Link>
+                    </td>
+
+                    <td className="border-b p-3">
+                      {employee.department?.name ?? "-"}
+                    </td>
+
+                    <td className="border-b p-3">
+                      {employee.position ?? "-"}
+                    </td>
+
+                    <td className="border-b p-3">
+                      {formatDate(employee.retirementDate)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
+    </main>
+  );
+}
+
+
+===== FILE: app/retirement-management/page.tsx =====
+
+import BackLink from "@/components/BackLink";
+import Link from "next/link";
+
+import { prisma } from "@/lib/prisma";
+
+export default async function RetirementManagementPage() {
+  const employees = await prisma.employee.findMany({
+    where: {
+      retirementDate: {
+        not: null,
+      },
+      NOT: {
+        status: "RETIRED",
+      },
+    },
+    include: {
+      department: true,
+      retirementChecklist: true,
+      loanedAssets: {
+        where: {
+          returned: false,
+        },
+      },
+      retirementCertificate: true,
+    },
+    orderBy: {
+      retirementDate: "asc",
+    },
+  });
+
+  return (
+    <main className="mx-auto max-w-7xl p-6">
+      <BackLink href="/" label="ダッシュボードに戻る" />
+
+      <h1 className="mb-6 text-2xl font-bold">退職予定者管理</h1>
+
+      <div className="overflow-x-auto rounded-lg border bg-white">
+        <table className="min-w-full text-sm">
+          <thead className="bg-gray-50">
+            <tr>
+              <th className="border p-2 text-left">職員番号</th>
+              <th className="border p-2 text-left">氏名</th>
+              <th className="border p-2 text-left">部署</th>
+              <th className="border p-2 text-left">退職予定日</th>
+              <th className="border p-2 text-center">貸与品</th>
+              <th className="border p-2 text-center">チェックリスト</th>
+              <th className="border p-2 text-center">証明書</th>
+              <th className="border p-2 text-center">詳細</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {employees.map((employee) => (
+              <tr key={employee.id}>
+                <td className="border p-2">{employee.employeeNo}</td>
+
+                <td className="border p-2">
+                  {employee.lastName} {employee.firstName}
+                </td>
+
+                <td className="border p-2">
+                  {employee.department?.name ?? "-"}
+                </td>
+
+                <td className="border p-2">
+                  {employee.retirementDate
+                    ? new Date(employee.retirementDate).toLocaleDateString(
+                        "ja-JP",
+                      )
+                    : "-"}
+                </td>
+
+                <td className="border p-2 text-center">
+                  {employee.loanedAssets.length === 0
+                    ? "完了"
+                    : `未返却 ${employee.loanedAssets.length}件`}
+                </td>
+
+                <td className="border p-2 text-center">
+                  {employee.retirementChecklist ? "登録済" : "未登録"}
+                </td>
+
+                <td className="border p-2 text-center">
+                  {employee.retirementCertificate ? "発行済" : "未発行"}
+                </td>
+
+                <td className="border p-2 text-center">
+                  <Link
+                    href={`/employees/${employee.id}`}
+                    className="text-blue-600 hover:underline"
+                  >
+                    詳細
+                  </Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </main>
+  );
+}
+
+
+===== FILE: app/retirement-management/[id]/page.tsx =====
+
+import BackLink from "@/components/BackLink";
+import { updateRetirementChecklist } from "@/app/actions/retirement-checklist";
+import { requireHRManager } from "@/lib/auth-guard";
+import { prisma } from "@/lib/prisma";
+import { notFound } from "next/navigation";
+
+type Props = {
+  params: Promise<{ id: string }>;
+};
+
+export default async function RetirementChecklistPage({
+  params,
+}: Props) {
+  await requireHRManager();
+
+  const { id } = await params;
+
+  const employee = await prisma.employee.findUnique({
+    where: { id },
+    include: {
+      retirementChecklist: true,
+      department: true,
+    },
+  });
+
+  if (!employee) {
+    notFound();
+  }
+
+  const checklist = employee.retirementChecklist;
+
+  const values = [
+    checklist?.healthInsuranceReturned ?? false,
+    checklist?.employmentInsuranceCompleted ?? false,
+    checklist?.pcReturned ?? false,
+    checklist?.lockerReturned ?? false,
+    checklist?.nameTagReturned ?? false,
+    checklist?.uniformReturned ?? false,
+    checklist?.retirementCertificateIssued ?? false,
+  ];
+
+  const completedCount = values.filter(Boolean).length;
+  const percentage = Math.round(
+    (completedCount / values.length) * 100,
+  );
+
+  const items = [
+    ["healthInsuranceReturned", "健康保険手続", values[0]],
+    ["employmentInsuranceCompleted", "雇用保険手続", values[1]],
+    ["pcReturned", "PC返却", values[2]],
+    ["lockerReturned", "ロッカー返却", values[3]],
+    ["nameTagReturned", "名札返却", values[4]],
+    ["uniformReturned", "制服返却", values[5]],
+    [
+      "retirementCertificateIssued",
+      "退職証明書発行",
+      values[6],
+    ],
+  ] as const;
+
+  return (
+    <main className="mx-auto max-w-4xl p-6">
+      <BackLink
+        href="/retirement-management"
+        label="退職予定者管理に戻る"
+      />
+
+      <h1 className="mb-2 text-2xl font-bold">
+        退職手続チェックリスト
+      </h1>
+
+      <p className="mb-6 text-gray-600">
+        {employee.employeeNo} {employee.lastName}{" "}
+        {employee.firstName}
+      </p>
+
+      <div className="mb-6 rounded-lg border bg-blue-50 p-4">
+        <p className="font-semibold">進捗率</p>
+        <p className="mt-1 text-2xl font-bold">
+          {completedCount} / {values.length}（{percentage}%）
+        </p>
+      </div>
+
+      <form action={updateRetirementChecklist}>
+        <input
+          type="hidden"
+          name="employeeId"
+          value={employee.id}
+        />
+
+        <div className="space-y-4">
+          {items.map(([name, label, checked]) => (
+            <label
+              key={name}
+              className="flex items-center gap-3"
+            >
+              <input
+                type="checkbox"
+                name={name}
+                defaultChecked={checked}
+                className="h-5 w-5"
+              />
+              {label}
+            </label>
+          ))}
+        </div>
+
+        <div className="mt-6">
+          <label className="mb-1 block text-sm font-medium">
+            備考
+          </label>
+          <textarea
+            name="memo"
+            defaultValue={checklist?.memo ?? ""}
+            rows={4}
+            className="w-full rounded border p-2"
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="mt-6 rounded bg-blue-600 px-5 py-2 font-medium text-white hover:bg-blue-700"
+        >
+          保存
+        </button>
+      </form>
+    </main>
+  );
+}
+
+
+===== FILE: app/retirement-management/[id]/certificate/page.tsx =====
+
+import { saveRetirementCertificate } from "@/app/actions/retirement-certificate";
+import BackLink from "@/components/BackLink";
+import { requireHRManager } from "@/lib/auth-guard";
+import { prisma } from "@/lib/prisma";
+import { notFound } from "next/navigation";
+
+type Props = {
+  params: Promise<{ id: string }>;
+};
+
+function dateValue(date?: Date | null) {
+  return date?.toISOString().slice(0, 10) ?? "";
+}
+
+export default async function RetirementCertificatePage({
+  params,
+}: Props) {
+  await requireHRManager();
+
+  const { id } = await params;
+
+  const employee = await prisma.employee.findUnique({
+    where: { id },
+    include: {
+      retirementCertificate: true,
+    },
+  });
+
+  if (!employee) {
+    notFound();
+  }
+
+  const certificate = employee.retirementCertificate;
+  const today = new Date().toISOString().slice(0, 10);
+
+  return (
+    <main className="mx-auto max-w-3xl p-6">
+      <BackLink href={`/retirement-management/${id}`} label="退職管理へ戻る" />
+
+      <h1 className="mb-2 text-2xl font-bold">
+        退職証明書
+      </h1>
+
+      <p className="mb-6 text-sm text-gray-600">
+        {employee.employeeNo} {employee.lastName}{" "}
+        {employee.firstName}
+      </p>
+
+      {certificate && (
+        <div className="mb-6 rounded border bg-gray-50 p-4 text-sm">
+          <div>
+            <strong>証明番号：</strong>
+            {certificate.certificateNo ?? "-"}
+          </div>
+
+          <div>
+            <strong>最終発行日時：</strong>
+            {certificate.issuedAt
+              ? certificate.issuedAt.toLocaleString("ja-JP")
+              : "-"}
+          </div>
+
+          <div>
+            <strong>最終発行者：</strong>
+            {certificate.issuedBy ?? "-"}
+          </div>
+        </div>
+      )}
+
+      <form action={saveRetirementCertificate} className="space-y-6">
+        <input
+          type="hidden"
+          name="employeeId"
+          value={employee.id}
+        />
+
+        <div className="grid gap-4 md:grid-cols-2">
+          <label className="text-sm font-medium">
+            証明書発行日
+            <input
+              name="certificateDate"
+              type="date"
+              required
+              defaultValue={
+                dateValue(certificate?.certificateDate) ||
+                today
+              }
+              className="mt-1 w-full rounded border p-2"
+            />
+          </label>
+
+          <label className="text-sm font-medium">
+            退職日
+            <input
+              name="retirementDate"
+              type="date"
+              required
+              defaultValue={
+                dateValue(certificate?.retirementDate) ||
+                dateValue(employee.retirementDate)
+              }
+              className="mt-1 w-full rounded border p-2"
+            />
+          </label>
+        </div>
+
+        <fieldset className="space-y-5">
+          <legend className="font-semibold">本人が記載を求めた項目</legend>
+
+          <label className="flex gap-3">
+            <input type="checkbox" name="showEmploymentPeriod"
+              defaultChecked={certificate?.showEmploymentPeriod ?? false} />
+            雇用期間
+          </label>
+
+          <label className="block">
+            <span className="flex gap-3">
+              <input type="checkbox" name="showJobType"
+                defaultChecked={certificate?.showJobType ?? false} />
+              業務の種類
+            </span>
+            <input name="jobType"
+              defaultValue={certificate?.jobType ?? employee.occupation ?? ""}
+              placeholder="例：介護職員"
+              className="mt-2 w-full rounded border p-2" />
+          </label>
+
+          <label className="flex gap-3">
+            <input type="checkbox" name="showPosition"
+              defaultChecked={certificate?.showPosition ?? false} />
+            その事業における地位（{employee.position ?? "未設定"}）
+          </label>
+
+          <label className="block">
+            <span className="flex gap-3">
+              <input type="checkbox" name="showWage"
+                defaultChecked={certificate?.showWage ?? false} />
+              賃金
+            </span>
+            <input name="wageInfo"
+              defaultValue={certificate?.wageInfo ?? ""}
+              placeholder="例：基本給 月額 xxx,xxx円"
+              className="mt-2 w-full rounded border p-2" />
+          </label>
+
+          <label className="block">
+            <span className="flex gap-3">
+              <input type="checkbox" name="showRetirementReason"
+                defaultChecked={certificate?.showRetirementReason ?? false} />
+              退職の事由（自己都合・会社都合等）
+            </span>
+            <textarea name="retirementReason" rows={3}
+              defaultValue={certificate?.reason ?? ""}
+              placeholder="例：自己都合による退職"
+              className="mt-2 w-full rounded border p-2" />
+          </label>
+        </fieldset>
+
+        <div className="flex gap-4">
+          <button
+            type="submit"
+            className="rounded bg-blue-600 px-5 py-2 text-white hover:bg-blue-700"
+          >
+            保存する
+          </button>
+          <a
+            href={`/retirement-management/${id}/certificate/pdf`}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded border border-gray-300 px-5 py-2 hover:bg-gray-50"
+          >
+            PDF表示
+          </a>
+        </div>
+      </form>
+    </main>
+  );
+}
+
+
+===== FILE: app/retirement-management/[id]/assets/page.tsx =====
+
+import BackLink from "@/components/BackLink";
+import { saveLoanedAssets } from "@/app/actions/loaned-assets";
+import { prisma } from "@/lib/prisma";
+
+type Props = {
+  params: Promise<{ id: string }>;
+};
+
+const DEFAULT_ASSETS = [
+  "ノートPC",
+  "社用スマホ",
+  "ICカード",
+  "ロッカー鍵",
+  "制服",
+  "名札",
+];
+
+export default async function LoanedAssetsPage({
+  params,
+}: Props) {
+  const { id } = await params;
+
+  let assets = await prisma.loanedAsset.findMany({
+    where: { employeeId: id },
+    orderBy: { createdAt: "asc" },
+  });
+
+  const returnedCount =
+    assets.filter((asset) => asset.returned).length;
+
+  const returnRate =
+    assets.length === 0
+      ? 0
+      : Math.round(
+          (returnedCount / assets.length) * 100,
+        );
+
+  if (assets.length === 0) {
+    await prisma.loanedAsset.createMany({
+      data: DEFAULT_ASSETS.map((assetName) => ({
+        employeeId: id,
+        assetName,
+      })),
+    });
+
+    assets = await prisma.loanedAsset.findMany({
+      where: { employeeId: id },
+      orderBy: { createdAt: "asc" },
+    });
+  }
+
+  return (
+    <main className="mx-auto max-w-4xl p-6">
+      <BackLink
+        href={`/retirement-management/${id}`}
+        label="退職手続チェックリストに戻る"
+      />
+
+      <h1 className="mb-6 text-2xl font-bold">
+        貸与物返却管理
+      </h1>
+
+      <div className="mb-6 rounded-lg border bg-blue-50 p-4">
+        <div className="text-sm text-gray-600">
+          貸与物返却率
+        </div>
+
+        <div className="mt-1 text-2xl font-bold">
+          {returnedCount} / {assets.length}
+        </div>
+
+        <div className="text-blue-700">
+          {returnRate}%
+        </div>
+      </div>
+
+      <form action={saveLoanedAssets}>
+        <input
+          type="hidden"
+          name="employeeId"
+          value={id}
+        />
+
+        <div className="rounded-lg border bg-white p-6">
+          <div className="space-y-4">
+            {assets.map((asset) => (
+              <label
+                key={asset.id}
+                className="flex items-center gap-3"
+              >
+                <input
+                  type="checkbox"
+                  name={asset.assetName}
+                  defaultChecked={asset.returned}
+                  className="h-5 w-5"
+                />
+
+                <span className="font-medium">
+                  {asset.assetName}
+                </span>
+
+                {asset.returnedAt && (
+                  <div className="text-sm text-gray-500">
+                    返却日：
+                    {" "}
+                    {new Date(
+                      asset.returnedAt
+                    ).toLocaleDateString("ja-JP")}
+                  </div>
+                )}
+
+                {asset.returnedAt && (
+                  <div className="text-sm text-gray-500">
+                    返却日：
+                    {new Date(
+                      asset.returnedAt,
+                    ).toLocaleDateString("ja-JP")}
+                  </div>
+                )}
+
+                {asset.returnedBy && (
+                  <div className="text-sm text-gray-500">
+                    確認者：
+                    {asset.returnedBy}
+                  </div>
+                )}
+
+                {asset.returned && (
+                  <span className="text-sm text-green-600">
+                    返却済
+                  </span>
+                )}
+              </label>
+            ))}
+          </div>
+
+          <div className="mt-6">
+            <label className="mb-2 block text-sm font-medium">
+              返却確認者
+            </label>
+
+            <input
+              type="text"
+              name="returnedBy"
+              className="w-full rounded border p-2"
+              placeholder="総務部 山田太郎"
+            />
+          </div>
+
+          <div className="mt-4">
+            <label className="mb-2 block text-sm font-medium">
+              備考
+            </label>
+
+            <textarea
+              name="memo"
+              rows={4}
+              className="w-full rounded border p-2"
+              placeholder="備考を入力"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="mt-6 rounded bg-blue-600 px-5 py-2 text-white hover:bg-blue-700"
+          >
+            保存
+          </button>
+        </div>
+      </form>
+    </main>
+  );
+}

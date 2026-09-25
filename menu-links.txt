@@ -1,0 +1,1018 @@
+components/dashboard/HRManagementMenu.tsx:19:          <Link href="/employees">職員一覧</Link>
+components/dashboard/HRManagementMenu.tsx:20:          <Link href="/employees/new">新規職員登録</Link>
+components/dashboard/HRManagementMenu.tsx:21:          <Link href="/departments">部署一覧</Link>
+components/dashboard/HRManagementMenu.tsx:22:          <Link href="/approval-routes">承認ルート管理</Link>
+components/dashboard/HRManagementMenu.tsx:23:          <Link href="/facility-switch">表示対象切替</Link>
+components/dashboard/HRManagementMenu.tsx:30:          <Link href="/personnel-orders">人事発令管理</Link>
+components/dashboard/HRManagementMenu.tsx:31:          <Link href="/employee-transfers">異動履歴一覧</Link>
+components/dashboard/HRManagementMenu.tsx:32:          <Link href="/organization-history">組織変更履歴レポート</Link>
+components/dashboard/HRManagementMenu.tsx:39:          <Link href="/employee-leaves">休職・復職管理</Link>
+components/dashboard/HRManagementMenu.tsx:40:          <Link href="/employee-retirements">退職管理</Link>
+components/dashboard/HRManagementMenu.tsx:41:          <Link href="/retirement-management">退職予定者管理</Link>
+components/dashboard/HRManagementMenu.tsx:48:          <Link href="/leave-balances">年次有給休暇残高一覧</Link>
+components/dashboard/HRManagementMenu.tsx:49:          <Link href="/leave-grants">休暇付与履歴</Link>
+components/dashboard/HRManagementMenu.tsx:50:          <Link href="/leave-grants/pending">休暇付与対象者一覧</Link>
+components/dashboard/HRManagementMenu.tsx:51:          <Link href="/leave-expiration">休暇失効管理</Link>
+components/dashboard/HRManagementMenu.tsx:52:          <Link href="/leave-type-balances">休暇別残高一覧</Link>
+components/dashboard/HRManagementMenu.tsx:59:          <Link href="/employee-contracts/new">雇用契約書作成</Link>
+components/dashboard/HRManagementMenu.tsx:60:          <Link href="/employee-contracts">雇用契約書一覧</Link>
+components/dashboard/HRManagementMenu.tsx:61:          <Link href="/employee-contract-templates">雇用契約テンプレート</Link>
+components/dashboard/HRManagementMenu.tsx:62:          <Link href="/certificates">証明書センター</Link>
+components/dashboard/HRManagementMenu.tsx:69:          <Link href="/bank-accounts">
+components/dashboard/HRManagementMenu.tsx:72:          <Link href="/my-numbers">マイナンバー確認 ({pendingMyNumbers})</Link>
+components/dashboard/HRManagementMenu.tsx:79:          <Link href="/audit-logs">監査ログ一覧</Link>
+components/dashboard/HRManagementMenu.tsx:80:          <Link href="/role-permissions">権限マトリクス</Link>
+components/dashboard/HRManagementMenu.tsx:81:          <Link href="/masters">マスタ管理</Link>
+components/dashboard/HRManagementMenu.tsx:82:          <Link href="/company-settings">法人設定</Link>
+components/dashboard/HRManagementMenu.tsx:86:              <Link href="/users">ユーザー管理</Link>
+components/dashboard/HRManagementMenu.tsx:87:              <Link href="/user-invitations">ユーザー招待</Link>
+components/BackLink.tsx:15:        href={href}
+components/common/BackToDashboardLink.tsx:7:        href="/"
+components/common/PageHeader.tsx:17:        href={backHref}
+app/my-numbers/page.tsx.before-facility-scope-retry:137:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/my-numbers/page.tsx.before-facility-scope-retry:148:          href="/my-numbers"
+app/my-numbers/page.tsx.before-facility-scope-retry:159:          href="/my-numbers?status=PENDING"
+app/my-numbers/page.tsx.before-facility-scope-retry:170:          href="/my-numbers?status=APPROVED"
+app/my-numbers/page.tsx.before-facility-scope-retry:181:          href="/my-numbers?status=REJECTED"
+app/my-numbers/page.tsx.before-facility-scope-retry:256:                      href={`/my-numbers/${item.id}`}
+app/my-numbers/page.tsx.before-facility-display-final:137:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/my-numbers/page.tsx.before-facility-display-final:148:          href="/my-numbers"
+app/my-numbers/page.tsx.before-facility-display-final:159:          href="/my-numbers?status=PENDING"
+app/my-numbers/page.tsx.before-facility-display-final:170:          href="/my-numbers?status=APPROVED"
+app/my-numbers/page.tsx.before-facility-display-final:181:          href="/my-numbers?status=REJECTED"
+app/my-numbers/page.tsx.before-facility-display-final:256:                      href={`/my-numbers/${item.id}`}
+app/my-numbers/[id]/page.tsx.before-facility-guard:153:      <BackLink href="/my-numbers" label="マイナンバー一覧へ戻る" />
+app/my-numbers/[id]/page.tsx:224:      <BackLink href="/my-numbers" label="マイナンバー一覧へ戻る" />
+app/my-numbers/[id]/page.tsx:306:                <Link href={`/my-numbers/${myNumber.id}`} className="text-sm text-blue-600 hover:underline">
+app/my-numbers/[id]/page.tsx:310:                <Link href={`/my-numbers/${myNumber.id}?show=1`} className="text-sm text-blue-600 hover:underline">
+app/my-numbers/page.tsx.before-facility-scope:137:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/my-numbers/page.tsx.before-facility-scope:148:          href="/my-numbers"
+app/my-numbers/page.tsx.before-facility-scope:159:          href="/my-numbers?status=PENDING"
+app/my-numbers/page.tsx.before-facility-scope:170:          href="/my-numbers?status=APPROVED"
+app/my-numbers/page.tsx.before-facility-scope:181:          href="/my-numbers?status=REJECTED"
+app/my-numbers/page.tsx.before-facility-scope:256:                      href={`/my-numbers/${item.id}`}
+app/my-numbers/page.tsx:139:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/my-numbers/page.tsx:150:          href="/my-numbers"
+app/my-numbers/page.tsx:161:          href="/my-numbers?status=PENDING"
+app/my-numbers/page.tsx:172:          href="/my-numbers?status=APPROVED"
+app/my-numbers/page.tsx:183:          href="/my-numbers?status=REJECTED"
+app/my-numbers/page.tsx:268:                      href={`/my-numbers/${item.id}`}
+app/role-permissions/page.tsx.before-ja-role:44:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/role-permissions/page.tsx:51:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/user-invitations/new/page.tsx:108:      <BackLink href="/user-invitations" label="ユーザー招待一覧へ戻る" />
+app/user-invitations/new/page.tsx:185:            href="/user-invitations"
+app/user-invitations/[id]/qr/page.tsx:36:          href="/user-invitations"
+app/user-invitations/[id]/qr/page.tsx:80:            href={registerPath}
+app/user-invitations/[id]/print/page.tsx:36:          href="/user-invitations"
+app/user-invitations/[id]/print/page.tsx:43:          href="javascript:window.print()"
+app/user-invitations/page.tsx:57:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/user-invitations/page.tsx:70:            href="/user-invitations/new"
+app/user-invitations/page.tsx:76:            href="/users"
+app/user-invitations/page.tsx:148:                      href={`/register/${invitation.token}`}
+app/user-invitations/page.tsx:156:                      href={`/user-invitations/${invitation.id}/qr`}
+app/user-invitations/page.tsx:164:                      href={`/user-invitations/${invitation.id}/print`}
+app/contract-type-masters/new/page.tsx:7:      <BackLink href="/contract-type-masters" label="契約区分マスタ一覧へ戻る" />
+app/contract-type-masters/[id]/edit/page.tsx:28:      <BackLink href="/contract-type-masters" label="契約区分マスタ一覧へ戻る" />
+app/contract-type-masters/page.tsx:19:        href="/masters"
+app/contract-type-masters/page.tsx:30:          href="/contract-type-masters/new"
+app/contract-type-masters/page.tsx:68:                    href={`/contract-type-masters/${item.id}/edit`}
+app/employees/import/page.tsx.before-auth-guard:7:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/employees/import/page.tsx:9:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/employees/page.tsx.before-manager-security:201:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/employees/page.tsx.before-manager-security:217:            href="/employees/new"
+app/employees/page.tsx.before-manager-security:224:            href="/api/employees/export-excel"
+app/employees/page.tsx.before-manager-security:231:            href="/employees/import"
+app/employees/page.tsx.before-manager-security:307:            href="/employees"
+app/employees/page.tsx.before-manager-security:369:                      href={`/employees/${employee.id}`}
+app/employees/page.tsx.before-manager-security:417:        <Link href="/" className="text-sm text-blue-600 hover:underline">
+app/employees/new/page.tsx:30:      <BackLink href="/employees" label="職員一覧へ戻る" />
+app/employees/[id]/page.tsx.before-transfer-display:567:      <BackLink href="/employees" label="社員一覧へ戻る" />
+app/employees/[id]/page.tsx.before-transfer-display:582:            href={`/api/employees/${employee.id}/pdf`}
+app/employees/[id]/page.tsx.before-transfer-display:594:                href={`/employees/${employee.id}/edit`}
+app/employees/[id]/page.tsx.before-transfer-display:749:            <Link href={`/employees/${employee.id}/certifications`}>
+app/employees/[id]/page.tsx.before-transfer-display:763:                <a href={`/employees/${employee.id}/dependents/export`} className="rounded border border-green-600 bg-white px-3 py-1.5 text-sm font-medium text-green-700 hover:bg-green-50">CSV出力</a>
+app/employees/[id]/page.tsx.before-transfer-display:765:                  href={`/employees/${employee.id}/dependents/new`}
+app/employees/[id]/page.tsx.before-transfer-display:823:                              href={`/employees/${employee.id}/dependents/${dependent.id}/edit`}
+app/employees/[id]/page.tsx.before-facility-guard:557:      <BackLink href="/employees" label="社員一覧へ戻る" />
+app/employees/[id]/page.tsx.before-facility-guard:569:            href={`/api/employees/${employee.id}/pdf`}
+app/employees/[id]/page.tsx.before-facility-guard:578:                href={`/employees/${employee.id}/edit`}
+app/employees/[id]/page.tsx.before-facility-guard:732:            <Link href={`/employees/${employee.id}/certifications`}>
+app/employees/[id]/page.tsx.before-facility-guard:745:                  href={`/employees/${employee.id}/dependents/export`}
+app/employees/[id]/page.tsx.before-facility-guard:751:                  href={`/employees/${employee.id}/dependents/new`}
+app/employees/[id]/page.tsx.before-facility-guard:805:                              href={`/employees/${employee.id}/dependents/${dependent.id}/edit`}
+app/employees/[id]/edit/page.tsx.before-history:273:      <BackLink href="/employees" label="社員一覧へ戻る" />
+app/employees/[id]/edit/page.tsx.before-facility-guard:319:      <BackLink href="/employees" label="社員一覧へ戻る" />
+app/employees/[id]/edit/page.tsx:328:      <BackLink href="/employees" label="職員一覧へ戻る" />
+app/employees/[id]/edit/page.tsx.before-transfer-history:310:      <BackLink href="/employees" label="社員一覧へ戻る" />
+app/employees/[id]/page.tsx.before-certification-restore:567:      <BackLink href="/employees" label="社員一覧へ戻る" />
+app/employees/[id]/page.tsx.before-certification-restore:582:            href={`/api/employees/${employee.id}/pdf`}
+app/employees/[id]/page.tsx.before-certification-restore:593:                href={`/employees/${employee.id}/edit`}
+app/employees/[id]/page.tsx.before-certification-restore:733:                <a href={`/employees/${employee.id}/dependents/export`} className="rounded border border-green-600 bg-white px-3 py-1.5 text-sm font-medium text-green-700 hover:bg-green-50">CSV出力</a>
+app/employees/[id]/page.tsx.before-certification-restore:735:                  href={`/employees/${employee.id}/dependents/new`}
+app/employees/[id]/page.tsx.before-certification-restore:793:                              href={`/employees/${employee.id}/dependents/${dependent.id}/edit`}
+app/employees/[id]/page.tsx.before-certification-card:567:      <BackLink href="/employees" label="社員一覧へ戻る" />
+app/employees/[id]/page.tsx.before-certification-card:582:            href={`/api/employees/${employee.id}/pdf`}
+app/employees/[id]/page.tsx.before-certification-card:593:                href={`/employees/${employee.id}/edit`}
+app/employees/[id]/page.tsx.before-certification-card:733:                <a href={`/employees/${employee.id}/dependents/export`} className="rounded border border-green-600 bg-white px-3 py-1.5 text-sm font-medium text-green-700 hover:bg-green-50">CSV出力</a>
+app/employees/[id]/page.tsx.before-certification-card:735:                  href={`/employees/${employee.id}/dependents/new`}
+app/employees/[id]/page.tsx.before-certification-card:793:                              href={`/employees/${employee.id}/dependents/${dependent.id}/edit`}
+app/employees/[id]/dependents/new/page.tsx.before-facility-guard:112:          href={`/employees/${id}`}
+app/employees/[id]/dependents/new/page.tsx.before-facility-guard:249:            href={`/employees/${id}`}
+app/employees/[id]/dependents/new/page.tsx:131:          href={`/employees/${id}`}
+app/employees/[id]/dependents/new/page.tsx:261:            href={`/employees/${id}`}
+app/employees/[id]/dependents/[dependentId]/edit/page.tsx.before-facility-guard:128:          href={`/employees/${id}`}
+app/employees/[id]/dependents/[dependentId]/edit/page.tsx.before-facility-guard:247:            href={`/employees/${id}`}
+app/employees/[id]/dependents/[dependentId]/edit/page.tsx:160:          href={`/employees/${id}`}
+app/employees/[id]/dependents/[dependentId]/edit/page.tsx:282:            href={`/employees/${id}`}
+app/employees/[id]/dependents/[dependentId:112:          href={`/employees/${id}`}
+app/employees/[id]/dependents/[dependentId:249:            href={`/employees/${id}`}
+app/employees/[id]/certifications/page.tsx.before-facility-guard:275:          href={`/employees/${employee.id}`}
+app/employees/[id]/certifications/page.tsx.before-facility-guard:462:                              href={attachment.filePath}
+app/employees/[id]/certifications/page.tsx:360:          href={`/employees/${employee.id}`}
+app/employees/[id]/certifications/page.tsx:511:                                href={`/api/certification-attachments/${attachment.id}`}
+app/employees/[id]/page.tsx:582:      <BackLink href="/employees" label="職員一覧へ戻る" />
+app/employees/[id]/page.tsx:594:            href={`/api/employees/${employee.id}/pdf`}
+app/employees/[id]/page.tsx:603:                href={`/employees/${employee.id}/edit`}
+app/employees/[id]/page.tsx:786:            <Link href={`/employees/${employee.id}/certifications`}>
+app/employees/[id]/page.tsx:799:                  href={`/employees/${employee.id}/dependents/export`}
+app/employees/[id]/page.tsx:805:                  href={`/employees/${employee.id}/dependents/new`}
+app/employees/[id]/page.tsx:859:                              href={`/employees/${employee.id}/dependents/${dependent.id}/edit`}
+app/employees/[id]/page.tsx:1303:                <Link href={`/my-numbers/${employee.employeeMyNumber.id}`} className="mt-1 block text-xs text-blue-600 hover:underline">
+app/employees/[id]/page.tsx.before-cert-move:567:      <BackLink href="/employees" label="社員一覧へ戻る" />
+app/employees/[id]/page.tsx.before-cert-move:582:            href={`/api/employees/${employee.id}/pdf`}
+app/employees/[id]/page.tsx.before-cert-move:615:              href={`/employees/${employee.id}/certifications`}
+app/employees/[id]/page.tsx.before-cert-move:626:                href={`/employees/${employee.id}/edit`}
+app/employees/[id]/page.tsx.before-cert-move:766:                <a href={`/employees/${employee.id}/dependents/export`} className="rounded border border-green-600 bg-white px-3 py-1.5 text-sm font-medium text-green-700 hover:bg-green-50">CSV出力</a>
+app/employees/[id]/page.tsx.before-cert-move:768:                  href={`/employees/${employee.id}/dependents/new`}
+app/employees/[id]/page.tsx.before-cert-move:826:                              href={`/employees/${employee.id}/dependents/${dependent.id}/edit`}
+app/employees/[id]/page.tsx.before-layout-fix:567:      <BackLink href="/employees" label="社員一覧へ戻る" />
+app/employees/[id]/page.tsx.before-layout-fix:582:            href={`/api/employees/${employee.id}/pdf`}
+app/employees/[id]/page.tsx.before-layout-fix:613:              href={`/employees/${employee.id}/certifications`}
+app/employees/[id]/page.tsx.before-layout-fix:624:                href={`/employees/${employee.id}/edit`}
+app/employees/[id]/page.tsx.before-layout-fix:764:                <a href={`/employees/${employee.id}/dependents/export`} className="rounded border border-green-600 bg-white px-3 py-1.5 text-sm font-medium text-green-700 hover:bg-green-50">CSV出力</a>
+app/employees/[id]/page.tsx.before-layout-fix:766:                  href={`/employees/${employee.id}/dependents/new`}
+app/employees/[id]/page.tsx.before-layout-fix:824:                              href={`/employees/${employee.id}/dependents/${dependent.id}/edit`}
+app/employees/[id]/page.tsx.before-certification-fix:567:      <BackLink href="/employees" label="社員一覧へ戻る" />
+app/employees/[id]/page.tsx.before-certification-fix:582:            href={`/api/employees/${employee.id}/pdf`}
+app/employees/[id]/page.tsx.before-certification-fix:612:              href={`/employees/${employee.id}/certifications`}
+app/employees/[id]/page.tsx.before-certification-fix:623:                href={`/employees/${employee.id}/edit`}
+app/employees/[id]/page.tsx.before-certification-fix:763:                <a href={`/employees/${employee.id}/dependents/export`} className="rounded border border-green-600 bg-white px-3 py-1.5 text-sm font-medium text-green-700 hover:bg-green-50">CSV出力</a>
+app/employees/[id]/page.tsx.before-certification-fix:765:                  href={`/employees/${employee.id}/dependents/new`}
+app/employees/[id]/page.tsx.before-certification-fix:823:                              href={`/employees/${employee.id}/dependents/${dependent.id}/edit`}
+app/employees/page.tsx.before-transfer-import-button:216:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/employees/page.tsx.before-transfer-import-button:232:            href="/employees/new"
+app/employees/page.tsx.before-transfer-import-button:239:            href="/api/employees/export-excel"
+app/employees/page.tsx.before-transfer-import-button:246:            href="/employees/import"
+app/employees/page.tsx.before-transfer-import-button:322:            href="/employees"
+app/employees/page.tsx.before-transfer-import-button:384:                      href={`/employees/${employee.id}`}
+app/employees/page.tsx.before-transfer-import-button:432:        <Link href="/" className="text-sm text-blue-600 hover:underline">
+app/employees/page.tsx.before-facility-scope:186:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/employees/page.tsx.before-facility-scope:197:            href="/employees/new"
+app/employees/page.tsx.before-facility-scope:204:            href="/api/employees/export-excel"
+app/employees/page.tsx.before-facility-scope:211:            href="/employees/import"
+app/employees/page.tsx.before-facility-scope:287:            href="/employees"
+app/employees/page.tsx.before-facility-scope:349:                      href={`/employees/${employee.id}`}
+app/employees/page.tsx.before-facility-scope:397:        <Link href="/" className="text-sm text-blue-600 hover:underline">
+app/employees/page.tsx.before-excel-button:183:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/employees/page.tsx.before-excel-button:196:            href="/employees/new"
+app/employees/page.tsx.before-excel-button:203:            href="/api/employees/export"
+app/employees/page.tsx.before-excel-button:210:            href="/employees/import"
+app/employees/page.tsx.before-excel-button:272:            href="/employees"
+app/employees/page.tsx.before-excel-button:337:                      href={`/employees/${employee.id}`}
+app/employees/page.tsx.before-excel-button:387:          href="/"
+app/employees/page.tsx:218:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/employees/page.tsx:234:            href="/employees/new"
+app/employees/page.tsx:241:            href="/api/employees/export-excel"
+app/employees/page.tsx:248:            href="/employee-transfers/import"
+app/employees/page.tsx:254:            href="/employees/import"
+app/employees/page.tsx:330:            href="/employees"
+app/employees/page.tsx:392:                      href={`/employees/${employee.id}`}
+app/employees/page.tsx:440:        <Link href="/" className="text-sm text-blue-600 hover:underline">
+app/company-settings/page.tsx:19:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/exports/page.tsx:6:      <BackLink href="/" label="ダッシュボードに戻る" />
+app/exports/page.tsx:17:          href="/api/employees/export"
+app/exports/page.tsx:27:          href="/api/employees/export-excel"
+app/exports/page.tsx:37:          href="/api/requests/export-excel"
+app/exports/page.tsx:47:          href="/api/leave-reports/export-excel"
+app/exports/page.tsx:57:          href="/api/leave-compliance/export-excel"
+app/mypage.before-dashboard-migration/employment-contracts/[id]/page.tsx:60:      <BackLink href="/mypage/employment-contracts" label="雇用条件書一覧へ戻る" />
+app/mypage.before-dashboard-migration/employment-contracts/[id]/page.tsx:85:            href={`/employee-contracts/${contract.id}/pdf`}
+app/mypage.before-dashboard-migration/employment-contracts/[id]/page.tsx:103:                  href={`/api/employment-contracts/${contract.id}/paper-consent`}
+app/mypage.before-dashboard-migration/employment-contracts/page.tsx:94:                  href={`/employee-contracts/${item.id}/pdf`}
+app/mypage.before-dashboard-migration/employment-contracts/page.tsx:118:                    href={`/mypage/employment-contracts/${item.id}`}
+app/mypage.before-dashboard-migration/bank-account/page.tsx:275:          href="/mypage"
+app/mypage.before-dashboard-migration/bank-account/page.tsx:548:                        href={attachment.filePath}
+app/mypage.before-dashboard-migration/dependent-requests/new/page.tsx:201:      <BackLink href="/mypage/dependent-requests" label="扶養家族申請一覧へ戻る" />
+app/mypage.before-dashboard-migration/dependent-requests/new/page.tsx:352:            href="/mypage"
+app/mypage.before-dashboard-migration/dependent-requests/page.tsx:64:            href="/mypage/dependent-requests/new"
+app/mypage.before-dashboard-migration/dependent-requests/page.tsx:71:            href="/mypage"
+app/mypage.before-dashboard-migration/leave-history/page.tsx:56:          href="/mypage"
+app/mypage.before-dashboard-migration/my-number/page.tsx:165:        href="/mypage"
+app/mypage.before-dashboard-migration/profile-change/page.tsx:108:          href="/mypage"
+app/mypage.before-dashboard-migration/certifications/page.tsx:277:        <Link href="/mypage" className="text-sm text-blue-600 hover:underline">
+app/mypage.before-dashboard-migration/certifications/page.tsx:428:                              href={attachment.filePath}
+app/mypage.before-dashboard-migration/page.tsx:45:          href="/"
+app/mypage.before-dashboard-migration/page.tsx:86:            href="/mypage/my-number"
+app/mypage.before-dashboard-migration/page.tsx:93:            href="/mypage/dependent-requests"
+app/mypage.before-dashboard-migration/page.tsx:100:            href="/mypage/employment-contracts"
+app/mypage.before-dashboard-migration/page.tsx:107:            href="/mypage/dependent-requests/new"
+app/dependent-requests/page.tsx.before-facility-scope:170:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/dependent-requests/page.tsx.before-facility-scope:216:                    href={`/employees/${request.employeeId}`}
+app/dependent-requests/page.tsx.before-facility-scope:272:                          href={attachment.filePath}
+app/dependent-requests/page.tsx:189:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/dependent-requests/page.tsx:237:                    href={`/employees/${request.employeeId}`}
+app/dependent-requests/page.tsx:294:                          href={attachment.filePath}
+app/annual-leave-entry-rules/[id]/edit/page.tsx:25:        href="/annual-leave-entry-rules"
+app/annual-leave-entry-rules/page.tsx:12:      <BackLink href="/masters" label="マスタ一覧へ戻る" />
+app/annual-leave-entry-rules/page.tsx:52:                    href={`/annual-leave-entry-rules/${rule.id}/edit`}
+app/employee-contract-templates/new/page.tsx:9:      <BackLink href="/employee-contract-templates" label="テンプレート一覧へ戻る" />
+app/employee-contract-templates/[id]/edit/page.tsx:33:      <BackLink href="/employee-contract-templates" label="テンプレート一覧へ戻る" />
+app/employee-contract-templates/[id]/edit/page.tsx:270:            href="/employee-contract-templates"
+app/employee-contract-templates/page.tsx:46:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/employee-contract-templates/page.tsx:53:          href="/employee-contract-templates/new"
+app/employee-contract-templates/page.tsx:137:                      href={`/employee-contract-templates/${template.id}/edit`}
+app/certification-requests/page.tsx.before-facility-scope:160:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/certification-requests/page.tsx.before-facility-scope:254:                          href={attachment.filePath}
+app/certification-requests/page.tsx:183:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/certification-requests/page.tsx:274:                            href={`/api/certification-attachments/${attachment.id}`}
+app/page.tsx.before-expiration-fix:94:    return <Link href={href}>{card}</Link>;
+app/page.tsx.before-expiration-fix:933:              href="/leave-type-balances"
+app/page.tsx.before-expiration-fix:959:              href="/leave-compliance"
+app/page.tsx.before-expiration-fix:966:              href="/leave-compliance"
+app/page.tsx.before-expiration-fix:973:              href="/leave-compliance"
+app/page.tsx.before-expiration-fix:981:              href="/personnel-orders"
+app/page.tsx.before-expiration-fix:989:              href="/personnel-orders"
+app/page.tsx.before-expiration-fix:997:              href="/personnel-orders"
+app/page.tsx.before-expiration-fix:1005:              href="/personnel-orders"
+app/page.tsx.before-expiration-fix:1037:              href="/employees"
+app/page.tsx.before-expiration-fix:1044:              href="/employees"
+app/page.tsx.before-expiration-fix:1121:              href="/requests/new"
+app/page.tsx.before-expiration-fix:1128:              href="/requests/my"
+app/page.tsx.before-expiration-fix:1135:              href="/mypage/employment-contracts"
+app/page.tsx.before-expiration-fix:1153:              href="/mypage/certifications"
+app/page.tsx.before-expiration-fix:1159:              href="/mypage/profile-change"
+app/page.tsx.before-expiration-fix:1165:              href="/mypage/bank-account"
+app/page.tsx.before-expiration-fix:1172:              href="/mypage/my-number"
+app/page.tsx.before-expiration-fix:1178:              href="/mypage/dependent-requests/new"
+app/page.tsx.before-expiration-fix:1253:                href="/requests?status=PENDING"
+app/page.tsx.before-expiration-fix:1260:                href="/profile-change-requests"
+app/page.tsx.before-expiration-fix:1266:                href="/dependent-requests"
+app/page.tsx.before-expiration-fix:1273:                href="/certification-requests"
+app/page.tsx.before-expiration-fix:1280:                href="/requests"
+app/page.tsx.before-expiration-fix:1298:                href="/employees"
+app/page.tsx.before-expiration-fix:1346:                  href="/exports"
+app/page.tsx.before-expiration-fix:1466:                          href={`/requests/${request.id}`}
+app/departments/new/page.tsx:26:      <BackLink href="/departments" label="部署一覧へ戻る" />
+app/departments/[id]/edit/page.tsx:80:      <BackLink href="/departments" label="部署一覧へ戻る" />
+app/departments/[id]/page.tsx:37:      <BackLink href="/departments" label="部署一覧へ戻る" />
+app/departments/[id]/page.tsx:70:                href={`/employees/${employee.id}`}
+app/departments/[id]/page.tsx:83:          href="/departments"
+app/departments/[id]/page.tsx:89:          href={`/departments/${department.id}/edit`}
+app/departments/page.tsx:21:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/departments/page.tsx:47:                  href={`/departments/${department.id}`}
+app/departments/page.tsx:64:          href="/"
+app/leave-type-balances/page.tsx.before-utilization:29:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/leave-type-balances/page.tsx:29:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/page.tsx.before-svg-logo:96:    return <Link href={href}>{card}</Link>;
+app/page.tsx.before-svg-logo:936:                href="/facility-switch"
+app/page.tsx.before-svg-logo:1058:              href="/leave-type-balances"
+app/page.tsx.before-svg-logo:1084:              href="/leave-compliance"
+app/page.tsx.before-svg-logo:1091:              href="/leave-compliance"
+app/page.tsx.before-svg-logo:1098:              href="/leave-compliance"
+app/page.tsx.before-svg-logo:1106:              href="/personnel-orders"
+app/page.tsx.before-svg-logo:1114:              href="/personnel-orders"
+app/page.tsx.before-svg-logo:1122:              href="/personnel-orders"
+app/page.tsx.before-svg-logo:1130:              href="/personnel-orders"
+app/page.tsx.before-svg-logo:1162:              href="/employees"
+app/page.tsx.before-svg-logo:1169:              href="/employees"
+app/page.tsx.before-svg-logo:1246:              href="/requests/new"
+app/page.tsx.before-svg-logo:1253:              href="/requests/my"
+app/page.tsx.before-svg-logo:1260:              href="/mypage/employment-contracts"
+app/page.tsx.before-svg-logo:1278:              href="/mypage/certifications"
+app/page.tsx.before-svg-logo:1284:              href="/mypage/profile-change"
+app/page.tsx.before-svg-logo:1290:              href="/mypage/bank-account"
+app/page.tsx.before-svg-logo:1297:              href="/mypage/my-number"
+app/page.tsx.before-svg-logo:1303:              href="/mypage/dependent-requests/new"
+app/page.tsx.before-svg-logo:1378:                href="/requests?status=PENDING"
+app/page.tsx.before-svg-logo:1385:                href="/profile-change-requests"
+app/page.tsx.before-svg-logo:1391:                href="/dependent-requests"
+app/page.tsx.before-svg-logo:1398:                href="/certification-requests"
+app/page.tsx.before-svg-logo:1405:                href="/requests"
+app/page.tsx.before-svg-logo:1423:                href="/employees"
+app/page.tsx.before-svg-logo:1471:                  href="/exports"
+app/page.tsx.before-svg-logo:1591:                          href={`/requests/${request.id}`}
+app/approval-routes/page.tsx.before-facility-scope:87:      <BackLink href="/" label="ダッシュボードに戻る" />
+app/approval-routes/page.tsx:98:      <BackLink href="/" label="ダッシュボードに戻る" />
+app/work-schedule-masters/new/page.tsx:7:      <BackLink href="/work-schedule-masters" label="勤務帯マスタ一覧へ戻る" />
+app/work-schedule-masters/[id]/edit/page.tsx:28:      <BackLink href="/work-schedule-masters" label="勤務帯マスタ一覧へ戻る" />
+app/work-schedule-masters/page.tsx:16:        href="/masters"
+app/work-schedule-masters/page.tsx:27:          href="/work-schedule-masters/new"
+app/work-schedule-masters/page.tsx:82:                    href={`/work-schedule-masters/${item.id}/edit`}
+app/leave-reports/page.tsx:104:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/leave-reports/page.tsx:111:          href="/api/leave-reports/export"
+app/leave-reports/page.tsx:118:          href="/api/leave-reports/export-excel"
+app/page.tsx.stable-report-center:94:    return <Link href={href}>{card}</Link>;
+app/page.tsx.stable-report-center:933:              href="/leave-type-balances"
+app/page.tsx.stable-report-center:959:              href="/leave-compliance"
+app/page.tsx.stable-report-center:966:              href="/leave-compliance"
+app/page.tsx.stable-report-center:973:              href="/leave-compliance"
+app/page.tsx.stable-report-center:981:              href="/personnel-orders"
+app/page.tsx.stable-report-center:989:              href="/personnel-orders"
+app/page.tsx.stable-report-center:997:              href="/personnel-orders"
+app/page.tsx.stable-report-center:1005:              href="/personnel-orders"
+app/page.tsx.stable-report-center:1037:              href="/employees"
+app/page.tsx.stable-report-center:1044:              href="/employees"
+app/page.tsx.stable-report-center:1121:              href="/requests/new"
+app/page.tsx.stable-report-center:1128:              href="/requests/my"
+app/page.tsx.stable-report-center:1135:              href="/mypage/employment-contracts"
+app/page.tsx.stable-report-center:1153:              href="/mypage/certifications"
+app/page.tsx.stable-report-center:1159:              href="/mypage/profile-change"
+app/page.tsx.stable-report-center:1165:              href="/mypage/bank-account"
+app/page.tsx.stable-report-center:1172:              href="/mypage/my-number"
+app/page.tsx.stable-report-center:1178:              href="/mypage/dependent-requests/new"
+app/page.tsx.stable-report-center:1253:                href="/requests?status=PENDING"
+app/page.tsx.stable-report-center:1260:                href="/profile-change-requests"
+app/page.tsx.stable-report-center:1266:                href="/dependent-requests"
+app/page.tsx.stable-report-center:1273:                href="/certification-requests"
+app/page.tsx.stable-report-center:1280:                href="/requests"
+app/page.tsx.stable-report-center:1298:                href="/employees"
+app/page.tsx.stable-report-center:1346:                  href="/exports"
+app/page.tsx.stable-report-center:1466:                          href={`/requests/${request.id}`}
+app/page.tsx.before-fy-nexus-one:96:    return <Link href={href}>{card}</Link>;
+app/page.tsx.before-fy-nexus-one:936:                href="/facility-switch"
+app/page.tsx.before-fy-nexus-one:1058:              href="/leave-type-balances"
+app/page.tsx.before-fy-nexus-one:1084:              href="/leave-compliance"
+app/page.tsx.before-fy-nexus-one:1091:              href="/leave-compliance"
+app/page.tsx.before-fy-nexus-one:1098:              href="/leave-compliance"
+app/page.tsx.before-fy-nexus-one:1106:              href="/personnel-orders"
+app/page.tsx.before-fy-nexus-one:1114:              href="/personnel-orders"
+app/page.tsx.before-fy-nexus-one:1122:              href="/personnel-orders"
+app/page.tsx.before-fy-nexus-one:1130:              href="/personnel-orders"
+app/page.tsx.before-fy-nexus-one:1162:              href="/employees"
+app/page.tsx.before-fy-nexus-one:1169:              href="/employees"
+app/page.tsx.before-fy-nexus-one:1246:              href="/requests/new"
+app/page.tsx.before-fy-nexus-one:1253:              href="/requests/my"
+app/page.tsx.before-fy-nexus-one:1260:              href="/mypage/employment-contracts"
+app/page.tsx.before-fy-nexus-one:1278:              href="/mypage/certifications"
+app/page.tsx.before-fy-nexus-one:1284:              href="/mypage/profile-change"
+app/page.tsx.before-fy-nexus-one:1290:              href="/mypage/bank-account"
+app/page.tsx.before-fy-nexus-one:1297:              href="/mypage/my-number"
+app/page.tsx.before-fy-nexus-one:1303:              href="/mypage/dependent-requests/new"
+app/page.tsx.before-fy-nexus-one:1378:                href="/requests?status=PENDING"
+app/page.tsx.before-fy-nexus-one:1385:                href="/profile-change-requests"
+app/page.tsx.before-fy-nexus-one:1391:                href="/dependent-requests"
+app/page.tsx.before-fy-nexus-one:1398:                href="/certification-requests"
+app/page.tsx.before-fy-nexus-one:1405:                href="/requests"
+app/page.tsx.before-fy-nexus-one:1423:                href="/employees"
+app/page.tsx.before-fy-nexus-one:1471:                  href="/exports"
+app/page.tsx.before-fy-nexus-one:1591:                          href={`/requests/${request.id}`}
+app/audit-logs/page.tsx.bak:114:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/audit-logs/page.tsx.bak:122:            href={`/api/audit-logs/export?${exportQuery}`}
+app/audit-logs/page.tsx.bak:129:            href={`/api/audit-logs/export-excel?${exportQuery}`}
+app/audit-logs/page.tsx.bak:251:                  <Link href={`/audit-logs/${log.id}`}>
+app/audit-logs/page.tsx.bak:262:          href="/"
+app/audit-logs/[id]/page.tsx:122:      <BackLink href="/audit-logs" label="監査ログ一覧へ戻る" />
+app/audit-logs/page.tsx:114:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/audit-logs/page.tsx:122:            href={`/api/audit-logs/export?${exportQuery}`}
+app/audit-logs/page.tsx:129:            href={`/api/audit-logs/export-excel?${exportQuery}`}
+app/audit-logs/page.tsx:139:          href="/audit-logs"
+app/audit-logs/page.tsx:146:          href="/audit-logs?action=CERTIFICATE_ISSUED"
+app/audit-logs/page.tsx:153:          href="/audit-logs?action=CERTIFICATE_ISSUED&targetType=EMPLOYMENT_CERTIFICATE"
+app/audit-logs/page.tsx:160:          href="/audit-logs?action=CERTIFICATE_ISSUED&targetType=RETIREMENT_CERTIFICATE"
+app/audit-logs/page.tsx:281:                  <Link href={`/audit-logs/${log.id}`}>
+app/audit-logs/page.tsx:292:          href="/"
+app/page.tsx.stable-admin-search-base:145:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/leave-calendar/page.tsx:47:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/leave-calendar/page.tsx:108:                  <Link href={`/requests/${request.id}`}>
+app/leave-calendar/page.tsx:119:        <Link href="/">
+app/users/new/page.tsx:99:      <BackLink href="/users" label="ユーザー一覧へ戻る" />
+app/users/new/page.tsx:101:        <Link href="/users" className="text-sm text-gray-500 hover:underline">
+app/users/new/page.tsx:176:            href="/users"
+app/users/[id]/edit/page.tsx:202:      <BackLink href="/users" label="ユーザー一覧へ戻る" />
+app/users/[id]/edit/page.tsx:204:        <Link href="/users" className="text-sm text-gray-500 hover:underline">
+app/users/[id]/edit/page.tsx:306:            href="/users"
+app/users/page.tsx:28:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/users/page.tsx:39:            href="/users/new"
+app/users/page.tsx:46:            href="/"
+app/users/page.tsx:101:                      href={`/users/${user.id}/edit`}
+app/leave-type-masters/new/page.tsx:7:      <BackLink href="/leave-type-masters" label="一覧へ戻る" />
+app/leave-type-masters/page.tsx:23:      <BackLink href="/masters" label="マスタ管理へ戻る" />
+app/leave-type-masters/page.tsx:27:          href="/leave-type-masters/new"
+app/leave-type-masters/page.tsx:76:                    href={`/leave-type-masters/${item.id}/edit`}
+app/page.tsx.bak:104:    return <Link href={href}>{card}</Link>;
+app/page.tsx.bak:999:              href="/leave-compliance"
+app/page.tsx.bak:1006:              href="/leave-compliance"
+app/page.tsx.bak:1013:              href="/leave-compliance"
+app/page.tsx.bak:1021:              href="/personnel-orders"
+app/page.tsx.bak:1029:              href="/personnel-orders"
+app/page.tsx.bak:1037:              href="/personnel-orders"
+app/page.tsx.bak:1045:              href="/personnel-orders"
+app/page.tsx.bak:1077:              href="/employees"
+app/page.tsx.bak:1084:              href="/employees"
+app/page.tsx.bak:1167:              href="/requests/new"
+app/page.tsx.bak:1174:              href="/requests/my"
+app/page.tsx.bak:1181:              href="/mypage/employment-contracts"
+app/page.tsx.bak:1200:              href="/mypage/certifications"
+app/page.tsx.bak:1206:              href="/mypage/profile-change"
+app/page.tsx.bak:1212:              href="/mypage/bank-account"
+app/page.tsx.bak:1219:              href="/mypage/my-number"
+app/page.tsx.bak:1225:                href="/mypage/dependent-requests/new"
+app/page.tsx.bak:1314:                href="/requests?status=PENDING"
+app/page.tsx.bak:1320:              <Link href="/profile-change-requests" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+app/page.tsx.bak:1324:                href="/dependent-requests"
+app/page.tsx.bak:1331:                href="/certification-requests"
+app/page.tsx.bak:1338:                href="/requests"
+app/page.tsx.bak:1358:                href="/employees"
+app/page.tsx.bak:1391:                href="/employees"
+app/page.tsx.bak:1397:                href="/employees/new"
+app/page.tsx.bak:1403:                href="/departments"
+app/page.tsx.bak:1409:                href="/leave-balances"
+app/page.tsx.bak:1415:                href="/leave-grants"
+app/page.tsx.bak:1421:                href="/leave-grants/pending"
+app/page.tsx.bak:1428:                href="/leave-expiration"
+app/page.tsx.bak:1434:                href="/employee-leaves"
+app/page.tsx.bak:1441:                href="/employee-retirements"
+app/page.tsx.bak:1448:                href="/organization-history"
+app/page.tsx.bak:1455:                href="/employee-transfers"
+app/page.tsx.bak:1461:                href="/personnel-orders"
+app/page.tsx.bak:1468:                href="/retirement-management"
+app/page.tsx.bak:1474:                href="/masters"
+app/page.tsx.bak:1480:                href="/employee-contracts"
+app/page.tsx.bak:1486:                href="/employee-contracts/new"
+app/page.tsx.bak:1492:                href="/employee-contract-templates"
+app/page.tsx.bak:1498:                href="/bank-accounts"
+app/page.tsx.bak:1505:                href="/my-numbers"
+app/page.tsx.bak:1511:                href="/audit-logs"
+app/page.tsx.bak:1518:                href="/role-permissions"
+app/page.tsx.bak:1527:                    href="/users"
+app/page.tsx.bak:1533:                    href="/user-invitations"
+app/page.tsx.bak:1669:                          href={`/requests/${request.id}`}
+app/personnel-orders/[id]/page.tsx:47:      <BackLink href="/personnel-orders" label="人事発令一覧に戻る" />
+app/personnel-orders/[id]/page.tsx:108:            href={`/personnel-orders/${history.id}/pdf`}
+app/personnel-orders/[id]/page.tsx:117:            href={`/employees/${history.employee.id}`}
+app/personnel-orders/page.tsx:45:      <BackLink href="/" label="ダッシュボードに戻る" />
+app/personnel-orders/page.tsx:90:                    href={`/personnel-orders/${history.id}`}
+app/page.tsx.before-exports-link:94:    return <Link href={href}>{card}</Link>;
+app/page.tsx.before-exports-link:933:              href="/leave-type-balances"
+app/page.tsx.before-exports-link:959:              href="/leave-compliance"
+app/page.tsx.before-exports-link:966:              href="/leave-compliance"
+app/page.tsx.before-exports-link:973:              href="/leave-compliance"
+app/page.tsx.before-exports-link:981:              href="/personnel-orders"
+app/page.tsx.before-exports-link:989:              href="/personnel-orders"
+app/page.tsx.before-exports-link:997:              href="/personnel-orders"
+app/page.tsx.before-exports-link:1005:              href="/personnel-orders"
+app/page.tsx.before-exports-link:1037:              href="/employees"
+app/page.tsx.before-exports-link:1044:              href="/employees"
+app/page.tsx.before-exports-link:1121:              href="/requests/new"
+app/page.tsx.before-exports-link:1128:              href="/requests/my"
+app/page.tsx.before-exports-link:1135:              href="/mypage/employment-contracts"
+app/page.tsx.before-exports-link:1153:              href="/mypage/certifications"
+app/page.tsx.before-exports-link:1159:              href="/mypage/profile-change"
+app/page.tsx.before-exports-link:1165:              href="/mypage/bank-account"
+app/page.tsx.before-exports-link:1172:              href="/mypage/my-number"
+app/page.tsx.before-exports-link:1178:              href="/mypage/dependent-requests/new"
+app/page.tsx.before-exports-link:1253:                href="/requests?status=PENDING"
+app/page.tsx.before-exports-link:1260:                href="/profile-change-requests"
+app/page.tsx.before-exports-link:1266:                href="/dependent-requests"
+app/page.tsx.before-exports-link:1273:                href="/certification-requests"
+app/page.tsx.before-exports-link:1280:                href="/requests"
+app/page.tsx.before-exports-link:1298:                href="/employees"
+app/page.tsx.before-exports-link:1457:                          href={`/requests/${request.id}`}
+app/mypage/employment-contracts/[id]/page.tsx:60:      <BackLink href="/mypage/employment-contracts" label="雇用条件書一覧へ戻る" />
+app/mypage/employment-contracts/[id]/page.tsx:85:            href={`/employee-contracts/${contract.id}/pdf`}
+app/mypage/employment-contracts/[id]/page.tsx:103:                  href={`/api/employment-contracts/${contract.id}/paper-consent`}
+app/mypage/employment-contracts/page.tsx:94:                  href={`/employee-contracts/${item.id}/pdf`}
+app/mypage/employment-contracts/page.tsx:118:                    href={`/mypage/employment-contracts/${item.id}`}
+app/mypage/bank-account/page.tsx:275:          href="/mypage"
+app/mypage/bank-account/page.tsx:548:                        href={attachment.filePath}
+app/mypage/dependent-requests/new/page.tsx:201:      <BackLink href="/mypage/dependent-requests" label="扶養家族申請一覧へ戻る" />
+app/mypage/dependent-requests/new/page.tsx:352:            href="/mypage"
+app/mypage/dependent-requests/page.tsx:64:            href="/mypage/dependent-requests/new"
+app/mypage/dependent-requests/page.tsx:71:            href="/mypage"
+app/mypage/leave-history/page.tsx:56:          href="/mypage"
+app/mypage/my-number/page.tsx:165:        href="/mypage"
+app/mypage/profile-change/page.tsx:97:        <Link href="/mypage" className="text-sm text-blue-600 hover:underline">
+app/mypage/certifications/page.tsx:343:        <Link href="/mypage" className="text-sm text-blue-600 hover:underline">
+app/mypage/certifications/page.tsx:481:                              href={`/api/certification-attachments/${attachment.id}`}
+app/mypage/page.tsx:45:          href="/"
+app/mypage/page.tsx:86:            href="/mypage/my-number"
+app/mypage/page.tsx:93:            href="/mypage/dependent-requests"
+app/mypage/page.tsx:100:            href="/mypage/employment-contracts"
+app/mypage/page.tsx:107:            href="/mypage/dependent-requests/new"
+app/page.tsx.menu-backup:93:    return <Link href={href}>{card}</Link>;
+app/page.tsx.menu-backup:940:              href="/leave-compliance"
+app/page.tsx.menu-backup:947:              href="/leave-compliance"
+app/page.tsx.menu-backup:954:              href="/leave-compliance"
+app/page.tsx.menu-backup:962:              href="/personnel-orders"
+app/page.tsx.menu-backup:970:              href="/personnel-orders"
+app/page.tsx.menu-backup:978:              href="/personnel-orders"
+app/page.tsx.menu-backup:986:              href="/personnel-orders"
+app/page.tsx.menu-backup:1018:              href="/employees"
+app/page.tsx.menu-backup:1025:              href="/employees"
+app/page.tsx.menu-backup:1102:              href="/requests/new"
+app/page.tsx.menu-backup:1109:              href="/requests/my"
+app/page.tsx.menu-backup:1116:              href="/mypage/employment-contracts"
+app/page.tsx.menu-backup:1134:              href="/mypage/certifications"
+app/page.tsx.menu-backup:1140:              href="/mypage/profile-change"
+app/page.tsx.menu-backup:1146:              href="/mypage/bank-account"
+app/page.tsx.menu-backup:1153:              href="/mypage/my-number"
+app/page.tsx.menu-backup:1159:              href="/mypage/dependent-requests/new"
+app/page.tsx.menu-backup:1234:                href="/requests?status=PENDING"
+app/page.tsx.menu-backup:1241:                href="/profile-change-requests"
+app/page.tsx.menu-backup:1247:                href="/dependent-requests"
+app/page.tsx.menu-backup:1254:                href="/certification-requests"
+app/page.tsx.menu-backup:1261:                href="/requests"
+app/page.tsx.menu-backup:1279:                href="/employees"
+app/page.tsx.menu-backup:1320:                href="/employees"
+app/page.tsx.menu-backup:1326:                href="/employees/new"
+app/page.tsx.menu-backup:1332:                href="/departments"
+app/page.tsx.menu-backup:1338:                href="/leave-balances"
+app/page.tsx.menu-backup:1344:                href="/leave-grants"
+app/page.tsx.menu-backup:1350:                href="/leave-grants/pending"
+app/page.tsx.menu-backup:1357:                href="/leave-expiration"
+app/page.tsx.menu-backup:1363:                href="/employee-leaves"
+app/page.tsx.menu-backup:1370:                href="/employee-retirements"
+app/page.tsx.menu-backup:1377:                href="/organization-history"
+app/page.tsx.menu-backup:1384:                href="/employee-transfers"
+app/page.tsx.menu-backup:1390:                href="/personnel-orders"
+app/page.tsx.menu-backup:1397:                href="/retirement-management"
+app/page.tsx.menu-backup:1403:                href="/masters"
+app/page.tsx.menu-backup:1409:                href="/employee-contracts"
+app/page.tsx.menu-backup:1415:                href="/employee-contracts/new"
+app/page.tsx.menu-backup:1421:                href="/employee-contract-templates"
+app/page.tsx.menu-backup:1427:                href="/bank-accounts"
+app/page.tsx.menu-backup:1434:                href="/my-numbers"
+app/page.tsx.menu-backup:1440:                href="/audit-logs"
+app/page.tsx.menu-backup:1447:                href="/role-permissions"
+app/page.tsx.menu-backup:1456:                    href="/users"
+app/page.tsx.menu-backup:1462:                    href="/user-invitations"
+app/page.tsx.menu-backup:1583:                          href={`/requests/${request.id}`}
+app/facility-switch/page.tsx.before-:24:      <BackLink href="/" label="ダッシュボードに戻る" />
+app/facility-switch/page.tsx:39:      <BackLink href="/" label="ダッシュボードに戻る" />
+app/page.tsx.before-final-facility-dashboard:96:    return <Link href={href}>{card}</Link>;
+app/page.tsx.before-final-facility-dashboard:873:                href="/facility-switch"
+app/page.tsx.before-final-facility-dashboard:995:              href="/leave-type-balances"
+app/page.tsx.before-final-facility-dashboard:1021:              href="/leave-compliance"
+app/page.tsx.before-final-facility-dashboard:1028:              href="/leave-compliance"
+app/page.tsx.before-final-facility-dashboard:1035:              href="/leave-compliance"
+app/page.tsx.before-final-facility-dashboard:1043:              href="/personnel-orders"
+app/page.tsx.before-final-facility-dashboard:1051:              href="/personnel-orders"
+app/page.tsx.before-final-facility-dashboard:1059:              href="/personnel-orders"
+app/page.tsx.before-final-facility-dashboard:1067:              href="/personnel-orders"
+app/page.tsx.before-final-facility-dashboard:1099:              href="/employees"
+app/page.tsx.before-final-facility-dashboard:1106:              href="/employees"
+app/page.tsx.before-final-facility-dashboard:1183:              href="/requests/new"
+app/page.tsx.before-final-facility-dashboard:1190:              href="/requests/my"
+app/page.tsx.before-final-facility-dashboard:1197:              href="/mypage/employment-contracts"
+app/page.tsx.before-final-facility-dashboard:1215:              href="/mypage/certifications"
+app/page.tsx.before-final-facility-dashboard:1221:              href="/mypage/profile-change"
+app/page.tsx.before-final-facility-dashboard:1227:              href="/mypage/bank-account"
+app/page.tsx.before-final-facility-dashboard:1234:              href="/mypage/my-number"
+app/page.tsx.before-final-facility-dashboard:1240:              href="/mypage/dependent-requests/new"
+app/page.tsx.before-final-facility-dashboard:1315:                href="/requests?status=PENDING"
+app/page.tsx.before-final-facility-dashboard:1322:                href="/profile-change-requests"
+app/page.tsx.before-final-facility-dashboard:1328:                href="/dependent-requests"
+app/page.tsx.before-final-facility-dashboard:1335:                href="/certification-requests"
+app/page.tsx.before-final-facility-dashboard:1342:                href="/requests"
+app/page.tsx.before-final-facility-dashboard:1360:                href="/employees"
+app/page.tsx.before-final-facility-dashboard:1408:                  href="/exports"
+app/page.tsx.before-final-facility-dashboard:1528:                          href={`/requests/${request.id}`}
+app/page.tsx.before-menu-refactor:93:    return <Link href={href}>{card}</Link>;
+app/page.tsx.before-menu-refactor:940:              href="/leave-compliance"
+app/page.tsx.before-menu-refactor:947:              href="/leave-compliance"
+app/page.tsx.before-menu-refactor:954:              href="/leave-compliance"
+app/page.tsx.before-menu-refactor:962:              href="/personnel-orders"
+app/page.tsx.before-menu-refactor:970:              href="/personnel-orders"
+app/page.tsx.before-menu-refactor:978:              href="/personnel-orders"
+app/page.tsx.before-menu-refactor:986:              href="/personnel-orders"
+app/page.tsx.before-menu-refactor:1018:              href="/employees"
+app/page.tsx.before-menu-refactor:1025:              href="/employees"
+app/page.tsx.before-menu-refactor:1102:              href="/requests/new"
+app/page.tsx.before-menu-refactor:1109:              href="/requests/my"
+app/page.tsx.before-menu-refactor:1116:              href="/mypage/employment-contracts"
+app/page.tsx.before-menu-refactor:1134:              href="/mypage/certifications"
+app/page.tsx.before-menu-refactor:1140:              href="/mypage/profile-change"
+app/page.tsx.before-menu-refactor:1146:              href="/mypage/bank-account"
+app/page.tsx.before-menu-refactor:1153:              href="/mypage/my-number"
+app/page.tsx.before-menu-refactor:1159:              href="/mypage/dependent-requests/new"
+app/page.tsx.before-menu-refactor:1234:                href="/requests?status=PENDING"
+app/page.tsx.before-menu-refactor:1241:                href="/profile-change-requests"
+app/page.tsx.before-menu-refactor:1247:                href="/dependent-requests"
+app/page.tsx.before-menu-refactor:1254:                href="/certification-requests"
+app/page.tsx.before-menu-refactor:1261:                href="/requests"
+app/page.tsx.before-menu-refactor:1279:                href="/employees"
+app/page.tsx.before-menu-refactor:1320:                href="/employees"
+app/page.tsx.before-menu-refactor:1326:                href="/employees/new"
+app/page.tsx.before-menu-refactor:1332:                href="/departments"
+app/page.tsx.before-menu-refactor:1338:                href="/leave-balances"
+app/page.tsx.before-menu-refactor:1344:                href="/leave-grants"
+app/page.tsx.before-menu-refactor:1350:                href="/leave-grants/pending"
+app/page.tsx.before-menu-refactor:1357:                href="/leave-expiration"
+app/page.tsx.before-menu-refactor:1363:                href="/employee-leaves"
+app/page.tsx.before-menu-refactor:1370:                href="/employee-retirements"
+app/page.tsx.before-menu-refactor:1377:                href="/organization-history"
+app/page.tsx.before-menu-refactor:1384:                href="/employee-transfers"
+app/page.tsx.before-menu-refactor:1390:                href="/personnel-orders"
+app/page.tsx.before-menu-refactor:1397:                href="/retirement-management"
+app/page.tsx.before-menu-refactor:1403:                href="/masters"
+app/page.tsx.before-menu-refactor:1409:                href="/employee-contracts"
+app/page.tsx.before-menu-refactor:1415:                href="/employee-contracts/new"
+app/page.tsx.before-menu-refactor:1421:                href="/employee-contract-templates"
+app/page.tsx.before-menu-refactor:1427:                href="/bank-accounts"
+app/page.tsx.before-menu-refactor:1434:                href="/my-numbers"
+app/page.tsx.before-menu-refactor:1440:                href="/audit-logs"
+app/page.tsx.before-menu-refactor:1447:                href="/role-permissions"
+app/page.tsx.before-menu-refactor:1456:                    href="/users"
+app/page.tsx.before-menu-refactor:1462:                    href="/user-invitations"
+app/page.tsx.before-menu-refactor:1583:                          href={`/requests/${request.id}`}
+app/masters/page.tsx:55:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/masters/page.tsx:62:            href={menu.href}
+app/annual-leave-service-rules/new/page.tsx:8:        href="/annual-leave-service-rules"
+app/annual-leave-service-rules/[id]/edit/page.tsx:27:        href="/annual-leave-service-rules"
+app/annual-leave-service-rules/page.tsx:12:      <BackLink href="/masters" label="マスタ一覧へ戻る" />
+app/annual-leave-service-rules/page.tsx:17:          href="/annual-leave-service-rules/new"
+app/annual-leave-service-rules/page.tsx:61:                      href={`/annual-leave-service-rules/${rule.id}/edit`}
+app/employee-contracts/renewals/page.tsx.before-expired-alert:37:      <BackLink href="/employee-contracts" label="雇用条件書一覧に戻る" />
+app/employee-contracts/renewals/page.tsx.before-expired-alert:96:                        href={`/employee-contracts/${contract.id}/edit?mode=renewal`}
+app/employee-contracts/renewals/page.tsx:36:      <BackLink href="/employee-contracts" label="雇用条件書一覧に戻る" />
+app/employee-contracts/renewals/page.tsx:102:                        href={`/employee-contracts/${contract.id}/edit?mode=renewal`}
+app/employee-contracts/new/page.tsx.:131:      <BackLink href="/employee-contracts" label="雇用条件書一覧へ戻る" />
+app/employee-contracts/new/page.tsx.:461:            href="/employee-contracts"
+app/employee-contracts/new/page.tsx:134:      <BackLink href="/employee-contracts" label="雇用条件書一覧へ戻る" />
+app/employee-contracts/new/page.tsx:557:            href="/employee-contracts"
+app/employee-contracts/new/page.tsx.before-employee-selector:134:      <BackLink href="/employee-contracts" label="雇用条件書一覧へ戻る" />
+app/employee-contracts/new/page.tsx.before-employee-selector:464:            href="/employee-contracts"
+app/employee-contracts/[id]/edit/page.tsx:156:      <BackLink href="/employee-contracts" label="雇用条件書一覧へ戻る" />
+app/employee-contracts/[id]/edit/page.tsx:627:            href={`/employee-contracts/${contract.id}`}
+app/employee-contracts/[id]/page.tsx:74:      <BackLink href="/employee-contracts" label="雇用条件書一覧へ戻る" />
+app/employee-contracts/[id]/page.tsx:78:            href={`/employee-contracts/${contract.id}/pdf`}
+app/employee-contracts/[id]/page.tsx:86:            href={`/employee-contracts/${contract.id}/edit`}
+app/employee-contracts/[id]/page.tsx:329:                        href={`/employee-contracts/${item.id}`}
+app/employee-contracts/[id]/page.tsx:336:                        href={`/employee-contracts/${item.id}/pdf`}
+app/employee-contracts/[id]/page.tsx:479:                          href={`/api/employment-contracts/${contract.id}/paper-consent`}
+app/employee-contracts/[id]/page.tsx:528:                      href={`/employee-contracts/${contract.id}/saved-pdf/${encodeURIComponent(fileName)}`}
+app/employee-contracts/page.tsx:18:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/employee-contracts/page.tsx:25:          href="/employee-contracts/new"
+app/employee-contracts/page.tsx:88:                    href={`/employee-contracts/${contract.id}`}
+app/bank-accounts/[id]/page.tsx.before-facility-guard:139:      <BackLink href="/bank-accounts" label="口座情報一覧へ戻る" />
+app/bank-accounts/[id]/page.tsx.before-facility-guard:324:                  href={attachment.filePath}
+app/bank-accounts/[id]/page.tsx:189:      <BackLink href="/bank-accounts" label="口座情報一覧へ戻る" />
+app/bank-accounts/[id]/page.tsx:318:                  href={attachment.filePath}
+app/bank-accounts/page.tsx.before-facility-scope:177:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/bank-accounts/page.tsx:192:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/leave-balances/page.tsx.before-list-complete:30:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/leave-balances/page.tsx.stable-complete:25:      <BackLink href="/employees" label="社員一覧に戻る" />
+app/leave-balances/page.tsx.stable-complete:36:          href="/api/leave-reports/export-excel"
+app/leave-balances/page.tsx.before-table:30:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/leave-balances/page.tsx:25:      <BackLink href="/employees" label="職員一覧に戻る" />
+app/leave-balances/page.tsx:36:          href="/api/leave-reports/export-excel"
+app/leave-balances/page.tsx.before-complete-list:30:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/page.tsx.before-kpi-phase2:104:    return <Link href={href}>{card}</Link>;
+app/page.tsx.before-kpi-phase2:909:              href="/leave-compliance"
+app/page.tsx.before-kpi-phase2:916:              href="/leave-compliance"
+app/page.tsx.before-kpi-phase2:923:              href="/leave-compliance"
+app/page.tsx.before-kpi-phase2:1006:              href="/requests/new"
+app/page.tsx.before-kpi-phase2:1013:              href="/requests/my"
+app/page.tsx.before-kpi-phase2:1020:              href="/mypage/employment-contracts"
+app/page.tsx.before-kpi-phase2:1039:              href="/mypage/certifications"
+app/page.tsx.before-kpi-phase2:1045:              href="/mypage/profile-change"
+app/page.tsx.before-kpi-phase2:1051:              href="/mypage/bank-account"
+app/page.tsx.before-kpi-phase2:1058:              href="/mypage/my-number"
+app/page.tsx.before-kpi-phase2:1064:                href="/mypage/dependent-requests/new"
+app/page.tsx.before-kpi-phase2:1153:                href="/requests?status=PENDING"
+app/page.tsx.before-kpi-phase2:1159:              <Link href="/profile-change-requests" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+app/page.tsx.before-kpi-phase2:1163:                href="/dependent-requests"
+app/page.tsx.before-kpi-phase2:1170:                href="/certification-requests"
+app/page.tsx.before-kpi-phase2:1177:                href="/requests"
+app/page.tsx.before-kpi-phase2:1197:                href="/employees"
+app/page.tsx.before-kpi-phase2:1230:                href="/employees"
+app/page.tsx.before-kpi-phase2:1236:                href="/employees/new"
+app/page.tsx.before-kpi-phase2:1242:                href="/departments"
+app/page.tsx.before-kpi-phase2:1248:                href="/leave-balances"
+app/page.tsx.before-kpi-phase2:1254:                href="/leave-grants"
+app/page.tsx.before-kpi-phase2:1260:                href="/leave-grants/pending"
+app/page.tsx.before-kpi-phase2:1267:                href="/leave-expiration"
+app/page.tsx.before-kpi-phase2:1273:                href="/employee-leaves"
+app/page.tsx.before-kpi-phase2:1280:                href="/employee-retirements"
+app/page.tsx.before-kpi-phase2:1287:                href="/organization-history"
+app/page.tsx.before-kpi-phase2:1294:                href="/employee-transfers"
+app/page.tsx.before-kpi-phase2:1300:                href="/masters"
+app/page.tsx.before-kpi-phase2:1306:                href="/employee-contracts"
+app/page.tsx.before-kpi-phase2:1312:                href="/employee-contracts/new"
+app/page.tsx.before-kpi-phase2:1318:                href="/employee-contract-templates"
+app/page.tsx.before-kpi-phase2:1324:                href="/bank-accounts"
+app/page.tsx.before-kpi-phase2:1331:                href="/my-numbers"
+app/page.tsx.before-kpi-phase2:1337:                href="/audit-logs"
+app/page.tsx.before-kpi-phase2:1344:                href="/role-permissions"
+app/page.tsx.before-kpi-phase2:1353:                    href="/users"
+app/page.tsx.before-kpi-phase2:1359:                    href="/user-invitations"
+app/page.tsx.before-kpi-phase2:1495:                          href={`/requests/${request.id}`}
+app/leave-compliance/page.tsx:208:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/leave-compliance/page.tsx:222:            href="/api/leave-compliance/export"
+app/leave-compliance/page.tsx:229:            href="/api/leave-compliance/export-excel"
+app/leave-compliance/page.tsx:236:            href="/"
+app/employee-leaves/page.tsx:110:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/employee-leaves/page.tsx:122:          href="/"
+app/employee-leaves/page.tsx:200:                            href={`/employees/${employee.id}`}
+app/leave-grants/pending/page.tsx:268:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/leave-grants/pending/page.tsx:294:            href="/leave-balances"
+app/leave-grants/pending/page.tsx:301:            href="/leave-grants"
+app/leave-grants/pending/page.tsx:402:                        href={`/employees/${employee.id}`}
+app/leave-grants/page.tsx.before-annual-special-pool:374:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/leave-grants/page.tsx:414:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/leave-grants/page.tsx:417:          href="/leave-grants/seasonal-preview"
+app/leave-grants/seasonal-preview/page.tsx:92:      <BackLink href="/leave-grants" label="有休付与管理に戻る" />
+app/organization-history/page.tsx:41:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/organization-history/page.tsx:53:          href="/"
+app/organization-history/page.tsx:93:                      href={`/employees/${history.employee.id}`}
+app/page.tsx.before-facility-scope-dashboard:95:    return <Link href={href}>{card}</Link>;
+app/page.tsx.before-facility-scope-dashboard:942:              href="/leave-type-balances"
+app/page.tsx.before-facility-scope-dashboard:968:              href="/leave-compliance"
+app/page.tsx.before-facility-scope-dashboard:975:              href="/leave-compliance"
+app/page.tsx.before-facility-scope-dashboard:982:              href="/leave-compliance"
+app/page.tsx.before-facility-scope-dashboard:990:              href="/personnel-orders"
+app/page.tsx.before-facility-scope-dashboard:998:              href="/personnel-orders"
+app/page.tsx.before-facility-scope-dashboard:1006:              href="/personnel-orders"
+app/page.tsx.before-facility-scope-dashboard:1014:              href="/personnel-orders"
+app/page.tsx.before-facility-scope-dashboard:1046:              href="/employees"
+app/page.tsx.before-facility-scope-dashboard:1053:              href="/employees"
+app/page.tsx.before-facility-scope-dashboard:1130:              href="/requests/new"
+app/page.tsx.before-facility-scope-dashboard:1137:              href="/requests/my"
+app/page.tsx.before-facility-scope-dashboard:1144:              href="/mypage/employment-contracts"
+app/page.tsx.before-facility-scope-dashboard:1162:              href="/mypage/certifications"
+app/page.tsx.before-facility-scope-dashboard:1168:              href="/mypage/profile-change"
+app/page.tsx.before-facility-scope-dashboard:1174:              href="/mypage/bank-account"
+app/page.tsx.before-facility-scope-dashboard:1181:              href="/mypage/my-number"
+app/page.tsx.before-facility-scope-dashboard:1187:              href="/mypage/dependent-requests/new"
+app/page.tsx.before-facility-scope-dashboard:1262:                href="/requests?status=PENDING"
+app/page.tsx.before-facility-scope-dashboard:1269:                href="/profile-change-requests"
+app/page.tsx.before-facility-scope-dashboard:1275:                href="/dependent-requests"
+app/page.tsx.before-facility-scope-dashboard:1282:                href="/certification-requests"
+app/page.tsx.before-facility-scope-dashboard:1289:                href="/requests"
+app/page.tsx.before-facility-scope-dashboard:1307:                href="/employees"
+app/page.tsx.before-facility-scope-dashboard:1355:                  href="/exports"
+app/page.tsx.before-facility-scope-dashboard:1475:                          href={`/requests/${request.id}`}
+app/allowance-masters/new/page.tsx:7:      <BackLink href="/allowance-masters" label="手当マスタ一覧へ戻る" />
+app/allowance-masters/[id]/edit/page.tsx:28:      <BackLink href="/allowance-masters" label="手当マスタ一覧へ戻る" />
+app/allowance-masters/page.tsx:19:        href="/masters"
+app/allowance-masters/page.tsx:30:          href="/allowance-masters/new"
+app/allowance-masters/page.tsx:66:                    href={`/allowance-masters/${item.id}/edit`}
+app/leave-expiration/page.tsx:304:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/leave-expiration/page.tsx:356:            href="/leave-balances"
+app/leave-expiration/page.tsx:363:            href="/leave-grants"
+app/page.tsx.before-approval-kpi-facility-scope:96:    return <Link href={href}>{card}</Link>;
+app/page.tsx.before-approval-kpi-facility-scope:873:                href="/facility-switch"
+app/page.tsx.before-approval-kpi-facility-scope:995:              href="/leave-type-balances"
+app/page.tsx.before-approval-kpi-facility-scope:1021:              href="/leave-compliance"
+app/page.tsx.before-approval-kpi-facility-scope:1028:              href="/leave-compliance"
+app/page.tsx.before-approval-kpi-facility-scope:1035:              href="/leave-compliance"
+app/page.tsx.before-approval-kpi-facility-scope:1043:              href="/personnel-orders"
+app/page.tsx.before-approval-kpi-facility-scope:1051:              href="/personnel-orders"
+app/page.tsx.before-approval-kpi-facility-scope:1059:              href="/personnel-orders"
+app/page.tsx.before-approval-kpi-facility-scope:1067:              href="/personnel-orders"
+app/page.tsx.before-approval-kpi-facility-scope:1099:              href="/employees"
+app/page.tsx.before-approval-kpi-facility-scope:1106:              href="/employees"
+app/page.tsx.before-approval-kpi-facility-scope:1183:              href="/requests/new"
+app/page.tsx.before-approval-kpi-facility-scope:1190:              href="/requests/my"
+app/page.tsx.before-approval-kpi-facility-scope:1197:              href="/mypage/employment-contracts"
+app/page.tsx.before-approval-kpi-facility-scope:1215:              href="/mypage/certifications"
+app/page.tsx.before-approval-kpi-facility-scope:1221:              href="/mypage/profile-change"
+app/page.tsx.before-approval-kpi-facility-scope:1227:              href="/mypage/bank-account"
+app/page.tsx.before-approval-kpi-facility-scope:1234:              href="/mypage/my-number"
+app/page.tsx.before-approval-kpi-facility-scope:1240:              href="/mypage/dependent-requests/new"
+app/page.tsx.before-approval-kpi-facility-scope:1315:                href="/requests?status=PENDING"
+app/page.tsx.before-approval-kpi-facility-scope:1322:                href="/profile-change-requests"
+app/page.tsx.before-approval-kpi-facility-scope:1328:                href="/dependent-requests"
+app/page.tsx.before-approval-kpi-facility-scope:1335:                href="/certification-requests"
+app/page.tsx.before-approval-kpi-facility-scope:1342:                href="/requests"
+app/page.tsx.before-approval-kpi-facility-scope:1360:                href="/employees"
+app/page.tsx.before-approval-kpi-facility-scope:1408:                  href="/exports"
+app/page.tsx.before-approval-kpi-facility-scope:1528:                          href={`/requests/${request.id}`}
+app/job-title-masters/new/page.tsx:7:      <BackLink href="/job-title-masters" label="職種マスタ一覧へ戻る" />
+app/job-title-masters/[id]/edit/page.tsx:28:      <BackLink href="/job-title-masters" label="職種マスタ一覧へ戻る" />
+app/job-title-masters/page.tsx:19:        href="/masters"
+app/job-title-masters/page.tsx:30:          href="/job-title-masters/new"
+app/job-title-masters/page.tsx:66:                    href={`/job-title-masters/${item.id}/edit`}
+app/certifications/[id]/employees/page.tsx:52:          href="/certification-reports"
+app/certifications/[id]/employees/page.tsx:101:                    href={`/employees/${item.employee.id}`}
+app/certifications/page.tsx:43:          href="/certifications/new"
+app/certifications/page.tsx:114:                      href={`/certifications/${certification.id}/edit`}
+app/employment-category-masters/new/page.tsx:7:      <BackLink href="/employment-category-masters" label="雇用形態マスタ一覧へ戻る" />
+app/employment-category-masters/page.tsx:19:        href="/masters"
+app/employment-category-masters/page.tsx:30:          href="/employment-category-masters/new"
+app/employment-category-masters/page.tsx:68:                    href={`/employment-category-masters/${item.id}/edit`}
+app/certification-reports/page.tsx:162:      <BackLink href="/certifications" label="資格マスタへ戻る" />
+app/certification-reports/page.tsx:212:                    <Link href={`/employees/${item.employee.id}`} className="text-blue-600 hover:underline">
+app/retirement-management/[id]/page.tsx.before-db:7:        href="/retirement-management"
+app/retirement-management/[id]/page.tsx:64:        href="/retirement-management"
+app/retirement-management/[id]/assets/page.tsx.before-form:45:        href={`/retirement-management/${id}`}
+app/retirement-management/[id]/assets/page.tsx.before-save:44:        href={`/retirement-management/${id}`}
+app/retirement-management/[id]/assets/page.tsx.before-db:26:        href={`/retirement-management/${id}`}
+app/retirement-management/[id]/assets/page.tsx.before-checkbox:45:        href={`/retirement-management/${id}`}
+app/retirement-management/[id]/assets/page.tsx:55:        href={`/retirement-management/${id}`}
+app/retirement-management/[id]/certificate/page.tsx.bak:38:      <BackLink href={`/retirement-management/${id}`} label="退職管理へ戻る" />
+app/retirement-management/[id]/certificate/page.tsx.bak:106:            href={`/retirement-management/${id}/certificate/pdf`}
+app/retirement-management/[id]/certificate/page.tsx.pre-law22:38:      <BackLink href={`/retirement-management/${id}`} label="退職管理へ戻る" />
+app/retirement-management/[id]/certificate/page.tsx.pre-law22:106:            href={`/retirement-management/${id}/certificate/pdf`}
+app/retirement-management/[id]/certificate/page.tsx:38:      <BackLink href={`/retirement-management/${id}`} label="退職管理へ戻る" />
+app/retirement-management/[id]/certificate/page.tsx:167:            href={`/retirement-management/${id}/certificate/pdf`}
+app/retirement-management/page.tsx:33:      <BackLink href="/" label="ダッシュボードに戻る" />
+app/retirement-management/page.tsx:89:                    href={`/employees/${employee.id}`}
+app/page.tsx:96:    return <Link href={href}>{card}</Link>;
+app/page.tsx:994:                href="/facility-switch"
+app/page.tsx:1116:              href="/leave-type-balances"
+app/page.tsx:1135:              href="/certification-reports"
+app/page.tsx:1141:              href="/certification-reports"
+app/page.tsx:1147:              href="/certification-reports"
+app/page.tsx:1161:              href="/leave-compliance"
+app/page.tsx:1168:              href="/leave-compliance"
+app/page.tsx:1175:              href="/leave-compliance"
+app/page.tsx:1183:              href="/personnel-orders"
+app/page.tsx:1191:              href="/personnel-orders"
+app/page.tsx:1199:              href="/personnel-orders"
+app/page.tsx:1207:              href="/personnel-orders"
+app/page.tsx:1239:              href="/employees"
+app/page.tsx:1246:              href="/employees"
+app/page.tsx:1323:              href="/requests/new"
+app/page.tsx:1330:              href="/requests/my"
+app/page.tsx:1338:              href="/mypage/employment-contracts"
+app/page.tsx:1357:              href="/mypage/certifications"
+app/page.tsx:1363:              href="/mypage/profile-change"
+app/page.tsx:1369:              href="/mypage/bank-account"
+app/page.tsx:1376:              href="/mypage/my-number"
+app/page.tsx:1382:              href="/mypage/dependent-requests/new"
+app/page.tsx:1389:              href="/mypage/employment-contracts"
+app/page.tsx:1464:                href="/requests?status=PENDING"
+app/page.tsx:1471:                href="/profile-change-requests"
+app/page.tsx:1477:                href="/dependent-requests"
+app/page.tsx:1484:                href="/certification-requests"
+app/page.tsx:1491:                href="/requests"
+app/page.tsx:1509:                href="/employees"
+app/page.tsx:1557:                  href="/exports"
+app/page.tsx:1677:                          href={`/requests/${request.id}`}
+app/profile-change-requests/page.tsx.before-facility-scope:210:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/profile-change-requests/page.tsx:227:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/position-masters/new/page.tsx:7:      <BackLink href="/position-masters" label="役職マスタ一覧へ戻る" />
+app/position-masters/[id]/edit/page.tsx:28:      <BackLink href="/position-masters" label="役職マスタ一覧へ戻る" />
+app/position-masters/page.tsx:19:        href="/masters"
+app/position-masters/page.tsx:30:          href="/position-masters/new"
+app/position-masters/page.tsx:66:                    href={`/position-masters/${item.id}/edit`}
+app/requests/page.tsx.before-export:68:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/requests/page.tsx.before-export:79:          href="/requests/new"
+app/requests/page.tsx.before-export:167:                        href={`/requests/${request.id}`}
+app/requests/page.tsx.before-manager-security:186:      <BackLink href="/" label="ダッシュボードに戻る" />
+app/requests/page.tsx.before-manager-security:226:          href="/requests"
+app/requests/page.tsx.before-manager-security:318:                        href={`/requests/${request.id}`}
+app/requests/page.tsx.before-search-ui:145:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/requests/page.tsx.before-admin-list-final:68:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/requests/page.tsx.before-admin-list-final:79:          href="/requests/new"
+app/requests/page.tsx.before-admin-list-final:167:                        href={`/requests/${request.id}`}
+app/requests/page.tsx.stable-admin-complete:167:      <BackLink href="/" label="ダッシュボードに戻る" />
+app/requests/page.tsx.stable-admin-complete:202:          href="/requests"
+app/requests/page.tsx.stable-admin-complete:294:                        href={`/requests/${request.id}`}
+app/requests/page.tsx.stable-20260830:68:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/requests/page.tsx.stable-20260830:79:          href="/requests/new"
+app/requests/page.tsx.stable-20260830:167:                        href={`/requests/${request.id}`}
+app/requests/my/page.tsx.before-list-complete:84:      <Link href="/" style={{ display: "inline-block", marginTop: "24px", color: "#0070f3", textDecoration: "none" }}>
+app/requests/my/page.tsx:68:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/requests/my/page.tsx:79:          href="/requests/new"
+app/requests/my/page.tsx:167:                        href={`/requests/${request.id}`}
+app/requests/my/page.tsx.before-hospital-list:65:      <Link href="/" style={{ display: "inline-block", marginTop: "24px", color: "#0070f3", textDecoration: "none" }}>
+app/requests/page.tsx.stable-admin-search-base:145:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/requests/new/page.tsx.before:481:      <BackLink href="/requests/my" label="申請一覧へ戻る" />
+app/requests/new/page.tsx.before-approval-create:499:      <BackLink href="/requests/my" label="申請一覧へ戻る" />
+app/requests/new/page.tsx.before-balance-display:437:      <BackLink href="/requests/my" label="申請一覧へ戻る" />
+app/requests/new/page.tsx.before-annual-unit:380:      <BackLink href="/requests/my" label="申請一覧へ戻る" />
+app/requests/new/page.tsx:538:      <BackLink href="/requests/my" label="申請一覧へ戻る" />
+app/requests/new/page.tsx.before-dynamic-leave:375:      <BackLink href="/requests/my" label="申請一覧へ戻る" />
+app/requests/new/page.tsx.before-care-balance:326:      <BackLink href="/requests/my" label="申請一覧へ戻る" />
+app/requests/page.tsx.before-admin-restore:68:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/requests/page.tsx.before-admin-restore:79:          href="/requests/new"
+app/requests/page.tsx.before-admin-restore:167:                        href={`/requests/${request.id}`}
+app/requests/page.tsx.before-admin-rebuild-final:145:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/requests/page.tsx.before-search-filter-ui:145:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/requests/[id]/page.tsx.before-care-approval:339:      <BackLink href="/requests" label="申請一覧へ戻る" />
+app/requests/[id]/page.tsx.before-care-approval:380:                  href={attachment.filePath}
+app/requests/[id]/page.tsx.before-category-approval:329:      <BackLink href="/requests" label="申請一覧へ戻る" />
+app/requests/[id]/page.tsx.before-category-approval:370:                  href={attachment.filePath}
+app/requests/[id]/page.tsx.before-multistep-approval:454:      <BackLink href="/requests" label="申請一覧へ戻る" />
+app/requests/[id]/page.tsx.before-multistep-approval:553:                  href={attachment.filePath}
+app/requests/[id]/edit/page.tsx.before-hospital-ui:59:      <BackLink href="/requests" label="申請一覧へ戻る" />
+app/requests/[id]/edit/page.tsx.before-hospital-ui:122:          <Link href={`/requests/${id}`} className="text-sm text-gray-600 hover:underline">
+app/requests/[id]/edit/page.tsx:59:      <BackLink href="/requests" label="申請一覧へ戻る" />
+app/requests/[id]/edit/page.tsx:148:            href={`/requests/${id}`}
+app/requests/[id]/page.tsx.before-approval-status-ui:548:      <BackLink href="/requests" label="申請一覧へ戻る" />
+app/requests/[id]/page.tsx.before-approval-status-ui:647:                  href={attachment.filePath}
+app/requests/[id]/page.tsx.before-attendance-link:364:      <BackLink href="/requests" label="申請一覧へ戻る" />
+app/requests/[id]/page.tsx.before-attendance-link:463:                  href={attachment.filePath}
+app/requests/[id]/page.tsx:572:      <BackLink href="/requests" label="申請一覧へ戻る" />
+app/requests/[id]/page.tsx:673:                  href={attachment.filePath}
+app/requests/page.tsx.before-admin-table:145:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/requests/page.tsx.before-secured-scope-fix:198:      <BackLink href="/" label="ダッシュボードに戻る" />
+app/requests/page.tsx.before-secured-scope-fix:238:          href="/requests"
+app/requests/page.tsx.before-secured-scope-fix:330:                        href={`/requests/${request.id}`}
+app/requests/page.tsx.before-admin-request-list:145:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/requests/page.tsx.before-facility-scope:167:      <BackLink href="/" label="ダッシュボードに戻る" />
+app/requests/page.tsx.before-facility-scope:202:          href="/requests"
+app/requests/page.tsx.before-facility-scope:294:                        href={`/requests/${request.id}`}
+app/requests/page.tsx.before-admin-list-recovery:145:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/requests/page.tsx.before-full-rebuild:145:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/requests/page.tsx:200:      <BackLink href="/" label="ダッシュボードに戻る" />
+app/requests/page.tsx:240:          href="/requests"
+app/requests/page.tsx:332:                        href={`/requests/${request.id}`}
+app/requests/[id:572:      <BackLink href="/requests" label="申請一覧へ戻る" />
+app/requests/[id:673:                  href={attachment.filePath}
+app/requests/page.tsx.stable-admin-kpi:68:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/requests/page.tsx.stable-admin-kpi:79:          href="/requests/new"
+app/requests/page.tsx.stable-admin-kpi:167:                        href={`/requests/${request.id}`}
+app/requests/page.tsx.before-request-export-button:167:      <BackLink href="/" label="ダッシュボードに戻る" />
+app/requests/page.tsx.before-request-export-button:202:          href="/requests"
+app/requests/page.tsx.before-request-export-button:294:                        href={`/requests/${request.id}`}
+app/requests/page.tsx.pre-admin-final:68:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/requests/page.tsx.pre-admin-final:79:          href="/requests/new"
+app/requests/page.tsx.pre-admin-final:167:                        href={`/requests/${request.id}`}
+app/requests/page.tsx.before-admin-rebuild:145:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/certificates/employment/page.tsx:15:      <BackLink href="/certificates" label="戻る" />
+app/certificates/employment/page.tsx:26:            href={`/employment-certificates/${employee.id}/pdf`}
+app/certificates/retirement/page.tsx:15:      <BackLink href="/certificates" label="証明書センターへ" />
+app/certificates/retirement/page.tsx:26:            href={`/retirement-management/${employee.id}/certificate`}
+app/certificates/page.tsx:20:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/certificates/page.tsx:29:            href={card.href}
+app/employee-transfers/import/page.tsx:30:      <BackLink href="/employee-transfers" label="人事異動履歴一覧へ戻る" />
+app/employee-transfers/page.tsx.before-facility-transfer:28:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/employee-transfers/page.tsx.before-facility-transfer:40:          href="/"
+app/employee-transfers/page.tsx.before-facility-transfer:79:                      href={`/employees/${item.employee.id}`}
+app/employee-transfers/page.tsx:25:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/employee-transfers/page.tsx:35:          href="/"
+app/employee-transfers/page.tsx:73:                      href={`/employees/${item.employee.id}`}
+app/page.tsx.stable-dashboard-complete:94:    return <Link href={href}>{card}</Link>;
+app/page.tsx.stable-dashboard-complete:933:              href="/leave-type-balances"
+app/page.tsx.stable-dashboard-complete:959:              href="/leave-compliance"
+app/page.tsx.stable-dashboard-complete:966:              href="/leave-compliance"
+app/page.tsx.stable-dashboard-complete:973:              href="/leave-compliance"
+app/page.tsx.stable-dashboard-complete:981:              href="/personnel-orders"
+app/page.tsx.stable-dashboard-complete:989:              href="/personnel-orders"
+app/page.tsx.stable-dashboard-complete:997:              href="/personnel-orders"
+app/page.tsx.stable-dashboard-complete:1005:              href="/personnel-orders"
+app/page.tsx.stable-dashboard-complete:1037:              href="/employees"
+app/page.tsx.stable-dashboard-complete:1044:              href="/employees"
+app/page.tsx.stable-dashboard-complete:1121:              href="/requests/new"
+app/page.tsx.stable-dashboard-complete:1128:              href="/requests/my"
+app/page.tsx.stable-dashboard-complete:1135:              href="/mypage/employment-contracts"
+app/page.tsx.stable-dashboard-complete:1153:              href="/mypage/certifications"
+app/page.tsx.stable-dashboard-complete:1159:              href="/mypage/profile-change"
+app/page.tsx.stable-dashboard-complete:1165:              href="/mypage/bank-account"
+app/page.tsx.stable-dashboard-complete:1172:              href="/mypage/my-number"
+app/page.tsx.stable-dashboard-complete:1178:              href="/mypage/dependent-requests/new"
+app/page.tsx.stable-dashboard-complete:1253:                href="/requests?status=PENDING"
+app/page.tsx.stable-dashboard-complete:1260:                href="/profile-change-requests"
+app/page.tsx.stable-dashboard-complete:1266:                href="/dependent-requests"
+app/page.tsx.stable-dashboard-complete:1273:                href="/certification-requests"
+app/page.tsx.stable-dashboard-complete:1280:                href="/requests"
+app/page.tsx.stable-dashboard-complete:1298:                href="/employees"
+app/page.tsx.stable-dashboard-complete:1346:                  href="/exports"
+app/page.tsx.stable-dashboard-complete:1466:                          href={`/requests/${request.id}`}
+app/page.tsx.before-alert-kpi:104:    return <Link href={href}>{card}</Link>;
+app/page.tsx.before-alert-kpi:941:              href="/leave-compliance"
+app/page.tsx.before-alert-kpi:948:              href="/leave-compliance"
+app/page.tsx.before-alert-kpi:955:              href="/leave-compliance"
+app/page.tsx.before-alert-kpi:1063:              href="/requests/new"
+app/page.tsx.before-alert-kpi:1070:              href="/requests/my"
+app/page.tsx.before-alert-kpi:1077:              href="/mypage/employment-contracts"
+app/page.tsx.before-alert-kpi:1096:              href="/mypage/certifications"
+app/page.tsx.before-alert-kpi:1102:              href="/mypage/profile-change"
+app/page.tsx.before-alert-kpi:1108:              href="/mypage/bank-account"
+app/page.tsx.before-alert-kpi:1115:              href="/mypage/my-number"
+app/page.tsx.before-alert-kpi:1121:                href="/mypage/dependent-requests/new"
+app/page.tsx.before-alert-kpi:1210:                href="/requests?status=PENDING"
+app/page.tsx.before-alert-kpi:1216:              <Link href="/profile-change-requests" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+app/page.tsx.before-alert-kpi:1220:                href="/dependent-requests"
+app/page.tsx.before-alert-kpi:1227:                href="/certification-requests"
+app/page.tsx.before-alert-kpi:1234:                href="/requests"
+app/page.tsx.before-alert-kpi:1254:                href="/employees"
+app/page.tsx.before-alert-kpi:1287:                href="/employees"
+app/page.tsx.before-alert-kpi:1293:                href="/employees/new"
+app/page.tsx.before-alert-kpi:1299:                href="/departments"
+app/page.tsx.before-alert-kpi:1305:                href="/leave-balances"
+app/page.tsx.before-alert-kpi:1311:                href="/leave-grants"
+app/page.tsx.before-alert-kpi:1317:                href="/leave-grants/pending"
+app/page.tsx.before-alert-kpi:1324:                href="/leave-expiration"
+app/page.tsx.before-alert-kpi:1330:                href="/employee-leaves"
+app/page.tsx.before-alert-kpi:1337:                href="/employee-retirements"
+app/page.tsx.before-alert-kpi:1344:                href="/organization-history"
+app/page.tsx.before-alert-kpi:1351:                href="/employee-transfers"
+app/page.tsx.before-alert-kpi:1357:                href="/masters"
+app/page.tsx.before-alert-kpi:1363:                href="/employee-contracts"
+app/page.tsx.before-alert-kpi:1369:                href="/employee-contracts/new"
+app/page.tsx.before-alert-kpi:1375:                href="/employee-contract-templates"
+app/page.tsx.before-alert-kpi:1381:                href="/bank-accounts"
+app/page.tsx.before-alert-kpi:1388:                href="/my-numbers"
+app/page.tsx.before-alert-kpi:1394:                href="/audit-logs"
+app/page.tsx.before-alert-kpi:1401:                href="/role-permissions"
+app/page.tsx.before-alert-kpi:1410:                    href="/users"
+app/page.tsx.before-alert-kpi:1416:                    href="/user-invitations"
+app/page.tsx.before-alert-kpi:1552:                          href={`/requests/${request.id}`}
+app/employee-retirements/page.tsx:50:      <BackLink href="/" label="ダッシュボードへ戻る" />
+app/employee-retirements/page.tsx:62:          href="/"
+app/employee-retirements/page.tsx:104:                        href={`/employees/${employee.id}`}
+app/employee-retirements/page.tsx:165:                        href={`/employees/${employee.id}`}

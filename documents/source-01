@@ -1,0 +1,371 @@
+        status: "APPROVED",
+      },
+    }),
+    prisma.employeeRequest.count({
+      where: {
+        userId: user.id,
+        status: "REJECTED",
+      },
+    }),
+    prisma.profileChangeRequest.count({
+      where: {
+        status: "PENDING",
+      },
+    }),
+    prisma.employeeCertification.count({
+      where: {
+        status: "PENDING",
+      },
+    }),
+    prisma.employeeBankAccount.count({
+      where: {
+        verifiedAt: null,
+      },
+    }),
+    prisma.employeeMyNumber.count({
+      where: {
+        status: "PENDING",
+      },
+    }),
+    prisma.employeeCertification.count({
+      where: {
+        employee: {
+          userId: user.id,
+        },
+        status: "APPROVED",
+      },
+    }),
+    prisma.leaveBalance.findFirst({
+      where: {
+        employee: {
+          userId: user.id,
+        },
+      },
+    }),
+    prisma.profileChangeRequest.count({
+      where: {
+        employee: {
+          userId: user.id,
+        },
+        status: "PENDING",
+      },
+    }),
+
+    prisma.employee.count({
+      where: {
+        ...employeeFacilityWhere,
+        status: "PRE_HIRE",
+      },
+    }),
+
+    prisma.jobTitleMaster.count(),
+
+    prisma.positionMaster.count(),
+
+    prisma.employmentContract.count({
+      where:
+        facilityScope === "ALL"
+          ? undefined
+          : {
+              employee: {
+                facilityId: facilityScope,
+              },
+            },
+    }),
+
+    prisma.employee.count({
+      where: {
+        ...employeeFacilityWhere,
+        status: {
+          not: "RETIRED",
+        },
+        employmentContracts: {
+          none: {},
+        },
+      },
+    }),
+
+    prisma.employmentContract.count({
+      where: {
+        isCurrent: true,
+        endDate: {
+          gte: contractTodayStart,
+          lte: contractEnd30DaysLater,
+        },
+        ...(facilityScope !== "ALL"
+          ? {
+              employee: {
+                facilityId: facilityScope,
+              },
+            }
+          : {}),
+      },
+    }),
+
+    prisma.employmentHistory.count({
+      where: {
+        ...(facilityScope !== "ALL"
+          ? {
+              employee: {
+                facilityId: facilityScope,
+              },
+            }
+          : {}),
+        action: "TRANSFER",
+        effectiveDate: {
+          gte: currentMonthStart,
+          lte: currentMonthEnd,
+        },
+      },
+    }),
+
+    prisma.employmentHistory.count({
+      where: {
+        ...(facilityScope !== "ALL"
+          ? {
+              employee: {
+                facilityId: facilityScope,
+              },
+            }
+          : {}),
+        action: "POSITION_CHANGE",
+        effectiveDate: {
+          gte: currentMonthStart,
+          lte: currentMonthEnd,
+        },
+      },
+    }),
+
+    prisma.employmentHistory.count({
+      where: {
+        ...(facilityScope !== "ALL"
+          ? {
+              employee: {
+                facilityId: facilityScope,
+              },
+            }
+          : {}),
+        action: "LEAVE_STARTED",
+        effectiveDate: {
+          gte: currentMonthStart,
+          lte: currentMonthEnd,
+        },
+      },
+    }),
+
+    prisma.employmentHistory.count({
+      where: {
+        ...(facilityScope !== "ALL"
+          ? {
+              employee: {
+                facilityId: facilityScope,
+              },
+            }
+          : {}),
+        action: "RETIRED",
+        effectiveDate: {
+          gte: currentMonthStart,
+          lte: currentMonthEnd,
+        },
+      },
+    }),
+  ]);
+
+  const certificationExpiryToday = getTodayOnly();
+
+  const certificationExpiry30DaysLater =
+    new Date(certificationExpiryToday);
+  certificationExpiry30DaysLater.setDate(
+    certificationExpiry30DaysLater.getDate() + 30,
+  );
+  certificationExpiry30DaysLater.setHours(23, 59, 59, 999);
+
+  const certificationExpiry90DaysLater =
+    new Date(certificationExpiryToday);
+  certificationExpiry90DaysLater.setDate(
+    certificationExpiry90DaysLater.getDate() + 90,
+  );
+  certificationExpiry90DaysLater.setHours(23, 59, 59, 999);
+
+  const [
+    expiredCertificationCount,
+    warning30CertificationCount,
+    warning90CertificationCount,
+  ] = await Promise.all([
+    prisma.employeeCertification.count({
+      where: {
+        certification: {
+          expiryManaged: true,
+        },
+
+
+===== FILE: lib/audit-log.ts =====
+
+import { prisma } from "@/lib/prisma";
+
+type LogAuditParams = {
+  userId?: string | null;
+  userName?: string | null;
+  action: string;
+  targetType: string;
+  targetId?: string | null;
+  description?: string | null;
+  beforeData?: unknown;
+  afterData?: unknown;
+};
+
+function toJsonValue(value: unknown) {
+  if (value === undefined) {
+    return undefined;
+  }
+
+  return JSON.parse(JSON.stringify(value));
+}
+
+export async function logAudit({
+  userId,
+  userName,
+  action,
+  targetType,
+  targetId,
+  description,
+  beforeData,
+  afterData,
+}: LogAuditParams) {
+  await prisma.auditLog.create({
+    data: {
+      userId,
+      userName,
+      action,
+      targetType,
+      targetId,
+      description,
+      beforeData: toJsonValue(beforeData),
+      afterData: toJsonValue(afterData),
+    },
+  });
+}
+
+
+===== FILE: lib/auth-guard.ts =====
+
+import { auth } from "../auth";
+import { redirect } from "next/navigation";
+
+export async function requireRole(
+  roles: string[],
+) {
+  const session = await auth();
+
+  if (!session?.user) {
+    redirect("/login");
+  }
+
+  if (!roles.includes(session.user.role)) {
+    redirect("/");
+  }
+
+  return session;
+}
+
+export async function requireAdmin() {
+  return requireRole(["ADMIN"]);
+}
+
+export async function requireHRManager() {
+  return requireRole([
+    "ADMIN",
+    "HR_MANAGER",
+  ]);
+}
+
+export async function requireManager() {
+  return requireRole([
+    "ADMIN",
+    "HR_MANAGER",
+    "MANAGER",
+  ]);
+}
+
+
+===== FILE: auth.ts =====
+
+import NextAuth from "next-auth";
+import Credentials from "next-auth/providers/credentials";
+import bcrypt from "bcrypt";
+
+import authConfig from "./auth.config";
+import { prisma } from "./lib/prisma";
+
+export const { handlers, auth, signIn, signOut } = NextAuth({
+  ...authConfig,
+
+  providers: [
+    Credentials({
+      name: "Credentials",
+      credentials: {
+        email: { label: "Email", type: "email" },
+        password: { label: "Password", type: "password" },
+      },
+
+      async authorize(credentials) {
+        if (!credentials?.email || !credentials?.password) {
+          return null;
+        }
+
+        const email = String(credentials.email);
+        const password = String(credentials.password);
+
+        const user = await prisma.user.findUnique({
+          where: { email },
+        });
+
+        console.log("LOGIN EMAIL:", email);
+        console.log("FOUND USER:", user?.email);
+
+        if (!user) {
+          return null;
+        }
+
+        if (!user.isActive) {
+          return null;
+        }
+
+        const isValid = await bcrypt.compare(password, user.password);
+
+        console.log("PASSWORD VALID:", isValid);
+
+        if (!isValid) {
+          return null;
+        }
+
+        return {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          role: user.role,
+        };
+      },
+    }),
+  ],
+
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.role = user.role;
+      }
+
+      return token;
+    },
+
+    async session({ session, token }) {
+      if (session.user && token) {
+        session.user.id = String(token.id ?? "");
+        session.user.role = String(token.role ?? "USER");
+      }
+
+      return session;
+    },
+  },
+});

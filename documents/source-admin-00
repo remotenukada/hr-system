@@ -1,0 +1,1053 @@
+
+
+===== FILE: app/users/page.tsx =====
+
+import BackLink from "@/components/BackLink";
+import Link from "next/link";
+import { prisma } from "@/lib/prisma";
+import { requireAdmin } from "@/lib/auth-guard";
+
+function formatRole(role: string) {
+  const labels: Record<string, string> = {
+    ADMIN: "システム管理者",
+    HR_MANAGER: "人事管理者",
+    MANAGER: "部署責任者",
+    USER: "一般利用者",
+  };
+
+  return labels[role] ?? role;
+}
+
+export default async function UsersPage() {
+  await requireAdmin();
+
+  const users = await prisma.user.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  return (
+    <main className="mx-auto max-w-6xl p-8">
+      <BackLink href="/" label="ダッシュボードへ戻る" />
+      <div className="mb-6 flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold">ユーザー管理</h1>
+          <p className="mt-1 text-sm text-gray-500">
+            ログインユーザーと権限を管理します。
+          </p>
+        </div>
+
+        <div className="flex gap-2">
+          <Link
+            href="/users/new"
+            className="rounded bg-black px-4 py-2 text-sm text-white hover:bg-gray-800"
+          >
+            新規ユーザー作成
+          </Link>
+
+          <Link
+            href="/"
+            className="rounded border bg-white px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+          >
+            ダッシュボードへ戻る
+          </Link>
+        </div>
+      </div>
+
+      <div className="overflow-x-auto rounded border bg-white">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="bg-gray-50">
+              <th className="p-3 text-left">氏名</th>
+              <th className="p-3 text-left">メールアドレス</th>
+              <th className="p-3 text-left">権限</th>
+              <th className="p-3 text-left">状態</th>
+              <th className="p-3 text-left">作成日</th>
+              <th className="p-3 text-left">操作</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {users.length === 0 ? (
+              <tr>
+                <td colSpan={6} className="p-8 text-center text-gray-500">
+                  ユーザーが登録されていません。
+                </td>
+              </tr>
+            ) : (
+              users.map((user) => (
+                <tr key={user.id} className="border-t">
+                  <td className="p-3 font-medium">{user.name}</td>
+
+                  <td className="p-3">{user.email}</td>
+
+                  <td className="p-3">{formatRole(user.role)}</td>
+
+                  <td className="p-3">
+                    <span
+                      className={
+                        user.isActive
+                          ? "rounded bg-green-100 px-2 py-1 text-xs font-medium text-green-700"
+                          : "rounded bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600"
+                      }
+                    >
+                      {user.isActive ? "有効" : "無効"}
+                    </span>
+                  </td>
+
+                  <td className="p-3">
+                    {user.createdAt.toLocaleDateString("ja-JP")}
+                  </td>
+
+                  <td className="p-3">
+                    <Link
+                      href={`/users/${user.id}/edit`}
+                      className="text-blue-600 hover:underline"
+                    >
+                      編集
+                    </Link>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    </main>
+  );
+}
+
+
+===== FILE: app/users/new/page.tsx =====
+
+import BackLink from "@/components/BackLink";
+import Link from "next/link";
+import bcrypt from "bcrypt";
+import { redirect } from "next/navigation";
+import { prisma } from "@/lib/prisma";
+import { requireAdmin } from "@/lib/auth-guard";
+import { logAudit } from "@/lib/audit-log";
+import { UserRole } from "@/generated/prisma";
+
+type Props = {
+  searchParams: Promise<{
+    error?: string;
+  }>;
+};
+
+type UserRoleValue = (typeof UserRole)[keyof typeof UserRole];
+
+const USER_ROLES = [
+  UserRole.ADMIN,
+  UserRole.HR_MANAGER,
+  UserRole.MANAGER,
+  UserRole.USER,
+] as const;
+
+function isValidRole(role: string): role is UserRoleValue {
+  return USER_ROLES.includes(role as UserRoleValue);
+}
+
+function redirectWithError(message: string) {
+  redirect(`/users/new?error=${encodeURIComponent(message)}`);
+}
+
+async function createUser(formData: FormData) {
+  "use server";
+
+  const session = await requireAdmin();
+
+  const name = String(formData.get("name") ?? "").trim();
+  const email = String(formData.get("email") ?? "").trim();
+  const password = String(formData.get("password") ?? "");
+  const roleRaw = String(formData.get("role") ?? UserRole.USER);
+
+  const role = isValidRole(roleRaw) ? roleRaw : UserRole.USER;
+
+  if (!name || !email || !password) {
+    redirectWithError("氏名、メールアドレス、パスワードは必須です。");
+  }
+
+  if (password.length < 8) {
+    redirectWithError("パスワードは8文字以上にしてください。");
+  }
+
+  const existingUser = await prisma.user.findUnique({
+    where: {
+      email,
+    },
+  });
+
+  if (existingUser) {
+    redirectWithError("このメールアドレスは既に登録されています。");
+  }
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  const createdUser = await prisma.user.create({
+    data: {
+      name,
+      email,
+      password: hashedPassword,
+      role,
+    },
+  });
+
+  await logAudit({
+    userId: session.user.id,
+    userName: session.user.name,
+    action: "USER_CREATED",
+    targetType: "User",
+    targetId: createdUser.id,
+    description: `ユーザー作成: ${createdUser.email}`,
+    afterData: {
+      name: createdUser.name,
+      email: createdUser.email,
+      role: createdUser.role,
+    },
+  });
+
+  redirect("/users");
+}
+
+export default async function NewUserPage({ searchParams }: Props) {
+  await requireAdmin();
+
+  const params = await searchParams;
+  const error = params.error;
+
+  return (
+    <main className="mx-auto max-w-2xl p-8">
+      <BackLink href="/users" label="ユーザー一覧へ戻る" />
+      <div className="mb-6">
+        <Link href="/users" className="text-sm text-gray-500 hover:underline">
+          ← ユーザー一覧へ戻る
+        </Link>
+
+        <h1 className="mt-2 text-3xl font-bold">新規ユーザー作成</h1>
+
+        <p className="mt-1 text-sm text-gray-500">
+          ログイン用ユーザーを作成します。
+        </p>
+      </div>
+
+      {error && (
+        <div className="mb-4 rounded border border-red-200 bg-red-50 p-3 text-sm font-medium text-red-700">
+          {error}
+        </div>
+      )}
+
+      <form
+        action={createUser}
+        className="space-y-4 rounded border bg-white p-6 shadow-sm"
+      >
+        <div>
+          <label className="mb-1 block text-sm font-medium">氏名</label>
+          <input name="name" className="w-full rounded border p-2" required />
+        </div>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium">
+            メールアドレス
+          </label>
+          <input
+            type="email"
+            name="email"
+            className="w-full rounded border p-2"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium">パスワード</label>
+          <input
+            type="password"
+            name="password"
+            minLength={8}
+            className="w-full rounded border p-2"
+            required
+          />
+          <p className="mt-1 text-xs text-gray-500">
+            8文字以上で入力してください。
+          </p>
+        </div>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium">権限</label>
+          <select
+            name="role"
+            className="w-full rounded border bg-white p-2"
+            defaultValue={UserRole.USER}
+          >
+            <option value={UserRole.ADMIN}>システム管理者</option>
+            <option value={UserRole.HR_MANAGER}>人事管理者</option>
+            <option value={UserRole.MANAGER}>部署責任者</option>
+            <option value={UserRole.USER}>一般利用者</option>
+          </select>
+        </div>
+
+        <div className="flex gap-3 pt-2">
+          <button
+            type="submit"
+            className="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+          >
+            作成
+          </button>
+
+          <Link
+            href="/users"
+            className="rounded border bg-white px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+          >
+            キャンセル
+          </Link>
+        </div>
+      </form>
+    </main>
+  );
+}
+
+
+===== FILE: app/users/[id]/edit/page.tsx =====
+
+import BackLink from "@/components/BackLink";
+import Link from "next/link";
+import bcrypt from "bcrypt";
+import { notFound, redirect } from "next/navigation";
+import { prisma } from "@/lib/prisma";
+import { requireAdmin } from "@/lib/auth-guard";
+import { logAudit } from "@/lib/audit-log";
+import { UserRole } from "@/generated/prisma";
+
+type Props = {
+  params: Promise<{
+    id: string;
+  }>;
+  searchParams: Promise<{
+    error?: string;
+  }>;
+};
+
+type UserRoleValue = (typeof UserRole)[keyof typeof UserRole];
+
+const USER_ROLES = [
+  UserRole.ADMIN,
+  UserRole.HR_MANAGER,
+  UserRole.MANAGER,
+  UserRole.USER,
+] as const;
+
+function isValidRole(role: string): role is UserRoleValue {
+  return USER_ROLES.includes(role as UserRoleValue);
+}
+
+function redirectWithError(id: string, message: string) {
+  redirect(`/users/${id}/edit?error=${encodeURIComponent(message)}`);
+}
+
+async function updateUser(formData: FormData) {
+  "use server";
+
+  const session = await requireAdmin();
+
+  const id = String(formData.get("id") ?? "");
+  const name = String(formData.get("name") ?? "").trim();
+  const email = String(formData.get("email") ?? "").trim();
+  const password = String(formData.get("password") ?? "");
+  const isActive = formData.get("isActive") === "on";
+  const roleRaw = String(formData.get("role") ?? UserRole.USER);
+
+  const role = isValidRole(roleRaw) ? roleRaw : UserRole.USER;
+
+  if (!id || !name || !email) {
+    redirectWithError(id, "氏名とメールアドレスは必須です。");
+  }
+
+  if (password && password.length < 8) {
+    redirectWithError(id, "新しいパスワードは8文字以上にしてください。");
+  }
+
+  const existingUser = await prisma.user.findUnique({
+    where: {
+      email,
+    },
+  });
+
+  if (existingUser && existingUser.id !== id) {
+    redirectWithError(id, "このメールアドレスは既に登録されています。");
+  }
+
+  const beforeUser = await prisma.user.findUnique({
+    where: {
+      id,
+    },
+  });
+
+  if (!beforeUser) {
+    redirectWithError(id, "対象ユーザーが見つかりません。");
+  }
+
+  const data: {
+    name: string;
+    email: string;
+    role: UserRoleValue;
+    isActive: boolean;
+    password?: string;
+  } = {
+    name,
+    email,
+    role,
+    isActive,
+  };
+
+  if (password) {
+    data.password = await bcrypt.hash(password, 10);
+  }
+
+  const updatedUser = await prisma.user.update({
+    where: {
+      id,
+    },
+    data,
+  });
+
+  await logAudit({
+    userId: session.user.id,
+    userName: session.user.name,
+    action: "USER_UPDATED",
+    targetType: "User",
+    targetId: updatedUser.id,
+    description: `ユーザー更新: ${updatedUser.email}`,
+    beforeData: {
+      name: beforeUser!.name,
+      email: beforeUser!.email,
+      role: beforeUser!.role,
+      isActive: beforeUser!.isActive,
+    },
+    afterData: {
+      name: updatedUser.name,
+      email: updatedUser.email,
+      role: updatedUser.role,
+      isActive: updatedUser.isActive,
+    },
+  });
+
+  if (beforeUser!.role !== updatedUser.role) {
+    await logAudit({
+      userId: session.user.id,
+      userName: session.user.name,
+      action: "USER_ROLE_CHANGED",
+      targetType: "User",
+      targetId: updatedUser.id,
+      description: `ユーザー権限変更: ${updatedUser.email} ${beforeUser!.role} → ${updatedUser.role}`,
+      beforeData: {
+        role: beforeUser!.role,
+      },
+      afterData: {
+        role: updatedUser.role,
+      },
+    });
+  }
+
+  if (beforeUser!.isActive !== updatedUser.isActive) {
+    await logAudit({
+      userId: session.user.id,
+      userName: session.user.name,
+      action: updatedUser.isActive ? "USER_ACTIVATED" : "USER_DEACTIVATED",
+      targetType: "User",
+      targetId: updatedUser.id,
+      description: updatedUser.isActive
+        ? `ユーザー有効化: ${updatedUser.email}`
+        : `ユーザー無効化: ${updatedUser.email}`,
+      beforeData: {
+        isActive: beforeUser!.isActive,
+      },
+      afterData: {
+        isActive: updatedUser.isActive,
+      },
+    });
+  }
+
+  if (password) {
+    await logAudit({
+      userId: session.user.id,
+      userName: session.user.name,
+      action: "USER_PASSWORD_RESET",
+      targetType: "User",
+      targetId: updatedUser.id,
+      description: `ユーザーパスワード再設定: ${updatedUser.email}`,
+    });
+  }
+
+  redirect("/users");
+}
+
+function formatRole(role: string) {
+  const labels: Record<string, string> = {
+    ADMIN: "システム管理者",
+    HR_MANAGER: "人事管理者",
+    MANAGER: "部署責任者",
+    USER: "一般利用者",
+  };
+
+  return labels[role] ?? role;
+}
+
+export default async function EditUserPage({ params, searchParams }: Props) {
+  await requireAdmin();
+
+  const { id } = await params;
+  const sp = await searchParams;
+
+  const user = await prisma.user.findUnique({
+    where: {
+      id,
+    },
+  });
+
+  if (!user) {
+    notFound();
+  }
+
+  return (
+    <main className="mx-auto max-w-2xl p-8">
+      <BackLink href="/users" label="ユーザー一覧へ戻る" />
+      <div className="mb-6">
+        <Link href="/users" className="text-sm text-gray-500 hover:underline">
+          ← ユーザー一覧へ戻る
+        </Link>
+
+        <h1 className="mt-2 text-3xl font-bold">ユーザー編集</h1>
+
+        <p className="mt-1 text-sm text-gray-500">
+          ユーザー情報、権限、パスワードを変更します。
+        </p>
+      </div>
+
+      {sp.error && (
+        <div className="mb-4 rounded border border-red-200 bg-red-50 p-3 text-sm font-medium text-red-700">
+          {sp.error}
+        </div>
+      )}
+
+      <form
+        action={updateUser}
+        className="space-y-4 rounded border bg-white p-6 shadow-sm"
+      >
+        <input type="hidden" name="id" value={user.id} />
+
+        <div>
+          <label className="mb-1 block text-sm font-medium">氏名</label>
+          <input
+            name="name"
+            defaultValue={user.name}
+            className="w-full rounded border p-2"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium">
+            メールアドレス
+          </label>
+          <input
+            type="email"
+            name="email"
+            defaultValue={user.email}
+            className="w-full rounded border p-2"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium">権限</label>
+          <select
+            name="role"
+            className="w-full rounded border bg-white p-2"
+            defaultValue={user.role}
+          >
+            <option value={UserRole.ADMIN}>システム管理者</option>
+            <option value={UserRole.HR_MANAGER}>人事管理者</option>
+            <option value={UserRole.MANAGER}>部署責任者</option>
+            <option value={UserRole.USER}>一般利用者</option>
+          </select>
+          <p className="mt-1 text-xs text-gray-500">
+            現在の権限: {formatRole(user.role)}
+          </p>
+        </div>
+
+        <div className="rounded border bg-gray-50 p-3">
+          <label className="flex items-center gap-2 text-sm font-medium">
+            <input
+              type="checkbox"
+              name="isActive"
+              defaultChecked={user.isActive}
+            />
+            有効なユーザーとして扱う
+          </label>
+          <p className="mt-1 text-xs text-gray-500">
+            チェックを外すと、このユーザーはログインできなくなります。
+          </p>
+        </div>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium">
+            新しいパスワード
+          </label>
+          <input
+            type="password"
+            name="password"
+            minLength={8}
+            className="w-full rounded border p-2"
+            placeholder="変更しない場合は空欄"
+          />
+          <p className="mt-1 text-xs text-gray-500">
+            入力した場合のみパスワードを変更します。
+          </p>
+        </div>
+
+        <div className="flex gap-3 pt-2">
+          <button
+            type="submit"
+            className="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+          >
+            保存
+          </button>
+
+          <Link
+            href="/users"
+            className="rounded border bg-white px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+          >
+            キャンセル
+          </Link>
+        </div>
+      </form>
+    </main>
+  );
+}
+
+
+===== FILE: app/user-invitations/page.tsx =====
+
+import BackLink from "@/components/BackLink";
+import Link from "next/link";
+import { prisma } from "@/lib/prisma";
+import { requireAdmin } from "@/lib/auth-guard";
+
+function getStatusText(invitation: {
+  acceptedAt: Date | null;
+  cancelledAt: Date | null;
+  expiresAt: Date;
+}) {
+  if (invitation.acceptedAt) {
+    return "登録済";
+  }
+
+  if (invitation.cancelledAt) {
+    return "取消";
+  }
+
+  if (invitation.expiresAt < new Date()) {
+    return "期限切れ";
+  }
+
+  return "未登録";
+}
+
+function getStatusClass(invitation: {
+  acceptedAt: Date | null;
+  cancelledAt: Date | null;
+  expiresAt: Date;
+}) {
+  if (invitation.acceptedAt) {
+    return "rounded bg-green-100 px-2 py-1 text-xs font-medium text-green-700";
+  }
+
+  if (invitation.cancelledAt) {
+    return "rounded bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600";
+  }
+
+  if (invitation.expiresAt < new Date()) {
+    return "rounded bg-red-100 px-2 py-1 text-xs font-medium text-red-700";
+  }
+
+  return "rounded bg-yellow-50 px-2 py-1 text-xs font-medium text-yellow-700";
+}
+
+export default async function UserInvitationsPage() {
+  await requireAdmin();
+
+  const invitations = await prisma.userInvitation.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  return (
+    <main className="mx-auto max-w-7xl p-8">
+      <BackLink href="/" label="ダッシュボードへ戻る" />
+      <div className="mb-6 flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold">
+            招待管理
+          </h1>
+          <p className="mt-1 text-sm text-gray-500">
+            雇用予定者向けのセルフ登録用招待URLを管理します。
+          </p>
+        </div>
+
+        <div className="flex gap-2">
+          <Link
+            href="/user-invitations/new"
+            className="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+          >
+            新規招待作成
+          </Link>
+          <Link
+            href="/users"
+            className="rounded border bg-white px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+          >
+            ユーザー一覧へ
+          </Link>
+        </div>
+      </div>
+
+      <div className="overflow-x-auto rounded border bg-white">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="bg-gray-50">
+              <th className="p-3 text-left">職員番号</th>
+              <th className="p-3 text-left">氏名</th>
+              <th className="p-3 text-left">メール</th>
+              <th className="p-3 text-left">入職予定日</th>
+              <th className="p-3 text-left">期限</th>
+              <th className="p-3 text-left">状態</th>
+              <th className="p-3 text-left">招待URL</th>
+              <th className="p-3 text-left">QR</th>
+              <th className="p-3 text-left">印刷</th>
+              <th className="p-3 text-left">再発行</th>
+              <th className="p-3 text-left">取消</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {invitations.length === 0 ? (
+              <tr>
+                <td
+                  colSpan={11}
+                  className="p-8 text-center text-gray-500"
+                >
+                  招待はまだありません。
+                </td>
+              </tr>
+            ) : (
+              invitations.map((invitation) => (
+                <tr
+                  key={invitation.id}
+                  className="border-t"
+                >
+                  <td className="p-3">
+                    {invitation.employeeNo}
+                  </td>
+
+                  <td className="p-3 font-medium">
+                    {invitation.lastName} {invitation.firstName}
+                  </td>
+
+                  <td className="p-3">
+                    {invitation.email}
+                  </td>
+
+                  <td className="p-3">
+                    {invitation.expectedHireDate
+                      ? invitation.expectedHireDate.toLocaleDateString("ja-JP")
+                      : "-"}
+                  </td>
+
+                  <td className="p-3">
+                    {invitation.expiresAt.toLocaleDateString("ja-JP")}
+                  </td>
+
+                  <td className="p-3">
+                    <span className={getStatusClass(invitation)}>
+                      {getStatusText(invitation)}
+                    </span>
+                  </td>
+
+                  <td className="p-3 font-mono text-xs">
+                    <Link
+                      href={`/register/${invitation.token}`}
+                      className="text-blue-600 underline hover:text-blue-800"
+                    >
+                      /register/{invitation.token}
+                    </Link>
+                  </td>
+                  <td className="p-3">
+                    <Link
+                      href={`/user-invitations/${invitation.id}/qr`}
+                      className="text-blue-600 hover:underline"
+                    >
+                      QRコード
+                    </Link>
+                  </td>
+                  <td className="p-3">
+                    <Link
+                      href={`/user-invitations/${invitation.id}/print`}
+                      className="text-blue-600 hover:underline"
+                    >
+                      印刷
+                    </Link>
+                  </td>
+                  <td className="p-3">
+                    {!invitation.acceptedAt && !invitation.cancelledAt ? (
+                      <form
+                        action={`/api/user-invitations/${invitation.id}/reissue`}
+                        method="POST"
+                      >
+                        <button
+                          type="submit"
+                          className="text-orange-600 hover:underline"
+                        >
+                          再発行
+                        </button>
+                      </form>
+                    ) : (
+                      "-"
+                    )}
+                  </td>
+
+                  <td className="p-3">
+                    {!invitation.acceptedAt && !invitation.cancelledAt ? (
+                      <form
+                        action={`/api/user-invitations/${invitation.id}/cancel`}
+                        method="POST"
+                      >
+                        <button
+                          type="submit"
+                          className="text-red-600 hover:underline"
+                        >
+                          取消
+                        </button>
+                      </form>
+                    ) : (
+                      "-"
+                    )}
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
+    </main>
+  );
+}
+
+
+===== FILE: app/user-invitations/new/page.tsx =====
+
+import BackLink from "@/components/BackLink";
+import Link from "next/link";
+import { randomUUID } from "crypto";
+import { redirect } from "next/navigation";
+import { prisma } from "@/lib/prisma";
+import { requireAdmin } from "@/lib/auth-guard";
+import { logAudit } from "@/lib/audit-log";
+import { sendInvitationMail } from "@/lib/mail";
+
+type Props = {
+  searchParams: Promise<{
+    error?: string;
+  }>;
+};
+
+function redirectWithError(message: string) {
+  redirect(`/user-invitations/new?error=${encodeURIComponent(message)}`);
+}
+
+async function createInvitation(formData: FormData) {
+  "use server";
+
+  const session = await requireAdmin();
+
+  const employeeNo = String(formData.get("employeeNo") ?? "").trim();
+  const lastName = String(formData.get("lastName") ?? "").trim();
+  const firstName = String(formData.get("firstName") ?? "").trim();
+  const email = String(formData.get("email") ?? "").trim();
+  const expectedHireDateRaw = String(formData.get("expectedHireDate") ?? "");
+
+  if (!lastName || !firstName || !email) {
+    redirectWithError("氏名、メールアドレスは必須です。");
+  }
+
+  const existingUser = await prisma.user.findUnique({
+    where: {
+      email,
+    },
+  });
+
+  if (existingUser) {
+    redirectWithError("このメールアドレスのユーザーは既に存在します。");
+  }
+
+  if (employeeNo) {
+    const existingEmployee = await prisma.employee.findUnique({
+      where: {
+        employeeNo,
+      },
+    });
+
+    if (existingEmployee) {
+      redirectWithError("この職員番号（入職後採番可）の職員は既に存在します。");
+    }
+  }
+
+  const token = randomUUID();
+
+  const expiresAt = new Date();
+  expiresAt.setDate(expiresAt.getDate() + 14);
+
+  const invitation = await prisma.userInvitation.create({
+    data: {
+      employeeNo,
+      lastName,
+      firstName,
+      email,
+      token,
+      expectedHireDate: expectedHireDateRaw
+        ? new Date(`${expectedHireDateRaw}T00:00:00`)
+        : null,
+      expiresAt,
+    },
+  });
+
+  const invitationUrl = `${process.env.NEXT_PUBLIC_APP_URL}/register/${token}`;
+
+  await sendInvitationMail(email, `${lastName} ${firstName}`, invitationUrl);
+
+  await logAudit({
+    userId: session.user.id,
+    userName: session.user.name,
+    action: "USER_INVITATION_CREATED",
+    targetType: "UserInvitation",
+    targetId: invitation.id,
+    description: `招待作成: ${email}`,
+    afterData: {
+      employeeNo,
+      lastName,
+      firstName,
+      email,
+      expectedHireDate: invitation.expectedHireDate,
+      expiresAt: invitation.expiresAt,
+    },
+  });
+
+  redirect("/user-invitations");
+}
+
+export default async function NewUserInvitationPage({ searchParams }: Props) {
+  await requireAdmin();
+
+  const params = await searchParams;
+  const error = params.error;
+
+  return (
+    <main className="mx-auto max-w-2xl p-8">
+      <BackLink href="/user-invitations" label="ユーザー招待一覧へ戻る" />
+      <div className="mb-6">
+        <h1 className="mt-2 text-3xl font-bold">招待作成</h1>
+
+        <p className="mt-1 text-sm text-gray-500">
+          雇用予定者向けのセルフ登録URLを発行します。
+        </p>
+      </div>
+
+      {error && (
+        <div className="mb-4 rounded border border-red-200 bg-red-50 p-3 text-sm font-medium text-red-700">
+          {error}
+        </div>
+      )}
+
+      <form action={createInvitation} className="space-y-4">
+        <div>
+          <label className="mb-1 block text-sm font-medium">
+            職員番号（入職後採番可）
+          </label>
+          <input
+            name="employeeNo"
+            placeholder="未定の場合は空欄"
+            className="w-full rounded border p-2"
+          />
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div>
+            <label className="mb-1 block text-sm font-medium">姓</label>
+            <input
+              name="lastName"
+              className="w-full rounded border p-2"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="mb-1 block text-sm font-medium">名</label>
+            <input
+              name="firstName"
+              className="w-full rounded border p-2"
+              required
+            />
+          </div>
+        </div>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium">
+            メールアドレス
+          </label>
+          <input
+            type="email"
+            name="email"
+            className="w-full rounded border p-2"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium">入職予定日</label>
+          <input
+            type="date"
+            name="expectedHireDate"
+            className="w-full rounded border p-2"
+          />
+        </div>
+
+        <div className="flex gap-3 pt-2">
+          <button
+            type="submit"
+            className="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+          >
+            招待作成
+          </button>
+
+          <Link
+            href="/user-invitations"
+            className="rounded border bg-white px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+          >
+            キャンセル
+          </Link>
+        </div>
+      </form>
+    </main>
+  );
+}
+
+
+===== FILE: app/user-invitations/[id]/qr/page.tsx =====
+
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { prisma } from "@/lib/prisma";
+import { requireAdmin } from "@/lib/auth-guard";
+
+type Props = {
+  params: Promise<{
