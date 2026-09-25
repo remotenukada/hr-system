@@ -162,7 +162,7 @@ export default async function MyNumberPage({
   return (
     <main className="mx-auto max-w-3xl p-8">
       <Link
-        href="/mypage"
+        href="/"
         className="text-sm text-blue-600 hover:underline"
       >
         ← ダッシュボードへ戻る

@@ -53,7 +53,7 @@ export default async function LeaveHistoryPage() {
     <main className="mx-auto max-w-5xl p-8">
       <div className="mb-6">
         <Link
-          href="/mypage"
+          href="/"
           className="text-sm text-blue-600 hover:underline"
         >
           ← ダッシュボードへ戻る

@@ -340,7 +340,7 @@ export default async function MyCertificationsPage({
   return (
     <main className="mx-auto max-w-5xl p-8">
       <div className="mb-6">
-        <Link href="/mypage" className="text-sm text-blue-600 hover:underline">
+        <Link href="/" className="text-sm text-blue-600 hover:underline">
           ← ダッシュボードへ戻る
         </Link>
 

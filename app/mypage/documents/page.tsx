@@ -41,8 +41,8 @@ export default async function MyDocumentsPage() {
 
   return (
     <main className="mx-auto max-w-5xl p-8">
-      <Link href="/mypage" className="text-sm text-blue-600 underline">
-        ← マイページへ戻る
+      <Link href="/" className="text-sm text-blue-600 underline">
+        ← ダッシュボードへ戻る
       </Link>
 
       <h1 className="mt-4 text-3xl font-bold">給与明細</h1>

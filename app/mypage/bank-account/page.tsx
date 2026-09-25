@@ -272,7 +272,7 @@ export default async function BankAccountPage() {
     <main className="mx-auto max-w-4xl p-8">
       <div className="mb-4">
         <Link
-          href="/mypage"
+          href="/"
           className="text-sm text-blue-600 hover:underline"
         >
           ← ダッシュボードへ戻る
