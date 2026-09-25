@@ -263,6 +263,11 @@ export type EarlyLeaveRecord = $Result.DefaultSelection<Prisma.$EarlyLeaveRecord
  * 
  */
 export type OutingRecord = $Result.DefaultSelection<Prisma.$OutingRecordPayload>
+/**
+ * Model PersonalDocument
+ * 
+ */
+export type PersonalDocument = $Result.DefaultSelection<Prisma.$PersonalDocumentPayload>
 
 /**
  * Enums
@@ -1101,6 +1106,16 @@ export class PrismaClient<
     * ```
     */
   get outingRecord(): Prisma.OutingRecordDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.personalDocument`: Exposes CRUD operations for the **PersonalDocument** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PersonalDocuments
+    * const personalDocuments = await prisma.personalDocument.findMany()
+    * ```
+    */
+  get personalDocument(): Prisma.PersonalDocumentDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -1584,7 +1599,8 @@ export namespace Prisma {
     PartTimeAnnualLeaveRule: 'PartTimeAnnualLeaveRule',
     LateRecord: 'LateRecord',
     EarlyLeaveRecord: 'EarlyLeaveRecord',
-    OutingRecord: 'OutingRecord'
+    OutingRecord: 'OutingRecord',
+    PersonalDocument: 'PersonalDocument'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -1600,7 +1616,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "userInvitation" | "facility" | "department" | "employee" | "employeeTransfer" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestApproval" | "requestAttachment" | "requestHistory" | "approvalRoute" | "auditLog" | "certification" | "certificationDocumentRule" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster" | "contractTypeMaster" | "jobTitleMaster" | "positionMaster" | "leaveTypeBalance" | "leaveType" | "retirementChecklist" | "loanedAsset" | "retirementCertificate" | "annualLeaveServiceRule" | "annualLeaveEntryRule" | "partTimeAnnualLeaveRule" | "lateRecord" | "earlyLeaveRecord" | "outingRecord"
+      modelProps: "user" | "userInvitation" | "facility" | "department" | "employee" | "employeeTransfer" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestApproval" | "requestAttachment" | "requestHistory" | "approvalRoute" | "auditLog" | "certification" | "certificationDocumentRule" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster" | "contractTypeMaster" | "jobTitleMaster" | "positionMaster" | "leaveTypeBalance" | "leaveType" | "retirementChecklist" | "loanedAsset" | "retirementCertificate" | "annualLeaveServiceRule" | "annualLeaveEntryRule" | "partTimeAnnualLeaveRule" | "lateRecord" | "earlyLeaveRecord" | "outingRecord" | "personalDocument"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -5304,6 +5320,80 @@ export namespace Prisma {
           }
         }
       }
+      PersonalDocument: {
+        payload: Prisma.$PersonalDocumentPayload<ExtArgs>
+        fields: Prisma.PersonalDocumentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PersonalDocumentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PersonalDocumentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PersonalDocumentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PersonalDocumentPayload>
+          }
+          findFirst: {
+            args: Prisma.PersonalDocumentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PersonalDocumentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PersonalDocumentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PersonalDocumentPayload>
+          }
+          findMany: {
+            args: Prisma.PersonalDocumentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PersonalDocumentPayload>[]
+          }
+          create: {
+            args: Prisma.PersonalDocumentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PersonalDocumentPayload>
+          }
+          createMany: {
+            args: Prisma.PersonalDocumentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PersonalDocumentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PersonalDocumentPayload>[]
+          }
+          delete: {
+            args: Prisma.PersonalDocumentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PersonalDocumentPayload>
+          }
+          update: {
+            args: Prisma.PersonalDocumentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PersonalDocumentPayload>
+          }
+          deleteMany: {
+            args: Prisma.PersonalDocumentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PersonalDocumentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PersonalDocumentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PersonalDocumentPayload>[]
+          }
+          upsert: {
+            args: Prisma.PersonalDocumentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PersonalDocumentPayload>
+          }
+          aggregate: {
+            args: Prisma.PersonalDocumentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePersonalDocument>
+          }
+          groupBy: {
+            args: Prisma.PersonalDocumentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PersonalDocumentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PersonalDocumentCountArgs<ExtArgs>
+            result: $Utils.Optional<PersonalDocumentCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -5462,6 +5552,7 @@ export namespace Prisma {
     lateRecord?: LateRecordOmit
     earlyLeaveRecord?: EarlyLeaveRecordOmit
     outingRecord?: OutingRecordOmit
+    personalDocument?: PersonalDocumentOmit
   }
 
   /* Types for Logging */
@@ -5735,6 +5826,7 @@ export namespace Prisma {
     earlyLeaveRecords: number
     outingRecords: number
     transferHistories: number
+    personalDocuments: number
   }
 
   export type EmployeeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5753,6 +5845,7 @@ export namespace Prisma {
     earlyLeaveRecords?: boolean | EmployeeCountOutputTypeCountEarlyLeaveRecordsArgs
     outingRecords?: boolean | EmployeeCountOutputTypeCountOutingRecordsArgs
     transferHistories?: boolean | EmployeeCountOutputTypeCountTransferHistoriesArgs
+    personalDocuments?: boolean | EmployeeCountOutputTypeCountPersonalDocumentsArgs
   }
 
   // Custom InputTypes
@@ -5869,6 +5962,13 @@ export namespace Prisma {
    */
   export type EmployeeCountOutputTypeCountTransferHistoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: EmployeeTransferWhereInput
+  }
+
+  /**
+   * EmployeeCountOutputType without action
+   */
+  export type EmployeeCountOutputTypeCountPersonalDocumentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PersonalDocumentWhereInput
   }
 
 
@@ -11225,6 +11325,7 @@ export namespace Prisma {
     earlyLeaveRecords?: boolean | Employee$earlyLeaveRecordsArgs<ExtArgs>
     outingRecords?: boolean | Employee$outingRecordsArgs<ExtArgs>
     transferHistories?: boolean | Employee$transferHistoriesArgs<ExtArgs>
+    personalDocuments?: boolean | Employee$personalDocumentsArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["employee"]>
 
@@ -11359,6 +11460,7 @@ export namespace Prisma {
     earlyLeaveRecords?: boolean | Employee$earlyLeaveRecordsArgs<ExtArgs>
     outingRecords?: boolean | Employee$outingRecordsArgs<ExtArgs>
     transferHistories?: boolean | Employee$transferHistoriesArgs<ExtArgs>
+    personalDocuments?: boolean | Employee$personalDocumentsArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EmployeeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11399,6 +11501,7 @@ export namespace Prisma {
       earlyLeaveRecords: Prisma.$EarlyLeaveRecordPayload<ExtArgs>[]
       outingRecords: Prisma.$OutingRecordPayload<ExtArgs>[]
       transferHistories: Prisma.$EmployeeTransferPayload<ExtArgs>[]
+      personalDocuments: Prisma.$PersonalDocumentPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -11849,6 +11952,7 @@ export namespace Prisma {
     earlyLeaveRecords<T extends Employee$earlyLeaveRecordsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$earlyLeaveRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EarlyLeaveRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     outingRecords<T extends Employee$outingRecordsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$outingRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OutingRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     transferHistories<T extends Employee$transferHistoriesArgs<ExtArgs> = {}>(args?: Subset<T, Employee$transferHistoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    personalDocuments<T extends Employee$personalDocumentsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$personalDocumentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PersonalDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12837,6 +12941,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: EmployeeTransferScalarFieldEnum | EmployeeTransferScalarFieldEnum[]
+  }
+
+  /**
+   * Employee.personalDocuments
+   */
+  export type Employee$personalDocumentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PersonalDocument
+     */
+    select?: PersonalDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PersonalDocument
+     */
+    omit?: PersonalDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PersonalDocumentInclude<ExtArgs> | null
+    where?: PersonalDocumentWhereInput
+    orderBy?: PersonalDocumentOrderByWithRelationInput | PersonalDocumentOrderByWithRelationInput[]
+    cursor?: PersonalDocumentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PersonalDocumentScalarFieldEnum | PersonalDocumentScalarFieldEnum[]
   }
 
   /**
@@ -65335,6 +65463,1185 @@ export namespace Prisma {
 
 
   /**
+   * Model PersonalDocument
+   */
+
+  export type AggregatePersonalDocument = {
+    _count: PersonalDocumentCountAggregateOutputType | null
+    _avg: PersonalDocumentAvgAggregateOutputType | null
+    _sum: PersonalDocumentSumAggregateOutputType | null
+    _min: PersonalDocumentMinAggregateOutputType | null
+    _max: PersonalDocumentMaxAggregateOutputType | null
+  }
+
+  export type PersonalDocumentAvgAggregateOutputType = {
+    targetYear: number | null
+    targetMonth: number | null
+  }
+
+  export type PersonalDocumentSumAggregateOutputType = {
+    targetYear: number | null
+    targetMonth: number | null
+  }
+
+  export type PersonalDocumentMinAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    documentType: string | null
+    title: string | null
+    targetYear: number | null
+    targetMonth: number | null
+    publishAt: Date | null
+    filePath: string | null
+    originalFileName: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PersonalDocumentMaxAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    documentType: string | null
+    title: string | null
+    targetYear: number | null
+    targetMonth: number | null
+    publishAt: Date | null
+    filePath: string | null
+    originalFileName: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PersonalDocumentCountAggregateOutputType = {
+    id: number
+    employeeId: number
+    documentType: number
+    title: number
+    targetYear: number
+    targetMonth: number
+    publishAt: number
+    filePath: number
+    originalFileName: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type PersonalDocumentAvgAggregateInputType = {
+    targetYear?: true
+    targetMonth?: true
+  }
+
+  export type PersonalDocumentSumAggregateInputType = {
+    targetYear?: true
+    targetMonth?: true
+  }
+
+  export type PersonalDocumentMinAggregateInputType = {
+    id?: true
+    employeeId?: true
+    documentType?: true
+    title?: true
+    targetYear?: true
+    targetMonth?: true
+    publishAt?: true
+    filePath?: true
+    originalFileName?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PersonalDocumentMaxAggregateInputType = {
+    id?: true
+    employeeId?: true
+    documentType?: true
+    title?: true
+    targetYear?: true
+    targetMonth?: true
+    publishAt?: true
+    filePath?: true
+    originalFileName?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PersonalDocumentCountAggregateInputType = {
+    id?: true
+    employeeId?: true
+    documentType?: true
+    title?: true
+    targetYear?: true
+    targetMonth?: true
+    publishAt?: true
+    filePath?: true
+    originalFileName?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type PersonalDocumentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PersonalDocument to aggregate.
+     */
+    where?: PersonalDocumentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PersonalDocuments to fetch.
+     */
+    orderBy?: PersonalDocumentOrderByWithRelationInput | PersonalDocumentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PersonalDocumentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PersonalDocuments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PersonalDocuments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PersonalDocuments
+    **/
+    _count?: true | PersonalDocumentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PersonalDocumentAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PersonalDocumentSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PersonalDocumentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PersonalDocumentMaxAggregateInputType
+  }
+
+  export type GetPersonalDocumentAggregateType<T extends PersonalDocumentAggregateArgs> = {
+        [P in keyof T & keyof AggregatePersonalDocument]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePersonalDocument[P]>
+      : GetScalarType<T[P], AggregatePersonalDocument[P]>
+  }
+
+
+
+
+  export type PersonalDocumentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PersonalDocumentWhereInput
+    orderBy?: PersonalDocumentOrderByWithAggregationInput | PersonalDocumentOrderByWithAggregationInput[]
+    by: PersonalDocumentScalarFieldEnum[] | PersonalDocumentScalarFieldEnum
+    having?: PersonalDocumentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PersonalDocumentCountAggregateInputType | true
+    _avg?: PersonalDocumentAvgAggregateInputType
+    _sum?: PersonalDocumentSumAggregateInputType
+    _min?: PersonalDocumentMinAggregateInputType
+    _max?: PersonalDocumentMaxAggregateInputType
+  }
+
+  export type PersonalDocumentGroupByOutputType = {
+    id: string
+    employeeId: string
+    documentType: string
+    title: string
+    targetYear: number | null
+    targetMonth: number | null
+    publishAt: Date
+    filePath: string
+    originalFileName: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: PersonalDocumentCountAggregateOutputType | null
+    _avg: PersonalDocumentAvgAggregateOutputType | null
+    _sum: PersonalDocumentSumAggregateOutputType | null
+    _min: PersonalDocumentMinAggregateOutputType | null
+    _max: PersonalDocumentMaxAggregateOutputType | null
+  }
+
+  type GetPersonalDocumentGroupByPayload<T extends PersonalDocumentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PersonalDocumentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PersonalDocumentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PersonalDocumentGroupByOutputType[P]>
+            : GetScalarType<T[P], PersonalDocumentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PersonalDocumentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    documentType?: boolean
+    title?: boolean
+    targetYear?: boolean
+    targetMonth?: boolean
+    publishAt?: boolean
+    filePath?: boolean
+    originalFileName?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["personalDocument"]>
+
+  export type PersonalDocumentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    documentType?: boolean
+    title?: boolean
+    targetYear?: boolean
+    targetMonth?: boolean
+    publishAt?: boolean
+    filePath?: boolean
+    originalFileName?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["personalDocument"]>
+
+  export type PersonalDocumentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    documentType?: boolean
+    title?: boolean
+    targetYear?: boolean
+    targetMonth?: boolean
+    publishAt?: boolean
+    filePath?: boolean
+    originalFileName?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["personalDocument"]>
+
+  export type PersonalDocumentSelectScalar = {
+    id?: boolean
+    employeeId?: boolean
+    documentType?: boolean
+    title?: boolean
+    targetYear?: boolean
+    targetMonth?: boolean
+    publishAt?: boolean
+    filePath?: boolean
+    originalFileName?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type PersonalDocumentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "documentType" | "title" | "targetYear" | "targetMonth" | "publishAt" | "filePath" | "originalFileName" | "createdAt" | "updatedAt", ExtArgs["result"]["personalDocument"]>
+  export type PersonalDocumentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+  export type PersonalDocumentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+  export type PersonalDocumentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+
+  export type $PersonalDocumentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PersonalDocument"
+    objects: {
+      employee: Prisma.$EmployeePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      employeeId: string
+      documentType: string
+      title: string
+      targetYear: number | null
+      targetMonth: number | null
+      publishAt: Date
+      filePath: string
+      originalFileName: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["personalDocument"]>
+    composites: {}
+  }
+
+  type PersonalDocumentGetPayload<S extends boolean | null | undefined | PersonalDocumentDefaultArgs> = $Result.GetResult<Prisma.$PersonalDocumentPayload, S>
+
+  type PersonalDocumentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PersonalDocumentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PersonalDocumentCountAggregateInputType | true
+    }
+
+  export interface PersonalDocumentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PersonalDocument'], meta: { name: 'PersonalDocument' } }
+    /**
+     * Find zero or one PersonalDocument that matches the filter.
+     * @param {PersonalDocumentFindUniqueArgs} args - Arguments to find a PersonalDocument
+     * @example
+     * // Get one PersonalDocument
+     * const personalDocument = await prisma.personalDocument.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PersonalDocumentFindUniqueArgs>(args: SelectSubset<T, PersonalDocumentFindUniqueArgs<ExtArgs>>): Prisma__PersonalDocumentClient<$Result.GetResult<Prisma.$PersonalDocumentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PersonalDocument that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PersonalDocumentFindUniqueOrThrowArgs} args - Arguments to find a PersonalDocument
+     * @example
+     * // Get one PersonalDocument
+     * const personalDocument = await prisma.personalDocument.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PersonalDocumentFindUniqueOrThrowArgs>(args: SelectSubset<T, PersonalDocumentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PersonalDocumentClient<$Result.GetResult<Prisma.$PersonalDocumentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PersonalDocument that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PersonalDocumentFindFirstArgs} args - Arguments to find a PersonalDocument
+     * @example
+     * // Get one PersonalDocument
+     * const personalDocument = await prisma.personalDocument.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PersonalDocumentFindFirstArgs>(args?: SelectSubset<T, PersonalDocumentFindFirstArgs<ExtArgs>>): Prisma__PersonalDocumentClient<$Result.GetResult<Prisma.$PersonalDocumentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PersonalDocument that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PersonalDocumentFindFirstOrThrowArgs} args - Arguments to find a PersonalDocument
+     * @example
+     * // Get one PersonalDocument
+     * const personalDocument = await prisma.personalDocument.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PersonalDocumentFindFirstOrThrowArgs>(args?: SelectSubset<T, PersonalDocumentFindFirstOrThrowArgs<ExtArgs>>): Prisma__PersonalDocumentClient<$Result.GetResult<Prisma.$PersonalDocumentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PersonalDocuments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PersonalDocumentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PersonalDocuments
+     * const personalDocuments = await prisma.personalDocument.findMany()
+     * 
+     * // Get first 10 PersonalDocuments
+     * const personalDocuments = await prisma.personalDocument.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const personalDocumentWithIdOnly = await prisma.personalDocument.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PersonalDocumentFindManyArgs>(args?: SelectSubset<T, PersonalDocumentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PersonalDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PersonalDocument.
+     * @param {PersonalDocumentCreateArgs} args - Arguments to create a PersonalDocument.
+     * @example
+     * // Create one PersonalDocument
+     * const PersonalDocument = await prisma.personalDocument.create({
+     *   data: {
+     *     // ... data to create a PersonalDocument
+     *   }
+     * })
+     * 
+     */
+    create<T extends PersonalDocumentCreateArgs>(args: SelectSubset<T, PersonalDocumentCreateArgs<ExtArgs>>): Prisma__PersonalDocumentClient<$Result.GetResult<Prisma.$PersonalDocumentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PersonalDocuments.
+     * @param {PersonalDocumentCreateManyArgs} args - Arguments to create many PersonalDocuments.
+     * @example
+     * // Create many PersonalDocuments
+     * const personalDocument = await prisma.personalDocument.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PersonalDocumentCreateManyArgs>(args?: SelectSubset<T, PersonalDocumentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PersonalDocuments and returns the data saved in the database.
+     * @param {PersonalDocumentCreateManyAndReturnArgs} args - Arguments to create many PersonalDocuments.
+     * @example
+     * // Create many PersonalDocuments
+     * const personalDocument = await prisma.personalDocument.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PersonalDocuments and only return the `id`
+     * const personalDocumentWithIdOnly = await prisma.personalDocument.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PersonalDocumentCreateManyAndReturnArgs>(args?: SelectSubset<T, PersonalDocumentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PersonalDocumentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PersonalDocument.
+     * @param {PersonalDocumentDeleteArgs} args - Arguments to delete one PersonalDocument.
+     * @example
+     * // Delete one PersonalDocument
+     * const PersonalDocument = await prisma.personalDocument.delete({
+     *   where: {
+     *     // ... filter to delete one PersonalDocument
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PersonalDocumentDeleteArgs>(args: SelectSubset<T, PersonalDocumentDeleteArgs<ExtArgs>>): Prisma__PersonalDocumentClient<$Result.GetResult<Prisma.$PersonalDocumentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PersonalDocument.
+     * @param {PersonalDocumentUpdateArgs} args - Arguments to update one PersonalDocument.
+     * @example
+     * // Update one PersonalDocument
+     * const personalDocument = await prisma.personalDocument.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PersonalDocumentUpdateArgs>(args: SelectSubset<T, PersonalDocumentUpdateArgs<ExtArgs>>): Prisma__PersonalDocumentClient<$Result.GetResult<Prisma.$PersonalDocumentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PersonalDocuments.
+     * @param {PersonalDocumentDeleteManyArgs} args - Arguments to filter PersonalDocuments to delete.
+     * @example
+     * // Delete a few PersonalDocuments
+     * const { count } = await prisma.personalDocument.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PersonalDocumentDeleteManyArgs>(args?: SelectSubset<T, PersonalDocumentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PersonalDocuments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PersonalDocumentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PersonalDocuments
+     * const personalDocument = await prisma.personalDocument.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PersonalDocumentUpdateManyArgs>(args: SelectSubset<T, PersonalDocumentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PersonalDocuments and returns the data updated in the database.
+     * @param {PersonalDocumentUpdateManyAndReturnArgs} args - Arguments to update many PersonalDocuments.
+     * @example
+     * // Update many PersonalDocuments
+     * const personalDocument = await prisma.personalDocument.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PersonalDocuments and only return the `id`
+     * const personalDocumentWithIdOnly = await prisma.personalDocument.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PersonalDocumentUpdateManyAndReturnArgs>(args: SelectSubset<T, PersonalDocumentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PersonalDocumentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PersonalDocument.
+     * @param {PersonalDocumentUpsertArgs} args - Arguments to update or create a PersonalDocument.
+     * @example
+     * // Update or create a PersonalDocument
+     * const personalDocument = await prisma.personalDocument.upsert({
+     *   create: {
+     *     // ... data to create a PersonalDocument
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PersonalDocument we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PersonalDocumentUpsertArgs>(args: SelectSubset<T, PersonalDocumentUpsertArgs<ExtArgs>>): Prisma__PersonalDocumentClient<$Result.GetResult<Prisma.$PersonalDocumentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PersonalDocuments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PersonalDocumentCountArgs} args - Arguments to filter PersonalDocuments to count.
+     * @example
+     * // Count the number of PersonalDocuments
+     * const count = await prisma.personalDocument.count({
+     *   where: {
+     *     // ... the filter for the PersonalDocuments we want to count
+     *   }
+     * })
+    **/
+    count<T extends PersonalDocumentCountArgs>(
+      args?: Subset<T, PersonalDocumentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PersonalDocumentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PersonalDocument.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PersonalDocumentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PersonalDocumentAggregateArgs>(args: Subset<T, PersonalDocumentAggregateArgs>): Prisma.PrismaPromise<GetPersonalDocumentAggregateType<T>>
+
+    /**
+     * Group by PersonalDocument.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PersonalDocumentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PersonalDocumentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PersonalDocumentGroupByArgs['orderBy'] }
+        : { orderBy?: PersonalDocumentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PersonalDocumentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPersonalDocumentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PersonalDocument model
+   */
+  readonly fields: PersonalDocumentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PersonalDocument.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PersonalDocumentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PersonalDocument model
+   */
+  interface PersonalDocumentFieldRefs {
+    readonly id: FieldRef<"PersonalDocument", 'String'>
+    readonly employeeId: FieldRef<"PersonalDocument", 'String'>
+    readonly documentType: FieldRef<"PersonalDocument", 'String'>
+    readonly title: FieldRef<"PersonalDocument", 'String'>
+    readonly targetYear: FieldRef<"PersonalDocument", 'Int'>
+    readonly targetMonth: FieldRef<"PersonalDocument", 'Int'>
+    readonly publishAt: FieldRef<"PersonalDocument", 'DateTime'>
+    readonly filePath: FieldRef<"PersonalDocument", 'String'>
+    readonly originalFileName: FieldRef<"PersonalDocument", 'String'>
+    readonly createdAt: FieldRef<"PersonalDocument", 'DateTime'>
+    readonly updatedAt: FieldRef<"PersonalDocument", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PersonalDocument findUnique
+   */
+  export type PersonalDocumentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PersonalDocument
+     */
+    select?: PersonalDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PersonalDocument
+     */
+    omit?: PersonalDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PersonalDocumentInclude<ExtArgs> | null
+    /**
+     * Filter, which PersonalDocument to fetch.
+     */
+    where: PersonalDocumentWhereUniqueInput
+  }
+
+  /**
+   * PersonalDocument findUniqueOrThrow
+   */
+  export type PersonalDocumentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PersonalDocument
+     */
+    select?: PersonalDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PersonalDocument
+     */
+    omit?: PersonalDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PersonalDocumentInclude<ExtArgs> | null
+    /**
+     * Filter, which PersonalDocument to fetch.
+     */
+    where: PersonalDocumentWhereUniqueInput
+  }
+
+  /**
+   * PersonalDocument findFirst
+   */
+  export type PersonalDocumentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PersonalDocument
+     */
+    select?: PersonalDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PersonalDocument
+     */
+    omit?: PersonalDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PersonalDocumentInclude<ExtArgs> | null
+    /**
+     * Filter, which PersonalDocument to fetch.
+     */
+    where?: PersonalDocumentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PersonalDocuments to fetch.
+     */
+    orderBy?: PersonalDocumentOrderByWithRelationInput | PersonalDocumentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PersonalDocuments.
+     */
+    cursor?: PersonalDocumentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PersonalDocuments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PersonalDocuments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PersonalDocuments.
+     */
+    distinct?: PersonalDocumentScalarFieldEnum | PersonalDocumentScalarFieldEnum[]
+  }
+
+  /**
+   * PersonalDocument findFirstOrThrow
+   */
+  export type PersonalDocumentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PersonalDocument
+     */
+    select?: PersonalDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PersonalDocument
+     */
+    omit?: PersonalDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PersonalDocumentInclude<ExtArgs> | null
+    /**
+     * Filter, which PersonalDocument to fetch.
+     */
+    where?: PersonalDocumentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PersonalDocuments to fetch.
+     */
+    orderBy?: PersonalDocumentOrderByWithRelationInput | PersonalDocumentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PersonalDocuments.
+     */
+    cursor?: PersonalDocumentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PersonalDocuments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PersonalDocuments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PersonalDocuments.
+     */
+    distinct?: PersonalDocumentScalarFieldEnum | PersonalDocumentScalarFieldEnum[]
+  }
+
+  /**
+   * PersonalDocument findMany
+   */
+  export type PersonalDocumentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PersonalDocument
+     */
+    select?: PersonalDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PersonalDocument
+     */
+    omit?: PersonalDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PersonalDocumentInclude<ExtArgs> | null
+    /**
+     * Filter, which PersonalDocuments to fetch.
+     */
+    where?: PersonalDocumentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PersonalDocuments to fetch.
+     */
+    orderBy?: PersonalDocumentOrderByWithRelationInput | PersonalDocumentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PersonalDocuments.
+     */
+    cursor?: PersonalDocumentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PersonalDocuments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PersonalDocuments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PersonalDocuments.
+     */
+    distinct?: PersonalDocumentScalarFieldEnum | PersonalDocumentScalarFieldEnum[]
+  }
+
+  /**
+   * PersonalDocument create
+   */
+  export type PersonalDocumentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PersonalDocument
+     */
+    select?: PersonalDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PersonalDocument
+     */
+    omit?: PersonalDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PersonalDocumentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PersonalDocument.
+     */
+    data: XOR<PersonalDocumentCreateInput, PersonalDocumentUncheckedCreateInput>
+  }
+
+  /**
+   * PersonalDocument createMany
+   */
+  export type PersonalDocumentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PersonalDocuments.
+     */
+    data: PersonalDocumentCreateManyInput | PersonalDocumentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PersonalDocument createManyAndReturn
+   */
+  export type PersonalDocumentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PersonalDocument
+     */
+    select?: PersonalDocumentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PersonalDocument
+     */
+    omit?: PersonalDocumentOmit<ExtArgs> | null
+    /**
+     * The data used to create many PersonalDocuments.
+     */
+    data: PersonalDocumentCreateManyInput | PersonalDocumentCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PersonalDocumentIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PersonalDocument update
+   */
+  export type PersonalDocumentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PersonalDocument
+     */
+    select?: PersonalDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PersonalDocument
+     */
+    omit?: PersonalDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PersonalDocumentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PersonalDocument.
+     */
+    data: XOR<PersonalDocumentUpdateInput, PersonalDocumentUncheckedUpdateInput>
+    /**
+     * Choose, which PersonalDocument to update.
+     */
+    where: PersonalDocumentWhereUniqueInput
+  }
+
+  /**
+   * PersonalDocument updateMany
+   */
+  export type PersonalDocumentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PersonalDocuments.
+     */
+    data: XOR<PersonalDocumentUpdateManyMutationInput, PersonalDocumentUncheckedUpdateManyInput>
+    /**
+     * Filter which PersonalDocuments to update
+     */
+    where?: PersonalDocumentWhereInput
+    /**
+     * Limit how many PersonalDocuments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PersonalDocument updateManyAndReturn
+   */
+  export type PersonalDocumentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PersonalDocument
+     */
+    select?: PersonalDocumentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PersonalDocument
+     */
+    omit?: PersonalDocumentOmit<ExtArgs> | null
+    /**
+     * The data used to update PersonalDocuments.
+     */
+    data: XOR<PersonalDocumentUpdateManyMutationInput, PersonalDocumentUncheckedUpdateManyInput>
+    /**
+     * Filter which PersonalDocuments to update
+     */
+    where?: PersonalDocumentWhereInput
+    /**
+     * Limit how many PersonalDocuments to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PersonalDocumentIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PersonalDocument upsert
+   */
+  export type PersonalDocumentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PersonalDocument
+     */
+    select?: PersonalDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PersonalDocument
+     */
+    omit?: PersonalDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PersonalDocumentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PersonalDocument to update in case it exists.
+     */
+    where: PersonalDocumentWhereUniqueInput
+    /**
+     * In case the PersonalDocument found by the `where` argument doesn't exist, create a new PersonalDocument with this data.
+     */
+    create: XOR<PersonalDocumentCreateInput, PersonalDocumentUncheckedCreateInput>
+    /**
+     * In case the PersonalDocument was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PersonalDocumentUpdateInput, PersonalDocumentUncheckedUpdateInput>
+  }
+
+  /**
+   * PersonalDocument delete
+   */
+  export type PersonalDocumentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PersonalDocument
+     */
+    select?: PersonalDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PersonalDocument
+     */
+    omit?: PersonalDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PersonalDocumentInclude<ExtArgs> | null
+    /**
+     * Filter which PersonalDocument to delete.
+     */
+    where: PersonalDocumentWhereUniqueInput
+  }
+
+  /**
+   * PersonalDocument deleteMany
+   */
+  export type PersonalDocumentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PersonalDocuments to delete
+     */
+    where?: PersonalDocumentWhereInput
+    /**
+     * Limit how many PersonalDocuments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PersonalDocument without action
+   */
+  export type PersonalDocumentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PersonalDocument
+     */
+    select?: PersonalDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PersonalDocument
+     */
+    omit?: PersonalDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PersonalDocumentInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -66200,6 +67507,23 @@ export namespace Prisma {
   export type OutingRecordScalarFieldEnum = (typeof OutingRecordScalarFieldEnum)[keyof typeof OutingRecordScalarFieldEnum]
 
 
+  export const PersonalDocumentScalarFieldEnum: {
+    id: 'id',
+    employeeId: 'employeeId',
+    documentType: 'documentType',
+    title: 'title',
+    targetYear: 'targetYear',
+    targetMonth: 'targetMonth',
+    publishAt: 'publishAt',
+    filePath: 'filePath',
+    originalFileName: 'originalFileName',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type PersonalDocumentScalarFieldEnum = (typeof PersonalDocumentScalarFieldEnum)[keyof typeof PersonalDocumentScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -66870,6 +68194,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordListRelationFilter
     outingRecords?: OutingRecordListRelationFilter
     transferHistories?: EmployeeTransferListRelationFilter
+    personalDocuments?: PersonalDocumentListRelationFilter
   }
 
   export type EmployeeOrderByWithRelationInput = {
@@ -66927,6 +68252,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordOrderByRelationAggregateInput
     outingRecords?: OutingRecordOrderByRelationAggregateInput
     transferHistories?: EmployeeTransferOrderByRelationAggregateInput
+    personalDocuments?: PersonalDocumentOrderByRelationAggregateInput
   }
 
   export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
@@ -66987,6 +68313,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordListRelationFilter
     outingRecords?: OutingRecordListRelationFilter
     transferHistories?: EmployeeTransferListRelationFilter
+    personalDocuments?: PersonalDocumentListRelationFilter
   }, "id" | "employeeNo" | "email" | "userId">
 
   export type EmployeeOrderByWithAggregationInput = {
@@ -70993,6 +72320,93 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"OutingRecord"> | Date | string
   }
 
+  export type PersonalDocumentWhereInput = {
+    AND?: PersonalDocumentWhereInput | PersonalDocumentWhereInput[]
+    OR?: PersonalDocumentWhereInput[]
+    NOT?: PersonalDocumentWhereInput | PersonalDocumentWhereInput[]
+    id?: StringFilter<"PersonalDocument"> | string
+    employeeId?: StringFilter<"PersonalDocument"> | string
+    documentType?: StringFilter<"PersonalDocument"> | string
+    title?: StringFilter<"PersonalDocument"> | string
+    targetYear?: IntNullableFilter<"PersonalDocument"> | number | null
+    targetMonth?: IntNullableFilter<"PersonalDocument"> | number | null
+    publishAt?: DateTimeFilter<"PersonalDocument"> | Date | string
+    filePath?: StringFilter<"PersonalDocument"> | string
+    originalFileName?: StringNullableFilter<"PersonalDocument"> | string | null
+    createdAt?: DateTimeFilter<"PersonalDocument"> | Date | string
+    updatedAt?: DateTimeFilter<"PersonalDocument"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+  }
+
+  export type PersonalDocumentOrderByWithRelationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    documentType?: SortOrder
+    title?: SortOrder
+    targetYear?: SortOrderInput | SortOrder
+    targetMonth?: SortOrderInput | SortOrder
+    publishAt?: SortOrder
+    filePath?: SortOrder
+    originalFileName?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    employee?: EmployeeOrderByWithRelationInput
+  }
+
+  export type PersonalDocumentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: PersonalDocumentWhereInput | PersonalDocumentWhereInput[]
+    OR?: PersonalDocumentWhereInput[]
+    NOT?: PersonalDocumentWhereInput | PersonalDocumentWhereInput[]
+    employeeId?: StringFilter<"PersonalDocument"> | string
+    documentType?: StringFilter<"PersonalDocument"> | string
+    title?: StringFilter<"PersonalDocument"> | string
+    targetYear?: IntNullableFilter<"PersonalDocument"> | number | null
+    targetMonth?: IntNullableFilter<"PersonalDocument"> | number | null
+    publishAt?: DateTimeFilter<"PersonalDocument"> | Date | string
+    filePath?: StringFilter<"PersonalDocument"> | string
+    originalFileName?: StringNullableFilter<"PersonalDocument"> | string | null
+    createdAt?: DateTimeFilter<"PersonalDocument"> | Date | string
+    updatedAt?: DateTimeFilter<"PersonalDocument"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+  }, "id">
+
+  export type PersonalDocumentOrderByWithAggregationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    documentType?: SortOrder
+    title?: SortOrder
+    targetYear?: SortOrderInput | SortOrder
+    targetMonth?: SortOrderInput | SortOrder
+    publishAt?: SortOrder
+    filePath?: SortOrder
+    originalFileName?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: PersonalDocumentCountOrderByAggregateInput
+    _avg?: PersonalDocumentAvgOrderByAggregateInput
+    _max?: PersonalDocumentMaxOrderByAggregateInput
+    _min?: PersonalDocumentMinOrderByAggregateInput
+    _sum?: PersonalDocumentSumOrderByAggregateInput
+  }
+
+  export type PersonalDocumentScalarWhereWithAggregatesInput = {
+    AND?: PersonalDocumentScalarWhereWithAggregatesInput | PersonalDocumentScalarWhereWithAggregatesInput[]
+    OR?: PersonalDocumentScalarWhereWithAggregatesInput[]
+    NOT?: PersonalDocumentScalarWhereWithAggregatesInput | PersonalDocumentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PersonalDocument"> | string
+    employeeId?: StringWithAggregatesFilter<"PersonalDocument"> | string
+    documentType?: StringWithAggregatesFilter<"PersonalDocument"> | string
+    title?: StringWithAggregatesFilter<"PersonalDocument"> | string
+    targetYear?: IntNullableWithAggregatesFilter<"PersonalDocument"> | number | null
+    targetMonth?: IntNullableWithAggregatesFilter<"PersonalDocument"> | number | null
+    publishAt?: DateTimeWithAggregatesFilter<"PersonalDocument"> | Date | string
+    filePath?: StringWithAggregatesFilter<"PersonalDocument"> | string
+    originalFileName?: StringNullableWithAggregatesFilter<"PersonalDocument"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"PersonalDocument"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"PersonalDocument"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     name: string
@@ -71362,6 +72776,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateInput = {
@@ -71416,6 +72831,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUpdateInput = {
@@ -71470,6 +72886,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateInput = {
@@ -71524,6 +72941,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateManyInput = {
@@ -76048,6 +77466,103 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type PersonalDocumentCreateInput = {
+    id?: string
+    documentType: string
+    title: string
+    targetYear?: number | null
+    targetMonth?: number | null
+    publishAt: Date | string
+    filePath: string
+    originalFileName?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutPersonalDocumentsInput
+  }
+
+  export type PersonalDocumentUncheckedCreateInput = {
+    id?: string
+    employeeId: string
+    documentType: string
+    title: string
+    targetYear?: number | null
+    targetMonth?: number | null
+    publishAt: Date | string
+    filePath: string
+    originalFileName?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PersonalDocumentUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    documentType?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    targetYear?: NullableIntFieldUpdateOperationsInput | number | null
+    targetMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    publishAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    originalFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutPersonalDocumentsNestedInput
+  }
+
+  export type PersonalDocumentUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    documentType?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    targetYear?: NullableIntFieldUpdateOperationsInput | number | null
+    targetMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    publishAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    originalFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PersonalDocumentCreateManyInput = {
+    id?: string
+    employeeId: string
+    documentType: string
+    title: string
+    targetYear?: number | null
+    targetMonth?: number | null
+    publishAt: Date | string
+    filePath: string
+    originalFileName?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PersonalDocumentUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    documentType?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    targetYear?: NullableIntFieldUpdateOperationsInput | number | null
+    targetMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    publishAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    originalFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PersonalDocumentUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    documentType?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    targetYear?: NullableIntFieldUpdateOperationsInput | number | null
+    targetMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    publishAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    originalFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -76537,6 +78052,12 @@ export namespace Prisma {
     none?: OutingRecordWhereInput
   }
 
+  export type PersonalDocumentListRelationFilter = {
+    every?: PersonalDocumentWhereInput
+    some?: PersonalDocumentWhereInput
+    none?: PersonalDocumentWhereInput
+  }
+
   export type EmployeeCertificationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -76586,6 +78107,10 @@ export namespace Prisma {
   }
 
   export type OutingRecordOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PersonalDocumentOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -79416,6 +80941,58 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
+  export type PersonalDocumentCountOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    documentType?: SortOrder
+    title?: SortOrder
+    targetYear?: SortOrder
+    targetMonth?: SortOrder
+    publishAt?: SortOrder
+    filePath?: SortOrder
+    originalFileName?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PersonalDocumentAvgOrderByAggregateInput = {
+    targetYear?: SortOrder
+    targetMonth?: SortOrder
+  }
+
+  export type PersonalDocumentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    documentType?: SortOrder
+    title?: SortOrder
+    targetYear?: SortOrder
+    targetMonth?: SortOrder
+    publishAt?: SortOrder
+    filePath?: SortOrder
+    originalFileName?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PersonalDocumentMinOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    documentType?: SortOrder
+    title?: SortOrder
+    targetYear?: SortOrder
+    targetMonth?: SortOrder
+    publishAt?: SortOrder
+    filePath?: SortOrder
+    originalFileName?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PersonalDocumentSumOrderByAggregateInput = {
+    targetYear?: SortOrder
+    targetMonth?: SortOrder
+  }
+
   export type EmployeeCreateNestedOneWithoutUserInput = {
     create?: XOR<EmployeeCreateWithoutUserInput, EmployeeUncheckedCreateWithoutUserInput>
     connectOrCreate?: EmployeeCreateOrConnectWithoutUserInput
@@ -80051,6 +81628,13 @@ export namespace Prisma {
     connect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
   }
 
+  export type PersonalDocumentCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<PersonalDocumentCreateWithoutEmployeeInput, PersonalDocumentUncheckedCreateWithoutEmployeeInput> | PersonalDocumentCreateWithoutEmployeeInput[] | PersonalDocumentUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: PersonalDocumentCreateOrConnectWithoutEmployeeInput | PersonalDocumentCreateOrConnectWithoutEmployeeInput[]
+    createMany?: PersonalDocumentCreateManyEmployeeInputEnvelope
+    connect?: PersonalDocumentWhereUniqueInput | PersonalDocumentWhereUniqueInput[]
+  }
+
   export type EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput = {
     create?: XOR<EmployeeCertificationCreateWithoutEmployeeInput, EmployeeCertificationUncheckedCreateWithoutEmployeeInput> | EmployeeCertificationCreateWithoutEmployeeInput[] | EmployeeCertificationUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutEmployeeInput | EmployeeCertificationCreateOrConnectWithoutEmployeeInput[]
@@ -80190,6 +81774,13 @@ export namespace Prisma {
     connectOrCreate?: EmployeeTransferCreateOrConnectWithoutEmployeeInput | EmployeeTransferCreateOrConnectWithoutEmployeeInput[]
     createMany?: EmployeeTransferCreateManyEmployeeInputEnvelope
     connect?: EmployeeTransferWhereUniqueInput | EmployeeTransferWhereUniqueInput[]
+  }
+
+  export type PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<PersonalDocumentCreateWithoutEmployeeInput, PersonalDocumentUncheckedCreateWithoutEmployeeInput> | PersonalDocumentCreateWithoutEmployeeInput[] | PersonalDocumentUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: PersonalDocumentCreateOrConnectWithoutEmployeeInput | PersonalDocumentCreateOrConnectWithoutEmployeeInput[]
+    createMany?: PersonalDocumentCreateManyEmployeeInputEnvelope
+    connect?: PersonalDocumentWhereUniqueInput | PersonalDocumentWhereUniqueInput[]
   }
 
   export type NullableEnumGenderFieldUpdateOperationsInput = {
@@ -80520,6 +82111,20 @@ export namespace Prisma {
     deleteMany?: EmployeeTransferScalarWhereInput | EmployeeTransferScalarWhereInput[]
   }
 
+  export type PersonalDocumentUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<PersonalDocumentCreateWithoutEmployeeInput, PersonalDocumentUncheckedCreateWithoutEmployeeInput> | PersonalDocumentCreateWithoutEmployeeInput[] | PersonalDocumentUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: PersonalDocumentCreateOrConnectWithoutEmployeeInput | PersonalDocumentCreateOrConnectWithoutEmployeeInput[]
+    upsert?: PersonalDocumentUpsertWithWhereUniqueWithoutEmployeeInput | PersonalDocumentUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: PersonalDocumentCreateManyEmployeeInputEnvelope
+    set?: PersonalDocumentWhereUniqueInput | PersonalDocumentWhereUniqueInput[]
+    disconnect?: PersonalDocumentWhereUniqueInput | PersonalDocumentWhereUniqueInput[]
+    delete?: PersonalDocumentWhereUniqueInput | PersonalDocumentWhereUniqueInput[]
+    connect?: PersonalDocumentWhereUniqueInput | PersonalDocumentWhereUniqueInput[]
+    update?: PersonalDocumentUpdateWithWhereUniqueWithoutEmployeeInput | PersonalDocumentUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: PersonalDocumentUpdateManyWithWhereWithoutEmployeeInput | PersonalDocumentUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: PersonalDocumentScalarWhereInput | PersonalDocumentScalarWhereInput[]
+  }
+
   export type EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput = {
     create?: XOR<EmployeeCertificationCreateWithoutEmployeeInput, EmployeeCertificationUncheckedCreateWithoutEmployeeInput> | EmployeeCertificationCreateWithoutEmployeeInput[] | EmployeeCertificationUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutEmployeeInput | EmployeeCertificationCreateOrConnectWithoutEmployeeInput[]
@@ -80788,6 +82393,20 @@ export namespace Prisma {
     update?: EmployeeTransferUpdateWithWhereUniqueWithoutEmployeeInput | EmployeeTransferUpdateWithWhereUniqueWithoutEmployeeInput[]
     updateMany?: EmployeeTransferUpdateManyWithWhereWithoutEmployeeInput | EmployeeTransferUpdateManyWithWhereWithoutEmployeeInput[]
     deleteMany?: EmployeeTransferScalarWhereInput | EmployeeTransferScalarWhereInput[]
+  }
+
+  export type PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<PersonalDocumentCreateWithoutEmployeeInput, PersonalDocumentUncheckedCreateWithoutEmployeeInput> | PersonalDocumentCreateWithoutEmployeeInput[] | PersonalDocumentUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: PersonalDocumentCreateOrConnectWithoutEmployeeInput | PersonalDocumentCreateOrConnectWithoutEmployeeInput[]
+    upsert?: PersonalDocumentUpsertWithWhereUniqueWithoutEmployeeInput | PersonalDocumentUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: PersonalDocumentCreateManyEmployeeInputEnvelope
+    set?: PersonalDocumentWhereUniqueInput | PersonalDocumentWhereUniqueInput[]
+    disconnect?: PersonalDocumentWhereUniqueInput | PersonalDocumentWhereUniqueInput[]
+    delete?: PersonalDocumentWhereUniqueInput | PersonalDocumentWhereUniqueInput[]
+    connect?: PersonalDocumentWhereUniqueInput | PersonalDocumentWhereUniqueInput[]
+    update?: PersonalDocumentUpdateWithWhereUniqueWithoutEmployeeInput | PersonalDocumentUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: PersonalDocumentUpdateManyWithWhereWithoutEmployeeInput | PersonalDocumentUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: PersonalDocumentScalarWhereInput | PersonalDocumentScalarWhereInput[]
   }
 
   export type EmployeeCreateNestedOneWithoutTransferHistoriesInput = {
@@ -82122,6 +83741,20 @@ export namespace Prisma {
     update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutOutingRecordsInput, EmployeeUpdateWithoutOutingRecordsInput>, EmployeeUncheckedUpdateWithoutOutingRecordsInput>
   }
 
+  export type EmployeeCreateNestedOneWithoutPersonalDocumentsInput = {
+    create?: XOR<EmployeeCreateWithoutPersonalDocumentsInput, EmployeeUncheckedCreateWithoutPersonalDocumentsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutPersonalDocumentsInput
+    connect?: EmployeeWhereUniqueInput
+  }
+
+  export type EmployeeUpdateOneRequiredWithoutPersonalDocumentsNestedInput = {
+    create?: XOR<EmployeeCreateWithoutPersonalDocumentsInput, EmployeeUncheckedCreateWithoutPersonalDocumentsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutPersonalDocumentsInput
+    upsert?: EmployeeUpsertWithoutPersonalDocumentsInput
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutPersonalDocumentsInput, EmployeeUpdateWithoutPersonalDocumentsInput>, EmployeeUncheckedUpdateWithoutPersonalDocumentsInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -82684,6 +84317,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutUserInput = {
@@ -82737,6 +84371,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutUserInput = {
@@ -82870,6 +84505,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutUserInput = {
@@ -82923,6 +84559,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeRequestUpsertWithWhereUniqueWithoutUserInput = {
@@ -83083,6 +84720,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutFacilityInput = {
@@ -83136,6 +84774,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutFacilityInput = {
@@ -83424,6 +85063,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDepartmentInput = {
@@ -83477,6 +85117,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDepartmentInput = {
@@ -84516,6 +86157,42 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type PersonalDocumentCreateWithoutEmployeeInput = {
+    id?: string
+    documentType: string
+    title: string
+    targetYear?: number | null
+    targetMonth?: number | null
+    publishAt: Date | string
+    filePath: string
+    originalFileName?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PersonalDocumentUncheckedCreateWithoutEmployeeInput = {
+    id?: string
+    documentType: string
+    title: string
+    targetYear?: number | null
+    targetMonth?: number | null
+    publishAt: Date | string
+    filePath: string
+    originalFileName?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PersonalDocumentCreateOrConnectWithoutEmployeeInput = {
+    where: PersonalDocumentWhereUniqueInput
+    create: XOR<PersonalDocumentCreateWithoutEmployeeInput, PersonalDocumentUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type PersonalDocumentCreateManyEmployeeInputEnvelope = {
+    data: PersonalDocumentCreateManyEmployeeInput | PersonalDocumentCreateManyEmployeeInput[]
+    skipDuplicates?: boolean
+  }
+
   export type FacilityUpsertWithoutEmployeesInput = {
     update: XOR<FacilityUpdateWithoutEmployeesInput, FacilityUncheckedUpdateWithoutEmployeesInput>
     create: XOR<FacilityCreateWithoutEmployeesInput, FacilityUncheckedCreateWithoutEmployeesInput>
@@ -85311,6 +86988,39 @@ export namespace Prisma {
     data: XOR<EmployeeTransferUpdateManyMutationInput, EmployeeTransferUncheckedUpdateManyWithoutEmployeeInput>
   }
 
+  export type PersonalDocumentUpsertWithWhereUniqueWithoutEmployeeInput = {
+    where: PersonalDocumentWhereUniqueInput
+    update: XOR<PersonalDocumentUpdateWithoutEmployeeInput, PersonalDocumentUncheckedUpdateWithoutEmployeeInput>
+    create: XOR<PersonalDocumentCreateWithoutEmployeeInput, PersonalDocumentUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type PersonalDocumentUpdateWithWhereUniqueWithoutEmployeeInput = {
+    where: PersonalDocumentWhereUniqueInput
+    data: XOR<PersonalDocumentUpdateWithoutEmployeeInput, PersonalDocumentUncheckedUpdateWithoutEmployeeInput>
+  }
+
+  export type PersonalDocumentUpdateManyWithWhereWithoutEmployeeInput = {
+    where: PersonalDocumentScalarWhereInput
+    data: XOR<PersonalDocumentUpdateManyMutationInput, PersonalDocumentUncheckedUpdateManyWithoutEmployeeInput>
+  }
+
+  export type PersonalDocumentScalarWhereInput = {
+    AND?: PersonalDocumentScalarWhereInput | PersonalDocumentScalarWhereInput[]
+    OR?: PersonalDocumentScalarWhereInput[]
+    NOT?: PersonalDocumentScalarWhereInput | PersonalDocumentScalarWhereInput[]
+    id?: StringFilter<"PersonalDocument"> | string
+    employeeId?: StringFilter<"PersonalDocument"> | string
+    documentType?: StringFilter<"PersonalDocument"> | string
+    title?: StringFilter<"PersonalDocument"> | string
+    targetYear?: IntNullableFilter<"PersonalDocument"> | number | null
+    targetMonth?: IntNullableFilter<"PersonalDocument"> | number | null
+    publishAt?: DateTimeFilter<"PersonalDocument"> | Date | string
+    filePath?: StringFilter<"PersonalDocument"> | string
+    originalFileName?: StringNullableFilter<"PersonalDocument"> | string | null
+    createdAt?: DateTimeFilter<"PersonalDocument"> | Date | string
+    updatedAt?: DateTimeFilter<"PersonalDocument"> | Date | string
+  }
+
   export type EmployeeCreateWithoutTransferHistoriesInput = {
     id?: string
     employeeNo: string
@@ -85362,6 +87072,7 @@ export namespace Prisma {
     lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutTransferHistoriesInput = {
@@ -85415,6 +87126,7 @@ export namespace Prisma {
     lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutTransferHistoriesInput = {
@@ -85580,6 +87292,7 @@ export namespace Prisma {
     lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutTransferHistoriesInput = {
@@ -85633,6 +87346,7 @@ export namespace Prisma {
     lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type FacilityUpsertWithoutTransfersFromInput = {
@@ -85806,6 +87520,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDependentsInput = {
@@ -85859,6 +87574,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDependentsInput = {
@@ -85964,6 +87680,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDependentsInput = {
@@ -86017,6 +87734,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmploymentContractConsentUpsertWithWhereUniqueWithoutDependentInput = {
@@ -86103,6 +87821,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmploymentHistoriesInput = {
@@ -86156,6 +87875,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmploymentHistoriesInput = {
@@ -86225,6 +87945,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmploymentHistoriesInput = {
@@ -86278,6 +87999,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmployeeMyNumberInput = {
@@ -86331,6 +88053,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmployeeMyNumberInput = {
@@ -86384,6 +88107,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmployeeMyNumberInput = {
@@ -86453,6 +88177,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmployeeMyNumberInput = {
@@ -86506,6 +88231,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmployeeSalaryInput = {
@@ -86559,6 +88285,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmployeeSalaryInput = {
@@ -86612,6 +88339,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmployeeSalaryInput = {
@@ -86681,6 +88409,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmployeeSalaryInput = {
@@ -86734,6 +88463,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutSalaryHistoriesInput = {
@@ -86787,6 +88517,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutSalaryHistoriesInput = {
@@ -86840,6 +88571,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutSalaryHistoriesInput = {
@@ -86909,6 +88641,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutSalaryHistoriesInput = {
@@ -86962,6 +88695,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutLeaveGrantHistoriesInput = {
@@ -87015,6 +88749,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLeaveGrantHistoriesInput = {
@@ -87068,6 +88803,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLeaveGrantHistoriesInput = {
@@ -87186,6 +88922,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLeaveGrantHistoriesInput = {
@@ -87239,6 +88976,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type LeaveTypeUpsertWithoutLeaveGrantHistoriesInput = {
@@ -87347,6 +89085,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLeaveBalanceInput = {
@@ -87400,6 +89139,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLeaveBalanceInput = {
@@ -87469,6 +89209,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLeaveBalanceInput = {
@@ -87522,6 +89263,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutRequestsInput = {
@@ -87575,6 +89317,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutRequestsInput = {
@@ -87628,6 +89371,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutRequestsInput = {
@@ -87859,6 +89603,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutRequestsInput = {
@@ -87912,6 +89657,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type LeaveTypeUpsertWithoutEmployeeRequestsInput = {
@@ -88847,6 +90593,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutCertificationsInput = {
@@ -88900,6 +90647,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutCertificationsInput = {
@@ -89028,6 +90776,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutCertificationsInput = {
@@ -89081,6 +90830,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCertificationAttachmentUpsertWithWhereUniqueWithoutEmployeeCertificationInput = {
@@ -89350,6 +91100,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutBankAccountInput = {
@@ -89403,6 +91154,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutBankAccountInput = {
@@ -89500,6 +91252,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutBankAccountInput = {
@@ -89553,6 +91306,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeBankAttachmentUpsertWithWhereUniqueWithoutBankAccountInput = {
@@ -89727,6 +91481,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDependentRequestsInput = {
@@ -89780,6 +91535,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDependentRequestsInput = {
@@ -89877,6 +91633,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDependentRequestsInput = {
@@ -89930,6 +91687,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type DependentRequestAttachmentUpsertWithWhereUniqueWithoutDependentRequestInput = {
@@ -90116,6 +91874,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutProfileChangeRequestsInput = {
@@ -90169,6 +91928,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutProfileChangeRequestsInput = {
@@ -90238,6 +91998,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutProfileChangeRequestsInput = {
@@ -90291,6 +92052,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmploymentContractsInput = {
@@ -90344,6 +92106,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmploymentContractsInput = {
@@ -90397,6 +92160,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmploymentContractsInput = {
@@ -90534,6 +92298,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmploymentContractsInput = {
@@ -90587,6 +92352,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmploymentContractConsentUpsertWithWhereUniqueWithoutEmploymentContractInput = {
@@ -91135,6 +92901,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLeaveTypeBalancesInput = {
@@ -91188,6 +92955,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLeaveTypeBalancesInput = {
@@ -91306,6 +93074,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLeaveTypeBalancesInput = {
@@ -91359,6 +93128,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type LeaveTypeUpsertWithoutLeaveTypeBalancesInput = {
@@ -91639,6 +93409,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutRetirementChecklistInput = {
@@ -91692,6 +93463,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutRetirementChecklistInput = {
@@ -91761,6 +93533,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutRetirementChecklistInput = {
@@ -91814,6 +93587,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutLoanedAssetsInput = {
@@ -91867,6 +93641,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLoanedAssetsInput = {
@@ -91920,6 +93695,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLoanedAssetsInput = {
@@ -91989,6 +93765,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLoanedAssetsInput = {
@@ -92042,6 +93819,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutRetirementCertificateInput = {
@@ -92095,6 +93873,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutRetirementCertificateInput = {
@@ -92148,6 +93927,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutRetirementCertificateInput = {
@@ -92217,6 +93997,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutRetirementCertificateInput = {
@@ -92270,6 +94051,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutLateRecordsInput = {
@@ -92323,6 +94105,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLateRecordsInput = {
@@ -92376,6 +94159,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLateRecordsInput = {
@@ -92445,6 +94229,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLateRecordsInput = {
@@ -92498,6 +94283,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEarlyLeaveRecordsInput = {
@@ -92551,6 +94337,7 @@ export namespace Prisma {
     lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEarlyLeaveRecordsInput = {
@@ -92604,6 +94391,7 @@ export namespace Prisma {
     lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEarlyLeaveRecordsInput = {
@@ -92673,6 +94461,7 @@ export namespace Prisma {
     lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEarlyLeaveRecordsInput = {
@@ -92726,6 +94515,7 @@ export namespace Prisma {
     lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutOutingRecordsInput = {
@@ -92779,6 +94569,7 @@ export namespace Prisma {
     lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutOutingRecordsInput = {
@@ -92832,6 +94623,7 @@ export namespace Prisma {
     lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutOutingRecordsInput = {
@@ -92901,6 +94693,7 @@ export namespace Prisma {
     lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutOutingRecordsInput = {
@@ -92953,6 +94746,239 @@ export namespace Prisma {
     leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
     lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeCreateWithoutPersonalDocumentsInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
+    department?: DepartmentCreateNestedOneWithoutEmployeesInput
+    user?: UserCreateNestedOneWithoutEmployeeInput
+    certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeUncheckedCreateWithoutPersonalDocumentsInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    departmentId?: string | null
+    facilityId?: string | null
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    userId?: string | null
+    emergencyContact?: string | null
+    certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeCreateOrConnectWithoutPersonalDocumentsInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutPersonalDocumentsInput, EmployeeUncheckedCreateWithoutPersonalDocumentsInput>
+  }
+
+  export type EmployeeUpsertWithoutPersonalDocumentsInput = {
+    update: XOR<EmployeeUpdateWithoutPersonalDocumentsInput, EmployeeUncheckedUpdateWithoutPersonalDocumentsInput>
+    create: XOR<EmployeeCreateWithoutPersonalDocumentsInput, EmployeeUncheckedCreateWithoutPersonalDocumentsInput>
+    where?: EmployeeWhereInput
+  }
+
+  export type EmployeeUpdateToOneWithWhereWithoutPersonalDocumentsInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutPersonalDocumentsInput, EmployeeUncheckedUpdateWithoutPersonalDocumentsInput>
+  }
+
+  export type EmployeeUpdateWithoutPersonalDocumentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
+    department?: DepartmentUpdateOneWithoutEmployeesNestedInput
+    user?: UserUpdateOneWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateWithoutPersonalDocumentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
@@ -93218,6 +95244,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutFacilityInput = {
@@ -93271,6 +95298,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateManyWithoutFacilityInput = {
@@ -93520,6 +95548,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDepartmentInput = {
@@ -93573,6 +95602,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateManyWithoutDepartmentInput = {
@@ -93920,6 +95950,19 @@ export namespace Prisma {
     reason?: string | null
     createdBy?: string | null
     createdAt?: Date | string
+  }
+
+  export type PersonalDocumentCreateManyEmployeeInput = {
+    id?: string
+    documentType: string
+    title: string
+    targetYear?: number | null
+    targetMonth?: number | null
+    publishAt: Date | string
+    filePath: string
+    originalFileName?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type EmployeeCertificationUpdateWithoutEmployeeInput = {
@@ -94584,6 +96627,45 @@ export namespace Prisma {
     reason?: NullableStringFieldUpdateOperationsInput | string | null
     createdBy?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PersonalDocumentUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    documentType?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    targetYear?: NullableIntFieldUpdateOperationsInput | number | null
+    targetMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    publishAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    originalFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PersonalDocumentUncheckedUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    documentType?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    targetYear?: NullableIntFieldUpdateOperationsInput | number | null
+    targetMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    publishAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    originalFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PersonalDocumentUncheckedUpdateManyWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    documentType?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    targetYear?: NullableIntFieldUpdateOperationsInput | number | null
+    targetMonth?: NullableIntFieldUpdateOperationsInput | number | null
+    publishAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    originalFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EmploymentContractConsentCreateManyDependentInput = {

@@ -822,6 +822,20 @@ exports.Prisma.OutingRecordScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.PersonalDocumentScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  documentType: 'documentType',
+  title: 'title',
+  targetYear: 'targetYear',
+  targetMonth: 'targetMonth',
+  publishAt: 'publishAt',
+  filePath: 'filePath',
+  originalFileName: 'originalFileName',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1004,7 +1018,8 @@ exports.Prisma.ModelName = {
   PartTimeAnnualLeaveRule: 'PartTimeAnnualLeaveRule',
   LateRecord: 'LateRecord',
   EarlyLeaveRecord: 'EarlyLeaveRecord',
-  OutingRecord: 'OutingRecord'
+  OutingRecord: 'OutingRecord',
+  PersonalDocument: 'PersonalDocument'
 };
 
 /**

@@ -122,6 +122,8 @@ model Employee {
   earlyLeaveRecords EarlyLeaveRecord[]
   outingRecords     OutingRecord[]
   transferHistories EmployeeTransfer[]
+
+  personalDocuments PersonalDocument[]
 }
 
 model EmployeeTransfer {
@@ -1217,4 +1219,32 @@ model OutingRecord {
 
   @@index([employeeId])
   @@index([targetDate])
+}
+
+model PersonalDocument {
+  id String @id @default(uuid())
+
+  employeeId String
+
+  documentType String
+
+  title String
+
+  targetYear  Int?
+  targetMonth Int?
+
+  publishAt DateTime
+
+  filePath String
+
+  originalFileName String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@index([employeeId])
+  @@index([documentType])
+  @@index([publishAt])
 }
