@@ -13,12 +13,34 @@ import { prisma } from "@/lib/prisma";
 const MAX_ZIP_SIZE = 100 * 1024 * 1024;
 const MAX_PDF_SIZE = 10 * 1024 * 1024;
 
+const DOCUMENT_TYPES = {
+  PAYSLIP: "給与明細",
+  WITHHOLDING: "源泉徴収票",
+  INSURANCE: "社会保険通知",
+} as const;
+
+type DocumentType = keyof typeof DOCUMENT_TYPES;
+
+function isDocumentType(value: string): value is DocumentType {
+  return value in DOCUMENT_TYPES;
+}
+
 function normalizeName(value: string) {
   return value
     .normalize("NFKC")
     .replace(/\s+/g, "")
     .replace(/殿$/u, "")
     .trim();
+}
+
+function normalizeEmployeeNo(value: string) {
+  const normalized = value.normalize("NFKC").trim();
+
+  if (/^\d+$/.test(normalized)) {
+    return normalized.replace(/^0+(?=\d)/, "");
+  }
+
+  return normalized;
 }
 
 function extractEmployeeNoFromFileName(fileName: string) {
@@ -38,13 +60,19 @@ function extractNameFromFileName(fileName: string) {
     path.extname(fileName),
   );
 
-  const match = baseName.match(
-    /給与明細書?:令和|平成|\d{4}年/u,
+  const withoutPrefix = baseName.replace(
+    /^(?:給与明細書?|源泉徴収票|社会保険通知)[_\s]*/u,
+    "",
   );
 
-  return match?.[1]
-    ? normalizeName(match[1])
-    : null;
+  const personPart =
+    withoutPrefix.split(
+      /[_\s]*(?:令和|平成|\d{4}年)/u,
+    )[0] ?? "";
+
+  const normalized = normalizeName(personPart);
+
+  return normalized || null;
 }
 
 async function extractEmployeeNoFromPdf(pdfBuffer: Buffer) {
@@ -108,18 +136,47 @@ export async function POST(request: Request) {
       );
     }
 
+    const documentTypeRaw = String(
+      formData.get("documentType") ?? "",
+    );
+
     const targetYear = Number(formData.get("targetYear"));
-    const targetMonth = Number(formData.get("targetMonth"));
+    const targetMonthRaw = String(
+      formData.get("targetMonth") ?? "",
+    ).trim();
+
+    const targetMonth = targetMonthRaw
+      ? Number(targetMonthRaw)
+      : null;
+
     const publishAtRaw = String(formData.get("publishAt") ?? "");
     const requestedTitle = String(formData.get("title") ?? "").trim();
+
+    if (!isDocumentType(documentTypeRaw)) {
+      return NextResponse.json(
+        { error: "文書区分を選択してください。" },
+        { status: 400 },
+      );
+    }
+
+    const documentType = documentTypeRaw;
 
     if (
       !Number.isInteger(targetYear) ||
       targetYear < 2000 ||
       targetYear > 2100 ||
-      !Number.isInteger(targetMonth) ||
-      targetMonth < 1 ||
-      targetMonth > 12 ||
+      (
+        targetMonth !== null &&
+        (
+          !Number.isInteger(targetMonth) ||
+          targetMonth < 1 ||
+          targetMonth > 12
+        )
+      ) ||
+      (
+        documentType === "PAYSLIP" &&
+        targetMonth === null
+      ) ||
       !publishAtRaw
     ) {
       return NextResponse.json(
@@ -137,9 +194,14 @@ export async function POST(request: Request) {
       );
     }
 
+    const targetLabel =
+      targetMonth === null
+        ? `${targetYear}年`
+        : `${targetYear}年${targetMonth}月`;
+
     const title =
       requestedTitle ||
-      `${targetYear}年${targetMonth}月 給与明細`;
+      `${targetLabel} ${DOCUMENT_TYPES[documentType]}`;
 
     const zipBuffer = Buffer.from(await zipFile.arrayBuffer());
     const zip = await JSZip.loadAsync(zipBuffer, {
@@ -167,7 +229,9 @@ export async function POST(request: Request) {
       "storage",
       "personal-documents",
       String(targetYear),
-      String(targetMonth).padStart(2, "0"),
+      targetMonth === null
+        ? "annual"
+        : String(targetMonth).padStart(2, "0"),
     );
 
     await mkdir(uploadDir, { recursive: true });
@@ -207,6 +271,34 @@ export async function POST(request: Request) {
             },
           })
         : null;
+
+      if (!employee && pdfEmployeeNo) {
+        const normalizedEmployeeNo =
+          normalizeEmployeeNo(pdfEmployeeNo);
+
+        const numberCandidates =
+          await prisma.employee.findMany({
+            select: {
+              id: true,
+              employeeNo: true,
+            },
+          });
+
+        const numberMatches = numberCandidates.filter(
+          (candidate) =>
+            normalizeEmployeeNo(candidate.employeeNo) ===
+            normalizedEmployeeNo,
+        );
+
+        if (numberMatches.length === 1) {
+          employee = numberMatches[0];
+        } else if (numberMatches.length > 1) {
+          failures.push(
+            `${originalFileName}: 同一と判断される職員番号が複数あります。`,
+          );
+          continue;
+        }
+      }
 
       if (!employee) {
         const fileNamePerson =
@@ -252,7 +344,7 @@ export async function POST(request: Request) {
       const existing = await prisma.personalDocument.findFirst({
         where: {
           employeeId: employee.id,
-          documentType: "PAYSLIP",
+          documentType,
           targetYear,
           targetMonth,
         },
@@ -260,7 +352,7 @@ export async function POST(request: Request) {
 
       if (existing) {
         failures.push(
-          `${originalFileName}: 同じ対象年月の給与明細が登録済みです。`,
+          `${originalFileName}: 同じ文書区分・対象年月の文書が登録済みです。`,
         );
         continue;
       }
@@ -276,7 +368,7 @@ export async function POST(request: Request) {
       await prisma.personalDocument.create({
         data: {
           employeeId: employee.id,
-          documentType: "PAYSLIP",
+          documentType,
           title,
           targetYear,
           targetMonth,
@@ -290,7 +382,7 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({
-      message: "給与明細の振り分け処理が完了しました。",
+      message: "個人文書の振り分け処理が完了しました。",
       successCount,
       failedCount: failures.length,
       failures,

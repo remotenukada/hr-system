@@ -5,6 +5,37 @@ import BackLink from "@/components/BackLink";
 import { requireHRManager } from "@/lib/auth-guard";
 import { prisma } from "@/lib/prisma";
 
+function getDocumentTypeInfo(type: string) {
+  const types: Record<
+    string,
+    { label: string; className: string }
+  > = {
+    PAYSLIP: {
+      label: "給与明細",
+      className:
+        "border-blue-200 bg-blue-50 text-blue-700",
+    },
+    WITHHOLDING: {
+      label: "源泉徴収票",
+      className:
+        "border-green-200 bg-green-50 text-green-700",
+    },
+    INSURANCE: {
+      label: "社会保険通知",
+      className:
+        "border-orange-200 bg-orange-50 text-orange-700",
+    },
+  };
+
+  return (
+    types[type] ?? {
+      label: type,
+      className:
+        "border-gray-200 bg-gray-50 text-gray-700",
+    }
+  );
+}
+
 function formatDate(value: Date) {
   return new Date(value).toLocaleDateString("ja-JP");
 }
@@ -70,7 +101,8 @@ export default async function EmployeeDocumentsPage() {
           <thead className="bg-gray-50">
             <tr>
               <th className="p-3 text-left">対象者</th>
-              <th className="p-3 text-left">文書</th>
+              <th className="p-3 text-left">文書区分</th>
+              <th className="p-3 text-left">タイトル</th>
               <th className="p-3 text-left">対象年月</th>
               <th className="p-3 text-left">公開日</th>
               <th className="p-3 text-left">状態</th>
@@ -82,6 +114,9 @@ export default async function EmployeeDocumentsPage() {
           <tbody>
             {documents.map((document) => {
               const published = document.publishAt <= now;
+              const typeInfo = getDocumentTypeInfo(
+                document.documentType,
+              );
 
               return (
                 <tr key={document.id} className="border-t">
@@ -93,6 +128,13 @@ export default async function EmployeeDocumentsPage() {
                     </div>
                   </td>
 
+                  <td className="p-3">
+                    <span
+                      className={`inline-block rounded border px-2 py-1 text-xs font-medium ${typeInfo.className}`}
+                    >
+                      {typeInfo.label}
+                    </span>
+                  </td>
                   <td className="p-3">{document.title}</td>
 
                   <td className="p-3">
@@ -145,7 +187,7 @@ export default async function EmployeeDocumentsPage() {
 
             {documents.length === 0 && (
               <tr>
-                <td colSpan={7} className="p-8 text-center text-gray-500">
+                <td colSpan={8} className="p-8 text-center text-gray-500">
                   個人文書は登録されていません。
                 </td>
               </tr>

@@ -11,6 +11,7 @@ type UploadResult = {
 
 export default function PersonalDocumentZipUploadForm() {
   const [loading, setLoading] = useState(false);
+  const [documentType, setDocumentType] = useState("PAYSLIP");
   const [result, setResult] = useState<UploadResult | null>(null);
   const [error, setError] = useState("");
 
@@ -59,6 +60,22 @@ export default function PersonalDocumentZipUploadForm() {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">
+        <label className="text-sm md:col-span-2">
+          文書区分
+          <select
+            name="documentType"
+            value={documentType}
+            onChange={(event) =>
+              setDocumentType(event.target.value)
+            }
+            required
+            className="mt-1 w-full rounded border bg-white p-2"
+          >
+            <option value="PAYSLIP">給与明細</option>
+            <option value="WITHHOLDING">源泉徴収票</option>
+            <option value="INSURANCE">社会保険通知</option>
+          </select>
+        </label>
         <label className="text-sm">
           対象年
           <input
@@ -77,7 +94,7 @@ export default function PersonalDocumentZipUploadForm() {
           <input
             type="number"
             name="targetMonth"
-            required
+            required={documentType === "PAYSLIP"}
             min="1"
             max="12"
             defaultValue={new Date().getMonth() + 1}
@@ -106,7 +123,7 @@ export default function PersonalDocumentZipUploadForm() {
       </div>
 
       <label className="block text-sm">
-        給与明細ZIP
+        個人文書ZIP
         <input
           type="file"
           name="zipFile"
