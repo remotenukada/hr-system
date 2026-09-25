@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { cookies } from "next/headers";
 
 import BackLink from "@/components/BackLink";
 import { requireHRManager } from "@/lib/auth-guard";
@@ -11,7 +12,20 @@ function formatDate(value: Date) {
 export default async function EmployeeDocumentsPage() {
   await requireHRManager();
 
+  const cookieStore = await cookies();
+
+  const facilityScope =
+    cookieStore.get("facilityScope")?.value ?? "ALL";
+
   const documents = await prisma.personalDocument.findMany({
+    where:
+      facilityScope === "ALL"
+        ? {}
+        : {
+            employee: {
+              facilityId: facilityScope,
+            },
+          },
     include: {
       employee: {
         select: {
