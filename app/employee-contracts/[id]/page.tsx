@@ -88,6 +88,31 @@ export default async function EmploymentContractDetailPage(
           >
             編集する
           </Link>
+
+          {contract.isCurrent ? (
+            history.length === 1 && consents.length === 0 ? (
+              <Link
+                href={`/employee-contracts/${contract.id}/full-delete`}
+                className="rounded bg-red-700 px-3 py-1.5 text-sm font-medium text-white hover:bg-red-800"
+              >
+                完全削除
+              </Link>
+            ) : history.length > 1 ? (
+              <Link
+                href={`/employee-contracts/${contract.id}/cancel`}
+                className="rounded bg-red-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-red-700"
+              >
+                更新取消
+              </Link>
+            ) : null
+          ) : (
+            <Link
+              href={`/employee-contracts/${contract.id}/delete`}
+              className="rounded border border-red-600 bg-white px-3 py-1.5 text-sm font-medium text-red-600 hover:bg-red-50"
+            >
+              履歴削除
+            </Link>
+          )}
         </div>
       </div>
 
