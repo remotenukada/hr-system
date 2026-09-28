@@ -124,6 +124,7 @@ model Employee {
   transferHistories EmployeeTransfer[]
 
   personalDocuments PersonalDocument[]
+  residenceRequests ResidenceRequest[]
 }
 
 model EmployeeTransfer {
@@ -554,6 +555,97 @@ model DependentRequestAttachment {
   dependentRequest DependentRequest @relation(fields: [dependentRequestId], references: [id], onDelete: Cascade)
 
   @@index([dependentRequestId])
+}
+
+enum ResidenceType {
+  RENTAL
+  CORPORATE_HOUSING
+  OWNED
+}
+
+enum ResidenceOwnershipType {
+  SELF
+  JOINT
+  FAMILY
+}
+
+enum ResidenceNotificationType {
+  NEW
+  ADDRESS_CHANGE
+  CONTENT_CHANGE
+}
+
+enum ResidenceAttachmentType {
+  LEASE_CONTRACT
+  SALES_CONTRACT
+  REGISTRY
+  RESIDENCE_CERTIFICATE
+  OTHER
+}
+
+model ResidenceRequest {
+  id         String @id @default(uuid())
+  employeeId String
+
+  residenceType    ResidenceType
+  notificationType ResidenceNotificationType
+
+  changeDate  DateTime
+  postalCode  String
+  address     String
+  phoneNumber String?
+  note        String?
+
+  landlordName               String?
+  landlordAddress            String?
+  contractHolderName         String?
+  contractHolderRelationship String?
+  monthlyRent                Int?
+  commonServiceFee           Int?
+
+  housingName String?
+  roomNumber  String?
+
+  ownershipType   ResidenceOwnershipType?
+  ownerName1      String?
+  ownerName2      String?
+  acquisitionDate DateTime?
+
+  status RequestStatus @default(PENDING)
+
+  reviewedAt    DateTime?
+  reviewedBy    String?
+  reviewComment String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  employee    Employee                     @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  attachments ResidenceRequestAttachment[]
+
+  @@index([employeeId])
+  @@index([residenceType])
+  @@index([notificationType])
+  @@index([status])
+  @@index([changeDate])
+}
+
+model ResidenceRequestAttachment {
+  id                 String @id @default(uuid())
+  residenceRequestId String
+
+  attachmentType ResidenceAttachmentType
+  fileName       String
+  filePath       String
+  fileType       String?
+  fileSize       Int?
+
+  createdAt DateTime @default(now())
+
+  residenceRequest ResidenceRequest @relation(fields: [residenceRequestId], references: [id], onDelete: Cascade)
+
+  @@index([residenceRequestId])
+  @@index([attachmentType])
 }
 
 model ProfileChangeRequest {

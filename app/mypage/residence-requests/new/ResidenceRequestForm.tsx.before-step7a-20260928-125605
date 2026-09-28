@@ -1,0 +1,186 @@
+"use client";
+
+import { useState } from "react";
+
+type Props = {
+  action: (formData: FormData) => Promise<void>;
+  employeeName: string;
+  defaultAddress: string;
+  defaultPhoneNumber: string;
+};
+
+export default function ResidenceRequestForm({
+  action,
+  employeeName,
+  defaultAddress,
+  defaultPhoneNumber,
+}: Props) {
+  const [residenceType, setResidenceType] = useState("RENTAL");
+
+  return (
+    <form action={action} className="space-y-6">
+      <section className="rounded-lg border bg-white p-6 shadow-sm">
+        <h2 className="mb-4 border-b pb-2 text-lg font-semibold">
+          申請者情報
+        </h2>
+
+        <p className="text-sm text-gray-700">申請者：{employeeName}</p>
+      </section>
+
+      <section className="rounded-lg border bg-white p-6 shadow-sm">
+        <h2 className="mb-4 border-b pb-2 text-lg font-semibold">
+          届出内容
+        </h2>
+
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <label className="block">
+            <span className="mb-1 block text-sm font-medium">
+              届出区分
+            </span>
+            <select
+              name="notificationType"
+              required
+              className="w-full rounded border p-2"
+            >
+              <option value="NEW">新規</option>
+              <option value="ADDRESS_CHANGE">住所変更</option>
+              <option value="CONTENT_CHANGE">内容変更</option>
+            </select>
+          </label>
+
+          <label className="block">
+            <span className="mb-1 block text-sm font-medium">
+              住居区分
+            </span>
+            <select
+              name="residenceType"
+              value={residenceType}
+              onChange={(event) => setResidenceType(event.target.value)}
+              required
+              className="w-full rounded border p-2"
+            >
+              <option value="RENTAL">賃貸</option>
+              <option value="CORPORATE_HOUSING">法人契約住宅</option>
+              <option value="OWNED">持家</option>
+            </select>
+          </label>
+
+          <label className="block">
+            <span className="mb-1 block text-sm font-medium">
+              変更日
+            </span>
+            <input
+              type="date"
+              name="changeDate"
+              required
+              className="w-full rounded border p-2"
+            />
+          </label>
+
+          <label className="block">
+            <span className="mb-1 block text-sm font-medium">
+              郵便番号
+            </span>
+            <input
+              name="postalCode"
+              required
+              inputMode="numeric"
+              placeholder="253-0000"
+              className="w-full rounded border p-2"
+            />
+          </label>
+
+          <label className="block md:col-span-2">
+            <span className="mb-1 block text-sm font-medium">住所</span>
+            <input
+              name="address"
+              required
+              defaultValue={defaultAddress}
+              className="w-full rounded border p-2"
+            />
+          </label>
+
+          <label className="block">
+            <span className="mb-1 block text-sm font-medium">
+              電話番号
+            </span>
+            <input
+              name="phoneNumber"
+              defaultValue={defaultPhoneNumber}
+              className="w-full rounded border p-2"
+            />
+          </label>
+        </div>
+      </section>
+
+      {residenceType === "RENTAL" && (
+        <section className="rounded-lg border bg-white p-6 shadow-sm">
+          <h2 className="mb-4 border-b pb-2 text-lg font-semibold">
+            賃貸情報
+          </h2>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <input name="landlordName" placeholder="貸主氏名" className="rounded border p-2" />
+            <input name="landlordAddress" placeholder="貸主住所" className="rounded border p-2" />
+            <input name="contractHolderName" placeholder="契約者氏名" className="rounded border p-2" />
+            <input name="contractHolderRelationship" placeholder="契約者続柄" className="rounded border p-2" />
+            <input type="number" min="0" name="monthlyRent" placeholder="月額家賃" className="rounded border p-2" />
+            <input type="number" min="0" name="commonServiceFee" placeholder="共益費" className="rounded border p-2" />
+          </div>
+        </section>
+      )}
+
+      {residenceType === "CORPORATE_HOUSING" && (
+        <section className="rounded-lg border bg-white p-6 shadow-sm">
+          <h2 className="mb-4 border-b pb-2 text-lg font-semibold">
+            法人契約住宅情報
+          </h2>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <input name="housingName" placeholder="住宅名称" className="rounded border p-2" />
+            <input name="roomNumber" placeholder="部屋番号" className="rounded border p-2" />
+          </div>
+        </section>
+      )}
+
+      {residenceType === "OWNED" && (
+        <section className="rounded-lg border bg-white p-6 shadow-sm">
+          <h2 className="mb-4 border-b pb-2 text-lg font-semibold">
+            持家情報
+          </h2>
+
+          <div className="space-y-4">
+            <select name="ownershipType" className="w-full rounded border p-2">
+              <option value="SELF">本人名義</option>
+              <option value="JOINT">共同名義</option>
+              <option value="FAMILY">家族名義</option>
+            </select>
+
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              <input name="ownerName1" placeholder="名義人1" className="rounded border p-2" />
+              <input name="ownerName2" placeholder="名義人2" className="rounded border p-2" />
+              <label>
+                <span className="mb-1 block text-sm font-medium">取得年月日</span>
+                <input type="date" name="acquisitionDate" className="w-full rounded border p-2" />
+              </label>
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section className="rounded-lg border bg-white p-6 shadow-sm">
+        <label className="block">
+          <span className="mb-1 block text-sm font-medium">備考</span>
+          <textarea name="note" rows={4} className="w-full rounded border p-2" />
+        </label>
+      </section>
+
+      <button
+        type="submit"
+        className="rounded bg-blue-600 px-6 py-3 font-medium text-white hover:bg-blue-700"
+      >
+        住居届を申請する
+      </button>
+    </form>
+  );
+}
