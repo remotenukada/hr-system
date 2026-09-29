@@ -1370,63 +1370,31 @@ export default async function DashboardPage() {
             個人情報・現在登録情報・雇用情報を確認できます。
           </p>
 
-          <div className="mt-4 flex flex-wrap gap-3">
-            <Link
-              href="/mypage/documents"
-              className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-50"
-            >
-              給与・通知書類
-            </Link>
-            <Link
-              href="/mypage/certifications"
-              className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-            >
-              保有資格
-            </Link>
-            <Link
-              href="/mypage/profile-change"
-              className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-            >
-              プロフィール
-            </Link>
-            <Link
-              href="/mypage/bank-account"
-              className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-            >
-              口座情報
-            </Link>
-
-            <Link
-              href="/mypage/my-number"
-              className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-            >
-              マイナンバー
-            </Link>
-            <Link
-              href="/portal/dependents"
-              className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-            >
-              現在の扶養情報
-            </Link>
-            <Link
-              href="/portal/residence"
-              className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-            >
-              現在の住居情報
-            </Link>
-            <Link
-              href="/portal/commuting"
-              className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-            >
-              現在の通勤情報
-            </Link>
-
-            <Link
-              href="/mypage/employment-contracts"
-              className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-            >
-              雇用条件書
-            </Link>
+          <div className="mt-4 space-y-6">
+            <div>
+              <h4 className="mb-2 text-sm font-semibold text-gray-600">個人情報</h4>
+              <div className="flex flex-wrap gap-3">
+                <Link href="/mypage/profile-change" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">プロフィール</Link>
+                <Link href="/mypage/bank-account" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">口座情報</Link>
+                <Link href="/mypage/my-number" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">マイナンバー</Link>
+              </div>
+            </div>
+            <div>
+              <h4 className="mb-2 text-sm font-semibold text-gray-600">現在登録情報</h4>
+              <div className="flex flex-wrap gap-3">
+                <Link href="/mypage/certifications" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">保有資格</Link>
+                <Link href="/portal/dependents" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">現在の扶養情報</Link>
+                <Link href="/portal/residence" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">現在の住居情報</Link>
+                <Link href="/portal/commuting" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">現在の通勤情報</Link>
+              </div>
+            </div>
+            <div>
+              <h4 className="mb-2 text-sm font-semibold text-gray-600">雇用情報</h4>
+              <div className="flex flex-wrap gap-3">
+                <Link href="/mypage/documents" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">給与・通知書類</Link>
+                <Link href="/mypage/employment-contracts" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">雇用条件書</Link>
+              </div>
+            </div>
           </div>
         </div>
 
