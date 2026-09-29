@@ -71,3 +71,65 @@ FY Nexus One
 ──────────────────`,
   });
 }
+
+type SendSystemMailParams = {
+  to: string | string[];
+  subject: string;
+  text: string;
+};
+
+export async function sendSystemMail({
+  to,
+  subject,
+  text,
+}: SendSystemMailParams) {
+  const company = await prisma.companySetting.findFirst();
+  const transporter = await createMailTransporter();
+
+  const from =
+    company?.mailFrom ||
+    process.env.SMTP_FROM ||
+    "no-reply@example.com";
+
+  await transporter.sendMail({
+    from,
+    to,
+    subject,
+    text,
+  });
+}
+
+export async function sendSystemMailSafely(
+  params: Parameters<typeof sendSystemMail>[0],
+) {
+  try {
+    await sendSystemMail(params);
+    return true;
+  } catch (error) {
+    console.error("システムメール送信エラー:", error);
+    return false;
+  }
+}
+
+export async function getHRNotificationRecipients(): Promise<string[]> {
+  const users = await prisma.user.findMany({
+    where: {
+      isActive: true,
+      role: {
+        in: ["ADMIN", "HR_MANAGER"],
+      },
+      email: {
+        not: "",
+      },
+    },
+    select: {
+      email: true,
+    },
+  });
+
+  return [...new Set(
+    users
+      .map((user) => user.email.trim())
+      .filter(Boolean),
+  )];
+}

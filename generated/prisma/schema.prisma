@@ -103,6 +103,7 @@ model Employee {
   certifications        EmployeeCertification[]
   employeeMyNumber      EmployeeMyNumber?
   requests              EmployeeRequest[]
+  commutingRequests     CommutingRequest[]
   employeeSalary        EmployeeSalary?
   employmentHistories   EmploymentHistory[]
   leaveBalance          LeaveBalance?
@@ -124,6 +125,7 @@ model Employee {
   transferHistories EmployeeTransfer[]
 
   personalDocuments PersonalDocument[]
+  residenceRequests ResidenceRequest[]
 }
 
 model EmployeeTransfer {
@@ -554,6 +556,211 @@ model DependentRequestAttachment {
   dependentRequest DependentRequest @relation(fields: [dependentRequestId], references: [id], onDelete: Cascade)
 
   @@index([dependentRequestId])
+}
+
+enum ResidenceType {
+  RENTAL
+  CORPORATE_HOUSING
+  OWNED
+}
+
+enum ResidenceOwnershipType {
+  SELF
+  JOINT
+  FAMILY
+}
+
+enum ResidenceNotificationType {
+  NEW
+  ADDRESS_CHANGE
+  CONTENT_CHANGE
+}
+
+enum ResidenceAttachmentType {
+  LEASE_CONTRACT
+  SALES_CONTRACT
+  REGISTRY
+  RESIDENCE_CERTIFICATE
+  OTHER
+}
+
+model ResidenceRequest {
+  id         String @id @default(uuid())
+  employeeId String
+
+  residenceType    ResidenceType
+  notificationType ResidenceNotificationType
+
+  changeDate  DateTime
+  postalCode  String
+  address     String
+  phoneNumber String?
+  note        String?
+
+  landlordName               String?
+  landlordAddress            String?
+  contractHolderName         String?
+  contractHolderRelationship String?
+  monthlyRent                Int?
+  commonServiceFee           Int?
+
+  housingName String?
+  roomNumber  String?
+
+  ownershipType   ResidenceOwnershipType?
+  ownerName1      String?
+  ownerName2      String?
+  acquisitionDate DateTime?
+
+  status RequestStatus @default(PENDING)
+
+  reviewedAt    DateTime?
+  reviewedBy    String?
+  reviewComment String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  employee    Employee                     @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  attachments ResidenceRequestAttachment[]
+
+  @@index([employeeId])
+  @@index([residenceType])
+  @@index([notificationType])
+  @@index([status])
+  @@index([changeDate])
+}
+
+model ResidenceRequestAttachment {
+  id                 String @id @default(uuid())
+  residenceRequestId String
+
+  attachmentType ResidenceAttachmentType
+  fileName       String
+  filePath       String
+  fileType       String?
+  fileSize       Int?
+
+  createdAt DateTime @default(now())
+
+  residenceRequest ResidenceRequest @relation(fields: [residenceRequestId], references: [id], onDelete: Cascade)
+
+  @@index([residenceRequestId])
+  @@index([attachmentType])
+}
+
+model CommutingRequest {
+  id         String @id @default(uuid())
+  employeeId String
+
+  notificationType CommutingNotificationType
+  commutingType    CommutingType
+
+  effectiveDate DateTime
+  routeFrom     String?
+  routeTo       String?
+  routeDetails  String?
+
+  transportationName String?
+  monthlyAmount      Int?
+  oneWayDistanceKm   Float?
+  oneWayFare         Int?
+
+  vehicleRegistrationNumber String?
+  vehicleName               String?
+  vehicleColor              String?
+  approvedAmount            Int?
+  note                      String?
+
+  status RequestStatus @default(PENDING)
+
+  reviewedAt    DateTime?
+  reviewedBy    String?
+  reviewComment String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  employee      Employee                     @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  attachments   CommutingRequestAttachment[]
+  routeSegments CommutingRouteSegment[]
+
+  @@index([employeeId])
+  @@index([notificationType])
+  @@index([commutingType])
+  @@index([status])
+  @@index([effectiveDate])
+}
+
+model CommutingRouteSegment {
+  id                 String @id @default(uuid())
+  commutingRequestId String
+
+  operatorName   String
+  lineName       String?
+  boardingPoint  String?
+  alightingPoint String?
+
+  oneWayFare        Int?
+  roundTripFare     Int?
+  monthlyPassAmount Int?
+  payableAmount     Int?
+
+  fareSystem         String?
+  coveredBySegmentId String?
+  sortOrder          Int     @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  commutingRequest CommutingRequest @relation(fields: [commutingRequestId], references: [id], onDelete: Cascade)
+
+  @@index([commutingRequestId])
+  @@index([operatorName])
+  @@index([sortOrder])
+}
+
+model CommutingRequestAttachment {
+  id                 String @id @default(uuid())
+  commutingRequestId String
+
+  attachmentType CommutingAttachmentType
+  fileName       String
+  filePath       String
+  fileType       String?
+  fileSize       Int?
+
+  createdAt DateTime @default(now())
+
+  commutingRequest CommutingRequest @relation(fields: [commutingRequestId], references: [id], onDelete: Cascade)
+
+  @@index([commutingRequestId])
+  @@index([attachmentType])
+}
+
+enum CommutingNotificationType {
+  NEW
+  ROUTE_CHANGE
+  METHOD_CHANGE
+  AMOUNT_CHANGE
+}
+
+enum CommutingType {
+  PUBLIC_TRANSPORT
+  CAR
+  MOTORCYCLE
+  BICYCLE
+  WALK
+  OTHER
+}
+
+enum CommutingAttachmentType {
+  COMMUTER_PASS
+  ROUTE_MAP
+  VEHICLE_INSPECTION
+  VOLUNTARY_INSURANCE
+  DRIVERS_LICENSE
+  OTHER
 }
 
 model ProfileChangeRequest {

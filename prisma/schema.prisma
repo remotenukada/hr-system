@@ -103,6 +103,7 @@ model Employee {
   certifications        EmployeeCertification[]
   employeeMyNumber      EmployeeMyNumber?
   requests              EmployeeRequest[]
+  commutingRequests     CommutingRequest[]
   employeeSalary        EmployeeSalary?
   employmentHistories   EmploymentHistory[]
   leaveBalance          LeaveBalance?
@@ -646,6 +647,120 @@ model ResidenceRequestAttachment {
 
   @@index([residenceRequestId])
   @@index([attachmentType])
+}
+
+model CommutingRequest {
+  id         String @id @default(uuid())
+  employeeId String
+
+  notificationType CommutingNotificationType
+  commutingType    CommutingType
+
+  effectiveDate DateTime
+  routeFrom     String?
+  routeTo       String?
+  routeDetails  String?
+
+  transportationName String?
+  monthlyAmount      Int?
+  oneWayDistanceKm   Float?
+  oneWayFare         Int?
+
+  vehicleRegistrationNumber String?
+  vehicleName               String?
+  vehicleColor              String?
+  approvedAmount            Int?
+  note                      String?
+
+  status RequestStatus @default(PENDING)
+
+  reviewedAt    DateTime?
+  reviewedBy    String?
+  reviewComment String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  employee      Employee                     @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  attachments   CommutingRequestAttachment[]
+  routeSegments CommutingRouteSegment[]
+
+  @@index([employeeId])
+  @@index([notificationType])
+  @@index([commutingType])
+  @@index([status])
+  @@index([effectiveDate])
+}
+
+model CommutingRouteSegment {
+  id                 String @id @default(uuid())
+  commutingRequestId String
+
+  operatorName   String
+  lineName       String?
+  boardingPoint  String?
+  alightingPoint String?
+
+  oneWayFare        Int?
+  roundTripFare     Int?
+  monthlyPassAmount Int?
+  payableAmount     Int?
+
+  fareSystem         String?
+  coveredBySegmentId String?
+  sortOrder          Int @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  commutingRequest CommutingRequest @relation(fields: [commutingRequestId], references: [id], onDelete: Cascade)
+
+  @@index([commutingRequestId])
+  @@index([operatorName])
+  @@index([sortOrder])
+}
+
+model CommutingRequestAttachment {
+  id                 String @id @default(uuid())
+  commutingRequestId String
+
+  attachmentType CommutingAttachmentType
+  fileName       String
+  filePath       String
+  fileType       String?
+  fileSize       Int?
+
+  createdAt DateTime @default(now())
+
+  commutingRequest CommutingRequest @relation(fields: [commutingRequestId], references: [id], onDelete: Cascade)
+
+  @@index([commutingRequestId])
+  @@index([attachmentType])
+}
+
+enum CommutingNotificationType {
+  NEW
+  ROUTE_CHANGE
+  METHOD_CHANGE
+  AMOUNT_CHANGE
+}
+
+enum CommutingType {
+  PUBLIC_TRANSPORT
+  CAR
+  MOTORCYCLE
+  BICYCLE
+  WALK
+  OTHER
+}
+
+enum CommutingAttachmentType {
+  COMMUTER_PASS
+  ROUTE_MAP
+  VEHICLE_INSPECTION
+  VOLUNTARY_INSURANCE
+  DRIVERS_LICENSE
+  OTHER
 }
 
 model ProfileChangeRequest {

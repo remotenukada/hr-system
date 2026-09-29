@@ -467,6 +467,102 @@ exports.Prisma.DependentRequestAttachmentScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.ResidenceRequestScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  residenceType: 'residenceType',
+  notificationType: 'notificationType',
+  changeDate: 'changeDate',
+  postalCode: 'postalCode',
+  address: 'address',
+  phoneNumber: 'phoneNumber',
+  note: 'note',
+  landlordName: 'landlordName',
+  landlordAddress: 'landlordAddress',
+  contractHolderName: 'contractHolderName',
+  contractHolderRelationship: 'contractHolderRelationship',
+  monthlyRent: 'monthlyRent',
+  commonServiceFee: 'commonServiceFee',
+  housingName: 'housingName',
+  roomNumber: 'roomNumber',
+  ownershipType: 'ownershipType',
+  ownerName1: 'ownerName1',
+  ownerName2: 'ownerName2',
+  acquisitionDate: 'acquisitionDate',
+  status: 'status',
+  reviewedAt: 'reviewedAt',
+  reviewedBy: 'reviewedBy',
+  reviewComment: 'reviewComment',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ResidenceRequestAttachmentScalarFieldEnum = {
+  id: 'id',
+  residenceRequestId: 'residenceRequestId',
+  attachmentType: 'attachmentType',
+  fileName: 'fileName',
+  filePath: 'filePath',
+  fileType: 'fileType',
+  fileSize: 'fileSize',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.CommutingRequestScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  notificationType: 'notificationType',
+  commutingType: 'commutingType',
+  effectiveDate: 'effectiveDate',
+  routeFrom: 'routeFrom',
+  routeTo: 'routeTo',
+  routeDetails: 'routeDetails',
+  transportationName: 'transportationName',
+  monthlyAmount: 'monthlyAmount',
+  oneWayDistanceKm: 'oneWayDistanceKm',
+  oneWayFare: 'oneWayFare',
+  vehicleRegistrationNumber: 'vehicleRegistrationNumber',
+  vehicleName: 'vehicleName',
+  vehicleColor: 'vehicleColor',
+  approvedAmount: 'approvedAmount',
+  note: 'note',
+  status: 'status',
+  reviewedAt: 'reviewedAt',
+  reviewedBy: 'reviewedBy',
+  reviewComment: 'reviewComment',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CommutingRouteSegmentScalarFieldEnum = {
+  id: 'id',
+  commutingRequestId: 'commutingRequestId',
+  operatorName: 'operatorName',
+  lineName: 'lineName',
+  boardingPoint: 'boardingPoint',
+  alightingPoint: 'alightingPoint',
+  oneWayFare: 'oneWayFare',
+  roundTripFare: 'roundTripFare',
+  monthlyPassAmount: 'monthlyPassAmount',
+  payableAmount: 'payableAmount',
+  fareSystem: 'fareSystem',
+  coveredBySegmentId: 'coveredBySegmentId',
+  sortOrder: 'sortOrder',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CommutingRequestAttachmentScalarFieldEnum = {
+  id: 'id',
+  commutingRequestId: 'commutingRequestId',
+  attachmentType: 'attachmentType',
+  fileName: 'fileName',
+  filePath: 'filePath',
+  fileType: 'fileType',
+  fileSize: 'fileSize',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.ProfileChangeRequestScalarFieldEnum = {
   id: 'id',
   employeeId: 'employeeId',
@@ -968,6 +1064,57 @@ exports.DependentRequestType = exports.$Enums.DependentRequestType = {
   REMOVE: 'REMOVE'
 };
 
+exports.ResidenceType = exports.$Enums.ResidenceType = {
+  RENTAL: 'RENTAL',
+  CORPORATE_HOUSING: 'CORPORATE_HOUSING',
+  OWNED: 'OWNED'
+};
+
+exports.ResidenceNotificationType = exports.$Enums.ResidenceNotificationType = {
+  NEW: 'NEW',
+  ADDRESS_CHANGE: 'ADDRESS_CHANGE',
+  CONTENT_CHANGE: 'CONTENT_CHANGE'
+};
+
+exports.ResidenceOwnershipType = exports.$Enums.ResidenceOwnershipType = {
+  SELF: 'SELF',
+  JOINT: 'JOINT',
+  FAMILY: 'FAMILY'
+};
+
+exports.ResidenceAttachmentType = exports.$Enums.ResidenceAttachmentType = {
+  LEASE_CONTRACT: 'LEASE_CONTRACT',
+  SALES_CONTRACT: 'SALES_CONTRACT',
+  REGISTRY: 'REGISTRY',
+  RESIDENCE_CERTIFICATE: 'RESIDENCE_CERTIFICATE',
+  OTHER: 'OTHER'
+};
+
+exports.CommutingNotificationType = exports.$Enums.CommutingNotificationType = {
+  NEW: 'NEW',
+  ROUTE_CHANGE: 'ROUTE_CHANGE',
+  METHOD_CHANGE: 'METHOD_CHANGE',
+  AMOUNT_CHANGE: 'AMOUNT_CHANGE'
+};
+
+exports.CommutingType = exports.$Enums.CommutingType = {
+  PUBLIC_TRANSPORT: 'PUBLIC_TRANSPORT',
+  CAR: 'CAR',
+  MOTORCYCLE: 'MOTORCYCLE',
+  BICYCLE: 'BICYCLE',
+  WALK: 'WALK',
+  OTHER: 'OTHER'
+};
+
+exports.CommutingAttachmentType = exports.$Enums.CommutingAttachmentType = {
+  COMMUTER_PASS: 'COMMUTER_PASS',
+  ROUTE_MAP: 'ROUTE_MAP',
+  VEHICLE_INSPECTION: 'VEHICLE_INSPECTION',
+  VOLUNTARY_INSURANCE: 'VOLUNTARY_INSURANCE',
+  DRIVERS_LICENSE: 'DRIVERS_LICENSE',
+  OTHER: 'OTHER'
+};
+
 exports.ProfileChangeStatus = exports.$Enums.ProfileChangeStatus = {
   PENDING: 'PENDING',
   APPROVED: 'APPROVED',
@@ -1007,6 +1154,11 @@ exports.Prisma.ModelName = {
   EmployeeBankAttachment: 'EmployeeBankAttachment',
   DependentRequest: 'DependentRequest',
   DependentRequestAttachment: 'DependentRequestAttachment',
+  ResidenceRequest: 'ResidenceRequest',
+  ResidenceRequestAttachment: 'ResidenceRequestAttachment',
+  CommutingRequest: 'CommutingRequest',
+  CommutingRouteSegment: 'CommutingRouteSegment',
+  CommutingRequestAttachment: 'CommutingRequestAttachment',
   ProfileChangeRequest: 'ProfileChangeRequest',
   EmploymentContract: 'EmploymentContract',
   CompanySetting: 'CompanySetting',

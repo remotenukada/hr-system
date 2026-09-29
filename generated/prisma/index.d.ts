@@ -149,6 +149,31 @@ export type DependentRequest = $Result.DefaultSelection<Prisma.$DependentRequest
  */
 export type DependentRequestAttachment = $Result.DefaultSelection<Prisma.$DependentRequestAttachmentPayload>
 /**
+ * Model ResidenceRequest
+ * 
+ */
+export type ResidenceRequest = $Result.DefaultSelection<Prisma.$ResidenceRequestPayload>
+/**
+ * Model ResidenceRequestAttachment
+ * 
+ */
+export type ResidenceRequestAttachment = $Result.DefaultSelection<Prisma.$ResidenceRequestAttachmentPayload>
+/**
+ * Model CommutingRequest
+ * 
+ */
+export type CommutingRequest = $Result.DefaultSelection<Prisma.$CommutingRequestPayload>
+/**
+ * Model CommutingRouteSegment
+ * 
+ */
+export type CommutingRouteSegment = $Result.DefaultSelection<Prisma.$CommutingRouteSegmentPayload>
+/**
+ * Model CommutingRequestAttachment
+ * 
+ */
+export type CommutingRequestAttachment = $Result.DefaultSelection<Prisma.$CommutingRequestAttachmentPayload>
+/**
  * Model ProfileChangeRequest
  * 
  */
@@ -273,7 +298,79 @@ export type PersonalDocument = $Result.DefaultSelection<Prisma.$PersonalDocument
  * Enums
  */
 export namespace $Enums {
-  export const UserRole: {
+  export const ResidenceType: {
+  RENTAL: 'RENTAL',
+  CORPORATE_HOUSING: 'CORPORATE_HOUSING',
+  OWNED: 'OWNED'
+};
+
+export type ResidenceType = (typeof ResidenceType)[keyof typeof ResidenceType]
+
+
+export const ResidenceOwnershipType: {
+  SELF: 'SELF',
+  JOINT: 'JOINT',
+  FAMILY: 'FAMILY'
+};
+
+export type ResidenceOwnershipType = (typeof ResidenceOwnershipType)[keyof typeof ResidenceOwnershipType]
+
+
+export const ResidenceNotificationType: {
+  NEW: 'NEW',
+  ADDRESS_CHANGE: 'ADDRESS_CHANGE',
+  CONTENT_CHANGE: 'CONTENT_CHANGE'
+};
+
+export type ResidenceNotificationType = (typeof ResidenceNotificationType)[keyof typeof ResidenceNotificationType]
+
+
+export const ResidenceAttachmentType: {
+  LEASE_CONTRACT: 'LEASE_CONTRACT',
+  SALES_CONTRACT: 'SALES_CONTRACT',
+  REGISTRY: 'REGISTRY',
+  RESIDENCE_CERTIFICATE: 'RESIDENCE_CERTIFICATE',
+  OTHER: 'OTHER'
+};
+
+export type ResidenceAttachmentType = (typeof ResidenceAttachmentType)[keyof typeof ResidenceAttachmentType]
+
+
+export const CommutingNotificationType: {
+  NEW: 'NEW',
+  ROUTE_CHANGE: 'ROUTE_CHANGE',
+  METHOD_CHANGE: 'METHOD_CHANGE',
+  AMOUNT_CHANGE: 'AMOUNT_CHANGE'
+};
+
+export type CommutingNotificationType = (typeof CommutingNotificationType)[keyof typeof CommutingNotificationType]
+
+
+export const CommutingType: {
+  PUBLIC_TRANSPORT: 'PUBLIC_TRANSPORT',
+  CAR: 'CAR',
+  MOTORCYCLE: 'MOTORCYCLE',
+  BICYCLE: 'BICYCLE',
+  WALK: 'WALK',
+  OTHER: 'OTHER'
+};
+
+export type CommutingType = (typeof CommutingType)[keyof typeof CommutingType]
+
+
+export const CommutingAttachmentType: {
+  COMMUTER_PASS: 'COMMUTER_PASS',
+  ROUTE_MAP: 'ROUTE_MAP',
+  VEHICLE_INSPECTION: 'VEHICLE_INSPECTION',
+  VOLUNTARY_INSURANCE: 'VOLUNTARY_INSURANCE',
+  DRIVERS_LICENSE: 'DRIVERS_LICENSE',
+  OTHER: 'OTHER'
+};
+
+export type CommutingAttachmentType = (typeof CommutingAttachmentType)[keyof typeof CommutingAttachmentType]
+
+
+export const UserRole: {
   ADMIN: 'ADMIN',
   USER: 'USER',
   HR_MANAGER: 'HR_MANAGER',
@@ -425,6 +522,34 @@ export const ConsentMethod: {
 export type ConsentMethod = (typeof ConsentMethod)[keyof typeof ConsentMethod]
 
 }
+
+export type ResidenceType = $Enums.ResidenceType
+
+export const ResidenceType: typeof $Enums.ResidenceType
+
+export type ResidenceOwnershipType = $Enums.ResidenceOwnershipType
+
+export const ResidenceOwnershipType: typeof $Enums.ResidenceOwnershipType
+
+export type ResidenceNotificationType = $Enums.ResidenceNotificationType
+
+export const ResidenceNotificationType: typeof $Enums.ResidenceNotificationType
+
+export type ResidenceAttachmentType = $Enums.ResidenceAttachmentType
+
+export const ResidenceAttachmentType: typeof $Enums.ResidenceAttachmentType
+
+export type CommutingNotificationType = $Enums.CommutingNotificationType
+
+export const CommutingNotificationType: typeof $Enums.CommutingNotificationType
+
+export type CommutingType = $Enums.CommutingType
+
+export const CommutingType: typeof $Enums.CommutingType
+
+export type CommutingAttachmentType = $Enums.CommutingAttachmentType
+
+export const CommutingAttachmentType: typeof $Enums.CommutingAttachmentType
 
 export type UserRole = $Enums.UserRole
 
@@ -876,6 +1001,56 @@ export class PrismaClient<
     * ```
     */
   get dependentRequestAttachment(): Prisma.DependentRequestAttachmentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.residenceRequest`: Exposes CRUD operations for the **ResidenceRequest** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ResidenceRequests
+    * const residenceRequests = await prisma.residenceRequest.findMany()
+    * ```
+    */
+  get residenceRequest(): Prisma.ResidenceRequestDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.residenceRequestAttachment`: Exposes CRUD operations for the **ResidenceRequestAttachment** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ResidenceRequestAttachments
+    * const residenceRequestAttachments = await prisma.residenceRequestAttachment.findMany()
+    * ```
+    */
+  get residenceRequestAttachment(): Prisma.ResidenceRequestAttachmentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.commutingRequest`: Exposes CRUD operations for the **CommutingRequest** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CommutingRequests
+    * const commutingRequests = await prisma.commutingRequest.findMany()
+    * ```
+    */
+  get commutingRequest(): Prisma.CommutingRequestDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.commutingRouteSegment`: Exposes CRUD operations for the **CommutingRouteSegment** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CommutingRouteSegments
+    * const commutingRouteSegments = await prisma.commutingRouteSegment.findMany()
+    * ```
+    */
+  get commutingRouteSegment(): Prisma.CommutingRouteSegmentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.commutingRequestAttachment`: Exposes CRUD operations for the **CommutingRequestAttachment** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CommutingRequestAttachments
+    * const commutingRequestAttachments = await prisma.commutingRequestAttachment.findMany()
+    * ```
+    */
+  get commutingRequestAttachment(): Prisma.CommutingRequestAttachmentDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.profileChangeRequest`: Exposes CRUD operations for the **ProfileChangeRequest** model.
@@ -1577,6 +1752,11 @@ export namespace Prisma {
     EmployeeBankAttachment: 'EmployeeBankAttachment',
     DependentRequest: 'DependentRequest',
     DependentRequestAttachment: 'DependentRequestAttachment',
+    ResidenceRequest: 'ResidenceRequest',
+    ResidenceRequestAttachment: 'ResidenceRequestAttachment',
+    CommutingRequest: 'CommutingRequest',
+    CommutingRouteSegment: 'CommutingRouteSegment',
+    CommutingRequestAttachment: 'CommutingRequestAttachment',
     ProfileChangeRequest: 'ProfileChangeRequest',
     EmploymentContract: 'EmploymentContract',
     CompanySetting: 'CompanySetting',
@@ -1616,7 +1796,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "userInvitation" | "facility" | "department" | "employee" | "employeeTransfer" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestApproval" | "requestAttachment" | "requestHistory" | "approvalRoute" | "auditLog" | "certification" | "certificationDocumentRule" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster" | "contractTypeMaster" | "jobTitleMaster" | "positionMaster" | "leaveTypeBalance" | "leaveType" | "retirementChecklist" | "loanedAsset" | "retirementCertificate" | "annualLeaveServiceRule" | "annualLeaveEntryRule" | "partTimeAnnualLeaveRule" | "lateRecord" | "earlyLeaveRecord" | "outingRecord" | "personalDocument"
+      modelProps: "user" | "userInvitation" | "facility" | "department" | "employee" | "employeeTransfer" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestApproval" | "requestAttachment" | "requestHistory" | "approvalRoute" | "auditLog" | "certification" | "certificationDocumentRule" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "residenceRequest" | "residenceRequestAttachment" | "commutingRequest" | "commutingRouteSegment" | "commutingRequestAttachment" | "profileChangeRequest" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster" | "contractTypeMaster" | "jobTitleMaster" | "positionMaster" | "leaveTypeBalance" | "leaveType" | "retirementChecklist" | "loanedAsset" | "retirementCertificate" | "annualLeaveServiceRule" | "annualLeaveEntryRule" | "partTimeAnnualLeaveRule" | "lateRecord" | "earlyLeaveRecord" | "outingRecord" | "personalDocument"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -3618,6 +3798,376 @@ export namespace Prisma {
           }
         }
       }
+      ResidenceRequest: {
+        payload: Prisma.$ResidenceRequestPayload<ExtArgs>
+        fields: Prisma.ResidenceRequestFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ResidenceRequestFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidenceRequestPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ResidenceRequestFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidenceRequestPayload>
+          }
+          findFirst: {
+            args: Prisma.ResidenceRequestFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidenceRequestPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ResidenceRequestFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidenceRequestPayload>
+          }
+          findMany: {
+            args: Prisma.ResidenceRequestFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidenceRequestPayload>[]
+          }
+          create: {
+            args: Prisma.ResidenceRequestCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidenceRequestPayload>
+          }
+          createMany: {
+            args: Prisma.ResidenceRequestCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ResidenceRequestCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidenceRequestPayload>[]
+          }
+          delete: {
+            args: Prisma.ResidenceRequestDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidenceRequestPayload>
+          }
+          update: {
+            args: Prisma.ResidenceRequestUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidenceRequestPayload>
+          }
+          deleteMany: {
+            args: Prisma.ResidenceRequestDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ResidenceRequestUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ResidenceRequestUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidenceRequestPayload>[]
+          }
+          upsert: {
+            args: Prisma.ResidenceRequestUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidenceRequestPayload>
+          }
+          aggregate: {
+            args: Prisma.ResidenceRequestAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateResidenceRequest>
+          }
+          groupBy: {
+            args: Prisma.ResidenceRequestGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ResidenceRequestGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ResidenceRequestCountArgs<ExtArgs>
+            result: $Utils.Optional<ResidenceRequestCountAggregateOutputType> | number
+          }
+        }
+      }
+      ResidenceRequestAttachment: {
+        payload: Prisma.$ResidenceRequestAttachmentPayload<ExtArgs>
+        fields: Prisma.ResidenceRequestAttachmentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ResidenceRequestAttachmentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidenceRequestAttachmentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ResidenceRequestAttachmentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidenceRequestAttachmentPayload>
+          }
+          findFirst: {
+            args: Prisma.ResidenceRequestAttachmentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidenceRequestAttachmentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ResidenceRequestAttachmentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidenceRequestAttachmentPayload>
+          }
+          findMany: {
+            args: Prisma.ResidenceRequestAttachmentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidenceRequestAttachmentPayload>[]
+          }
+          create: {
+            args: Prisma.ResidenceRequestAttachmentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidenceRequestAttachmentPayload>
+          }
+          createMany: {
+            args: Prisma.ResidenceRequestAttachmentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ResidenceRequestAttachmentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidenceRequestAttachmentPayload>[]
+          }
+          delete: {
+            args: Prisma.ResidenceRequestAttachmentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidenceRequestAttachmentPayload>
+          }
+          update: {
+            args: Prisma.ResidenceRequestAttachmentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidenceRequestAttachmentPayload>
+          }
+          deleteMany: {
+            args: Prisma.ResidenceRequestAttachmentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ResidenceRequestAttachmentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ResidenceRequestAttachmentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidenceRequestAttachmentPayload>[]
+          }
+          upsert: {
+            args: Prisma.ResidenceRequestAttachmentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ResidenceRequestAttachmentPayload>
+          }
+          aggregate: {
+            args: Prisma.ResidenceRequestAttachmentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateResidenceRequestAttachment>
+          }
+          groupBy: {
+            args: Prisma.ResidenceRequestAttachmentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ResidenceRequestAttachmentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ResidenceRequestAttachmentCountArgs<ExtArgs>
+            result: $Utils.Optional<ResidenceRequestAttachmentCountAggregateOutputType> | number
+          }
+        }
+      }
+      CommutingRequest: {
+        payload: Prisma.$CommutingRequestPayload<ExtArgs>
+        fields: Prisma.CommutingRequestFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CommutingRequestFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRequestPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CommutingRequestFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRequestPayload>
+          }
+          findFirst: {
+            args: Prisma.CommutingRequestFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRequestPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CommutingRequestFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRequestPayload>
+          }
+          findMany: {
+            args: Prisma.CommutingRequestFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRequestPayload>[]
+          }
+          create: {
+            args: Prisma.CommutingRequestCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRequestPayload>
+          }
+          createMany: {
+            args: Prisma.CommutingRequestCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CommutingRequestCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRequestPayload>[]
+          }
+          delete: {
+            args: Prisma.CommutingRequestDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRequestPayload>
+          }
+          update: {
+            args: Prisma.CommutingRequestUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRequestPayload>
+          }
+          deleteMany: {
+            args: Prisma.CommutingRequestDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CommutingRequestUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CommutingRequestUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRequestPayload>[]
+          }
+          upsert: {
+            args: Prisma.CommutingRequestUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRequestPayload>
+          }
+          aggregate: {
+            args: Prisma.CommutingRequestAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCommutingRequest>
+          }
+          groupBy: {
+            args: Prisma.CommutingRequestGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CommutingRequestGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CommutingRequestCountArgs<ExtArgs>
+            result: $Utils.Optional<CommutingRequestCountAggregateOutputType> | number
+          }
+        }
+      }
+      CommutingRouteSegment: {
+        payload: Prisma.$CommutingRouteSegmentPayload<ExtArgs>
+        fields: Prisma.CommutingRouteSegmentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CommutingRouteSegmentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRouteSegmentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CommutingRouteSegmentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRouteSegmentPayload>
+          }
+          findFirst: {
+            args: Prisma.CommutingRouteSegmentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRouteSegmentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CommutingRouteSegmentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRouteSegmentPayload>
+          }
+          findMany: {
+            args: Prisma.CommutingRouteSegmentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRouteSegmentPayload>[]
+          }
+          create: {
+            args: Prisma.CommutingRouteSegmentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRouteSegmentPayload>
+          }
+          createMany: {
+            args: Prisma.CommutingRouteSegmentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CommutingRouteSegmentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRouteSegmentPayload>[]
+          }
+          delete: {
+            args: Prisma.CommutingRouteSegmentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRouteSegmentPayload>
+          }
+          update: {
+            args: Prisma.CommutingRouteSegmentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRouteSegmentPayload>
+          }
+          deleteMany: {
+            args: Prisma.CommutingRouteSegmentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CommutingRouteSegmentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CommutingRouteSegmentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRouteSegmentPayload>[]
+          }
+          upsert: {
+            args: Prisma.CommutingRouteSegmentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRouteSegmentPayload>
+          }
+          aggregate: {
+            args: Prisma.CommutingRouteSegmentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCommutingRouteSegment>
+          }
+          groupBy: {
+            args: Prisma.CommutingRouteSegmentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CommutingRouteSegmentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CommutingRouteSegmentCountArgs<ExtArgs>
+            result: $Utils.Optional<CommutingRouteSegmentCountAggregateOutputType> | number
+          }
+        }
+      }
+      CommutingRequestAttachment: {
+        payload: Prisma.$CommutingRequestAttachmentPayload<ExtArgs>
+        fields: Prisma.CommutingRequestAttachmentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CommutingRequestAttachmentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRequestAttachmentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CommutingRequestAttachmentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRequestAttachmentPayload>
+          }
+          findFirst: {
+            args: Prisma.CommutingRequestAttachmentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRequestAttachmentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CommutingRequestAttachmentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRequestAttachmentPayload>
+          }
+          findMany: {
+            args: Prisma.CommutingRequestAttachmentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRequestAttachmentPayload>[]
+          }
+          create: {
+            args: Prisma.CommutingRequestAttachmentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRequestAttachmentPayload>
+          }
+          createMany: {
+            args: Prisma.CommutingRequestAttachmentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CommutingRequestAttachmentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRequestAttachmentPayload>[]
+          }
+          delete: {
+            args: Prisma.CommutingRequestAttachmentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRequestAttachmentPayload>
+          }
+          update: {
+            args: Prisma.CommutingRequestAttachmentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRequestAttachmentPayload>
+          }
+          deleteMany: {
+            args: Prisma.CommutingRequestAttachmentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CommutingRequestAttachmentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CommutingRequestAttachmentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRequestAttachmentPayload>[]
+          }
+          upsert: {
+            args: Prisma.CommutingRequestAttachmentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CommutingRequestAttachmentPayload>
+          }
+          aggregate: {
+            args: Prisma.CommutingRequestAttachmentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCommutingRequestAttachment>
+          }
+          groupBy: {
+            args: Prisma.CommutingRequestAttachmentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CommutingRequestAttachmentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CommutingRequestAttachmentCountArgs<ExtArgs>
+            result: $Utils.Optional<CommutingRequestAttachmentCountAggregateOutputType> | number
+          }
+        }
+      }
       ProfileChangeRequest: {
         payload: Prisma.$ProfileChangeRequestPayload<ExtArgs>
         fields: Prisma.ProfileChangeRequestFieldRefs
@@ -5529,6 +6079,11 @@ export namespace Prisma {
     employeeBankAttachment?: EmployeeBankAttachmentOmit
     dependentRequest?: DependentRequestOmit
     dependentRequestAttachment?: DependentRequestAttachmentOmit
+    residenceRequest?: ResidenceRequestOmit
+    residenceRequestAttachment?: ResidenceRequestAttachmentOmit
+    commutingRequest?: CommutingRequestOmit
+    commutingRouteSegment?: CommutingRouteSegmentOmit
+    commutingRequestAttachment?: CommutingRequestAttachmentOmit
     profileChangeRequest?: ProfileChangeRequestOmit
     employmentContract?: EmploymentContractOmit
     companySetting?: CompanySettingOmit
@@ -5813,6 +6368,7 @@ export namespace Prisma {
   export type EmployeeCountOutputType = {
     certifications: number
     requests: number
+    commutingRequests: number
     employmentHistories: number
     leaveGrantHistories: number
     profileChangeRequests: number
@@ -5827,11 +6383,13 @@ export namespace Prisma {
     outingRecords: number
     transferHistories: number
     personalDocuments: number
+    residenceRequests: number
   }
 
   export type EmployeeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     certifications?: boolean | EmployeeCountOutputTypeCountCertificationsArgs
     requests?: boolean | EmployeeCountOutputTypeCountRequestsArgs
+    commutingRequests?: boolean | EmployeeCountOutputTypeCountCommutingRequestsArgs
     employmentHistories?: boolean | EmployeeCountOutputTypeCountEmploymentHistoriesArgs
     leaveGrantHistories?: boolean | EmployeeCountOutputTypeCountLeaveGrantHistoriesArgs
     profileChangeRequests?: boolean | EmployeeCountOutputTypeCountProfileChangeRequestsArgs
@@ -5846,6 +6404,7 @@ export namespace Prisma {
     outingRecords?: boolean | EmployeeCountOutputTypeCountOutingRecordsArgs
     transferHistories?: boolean | EmployeeCountOutputTypeCountTransferHistoriesArgs
     personalDocuments?: boolean | EmployeeCountOutputTypeCountPersonalDocumentsArgs
+    residenceRequests?: boolean | EmployeeCountOutputTypeCountResidenceRequestsArgs
   }
 
   // Custom InputTypes
@@ -5871,6 +6430,13 @@ export namespace Prisma {
    */
   export type EmployeeCountOutputTypeCountRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: EmployeeRequestWhereInput
+  }
+
+  /**
+   * EmployeeCountOutputType without action
+   */
+  export type EmployeeCountOutputTypeCountCommutingRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommutingRequestWhereInput
   }
 
   /**
@@ -5969,6 +6535,13 @@ export namespace Prisma {
    */
   export type EmployeeCountOutputTypeCountPersonalDocumentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PersonalDocumentWhereInput
+  }
+
+  /**
+   * EmployeeCountOutputType without action
+   */
+  export type EmployeeCountOutputTypeCountResidenceRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ResidenceRequestWhereInput
   }
 
 
@@ -6213,6 +6786,77 @@ export namespace Prisma {
    */
   export type DependentRequestCountOutputTypeCountAttachmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: DependentRequestAttachmentWhereInput
+  }
+
+
+  /**
+   * Count Type ResidenceRequestCountOutputType
+   */
+
+  export type ResidenceRequestCountOutputType = {
+    attachments: number
+  }
+
+  export type ResidenceRequestCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    attachments?: boolean | ResidenceRequestCountOutputTypeCountAttachmentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ResidenceRequestCountOutputType without action
+   */
+  export type ResidenceRequestCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequestCountOutputType
+     */
+    select?: ResidenceRequestCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ResidenceRequestCountOutputType without action
+   */
+  export type ResidenceRequestCountOutputTypeCountAttachmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ResidenceRequestAttachmentWhereInput
+  }
+
+
+  /**
+   * Count Type CommutingRequestCountOutputType
+   */
+
+  export type CommutingRequestCountOutputType = {
+    attachments: number
+    routeSegments: number
+  }
+
+  export type CommutingRequestCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    attachments?: boolean | CommutingRequestCountOutputTypeCountAttachmentsArgs
+    routeSegments?: boolean | CommutingRequestCountOutputTypeCountRouteSegmentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CommutingRequestCountOutputType without action
+   */
+  export type CommutingRequestCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequestCountOutputType
+     */
+    select?: CommutingRequestCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CommutingRequestCountOutputType without action
+   */
+  export type CommutingRequestCountOutputTypeCountAttachmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommutingRequestAttachmentWhereInput
+  }
+
+  /**
+   * CommutingRequestCountOutputType without action
+   */
+  export type CommutingRequestCountOutputTypeCountRouteSegmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommutingRouteSegmentWhereInput
   }
 
 
@@ -11307,6 +11951,7 @@ export namespace Prisma {
     certifications?: boolean | Employee$certificationsArgs<ExtArgs>
     employeeMyNumber?: boolean | Employee$employeeMyNumberArgs<ExtArgs>
     requests?: boolean | Employee$requestsArgs<ExtArgs>
+    commutingRequests?: boolean | Employee$commutingRequestsArgs<ExtArgs>
     employeeSalary?: boolean | Employee$employeeSalaryArgs<ExtArgs>
     employmentHistories?: boolean | Employee$employmentHistoriesArgs<ExtArgs>
     leaveBalance?: boolean | Employee$leaveBalanceArgs<ExtArgs>
@@ -11326,6 +11971,7 @@ export namespace Prisma {
     outingRecords?: boolean | Employee$outingRecordsArgs<ExtArgs>
     transferHistories?: boolean | Employee$transferHistoriesArgs<ExtArgs>
     personalDocuments?: boolean | Employee$personalDocumentsArgs<ExtArgs>
+    residenceRequests?: boolean | Employee$residenceRequestsArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["employee"]>
 
@@ -11442,6 +12088,7 @@ export namespace Prisma {
     certifications?: boolean | Employee$certificationsArgs<ExtArgs>
     employeeMyNumber?: boolean | Employee$employeeMyNumberArgs<ExtArgs>
     requests?: boolean | Employee$requestsArgs<ExtArgs>
+    commutingRequests?: boolean | Employee$commutingRequestsArgs<ExtArgs>
     employeeSalary?: boolean | Employee$employeeSalaryArgs<ExtArgs>
     employmentHistories?: boolean | Employee$employmentHistoriesArgs<ExtArgs>
     leaveBalance?: boolean | Employee$leaveBalanceArgs<ExtArgs>
@@ -11461,6 +12108,7 @@ export namespace Prisma {
     outingRecords?: boolean | Employee$outingRecordsArgs<ExtArgs>
     transferHistories?: boolean | Employee$transferHistoriesArgs<ExtArgs>
     personalDocuments?: boolean | Employee$personalDocumentsArgs<ExtArgs>
+    residenceRequests?: boolean | Employee$residenceRequestsArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EmployeeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11483,6 +12131,7 @@ export namespace Prisma {
       certifications: Prisma.$EmployeeCertificationPayload<ExtArgs>[]
       employeeMyNumber: Prisma.$EmployeeMyNumberPayload<ExtArgs> | null
       requests: Prisma.$EmployeeRequestPayload<ExtArgs>[]
+      commutingRequests: Prisma.$CommutingRequestPayload<ExtArgs>[]
       employeeSalary: Prisma.$EmployeeSalaryPayload<ExtArgs> | null
       employmentHistories: Prisma.$EmploymentHistoryPayload<ExtArgs>[]
       leaveBalance: Prisma.$LeaveBalancePayload<ExtArgs> | null
@@ -11502,6 +12151,7 @@ export namespace Prisma {
       outingRecords: Prisma.$OutingRecordPayload<ExtArgs>[]
       transferHistories: Prisma.$EmployeeTransferPayload<ExtArgs>[]
       personalDocuments: Prisma.$PersonalDocumentPayload<ExtArgs>[]
+      residenceRequests: Prisma.$ResidenceRequestPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -11934,6 +12584,7 @@ export namespace Prisma {
     certifications<T extends Employee$certificationsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$certificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeCertificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     employeeMyNumber<T extends Employee$employeeMyNumberArgs<ExtArgs> = {}>(args?: Subset<T, Employee$employeeMyNumberArgs<ExtArgs>>): Prisma__EmployeeMyNumberClient<$Result.GetResult<Prisma.$EmployeeMyNumberPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     requests<T extends Employee$requestsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$requestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    commutingRequests<T extends Employee$commutingRequestsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$commutingRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommutingRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     employeeSalary<T extends Employee$employeeSalaryArgs<ExtArgs> = {}>(args?: Subset<T, Employee$employeeSalaryArgs<ExtArgs>>): Prisma__EmployeeSalaryClient<$Result.GetResult<Prisma.$EmployeeSalaryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     employmentHistories<T extends Employee$employmentHistoriesArgs<ExtArgs> = {}>(args?: Subset<T, Employee$employmentHistoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmploymentHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     leaveBalance<T extends Employee$leaveBalanceArgs<ExtArgs> = {}>(args?: Subset<T, Employee$leaveBalanceArgs<ExtArgs>>): Prisma__LeaveBalanceClient<$Result.GetResult<Prisma.$LeaveBalancePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -11953,6 +12604,7 @@ export namespace Prisma {
     outingRecords<T extends Employee$outingRecordsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$outingRecordsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OutingRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     transferHistories<T extends Employee$transferHistoriesArgs<ExtArgs> = {}>(args?: Subset<T, Employee$transferHistoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeeTransferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     personalDocuments<T extends Employee$personalDocumentsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$personalDocumentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PersonalDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    residenceRequests<T extends Employee$residenceRequestsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$residenceRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResidenceRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -12537,6 +13189,30 @@ export namespace Prisma {
   }
 
   /**
+   * Employee.commutingRequests
+   */
+  export type Employee$commutingRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequest
+     */
+    select?: CommutingRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRequest
+     */
+    omit?: CommutingRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRequestInclude<ExtArgs> | null
+    where?: CommutingRequestWhereInput
+    orderBy?: CommutingRequestOrderByWithRelationInput | CommutingRequestOrderByWithRelationInput[]
+    cursor?: CommutingRequestWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CommutingRequestScalarFieldEnum | CommutingRequestScalarFieldEnum[]
+  }
+
+  /**
    * Employee.employeeSalary
    */
   export type Employee$employeeSalaryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -12965,6 +13641,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PersonalDocumentScalarFieldEnum | PersonalDocumentScalarFieldEnum[]
+  }
+
+  /**
+   * Employee.residenceRequests
+   */
+  export type Employee$residenceRequestsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequest
+     */
+    select?: ResidenceRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidenceRequest
+     */
+    omit?: ResidenceRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidenceRequestInclude<ExtArgs> | null
+    where?: ResidenceRequestWhereInput
+    orderBy?: ResidenceRequestOrderByWithRelationInput | ResidenceRequestOrderByWithRelationInput[]
+    cursor?: ResidenceRequestWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ResidenceRequestScalarFieldEnum | ResidenceRequestScalarFieldEnum[]
   }
 
   /**
@@ -38681,6 +39381,6339 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: DependentRequestAttachmentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ResidenceRequest
+   */
+
+  export type AggregateResidenceRequest = {
+    _count: ResidenceRequestCountAggregateOutputType | null
+    _avg: ResidenceRequestAvgAggregateOutputType | null
+    _sum: ResidenceRequestSumAggregateOutputType | null
+    _min: ResidenceRequestMinAggregateOutputType | null
+    _max: ResidenceRequestMaxAggregateOutputType | null
+  }
+
+  export type ResidenceRequestAvgAggregateOutputType = {
+    monthlyRent: number | null
+    commonServiceFee: number | null
+  }
+
+  export type ResidenceRequestSumAggregateOutputType = {
+    monthlyRent: number | null
+    commonServiceFee: number | null
+  }
+
+  export type ResidenceRequestMinAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    residenceType: $Enums.ResidenceType | null
+    notificationType: $Enums.ResidenceNotificationType | null
+    changeDate: Date | null
+    postalCode: string | null
+    address: string | null
+    phoneNumber: string | null
+    note: string | null
+    landlordName: string | null
+    landlordAddress: string | null
+    contractHolderName: string | null
+    contractHolderRelationship: string | null
+    monthlyRent: number | null
+    commonServiceFee: number | null
+    housingName: string | null
+    roomNumber: string | null
+    ownershipType: $Enums.ResidenceOwnershipType | null
+    ownerName1: string | null
+    ownerName2: string | null
+    acquisitionDate: Date | null
+    status: $Enums.RequestStatus | null
+    reviewedAt: Date | null
+    reviewedBy: string | null
+    reviewComment: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ResidenceRequestMaxAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    residenceType: $Enums.ResidenceType | null
+    notificationType: $Enums.ResidenceNotificationType | null
+    changeDate: Date | null
+    postalCode: string | null
+    address: string | null
+    phoneNumber: string | null
+    note: string | null
+    landlordName: string | null
+    landlordAddress: string | null
+    contractHolderName: string | null
+    contractHolderRelationship: string | null
+    monthlyRent: number | null
+    commonServiceFee: number | null
+    housingName: string | null
+    roomNumber: string | null
+    ownershipType: $Enums.ResidenceOwnershipType | null
+    ownerName1: string | null
+    ownerName2: string | null
+    acquisitionDate: Date | null
+    status: $Enums.RequestStatus | null
+    reviewedAt: Date | null
+    reviewedBy: string | null
+    reviewComment: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ResidenceRequestCountAggregateOutputType = {
+    id: number
+    employeeId: number
+    residenceType: number
+    notificationType: number
+    changeDate: number
+    postalCode: number
+    address: number
+    phoneNumber: number
+    note: number
+    landlordName: number
+    landlordAddress: number
+    contractHolderName: number
+    contractHolderRelationship: number
+    monthlyRent: number
+    commonServiceFee: number
+    housingName: number
+    roomNumber: number
+    ownershipType: number
+    ownerName1: number
+    ownerName2: number
+    acquisitionDate: number
+    status: number
+    reviewedAt: number
+    reviewedBy: number
+    reviewComment: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ResidenceRequestAvgAggregateInputType = {
+    monthlyRent?: true
+    commonServiceFee?: true
+  }
+
+  export type ResidenceRequestSumAggregateInputType = {
+    monthlyRent?: true
+    commonServiceFee?: true
+  }
+
+  export type ResidenceRequestMinAggregateInputType = {
+    id?: true
+    employeeId?: true
+    residenceType?: true
+    notificationType?: true
+    changeDate?: true
+    postalCode?: true
+    address?: true
+    phoneNumber?: true
+    note?: true
+    landlordName?: true
+    landlordAddress?: true
+    contractHolderName?: true
+    contractHolderRelationship?: true
+    monthlyRent?: true
+    commonServiceFee?: true
+    housingName?: true
+    roomNumber?: true
+    ownershipType?: true
+    ownerName1?: true
+    ownerName2?: true
+    acquisitionDate?: true
+    status?: true
+    reviewedAt?: true
+    reviewedBy?: true
+    reviewComment?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ResidenceRequestMaxAggregateInputType = {
+    id?: true
+    employeeId?: true
+    residenceType?: true
+    notificationType?: true
+    changeDate?: true
+    postalCode?: true
+    address?: true
+    phoneNumber?: true
+    note?: true
+    landlordName?: true
+    landlordAddress?: true
+    contractHolderName?: true
+    contractHolderRelationship?: true
+    monthlyRent?: true
+    commonServiceFee?: true
+    housingName?: true
+    roomNumber?: true
+    ownershipType?: true
+    ownerName1?: true
+    ownerName2?: true
+    acquisitionDate?: true
+    status?: true
+    reviewedAt?: true
+    reviewedBy?: true
+    reviewComment?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ResidenceRequestCountAggregateInputType = {
+    id?: true
+    employeeId?: true
+    residenceType?: true
+    notificationType?: true
+    changeDate?: true
+    postalCode?: true
+    address?: true
+    phoneNumber?: true
+    note?: true
+    landlordName?: true
+    landlordAddress?: true
+    contractHolderName?: true
+    contractHolderRelationship?: true
+    monthlyRent?: true
+    commonServiceFee?: true
+    housingName?: true
+    roomNumber?: true
+    ownershipType?: true
+    ownerName1?: true
+    ownerName2?: true
+    acquisitionDate?: true
+    status?: true
+    reviewedAt?: true
+    reviewedBy?: true
+    reviewComment?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ResidenceRequestAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ResidenceRequest to aggregate.
+     */
+    where?: ResidenceRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResidenceRequests to fetch.
+     */
+    orderBy?: ResidenceRequestOrderByWithRelationInput | ResidenceRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ResidenceRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResidenceRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResidenceRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ResidenceRequests
+    **/
+    _count?: true | ResidenceRequestCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ResidenceRequestAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ResidenceRequestSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ResidenceRequestMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ResidenceRequestMaxAggregateInputType
+  }
+
+  export type GetResidenceRequestAggregateType<T extends ResidenceRequestAggregateArgs> = {
+        [P in keyof T & keyof AggregateResidenceRequest]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateResidenceRequest[P]>
+      : GetScalarType<T[P], AggregateResidenceRequest[P]>
+  }
+
+
+
+
+  export type ResidenceRequestGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ResidenceRequestWhereInput
+    orderBy?: ResidenceRequestOrderByWithAggregationInput | ResidenceRequestOrderByWithAggregationInput[]
+    by: ResidenceRequestScalarFieldEnum[] | ResidenceRequestScalarFieldEnum
+    having?: ResidenceRequestScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ResidenceRequestCountAggregateInputType | true
+    _avg?: ResidenceRequestAvgAggregateInputType
+    _sum?: ResidenceRequestSumAggregateInputType
+    _min?: ResidenceRequestMinAggregateInputType
+    _max?: ResidenceRequestMaxAggregateInputType
+  }
+
+  export type ResidenceRequestGroupByOutputType = {
+    id: string
+    employeeId: string
+    residenceType: $Enums.ResidenceType
+    notificationType: $Enums.ResidenceNotificationType
+    changeDate: Date
+    postalCode: string
+    address: string
+    phoneNumber: string | null
+    note: string | null
+    landlordName: string | null
+    landlordAddress: string | null
+    contractHolderName: string | null
+    contractHolderRelationship: string | null
+    monthlyRent: number | null
+    commonServiceFee: number | null
+    housingName: string | null
+    roomNumber: string | null
+    ownershipType: $Enums.ResidenceOwnershipType | null
+    ownerName1: string | null
+    ownerName2: string | null
+    acquisitionDate: Date | null
+    status: $Enums.RequestStatus
+    reviewedAt: Date | null
+    reviewedBy: string | null
+    reviewComment: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: ResidenceRequestCountAggregateOutputType | null
+    _avg: ResidenceRequestAvgAggregateOutputType | null
+    _sum: ResidenceRequestSumAggregateOutputType | null
+    _min: ResidenceRequestMinAggregateOutputType | null
+    _max: ResidenceRequestMaxAggregateOutputType | null
+  }
+
+  type GetResidenceRequestGroupByPayload<T extends ResidenceRequestGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ResidenceRequestGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ResidenceRequestGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ResidenceRequestGroupByOutputType[P]>
+            : GetScalarType<T[P], ResidenceRequestGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ResidenceRequestSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    residenceType?: boolean
+    notificationType?: boolean
+    changeDate?: boolean
+    postalCode?: boolean
+    address?: boolean
+    phoneNumber?: boolean
+    note?: boolean
+    landlordName?: boolean
+    landlordAddress?: boolean
+    contractHolderName?: boolean
+    contractHolderRelationship?: boolean
+    monthlyRent?: boolean
+    commonServiceFee?: boolean
+    housingName?: boolean
+    roomNumber?: boolean
+    ownershipType?: boolean
+    ownerName1?: boolean
+    ownerName2?: boolean
+    acquisitionDate?: boolean
+    status?: boolean
+    reviewedAt?: boolean
+    reviewedBy?: boolean
+    reviewComment?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    attachments?: boolean | ResidenceRequest$attachmentsArgs<ExtArgs>
+    _count?: boolean | ResidenceRequestCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["residenceRequest"]>
+
+  export type ResidenceRequestSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    residenceType?: boolean
+    notificationType?: boolean
+    changeDate?: boolean
+    postalCode?: boolean
+    address?: boolean
+    phoneNumber?: boolean
+    note?: boolean
+    landlordName?: boolean
+    landlordAddress?: boolean
+    contractHolderName?: boolean
+    contractHolderRelationship?: boolean
+    monthlyRent?: boolean
+    commonServiceFee?: boolean
+    housingName?: boolean
+    roomNumber?: boolean
+    ownershipType?: boolean
+    ownerName1?: boolean
+    ownerName2?: boolean
+    acquisitionDate?: boolean
+    status?: boolean
+    reviewedAt?: boolean
+    reviewedBy?: boolean
+    reviewComment?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["residenceRequest"]>
+
+  export type ResidenceRequestSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    residenceType?: boolean
+    notificationType?: boolean
+    changeDate?: boolean
+    postalCode?: boolean
+    address?: boolean
+    phoneNumber?: boolean
+    note?: boolean
+    landlordName?: boolean
+    landlordAddress?: boolean
+    contractHolderName?: boolean
+    contractHolderRelationship?: boolean
+    monthlyRent?: boolean
+    commonServiceFee?: boolean
+    housingName?: boolean
+    roomNumber?: boolean
+    ownershipType?: boolean
+    ownerName1?: boolean
+    ownerName2?: boolean
+    acquisitionDate?: boolean
+    status?: boolean
+    reviewedAt?: boolean
+    reviewedBy?: boolean
+    reviewComment?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["residenceRequest"]>
+
+  export type ResidenceRequestSelectScalar = {
+    id?: boolean
+    employeeId?: boolean
+    residenceType?: boolean
+    notificationType?: boolean
+    changeDate?: boolean
+    postalCode?: boolean
+    address?: boolean
+    phoneNumber?: boolean
+    note?: boolean
+    landlordName?: boolean
+    landlordAddress?: boolean
+    contractHolderName?: boolean
+    contractHolderRelationship?: boolean
+    monthlyRent?: boolean
+    commonServiceFee?: boolean
+    housingName?: boolean
+    roomNumber?: boolean
+    ownershipType?: boolean
+    ownerName1?: boolean
+    ownerName2?: boolean
+    acquisitionDate?: boolean
+    status?: boolean
+    reviewedAt?: boolean
+    reviewedBy?: boolean
+    reviewComment?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ResidenceRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "residenceType" | "notificationType" | "changeDate" | "postalCode" | "address" | "phoneNumber" | "note" | "landlordName" | "landlordAddress" | "contractHolderName" | "contractHolderRelationship" | "monthlyRent" | "commonServiceFee" | "housingName" | "roomNumber" | "ownershipType" | "ownerName1" | "ownerName2" | "acquisitionDate" | "status" | "reviewedAt" | "reviewedBy" | "reviewComment" | "createdAt" | "updatedAt", ExtArgs["result"]["residenceRequest"]>
+  export type ResidenceRequestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    attachments?: boolean | ResidenceRequest$attachmentsArgs<ExtArgs>
+    _count?: boolean | ResidenceRequestCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ResidenceRequestIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+  export type ResidenceRequestIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+
+  export type $ResidenceRequestPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ResidenceRequest"
+    objects: {
+      employee: Prisma.$EmployeePayload<ExtArgs>
+      attachments: Prisma.$ResidenceRequestAttachmentPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      employeeId: string
+      residenceType: $Enums.ResidenceType
+      notificationType: $Enums.ResidenceNotificationType
+      changeDate: Date
+      postalCode: string
+      address: string
+      phoneNumber: string | null
+      note: string | null
+      landlordName: string | null
+      landlordAddress: string | null
+      contractHolderName: string | null
+      contractHolderRelationship: string | null
+      monthlyRent: number | null
+      commonServiceFee: number | null
+      housingName: string | null
+      roomNumber: string | null
+      ownershipType: $Enums.ResidenceOwnershipType | null
+      ownerName1: string | null
+      ownerName2: string | null
+      acquisitionDate: Date | null
+      status: $Enums.RequestStatus
+      reviewedAt: Date | null
+      reviewedBy: string | null
+      reviewComment: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["residenceRequest"]>
+    composites: {}
+  }
+
+  type ResidenceRequestGetPayload<S extends boolean | null | undefined | ResidenceRequestDefaultArgs> = $Result.GetResult<Prisma.$ResidenceRequestPayload, S>
+
+  type ResidenceRequestCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ResidenceRequestFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ResidenceRequestCountAggregateInputType | true
+    }
+
+  export interface ResidenceRequestDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ResidenceRequest'], meta: { name: 'ResidenceRequest' } }
+    /**
+     * Find zero or one ResidenceRequest that matches the filter.
+     * @param {ResidenceRequestFindUniqueArgs} args - Arguments to find a ResidenceRequest
+     * @example
+     * // Get one ResidenceRequest
+     * const residenceRequest = await prisma.residenceRequest.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ResidenceRequestFindUniqueArgs>(args: SelectSubset<T, ResidenceRequestFindUniqueArgs<ExtArgs>>): Prisma__ResidenceRequestClient<$Result.GetResult<Prisma.$ResidenceRequestPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ResidenceRequest that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ResidenceRequestFindUniqueOrThrowArgs} args - Arguments to find a ResidenceRequest
+     * @example
+     * // Get one ResidenceRequest
+     * const residenceRequest = await prisma.residenceRequest.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ResidenceRequestFindUniqueOrThrowArgs>(args: SelectSubset<T, ResidenceRequestFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ResidenceRequestClient<$Result.GetResult<Prisma.$ResidenceRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ResidenceRequest that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResidenceRequestFindFirstArgs} args - Arguments to find a ResidenceRequest
+     * @example
+     * // Get one ResidenceRequest
+     * const residenceRequest = await prisma.residenceRequest.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ResidenceRequestFindFirstArgs>(args?: SelectSubset<T, ResidenceRequestFindFirstArgs<ExtArgs>>): Prisma__ResidenceRequestClient<$Result.GetResult<Prisma.$ResidenceRequestPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ResidenceRequest that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResidenceRequestFindFirstOrThrowArgs} args - Arguments to find a ResidenceRequest
+     * @example
+     * // Get one ResidenceRequest
+     * const residenceRequest = await prisma.residenceRequest.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ResidenceRequestFindFirstOrThrowArgs>(args?: SelectSubset<T, ResidenceRequestFindFirstOrThrowArgs<ExtArgs>>): Prisma__ResidenceRequestClient<$Result.GetResult<Prisma.$ResidenceRequestPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ResidenceRequests that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResidenceRequestFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ResidenceRequests
+     * const residenceRequests = await prisma.residenceRequest.findMany()
+     * 
+     * // Get first 10 ResidenceRequests
+     * const residenceRequests = await prisma.residenceRequest.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const residenceRequestWithIdOnly = await prisma.residenceRequest.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ResidenceRequestFindManyArgs>(args?: SelectSubset<T, ResidenceRequestFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResidenceRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ResidenceRequest.
+     * @param {ResidenceRequestCreateArgs} args - Arguments to create a ResidenceRequest.
+     * @example
+     * // Create one ResidenceRequest
+     * const ResidenceRequest = await prisma.residenceRequest.create({
+     *   data: {
+     *     // ... data to create a ResidenceRequest
+     *   }
+     * })
+     * 
+     */
+    create<T extends ResidenceRequestCreateArgs>(args: SelectSubset<T, ResidenceRequestCreateArgs<ExtArgs>>): Prisma__ResidenceRequestClient<$Result.GetResult<Prisma.$ResidenceRequestPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ResidenceRequests.
+     * @param {ResidenceRequestCreateManyArgs} args - Arguments to create many ResidenceRequests.
+     * @example
+     * // Create many ResidenceRequests
+     * const residenceRequest = await prisma.residenceRequest.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ResidenceRequestCreateManyArgs>(args?: SelectSubset<T, ResidenceRequestCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ResidenceRequests and returns the data saved in the database.
+     * @param {ResidenceRequestCreateManyAndReturnArgs} args - Arguments to create many ResidenceRequests.
+     * @example
+     * // Create many ResidenceRequests
+     * const residenceRequest = await prisma.residenceRequest.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ResidenceRequests and only return the `id`
+     * const residenceRequestWithIdOnly = await prisma.residenceRequest.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ResidenceRequestCreateManyAndReturnArgs>(args?: SelectSubset<T, ResidenceRequestCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResidenceRequestPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ResidenceRequest.
+     * @param {ResidenceRequestDeleteArgs} args - Arguments to delete one ResidenceRequest.
+     * @example
+     * // Delete one ResidenceRequest
+     * const ResidenceRequest = await prisma.residenceRequest.delete({
+     *   where: {
+     *     // ... filter to delete one ResidenceRequest
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ResidenceRequestDeleteArgs>(args: SelectSubset<T, ResidenceRequestDeleteArgs<ExtArgs>>): Prisma__ResidenceRequestClient<$Result.GetResult<Prisma.$ResidenceRequestPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ResidenceRequest.
+     * @param {ResidenceRequestUpdateArgs} args - Arguments to update one ResidenceRequest.
+     * @example
+     * // Update one ResidenceRequest
+     * const residenceRequest = await prisma.residenceRequest.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ResidenceRequestUpdateArgs>(args: SelectSubset<T, ResidenceRequestUpdateArgs<ExtArgs>>): Prisma__ResidenceRequestClient<$Result.GetResult<Prisma.$ResidenceRequestPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ResidenceRequests.
+     * @param {ResidenceRequestDeleteManyArgs} args - Arguments to filter ResidenceRequests to delete.
+     * @example
+     * // Delete a few ResidenceRequests
+     * const { count } = await prisma.residenceRequest.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ResidenceRequestDeleteManyArgs>(args?: SelectSubset<T, ResidenceRequestDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ResidenceRequests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResidenceRequestUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ResidenceRequests
+     * const residenceRequest = await prisma.residenceRequest.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ResidenceRequestUpdateManyArgs>(args: SelectSubset<T, ResidenceRequestUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ResidenceRequests and returns the data updated in the database.
+     * @param {ResidenceRequestUpdateManyAndReturnArgs} args - Arguments to update many ResidenceRequests.
+     * @example
+     * // Update many ResidenceRequests
+     * const residenceRequest = await prisma.residenceRequest.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ResidenceRequests and only return the `id`
+     * const residenceRequestWithIdOnly = await prisma.residenceRequest.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ResidenceRequestUpdateManyAndReturnArgs>(args: SelectSubset<T, ResidenceRequestUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResidenceRequestPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ResidenceRequest.
+     * @param {ResidenceRequestUpsertArgs} args - Arguments to update or create a ResidenceRequest.
+     * @example
+     * // Update or create a ResidenceRequest
+     * const residenceRequest = await prisma.residenceRequest.upsert({
+     *   create: {
+     *     // ... data to create a ResidenceRequest
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ResidenceRequest we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ResidenceRequestUpsertArgs>(args: SelectSubset<T, ResidenceRequestUpsertArgs<ExtArgs>>): Prisma__ResidenceRequestClient<$Result.GetResult<Prisma.$ResidenceRequestPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ResidenceRequests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResidenceRequestCountArgs} args - Arguments to filter ResidenceRequests to count.
+     * @example
+     * // Count the number of ResidenceRequests
+     * const count = await prisma.residenceRequest.count({
+     *   where: {
+     *     // ... the filter for the ResidenceRequests we want to count
+     *   }
+     * })
+    **/
+    count<T extends ResidenceRequestCountArgs>(
+      args?: Subset<T, ResidenceRequestCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ResidenceRequestCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ResidenceRequest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResidenceRequestAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ResidenceRequestAggregateArgs>(args: Subset<T, ResidenceRequestAggregateArgs>): Prisma.PrismaPromise<GetResidenceRequestAggregateType<T>>
+
+    /**
+     * Group by ResidenceRequest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResidenceRequestGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ResidenceRequestGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ResidenceRequestGroupByArgs['orderBy'] }
+        : { orderBy?: ResidenceRequestGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ResidenceRequestGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetResidenceRequestGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ResidenceRequest model
+   */
+  readonly fields: ResidenceRequestFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ResidenceRequest.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ResidenceRequestClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    attachments<T extends ResidenceRequest$attachmentsArgs<ExtArgs> = {}>(args?: Subset<T, ResidenceRequest$attachmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResidenceRequestAttachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ResidenceRequest model
+   */
+  interface ResidenceRequestFieldRefs {
+    readonly id: FieldRef<"ResidenceRequest", 'String'>
+    readonly employeeId: FieldRef<"ResidenceRequest", 'String'>
+    readonly residenceType: FieldRef<"ResidenceRequest", 'ResidenceType'>
+    readonly notificationType: FieldRef<"ResidenceRequest", 'ResidenceNotificationType'>
+    readonly changeDate: FieldRef<"ResidenceRequest", 'DateTime'>
+    readonly postalCode: FieldRef<"ResidenceRequest", 'String'>
+    readonly address: FieldRef<"ResidenceRequest", 'String'>
+    readonly phoneNumber: FieldRef<"ResidenceRequest", 'String'>
+    readonly note: FieldRef<"ResidenceRequest", 'String'>
+    readonly landlordName: FieldRef<"ResidenceRequest", 'String'>
+    readonly landlordAddress: FieldRef<"ResidenceRequest", 'String'>
+    readonly contractHolderName: FieldRef<"ResidenceRequest", 'String'>
+    readonly contractHolderRelationship: FieldRef<"ResidenceRequest", 'String'>
+    readonly monthlyRent: FieldRef<"ResidenceRequest", 'Int'>
+    readonly commonServiceFee: FieldRef<"ResidenceRequest", 'Int'>
+    readonly housingName: FieldRef<"ResidenceRequest", 'String'>
+    readonly roomNumber: FieldRef<"ResidenceRequest", 'String'>
+    readonly ownershipType: FieldRef<"ResidenceRequest", 'ResidenceOwnershipType'>
+    readonly ownerName1: FieldRef<"ResidenceRequest", 'String'>
+    readonly ownerName2: FieldRef<"ResidenceRequest", 'String'>
+    readonly acquisitionDate: FieldRef<"ResidenceRequest", 'DateTime'>
+    readonly status: FieldRef<"ResidenceRequest", 'RequestStatus'>
+    readonly reviewedAt: FieldRef<"ResidenceRequest", 'DateTime'>
+    readonly reviewedBy: FieldRef<"ResidenceRequest", 'String'>
+    readonly reviewComment: FieldRef<"ResidenceRequest", 'String'>
+    readonly createdAt: FieldRef<"ResidenceRequest", 'DateTime'>
+    readonly updatedAt: FieldRef<"ResidenceRequest", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ResidenceRequest findUnique
+   */
+  export type ResidenceRequestFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequest
+     */
+    select?: ResidenceRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidenceRequest
+     */
+    omit?: ResidenceRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidenceRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which ResidenceRequest to fetch.
+     */
+    where: ResidenceRequestWhereUniqueInput
+  }
+
+  /**
+   * ResidenceRequest findUniqueOrThrow
+   */
+  export type ResidenceRequestFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequest
+     */
+    select?: ResidenceRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidenceRequest
+     */
+    omit?: ResidenceRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidenceRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which ResidenceRequest to fetch.
+     */
+    where: ResidenceRequestWhereUniqueInput
+  }
+
+  /**
+   * ResidenceRequest findFirst
+   */
+  export type ResidenceRequestFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequest
+     */
+    select?: ResidenceRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidenceRequest
+     */
+    omit?: ResidenceRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidenceRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which ResidenceRequest to fetch.
+     */
+    where?: ResidenceRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResidenceRequests to fetch.
+     */
+    orderBy?: ResidenceRequestOrderByWithRelationInput | ResidenceRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ResidenceRequests.
+     */
+    cursor?: ResidenceRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResidenceRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResidenceRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ResidenceRequests.
+     */
+    distinct?: ResidenceRequestScalarFieldEnum | ResidenceRequestScalarFieldEnum[]
+  }
+
+  /**
+   * ResidenceRequest findFirstOrThrow
+   */
+  export type ResidenceRequestFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequest
+     */
+    select?: ResidenceRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidenceRequest
+     */
+    omit?: ResidenceRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidenceRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which ResidenceRequest to fetch.
+     */
+    where?: ResidenceRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResidenceRequests to fetch.
+     */
+    orderBy?: ResidenceRequestOrderByWithRelationInput | ResidenceRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ResidenceRequests.
+     */
+    cursor?: ResidenceRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResidenceRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResidenceRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ResidenceRequests.
+     */
+    distinct?: ResidenceRequestScalarFieldEnum | ResidenceRequestScalarFieldEnum[]
+  }
+
+  /**
+   * ResidenceRequest findMany
+   */
+  export type ResidenceRequestFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequest
+     */
+    select?: ResidenceRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidenceRequest
+     */
+    omit?: ResidenceRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidenceRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which ResidenceRequests to fetch.
+     */
+    where?: ResidenceRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResidenceRequests to fetch.
+     */
+    orderBy?: ResidenceRequestOrderByWithRelationInput | ResidenceRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ResidenceRequests.
+     */
+    cursor?: ResidenceRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResidenceRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResidenceRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ResidenceRequests.
+     */
+    distinct?: ResidenceRequestScalarFieldEnum | ResidenceRequestScalarFieldEnum[]
+  }
+
+  /**
+   * ResidenceRequest create
+   */
+  export type ResidenceRequestCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequest
+     */
+    select?: ResidenceRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidenceRequest
+     */
+    omit?: ResidenceRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidenceRequestInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ResidenceRequest.
+     */
+    data: XOR<ResidenceRequestCreateInput, ResidenceRequestUncheckedCreateInput>
+  }
+
+  /**
+   * ResidenceRequest createMany
+   */
+  export type ResidenceRequestCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ResidenceRequests.
+     */
+    data: ResidenceRequestCreateManyInput | ResidenceRequestCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ResidenceRequest createManyAndReturn
+   */
+  export type ResidenceRequestCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequest
+     */
+    select?: ResidenceRequestSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidenceRequest
+     */
+    omit?: ResidenceRequestOmit<ExtArgs> | null
+    /**
+     * The data used to create many ResidenceRequests.
+     */
+    data: ResidenceRequestCreateManyInput | ResidenceRequestCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidenceRequestIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ResidenceRequest update
+   */
+  export type ResidenceRequestUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequest
+     */
+    select?: ResidenceRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidenceRequest
+     */
+    omit?: ResidenceRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidenceRequestInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ResidenceRequest.
+     */
+    data: XOR<ResidenceRequestUpdateInput, ResidenceRequestUncheckedUpdateInput>
+    /**
+     * Choose, which ResidenceRequest to update.
+     */
+    where: ResidenceRequestWhereUniqueInput
+  }
+
+  /**
+   * ResidenceRequest updateMany
+   */
+  export type ResidenceRequestUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ResidenceRequests.
+     */
+    data: XOR<ResidenceRequestUpdateManyMutationInput, ResidenceRequestUncheckedUpdateManyInput>
+    /**
+     * Filter which ResidenceRequests to update
+     */
+    where?: ResidenceRequestWhereInput
+    /**
+     * Limit how many ResidenceRequests to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ResidenceRequest updateManyAndReturn
+   */
+  export type ResidenceRequestUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequest
+     */
+    select?: ResidenceRequestSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidenceRequest
+     */
+    omit?: ResidenceRequestOmit<ExtArgs> | null
+    /**
+     * The data used to update ResidenceRequests.
+     */
+    data: XOR<ResidenceRequestUpdateManyMutationInput, ResidenceRequestUncheckedUpdateManyInput>
+    /**
+     * Filter which ResidenceRequests to update
+     */
+    where?: ResidenceRequestWhereInput
+    /**
+     * Limit how many ResidenceRequests to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidenceRequestIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ResidenceRequest upsert
+   */
+  export type ResidenceRequestUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequest
+     */
+    select?: ResidenceRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidenceRequest
+     */
+    omit?: ResidenceRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidenceRequestInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ResidenceRequest to update in case it exists.
+     */
+    where: ResidenceRequestWhereUniqueInput
+    /**
+     * In case the ResidenceRequest found by the `where` argument doesn't exist, create a new ResidenceRequest with this data.
+     */
+    create: XOR<ResidenceRequestCreateInput, ResidenceRequestUncheckedCreateInput>
+    /**
+     * In case the ResidenceRequest was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ResidenceRequestUpdateInput, ResidenceRequestUncheckedUpdateInput>
+  }
+
+  /**
+   * ResidenceRequest delete
+   */
+  export type ResidenceRequestDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequest
+     */
+    select?: ResidenceRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidenceRequest
+     */
+    omit?: ResidenceRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidenceRequestInclude<ExtArgs> | null
+    /**
+     * Filter which ResidenceRequest to delete.
+     */
+    where: ResidenceRequestWhereUniqueInput
+  }
+
+  /**
+   * ResidenceRequest deleteMany
+   */
+  export type ResidenceRequestDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ResidenceRequests to delete
+     */
+    where?: ResidenceRequestWhereInput
+    /**
+     * Limit how many ResidenceRequests to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ResidenceRequest.attachments
+   */
+  export type ResidenceRequest$attachmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequestAttachment
+     */
+    select?: ResidenceRequestAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidenceRequestAttachment
+     */
+    omit?: ResidenceRequestAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidenceRequestAttachmentInclude<ExtArgs> | null
+    where?: ResidenceRequestAttachmentWhereInput
+    orderBy?: ResidenceRequestAttachmentOrderByWithRelationInput | ResidenceRequestAttachmentOrderByWithRelationInput[]
+    cursor?: ResidenceRequestAttachmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ResidenceRequestAttachmentScalarFieldEnum | ResidenceRequestAttachmentScalarFieldEnum[]
+  }
+
+  /**
+   * ResidenceRequest without action
+   */
+  export type ResidenceRequestDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequest
+     */
+    select?: ResidenceRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidenceRequest
+     */
+    omit?: ResidenceRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidenceRequestInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ResidenceRequestAttachment
+   */
+
+  export type AggregateResidenceRequestAttachment = {
+    _count: ResidenceRequestAttachmentCountAggregateOutputType | null
+    _avg: ResidenceRequestAttachmentAvgAggregateOutputType | null
+    _sum: ResidenceRequestAttachmentSumAggregateOutputType | null
+    _min: ResidenceRequestAttachmentMinAggregateOutputType | null
+    _max: ResidenceRequestAttachmentMaxAggregateOutputType | null
+  }
+
+  export type ResidenceRequestAttachmentAvgAggregateOutputType = {
+    fileSize: number | null
+  }
+
+  export type ResidenceRequestAttachmentSumAggregateOutputType = {
+    fileSize: number | null
+  }
+
+  export type ResidenceRequestAttachmentMinAggregateOutputType = {
+    id: string | null
+    residenceRequestId: string | null
+    attachmentType: $Enums.ResidenceAttachmentType | null
+    fileName: string | null
+    filePath: string | null
+    fileType: string | null
+    fileSize: number | null
+    createdAt: Date | null
+  }
+
+  export type ResidenceRequestAttachmentMaxAggregateOutputType = {
+    id: string | null
+    residenceRequestId: string | null
+    attachmentType: $Enums.ResidenceAttachmentType | null
+    fileName: string | null
+    filePath: string | null
+    fileType: string | null
+    fileSize: number | null
+    createdAt: Date | null
+  }
+
+  export type ResidenceRequestAttachmentCountAggregateOutputType = {
+    id: number
+    residenceRequestId: number
+    attachmentType: number
+    fileName: number
+    filePath: number
+    fileType: number
+    fileSize: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ResidenceRequestAttachmentAvgAggregateInputType = {
+    fileSize?: true
+  }
+
+  export type ResidenceRequestAttachmentSumAggregateInputType = {
+    fileSize?: true
+  }
+
+  export type ResidenceRequestAttachmentMinAggregateInputType = {
+    id?: true
+    residenceRequestId?: true
+    attachmentType?: true
+    fileName?: true
+    filePath?: true
+    fileType?: true
+    fileSize?: true
+    createdAt?: true
+  }
+
+  export type ResidenceRequestAttachmentMaxAggregateInputType = {
+    id?: true
+    residenceRequestId?: true
+    attachmentType?: true
+    fileName?: true
+    filePath?: true
+    fileType?: true
+    fileSize?: true
+    createdAt?: true
+  }
+
+  export type ResidenceRequestAttachmentCountAggregateInputType = {
+    id?: true
+    residenceRequestId?: true
+    attachmentType?: true
+    fileName?: true
+    filePath?: true
+    fileType?: true
+    fileSize?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ResidenceRequestAttachmentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ResidenceRequestAttachment to aggregate.
+     */
+    where?: ResidenceRequestAttachmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResidenceRequestAttachments to fetch.
+     */
+    orderBy?: ResidenceRequestAttachmentOrderByWithRelationInput | ResidenceRequestAttachmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ResidenceRequestAttachmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResidenceRequestAttachments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResidenceRequestAttachments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ResidenceRequestAttachments
+    **/
+    _count?: true | ResidenceRequestAttachmentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ResidenceRequestAttachmentAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ResidenceRequestAttachmentSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ResidenceRequestAttachmentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ResidenceRequestAttachmentMaxAggregateInputType
+  }
+
+  export type GetResidenceRequestAttachmentAggregateType<T extends ResidenceRequestAttachmentAggregateArgs> = {
+        [P in keyof T & keyof AggregateResidenceRequestAttachment]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateResidenceRequestAttachment[P]>
+      : GetScalarType<T[P], AggregateResidenceRequestAttachment[P]>
+  }
+
+
+
+
+  export type ResidenceRequestAttachmentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ResidenceRequestAttachmentWhereInput
+    orderBy?: ResidenceRequestAttachmentOrderByWithAggregationInput | ResidenceRequestAttachmentOrderByWithAggregationInput[]
+    by: ResidenceRequestAttachmentScalarFieldEnum[] | ResidenceRequestAttachmentScalarFieldEnum
+    having?: ResidenceRequestAttachmentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ResidenceRequestAttachmentCountAggregateInputType | true
+    _avg?: ResidenceRequestAttachmentAvgAggregateInputType
+    _sum?: ResidenceRequestAttachmentSumAggregateInputType
+    _min?: ResidenceRequestAttachmentMinAggregateInputType
+    _max?: ResidenceRequestAttachmentMaxAggregateInputType
+  }
+
+  export type ResidenceRequestAttachmentGroupByOutputType = {
+    id: string
+    residenceRequestId: string
+    attachmentType: $Enums.ResidenceAttachmentType
+    fileName: string
+    filePath: string
+    fileType: string | null
+    fileSize: number | null
+    createdAt: Date
+    _count: ResidenceRequestAttachmentCountAggregateOutputType | null
+    _avg: ResidenceRequestAttachmentAvgAggregateOutputType | null
+    _sum: ResidenceRequestAttachmentSumAggregateOutputType | null
+    _min: ResidenceRequestAttachmentMinAggregateOutputType | null
+    _max: ResidenceRequestAttachmentMaxAggregateOutputType | null
+  }
+
+  type GetResidenceRequestAttachmentGroupByPayload<T extends ResidenceRequestAttachmentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ResidenceRequestAttachmentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ResidenceRequestAttachmentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ResidenceRequestAttachmentGroupByOutputType[P]>
+            : GetScalarType<T[P], ResidenceRequestAttachmentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ResidenceRequestAttachmentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    residenceRequestId?: boolean
+    attachmentType?: boolean
+    fileName?: boolean
+    filePath?: boolean
+    fileType?: boolean
+    fileSize?: boolean
+    createdAt?: boolean
+    residenceRequest?: boolean | ResidenceRequestDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["residenceRequestAttachment"]>
+
+  export type ResidenceRequestAttachmentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    residenceRequestId?: boolean
+    attachmentType?: boolean
+    fileName?: boolean
+    filePath?: boolean
+    fileType?: boolean
+    fileSize?: boolean
+    createdAt?: boolean
+    residenceRequest?: boolean | ResidenceRequestDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["residenceRequestAttachment"]>
+
+  export type ResidenceRequestAttachmentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    residenceRequestId?: boolean
+    attachmentType?: boolean
+    fileName?: boolean
+    filePath?: boolean
+    fileType?: boolean
+    fileSize?: boolean
+    createdAt?: boolean
+    residenceRequest?: boolean | ResidenceRequestDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["residenceRequestAttachment"]>
+
+  export type ResidenceRequestAttachmentSelectScalar = {
+    id?: boolean
+    residenceRequestId?: boolean
+    attachmentType?: boolean
+    fileName?: boolean
+    filePath?: boolean
+    fileType?: boolean
+    fileSize?: boolean
+    createdAt?: boolean
+  }
+
+  export type ResidenceRequestAttachmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "residenceRequestId" | "attachmentType" | "fileName" | "filePath" | "fileType" | "fileSize" | "createdAt", ExtArgs["result"]["residenceRequestAttachment"]>
+  export type ResidenceRequestAttachmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    residenceRequest?: boolean | ResidenceRequestDefaultArgs<ExtArgs>
+  }
+  export type ResidenceRequestAttachmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    residenceRequest?: boolean | ResidenceRequestDefaultArgs<ExtArgs>
+  }
+  export type ResidenceRequestAttachmentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    residenceRequest?: boolean | ResidenceRequestDefaultArgs<ExtArgs>
+  }
+
+  export type $ResidenceRequestAttachmentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ResidenceRequestAttachment"
+    objects: {
+      residenceRequest: Prisma.$ResidenceRequestPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      residenceRequestId: string
+      attachmentType: $Enums.ResidenceAttachmentType
+      fileName: string
+      filePath: string
+      fileType: string | null
+      fileSize: number | null
+      createdAt: Date
+    }, ExtArgs["result"]["residenceRequestAttachment"]>
+    composites: {}
+  }
+
+  type ResidenceRequestAttachmentGetPayload<S extends boolean | null | undefined | ResidenceRequestAttachmentDefaultArgs> = $Result.GetResult<Prisma.$ResidenceRequestAttachmentPayload, S>
+
+  type ResidenceRequestAttachmentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ResidenceRequestAttachmentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ResidenceRequestAttachmentCountAggregateInputType | true
+    }
+
+  export interface ResidenceRequestAttachmentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ResidenceRequestAttachment'], meta: { name: 'ResidenceRequestAttachment' } }
+    /**
+     * Find zero or one ResidenceRequestAttachment that matches the filter.
+     * @param {ResidenceRequestAttachmentFindUniqueArgs} args - Arguments to find a ResidenceRequestAttachment
+     * @example
+     * // Get one ResidenceRequestAttachment
+     * const residenceRequestAttachment = await prisma.residenceRequestAttachment.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ResidenceRequestAttachmentFindUniqueArgs>(args: SelectSubset<T, ResidenceRequestAttachmentFindUniqueArgs<ExtArgs>>): Prisma__ResidenceRequestAttachmentClient<$Result.GetResult<Prisma.$ResidenceRequestAttachmentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ResidenceRequestAttachment that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ResidenceRequestAttachmentFindUniqueOrThrowArgs} args - Arguments to find a ResidenceRequestAttachment
+     * @example
+     * // Get one ResidenceRequestAttachment
+     * const residenceRequestAttachment = await prisma.residenceRequestAttachment.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ResidenceRequestAttachmentFindUniqueOrThrowArgs>(args: SelectSubset<T, ResidenceRequestAttachmentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ResidenceRequestAttachmentClient<$Result.GetResult<Prisma.$ResidenceRequestAttachmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ResidenceRequestAttachment that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResidenceRequestAttachmentFindFirstArgs} args - Arguments to find a ResidenceRequestAttachment
+     * @example
+     * // Get one ResidenceRequestAttachment
+     * const residenceRequestAttachment = await prisma.residenceRequestAttachment.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ResidenceRequestAttachmentFindFirstArgs>(args?: SelectSubset<T, ResidenceRequestAttachmentFindFirstArgs<ExtArgs>>): Prisma__ResidenceRequestAttachmentClient<$Result.GetResult<Prisma.$ResidenceRequestAttachmentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ResidenceRequestAttachment that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResidenceRequestAttachmentFindFirstOrThrowArgs} args - Arguments to find a ResidenceRequestAttachment
+     * @example
+     * // Get one ResidenceRequestAttachment
+     * const residenceRequestAttachment = await prisma.residenceRequestAttachment.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ResidenceRequestAttachmentFindFirstOrThrowArgs>(args?: SelectSubset<T, ResidenceRequestAttachmentFindFirstOrThrowArgs<ExtArgs>>): Prisma__ResidenceRequestAttachmentClient<$Result.GetResult<Prisma.$ResidenceRequestAttachmentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ResidenceRequestAttachments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResidenceRequestAttachmentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ResidenceRequestAttachments
+     * const residenceRequestAttachments = await prisma.residenceRequestAttachment.findMany()
+     * 
+     * // Get first 10 ResidenceRequestAttachments
+     * const residenceRequestAttachments = await prisma.residenceRequestAttachment.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const residenceRequestAttachmentWithIdOnly = await prisma.residenceRequestAttachment.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ResidenceRequestAttachmentFindManyArgs>(args?: SelectSubset<T, ResidenceRequestAttachmentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResidenceRequestAttachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ResidenceRequestAttachment.
+     * @param {ResidenceRequestAttachmentCreateArgs} args - Arguments to create a ResidenceRequestAttachment.
+     * @example
+     * // Create one ResidenceRequestAttachment
+     * const ResidenceRequestAttachment = await prisma.residenceRequestAttachment.create({
+     *   data: {
+     *     // ... data to create a ResidenceRequestAttachment
+     *   }
+     * })
+     * 
+     */
+    create<T extends ResidenceRequestAttachmentCreateArgs>(args: SelectSubset<T, ResidenceRequestAttachmentCreateArgs<ExtArgs>>): Prisma__ResidenceRequestAttachmentClient<$Result.GetResult<Prisma.$ResidenceRequestAttachmentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ResidenceRequestAttachments.
+     * @param {ResidenceRequestAttachmentCreateManyArgs} args - Arguments to create many ResidenceRequestAttachments.
+     * @example
+     * // Create many ResidenceRequestAttachments
+     * const residenceRequestAttachment = await prisma.residenceRequestAttachment.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ResidenceRequestAttachmentCreateManyArgs>(args?: SelectSubset<T, ResidenceRequestAttachmentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ResidenceRequestAttachments and returns the data saved in the database.
+     * @param {ResidenceRequestAttachmentCreateManyAndReturnArgs} args - Arguments to create many ResidenceRequestAttachments.
+     * @example
+     * // Create many ResidenceRequestAttachments
+     * const residenceRequestAttachment = await prisma.residenceRequestAttachment.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ResidenceRequestAttachments and only return the `id`
+     * const residenceRequestAttachmentWithIdOnly = await prisma.residenceRequestAttachment.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ResidenceRequestAttachmentCreateManyAndReturnArgs>(args?: SelectSubset<T, ResidenceRequestAttachmentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResidenceRequestAttachmentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ResidenceRequestAttachment.
+     * @param {ResidenceRequestAttachmentDeleteArgs} args - Arguments to delete one ResidenceRequestAttachment.
+     * @example
+     * // Delete one ResidenceRequestAttachment
+     * const ResidenceRequestAttachment = await prisma.residenceRequestAttachment.delete({
+     *   where: {
+     *     // ... filter to delete one ResidenceRequestAttachment
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ResidenceRequestAttachmentDeleteArgs>(args: SelectSubset<T, ResidenceRequestAttachmentDeleteArgs<ExtArgs>>): Prisma__ResidenceRequestAttachmentClient<$Result.GetResult<Prisma.$ResidenceRequestAttachmentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ResidenceRequestAttachment.
+     * @param {ResidenceRequestAttachmentUpdateArgs} args - Arguments to update one ResidenceRequestAttachment.
+     * @example
+     * // Update one ResidenceRequestAttachment
+     * const residenceRequestAttachment = await prisma.residenceRequestAttachment.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ResidenceRequestAttachmentUpdateArgs>(args: SelectSubset<T, ResidenceRequestAttachmentUpdateArgs<ExtArgs>>): Prisma__ResidenceRequestAttachmentClient<$Result.GetResult<Prisma.$ResidenceRequestAttachmentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ResidenceRequestAttachments.
+     * @param {ResidenceRequestAttachmentDeleteManyArgs} args - Arguments to filter ResidenceRequestAttachments to delete.
+     * @example
+     * // Delete a few ResidenceRequestAttachments
+     * const { count } = await prisma.residenceRequestAttachment.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ResidenceRequestAttachmentDeleteManyArgs>(args?: SelectSubset<T, ResidenceRequestAttachmentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ResidenceRequestAttachments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResidenceRequestAttachmentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ResidenceRequestAttachments
+     * const residenceRequestAttachment = await prisma.residenceRequestAttachment.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ResidenceRequestAttachmentUpdateManyArgs>(args: SelectSubset<T, ResidenceRequestAttachmentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ResidenceRequestAttachments and returns the data updated in the database.
+     * @param {ResidenceRequestAttachmentUpdateManyAndReturnArgs} args - Arguments to update many ResidenceRequestAttachments.
+     * @example
+     * // Update many ResidenceRequestAttachments
+     * const residenceRequestAttachment = await prisma.residenceRequestAttachment.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ResidenceRequestAttachments and only return the `id`
+     * const residenceRequestAttachmentWithIdOnly = await prisma.residenceRequestAttachment.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ResidenceRequestAttachmentUpdateManyAndReturnArgs>(args: SelectSubset<T, ResidenceRequestAttachmentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResidenceRequestAttachmentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ResidenceRequestAttachment.
+     * @param {ResidenceRequestAttachmentUpsertArgs} args - Arguments to update or create a ResidenceRequestAttachment.
+     * @example
+     * // Update or create a ResidenceRequestAttachment
+     * const residenceRequestAttachment = await prisma.residenceRequestAttachment.upsert({
+     *   create: {
+     *     // ... data to create a ResidenceRequestAttachment
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ResidenceRequestAttachment we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ResidenceRequestAttachmentUpsertArgs>(args: SelectSubset<T, ResidenceRequestAttachmentUpsertArgs<ExtArgs>>): Prisma__ResidenceRequestAttachmentClient<$Result.GetResult<Prisma.$ResidenceRequestAttachmentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ResidenceRequestAttachments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResidenceRequestAttachmentCountArgs} args - Arguments to filter ResidenceRequestAttachments to count.
+     * @example
+     * // Count the number of ResidenceRequestAttachments
+     * const count = await prisma.residenceRequestAttachment.count({
+     *   where: {
+     *     // ... the filter for the ResidenceRequestAttachments we want to count
+     *   }
+     * })
+    **/
+    count<T extends ResidenceRequestAttachmentCountArgs>(
+      args?: Subset<T, ResidenceRequestAttachmentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ResidenceRequestAttachmentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ResidenceRequestAttachment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResidenceRequestAttachmentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ResidenceRequestAttachmentAggregateArgs>(args: Subset<T, ResidenceRequestAttachmentAggregateArgs>): Prisma.PrismaPromise<GetResidenceRequestAttachmentAggregateType<T>>
+
+    /**
+     * Group by ResidenceRequestAttachment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ResidenceRequestAttachmentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ResidenceRequestAttachmentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ResidenceRequestAttachmentGroupByArgs['orderBy'] }
+        : { orderBy?: ResidenceRequestAttachmentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ResidenceRequestAttachmentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetResidenceRequestAttachmentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ResidenceRequestAttachment model
+   */
+  readonly fields: ResidenceRequestAttachmentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ResidenceRequestAttachment.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ResidenceRequestAttachmentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    residenceRequest<T extends ResidenceRequestDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ResidenceRequestDefaultArgs<ExtArgs>>): Prisma__ResidenceRequestClient<$Result.GetResult<Prisma.$ResidenceRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ResidenceRequestAttachment model
+   */
+  interface ResidenceRequestAttachmentFieldRefs {
+    readonly id: FieldRef<"ResidenceRequestAttachment", 'String'>
+    readonly residenceRequestId: FieldRef<"ResidenceRequestAttachment", 'String'>
+    readonly attachmentType: FieldRef<"ResidenceRequestAttachment", 'ResidenceAttachmentType'>
+    readonly fileName: FieldRef<"ResidenceRequestAttachment", 'String'>
+    readonly filePath: FieldRef<"ResidenceRequestAttachment", 'String'>
+    readonly fileType: FieldRef<"ResidenceRequestAttachment", 'String'>
+    readonly fileSize: FieldRef<"ResidenceRequestAttachment", 'Int'>
+    readonly createdAt: FieldRef<"ResidenceRequestAttachment", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ResidenceRequestAttachment findUnique
+   */
+  export type ResidenceRequestAttachmentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequestAttachment
+     */
+    select?: ResidenceRequestAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidenceRequestAttachment
+     */
+    omit?: ResidenceRequestAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidenceRequestAttachmentInclude<ExtArgs> | null
+    /**
+     * Filter, which ResidenceRequestAttachment to fetch.
+     */
+    where: ResidenceRequestAttachmentWhereUniqueInput
+  }
+
+  /**
+   * ResidenceRequestAttachment findUniqueOrThrow
+   */
+  export type ResidenceRequestAttachmentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequestAttachment
+     */
+    select?: ResidenceRequestAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidenceRequestAttachment
+     */
+    omit?: ResidenceRequestAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidenceRequestAttachmentInclude<ExtArgs> | null
+    /**
+     * Filter, which ResidenceRequestAttachment to fetch.
+     */
+    where: ResidenceRequestAttachmentWhereUniqueInput
+  }
+
+  /**
+   * ResidenceRequestAttachment findFirst
+   */
+  export type ResidenceRequestAttachmentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequestAttachment
+     */
+    select?: ResidenceRequestAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidenceRequestAttachment
+     */
+    omit?: ResidenceRequestAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidenceRequestAttachmentInclude<ExtArgs> | null
+    /**
+     * Filter, which ResidenceRequestAttachment to fetch.
+     */
+    where?: ResidenceRequestAttachmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResidenceRequestAttachments to fetch.
+     */
+    orderBy?: ResidenceRequestAttachmentOrderByWithRelationInput | ResidenceRequestAttachmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ResidenceRequestAttachments.
+     */
+    cursor?: ResidenceRequestAttachmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResidenceRequestAttachments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResidenceRequestAttachments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ResidenceRequestAttachments.
+     */
+    distinct?: ResidenceRequestAttachmentScalarFieldEnum | ResidenceRequestAttachmentScalarFieldEnum[]
+  }
+
+  /**
+   * ResidenceRequestAttachment findFirstOrThrow
+   */
+  export type ResidenceRequestAttachmentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequestAttachment
+     */
+    select?: ResidenceRequestAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidenceRequestAttachment
+     */
+    omit?: ResidenceRequestAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidenceRequestAttachmentInclude<ExtArgs> | null
+    /**
+     * Filter, which ResidenceRequestAttachment to fetch.
+     */
+    where?: ResidenceRequestAttachmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResidenceRequestAttachments to fetch.
+     */
+    orderBy?: ResidenceRequestAttachmentOrderByWithRelationInput | ResidenceRequestAttachmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ResidenceRequestAttachments.
+     */
+    cursor?: ResidenceRequestAttachmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResidenceRequestAttachments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResidenceRequestAttachments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ResidenceRequestAttachments.
+     */
+    distinct?: ResidenceRequestAttachmentScalarFieldEnum | ResidenceRequestAttachmentScalarFieldEnum[]
+  }
+
+  /**
+   * ResidenceRequestAttachment findMany
+   */
+  export type ResidenceRequestAttachmentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequestAttachment
+     */
+    select?: ResidenceRequestAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidenceRequestAttachment
+     */
+    omit?: ResidenceRequestAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidenceRequestAttachmentInclude<ExtArgs> | null
+    /**
+     * Filter, which ResidenceRequestAttachments to fetch.
+     */
+    where?: ResidenceRequestAttachmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ResidenceRequestAttachments to fetch.
+     */
+    orderBy?: ResidenceRequestAttachmentOrderByWithRelationInput | ResidenceRequestAttachmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ResidenceRequestAttachments.
+     */
+    cursor?: ResidenceRequestAttachmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ResidenceRequestAttachments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ResidenceRequestAttachments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ResidenceRequestAttachments.
+     */
+    distinct?: ResidenceRequestAttachmentScalarFieldEnum | ResidenceRequestAttachmentScalarFieldEnum[]
+  }
+
+  /**
+   * ResidenceRequestAttachment create
+   */
+  export type ResidenceRequestAttachmentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequestAttachment
+     */
+    select?: ResidenceRequestAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidenceRequestAttachment
+     */
+    omit?: ResidenceRequestAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidenceRequestAttachmentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ResidenceRequestAttachment.
+     */
+    data: XOR<ResidenceRequestAttachmentCreateInput, ResidenceRequestAttachmentUncheckedCreateInput>
+  }
+
+  /**
+   * ResidenceRequestAttachment createMany
+   */
+  export type ResidenceRequestAttachmentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ResidenceRequestAttachments.
+     */
+    data: ResidenceRequestAttachmentCreateManyInput | ResidenceRequestAttachmentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ResidenceRequestAttachment createManyAndReturn
+   */
+  export type ResidenceRequestAttachmentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequestAttachment
+     */
+    select?: ResidenceRequestAttachmentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidenceRequestAttachment
+     */
+    omit?: ResidenceRequestAttachmentOmit<ExtArgs> | null
+    /**
+     * The data used to create many ResidenceRequestAttachments.
+     */
+    data: ResidenceRequestAttachmentCreateManyInput | ResidenceRequestAttachmentCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidenceRequestAttachmentIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ResidenceRequestAttachment update
+   */
+  export type ResidenceRequestAttachmentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequestAttachment
+     */
+    select?: ResidenceRequestAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidenceRequestAttachment
+     */
+    omit?: ResidenceRequestAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidenceRequestAttachmentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ResidenceRequestAttachment.
+     */
+    data: XOR<ResidenceRequestAttachmentUpdateInput, ResidenceRequestAttachmentUncheckedUpdateInput>
+    /**
+     * Choose, which ResidenceRequestAttachment to update.
+     */
+    where: ResidenceRequestAttachmentWhereUniqueInput
+  }
+
+  /**
+   * ResidenceRequestAttachment updateMany
+   */
+  export type ResidenceRequestAttachmentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ResidenceRequestAttachments.
+     */
+    data: XOR<ResidenceRequestAttachmentUpdateManyMutationInput, ResidenceRequestAttachmentUncheckedUpdateManyInput>
+    /**
+     * Filter which ResidenceRequestAttachments to update
+     */
+    where?: ResidenceRequestAttachmentWhereInput
+    /**
+     * Limit how many ResidenceRequestAttachments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ResidenceRequestAttachment updateManyAndReturn
+   */
+  export type ResidenceRequestAttachmentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequestAttachment
+     */
+    select?: ResidenceRequestAttachmentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidenceRequestAttachment
+     */
+    omit?: ResidenceRequestAttachmentOmit<ExtArgs> | null
+    /**
+     * The data used to update ResidenceRequestAttachments.
+     */
+    data: XOR<ResidenceRequestAttachmentUpdateManyMutationInput, ResidenceRequestAttachmentUncheckedUpdateManyInput>
+    /**
+     * Filter which ResidenceRequestAttachments to update
+     */
+    where?: ResidenceRequestAttachmentWhereInput
+    /**
+     * Limit how many ResidenceRequestAttachments to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidenceRequestAttachmentIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ResidenceRequestAttachment upsert
+   */
+  export type ResidenceRequestAttachmentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequestAttachment
+     */
+    select?: ResidenceRequestAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidenceRequestAttachment
+     */
+    omit?: ResidenceRequestAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidenceRequestAttachmentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ResidenceRequestAttachment to update in case it exists.
+     */
+    where: ResidenceRequestAttachmentWhereUniqueInput
+    /**
+     * In case the ResidenceRequestAttachment found by the `where` argument doesn't exist, create a new ResidenceRequestAttachment with this data.
+     */
+    create: XOR<ResidenceRequestAttachmentCreateInput, ResidenceRequestAttachmentUncheckedCreateInput>
+    /**
+     * In case the ResidenceRequestAttachment was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ResidenceRequestAttachmentUpdateInput, ResidenceRequestAttachmentUncheckedUpdateInput>
+  }
+
+  /**
+   * ResidenceRequestAttachment delete
+   */
+  export type ResidenceRequestAttachmentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequestAttachment
+     */
+    select?: ResidenceRequestAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidenceRequestAttachment
+     */
+    omit?: ResidenceRequestAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidenceRequestAttachmentInclude<ExtArgs> | null
+    /**
+     * Filter which ResidenceRequestAttachment to delete.
+     */
+    where: ResidenceRequestAttachmentWhereUniqueInput
+  }
+
+  /**
+   * ResidenceRequestAttachment deleteMany
+   */
+  export type ResidenceRequestAttachmentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ResidenceRequestAttachments to delete
+     */
+    where?: ResidenceRequestAttachmentWhereInput
+    /**
+     * Limit how many ResidenceRequestAttachments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ResidenceRequestAttachment without action
+   */
+  export type ResidenceRequestAttachmentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ResidenceRequestAttachment
+     */
+    select?: ResidenceRequestAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ResidenceRequestAttachment
+     */
+    omit?: ResidenceRequestAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ResidenceRequestAttachmentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CommutingRequest
+   */
+
+  export type AggregateCommutingRequest = {
+    _count: CommutingRequestCountAggregateOutputType | null
+    _avg: CommutingRequestAvgAggregateOutputType | null
+    _sum: CommutingRequestSumAggregateOutputType | null
+    _min: CommutingRequestMinAggregateOutputType | null
+    _max: CommutingRequestMaxAggregateOutputType | null
+  }
+
+  export type CommutingRequestAvgAggregateOutputType = {
+    monthlyAmount: number | null
+    oneWayDistanceKm: number | null
+    oneWayFare: number | null
+    approvedAmount: number | null
+  }
+
+  export type CommutingRequestSumAggregateOutputType = {
+    monthlyAmount: number | null
+    oneWayDistanceKm: number | null
+    oneWayFare: number | null
+    approvedAmount: number | null
+  }
+
+  export type CommutingRequestMinAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    notificationType: $Enums.CommutingNotificationType | null
+    commutingType: $Enums.CommutingType | null
+    effectiveDate: Date | null
+    routeFrom: string | null
+    routeTo: string | null
+    routeDetails: string | null
+    transportationName: string | null
+    monthlyAmount: number | null
+    oneWayDistanceKm: number | null
+    oneWayFare: number | null
+    vehicleRegistrationNumber: string | null
+    vehicleName: string | null
+    vehicleColor: string | null
+    approvedAmount: number | null
+    note: string | null
+    status: $Enums.RequestStatus | null
+    reviewedAt: Date | null
+    reviewedBy: string | null
+    reviewComment: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CommutingRequestMaxAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    notificationType: $Enums.CommutingNotificationType | null
+    commutingType: $Enums.CommutingType | null
+    effectiveDate: Date | null
+    routeFrom: string | null
+    routeTo: string | null
+    routeDetails: string | null
+    transportationName: string | null
+    monthlyAmount: number | null
+    oneWayDistanceKm: number | null
+    oneWayFare: number | null
+    vehicleRegistrationNumber: string | null
+    vehicleName: string | null
+    vehicleColor: string | null
+    approvedAmount: number | null
+    note: string | null
+    status: $Enums.RequestStatus | null
+    reviewedAt: Date | null
+    reviewedBy: string | null
+    reviewComment: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CommutingRequestCountAggregateOutputType = {
+    id: number
+    employeeId: number
+    notificationType: number
+    commutingType: number
+    effectiveDate: number
+    routeFrom: number
+    routeTo: number
+    routeDetails: number
+    transportationName: number
+    monthlyAmount: number
+    oneWayDistanceKm: number
+    oneWayFare: number
+    vehicleRegistrationNumber: number
+    vehicleName: number
+    vehicleColor: number
+    approvedAmount: number
+    note: number
+    status: number
+    reviewedAt: number
+    reviewedBy: number
+    reviewComment: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type CommutingRequestAvgAggregateInputType = {
+    monthlyAmount?: true
+    oneWayDistanceKm?: true
+    oneWayFare?: true
+    approvedAmount?: true
+  }
+
+  export type CommutingRequestSumAggregateInputType = {
+    monthlyAmount?: true
+    oneWayDistanceKm?: true
+    oneWayFare?: true
+    approvedAmount?: true
+  }
+
+  export type CommutingRequestMinAggregateInputType = {
+    id?: true
+    employeeId?: true
+    notificationType?: true
+    commutingType?: true
+    effectiveDate?: true
+    routeFrom?: true
+    routeTo?: true
+    routeDetails?: true
+    transportationName?: true
+    monthlyAmount?: true
+    oneWayDistanceKm?: true
+    oneWayFare?: true
+    vehicleRegistrationNumber?: true
+    vehicleName?: true
+    vehicleColor?: true
+    approvedAmount?: true
+    note?: true
+    status?: true
+    reviewedAt?: true
+    reviewedBy?: true
+    reviewComment?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CommutingRequestMaxAggregateInputType = {
+    id?: true
+    employeeId?: true
+    notificationType?: true
+    commutingType?: true
+    effectiveDate?: true
+    routeFrom?: true
+    routeTo?: true
+    routeDetails?: true
+    transportationName?: true
+    monthlyAmount?: true
+    oneWayDistanceKm?: true
+    oneWayFare?: true
+    vehicleRegistrationNumber?: true
+    vehicleName?: true
+    vehicleColor?: true
+    approvedAmount?: true
+    note?: true
+    status?: true
+    reviewedAt?: true
+    reviewedBy?: true
+    reviewComment?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CommutingRequestCountAggregateInputType = {
+    id?: true
+    employeeId?: true
+    notificationType?: true
+    commutingType?: true
+    effectiveDate?: true
+    routeFrom?: true
+    routeTo?: true
+    routeDetails?: true
+    transportationName?: true
+    monthlyAmount?: true
+    oneWayDistanceKm?: true
+    oneWayFare?: true
+    vehicleRegistrationNumber?: true
+    vehicleName?: true
+    vehicleColor?: true
+    approvedAmount?: true
+    note?: true
+    status?: true
+    reviewedAt?: true
+    reviewedBy?: true
+    reviewComment?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type CommutingRequestAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CommutingRequest to aggregate.
+     */
+    where?: CommutingRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommutingRequests to fetch.
+     */
+    orderBy?: CommutingRequestOrderByWithRelationInput | CommutingRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CommutingRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommutingRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommutingRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CommutingRequests
+    **/
+    _count?: true | CommutingRequestCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CommutingRequestAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CommutingRequestSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CommutingRequestMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CommutingRequestMaxAggregateInputType
+  }
+
+  export type GetCommutingRequestAggregateType<T extends CommutingRequestAggregateArgs> = {
+        [P in keyof T & keyof AggregateCommutingRequest]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCommutingRequest[P]>
+      : GetScalarType<T[P], AggregateCommutingRequest[P]>
+  }
+
+
+
+
+  export type CommutingRequestGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommutingRequestWhereInput
+    orderBy?: CommutingRequestOrderByWithAggregationInput | CommutingRequestOrderByWithAggregationInput[]
+    by: CommutingRequestScalarFieldEnum[] | CommutingRequestScalarFieldEnum
+    having?: CommutingRequestScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CommutingRequestCountAggregateInputType | true
+    _avg?: CommutingRequestAvgAggregateInputType
+    _sum?: CommutingRequestSumAggregateInputType
+    _min?: CommutingRequestMinAggregateInputType
+    _max?: CommutingRequestMaxAggregateInputType
+  }
+
+  export type CommutingRequestGroupByOutputType = {
+    id: string
+    employeeId: string
+    notificationType: $Enums.CommutingNotificationType
+    commutingType: $Enums.CommutingType
+    effectiveDate: Date
+    routeFrom: string | null
+    routeTo: string | null
+    routeDetails: string | null
+    transportationName: string | null
+    monthlyAmount: number | null
+    oneWayDistanceKm: number | null
+    oneWayFare: number | null
+    vehicleRegistrationNumber: string | null
+    vehicleName: string | null
+    vehicleColor: string | null
+    approvedAmount: number | null
+    note: string | null
+    status: $Enums.RequestStatus
+    reviewedAt: Date | null
+    reviewedBy: string | null
+    reviewComment: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: CommutingRequestCountAggregateOutputType | null
+    _avg: CommutingRequestAvgAggregateOutputType | null
+    _sum: CommutingRequestSumAggregateOutputType | null
+    _min: CommutingRequestMinAggregateOutputType | null
+    _max: CommutingRequestMaxAggregateOutputType | null
+  }
+
+  type GetCommutingRequestGroupByPayload<T extends CommutingRequestGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CommutingRequestGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CommutingRequestGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CommutingRequestGroupByOutputType[P]>
+            : GetScalarType<T[P], CommutingRequestGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CommutingRequestSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    notificationType?: boolean
+    commutingType?: boolean
+    effectiveDate?: boolean
+    routeFrom?: boolean
+    routeTo?: boolean
+    routeDetails?: boolean
+    transportationName?: boolean
+    monthlyAmount?: boolean
+    oneWayDistanceKm?: boolean
+    oneWayFare?: boolean
+    vehicleRegistrationNumber?: boolean
+    vehicleName?: boolean
+    vehicleColor?: boolean
+    approvedAmount?: boolean
+    note?: boolean
+    status?: boolean
+    reviewedAt?: boolean
+    reviewedBy?: boolean
+    reviewComment?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    attachments?: boolean | CommutingRequest$attachmentsArgs<ExtArgs>
+    routeSegments?: boolean | CommutingRequest$routeSegmentsArgs<ExtArgs>
+    _count?: boolean | CommutingRequestCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["commutingRequest"]>
+
+  export type CommutingRequestSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    notificationType?: boolean
+    commutingType?: boolean
+    effectiveDate?: boolean
+    routeFrom?: boolean
+    routeTo?: boolean
+    routeDetails?: boolean
+    transportationName?: boolean
+    monthlyAmount?: boolean
+    oneWayDistanceKm?: boolean
+    oneWayFare?: boolean
+    vehicleRegistrationNumber?: boolean
+    vehicleName?: boolean
+    vehicleColor?: boolean
+    approvedAmount?: boolean
+    note?: boolean
+    status?: boolean
+    reviewedAt?: boolean
+    reviewedBy?: boolean
+    reviewComment?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["commutingRequest"]>
+
+  export type CommutingRequestSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    notificationType?: boolean
+    commutingType?: boolean
+    effectiveDate?: boolean
+    routeFrom?: boolean
+    routeTo?: boolean
+    routeDetails?: boolean
+    transportationName?: boolean
+    monthlyAmount?: boolean
+    oneWayDistanceKm?: boolean
+    oneWayFare?: boolean
+    vehicleRegistrationNumber?: boolean
+    vehicleName?: boolean
+    vehicleColor?: boolean
+    approvedAmount?: boolean
+    note?: boolean
+    status?: boolean
+    reviewedAt?: boolean
+    reviewedBy?: boolean
+    reviewComment?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["commutingRequest"]>
+
+  export type CommutingRequestSelectScalar = {
+    id?: boolean
+    employeeId?: boolean
+    notificationType?: boolean
+    commutingType?: boolean
+    effectiveDate?: boolean
+    routeFrom?: boolean
+    routeTo?: boolean
+    routeDetails?: boolean
+    transportationName?: boolean
+    monthlyAmount?: boolean
+    oneWayDistanceKm?: boolean
+    oneWayFare?: boolean
+    vehicleRegistrationNumber?: boolean
+    vehicleName?: boolean
+    vehicleColor?: boolean
+    approvedAmount?: boolean
+    note?: boolean
+    status?: boolean
+    reviewedAt?: boolean
+    reviewedBy?: boolean
+    reviewComment?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type CommutingRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "notificationType" | "commutingType" | "effectiveDate" | "routeFrom" | "routeTo" | "routeDetails" | "transportationName" | "monthlyAmount" | "oneWayDistanceKm" | "oneWayFare" | "vehicleRegistrationNumber" | "vehicleName" | "vehicleColor" | "approvedAmount" | "note" | "status" | "reviewedAt" | "reviewedBy" | "reviewComment" | "createdAt" | "updatedAt", ExtArgs["result"]["commutingRequest"]>
+  export type CommutingRequestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+    attachments?: boolean | CommutingRequest$attachmentsArgs<ExtArgs>
+    routeSegments?: boolean | CommutingRequest$routeSegmentsArgs<ExtArgs>
+    _count?: boolean | CommutingRequestCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type CommutingRequestIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+  export type CommutingRequestIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+
+  export type $CommutingRequestPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CommutingRequest"
+    objects: {
+      employee: Prisma.$EmployeePayload<ExtArgs>
+      attachments: Prisma.$CommutingRequestAttachmentPayload<ExtArgs>[]
+      routeSegments: Prisma.$CommutingRouteSegmentPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      employeeId: string
+      notificationType: $Enums.CommutingNotificationType
+      commutingType: $Enums.CommutingType
+      effectiveDate: Date
+      routeFrom: string | null
+      routeTo: string | null
+      routeDetails: string | null
+      transportationName: string | null
+      monthlyAmount: number | null
+      oneWayDistanceKm: number | null
+      oneWayFare: number | null
+      vehicleRegistrationNumber: string | null
+      vehicleName: string | null
+      vehicleColor: string | null
+      approvedAmount: number | null
+      note: string | null
+      status: $Enums.RequestStatus
+      reviewedAt: Date | null
+      reviewedBy: string | null
+      reviewComment: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["commutingRequest"]>
+    composites: {}
+  }
+
+  type CommutingRequestGetPayload<S extends boolean | null | undefined | CommutingRequestDefaultArgs> = $Result.GetResult<Prisma.$CommutingRequestPayload, S>
+
+  type CommutingRequestCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CommutingRequestFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CommutingRequestCountAggregateInputType | true
+    }
+
+  export interface CommutingRequestDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CommutingRequest'], meta: { name: 'CommutingRequest' } }
+    /**
+     * Find zero or one CommutingRequest that matches the filter.
+     * @param {CommutingRequestFindUniqueArgs} args - Arguments to find a CommutingRequest
+     * @example
+     * // Get one CommutingRequest
+     * const commutingRequest = await prisma.commutingRequest.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CommutingRequestFindUniqueArgs>(args: SelectSubset<T, CommutingRequestFindUniqueArgs<ExtArgs>>): Prisma__CommutingRequestClient<$Result.GetResult<Prisma.$CommutingRequestPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CommutingRequest that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CommutingRequestFindUniqueOrThrowArgs} args - Arguments to find a CommutingRequest
+     * @example
+     * // Get one CommutingRequest
+     * const commutingRequest = await prisma.commutingRequest.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CommutingRequestFindUniqueOrThrowArgs>(args: SelectSubset<T, CommutingRequestFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CommutingRequestClient<$Result.GetResult<Prisma.$CommutingRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CommutingRequest that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommutingRequestFindFirstArgs} args - Arguments to find a CommutingRequest
+     * @example
+     * // Get one CommutingRequest
+     * const commutingRequest = await prisma.commutingRequest.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CommutingRequestFindFirstArgs>(args?: SelectSubset<T, CommutingRequestFindFirstArgs<ExtArgs>>): Prisma__CommutingRequestClient<$Result.GetResult<Prisma.$CommutingRequestPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CommutingRequest that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommutingRequestFindFirstOrThrowArgs} args - Arguments to find a CommutingRequest
+     * @example
+     * // Get one CommutingRequest
+     * const commutingRequest = await prisma.commutingRequest.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CommutingRequestFindFirstOrThrowArgs>(args?: SelectSubset<T, CommutingRequestFindFirstOrThrowArgs<ExtArgs>>): Prisma__CommutingRequestClient<$Result.GetResult<Prisma.$CommutingRequestPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CommutingRequests that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommutingRequestFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CommutingRequests
+     * const commutingRequests = await prisma.commutingRequest.findMany()
+     * 
+     * // Get first 10 CommutingRequests
+     * const commutingRequests = await prisma.commutingRequest.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const commutingRequestWithIdOnly = await prisma.commutingRequest.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CommutingRequestFindManyArgs>(args?: SelectSubset<T, CommutingRequestFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommutingRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CommutingRequest.
+     * @param {CommutingRequestCreateArgs} args - Arguments to create a CommutingRequest.
+     * @example
+     * // Create one CommutingRequest
+     * const CommutingRequest = await prisma.commutingRequest.create({
+     *   data: {
+     *     // ... data to create a CommutingRequest
+     *   }
+     * })
+     * 
+     */
+    create<T extends CommutingRequestCreateArgs>(args: SelectSubset<T, CommutingRequestCreateArgs<ExtArgs>>): Prisma__CommutingRequestClient<$Result.GetResult<Prisma.$CommutingRequestPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CommutingRequests.
+     * @param {CommutingRequestCreateManyArgs} args - Arguments to create many CommutingRequests.
+     * @example
+     * // Create many CommutingRequests
+     * const commutingRequest = await prisma.commutingRequest.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CommutingRequestCreateManyArgs>(args?: SelectSubset<T, CommutingRequestCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CommutingRequests and returns the data saved in the database.
+     * @param {CommutingRequestCreateManyAndReturnArgs} args - Arguments to create many CommutingRequests.
+     * @example
+     * // Create many CommutingRequests
+     * const commutingRequest = await prisma.commutingRequest.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CommutingRequests and only return the `id`
+     * const commutingRequestWithIdOnly = await prisma.commutingRequest.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CommutingRequestCreateManyAndReturnArgs>(args?: SelectSubset<T, CommutingRequestCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommutingRequestPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CommutingRequest.
+     * @param {CommutingRequestDeleteArgs} args - Arguments to delete one CommutingRequest.
+     * @example
+     * // Delete one CommutingRequest
+     * const CommutingRequest = await prisma.commutingRequest.delete({
+     *   where: {
+     *     // ... filter to delete one CommutingRequest
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CommutingRequestDeleteArgs>(args: SelectSubset<T, CommutingRequestDeleteArgs<ExtArgs>>): Prisma__CommutingRequestClient<$Result.GetResult<Prisma.$CommutingRequestPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CommutingRequest.
+     * @param {CommutingRequestUpdateArgs} args - Arguments to update one CommutingRequest.
+     * @example
+     * // Update one CommutingRequest
+     * const commutingRequest = await prisma.commutingRequest.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CommutingRequestUpdateArgs>(args: SelectSubset<T, CommutingRequestUpdateArgs<ExtArgs>>): Prisma__CommutingRequestClient<$Result.GetResult<Prisma.$CommutingRequestPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CommutingRequests.
+     * @param {CommutingRequestDeleteManyArgs} args - Arguments to filter CommutingRequests to delete.
+     * @example
+     * // Delete a few CommutingRequests
+     * const { count } = await prisma.commutingRequest.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CommutingRequestDeleteManyArgs>(args?: SelectSubset<T, CommutingRequestDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CommutingRequests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommutingRequestUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CommutingRequests
+     * const commutingRequest = await prisma.commutingRequest.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CommutingRequestUpdateManyArgs>(args: SelectSubset<T, CommutingRequestUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CommutingRequests and returns the data updated in the database.
+     * @param {CommutingRequestUpdateManyAndReturnArgs} args - Arguments to update many CommutingRequests.
+     * @example
+     * // Update many CommutingRequests
+     * const commutingRequest = await prisma.commutingRequest.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CommutingRequests and only return the `id`
+     * const commutingRequestWithIdOnly = await prisma.commutingRequest.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CommutingRequestUpdateManyAndReturnArgs>(args: SelectSubset<T, CommutingRequestUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommutingRequestPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CommutingRequest.
+     * @param {CommutingRequestUpsertArgs} args - Arguments to update or create a CommutingRequest.
+     * @example
+     * // Update or create a CommutingRequest
+     * const commutingRequest = await prisma.commutingRequest.upsert({
+     *   create: {
+     *     // ... data to create a CommutingRequest
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CommutingRequest we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CommutingRequestUpsertArgs>(args: SelectSubset<T, CommutingRequestUpsertArgs<ExtArgs>>): Prisma__CommutingRequestClient<$Result.GetResult<Prisma.$CommutingRequestPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CommutingRequests.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommutingRequestCountArgs} args - Arguments to filter CommutingRequests to count.
+     * @example
+     * // Count the number of CommutingRequests
+     * const count = await prisma.commutingRequest.count({
+     *   where: {
+     *     // ... the filter for the CommutingRequests we want to count
+     *   }
+     * })
+    **/
+    count<T extends CommutingRequestCountArgs>(
+      args?: Subset<T, CommutingRequestCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CommutingRequestCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CommutingRequest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommutingRequestAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CommutingRequestAggregateArgs>(args: Subset<T, CommutingRequestAggregateArgs>): Prisma.PrismaPromise<GetCommutingRequestAggregateType<T>>
+
+    /**
+     * Group by CommutingRequest.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommutingRequestGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CommutingRequestGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CommutingRequestGroupByArgs['orderBy'] }
+        : { orderBy?: CommutingRequestGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CommutingRequestGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCommutingRequestGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CommutingRequest model
+   */
+  readonly fields: CommutingRequestFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CommutingRequest.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CommutingRequestClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    attachments<T extends CommutingRequest$attachmentsArgs<ExtArgs> = {}>(args?: Subset<T, CommutingRequest$attachmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommutingRequestAttachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    routeSegments<T extends CommutingRequest$routeSegmentsArgs<ExtArgs> = {}>(args?: Subset<T, CommutingRequest$routeSegmentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommutingRouteSegmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CommutingRequest model
+   */
+  interface CommutingRequestFieldRefs {
+    readonly id: FieldRef<"CommutingRequest", 'String'>
+    readonly employeeId: FieldRef<"CommutingRequest", 'String'>
+    readonly notificationType: FieldRef<"CommutingRequest", 'CommutingNotificationType'>
+    readonly commutingType: FieldRef<"CommutingRequest", 'CommutingType'>
+    readonly effectiveDate: FieldRef<"CommutingRequest", 'DateTime'>
+    readonly routeFrom: FieldRef<"CommutingRequest", 'String'>
+    readonly routeTo: FieldRef<"CommutingRequest", 'String'>
+    readonly routeDetails: FieldRef<"CommutingRequest", 'String'>
+    readonly transportationName: FieldRef<"CommutingRequest", 'String'>
+    readonly monthlyAmount: FieldRef<"CommutingRequest", 'Int'>
+    readonly oneWayDistanceKm: FieldRef<"CommutingRequest", 'Float'>
+    readonly oneWayFare: FieldRef<"CommutingRequest", 'Int'>
+    readonly vehicleRegistrationNumber: FieldRef<"CommutingRequest", 'String'>
+    readonly vehicleName: FieldRef<"CommutingRequest", 'String'>
+    readonly vehicleColor: FieldRef<"CommutingRequest", 'String'>
+    readonly approvedAmount: FieldRef<"CommutingRequest", 'Int'>
+    readonly note: FieldRef<"CommutingRequest", 'String'>
+    readonly status: FieldRef<"CommutingRequest", 'RequestStatus'>
+    readonly reviewedAt: FieldRef<"CommutingRequest", 'DateTime'>
+    readonly reviewedBy: FieldRef<"CommutingRequest", 'String'>
+    readonly reviewComment: FieldRef<"CommutingRequest", 'String'>
+    readonly createdAt: FieldRef<"CommutingRequest", 'DateTime'>
+    readonly updatedAt: FieldRef<"CommutingRequest", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CommutingRequest findUnique
+   */
+  export type CommutingRequestFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequest
+     */
+    select?: CommutingRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRequest
+     */
+    omit?: CommutingRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which CommutingRequest to fetch.
+     */
+    where: CommutingRequestWhereUniqueInput
+  }
+
+  /**
+   * CommutingRequest findUniqueOrThrow
+   */
+  export type CommutingRequestFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequest
+     */
+    select?: CommutingRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRequest
+     */
+    omit?: CommutingRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which CommutingRequest to fetch.
+     */
+    where: CommutingRequestWhereUniqueInput
+  }
+
+  /**
+   * CommutingRequest findFirst
+   */
+  export type CommutingRequestFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequest
+     */
+    select?: CommutingRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRequest
+     */
+    omit?: CommutingRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which CommutingRequest to fetch.
+     */
+    where?: CommutingRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommutingRequests to fetch.
+     */
+    orderBy?: CommutingRequestOrderByWithRelationInput | CommutingRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CommutingRequests.
+     */
+    cursor?: CommutingRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommutingRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommutingRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CommutingRequests.
+     */
+    distinct?: CommutingRequestScalarFieldEnum | CommutingRequestScalarFieldEnum[]
+  }
+
+  /**
+   * CommutingRequest findFirstOrThrow
+   */
+  export type CommutingRequestFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequest
+     */
+    select?: CommutingRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRequest
+     */
+    omit?: CommutingRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which CommutingRequest to fetch.
+     */
+    where?: CommutingRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommutingRequests to fetch.
+     */
+    orderBy?: CommutingRequestOrderByWithRelationInput | CommutingRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CommutingRequests.
+     */
+    cursor?: CommutingRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommutingRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommutingRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CommutingRequests.
+     */
+    distinct?: CommutingRequestScalarFieldEnum | CommutingRequestScalarFieldEnum[]
+  }
+
+  /**
+   * CommutingRequest findMany
+   */
+  export type CommutingRequestFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequest
+     */
+    select?: CommutingRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRequest
+     */
+    omit?: CommutingRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRequestInclude<ExtArgs> | null
+    /**
+     * Filter, which CommutingRequests to fetch.
+     */
+    where?: CommutingRequestWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommutingRequests to fetch.
+     */
+    orderBy?: CommutingRequestOrderByWithRelationInput | CommutingRequestOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CommutingRequests.
+     */
+    cursor?: CommutingRequestWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommutingRequests from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommutingRequests.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CommutingRequests.
+     */
+    distinct?: CommutingRequestScalarFieldEnum | CommutingRequestScalarFieldEnum[]
+  }
+
+  /**
+   * CommutingRequest create
+   */
+  export type CommutingRequestCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequest
+     */
+    select?: CommutingRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRequest
+     */
+    omit?: CommutingRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRequestInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CommutingRequest.
+     */
+    data: XOR<CommutingRequestCreateInput, CommutingRequestUncheckedCreateInput>
+  }
+
+  /**
+   * CommutingRequest createMany
+   */
+  export type CommutingRequestCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CommutingRequests.
+     */
+    data: CommutingRequestCreateManyInput | CommutingRequestCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CommutingRequest createManyAndReturn
+   */
+  export type CommutingRequestCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequest
+     */
+    select?: CommutingRequestSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRequest
+     */
+    omit?: CommutingRequestOmit<ExtArgs> | null
+    /**
+     * The data used to create many CommutingRequests.
+     */
+    data: CommutingRequestCreateManyInput | CommutingRequestCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRequestIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CommutingRequest update
+   */
+  export type CommutingRequestUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequest
+     */
+    select?: CommutingRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRequest
+     */
+    omit?: CommutingRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRequestInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CommutingRequest.
+     */
+    data: XOR<CommutingRequestUpdateInput, CommutingRequestUncheckedUpdateInput>
+    /**
+     * Choose, which CommutingRequest to update.
+     */
+    where: CommutingRequestWhereUniqueInput
+  }
+
+  /**
+   * CommutingRequest updateMany
+   */
+  export type CommutingRequestUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CommutingRequests.
+     */
+    data: XOR<CommutingRequestUpdateManyMutationInput, CommutingRequestUncheckedUpdateManyInput>
+    /**
+     * Filter which CommutingRequests to update
+     */
+    where?: CommutingRequestWhereInput
+    /**
+     * Limit how many CommutingRequests to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CommutingRequest updateManyAndReturn
+   */
+  export type CommutingRequestUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequest
+     */
+    select?: CommutingRequestSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRequest
+     */
+    omit?: CommutingRequestOmit<ExtArgs> | null
+    /**
+     * The data used to update CommutingRequests.
+     */
+    data: XOR<CommutingRequestUpdateManyMutationInput, CommutingRequestUncheckedUpdateManyInput>
+    /**
+     * Filter which CommutingRequests to update
+     */
+    where?: CommutingRequestWhereInput
+    /**
+     * Limit how many CommutingRequests to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRequestIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CommutingRequest upsert
+   */
+  export type CommutingRequestUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequest
+     */
+    select?: CommutingRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRequest
+     */
+    omit?: CommutingRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRequestInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CommutingRequest to update in case it exists.
+     */
+    where: CommutingRequestWhereUniqueInput
+    /**
+     * In case the CommutingRequest found by the `where` argument doesn't exist, create a new CommutingRequest with this data.
+     */
+    create: XOR<CommutingRequestCreateInput, CommutingRequestUncheckedCreateInput>
+    /**
+     * In case the CommutingRequest was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CommutingRequestUpdateInput, CommutingRequestUncheckedUpdateInput>
+  }
+
+  /**
+   * CommutingRequest delete
+   */
+  export type CommutingRequestDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequest
+     */
+    select?: CommutingRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRequest
+     */
+    omit?: CommutingRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRequestInclude<ExtArgs> | null
+    /**
+     * Filter which CommutingRequest to delete.
+     */
+    where: CommutingRequestWhereUniqueInput
+  }
+
+  /**
+   * CommutingRequest deleteMany
+   */
+  export type CommutingRequestDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CommutingRequests to delete
+     */
+    where?: CommutingRequestWhereInput
+    /**
+     * Limit how many CommutingRequests to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CommutingRequest.attachments
+   */
+  export type CommutingRequest$attachmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequestAttachment
+     */
+    select?: CommutingRequestAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRequestAttachment
+     */
+    omit?: CommutingRequestAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRequestAttachmentInclude<ExtArgs> | null
+    where?: CommutingRequestAttachmentWhereInput
+    orderBy?: CommutingRequestAttachmentOrderByWithRelationInput | CommutingRequestAttachmentOrderByWithRelationInput[]
+    cursor?: CommutingRequestAttachmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CommutingRequestAttachmentScalarFieldEnum | CommutingRequestAttachmentScalarFieldEnum[]
+  }
+
+  /**
+   * CommutingRequest.routeSegments
+   */
+  export type CommutingRequest$routeSegmentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRouteSegment
+     */
+    select?: CommutingRouteSegmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRouteSegment
+     */
+    omit?: CommutingRouteSegmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRouteSegmentInclude<ExtArgs> | null
+    where?: CommutingRouteSegmentWhereInput
+    orderBy?: CommutingRouteSegmentOrderByWithRelationInput | CommutingRouteSegmentOrderByWithRelationInput[]
+    cursor?: CommutingRouteSegmentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CommutingRouteSegmentScalarFieldEnum | CommutingRouteSegmentScalarFieldEnum[]
+  }
+
+  /**
+   * CommutingRequest without action
+   */
+  export type CommutingRequestDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequest
+     */
+    select?: CommutingRequestSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRequest
+     */
+    omit?: CommutingRequestOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRequestInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CommutingRouteSegment
+   */
+
+  export type AggregateCommutingRouteSegment = {
+    _count: CommutingRouteSegmentCountAggregateOutputType | null
+    _avg: CommutingRouteSegmentAvgAggregateOutputType | null
+    _sum: CommutingRouteSegmentSumAggregateOutputType | null
+    _min: CommutingRouteSegmentMinAggregateOutputType | null
+    _max: CommutingRouteSegmentMaxAggregateOutputType | null
+  }
+
+  export type CommutingRouteSegmentAvgAggregateOutputType = {
+    oneWayFare: number | null
+    roundTripFare: number | null
+    monthlyPassAmount: number | null
+    payableAmount: number | null
+    sortOrder: number | null
+  }
+
+  export type CommutingRouteSegmentSumAggregateOutputType = {
+    oneWayFare: number | null
+    roundTripFare: number | null
+    monthlyPassAmount: number | null
+    payableAmount: number | null
+    sortOrder: number | null
+  }
+
+  export type CommutingRouteSegmentMinAggregateOutputType = {
+    id: string | null
+    commutingRequestId: string | null
+    operatorName: string | null
+    lineName: string | null
+    boardingPoint: string | null
+    alightingPoint: string | null
+    oneWayFare: number | null
+    roundTripFare: number | null
+    monthlyPassAmount: number | null
+    payableAmount: number | null
+    fareSystem: string | null
+    coveredBySegmentId: string | null
+    sortOrder: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CommutingRouteSegmentMaxAggregateOutputType = {
+    id: string | null
+    commutingRequestId: string | null
+    operatorName: string | null
+    lineName: string | null
+    boardingPoint: string | null
+    alightingPoint: string | null
+    oneWayFare: number | null
+    roundTripFare: number | null
+    monthlyPassAmount: number | null
+    payableAmount: number | null
+    fareSystem: string | null
+    coveredBySegmentId: string | null
+    sortOrder: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CommutingRouteSegmentCountAggregateOutputType = {
+    id: number
+    commutingRequestId: number
+    operatorName: number
+    lineName: number
+    boardingPoint: number
+    alightingPoint: number
+    oneWayFare: number
+    roundTripFare: number
+    monthlyPassAmount: number
+    payableAmount: number
+    fareSystem: number
+    coveredBySegmentId: number
+    sortOrder: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type CommutingRouteSegmentAvgAggregateInputType = {
+    oneWayFare?: true
+    roundTripFare?: true
+    monthlyPassAmount?: true
+    payableAmount?: true
+    sortOrder?: true
+  }
+
+  export type CommutingRouteSegmentSumAggregateInputType = {
+    oneWayFare?: true
+    roundTripFare?: true
+    monthlyPassAmount?: true
+    payableAmount?: true
+    sortOrder?: true
+  }
+
+  export type CommutingRouteSegmentMinAggregateInputType = {
+    id?: true
+    commutingRequestId?: true
+    operatorName?: true
+    lineName?: true
+    boardingPoint?: true
+    alightingPoint?: true
+    oneWayFare?: true
+    roundTripFare?: true
+    monthlyPassAmount?: true
+    payableAmount?: true
+    fareSystem?: true
+    coveredBySegmentId?: true
+    sortOrder?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CommutingRouteSegmentMaxAggregateInputType = {
+    id?: true
+    commutingRequestId?: true
+    operatorName?: true
+    lineName?: true
+    boardingPoint?: true
+    alightingPoint?: true
+    oneWayFare?: true
+    roundTripFare?: true
+    monthlyPassAmount?: true
+    payableAmount?: true
+    fareSystem?: true
+    coveredBySegmentId?: true
+    sortOrder?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CommutingRouteSegmentCountAggregateInputType = {
+    id?: true
+    commutingRequestId?: true
+    operatorName?: true
+    lineName?: true
+    boardingPoint?: true
+    alightingPoint?: true
+    oneWayFare?: true
+    roundTripFare?: true
+    monthlyPassAmount?: true
+    payableAmount?: true
+    fareSystem?: true
+    coveredBySegmentId?: true
+    sortOrder?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type CommutingRouteSegmentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CommutingRouteSegment to aggregate.
+     */
+    where?: CommutingRouteSegmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommutingRouteSegments to fetch.
+     */
+    orderBy?: CommutingRouteSegmentOrderByWithRelationInput | CommutingRouteSegmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CommutingRouteSegmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommutingRouteSegments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommutingRouteSegments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CommutingRouteSegments
+    **/
+    _count?: true | CommutingRouteSegmentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CommutingRouteSegmentAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CommutingRouteSegmentSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CommutingRouteSegmentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CommutingRouteSegmentMaxAggregateInputType
+  }
+
+  export type GetCommutingRouteSegmentAggregateType<T extends CommutingRouteSegmentAggregateArgs> = {
+        [P in keyof T & keyof AggregateCommutingRouteSegment]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCommutingRouteSegment[P]>
+      : GetScalarType<T[P], AggregateCommutingRouteSegment[P]>
+  }
+
+
+
+
+  export type CommutingRouteSegmentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommutingRouteSegmentWhereInput
+    orderBy?: CommutingRouteSegmentOrderByWithAggregationInput | CommutingRouteSegmentOrderByWithAggregationInput[]
+    by: CommutingRouteSegmentScalarFieldEnum[] | CommutingRouteSegmentScalarFieldEnum
+    having?: CommutingRouteSegmentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CommutingRouteSegmentCountAggregateInputType | true
+    _avg?: CommutingRouteSegmentAvgAggregateInputType
+    _sum?: CommutingRouteSegmentSumAggregateInputType
+    _min?: CommutingRouteSegmentMinAggregateInputType
+    _max?: CommutingRouteSegmentMaxAggregateInputType
+  }
+
+  export type CommutingRouteSegmentGroupByOutputType = {
+    id: string
+    commutingRequestId: string
+    operatorName: string
+    lineName: string | null
+    boardingPoint: string | null
+    alightingPoint: string | null
+    oneWayFare: number | null
+    roundTripFare: number | null
+    monthlyPassAmount: number | null
+    payableAmount: number | null
+    fareSystem: string | null
+    coveredBySegmentId: string | null
+    sortOrder: number
+    createdAt: Date
+    updatedAt: Date
+    _count: CommutingRouteSegmentCountAggregateOutputType | null
+    _avg: CommutingRouteSegmentAvgAggregateOutputType | null
+    _sum: CommutingRouteSegmentSumAggregateOutputType | null
+    _min: CommutingRouteSegmentMinAggregateOutputType | null
+    _max: CommutingRouteSegmentMaxAggregateOutputType | null
+  }
+
+  type GetCommutingRouteSegmentGroupByPayload<T extends CommutingRouteSegmentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CommutingRouteSegmentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CommutingRouteSegmentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CommutingRouteSegmentGroupByOutputType[P]>
+            : GetScalarType<T[P], CommutingRouteSegmentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CommutingRouteSegmentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    commutingRequestId?: boolean
+    operatorName?: boolean
+    lineName?: boolean
+    boardingPoint?: boolean
+    alightingPoint?: boolean
+    oneWayFare?: boolean
+    roundTripFare?: boolean
+    monthlyPassAmount?: boolean
+    payableAmount?: boolean
+    fareSystem?: boolean
+    coveredBySegmentId?: boolean
+    sortOrder?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    commutingRequest?: boolean | CommutingRequestDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["commutingRouteSegment"]>
+
+  export type CommutingRouteSegmentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    commutingRequestId?: boolean
+    operatorName?: boolean
+    lineName?: boolean
+    boardingPoint?: boolean
+    alightingPoint?: boolean
+    oneWayFare?: boolean
+    roundTripFare?: boolean
+    monthlyPassAmount?: boolean
+    payableAmount?: boolean
+    fareSystem?: boolean
+    coveredBySegmentId?: boolean
+    sortOrder?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    commutingRequest?: boolean | CommutingRequestDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["commutingRouteSegment"]>
+
+  export type CommutingRouteSegmentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    commutingRequestId?: boolean
+    operatorName?: boolean
+    lineName?: boolean
+    boardingPoint?: boolean
+    alightingPoint?: boolean
+    oneWayFare?: boolean
+    roundTripFare?: boolean
+    monthlyPassAmount?: boolean
+    payableAmount?: boolean
+    fareSystem?: boolean
+    coveredBySegmentId?: boolean
+    sortOrder?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    commutingRequest?: boolean | CommutingRequestDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["commutingRouteSegment"]>
+
+  export type CommutingRouteSegmentSelectScalar = {
+    id?: boolean
+    commutingRequestId?: boolean
+    operatorName?: boolean
+    lineName?: boolean
+    boardingPoint?: boolean
+    alightingPoint?: boolean
+    oneWayFare?: boolean
+    roundTripFare?: boolean
+    monthlyPassAmount?: boolean
+    payableAmount?: boolean
+    fareSystem?: boolean
+    coveredBySegmentId?: boolean
+    sortOrder?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type CommutingRouteSegmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "commutingRequestId" | "operatorName" | "lineName" | "boardingPoint" | "alightingPoint" | "oneWayFare" | "roundTripFare" | "monthlyPassAmount" | "payableAmount" | "fareSystem" | "coveredBySegmentId" | "sortOrder" | "createdAt" | "updatedAt", ExtArgs["result"]["commutingRouteSegment"]>
+  export type CommutingRouteSegmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    commutingRequest?: boolean | CommutingRequestDefaultArgs<ExtArgs>
+  }
+  export type CommutingRouteSegmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    commutingRequest?: boolean | CommutingRequestDefaultArgs<ExtArgs>
+  }
+  export type CommutingRouteSegmentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    commutingRequest?: boolean | CommutingRequestDefaultArgs<ExtArgs>
+  }
+
+  export type $CommutingRouteSegmentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CommutingRouteSegment"
+    objects: {
+      commutingRequest: Prisma.$CommutingRequestPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      commutingRequestId: string
+      operatorName: string
+      lineName: string | null
+      boardingPoint: string | null
+      alightingPoint: string | null
+      oneWayFare: number | null
+      roundTripFare: number | null
+      monthlyPassAmount: number | null
+      payableAmount: number | null
+      fareSystem: string | null
+      coveredBySegmentId: string | null
+      sortOrder: number
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["commutingRouteSegment"]>
+    composites: {}
+  }
+
+  type CommutingRouteSegmentGetPayload<S extends boolean | null | undefined | CommutingRouteSegmentDefaultArgs> = $Result.GetResult<Prisma.$CommutingRouteSegmentPayload, S>
+
+  type CommutingRouteSegmentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CommutingRouteSegmentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CommutingRouteSegmentCountAggregateInputType | true
+    }
+
+  export interface CommutingRouteSegmentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CommutingRouteSegment'], meta: { name: 'CommutingRouteSegment' } }
+    /**
+     * Find zero or one CommutingRouteSegment that matches the filter.
+     * @param {CommutingRouteSegmentFindUniqueArgs} args - Arguments to find a CommutingRouteSegment
+     * @example
+     * // Get one CommutingRouteSegment
+     * const commutingRouteSegment = await prisma.commutingRouteSegment.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CommutingRouteSegmentFindUniqueArgs>(args: SelectSubset<T, CommutingRouteSegmentFindUniqueArgs<ExtArgs>>): Prisma__CommutingRouteSegmentClient<$Result.GetResult<Prisma.$CommutingRouteSegmentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CommutingRouteSegment that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CommutingRouteSegmentFindUniqueOrThrowArgs} args - Arguments to find a CommutingRouteSegment
+     * @example
+     * // Get one CommutingRouteSegment
+     * const commutingRouteSegment = await prisma.commutingRouteSegment.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CommutingRouteSegmentFindUniqueOrThrowArgs>(args: SelectSubset<T, CommutingRouteSegmentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CommutingRouteSegmentClient<$Result.GetResult<Prisma.$CommutingRouteSegmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CommutingRouteSegment that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommutingRouteSegmentFindFirstArgs} args - Arguments to find a CommutingRouteSegment
+     * @example
+     * // Get one CommutingRouteSegment
+     * const commutingRouteSegment = await prisma.commutingRouteSegment.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CommutingRouteSegmentFindFirstArgs>(args?: SelectSubset<T, CommutingRouteSegmentFindFirstArgs<ExtArgs>>): Prisma__CommutingRouteSegmentClient<$Result.GetResult<Prisma.$CommutingRouteSegmentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CommutingRouteSegment that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommutingRouteSegmentFindFirstOrThrowArgs} args - Arguments to find a CommutingRouteSegment
+     * @example
+     * // Get one CommutingRouteSegment
+     * const commutingRouteSegment = await prisma.commutingRouteSegment.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CommutingRouteSegmentFindFirstOrThrowArgs>(args?: SelectSubset<T, CommutingRouteSegmentFindFirstOrThrowArgs<ExtArgs>>): Prisma__CommutingRouteSegmentClient<$Result.GetResult<Prisma.$CommutingRouteSegmentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CommutingRouteSegments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommutingRouteSegmentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CommutingRouteSegments
+     * const commutingRouteSegments = await prisma.commutingRouteSegment.findMany()
+     * 
+     * // Get first 10 CommutingRouteSegments
+     * const commutingRouteSegments = await prisma.commutingRouteSegment.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const commutingRouteSegmentWithIdOnly = await prisma.commutingRouteSegment.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CommutingRouteSegmentFindManyArgs>(args?: SelectSubset<T, CommutingRouteSegmentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommutingRouteSegmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CommutingRouteSegment.
+     * @param {CommutingRouteSegmentCreateArgs} args - Arguments to create a CommutingRouteSegment.
+     * @example
+     * // Create one CommutingRouteSegment
+     * const CommutingRouteSegment = await prisma.commutingRouteSegment.create({
+     *   data: {
+     *     // ... data to create a CommutingRouteSegment
+     *   }
+     * })
+     * 
+     */
+    create<T extends CommutingRouteSegmentCreateArgs>(args: SelectSubset<T, CommutingRouteSegmentCreateArgs<ExtArgs>>): Prisma__CommutingRouteSegmentClient<$Result.GetResult<Prisma.$CommutingRouteSegmentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CommutingRouteSegments.
+     * @param {CommutingRouteSegmentCreateManyArgs} args - Arguments to create many CommutingRouteSegments.
+     * @example
+     * // Create many CommutingRouteSegments
+     * const commutingRouteSegment = await prisma.commutingRouteSegment.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CommutingRouteSegmentCreateManyArgs>(args?: SelectSubset<T, CommutingRouteSegmentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CommutingRouteSegments and returns the data saved in the database.
+     * @param {CommutingRouteSegmentCreateManyAndReturnArgs} args - Arguments to create many CommutingRouteSegments.
+     * @example
+     * // Create many CommutingRouteSegments
+     * const commutingRouteSegment = await prisma.commutingRouteSegment.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CommutingRouteSegments and only return the `id`
+     * const commutingRouteSegmentWithIdOnly = await prisma.commutingRouteSegment.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CommutingRouteSegmentCreateManyAndReturnArgs>(args?: SelectSubset<T, CommutingRouteSegmentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommutingRouteSegmentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CommutingRouteSegment.
+     * @param {CommutingRouteSegmentDeleteArgs} args - Arguments to delete one CommutingRouteSegment.
+     * @example
+     * // Delete one CommutingRouteSegment
+     * const CommutingRouteSegment = await prisma.commutingRouteSegment.delete({
+     *   where: {
+     *     // ... filter to delete one CommutingRouteSegment
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CommutingRouteSegmentDeleteArgs>(args: SelectSubset<T, CommutingRouteSegmentDeleteArgs<ExtArgs>>): Prisma__CommutingRouteSegmentClient<$Result.GetResult<Prisma.$CommutingRouteSegmentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CommutingRouteSegment.
+     * @param {CommutingRouteSegmentUpdateArgs} args - Arguments to update one CommutingRouteSegment.
+     * @example
+     * // Update one CommutingRouteSegment
+     * const commutingRouteSegment = await prisma.commutingRouteSegment.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CommutingRouteSegmentUpdateArgs>(args: SelectSubset<T, CommutingRouteSegmentUpdateArgs<ExtArgs>>): Prisma__CommutingRouteSegmentClient<$Result.GetResult<Prisma.$CommutingRouteSegmentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CommutingRouteSegments.
+     * @param {CommutingRouteSegmentDeleteManyArgs} args - Arguments to filter CommutingRouteSegments to delete.
+     * @example
+     * // Delete a few CommutingRouteSegments
+     * const { count } = await prisma.commutingRouteSegment.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CommutingRouteSegmentDeleteManyArgs>(args?: SelectSubset<T, CommutingRouteSegmentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CommutingRouteSegments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommutingRouteSegmentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CommutingRouteSegments
+     * const commutingRouteSegment = await prisma.commutingRouteSegment.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CommutingRouteSegmentUpdateManyArgs>(args: SelectSubset<T, CommutingRouteSegmentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CommutingRouteSegments and returns the data updated in the database.
+     * @param {CommutingRouteSegmentUpdateManyAndReturnArgs} args - Arguments to update many CommutingRouteSegments.
+     * @example
+     * // Update many CommutingRouteSegments
+     * const commutingRouteSegment = await prisma.commutingRouteSegment.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CommutingRouteSegments and only return the `id`
+     * const commutingRouteSegmentWithIdOnly = await prisma.commutingRouteSegment.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CommutingRouteSegmentUpdateManyAndReturnArgs>(args: SelectSubset<T, CommutingRouteSegmentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommutingRouteSegmentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CommutingRouteSegment.
+     * @param {CommutingRouteSegmentUpsertArgs} args - Arguments to update or create a CommutingRouteSegment.
+     * @example
+     * // Update or create a CommutingRouteSegment
+     * const commutingRouteSegment = await prisma.commutingRouteSegment.upsert({
+     *   create: {
+     *     // ... data to create a CommutingRouteSegment
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CommutingRouteSegment we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CommutingRouteSegmentUpsertArgs>(args: SelectSubset<T, CommutingRouteSegmentUpsertArgs<ExtArgs>>): Prisma__CommutingRouteSegmentClient<$Result.GetResult<Prisma.$CommutingRouteSegmentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CommutingRouteSegments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommutingRouteSegmentCountArgs} args - Arguments to filter CommutingRouteSegments to count.
+     * @example
+     * // Count the number of CommutingRouteSegments
+     * const count = await prisma.commutingRouteSegment.count({
+     *   where: {
+     *     // ... the filter for the CommutingRouteSegments we want to count
+     *   }
+     * })
+    **/
+    count<T extends CommutingRouteSegmentCountArgs>(
+      args?: Subset<T, CommutingRouteSegmentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CommutingRouteSegmentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CommutingRouteSegment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommutingRouteSegmentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CommutingRouteSegmentAggregateArgs>(args: Subset<T, CommutingRouteSegmentAggregateArgs>): Prisma.PrismaPromise<GetCommutingRouteSegmentAggregateType<T>>
+
+    /**
+     * Group by CommutingRouteSegment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommutingRouteSegmentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CommutingRouteSegmentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CommutingRouteSegmentGroupByArgs['orderBy'] }
+        : { orderBy?: CommutingRouteSegmentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CommutingRouteSegmentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCommutingRouteSegmentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CommutingRouteSegment model
+   */
+  readonly fields: CommutingRouteSegmentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CommutingRouteSegment.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CommutingRouteSegmentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    commutingRequest<T extends CommutingRequestDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CommutingRequestDefaultArgs<ExtArgs>>): Prisma__CommutingRequestClient<$Result.GetResult<Prisma.$CommutingRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CommutingRouteSegment model
+   */
+  interface CommutingRouteSegmentFieldRefs {
+    readonly id: FieldRef<"CommutingRouteSegment", 'String'>
+    readonly commutingRequestId: FieldRef<"CommutingRouteSegment", 'String'>
+    readonly operatorName: FieldRef<"CommutingRouteSegment", 'String'>
+    readonly lineName: FieldRef<"CommutingRouteSegment", 'String'>
+    readonly boardingPoint: FieldRef<"CommutingRouteSegment", 'String'>
+    readonly alightingPoint: FieldRef<"CommutingRouteSegment", 'String'>
+    readonly oneWayFare: FieldRef<"CommutingRouteSegment", 'Int'>
+    readonly roundTripFare: FieldRef<"CommutingRouteSegment", 'Int'>
+    readonly monthlyPassAmount: FieldRef<"CommutingRouteSegment", 'Int'>
+    readonly payableAmount: FieldRef<"CommutingRouteSegment", 'Int'>
+    readonly fareSystem: FieldRef<"CommutingRouteSegment", 'String'>
+    readonly coveredBySegmentId: FieldRef<"CommutingRouteSegment", 'String'>
+    readonly sortOrder: FieldRef<"CommutingRouteSegment", 'Int'>
+    readonly createdAt: FieldRef<"CommutingRouteSegment", 'DateTime'>
+    readonly updatedAt: FieldRef<"CommutingRouteSegment", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CommutingRouteSegment findUnique
+   */
+  export type CommutingRouteSegmentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRouteSegment
+     */
+    select?: CommutingRouteSegmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRouteSegment
+     */
+    omit?: CommutingRouteSegmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRouteSegmentInclude<ExtArgs> | null
+    /**
+     * Filter, which CommutingRouteSegment to fetch.
+     */
+    where: CommutingRouteSegmentWhereUniqueInput
+  }
+
+  /**
+   * CommutingRouteSegment findUniqueOrThrow
+   */
+  export type CommutingRouteSegmentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRouteSegment
+     */
+    select?: CommutingRouteSegmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRouteSegment
+     */
+    omit?: CommutingRouteSegmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRouteSegmentInclude<ExtArgs> | null
+    /**
+     * Filter, which CommutingRouteSegment to fetch.
+     */
+    where: CommutingRouteSegmentWhereUniqueInput
+  }
+
+  /**
+   * CommutingRouteSegment findFirst
+   */
+  export type CommutingRouteSegmentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRouteSegment
+     */
+    select?: CommutingRouteSegmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRouteSegment
+     */
+    omit?: CommutingRouteSegmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRouteSegmentInclude<ExtArgs> | null
+    /**
+     * Filter, which CommutingRouteSegment to fetch.
+     */
+    where?: CommutingRouteSegmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommutingRouteSegments to fetch.
+     */
+    orderBy?: CommutingRouteSegmentOrderByWithRelationInput | CommutingRouteSegmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CommutingRouteSegments.
+     */
+    cursor?: CommutingRouteSegmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommutingRouteSegments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommutingRouteSegments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CommutingRouteSegments.
+     */
+    distinct?: CommutingRouteSegmentScalarFieldEnum | CommutingRouteSegmentScalarFieldEnum[]
+  }
+
+  /**
+   * CommutingRouteSegment findFirstOrThrow
+   */
+  export type CommutingRouteSegmentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRouteSegment
+     */
+    select?: CommutingRouteSegmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRouteSegment
+     */
+    omit?: CommutingRouteSegmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRouteSegmentInclude<ExtArgs> | null
+    /**
+     * Filter, which CommutingRouteSegment to fetch.
+     */
+    where?: CommutingRouteSegmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommutingRouteSegments to fetch.
+     */
+    orderBy?: CommutingRouteSegmentOrderByWithRelationInput | CommutingRouteSegmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CommutingRouteSegments.
+     */
+    cursor?: CommutingRouteSegmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommutingRouteSegments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommutingRouteSegments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CommutingRouteSegments.
+     */
+    distinct?: CommutingRouteSegmentScalarFieldEnum | CommutingRouteSegmentScalarFieldEnum[]
+  }
+
+  /**
+   * CommutingRouteSegment findMany
+   */
+  export type CommutingRouteSegmentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRouteSegment
+     */
+    select?: CommutingRouteSegmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRouteSegment
+     */
+    omit?: CommutingRouteSegmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRouteSegmentInclude<ExtArgs> | null
+    /**
+     * Filter, which CommutingRouteSegments to fetch.
+     */
+    where?: CommutingRouteSegmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommutingRouteSegments to fetch.
+     */
+    orderBy?: CommutingRouteSegmentOrderByWithRelationInput | CommutingRouteSegmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CommutingRouteSegments.
+     */
+    cursor?: CommutingRouteSegmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommutingRouteSegments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommutingRouteSegments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CommutingRouteSegments.
+     */
+    distinct?: CommutingRouteSegmentScalarFieldEnum | CommutingRouteSegmentScalarFieldEnum[]
+  }
+
+  /**
+   * CommutingRouteSegment create
+   */
+  export type CommutingRouteSegmentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRouteSegment
+     */
+    select?: CommutingRouteSegmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRouteSegment
+     */
+    omit?: CommutingRouteSegmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRouteSegmentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CommutingRouteSegment.
+     */
+    data: XOR<CommutingRouteSegmentCreateInput, CommutingRouteSegmentUncheckedCreateInput>
+  }
+
+  /**
+   * CommutingRouteSegment createMany
+   */
+  export type CommutingRouteSegmentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CommutingRouteSegments.
+     */
+    data: CommutingRouteSegmentCreateManyInput | CommutingRouteSegmentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CommutingRouteSegment createManyAndReturn
+   */
+  export type CommutingRouteSegmentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRouteSegment
+     */
+    select?: CommutingRouteSegmentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRouteSegment
+     */
+    omit?: CommutingRouteSegmentOmit<ExtArgs> | null
+    /**
+     * The data used to create many CommutingRouteSegments.
+     */
+    data: CommutingRouteSegmentCreateManyInput | CommutingRouteSegmentCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRouteSegmentIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CommutingRouteSegment update
+   */
+  export type CommutingRouteSegmentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRouteSegment
+     */
+    select?: CommutingRouteSegmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRouteSegment
+     */
+    omit?: CommutingRouteSegmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRouteSegmentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CommutingRouteSegment.
+     */
+    data: XOR<CommutingRouteSegmentUpdateInput, CommutingRouteSegmentUncheckedUpdateInput>
+    /**
+     * Choose, which CommutingRouteSegment to update.
+     */
+    where: CommutingRouteSegmentWhereUniqueInput
+  }
+
+  /**
+   * CommutingRouteSegment updateMany
+   */
+  export type CommutingRouteSegmentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CommutingRouteSegments.
+     */
+    data: XOR<CommutingRouteSegmentUpdateManyMutationInput, CommutingRouteSegmentUncheckedUpdateManyInput>
+    /**
+     * Filter which CommutingRouteSegments to update
+     */
+    where?: CommutingRouteSegmentWhereInput
+    /**
+     * Limit how many CommutingRouteSegments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CommutingRouteSegment updateManyAndReturn
+   */
+  export type CommutingRouteSegmentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRouteSegment
+     */
+    select?: CommutingRouteSegmentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRouteSegment
+     */
+    omit?: CommutingRouteSegmentOmit<ExtArgs> | null
+    /**
+     * The data used to update CommutingRouteSegments.
+     */
+    data: XOR<CommutingRouteSegmentUpdateManyMutationInput, CommutingRouteSegmentUncheckedUpdateManyInput>
+    /**
+     * Filter which CommutingRouteSegments to update
+     */
+    where?: CommutingRouteSegmentWhereInput
+    /**
+     * Limit how many CommutingRouteSegments to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRouteSegmentIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CommutingRouteSegment upsert
+   */
+  export type CommutingRouteSegmentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRouteSegment
+     */
+    select?: CommutingRouteSegmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRouteSegment
+     */
+    omit?: CommutingRouteSegmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRouteSegmentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CommutingRouteSegment to update in case it exists.
+     */
+    where: CommutingRouteSegmentWhereUniqueInput
+    /**
+     * In case the CommutingRouteSegment found by the `where` argument doesn't exist, create a new CommutingRouteSegment with this data.
+     */
+    create: XOR<CommutingRouteSegmentCreateInput, CommutingRouteSegmentUncheckedCreateInput>
+    /**
+     * In case the CommutingRouteSegment was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CommutingRouteSegmentUpdateInput, CommutingRouteSegmentUncheckedUpdateInput>
+  }
+
+  /**
+   * CommutingRouteSegment delete
+   */
+  export type CommutingRouteSegmentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRouteSegment
+     */
+    select?: CommutingRouteSegmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRouteSegment
+     */
+    omit?: CommutingRouteSegmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRouteSegmentInclude<ExtArgs> | null
+    /**
+     * Filter which CommutingRouteSegment to delete.
+     */
+    where: CommutingRouteSegmentWhereUniqueInput
+  }
+
+  /**
+   * CommutingRouteSegment deleteMany
+   */
+  export type CommutingRouteSegmentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CommutingRouteSegments to delete
+     */
+    where?: CommutingRouteSegmentWhereInput
+    /**
+     * Limit how many CommutingRouteSegments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CommutingRouteSegment without action
+   */
+  export type CommutingRouteSegmentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRouteSegment
+     */
+    select?: CommutingRouteSegmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRouteSegment
+     */
+    omit?: CommutingRouteSegmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRouteSegmentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model CommutingRequestAttachment
+   */
+
+  export type AggregateCommutingRequestAttachment = {
+    _count: CommutingRequestAttachmentCountAggregateOutputType | null
+    _avg: CommutingRequestAttachmentAvgAggregateOutputType | null
+    _sum: CommutingRequestAttachmentSumAggregateOutputType | null
+    _min: CommutingRequestAttachmentMinAggregateOutputType | null
+    _max: CommutingRequestAttachmentMaxAggregateOutputType | null
+  }
+
+  export type CommutingRequestAttachmentAvgAggregateOutputType = {
+    fileSize: number | null
+  }
+
+  export type CommutingRequestAttachmentSumAggregateOutputType = {
+    fileSize: number | null
+  }
+
+  export type CommutingRequestAttachmentMinAggregateOutputType = {
+    id: string | null
+    commutingRequestId: string | null
+    attachmentType: $Enums.CommutingAttachmentType | null
+    fileName: string | null
+    filePath: string | null
+    fileType: string | null
+    fileSize: number | null
+    createdAt: Date | null
+  }
+
+  export type CommutingRequestAttachmentMaxAggregateOutputType = {
+    id: string | null
+    commutingRequestId: string | null
+    attachmentType: $Enums.CommutingAttachmentType | null
+    fileName: string | null
+    filePath: string | null
+    fileType: string | null
+    fileSize: number | null
+    createdAt: Date | null
+  }
+
+  export type CommutingRequestAttachmentCountAggregateOutputType = {
+    id: number
+    commutingRequestId: number
+    attachmentType: number
+    fileName: number
+    filePath: number
+    fileType: number
+    fileSize: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type CommutingRequestAttachmentAvgAggregateInputType = {
+    fileSize?: true
+  }
+
+  export type CommutingRequestAttachmentSumAggregateInputType = {
+    fileSize?: true
+  }
+
+  export type CommutingRequestAttachmentMinAggregateInputType = {
+    id?: true
+    commutingRequestId?: true
+    attachmentType?: true
+    fileName?: true
+    filePath?: true
+    fileType?: true
+    fileSize?: true
+    createdAt?: true
+  }
+
+  export type CommutingRequestAttachmentMaxAggregateInputType = {
+    id?: true
+    commutingRequestId?: true
+    attachmentType?: true
+    fileName?: true
+    filePath?: true
+    fileType?: true
+    fileSize?: true
+    createdAt?: true
+  }
+
+  export type CommutingRequestAttachmentCountAggregateInputType = {
+    id?: true
+    commutingRequestId?: true
+    attachmentType?: true
+    fileName?: true
+    filePath?: true
+    fileType?: true
+    fileSize?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type CommutingRequestAttachmentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CommutingRequestAttachment to aggregate.
+     */
+    where?: CommutingRequestAttachmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommutingRequestAttachments to fetch.
+     */
+    orderBy?: CommutingRequestAttachmentOrderByWithRelationInput | CommutingRequestAttachmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CommutingRequestAttachmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommutingRequestAttachments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommutingRequestAttachments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CommutingRequestAttachments
+    **/
+    _count?: true | CommutingRequestAttachmentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CommutingRequestAttachmentAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CommutingRequestAttachmentSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CommutingRequestAttachmentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CommutingRequestAttachmentMaxAggregateInputType
+  }
+
+  export type GetCommutingRequestAttachmentAggregateType<T extends CommutingRequestAttachmentAggregateArgs> = {
+        [P in keyof T & keyof AggregateCommutingRequestAttachment]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCommutingRequestAttachment[P]>
+      : GetScalarType<T[P], AggregateCommutingRequestAttachment[P]>
+  }
+
+
+
+
+  export type CommutingRequestAttachmentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommutingRequestAttachmentWhereInput
+    orderBy?: CommutingRequestAttachmentOrderByWithAggregationInput | CommutingRequestAttachmentOrderByWithAggregationInput[]
+    by: CommutingRequestAttachmentScalarFieldEnum[] | CommutingRequestAttachmentScalarFieldEnum
+    having?: CommutingRequestAttachmentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CommutingRequestAttachmentCountAggregateInputType | true
+    _avg?: CommutingRequestAttachmentAvgAggregateInputType
+    _sum?: CommutingRequestAttachmentSumAggregateInputType
+    _min?: CommutingRequestAttachmentMinAggregateInputType
+    _max?: CommutingRequestAttachmentMaxAggregateInputType
+  }
+
+  export type CommutingRequestAttachmentGroupByOutputType = {
+    id: string
+    commutingRequestId: string
+    attachmentType: $Enums.CommutingAttachmentType
+    fileName: string
+    filePath: string
+    fileType: string | null
+    fileSize: number | null
+    createdAt: Date
+    _count: CommutingRequestAttachmentCountAggregateOutputType | null
+    _avg: CommutingRequestAttachmentAvgAggregateOutputType | null
+    _sum: CommutingRequestAttachmentSumAggregateOutputType | null
+    _min: CommutingRequestAttachmentMinAggregateOutputType | null
+    _max: CommutingRequestAttachmentMaxAggregateOutputType | null
+  }
+
+  type GetCommutingRequestAttachmentGroupByPayload<T extends CommutingRequestAttachmentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CommutingRequestAttachmentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CommutingRequestAttachmentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CommutingRequestAttachmentGroupByOutputType[P]>
+            : GetScalarType<T[P], CommutingRequestAttachmentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CommutingRequestAttachmentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    commutingRequestId?: boolean
+    attachmentType?: boolean
+    fileName?: boolean
+    filePath?: boolean
+    fileType?: boolean
+    fileSize?: boolean
+    createdAt?: boolean
+    commutingRequest?: boolean | CommutingRequestDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["commutingRequestAttachment"]>
+
+  export type CommutingRequestAttachmentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    commutingRequestId?: boolean
+    attachmentType?: boolean
+    fileName?: boolean
+    filePath?: boolean
+    fileType?: boolean
+    fileSize?: boolean
+    createdAt?: boolean
+    commutingRequest?: boolean | CommutingRequestDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["commutingRequestAttachment"]>
+
+  export type CommutingRequestAttachmentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    commutingRequestId?: boolean
+    attachmentType?: boolean
+    fileName?: boolean
+    filePath?: boolean
+    fileType?: boolean
+    fileSize?: boolean
+    createdAt?: boolean
+    commutingRequest?: boolean | CommutingRequestDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["commutingRequestAttachment"]>
+
+  export type CommutingRequestAttachmentSelectScalar = {
+    id?: boolean
+    commutingRequestId?: boolean
+    attachmentType?: boolean
+    fileName?: boolean
+    filePath?: boolean
+    fileType?: boolean
+    fileSize?: boolean
+    createdAt?: boolean
+  }
+
+  export type CommutingRequestAttachmentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "commutingRequestId" | "attachmentType" | "fileName" | "filePath" | "fileType" | "fileSize" | "createdAt", ExtArgs["result"]["commutingRequestAttachment"]>
+  export type CommutingRequestAttachmentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    commutingRequest?: boolean | CommutingRequestDefaultArgs<ExtArgs>
+  }
+  export type CommutingRequestAttachmentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    commutingRequest?: boolean | CommutingRequestDefaultArgs<ExtArgs>
+  }
+  export type CommutingRequestAttachmentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    commutingRequest?: boolean | CommutingRequestDefaultArgs<ExtArgs>
+  }
+
+  export type $CommutingRequestAttachmentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CommutingRequestAttachment"
+    objects: {
+      commutingRequest: Prisma.$CommutingRequestPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      commutingRequestId: string
+      attachmentType: $Enums.CommutingAttachmentType
+      fileName: string
+      filePath: string
+      fileType: string | null
+      fileSize: number | null
+      createdAt: Date
+    }, ExtArgs["result"]["commutingRequestAttachment"]>
+    composites: {}
+  }
+
+  type CommutingRequestAttachmentGetPayload<S extends boolean | null | undefined | CommutingRequestAttachmentDefaultArgs> = $Result.GetResult<Prisma.$CommutingRequestAttachmentPayload, S>
+
+  type CommutingRequestAttachmentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CommutingRequestAttachmentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CommutingRequestAttachmentCountAggregateInputType | true
+    }
+
+  export interface CommutingRequestAttachmentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CommutingRequestAttachment'], meta: { name: 'CommutingRequestAttachment' } }
+    /**
+     * Find zero or one CommutingRequestAttachment that matches the filter.
+     * @param {CommutingRequestAttachmentFindUniqueArgs} args - Arguments to find a CommutingRequestAttachment
+     * @example
+     * // Get one CommutingRequestAttachment
+     * const commutingRequestAttachment = await prisma.commutingRequestAttachment.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CommutingRequestAttachmentFindUniqueArgs>(args: SelectSubset<T, CommutingRequestAttachmentFindUniqueArgs<ExtArgs>>): Prisma__CommutingRequestAttachmentClient<$Result.GetResult<Prisma.$CommutingRequestAttachmentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CommutingRequestAttachment that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CommutingRequestAttachmentFindUniqueOrThrowArgs} args - Arguments to find a CommutingRequestAttachment
+     * @example
+     * // Get one CommutingRequestAttachment
+     * const commutingRequestAttachment = await prisma.commutingRequestAttachment.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CommutingRequestAttachmentFindUniqueOrThrowArgs>(args: SelectSubset<T, CommutingRequestAttachmentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CommutingRequestAttachmentClient<$Result.GetResult<Prisma.$CommutingRequestAttachmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CommutingRequestAttachment that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommutingRequestAttachmentFindFirstArgs} args - Arguments to find a CommutingRequestAttachment
+     * @example
+     * // Get one CommutingRequestAttachment
+     * const commutingRequestAttachment = await prisma.commutingRequestAttachment.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CommutingRequestAttachmentFindFirstArgs>(args?: SelectSubset<T, CommutingRequestAttachmentFindFirstArgs<ExtArgs>>): Prisma__CommutingRequestAttachmentClient<$Result.GetResult<Prisma.$CommutingRequestAttachmentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CommutingRequestAttachment that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommutingRequestAttachmentFindFirstOrThrowArgs} args - Arguments to find a CommutingRequestAttachment
+     * @example
+     * // Get one CommutingRequestAttachment
+     * const commutingRequestAttachment = await prisma.commutingRequestAttachment.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CommutingRequestAttachmentFindFirstOrThrowArgs>(args?: SelectSubset<T, CommutingRequestAttachmentFindFirstOrThrowArgs<ExtArgs>>): Prisma__CommutingRequestAttachmentClient<$Result.GetResult<Prisma.$CommutingRequestAttachmentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CommutingRequestAttachments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommutingRequestAttachmentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CommutingRequestAttachments
+     * const commutingRequestAttachments = await prisma.commutingRequestAttachment.findMany()
+     * 
+     * // Get first 10 CommutingRequestAttachments
+     * const commutingRequestAttachments = await prisma.commutingRequestAttachment.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const commutingRequestAttachmentWithIdOnly = await prisma.commutingRequestAttachment.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CommutingRequestAttachmentFindManyArgs>(args?: SelectSubset<T, CommutingRequestAttachmentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommutingRequestAttachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CommutingRequestAttachment.
+     * @param {CommutingRequestAttachmentCreateArgs} args - Arguments to create a CommutingRequestAttachment.
+     * @example
+     * // Create one CommutingRequestAttachment
+     * const CommutingRequestAttachment = await prisma.commutingRequestAttachment.create({
+     *   data: {
+     *     // ... data to create a CommutingRequestAttachment
+     *   }
+     * })
+     * 
+     */
+    create<T extends CommutingRequestAttachmentCreateArgs>(args: SelectSubset<T, CommutingRequestAttachmentCreateArgs<ExtArgs>>): Prisma__CommutingRequestAttachmentClient<$Result.GetResult<Prisma.$CommutingRequestAttachmentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CommutingRequestAttachments.
+     * @param {CommutingRequestAttachmentCreateManyArgs} args - Arguments to create many CommutingRequestAttachments.
+     * @example
+     * // Create many CommutingRequestAttachments
+     * const commutingRequestAttachment = await prisma.commutingRequestAttachment.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CommutingRequestAttachmentCreateManyArgs>(args?: SelectSubset<T, CommutingRequestAttachmentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many CommutingRequestAttachments and returns the data saved in the database.
+     * @param {CommutingRequestAttachmentCreateManyAndReturnArgs} args - Arguments to create many CommutingRequestAttachments.
+     * @example
+     * // Create many CommutingRequestAttachments
+     * const commutingRequestAttachment = await prisma.commutingRequestAttachment.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CommutingRequestAttachments and only return the `id`
+     * const commutingRequestAttachmentWithIdOnly = await prisma.commutingRequestAttachment.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CommutingRequestAttachmentCreateManyAndReturnArgs>(args?: SelectSubset<T, CommutingRequestAttachmentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommutingRequestAttachmentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a CommutingRequestAttachment.
+     * @param {CommutingRequestAttachmentDeleteArgs} args - Arguments to delete one CommutingRequestAttachment.
+     * @example
+     * // Delete one CommutingRequestAttachment
+     * const CommutingRequestAttachment = await prisma.commutingRequestAttachment.delete({
+     *   where: {
+     *     // ... filter to delete one CommutingRequestAttachment
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CommutingRequestAttachmentDeleteArgs>(args: SelectSubset<T, CommutingRequestAttachmentDeleteArgs<ExtArgs>>): Prisma__CommutingRequestAttachmentClient<$Result.GetResult<Prisma.$CommutingRequestAttachmentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CommutingRequestAttachment.
+     * @param {CommutingRequestAttachmentUpdateArgs} args - Arguments to update one CommutingRequestAttachment.
+     * @example
+     * // Update one CommutingRequestAttachment
+     * const commutingRequestAttachment = await prisma.commutingRequestAttachment.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CommutingRequestAttachmentUpdateArgs>(args: SelectSubset<T, CommutingRequestAttachmentUpdateArgs<ExtArgs>>): Prisma__CommutingRequestAttachmentClient<$Result.GetResult<Prisma.$CommutingRequestAttachmentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CommutingRequestAttachments.
+     * @param {CommutingRequestAttachmentDeleteManyArgs} args - Arguments to filter CommutingRequestAttachments to delete.
+     * @example
+     * // Delete a few CommutingRequestAttachments
+     * const { count } = await prisma.commutingRequestAttachment.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CommutingRequestAttachmentDeleteManyArgs>(args?: SelectSubset<T, CommutingRequestAttachmentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CommutingRequestAttachments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommutingRequestAttachmentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CommutingRequestAttachments
+     * const commutingRequestAttachment = await prisma.commutingRequestAttachment.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CommutingRequestAttachmentUpdateManyArgs>(args: SelectSubset<T, CommutingRequestAttachmentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CommutingRequestAttachments and returns the data updated in the database.
+     * @param {CommutingRequestAttachmentUpdateManyAndReturnArgs} args - Arguments to update many CommutingRequestAttachments.
+     * @example
+     * // Update many CommutingRequestAttachments
+     * const commutingRequestAttachment = await prisma.commutingRequestAttachment.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CommutingRequestAttachments and only return the `id`
+     * const commutingRequestAttachmentWithIdOnly = await prisma.commutingRequestAttachment.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CommutingRequestAttachmentUpdateManyAndReturnArgs>(args: SelectSubset<T, CommutingRequestAttachmentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommutingRequestAttachmentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one CommutingRequestAttachment.
+     * @param {CommutingRequestAttachmentUpsertArgs} args - Arguments to update or create a CommutingRequestAttachment.
+     * @example
+     * // Update or create a CommutingRequestAttachment
+     * const commutingRequestAttachment = await prisma.commutingRequestAttachment.upsert({
+     *   create: {
+     *     // ... data to create a CommutingRequestAttachment
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CommutingRequestAttachment we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CommutingRequestAttachmentUpsertArgs>(args: SelectSubset<T, CommutingRequestAttachmentUpsertArgs<ExtArgs>>): Prisma__CommutingRequestAttachmentClient<$Result.GetResult<Prisma.$CommutingRequestAttachmentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CommutingRequestAttachments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommutingRequestAttachmentCountArgs} args - Arguments to filter CommutingRequestAttachments to count.
+     * @example
+     * // Count the number of CommutingRequestAttachments
+     * const count = await prisma.commutingRequestAttachment.count({
+     *   where: {
+     *     // ... the filter for the CommutingRequestAttachments we want to count
+     *   }
+     * })
+    **/
+    count<T extends CommutingRequestAttachmentCountArgs>(
+      args?: Subset<T, CommutingRequestAttachmentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CommutingRequestAttachmentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CommutingRequestAttachment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommutingRequestAttachmentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CommutingRequestAttachmentAggregateArgs>(args: Subset<T, CommutingRequestAttachmentAggregateArgs>): Prisma.PrismaPromise<GetCommutingRequestAttachmentAggregateType<T>>
+
+    /**
+     * Group by CommutingRequestAttachment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommutingRequestAttachmentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CommutingRequestAttachmentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CommutingRequestAttachmentGroupByArgs['orderBy'] }
+        : { orderBy?: CommutingRequestAttachmentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CommutingRequestAttachmentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCommutingRequestAttachmentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CommutingRequestAttachment model
+   */
+  readonly fields: CommutingRequestAttachmentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CommutingRequestAttachment.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CommutingRequestAttachmentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    commutingRequest<T extends CommutingRequestDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CommutingRequestDefaultArgs<ExtArgs>>): Prisma__CommutingRequestClient<$Result.GetResult<Prisma.$CommutingRequestPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CommutingRequestAttachment model
+   */
+  interface CommutingRequestAttachmentFieldRefs {
+    readonly id: FieldRef<"CommutingRequestAttachment", 'String'>
+    readonly commutingRequestId: FieldRef<"CommutingRequestAttachment", 'String'>
+    readonly attachmentType: FieldRef<"CommutingRequestAttachment", 'CommutingAttachmentType'>
+    readonly fileName: FieldRef<"CommutingRequestAttachment", 'String'>
+    readonly filePath: FieldRef<"CommutingRequestAttachment", 'String'>
+    readonly fileType: FieldRef<"CommutingRequestAttachment", 'String'>
+    readonly fileSize: FieldRef<"CommutingRequestAttachment", 'Int'>
+    readonly createdAt: FieldRef<"CommutingRequestAttachment", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CommutingRequestAttachment findUnique
+   */
+  export type CommutingRequestAttachmentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequestAttachment
+     */
+    select?: CommutingRequestAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRequestAttachment
+     */
+    omit?: CommutingRequestAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRequestAttachmentInclude<ExtArgs> | null
+    /**
+     * Filter, which CommutingRequestAttachment to fetch.
+     */
+    where: CommutingRequestAttachmentWhereUniqueInput
+  }
+
+  /**
+   * CommutingRequestAttachment findUniqueOrThrow
+   */
+  export type CommutingRequestAttachmentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequestAttachment
+     */
+    select?: CommutingRequestAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRequestAttachment
+     */
+    omit?: CommutingRequestAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRequestAttachmentInclude<ExtArgs> | null
+    /**
+     * Filter, which CommutingRequestAttachment to fetch.
+     */
+    where: CommutingRequestAttachmentWhereUniqueInput
+  }
+
+  /**
+   * CommutingRequestAttachment findFirst
+   */
+  export type CommutingRequestAttachmentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequestAttachment
+     */
+    select?: CommutingRequestAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRequestAttachment
+     */
+    omit?: CommutingRequestAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRequestAttachmentInclude<ExtArgs> | null
+    /**
+     * Filter, which CommutingRequestAttachment to fetch.
+     */
+    where?: CommutingRequestAttachmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommutingRequestAttachments to fetch.
+     */
+    orderBy?: CommutingRequestAttachmentOrderByWithRelationInput | CommutingRequestAttachmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CommutingRequestAttachments.
+     */
+    cursor?: CommutingRequestAttachmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommutingRequestAttachments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommutingRequestAttachments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CommutingRequestAttachments.
+     */
+    distinct?: CommutingRequestAttachmentScalarFieldEnum | CommutingRequestAttachmentScalarFieldEnum[]
+  }
+
+  /**
+   * CommutingRequestAttachment findFirstOrThrow
+   */
+  export type CommutingRequestAttachmentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequestAttachment
+     */
+    select?: CommutingRequestAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRequestAttachment
+     */
+    omit?: CommutingRequestAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRequestAttachmentInclude<ExtArgs> | null
+    /**
+     * Filter, which CommutingRequestAttachment to fetch.
+     */
+    where?: CommutingRequestAttachmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommutingRequestAttachments to fetch.
+     */
+    orderBy?: CommutingRequestAttachmentOrderByWithRelationInput | CommutingRequestAttachmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CommutingRequestAttachments.
+     */
+    cursor?: CommutingRequestAttachmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommutingRequestAttachments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommutingRequestAttachments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CommutingRequestAttachments.
+     */
+    distinct?: CommutingRequestAttachmentScalarFieldEnum | CommutingRequestAttachmentScalarFieldEnum[]
+  }
+
+  /**
+   * CommutingRequestAttachment findMany
+   */
+  export type CommutingRequestAttachmentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequestAttachment
+     */
+    select?: CommutingRequestAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRequestAttachment
+     */
+    omit?: CommutingRequestAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRequestAttachmentInclude<ExtArgs> | null
+    /**
+     * Filter, which CommutingRequestAttachments to fetch.
+     */
+    where?: CommutingRequestAttachmentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CommutingRequestAttachments to fetch.
+     */
+    orderBy?: CommutingRequestAttachmentOrderByWithRelationInput | CommutingRequestAttachmentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CommutingRequestAttachments.
+     */
+    cursor?: CommutingRequestAttachmentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CommutingRequestAttachments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CommutingRequestAttachments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CommutingRequestAttachments.
+     */
+    distinct?: CommutingRequestAttachmentScalarFieldEnum | CommutingRequestAttachmentScalarFieldEnum[]
+  }
+
+  /**
+   * CommutingRequestAttachment create
+   */
+  export type CommutingRequestAttachmentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequestAttachment
+     */
+    select?: CommutingRequestAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRequestAttachment
+     */
+    omit?: CommutingRequestAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRequestAttachmentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CommutingRequestAttachment.
+     */
+    data: XOR<CommutingRequestAttachmentCreateInput, CommutingRequestAttachmentUncheckedCreateInput>
+  }
+
+  /**
+   * CommutingRequestAttachment createMany
+   */
+  export type CommutingRequestAttachmentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CommutingRequestAttachments.
+     */
+    data: CommutingRequestAttachmentCreateManyInput | CommutingRequestAttachmentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CommutingRequestAttachment createManyAndReturn
+   */
+  export type CommutingRequestAttachmentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequestAttachment
+     */
+    select?: CommutingRequestAttachmentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRequestAttachment
+     */
+    omit?: CommutingRequestAttachmentOmit<ExtArgs> | null
+    /**
+     * The data used to create many CommutingRequestAttachments.
+     */
+    data: CommutingRequestAttachmentCreateManyInput | CommutingRequestAttachmentCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRequestAttachmentIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CommutingRequestAttachment update
+   */
+  export type CommutingRequestAttachmentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequestAttachment
+     */
+    select?: CommutingRequestAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRequestAttachment
+     */
+    omit?: CommutingRequestAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRequestAttachmentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CommutingRequestAttachment.
+     */
+    data: XOR<CommutingRequestAttachmentUpdateInput, CommutingRequestAttachmentUncheckedUpdateInput>
+    /**
+     * Choose, which CommutingRequestAttachment to update.
+     */
+    where: CommutingRequestAttachmentWhereUniqueInput
+  }
+
+  /**
+   * CommutingRequestAttachment updateMany
+   */
+  export type CommutingRequestAttachmentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CommutingRequestAttachments.
+     */
+    data: XOR<CommutingRequestAttachmentUpdateManyMutationInput, CommutingRequestAttachmentUncheckedUpdateManyInput>
+    /**
+     * Filter which CommutingRequestAttachments to update
+     */
+    where?: CommutingRequestAttachmentWhereInput
+    /**
+     * Limit how many CommutingRequestAttachments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CommutingRequestAttachment updateManyAndReturn
+   */
+  export type CommutingRequestAttachmentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequestAttachment
+     */
+    select?: CommutingRequestAttachmentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRequestAttachment
+     */
+    omit?: CommutingRequestAttachmentOmit<ExtArgs> | null
+    /**
+     * The data used to update CommutingRequestAttachments.
+     */
+    data: XOR<CommutingRequestAttachmentUpdateManyMutationInput, CommutingRequestAttachmentUncheckedUpdateManyInput>
+    /**
+     * Filter which CommutingRequestAttachments to update
+     */
+    where?: CommutingRequestAttachmentWhereInput
+    /**
+     * Limit how many CommutingRequestAttachments to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRequestAttachmentIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * CommutingRequestAttachment upsert
+   */
+  export type CommutingRequestAttachmentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequestAttachment
+     */
+    select?: CommutingRequestAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRequestAttachment
+     */
+    omit?: CommutingRequestAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRequestAttachmentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CommutingRequestAttachment to update in case it exists.
+     */
+    where: CommutingRequestAttachmentWhereUniqueInput
+    /**
+     * In case the CommutingRequestAttachment found by the `where` argument doesn't exist, create a new CommutingRequestAttachment with this data.
+     */
+    create: XOR<CommutingRequestAttachmentCreateInput, CommutingRequestAttachmentUncheckedCreateInput>
+    /**
+     * In case the CommutingRequestAttachment was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CommutingRequestAttachmentUpdateInput, CommutingRequestAttachmentUncheckedUpdateInput>
+  }
+
+  /**
+   * CommutingRequestAttachment delete
+   */
+  export type CommutingRequestAttachmentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequestAttachment
+     */
+    select?: CommutingRequestAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRequestAttachment
+     */
+    omit?: CommutingRequestAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRequestAttachmentInclude<ExtArgs> | null
+    /**
+     * Filter which CommutingRequestAttachment to delete.
+     */
+    where: CommutingRequestAttachmentWhereUniqueInput
+  }
+
+  /**
+   * CommutingRequestAttachment deleteMany
+   */
+  export type CommutingRequestAttachmentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CommutingRequestAttachments to delete
+     */
+    where?: CommutingRequestAttachmentWhereInput
+    /**
+     * Limit how many CommutingRequestAttachments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CommutingRequestAttachment without action
+   */
+  export type CommutingRequestAttachmentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommutingRequestAttachment
+     */
+    select?: CommutingRequestAttachmentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CommutingRequestAttachment
+     */
+    omit?: CommutingRequestAttachmentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommutingRequestAttachmentInclude<ExtArgs> | null
   }
 
 
@@ -67230,6 +74263,117 @@ export namespace Prisma {
   export type DependentRequestAttachmentScalarFieldEnum = (typeof DependentRequestAttachmentScalarFieldEnum)[keyof typeof DependentRequestAttachmentScalarFieldEnum]
 
 
+  export const ResidenceRequestScalarFieldEnum: {
+    id: 'id',
+    employeeId: 'employeeId',
+    residenceType: 'residenceType',
+    notificationType: 'notificationType',
+    changeDate: 'changeDate',
+    postalCode: 'postalCode',
+    address: 'address',
+    phoneNumber: 'phoneNumber',
+    note: 'note',
+    landlordName: 'landlordName',
+    landlordAddress: 'landlordAddress',
+    contractHolderName: 'contractHolderName',
+    contractHolderRelationship: 'contractHolderRelationship',
+    monthlyRent: 'monthlyRent',
+    commonServiceFee: 'commonServiceFee',
+    housingName: 'housingName',
+    roomNumber: 'roomNumber',
+    ownershipType: 'ownershipType',
+    ownerName1: 'ownerName1',
+    ownerName2: 'ownerName2',
+    acquisitionDate: 'acquisitionDate',
+    status: 'status',
+    reviewedAt: 'reviewedAt',
+    reviewedBy: 'reviewedBy',
+    reviewComment: 'reviewComment',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ResidenceRequestScalarFieldEnum = (typeof ResidenceRequestScalarFieldEnum)[keyof typeof ResidenceRequestScalarFieldEnum]
+
+
+  export const ResidenceRequestAttachmentScalarFieldEnum: {
+    id: 'id',
+    residenceRequestId: 'residenceRequestId',
+    attachmentType: 'attachmentType',
+    fileName: 'fileName',
+    filePath: 'filePath',
+    fileType: 'fileType',
+    fileSize: 'fileSize',
+    createdAt: 'createdAt'
+  };
+
+  export type ResidenceRequestAttachmentScalarFieldEnum = (typeof ResidenceRequestAttachmentScalarFieldEnum)[keyof typeof ResidenceRequestAttachmentScalarFieldEnum]
+
+
+  export const CommutingRequestScalarFieldEnum: {
+    id: 'id',
+    employeeId: 'employeeId',
+    notificationType: 'notificationType',
+    commutingType: 'commutingType',
+    effectiveDate: 'effectiveDate',
+    routeFrom: 'routeFrom',
+    routeTo: 'routeTo',
+    routeDetails: 'routeDetails',
+    transportationName: 'transportationName',
+    monthlyAmount: 'monthlyAmount',
+    oneWayDistanceKm: 'oneWayDistanceKm',
+    oneWayFare: 'oneWayFare',
+    vehicleRegistrationNumber: 'vehicleRegistrationNumber',
+    vehicleName: 'vehicleName',
+    vehicleColor: 'vehicleColor',
+    approvedAmount: 'approvedAmount',
+    note: 'note',
+    status: 'status',
+    reviewedAt: 'reviewedAt',
+    reviewedBy: 'reviewedBy',
+    reviewComment: 'reviewComment',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type CommutingRequestScalarFieldEnum = (typeof CommutingRequestScalarFieldEnum)[keyof typeof CommutingRequestScalarFieldEnum]
+
+
+  export const CommutingRouteSegmentScalarFieldEnum: {
+    id: 'id',
+    commutingRequestId: 'commutingRequestId',
+    operatorName: 'operatorName',
+    lineName: 'lineName',
+    boardingPoint: 'boardingPoint',
+    alightingPoint: 'alightingPoint',
+    oneWayFare: 'oneWayFare',
+    roundTripFare: 'roundTripFare',
+    monthlyPassAmount: 'monthlyPassAmount',
+    payableAmount: 'payableAmount',
+    fareSystem: 'fareSystem',
+    coveredBySegmentId: 'coveredBySegmentId',
+    sortOrder: 'sortOrder',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type CommutingRouteSegmentScalarFieldEnum = (typeof CommutingRouteSegmentScalarFieldEnum)[keyof typeof CommutingRouteSegmentScalarFieldEnum]
+
+
+  export const CommutingRequestAttachmentScalarFieldEnum: {
+    id: 'id',
+    commutingRequestId: 'commutingRequestId',
+    attachmentType: 'attachmentType',
+    fileName: 'fileName',
+    filePath: 'filePath',
+    fileType: 'fileType',
+    fileSize: 'fileSize',
+    createdAt: 'createdAt'
+  };
+
+  export type CommutingRequestAttachmentScalarFieldEnum = (typeof CommutingRequestAttachmentScalarFieldEnum)[keyof typeof CommutingRequestAttachmentScalarFieldEnum]
+
+
   export const ProfileChangeRequestScalarFieldEnum: {
     id: 'id',
     employeeId: 'employeeId',
@@ -67988,6 +75132,104 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'ResidenceType'
+   */
+  export type EnumResidenceTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ResidenceType'>
+    
+
+
+  /**
+   * Reference to a field of type 'ResidenceType[]'
+   */
+  export type ListEnumResidenceTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ResidenceType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'ResidenceNotificationType'
+   */
+  export type EnumResidenceNotificationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ResidenceNotificationType'>
+    
+
+
+  /**
+   * Reference to a field of type 'ResidenceNotificationType[]'
+   */
+  export type ListEnumResidenceNotificationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ResidenceNotificationType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'ResidenceOwnershipType'
+   */
+  export type EnumResidenceOwnershipTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ResidenceOwnershipType'>
+    
+
+
+  /**
+   * Reference to a field of type 'ResidenceOwnershipType[]'
+   */
+  export type ListEnumResidenceOwnershipTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ResidenceOwnershipType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'ResidenceAttachmentType'
+   */
+  export type EnumResidenceAttachmentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ResidenceAttachmentType'>
+    
+
+
+  /**
+   * Reference to a field of type 'ResidenceAttachmentType[]'
+   */
+  export type ListEnumResidenceAttachmentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ResidenceAttachmentType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'CommutingNotificationType'
+   */
+  export type EnumCommutingNotificationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CommutingNotificationType'>
+    
+
+
+  /**
+   * Reference to a field of type 'CommutingNotificationType[]'
+   */
+  export type ListEnumCommutingNotificationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CommutingNotificationType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'CommutingType'
+   */
+  export type EnumCommutingTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CommutingType'>
+    
+
+
+  /**
+   * Reference to a field of type 'CommutingType[]'
+   */
+  export type ListEnumCommutingTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CommutingType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'CommutingAttachmentType'
+   */
+  export type EnumCommutingAttachmentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CommutingAttachmentType'>
+    
+
+
+  /**
+   * Reference to a field of type 'CommutingAttachmentType[]'
+   */
+  export type ListEnumCommutingAttachmentTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CommutingAttachmentType[]'>
+    
+
+
+  /**
    * Reference to a field of type 'ProfileChangeStatus'
    */
   export type EnumProfileChangeStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProfileChangeStatus'>
@@ -68334,6 +75576,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationListRelationFilter
     employeeMyNumber?: XOR<EmployeeMyNumberNullableScalarRelationFilter, EmployeeMyNumberWhereInput> | null
     requests?: EmployeeRequestListRelationFilter
+    commutingRequests?: CommutingRequestListRelationFilter
     employeeSalary?: XOR<EmployeeSalaryNullableScalarRelationFilter, EmployeeSalaryWhereInput> | null
     employmentHistories?: EmploymentHistoryListRelationFilter
     leaveBalance?: XOR<LeaveBalanceNullableScalarRelationFilter, LeaveBalanceWhereInput> | null
@@ -68353,6 +75596,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordListRelationFilter
     transferHistories?: EmployeeTransferListRelationFilter
     personalDocuments?: PersonalDocumentListRelationFilter
+    residenceRequests?: ResidenceRequestListRelationFilter
   }
 
   export type EmployeeOrderByWithRelationInput = {
@@ -68392,6 +75636,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationOrderByRelationAggregateInput
     employeeMyNumber?: EmployeeMyNumberOrderByWithRelationInput
     requests?: EmployeeRequestOrderByRelationAggregateInput
+    commutingRequests?: CommutingRequestOrderByRelationAggregateInput
     employeeSalary?: EmployeeSalaryOrderByWithRelationInput
     employmentHistories?: EmploymentHistoryOrderByRelationAggregateInput
     leaveBalance?: LeaveBalanceOrderByWithRelationInput
@@ -68411,6 +75656,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordOrderByRelationAggregateInput
     transferHistories?: EmployeeTransferOrderByRelationAggregateInput
     personalDocuments?: PersonalDocumentOrderByRelationAggregateInput
+    residenceRequests?: ResidenceRequestOrderByRelationAggregateInput
   }
 
   export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
@@ -68453,6 +75699,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationListRelationFilter
     employeeMyNumber?: XOR<EmployeeMyNumberNullableScalarRelationFilter, EmployeeMyNumberWhereInput> | null
     requests?: EmployeeRequestListRelationFilter
+    commutingRequests?: CommutingRequestListRelationFilter
     employeeSalary?: XOR<EmployeeSalaryNullableScalarRelationFilter, EmployeeSalaryWhereInput> | null
     employmentHistories?: EmploymentHistoryListRelationFilter
     leaveBalance?: XOR<LeaveBalanceNullableScalarRelationFilter, LeaveBalanceWhereInput> | null
@@ -68472,6 +75719,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordListRelationFilter
     transferHistories?: EmployeeTransferListRelationFilter
     personalDocuments?: PersonalDocumentListRelationFilter
+    residenceRequests?: ResidenceRequestListRelationFilter
   }, "id" | "employeeNo" | "email" | "userId">
 
   export type EmployeeOrderByWithAggregationInput = {
@@ -70339,6 +77587,580 @@ export namespace Prisma {
     fileType?: StringNullableWithAggregatesFilter<"DependentRequestAttachment"> | string | null
     fileSize?: IntNullableWithAggregatesFilter<"DependentRequestAttachment"> | number | null
     createdAt?: DateTimeWithAggregatesFilter<"DependentRequestAttachment"> | Date | string
+  }
+
+  export type ResidenceRequestWhereInput = {
+    AND?: ResidenceRequestWhereInput | ResidenceRequestWhereInput[]
+    OR?: ResidenceRequestWhereInput[]
+    NOT?: ResidenceRequestWhereInput | ResidenceRequestWhereInput[]
+    id?: StringFilter<"ResidenceRequest"> | string
+    employeeId?: StringFilter<"ResidenceRequest"> | string
+    residenceType?: EnumResidenceTypeFilter<"ResidenceRequest"> | $Enums.ResidenceType
+    notificationType?: EnumResidenceNotificationTypeFilter<"ResidenceRequest"> | $Enums.ResidenceNotificationType
+    changeDate?: DateTimeFilter<"ResidenceRequest"> | Date | string
+    postalCode?: StringFilter<"ResidenceRequest"> | string
+    address?: StringFilter<"ResidenceRequest"> | string
+    phoneNumber?: StringNullableFilter<"ResidenceRequest"> | string | null
+    note?: StringNullableFilter<"ResidenceRequest"> | string | null
+    landlordName?: StringNullableFilter<"ResidenceRequest"> | string | null
+    landlordAddress?: StringNullableFilter<"ResidenceRequest"> | string | null
+    contractHolderName?: StringNullableFilter<"ResidenceRequest"> | string | null
+    contractHolderRelationship?: StringNullableFilter<"ResidenceRequest"> | string | null
+    monthlyRent?: IntNullableFilter<"ResidenceRequest"> | number | null
+    commonServiceFee?: IntNullableFilter<"ResidenceRequest"> | number | null
+    housingName?: StringNullableFilter<"ResidenceRequest"> | string | null
+    roomNumber?: StringNullableFilter<"ResidenceRequest"> | string | null
+    ownershipType?: EnumResidenceOwnershipTypeNullableFilter<"ResidenceRequest"> | $Enums.ResidenceOwnershipType | null
+    ownerName1?: StringNullableFilter<"ResidenceRequest"> | string | null
+    ownerName2?: StringNullableFilter<"ResidenceRequest"> | string | null
+    acquisitionDate?: DateTimeNullableFilter<"ResidenceRequest"> | Date | string | null
+    status?: EnumRequestStatusFilter<"ResidenceRequest"> | $Enums.RequestStatus
+    reviewedAt?: DateTimeNullableFilter<"ResidenceRequest"> | Date | string | null
+    reviewedBy?: StringNullableFilter<"ResidenceRequest"> | string | null
+    reviewComment?: StringNullableFilter<"ResidenceRequest"> | string | null
+    createdAt?: DateTimeFilter<"ResidenceRequest"> | Date | string
+    updatedAt?: DateTimeFilter<"ResidenceRequest"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+    attachments?: ResidenceRequestAttachmentListRelationFilter
+  }
+
+  export type ResidenceRequestOrderByWithRelationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    residenceType?: SortOrder
+    notificationType?: SortOrder
+    changeDate?: SortOrder
+    postalCode?: SortOrder
+    address?: SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    note?: SortOrderInput | SortOrder
+    landlordName?: SortOrderInput | SortOrder
+    landlordAddress?: SortOrderInput | SortOrder
+    contractHolderName?: SortOrderInput | SortOrder
+    contractHolderRelationship?: SortOrderInput | SortOrder
+    monthlyRent?: SortOrderInput | SortOrder
+    commonServiceFee?: SortOrderInput | SortOrder
+    housingName?: SortOrderInput | SortOrder
+    roomNumber?: SortOrderInput | SortOrder
+    ownershipType?: SortOrderInput | SortOrder
+    ownerName1?: SortOrderInput | SortOrder
+    ownerName2?: SortOrderInput | SortOrder
+    acquisitionDate?: SortOrderInput | SortOrder
+    status?: SortOrder
+    reviewedAt?: SortOrderInput | SortOrder
+    reviewedBy?: SortOrderInput | SortOrder
+    reviewComment?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    employee?: EmployeeOrderByWithRelationInput
+    attachments?: ResidenceRequestAttachmentOrderByRelationAggregateInput
+  }
+
+  export type ResidenceRequestWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ResidenceRequestWhereInput | ResidenceRequestWhereInput[]
+    OR?: ResidenceRequestWhereInput[]
+    NOT?: ResidenceRequestWhereInput | ResidenceRequestWhereInput[]
+    employeeId?: StringFilter<"ResidenceRequest"> | string
+    residenceType?: EnumResidenceTypeFilter<"ResidenceRequest"> | $Enums.ResidenceType
+    notificationType?: EnumResidenceNotificationTypeFilter<"ResidenceRequest"> | $Enums.ResidenceNotificationType
+    changeDate?: DateTimeFilter<"ResidenceRequest"> | Date | string
+    postalCode?: StringFilter<"ResidenceRequest"> | string
+    address?: StringFilter<"ResidenceRequest"> | string
+    phoneNumber?: StringNullableFilter<"ResidenceRequest"> | string | null
+    note?: StringNullableFilter<"ResidenceRequest"> | string | null
+    landlordName?: StringNullableFilter<"ResidenceRequest"> | string | null
+    landlordAddress?: StringNullableFilter<"ResidenceRequest"> | string | null
+    contractHolderName?: StringNullableFilter<"ResidenceRequest"> | string | null
+    contractHolderRelationship?: StringNullableFilter<"ResidenceRequest"> | string | null
+    monthlyRent?: IntNullableFilter<"ResidenceRequest"> | number | null
+    commonServiceFee?: IntNullableFilter<"ResidenceRequest"> | number | null
+    housingName?: StringNullableFilter<"ResidenceRequest"> | string | null
+    roomNumber?: StringNullableFilter<"ResidenceRequest"> | string | null
+    ownershipType?: EnumResidenceOwnershipTypeNullableFilter<"ResidenceRequest"> | $Enums.ResidenceOwnershipType | null
+    ownerName1?: StringNullableFilter<"ResidenceRequest"> | string | null
+    ownerName2?: StringNullableFilter<"ResidenceRequest"> | string | null
+    acquisitionDate?: DateTimeNullableFilter<"ResidenceRequest"> | Date | string | null
+    status?: EnumRequestStatusFilter<"ResidenceRequest"> | $Enums.RequestStatus
+    reviewedAt?: DateTimeNullableFilter<"ResidenceRequest"> | Date | string | null
+    reviewedBy?: StringNullableFilter<"ResidenceRequest"> | string | null
+    reviewComment?: StringNullableFilter<"ResidenceRequest"> | string | null
+    createdAt?: DateTimeFilter<"ResidenceRequest"> | Date | string
+    updatedAt?: DateTimeFilter<"ResidenceRequest"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+    attachments?: ResidenceRequestAttachmentListRelationFilter
+  }, "id">
+
+  export type ResidenceRequestOrderByWithAggregationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    residenceType?: SortOrder
+    notificationType?: SortOrder
+    changeDate?: SortOrder
+    postalCode?: SortOrder
+    address?: SortOrder
+    phoneNumber?: SortOrderInput | SortOrder
+    note?: SortOrderInput | SortOrder
+    landlordName?: SortOrderInput | SortOrder
+    landlordAddress?: SortOrderInput | SortOrder
+    contractHolderName?: SortOrderInput | SortOrder
+    contractHolderRelationship?: SortOrderInput | SortOrder
+    monthlyRent?: SortOrderInput | SortOrder
+    commonServiceFee?: SortOrderInput | SortOrder
+    housingName?: SortOrderInput | SortOrder
+    roomNumber?: SortOrderInput | SortOrder
+    ownershipType?: SortOrderInput | SortOrder
+    ownerName1?: SortOrderInput | SortOrder
+    ownerName2?: SortOrderInput | SortOrder
+    acquisitionDate?: SortOrderInput | SortOrder
+    status?: SortOrder
+    reviewedAt?: SortOrderInput | SortOrder
+    reviewedBy?: SortOrderInput | SortOrder
+    reviewComment?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ResidenceRequestCountOrderByAggregateInput
+    _avg?: ResidenceRequestAvgOrderByAggregateInput
+    _max?: ResidenceRequestMaxOrderByAggregateInput
+    _min?: ResidenceRequestMinOrderByAggregateInput
+    _sum?: ResidenceRequestSumOrderByAggregateInput
+  }
+
+  export type ResidenceRequestScalarWhereWithAggregatesInput = {
+    AND?: ResidenceRequestScalarWhereWithAggregatesInput | ResidenceRequestScalarWhereWithAggregatesInput[]
+    OR?: ResidenceRequestScalarWhereWithAggregatesInput[]
+    NOT?: ResidenceRequestScalarWhereWithAggregatesInput | ResidenceRequestScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ResidenceRequest"> | string
+    employeeId?: StringWithAggregatesFilter<"ResidenceRequest"> | string
+    residenceType?: EnumResidenceTypeWithAggregatesFilter<"ResidenceRequest"> | $Enums.ResidenceType
+    notificationType?: EnumResidenceNotificationTypeWithAggregatesFilter<"ResidenceRequest"> | $Enums.ResidenceNotificationType
+    changeDate?: DateTimeWithAggregatesFilter<"ResidenceRequest"> | Date | string
+    postalCode?: StringWithAggregatesFilter<"ResidenceRequest"> | string
+    address?: StringWithAggregatesFilter<"ResidenceRequest"> | string
+    phoneNumber?: StringNullableWithAggregatesFilter<"ResidenceRequest"> | string | null
+    note?: StringNullableWithAggregatesFilter<"ResidenceRequest"> | string | null
+    landlordName?: StringNullableWithAggregatesFilter<"ResidenceRequest"> | string | null
+    landlordAddress?: StringNullableWithAggregatesFilter<"ResidenceRequest"> | string | null
+    contractHolderName?: StringNullableWithAggregatesFilter<"ResidenceRequest"> | string | null
+    contractHolderRelationship?: StringNullableWithAggregatesFilter<"ResidenceRequest"> | string | null
+    monthlyRent?: IntNullableWithAggregatesFilter<"ResidenceRequest"> | number | null
+    commonServiceFee?: IntNullableWithAggregatesFilter<"ResidenceRequest"> | number | null
+    housingName?: StringNullableWithAggregatesFilter<"ResidenceRequest"> | string | null
+    roomNumber?: StringNullableWithAggregatesFilter<"ResidenceRequest"> | string | null
+    ownershipType?: EnumResidenceOwnershipTypeNullableWithAggregatesFilter<"ResidenceRequest"> | $Enums.ResidenceOwnershipType | null
+    ownerName1?: StringNullableWithAggregatesFilter<"ResidenceRequest"> | string | null
+    ownerName2?: StringNullableWithAggregatesFilter<"ResidenceRequest"> | string | null
+    acquisitionDate?: DateTimeNullableWithAggregatesFilter<"ResidenceRequest"> | Date | string | null
+    status?: EnumRequestStatusWithAggregatesFilter<"ResidenceRequest"> | $Enums.RequestStatus
+    reviewedAt?: DateTimeNullableWithAggregatesFilter<"ResidenceRequest"> | Date | string | null
+    reviewedBy?: StringNullableWithAggregatesFilter<"ResidenceRequest"> | string | null
+    reviewComment?: StringNullableWithAggregatesFilter<"ResidenceRequest"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"ResidenceRequest"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ResidenceRequest"> | Date | string
+  }
+
+  export type ResidenceRequestAttachmentWhereInput = {
+    AND?: ResidenceRequestAttachmentWhereInput | ResidenceRequestAttachmentWhereInput[]
+    OR?: ResidenceRequestAttachmentWhereInput[]
+    NOT?: ResidenceRequestAttachmentWhereInput | ResidenceRequestAttachmentWhereInput[]
+    id?: StringFilter<"ResidenceRequestAttachment"> | string
+    residenceRequestId?: StringFilter<"ResidenceRequestAttachment"> | string
+    attachmentType?: EnumResidenceAttachmentTypeFilter<"ResidenceRequestAttachment"> | $Enums.ResidenceAttachmentType
+    fileName?: StringFilter<"ResidenceRequestAttachment"> | string
+    filePath?: StringFilter<"ResidenceRequestAttachment"> | string
+    fileType?: StringNullableFilter<"ResidenceRequestAttachment"> | string | null
+    fileSize?: IntNullableFilter<"ResidenceRequestAttachment"> | number | null
+    createdAt?: DateTimeFilter<"ResidenceRequestAttachment"> | Date | string
+    residenceRequest?: XOR<ResidenceRequestScalarRelationFilter, ResidenceRequestWhereInput>
+  }
+
+  export type ResidenceRequestAttachmentOrderByWithRelationInput = {
+    id?: SortOrder
+    residenceRequestId?: SortOrder
+    attachmentType?: SortOrder
+    fileName?: SortOrder
+    filePath?: SortOrder
+    fileType?: SortOrderInput | SortOrder
+    fileSize?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    residenceRequest?: ResidenceRequestOrderByWithRelationInput
+  }
+
+  export type ResidenceRequestAttachmentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ResidenceRequestAttachmentWhereInput | ResidenceRequestAttachmentWhereInput[]
+    OR?: ResidenceRequestAttachmentWhereInput[]
+    NOT?: ResidenceRequestAttachmentWhereInput | ResidenceRequestAttachmentWhereInput[]
+    residenceRequestId?: StringFilter<"ResidenceRequestAttachment"> | string
+    attachmentType?: EnumResidenceAttachmentTypeFilter<"ResidenceRequestAttachment"> | $Enums.ResidenceAttachmentType
+    fileName?: StringFilter<"ResidenceRequestAttachment"> | string
+    filePath?: StringFilter<"ResidenceRequestAttachment"> | string
+    fileType?: StringNullableFilter<"ResidenceRequestAttachment"> | string | null
+    fileSize?: IntNullableFilter<"ResidenceRequestAttachment"> | number | null
+    createdAt?: DateTimeFilter<"ResidenceRequestAttachment"> | Date | string
+    residenceRequest?: XOR<ResidenceRequestScalarRelationFilter, ResidenceRequestWhereInput>
+  }, "id">
+
+  export type ResidenceRequestAttachmentOrderByWithAggregationInput = {
+    id?: SortOrder
+    residenceRequestId?: SortOrder
+    attachmentType?: SortOrder
+    fileName?: SortOrder
+    filePath?: SortOrder
+    fileType?: SortOrderInput | SortOrder
+    fileSize?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: ResidenceRequestAttachmentCountOrderByAggregateInput
+    _avg?: ResidenceRequestAttachmentAvgOrderByAggregateInput
+    _max?: ResidenceRequestAttachmentMaxOrderByAggregateInput
+    _min?: ResidenceRequestAttachmentMinOrderByAggregateInput
+    _sum?: ResidenceRequestAttachmentSumOrderByAggregateInput
+  }
+
+  export type ResidenceRequestAttachmentScalarWhereWithAggregatesInput = {
+    AND?: ResidenceRequestAttachmentScalarWhereWithAggregatesInput | ResidenceRequestAttachmentScalarWhereWithAggregatesInput[]
+    OR?: ResidenceRequestAttachmentScalarWhereWithAggregatesInput[]
+    NOT?: ResidenceRequestAttachmentScalarWhereWithAggregatesInput | ResidenceRequestAttachmentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ResidenceRequestAttachment"> | string
+    residenceRequestId?: StringWithAggregatesFilter<"ResidenceRequestAttachment"> | string
+    attachmentType?: EnumResidenceAttachmentTypeWithAggregatesFilter<"ResidenceRequestAttachment"> | $Enums.ResidenceAttachmentType
+    fileName?: StringWithAggregatesFilter<"ResidenceRequestAttachment"> | string
+    filePath?: StringWithAggregatesFilter<"ResidenceRequestAttachment"> | string
+    fileType?: StringNullableWithAggregatesFilter<"ResidenceRequestAttachment"> | string | null
+    fileSize?: IntNullableWithAggregatesFilter<"ResidenceRequestAttachment"> | number | null
+    createdAt?: DateTimeWithAggregatesFilter<"ResidenceRequestAttachment"> | Date | string
+  }
+
+  export type CommutingRequestWhereInput = {
+    AND?: CommutingRequestWhereInput | CommutingRequestWhereInput[]
+    OR?: CommutingRequestWhereInput[]
+    NOT?: CommutingRequestWhereInput | CommutingRequestWhereInput[]
+    id?: StringFilter<"CommutingRequest"> | string
+    employeeId?: StringFilter<"CommutingRequest"> | string
+    notificationType?: EnumCommutingNotificationTypeFilter<"CommutingRequest"> | $Enums.CommutingNotificationType
+    commutingType?: EnumCommutingTypeFilter<"CommutingRequest"> | $Enums.CommutingType
+    effectiveDate?: DateTimeFilter<"CommutingRequest"> | Date | string
+    routeFrom?: StringNullableFilter<"CommutingRequest"> | string | null
+    routeTo?: StringNullableFilter<"CommutingRequest"> | string | null
+    routeDetails?: StringNullableFilter<"CommutingRequest"> | string | null
+    transportationName?: StringNullableFilter<"CommutingRequest"> | string | null
+    monthlyAmount?: IntNullableFilter<"CommutingRequest"> | number | null
+    oneWayDistanceKm?: FloatNullableFilter<"CommutingRequest"> | number | null
+    oneWayFare?: IntNullableFilter<"CommutingRequest"> | number | null
+    vehicleRegistrationNumber?: StringNullableFilter<"CommutingRequest"> | string | null
+    vehicleName?: StringNullableFilter<"CommutingRequest"> | string | null
+    vehicleColor?: StringNullableFilter<"CommutingRequest"> | string | null
+    approvedAmount?: IntNullableFilter<"CommutingRequest"> | number | null
+    note?: StringNullableFilter<"CommutingRequest"> | string | null
+    status?: EnumRequestStatusFilter<"CommutingRequest"> | $Enums.RequestStatus
+    reviewedAt?: DateTimeNullableFilter<"CommutingRequest"> | Date | string | null
+    reviewedBy?: StringNullableFilter<"CommutingRequest"> | string | null
+    reviewComment?: StringNullableFilter<"CommutingRequest"> | string | null
+    createdAt?: DateTimeFilter<"CommutingRequest"> | Date | string
+    updatedAt?: DateTimeFilter<"CommutingRequest"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+    attachments?: CommutingRequestAttachmentListRelationFilter
+    routeSegments?: CommutingRouteSegmentListRelationFilter
+  }
+
+  export type CommutingRequestOrderByWithRelationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    notificationType?: SortOrder
+    commutingType?: SortOrder
+    effectiveDate?: SortOrder
+    routeFrom?: SortOrderInput | SortOrder
+    routeTo?: SortOrderInput | SortOrder
+    routeDetails?: SortOrderInput | SortOrder
+    transportationName?: SortOrderInput | SortOrder
+    monthlyAmount?: SortOrderInput | SortOrder
+    oneWayDistanceKm?: SortOrderInput | SortOrder
+    oneWayFare?: SortOrderInput | SortOrder
+    vehicleRegistrationNumber?: SortOrderInput | SortOrder
+    vehicleName?: SortOrderInput | SortOrder
+    vehicleColor?: SortOrderInput | SortOrder
+    approvedAmount?: SortOrderInput | SortOrder
+    note?: SortOrderInput | SortOrder
+    status?: SortOrder
+    reviewedAt?: SortOrderInput | SortOrder
+    reviewedBy?: SortOrderInput | SortOrder
+    reviewComment?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    employee?: EmployeeOrderByWithRelationInput
+    attachments?: CommutingRequestAttachmentOrderByRelationAggregateInput
+    routeSegments?: CommutingRouteSegmentOrderByRelationAggregateInput
+  }
+
+  export type CommutingRequestWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CommutingRequestWhereInput | CommutingRequestWhereInput[]
+    OR?: CommutingRequestWhereInput[]
+    NOT?: CommutingRequestWhereInput | CommutingRequestWhereInput[]
+    employeeId?: StringFilter<"CommutingRequest"> | string
+    notificationType?: EnumCommutingNotificationTypeFilter<"CommutingRequest"> | $Enums.CommutingNotificationType
+    commutingType?: EnumCommutingTypeFilter<"CommutingRequest"> | $Enums.CommutingType
+    effectiveDate?: DateTimeFilter<"CommutingRequest"> | Date | string
+    routeFrom?: StringNullableFilter<"CommutingRequest"> | string | null
+    routeTo?: StringNullableFilter<"CommutingRequest"> | string | null
+    routeDetails?: StringNullableFilter<"CommutingRequest"> | string | null
+    transportationName?: StringNullableFilter<"CommutingRequest"> | string | null
+    monthlyAmount?: IntNullableFilter<"CommutingRequest"> | number | null
+    oneWayDistanceKm?: FloatNullableFilter<"CommutingRequest"> | number | null
+    oneWayFare?: IntNullableFilter<"CommutingRequest"> | number | null
+    vehicleRegistrationNumber?: StringNullableFilter<"CommutingRequest"> | string | null
+    vehicleName?: StringNullableFilter<"CommutingRequest"> | string | null
+    vehicleColor?: StringNullableFilter<"CommutingRequest"> | string | null
+    approvedAmount?: IntNullableFilter<"CommutingRequest"> | number | null
+    note?: StringNullableFilter<"CommutingRequest"> | string | null
+    status?: EnumRequestStatusFilter<"CommutingRequest"> | $Enums.RequestStatus
+    reviewedAt?: DateTimeNullableFilter<"CommutingRequest"> | Date | string | null
+    reviewedBy?: StringNullableFilter<"CommutingRequest"> | string | null
+    reviewComment?: StringNullableFilter<"CommutingRequest"> | string | null
+    createdAt?: DateTimeFilter<"CommutingRequest"> | Date | string
+    updatedAt?: DateTimeFilter<"CommutingRequest"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+    attachments?: CommutingRequestAttachmentListRelationFilter
+    routeSegments?: CommutingRouteSegmentListRelationFilter
+  }, "id">
+
+  export type CommutingRequestOrderByWithAggregationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    notificationType?: SortOrder
+    commutingType?: SortOrder
+    effectiveDate?: SortOrder
+    routeFrom?: SortOrderInput | SortOrder
+    routeTo?: SortOrderInput | SortOrder
+    routeDetails?: SortOrderInput | SortOrder
+    transportationName?: SortOrderInput | SortOrder
+    monthlyAmount?: SortOrderInput | SortOrder
+    oneWayDistanceKm?: SortOrderInput | SortOrder
+    oneWayFare?: SortOrderInput | SortOrder
+    vehicleRegistrationNumber?: SortOrderInput | SortOrder
+    vehicleName?: SortOrderInput | SortOrder
+    vehicleColor?: SortOrderInput | SortOrder
+    approvedAmount?: SortOrderInput | SortOrder
+    note?: SortOrderInput | SortOrder
+    status?: SortOrder
+    reviewedAt?: SortOrderInput | SortOrder
+    reviewedBy?: SortOrderInput | SortOrder
+    reviewComment?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: CommutingRequestCountOrderByAggregateInput
+    _avg?: CommutingRequestAvgOrderByAggregateInput
+    _max?: CommutingRequestMaxOrderByAggregateInput
+    _min?: CommutingRequestMinOrderByAggregateInput
+    _sum?: CommutingRequestSumOrderByAggregateInput
+  }
+
+  export type CommutingRequestScalarWhereWithAggregatesInput = {
+    AND?: CommutingRequestScalarWhereWithAggregatesInput | CommutingRequestScalarWhereWithAggregatesInput[]
+    OR?: CommutingRequestScalarWhereWithAggregatesInput[]
+    NOT?: CommutingRequestScalarWhereWithAggregatesInput | CommutingRequestScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CommutingRequest"> | string
+    employeeId?: StringWithAggregatesFilter<"CommutingRequest"> | string
+    notificationType?: EnumCommutingNotificationTypeWithAggregatesFilter<"CommutingRequest"> | $Enums.CommutingNotificationType
+    commutingType?: EnumCommutingTypeWithAggregatesFilter<"CommutingRequest"> | $Enums.CommutingType
+    effectiveDate?: DateTimeWithAggregatesFilter<"CommutingRequest"> | Date | string
+    routeFrom?: StringNullableWithAggregatesFilter<"CommutingRequest"> | string | null
+    routeTo?: StringNullableWithAggregatesFilter<"CommutingRequest"> | string | null
+    routeDetails?: StringNullableWithAggregatesFilter<"CommutingRequest"> | string | null
+    transportationName?: StringNullableWithAggregatesFilter<"CommutingRequest"> | string | null
+    monthlyAmount?: IntNullableWithAggregatesFilter<"CommutingRequest"> | number | null
+    oneWayDistanceKm?: FloatNullableWithAggregatesFilter<"CommutingRequest"> | number | null
+    oneWayFare?: IntNullableWithAggregatesFilter<"CommutingRequest"> | number | null
+    vehicleRegistrationNumber?: StringNullableWithAggregatesFilter<"CommutingRequest"> | string | null
+    vehicleName?: StringNullableWithAggregatesFilter<"CommutingRequest"> | string | null
+    vehicleColor?: StringNullableWithAggregatesFilter<"CommutingRequest"> | string | null
+    approvedAmount?: IntNullableWithAggregatesFilter<"CommutingRequest"> | number | null
+    note?: StringNullableWithAggregatesFilter<"CommutingRequest"> | string | null
+    status?: EnumRequestStatusWithAggregatesFilter<"CommutingRequest"> | $Enums.RequestStatus
+    reviewedAt?: DateTimeNullableWithAggregatesFilter<"CommutingRequest"> | Date | string | null
+    reviewedBy?: StringNullableWithAggregatesFilter<"CommutingRequest"> | string | null
+    reviewComment?: StringNullableWithAggregatesFilter<"CommutingRequest"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"CommutingRequest"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"CommutingRequest"> | Date | string
+  }
+
+  export type CommutingRouteSegmentWhereInput = {
+    AND?: CommutingRouteSegmentWhereInput | CommutingRouteSegmentWhereInput[]
+    OR?: CommutingRouteSegmentWhereInput[]
+    NOT?: CommutingRouteSegmentWhereInput | CommutingRouteSegmentWhereInput[]
+    id?: StringFilter<"CommutingRouteSegment"> | string
+    commutingRequestId?: StringFilter<"CommutingRouteSegment"> | string
+    operatorName?: StringFilter<"CommutingRouteSegment"> | string
+    lineName?: StringNullableFilter<"CommutingRouteSegment"> | string | null
+    boardingPoint?: StringNullableFilter<"CommutingRouteSegment"> | string | null
+    alightingPoint?: StringNullableFilter<"CommutingRouteSegment"> | string | null
+    oneWayFare?: IntNullableFilter<"CommutingRouteSegment"> | number | null
+    roundTripFare?: IntNullableFilter<"CommutingRouteSegment"> | number | null
+    monthlyPassAmount?: IntNullableFilter<"CommutingRouteSegment"> | number | null
+    payableAmount?: IntNullableFilter<"CommutingRouteSegment"> | number | null
+    fareSystem?: StringNullableFilter<"CommutingRouteSegment"> | string | null
+    coveredBySegmentId?: StringNullableFilter<"CommutingRouteSegment"> | string | null
+    sortOrder?: IntFilter<"CommutingRouteSegment"> | number
+    createdAt?: DateTimeFilter<"CommutingRouteSegment"> | Date | string
+    updatedAt?: DateTimeFilter<"CommutingRouteSegment"> | Date | string
+    commutingRequest?: XOR<CommutingRequestScalarRelationFilter, CommutingRequestWhereInput>
+  }
+
+  export type CommutingRouteSegmentOrderByWithRelationInput = {
+    id?: SortOrder
+    commutingRequestId?: SortOrder
+    operatorName?: SortOrder
+    lineName?: SortOrderInput | SortOrder
+    boardingPoint?: SortOrderInput | SortOrder
+    alightingPoint?: SortOrderInput | SortOrder
+    oneWayFare?: SortOrderInput | SortOrder
+    roundTripFare?: SortOrderInput | SortOrder
+    monthlyPassAmount?: SortOrderInput | SortOrder
+    payableAmount?: SortOrderInput | SortOrder
+    fareSystem?: SortOrderInput | SortOrder
+    coveredBySegmentId?: SortOrderInput | SortOrder
+    sortOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    commutingRequest?: CommutingRequestOrderByWithRelationInput
+  }
+
+  export type CommutingRouteSegmentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CommutingRouteSegmentWhereInput | CommutingRouteSegmentWhereInput[]
+    OR?: CommutingRouteSegmentWhereInput[]
+    NOT?: CommutingRouteSegmentWhereInput | CommutingRouteSegmentWhereInput[]
+    commutingRequestId?: StringFilter<"CommutingRouteSegment"> | string
+    operatorName?: StringFilter<"CommutingRouteSegment"> | string
+    lineName?: StringNullableFilter<"CommutingRouteSegment"> | string | null
+    boardingPoint?: StringNullableFilter<"CommutingRouteSegment"> | string | null
+    alightingPoint?: StringNullableFilter<"CommutingRouteSegment"> | string | null
+    oneWayFare?: IntNullableFilter<"CommutingRouteSegment"> | number | null
+    roundTripFare?: IntNullableFilter<"CommutingRouteSegment"> | number | null
+    monthlyPassAmount?: IntNullableFilter<"CommutingRouteSegment"> | number | null
+    payableAmount?: IntNullableFilter<"CommutingRouteSegment"> | number | null
+    fareSystem?: StringNullableFilter<"CommutingRouteSegment"> | string | null
+    coveredBySegmentId?: StringNullableFilter<"CommutingRouteSegment"> | string | null
+    sortOrder?: IntFilter<"CommutingRouteSegment"> | number
+    createdAt?: DateTimeFilter<"CommutingRouteSegment"> | Date | string
+    updatedAt?: DateTimeFilter<"CommutingRouteSegment"> | Date | string
+    commutingRequest?: XOR<CommutingRequestScalarRelationFilter, CommutingRequestWhereInput>
+  }, "id">
+
+  export type CommutingRouteSegmentOrderByWithAggregationInput = {
+    id?: SortOrder
+    commutingRequestId?: SortOrder
+    operatorName?: SortOrder
+    lineName?: SortOrderInput | SortOrder
+    boardingPoint?: SortOrderInput | SortOrder
+    alightingPoint?: SortOrderInput | SortOrder
+    oneWayFare?: SortOrderInput | SortOrder
+    roundTripFare?: SortOrderInput | SortOrder
+    monthlyPassAmount?: SortOrderInput | SortOrder
+    payableAmount?: SortOrderInput | SortOrder
+    fareSystem?: SortOrderInput | SortOrder
+    coveredBySegmentId?: SortOrderInput | SortOrder
+    sortOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: CommutingRouteSegmentCountOrderByAggregateInput
+    _avg?: CommutingRouteSegmentAvgOrderByAggregateInput
+    _max?: CommutingRouteSegmentMaxOrderByAggregateInput
+    _min?: CommutingRouteSegmentMinOrderByAggregateInput
+    _sum?: CommutingRouteSegmentSumOrderByAggregateInput
+  }
+
+  export type CommutingRouteSegmentScalarWhereWithAggregatesInput = {
+    AND?: CommutingRouteSegmentScalarWhereWithAggregatesInput | CommutingRouteSegmentScalarWhereWithAggregatesInput[]
+    OR?: CommutingRouteSegmentScalarWhereWithAggregatesInput[]
+    NOT?: CommutingRouteSegmentScalarWhereWithAggregatesInput | CommutingRouteSegmentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CommutingRouteSegment"> | string
+    commutingRequestId?: StringWithAggregatesFilter<"CommutingRouteSegment"> | string
+    operatorName?: StringWithAggregatesFilter<"CommutingRouteSegment"> | string
+    lineName?: StringNullableWithAggregatesFilter<"CommutingRouteSegment"> | string | null
+    boardingPoint?: StringNullableWithAggregatesFilter<"CommutingRouteSegment"> | string | null
+    alightingPoint?: StringNullableWithAggregatesFilter<"CommutingRouteSegment"> | string | null
+    oneWayFare?: IntNullableWithAggregatesFilter<"CommutingRouteSegment"> | number | null
+    roundTripFare?: IntNullableWithAggregatesFilter<"CommutingRouteSegment"> | number | null
+    monthlyPassAmount?: IntNullableWithAggregatesFilter<"CommutingRouteSegment"> | number | null
+    payableAmount?: IntNullableWithAggregatesFilter<"CommutingRouteSegment"> | number | null
+    fareSystem?: StringNullableWithAggregatesFilter<"CommutingRouteSegment"> | string | null
+    coveredBySegmentId?: StringNullableWithAggregatesFilter<"CommutingRouteSegment"> | string | null
+    sortOrder?: IntWithAggregatesFilter<"CommutingRouteSegment"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"CommutingRouteSegment"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"CommutingRouteSegment"> | Date | string
+  }
+
+  export type CommutingRequestAttachmentWhereInput = {
+    AND?: CommutingRequestAttachmentWhereInput | CommutingRequestAttachmentWhereInput[]
+    OR?: CommutingRequestAttachmentWhereInput[]
+    NOT?: CommutingRequestAttachmentWhereInput | CommutingRequestAttachmentWhereInput[]
+    id?: StringFilter<"CommutingRequestAttachment"> | string
+    commutingRequestId?: StringFilter<"CommutingRequestAttachment"> | string
+    attachmentType?: EnumCommutingAttachmentTypeFilter<"CommutingRequestAttachment"> | $Enums.CommutingAttachmentType
+    fileName?: StringFilter<"CommutingRequestAttachment"> | string
+    filePath?: StringFilter<"CommutingRequestAttachment"> | string
+    fileType?: StringNullableFilter<"CommutingRequestAttachment"> | string | null
+    fileSize?: IntNullableFilter<"CommutingRequestAttachment"> | number | null
+    createdAt?: DateTimeFilter<"CommutingRequestAttachment"> | Date | string
+    commutingRequest?: XOR<CommutingRequestScalarRelationFilter, CommutingRequestWhereInput>
+  }
+
+  export type CommutingRequestAttachmentOrderByWithRelationInput = {
+    id?: SortOrder
+    commutingRequestId?: SortOrder
+    attachmentType?: SortOrder
+    fileName?: SortOrder
+    filePath?: SortOrder
+    fileType?: SortOrderInput | SortOrder
+    fileSize?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    commutingRequest?: CommutingRequestOrderByWithRelationInput
+  }
+
+  export type CommutingRequestAttachmentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: CommutingRequestAttachmentWhereInput | CommutingRequestAttachmentWhereInput[]
+    OR?: CommutingRequestAttachmentWhereInput[]
+    NOT?: CommutingRequestAttachmentWhereInput | CommutingRequestAttachmentWhereInput[]
+    commutingRequestId?: StringFilter<"CommutingRequestAttachment"> | string
+    attachmentType?: EnumCommutingAttachmentTypeFilter<"CommutingRequestAttachment"> | $Enums.CommutingAttachmentType
+    fileName?: StringFilter<"CommutingRequestAttachment"> | string
+    filePath?: StringFilter<"CommutingRequestAttachment"> | string
+    fileType?: StringNullableFilter<"CommutingRequestAttachment"> | string | null
+    fileSize?: IntNullableFilter<"CommutingRequestAttachment"> | number | null
+    createdAt?: DateTimeFilter<"CommutingRequestAttachment"> | Date | string
+    commutingRequest?: XOR<CommutingRequestScalarRelationFilter, CommutingRequestWhereInput>
+  }, "id">
+
+  export type CommutingRequestAttachmentOrderByWithAggregationInput = {
+    id?: SortOrder
+    commutingRequestId?: SortOrder
+    attachmentType?: SortOrder
+    fileName?: SortOrder
+    filePath?: SortOrder
+    fileType?: SortOrderInput | SortOrder
+    fileSize?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: CommutingRequestAttachmentCountOrderByAggregateInput
+    _avg?: CommutingRequestAttachmentAvgOrderByAggregateInput
+    _max?: CommutingRequestAttachmentMaxOrderByAggregateInput
+    _min?: CommutingRequestAttachmentMinOrderByAggregateInput
+    _sum?: CommutingRequestAttachmentSumOrderByAggregateInput
+  }
+
+  export type CommutingRequestAttachmentScalarWhereWithAggregatesInput = {
+    AND?: CommutingRequestAttachmentScalarWhereWithAggregatesInput | CommutingRequestAttachmentScalarWhereWithAggregatesInput[]
+    OR?: CommutingRequestAttachmentScalarWhereWithAggregatesInput[]
+    NOT?: CommutingRequestAttachmentScalarWhereWithAggregatesInput | CommutingRequestAttachmentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"CommutingRequestAttachment"> | string
+    commutingRequestId?: StringWithAggregatesFilter<"CommutingRequestAttachment"> | string
+    attachmentType?: EnumCommutingAttachmentTypeWithAggregatesFilter<"CommutingRequestAttachment"> | $Enums.CommutingAttachmentType
+    fileName?: StringWithAggregatesFilter<"CommutingRequestAttachment"> | string
+    filePath?: StringWithAggregatesFilter<"CommutingRequestAttachment"> | string
+    fileType?: StringNullableWithAggregatesFilter<"CommutingRequestAttachment"> | string | null
+    fileSize?: IntNullableWithAggregatesFilter<"CommutingRequestAttachment"> | number | null
+    createdAt?: DateTimeWithAggregatesFilter<"CommutingRequestAttachment"> | Date | string
   }
 
   export type ProfileChangeRequestWhereInput = {
@@ -72971,6 +80793,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
@@ -72990,6 +80813,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateInput = {
@@ -73026,6 +80850,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
@@ -73045,6 +80870,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUpdateInput = {
@@ -73081,6 +80907,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
@@ -73100,6 +80927,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateInput = {
@@ -73136,6 +80964,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -73155,6 +80984,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateManyInput = {
@@ -75180,6 +83010,685 @@ export namespace Prisma {
   export type DependentRequestAttachmentUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     dependentRequestId?: StringFieldUpdateOperationsInput | string
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResidenceRequestCreateInput = {
+    id?: string
+    residenceType: $Enums.ResidenceType
+    notificationType: $Enums.ResidenceNotificationType
+    changeDate: Date | string
+    postalCode: string
+    address: string
+    phoneNumber?: string | null
+    note?: string | null
+    landlordName?: string | null
+    landlordAddress?: string | null
+    contractHolderName?: string | null
+    contractHolderRelationship?: string | null
+    monthlyRent?: number | null
+    commonServiceFee?: number | null
+    housingName?: string | null
+    roomNumber?: string | null
+    ownershipType?: $Enums.ResidenceOwnershipType | null
+    ownerName1?: string | null
+    ownerName2?: string | null
+    acquisitionDate?: Date | string | null
+    status?: $Enums.RequestStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
+    reviewComment?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutResidenceRequestsInput
+    attachments?: ResidenceRequestAttachmentCreateNestedManyWithoutResidenceRequestInput
+  }
+
+  export type ResidenceRequestUncheckedCreateInput = {
+    id?: string
+    employeeId: string
+    residenceType: $Enums.ResidenceType
+    notificationType: $Enums.ResidenceNotificationType
+    changeDate: Date | string
+    postalCode: string
+    address: string
+    phoneNumber?: string | null
+    note?: string | null
+    landlordName?: string | null
+    landlordAddress?: string | null
+    contractHolderName?: string | null
+    contractHolderRelationship?: string | null
+    monthlyRent?: number | null
+    commonServiceFee?: number | null
+    housingName?: string | null
+    roomNumber?: string | null
+    ownershipType?: $Enums.ResidenceOwnershipType | null
+    ownerName1?: string | null
+    ownerName2?: string | null
+    acquisitionDate?: Date | string | null
+    status?: $Enums.RequestStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
+    reviewComment?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    attachments?: ResidenceRequestAttachmentUncheckedCreateNestedManyWithoutResidenceRequestInput
+  }
+
+  export type ResidenceRequestUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    residenceType?: EnumResidenceTypeFieldUpdateOperationsInput | $Enums.ResidenceType
+    notificationType?: EnumResidenceNotificationTypeFieldUpdateOperationsInput | $Enums.ResidenceNotificationType
+    changeDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    postalCode?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    landlordName?: NullableStringFieldUpdateOperationsInput | string | null
+    landlordAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    contractHolderName?: NullableStringFieldUpdateOperationsInput | string | null
+    contractHolderRelationship?: NullableStringFieldUpdateOperationsInput | string | null
+    monthlyRent?: NullableIntFieldUpdateOperationsInput | number | null
+    commonServiceFee?: NullableIntFieldUpdateOperationsInput | number | null
+    housingName?: NullableStringFieldUpdateOperationsInput | string | null
+    roomNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    ownershipType?: NullableEnumResidenceOwnershipTypeFieldUpdateOperationsInput | $Enums.ResidenceOwnershipType | null
+    ownerName1?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerName2?: NullableStringFieldUpdateOperationsInput | string | null
+    acquisitionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutResidenceRequestsNestedInput
+    attachments?: ResidenceRequestAttachmentUpdateManyWithoutResidenceRequestNestedInput
+  }
+
+  export type ResidenceRequestUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    residenceType?: EnumResidenceTypeFieldUpdateOperationsInput | $Enums.ResidenceType
+    notificationType?: EnumResidenceNotificationTypeFieldUpdateOperationsInput | $Enums.ResidenceNotificationType
+    changeDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    postalCode?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    landlordName?: NullableStringFieldUpdateOperationsInput | string | null
+    landlordAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    contractHolderName?: NullableStringFieldUpdateOperationsInput | string | null
+    contractHolderRelationship?: NullableStringFieldUpdateOperationsInput | string | null
+    monthlyRent?: NullableIntFieldUpdateOperationsInput | number | null
+    commonServiceFee?: NullableIntFieldUpdateOperationsInput | number | null
+    housingName?: NullableStringFieldUpdateOperationsInput | string | null
+    roomNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    ownershipType?: NullableEnumResidenceOwnershipTypeFieldUpdateOperationsInput | $Enums.ResidenceOwnershipType | null
+    ownerName1?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerName2?: NullableStringFieldUpdateOperationsInput | string | null
+    acquisitionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attachments?: ResidenceRequestAttachmentUncheckedUpdateManyWithoutResidenceRequestNestedInput
+  }
+
+  export type ResidenceRequestCreateManyInput = {
+    id?: string
+    employeeId: string
+    residenceType: $Enums.ResidenceType
+    notificationType: $Enums.ResidenceNotificationType
+    changeDate: Date | string
+    postalCode: string
+    address: string
+    phoneNumber?: string | null
+    note?: string | null
+    landlordName?: string | null
+    landlordAddress?: string | null
+    contractHolderName?: string | null
+    contractHolderRelationship?: string | null
+    monthlyRent?: number | null
+    commonServiceFee?: number | null
+    housingName?: string | null
+    roomNumber?: string | null
+    ownershipType?: $Enums.ResidenceOwnershipType | null
+    ownerName1?: string | null
+    ownerName2?: string | null
+    acquisitionDate?: Date | string | null
+    status?: $Enums.RequestStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
+    reviewComment?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ResidenceRequestUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    residenceType?: EnumResidenceTypeFieldUpdateOperationsInput | $Enums.ResidenceType
+    notificationType?: EnumResidenceNotificationTypeFieldUpdateOperationsInput | $Enums.ResidenceNotificationType
+    changeDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    postalCode?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    landlordName?: NullableStringFieldUpdateOperationsInput | string | null
+    landlordAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    contractHolderName?: NullableStringFieldUpdateOperationsInput | string | null
+    contractHolderRelationship?: NullableStringFieldUpdateOperationsInput | string | null
+    monthlyRent?: NullableIntFieldUpdateOperationsInput | number | null
+    commonServiceFee?: NullableIntFieldUpdateOperationsInput | number | null
+    housingName?: NullableStringFieldUpdateOperationsInput | string | null
+    roomNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    ownershipType?: NullableEnumResidenceOwnershipTypeFieldUpdateOperationsInput | $Enums.ResidenceOwnershipType | null
+    ownerName1?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerName2?: NullableStringFieldUpdateOperationsInput | string | null
+    acquisitionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResidenceRequestUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    residenceType?: EnumResidenceTypeFieldUpdateOperationsInput | $Enums.ResidenceType
+    notificationType?: EnumResidenceNotificationTypeFieldUpdateOperationsInput | $Enums.ResidenceNotificationType
+    changeDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    postalCode?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    landlordName?: NullableStringFieldUpdateOperationsInput | string | null
+    landlordAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    contractHolderName?: NullableStringFieldUpdateOperationsInput | string | null
+    contractHolderRelationship?: NullableStringFieldUpdateOperationsInput | string | null
+    monthlyRent?: NullableIntFieldUpdateOperationsInput | number | null
+    commonServiceFee?: NullableIntFieldUpdateOperationsInput | number | null
+    housingName?: NullableStringFieldUpdateOperationsInput | string | null
+    roomNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    ownershipType?: NullableEnumResidenceOwnershipTypeFieldUpdateOperationsInput | $Enums.ResidenceOwnershipType | null
+    ownerName1?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerName2?: NullableStringFieldUpdateOperationsInput | string | null
+    acquisitionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResidenceRequestAttachmentCreateInput = {
+    id?: string
+    attachmentType: $Enums.ResidenceAttachmentType
+    fileName: string
+    filePath: string
+    fileType?: string | null
+    fileSize?: number | null
+    createdAt?: Date | string
+    residenceRequest: ResidenceRequestCreateNestedOneWithoutAttachmentsInput
+  }
+
+  export type ResidenceRequestAttachmentUncheckedCreateInput = {
+    id?: string
+    residenceRequestId: string
+    attachmentType: $Enums.ResidenceAttachmentType
+    fileName: string
+    filePath: string
+    fileType?: string | null
+    fileSize?: number | null
+    createdAt?: Date | string
+  }
+
+  export type ResidenceRequestAttachmentUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    attachmentType?: EnumResidenceAttachmentTypeFieldUpdateOperationsInput | $Enums.ResidenceAttachmentType
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    residenceRequest?: ResidenceRequestUpdateOneRequiredWithoutAttachmentsNestedInput
+  }
+
+  export type ResidenceRequestAttachmentUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    residenceRequestId?: StringFieldUpdateOperationsInput | string
+    attachmentType?: EnumResidenceAttachmentTypeFieldUpdateOperationsInput | $Enums.ResidenceAttachmentType
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResidenceRequestAttachmentCreateManyInput = {
+    id?: string
+    residenceRequestId: string
+    attachmentType: $Enums.ResidenceAttachmentType
+    fileName: string
+    filePath: string
+    fileType?: string | null
+    fileSize?: number | null
+    createdAt?: Date | string
+  }
+
+  export type ResidenceRequestAttachmentUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    attachmentType?: EnumResidenceAttachmentTypeFieldUpdateOperationsInput | $Enums.ResidenceAttachmentType
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResidenceRequestAttachmentUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    residenceRequestId?: StringFieldUpdateOperationsInput | string
+    attachmentType?: EnumResidenceAttachmentTypeFieldUpdateOperationsInput | $Enums.ResidenceAttachmentType
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommutingRequestCreateInput = {
+    id?: string
+    notificationType: $Enums.CommutingNotificationType
+    commutingType: $Enums.CommutingType
+    effectiveDate: Date | string
+    routeFrom?: string | null
+    routeTo?: string | null
+    routeDetails?: string | null
+    transportationName?: string | null
+    monthlyAmount?: number | null
+    oneWayDistanceKm?: number | null
+    oneWayFare?: number | null
+    vehicleRegistrationNumber?: string | null
+    vehicleName?: string | null
+    vehicleColor?: string | null
+    approvedAmount?: number | null
+    note?: string | null
+    status?: $Enums.RequestStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
+    reviewComment?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutCommutingRequestsInput
+    attachments?: CommutingRequestAttachmentCreateNestedManyWithoutCommutingRequestInput
+    routeSegments?: CommutingRouteSegmentCreateNestedManyWithoutCommutingRequestInput
+  }
+
+  export type CommutingRequestUncheckedCreateInput = {
+    id?: string
+    employeeId: string
+    notificationType: $Enums.CommutingNotificationType
+    commutingType: $Enums.CommutingType
+    effectiveDate: Date | string
+    routeFrom?: string | null
+    routeTo?: string | null
+    routeDetails?: string | null
+    transportationName?: string | null
+    monthlyAmount?: number | null
+    oneWayDistanceKm?: number | null
+    oneWayFare?: number | null
+    vehicleRegistrationNumber?: string | null
+    vehicleName?: string | null
+    vehicleColor?: string | null
+    approvedAmount?: number | null
+    note?: string | null
+    status?: $Enums.RequestStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
+    reviewComment?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    attachments?: CommutingRequestAttachmentUncheckedCreateNestedManyWithoutCommutingRequestInput
+    routeSegments?: CommutingRouteSegmentUncheckedCreateNestedManyWithoutCommutingRequestInput
+  }
+
+  export type CommutingRequestUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    notificationType?: EnumCommutingNotificationTypeFieldUpdateOperationsInput | $Enums.CommutingNotificationType
+    commutingType?: EnumCommutingTypeFieldUpdateOperationsInput | $Enums.CommutingType
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    routeFrom?: NullableStringFieldUpdateOperationsInput | string | null
+    routeTo?: NullableStringFieldUpdateOperationsInput | string | null
+    routeDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    transportationName?: NullableStringFieldUpdateOperationsInput | string | null
+    monthlyAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    oneWayDistanceKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    oneWayFare?: NullableIntFieldUpdateOperationsInput | number | null
+    vehicleRegistrationNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleName?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleColor?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutCommutingRequestsNestedInput
+    attachments?: CommutingRequestAttachmentUpdateManyWithoutCommutingRequestNestedInput
+    routeSegments?: CommutingRouteSegmentUpdateManyWithoutCommutingRequestNestedInput
+  }
+
+  export type CommutingRequestUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    notificationType?: EnumCommutingNotificationTypeFieldUpdateOperationsInput | $Enums.CommutingNotificationType
+    commutingType?: EnumCommutingTypeFieldUpdateOperationsInput | $Enums.CommutingType
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    routeFrom?: NullableStringFieldUpdateOperationsInput | string | null
+    routeTo?: NullableStringFieldUpdateOperationsInput | string | null
+    routeDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    transportationName?: NullableStringFieldUpdateOperationsInput | string | null
+    monthlyAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    oneWayDistanceKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    oneWayFare?: NullableIntFieldUpdateOperationsInput | number | null
+    vehicleRegistrationNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleName?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleColor?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attachments?: CommutingRequestAttachmentUncheckedUpdateManyWithoutCommutingRequestNestedInput
+    routeSegments?: CommutingRouteSegmentUncheckedUpdateManyWithoutCommutingRequestNestedInput
+  }
+
+  export type CommutingRequestCreateManyInput = {
+    id?: string
+    employeeId: string
+    notificationType: $Enums.CommutingNotificationType
+    commutingType: $Enums.CommutingType
+    effectiveDate: Date | string
+    routeFrom?: string | null
+    routeTo?: string | null
+    routeDetails?: string | null
+    transportationName?: string | null
+    monthlyAmount?: number | null
+    oneWayDistanceKm?: number | null
+    oneWayFare?: number | null
+    vehicleRegistrationNumber?: string | null
+    vehicleName?: string | null
+    vehicleColor?: string | null
+    approvedAmount?: number | null
+    note?: string | null
+    status?: $Enums.RequestStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
+    reviewComment?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CommutingRequestUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    notificationType?: EnumCommutingNotificationTypeFieldUpdateOperationsInput | $Enums.CommutingNotificationType
+    commutingType?: EnumCommutingTypeFieldUpdateOperationsInput | $Enums.CommutingType
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    routeFrom?: NullableStringFieldUpdateOperationsInput | string | null
+    routeTo?: NullableStringFieldUpdateOperationsInput | string | null
+    routeDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    transportationName?: NullableStringFieldUpdateOperationsInput | string | null
+    monthlyAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    oneWayDistanceKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    oneWayFare?: NullableIntFieldUpdateOperationsInput | number | null
+    vehicleRegistrationNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleName?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleColor?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommutingRequestUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    notificationType?: EnumCommutingNotificationTypeFieldUpdateOperationsInput | $Enums.CommutingNotificationType
+    commutingType?: EnumCommutingTypeFieldUpdateOperationsInput | $Enums.CommutingType
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    routeFrom?: NullableStringFieldUpdateOperationsInput | string | null
+    routeTo?: NullableStringFieldUpdateOperationsInput | string | null
+    routeDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    transportationName?: NullableStringFieldUpdateOperationsInput | string | null
+    monthlyAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    oneWayDistanceKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    oneWayFare?: NullableIntFieldUpdateOperationsInput | number | null
+    vehicleRegistrationNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleName?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleColor?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommutingRouteSegmentCreateInput = {
+    id?: string
+    operatorName: string
+    lineName?: string | null
+    boardingPoint?: string | null
+    alightingPoint?: string | null
+    oneWayFare?: number | null
+    roundTripFare?: number | null
+    monthlyPassAmount?: number | null
+    payableAmount?: number | null
+    fareSystem?: string | null
+    coveredBySegmentId?: string | null
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    commutingRequest: CommutingRequestCreateNestedOneWithoutRouteSegmentsInput
+  }
+
+  export type CommutingRouteSegmentUncheckedCreateInput = {
+    id?: string
+    commutingRequestId: string
+    operatorName: string
+    lineName?: string | null
+    boardingPoint?: string | null
+    alightingPoint?: string | null
+    oneWayFare?: number | null
+    roundTripFare?: number | null
+    monthlyPassAmount?: number | null
+    payableAmount?: number | null
+    fareSystem?: string | null
+    coveredBySegmentId?: string | null
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CommutingRouteSegmentUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    operatorName?: StringFieldUpdateOperationsInput | string
+    lineName?: NullableStringFieldUpdateOperationsInput | string | null
+    boardingPoint?: NullableStringFieldUpdateOperationsInput | string | null
+    alightingPoint?: NullableStringFieldUpdateOperationsInput | string | null
+    oneWayFare?: NullableIntFieldUpdateOperationsInput | number | null
+    roundTripFare?: NullableIntFieldUpdateOperationsInput | number | null
+    monthlyPassAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    payableAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    fareSystem?: NullableStringFieldUpdateOperationsInput | string | null
+    coveredBySegmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    commutingRequest?: CommutingRequestUpdateOneRequiredWithoutRouteSegmentsNestedInput
+  }
+
+  export type CommutingRouteSegmentUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    commutingRequestId?: StringFieldUpdateOperationsInput | string
+    operatorName?: StringFieldUpdateOperationsInput | string
+    lineName?: NullableStringFieldUpdateOperationsInput | string | null
+    boardingPoint?: NullableStringFieldUpdateOperationsInput | string | null
+    alightingPoint?: NullableStringFieldUpdateOperationsInput | string | null
+    oneWayFare?: NullableIntFieldUpdateOperationsInput | number | null
+    roundTripFare?: NullableIntFieldUpdateOperationsInput | number | null
+    monthlyPassAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    payableAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    fareSystem?: NullableStringFieldUpdateOperationsInput | string | null
+    coveredBySegmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommutingRouteSegmentCreateManyInput = {
+    id?: string
+    commutingRequestId: string
+    operatorName: string
+    lineName?: string | null
+    boardingPoint?: string | null
+    alightingPoint?: string | null
+    oneWayFare?: number | null
+    roundTripFare?: number | null
+    monthlyPassAmount?: number | null
+    payableAmount?: number | null
+    fareSystem?: string | null
+    coveredBySegmentId?: string | null
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CommutingRouteSegmentUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    operatorName?: StringFieldUpdateOperationsInput | string
+    lineName?: NullableStringFieldUpdateOperationsInput | string | null
+    boardingPoint?: NullableStringFieldUpdateOperationsInput | string | null
+    alightingPoint?: NullableStringFieldUpdateOperationsInput | string | null
+    oneWayFare?: NullableIntFieldUpdateOperationsInput | number | null
+    roundTripFare?: NullableIntFieldUpdateOperationsInput | number | null
+    monthlyPassAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    payableAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    fareSystem?: NullableStringFieldUpdateOperationsInput | string | null
+    coveredBySegmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommutingRouteSegmentUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    commutingRequestId?: StringFieldUpdateOperationsInput | string
+    operatorName?: StringFieldUpdateOperationsInput | string
+    lineName?: NullableStringFieldUpdateOperationsInput | string | null
+    boardingPoint?: NullableStringFieldUpdateOperationsInput | string | null
+    alightingPoint?: NullableStringFieldUpdateOperationsInput | string | null
+    oneWayFare?: NullableIntFieldUpdateOperationsInput | number | null
+    roundTripFare?: NullableIntFieldUpdateOperationsInput | number | null
+    monthlyPassAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    payableAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    fareSystem?: NullableStringFieldUpdateOperationsInput | string | null
+    coveredBySegmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommutingRequestAttachmentCreateInput = {
+    id?: string
+    attachmentType: $Enums.CommutingAttachmentType
+    fileName: string
+    filePath: string
+    fileType?: string | null
+    fileSize?: number | null
+    createdAt?: Date | string
+    commutingRequest: CommutingRequestCreateNestedOneWithoutAttachmentsInput
+  }
+
+  export type CommutingRequestAttachmentUncheckedCreateInput = {
+    id?: string
+    commutingRequestId: string
+    attachmentType: $Enums.CommutingAttachmentType
+    fileName: string
+    filePath: string
+    fileType?: string | null
+    fileSize?: number | null
+    createdAt?: Date | string
+  }
+
+  export type CommutingRequestAttachmentUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    attachmentType?: EnumCommutingAttachmentTypeFieldUpdateOperationsInput | $Enums.CommutingAttachmentType
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    commutingRequest?: CommutingRequestUpdateOneRequiredWithoutAttachmentsNestedInput
+  }
+
+  export type CommutingRequestAttachmentUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    commutingRequestId?: StringFieldUpdateOperationsInput | string
+    attachmentType?: EnumCommutingAttachmentTypeFieldUpdateOperationsInput | $Enums.CommutingAttachmentType
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommutingRequestAttachmentCreateManyInput = {
+    id?: string
+    commutingRequestId: string
+    attachmentType: $Enums.CommutingAttachmentType
+    fileName: string
+    filePath: string
+    fileType?: string | null
+    fileSize?: number | null
+    createdAt?: Date | string
+  }
+
+  export type CommutingRequestAttachmentUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    attachmentType?: EnumCommutingAttachmentTypeFieldUpdateOperationsInput | $Enums.CommutingAttachmentType
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommutingRequestAttachmentUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    commutingRequestId?: StringFieldUpdateOperationsInput | string
+    attachmentType?: EnumCommutingAttachmentTypeFieldUpdateOperationsInput | $Enums.CommutingAttachmentType
     fileName?: StringFieldUpdateOperationsInput | string
     filePath?: StringFieldUpdateOperationsInput | string
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
@@ -78245,6 +86754,12 @@ export namespace Prisma {
     isNot?: EmployeeMyNumberWhereInput | null
   }
 
+  export type CommutingRequestListRelationFilter = {
+    every?: CommutingRequestWhereInput
+    some?: CommutingRequestWhereInput
+    none?: CommutingRequestWhereInput
+  }
+
   export type EmployeeSalaryNullableScalarRelationFilter = {
     is?: EmployeeSalaryWhereInput | null
     isNot?: EmployeeSalaryWhereInput | null
@@ -78348,7 +86863,17 @@ export namespace Prisma {
     none?: PersonalDocumentWhereInput
   }
 
+  export type ResidenceRequestListRelationFilter = {
+    every?: ResidenceRequestWhereInput
+    some?: ResidenceRequestWhereInput
+    none?: ResidenceRequestWhereInput
+  }
+
   export type EmployeeCertificationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CommutingRequestOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -78401,6 +86926,10 @@ export namespace Prisma {
   }
 
   export type PersonalDocumentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ResidenceRequestOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -79910,6 +88439,509 @@ export namespace Prisma {
 
   export type DependentRequestAttachmentSumOrderByAggregateInput = {
     fileSize?: SortOrder
+  }
+
+  export type EnumResidenceTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.ResidenceType | EnumResidenceTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ResidenceType[] | ListEnumResidenceTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ResidenceType[] | ListEnumResidenceTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumResidenceTypeFilter<$PrismaModel> | $Enums.ResidenceType
+  }
+
+  export type EnumResidenceNotificationTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.ResidenceNotificationType | EnumResidenceNotificationTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ResidenceNotificationType[] | ListEnumResidenceNotificationTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ResidenceNotificationType[] | ListEnumResidenceNotificationTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumResidenceNotificationTypeFilter<$PrismaModel> | $Enums.ResidenceNotificationType
+  }
+
+  export type EnumResidenceOwnershipTypeNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.ResidenceOwnershipType | EnumResidenceOwnershipTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ResidenceOwnershipType[] | ListEnumResidenceOwnershipTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.ResidenceOwnershipType[] | ListEnumResidenceOwnershipTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumResidenceOwnershipTypeNullableFilter<$PrismaModel> | $Enums.ResidenceOwnershipType | null
+  }
+
+  export type ResidenceRequestAttachmentListRelationFilter = {
+    every?: ResidenceRequestAttachmentWhereInput
+    some?: ResidenceRequestAttachmentWhereInput
+    none?: ResidenceRequestAttachmentWhereInput
+  }
+
+  export type ResidenceRequestAttachmentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ResidenceRequestCountOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    residenceType?: SortOrder
+    notificationType?: SortOrder
+    changeDate?: SortOrder
+    postalCode?: SortOrder
+    address?: SortOrder
+    phoneNumber?: SortOrder
+    note?: SortOrder
+    landlordName?: SortOrder
+    landlordAddress?: SortOrder
+    contractHolderName?: SortOrder
+    contractHolderRelationship?: SortOrder
+    monthlyRent?: SortOrder
+    commonServiceFee?: SortOrder
+    housingName?: SortOrder
+    roomNumber?: SortOrder
+    ownershipType?: SortOrder
+    ownerName1?: SortOrder
+    ownerName2?: SortOrder
+    acquisitionDate?: SortOrder
+    status?: SortOrder
+    reviewedAt?: SortOrder
+    reviewedBy?: SortOrder
+    reviewComment?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ResidenceRequestAvgOrderByAggregateInput = {
+    monthlyRent?: SortOrder
+    commonServiceFee?: SortOrder
+  }
+
+  export type ResidenceRequestMaxOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    residenceType?: SortOrder
+    notificationType?: SortOrder
+    changeDate?: SortOrder
+    postalCode?: SortOrder
+    address?: SortOrder
+    phoneNumber?: SortOrder
+    note?: SortOrder
+    landlordName?: SortOrder
+    landlordAddress?: SortOrder
+    contractHolderName?: SortOrder
+    contractHolderRelationship?: SortOrder
+    monthlyRent?: SortOrder
+    commonServiceFee?: SortOrder
+    housingName?: SortOrder
+    roomNumber?: SortOrder
+    ownershipType?: SortOrder
+    ownerName1?: SortOrder
+    ownerName2?: SortOrder
+    acquisitionDate?: SortOrder
+    status?: SortOrder
+    reviewedAt?: SortOrder
+    reviewedBy?: SortOrder
+    reviewComment?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ResidenceRequestMinOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    residenceType?: SortOrder
+    notificationType?: SortOrder
+    changeDate?: SortOrder
+    postalCode?: SortOrder
+    address?: SortOrder
+    phoneNumber?: SortOrder
+    note?: SortOrder
+    landlordName?: SortOrder
+    landlordAddress?: SortOrder
+    contractHolderName?: SortOrder
+    contractHolderRelationship?: SortOrder
+    monthlyRent?: SortOrder
+    commonServiceFee?: SortOrder
+    housingName?: SortOrder
+    roomNumber?: SortOrder
+    ownershipType?: SortOrder
+    ownerName1?: SortOrder
+    ownerName2?: SortOrder
+    acquisitionDate?: SortOrder
+    status?: SortOrder
+    reviewedAt?: SortOrder
+    reviewedBy?: SortOrder
+    reviewComment?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ResidenceRequestSumOrderByAggregateInput = {
+    monthlyRent?: SortOrder
+    commonServiceFee?: SortOrder
+  }
+
+  export type EnumResidenceTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ResidenceType | EnumResidenceTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ResidenceType[] | ListEnumResidenceTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ResidenceType[] | ListEnumResidenceTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumResidenceTypeWithAggregatesFilter<$PrismaModel> | $Enums.ResidenceType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumResidenceTypeFilter<$PrismaModel>
+    _max?: NestedEnumResidenceTypeFilter<$PrismaModel>
+  }
+
+  export type EnumResidenceNotificationTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ResidenceNotificationType | EnumResidenceNotificationTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ResidenceNotificationType[] | ListEnumResidenceNotificationTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ResidenceNotificationType[] | ListEnumResidenceNotificationTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumResidenceNotificationTypeWithAggregatesFilter<$PrismaModel> | $Enums.ResidenceNotificationType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumResidenceNotificationTypeFilter<$PrismaModel>
+    _max?: NestedEnumResidenceNotificationTypeFilter<$PrismaModel>
+  }
+
+  export type EnumResidenceOwnershipTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ResidenceOwnershipType | EnumResidenceOwnershipTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ResidenceOwnershipType[] | ListEnumResidenceOwnershipTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.ResidenceOwnershipType[] | ListEnumResidenceOwnershipTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumResidenceOwnershipTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.ResidenceOwnershipType | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumResidenceOwnershipTypeNullableFilter<$PrismaModel>
+    _max?: NestedEnumResidenceOwnershipTypeNullableFilter<$PrismaModel>
+  }
+
+  export type EnumResidenceAttachmentTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.ResidenceAttachmentType | EnumResidenceAttachmentTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ResidenceAttachmentType[] | ListEnumResidenceAttachmentTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ResidenceAttachmentType[] | ListEnumResidenceAttachmentTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumResidenceAttachmentTypeFilter<$PrismaModel> | $Enums.ResidenceAttachmentType
+  }
+
+  export type ResidenceRequestScalarRelationFilter = {
+    is?: ResidenceRequestWhereInput
+    isNot?: ResidenceRequestWhereInput
+  }
+
+  export type ResidenceRequestAttachmentCountOrderByAggregateInput = {
+    id?: SortOrder
+    residenceRequestId?: SortOrder
+    attachmentType?: SortOrder
+    fileName?: SortOrder
+    filePath?: SortOrder
+    fileType?: SortOrder
+    fileSize?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ResidenceRequestAttachmentAvgOrderByAggregateInput = {
+    fileSize?: SortOrder
+  }
+
+  export type ResidenceRequestAttachmentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    residenceRequestId?: SortOrder
+    attachmentType?: SortOrder
+    fileName?: SortOrder
+    filePath?: SortOrder
+    fileType?: SortOrder
+    fileSize?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ResidenceRequestAttachmentMinOrderByAggregateInput = {
+    id?: SortOrder
+    residenceRequestId?: SortOrder
+    attachmentType?: SortOrder
+    fileName?: SortOrder
+    filePath?: SortOrder
+    fileType?: SortOrder
+    fileSize?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ResidenceRequestAttachmentSumOrderByAggregateInput = {
+    fileSize?: SortOrder
+  }
+
+  export type EnumResidenceAttachmentTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ResidenceAttachmentType | EnumResidenceAttachmentTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ResidenceAttachmentType[] | ListEnumResidenceAttachmentTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ResidenceAttachmentType[] | ListEnumResidenceAttachmentTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumResidenceAttachmentTypeWithAggregatesFilter<$PrismaModel> | $Enums.ResidenceAttachmentType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumResidenceAttachmentTypeFilter<$PrismaModel>
+    _max?: NestedEnumResidenceAttachmentTypeFilter<$PrismaModel>
+  }
+
+  export type EnumCommutingNotificationTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.CommutingNotificationType | EnumCommutingNotificationTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.CommutingNotificationType[] | ListEnumCommutingNotificationTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CommutingNotificationType[] | ListEnumCommutingNotificationTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCommutingNotificationTypeFilter<$PrismaModel> | $Enums.CommutingNotificationType
+  }
+
+  export type EnumCommutingTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.CommutingType | EnumCommutingTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.CommutingType[] | ListEnumCommutingTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CommutingType[] | ListEnumCommutingTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCommutingTypeFilter<$PrismaModel> | $Enums.CommutingType
+  }
+
+  export type CommutingRequestAttachmentListRelationFilter = {
+    every?: CommutingRequestAttachmentWhereInput
+    some?: CommutingRequestAttachmentWhereInput
+    none?: CommutingRequestAttachmentWhereInput
+  }
+
+  export type CommutingRouteSegmentListRelationFilter = {
+    every?: CommutingRouteSegmentWhereInput
+    some?: CommutingRouteSegmentWhereInput
+    none?: CommutingRouteSegmentWhereInput
+  }
+
+  export type CommutingRequestAttachmentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CommutingRouteSegmentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CommutingRequestCountOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    notificationType?: SortOrder
+    commutingType?: SortOrder
+    effectiveDate?: SortOrder
+    routeFrom?: SortOrder
+    routeTo?: SortOrder
+    routeDetails?: SortOrder
+    transportationName?: SortOrder
+    monthlyAmount?: SortOrder
+    oneWayDistanceKm?: SortOrder
+    oneWayFare?: SortOrder
+    vehicleRegistrationNumber?: SortOrder
+    vehicleName?: SortOrder
+    vehicleColor?: SortOrder
+    approvedAmount?: SortOrder
+    note?: SortOrder
+    status?: SortOrder
+    reviewedAt?: SortOrder
+    reviewedBy?: SortOrder
+    reviewComment?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CommutingRequestAvgOrderByAggregateInput = {
+    monthlyAmount?: SortOrder
+    oneWayDistanceKm?: SortOrder
+    oneWayFare?: SortOrder
+    approvedAmount?: SortOrder
+  }
+
+  export type CommutingRequestMaxOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    notificationType?: SortOrder
+    commutingType?: SortOrder
+    effectiveDate?: SortOrder
+    routeFrom?: SortOrder
+    routeTo?: SortOrder
+    routeDetails?: SortOrder
+    transportationName?: SortOrder
+    monthlyAmount?: SortOrder
+    oneWayDistanceKm?: SortOrder
+    oneWayFare?: SortOrder
+    vehicleRegistrationNumber?: SortOrder
+    vehicleName?: SortOrder
+    vehicleColor?: SortOrder
+    approvedAmount?: SortOrder
+    note?: SortOrder
+    status?: SortOrder
+    reviewedAt?: SortOrder
+    reviewedBy?: SortOrder
+    reviewComment?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CommutingRequestMinOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    notificationType?: SortOrder
+    commutingType?: SortOrder
+    effectiveDate?: SortOrder
+    routeFrom?: SortOrder
+    routeTo?: SortOrder
+    routeDetails?: SortOrder
+    transportationName?: SortOrder
+    monthlyAmount?: SortOrder
+    oneWayDistanceKm?: SortOrder
+    oneWayFare?: SortOrder
+    vehicleRegistrationNumber?: SortOrder
+    vehicleName?: SortOrder
+    vehicleColor?: SortOrder
+    approvedAmount?: SortOrder
+    note?: SortOrder
+    status?: SortOrder
+    reviewedAt?: SortOrder
+    reviewedBy?: SortOrder
+    reviewComment?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CommutingRequestSumOrderByAggregateInput = {
+    monthlyAmount?: SortOrder
+    oneWayDistanceKm?: SortOrder
+    oneWayFare?: SortOrder
+    approvedAmount?: SortOrder
+  }
+
+  export type EnumCommutingNotificationTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CommutingNotificationType | EnumCommutingNotificationTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.CommutingNotificationType[] | ListEnumCommutingNotificationTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CommutingNotificationType[] | ListEnumCommutingNotificationTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCommutingNotificationTypeWithAggregatesFilter<$PrismaModel> | $Enums.CommutingNotificationType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCommutingNotificationTypeFilter<$PrismaModel>
+    _max?: NestedEnumCommutingNotificationTypeFilter<$PrismaModel>
+  }
+
+  export type EnumCommutingTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CommutingType | EnumCommutingTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.CommutingType[] | ListEnumCommutingTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CommutingType[] | ListEnumCommutingTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCommutingTypeWithAggregatesFilter<$PrismaModel> | $Enums.CommutingType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCommutingTypeFilter<$PrismaModel>
+    _max?: NestedEnumCommutingTypeFilter<$PrismaModel>
+  }
+
+  export type CommutingRequestScalarRelationFilter = {
+    is?: CommutingRequestWhereInput
+    isNot?: CommutingRequestWhereInput
+  }
+
+  export type CommutingRouteSegmentCountOrderByAggregateInput = {
+    id?: SortOrder
+    commutingRequestId?: SortOrder
+    operatorName?: SortOrder
+    lineName?: SortOrder
+    boardingPoint?: SortOrder
+    alightingPoint?: SortOrder
+    oneWayFare?: SortOrder
+    roundTripFare?: SortOrder
+    monthlyPassAmount?: SortOrder
+    payableAmount?: SortOrder
+    fareSystem?: SortOrder
+    coveredBySegmentId?: SortOrder
+    sortOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CommutingRouteSegmentAvgOrderByAggregateInput = {
+    oneWayFare?: SortOrder
+    roundTripFare?: SortOrder
+    monthlyPassAmount?: SortOrder
+    payableAmount?: SortOrder
+    sortOrder?: SortOrder
+  }
+
+  export type CommutingRouteSegmentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    commutingRequestId?: SortOrder
+    operatorName?: SortOrder
+    lineName?: SortOrder
+    boardingPoint?: SortOrder
+    alightingPoint?: SortOrder
+    oneWayFare?: SortOrder
+    roundTripFare?: SortOrder
+    monthlyPassAmount?: SortOrder
+    payableAmount?: SortOrder
+    fareSystem?: SortOrder
+    coveredBySegmentId?: SortOrder
+    sortOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CommutingRouteSegmentMinOrderByAggregateInput = {
+    id?: SortOrder
+    commutingRequestId?: SortOrder
+    operatorName?: SortOrder
+    lineName?: SortOrder
+    boardingPoint?: SortOrder
+    alightingPoint?: SortOrder
+    oneWayFare?: SortOrder
+    roundTripFare?: SortOrder
+    monthlyPassAmount?: SortOrder
+    payableAmount?: SortOrder
+    fareSystem?: SortOrder
+    coveredBySegmentId?: SortOrder
+    sortOrder?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CommutingRouteSegmentSumOrderByAggregateInput = {
+    oneWayFare?: SortOrder
+    roundTripFare?: SortOrder
+    monthlyPassAmount?: SortOrder
+    payableAmount?: SortOrder
+    sortOrder?: SortOrder
+  }
+
+  export type EnumCommutingAttachmentTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.CommutingAttachmentType | EnumCommutingAttachmentTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.CommutingAttachmentType[] | ListEnumCommutingAttachmentTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CommutingAttachmentType[] | ListEnumCommutingAttachmentTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCommutingAttachmentTypeFilter<$PrismaModel> | $Enums.CommutingAttachmentType
+  }
+
+  export type CommutingRequestAttachmentCountOrderByAggregateInput = {
+    id?: SortOrder
+    commutingRequestId?: SortOrder
+    attachmentType?: SortOrder
+    fileName?: SortOrder
+    filePath?: SortOrder
+    fileType?: SortOrder
+    fileSize?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CommutingRequestAttachmentAvgOrderByAggregateInput = {
+    fileSize?: SortOrder
+  }
+
+  export type CommutingRequestAttachmentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    commutingRequestId?: SortOrder
+    attachmentType?: SortOrder
+    fileName?: SortOrder
+    filePath?: SortOrder
+    fileType?: SortOrder
+    fileSize?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CommutingRequestAttachmentMinOrderByAggregateInput = {
+    id?: SortOrder
+    commutingRequestId?: SortOrder
+    attachmentType?: SortOrder
+    fileName?: SortOrder
+    filePath?: SortOrder
+    fileType?: SortOrder
+    fileSize?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CommutingRequestAttachmentSumOrderByAggregateInput = {
+    fileSize?: SortOrder
+  }
+
+  export type EnumCommutingAttachmentTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CommutingAttachmentType | EnumCommutingAttachmentTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.CommutingAttachmentType[] | ListEnumCommutingAttachmentTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CommutingAttachmentType[] | ListEnumCommutingAttachmentTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCommutingAttachmentTypeWithAggregatesFilter<$PrismaModel> | $Enums.CommutingAttachmentType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCommutingAttachmentTypeFilter<$PrismaModel>
+    _max?: NestedEnumCommutingAttachmentTypeFilter<$PrismaModel>
   }
 
   export type EnumProfileChangeStatusFilter<$PrismaModel = never> = {
@@ -81832,6 +90864,13 @@ export namespace Prisma {
     connect?: EmployeeRequestWhereUniqueInput | EmployeeRequestWhereUniqueInput[]
   }
 
+  export type CommutingRequestCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<CommutingRequestCreateWithoutEmployeeInput, CommutingRequestUncheckedCreateWithoutEmployeeInput> | CommutingRequestCreateWithoutEmployeeInput[] | CommutingRequestUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: CommutingRequestCreateOrConnectWithoutEmployeeInput | CommutingRequestCreateOrConnectWithoutEmployeeInput[]
+    createMany?: CommutingRequestCreateManyEmployeeInputEnvelope
+    connect?: CommutingRequestWhereUniqueInput | CommutingRequestWhereUniqueInput[]
+  }
+
   export type EmployeeSalaryCreateNestedOneWithoutEmployeeInput = {
     create?: XOR<EmployeeSalaryCreateWithoutEmployeeInput, EmployeeSalaryUncheckedCreateWithoutEmployeeInput>
     connectOrCreate?: EmployeeSalaryCreateOrConnectWithoutEmployeeInput
@@ -81960,6 +90999,13 @@ export namespace Prisma {
     connect?: PersonalDocumentWhereUniqueInput | PersonalDocumentWhereUniqueInput[]
   }
 
+  export type ResidenceRequestCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<ResidenceRequestCreateWithoutEmployeeInput, ResidenceRequestUncheckedCreateWithoutEmployeeInput> | ResidenceRequestCreateWithoutEmployeeInput[] | ResidenceRequestUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: ResidenceRequestCreateOrConnectWithoutEmployeeInput | ResidenceRequestCreateOrConnectWithoutEmployeeInput[]
+    createMany?: ResidenceRequestCreateManyEmployeeInputEnvelope
+    connect?: ResidenceRequestWhereUniqueInput | ResidenceRequestWhereUniqueInput[]
+  }
+
   export type EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput = {
     create?: XOR<EmployeeCertificationCreateWithoutEmployeeInput, EmployeeCertificationUncheckedCreateWithoutEmployeeInput> | EmployeeCertificationCreateWithoutEmployeeInput[] | EmployeeCertificationUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutEmployeeInput | EmployeeCertificationCreateOrConnectWithoutEmployeeInput[]
@@ -81978,6 +91024,13 @@ export namespace Prisma {
     connectOrCreate?: EmployeeRequestCreateOrConnectWithoutEmployeeInput | EmployeeRequestCreateOrConnectWithoutEmployeeInput[]
     createMany?: EmployeeRequestCreateManyEmployeeInputEnvelope
     connect?: EmployeeRequestWhereUniqueInput | EmployeeRequestWhereUniqueInput[]
+  }
+
+  export type CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<CommutingRequestCreateWithoutEmployeeInput, CommutingRequestUncheckedCreateWithoutEmployeeInput> | CommutingRequestCreateWithoutEmployeeInput[] | CommutingRequestUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: CommutingRequestCreateOrConnectWithoutEmployeeInput | CommutingRequestCreateOrConnectWithoutEmployeeInput[]
+    createMany?: CommutingRequestCreateManyEmployeeInputEnvelope
+    connect?: CommutingRequestWhereUniqueInput | CommutingRequestWhereUniqueInput[]
   }
 
   export type EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput = {
@@ -82108,6 +91161,13 @@ export namespace Prisma {
     connect?: PersonalDocumentWhereUniqueInput | PersonalDocumentWhereUniqueInput[]
   }
 
+  export type ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<ResidenceRequestCreateWithoutEmployeeInput, ResidenceRequestUncheckedCreateWithoutEmployeeInput> | ResidenceRequestCreateWithoutEmployeeInput[] | ResidenceRequestUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: ResidenceRequestCreateOrConnectWithoutEmployeeInput | ResidenceRequestCreateOrConnectWithoutEmployeeInput[]
+    createMany?: ResidenceRequestCreateManyEmployeeInputEnvelope
+    connect?: ResidenceRequestWhereUniqueInput | ResidenceRequestWhereUniqueInput[]
+  }
+
   export type NullableEnumGenderFieldUpdateOperationsInput = {
     set?: $Enums.Gender | null
   }
@@ -82202,6 +91262,20 @@ export namespace Prisma {
     update?: EmployeeRequestUpdateWithWhereUniqueWithoutEmployeeInput | EmployeeRequestUpdateWithWhereUniqueWithoutEmployeeInput[]
     updateMany?: EmployeeRequestUpdateManyWithWhereWithoutEmployeeInput | EmployeeRequestUpdateManyWithWhereWithoutEmployeeInput[]
     deleteMany?: EmployeeRequestScalarWhereInput | EmployeeRequestScalarWhereInput[]
+  }
+
+  export type CommutingRequestUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<CommutingRequestCreateWithoutEmployeeInput, CommutingRequestUncheckedCreateWithoutEmployeeInput> | CommutingRequestCreateWithoutEmployeeInput[] | CommutingRequestUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: CommutingRequestCreateOrConnectWithoutEmployeeInput | CommutingRequestCreateOrConnectWithoutEmployeeInput[]
+    upsert?: CommutingRequestUpsertWithWhereUniqueWithoutEmployeeInput | CommutingRequestUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: CommutingRequestCreateManyEmployeeInputEnvelope
+    set?: CommutingRequestWhereUniqueInput | CommutingRequestWhereUniqueInput[]
+    disconnect?: CommutingRequestWhereUniqueInput | CommutingRequestWhereUniqueInput[]
+    delete?: CommutingRequestWhereUniqueInput | CommutingRequestWhereUniqueInput[]
+    connect?: CommutingRequestWhereUniqueInput | CommutingRequestWhereUniqueInput[]
+    update?: CommutingRequestUpdateWithWhereUniqueWithoutEmployeeInput | CommutingRequestUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: CommutingRequestUpdateManyWithWhereWithoutEmployeeInput | CommutingRequestUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: CommutingRequestScalarWhereInput | CommutingRequestScalarWhereInput[]
   }
 
   export type EmployeeSalaryUpdateOneWithoutEmployeeNestedInput = {
@@ -82450,6 +91524,20 @@ export namespace Prisma {
     deleteMany?: PersonalDocumentScalarWhereInput | PersonalDocumentScalarWhereInput[]
   }
 
+  export type ResidenceRequestUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<ResidenceRequestCreateWithoutEmployeeInput, ResidenceRequestUncheckedCreateWithoutEmployeeInput> | ResidenceRequestCreateWithoutEmployeeInput[] | ResidenceRequestUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: ResidenceRequestCreateOrConnectWithoutEmployeeInput | ResidenceRequestCreateOrConnectWithoutEmployeeInput[]
+    upsert?: ResidenceRequestUpsertWithWhereUniqueWithoutEmployeeInput | ResidenceRequestUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: ResidenceRequestCreateManyEmployeeInputEnvelope
+    set?: ResidenceRequestWhereUniqueInput | ResidenceRequestWhereUniqueInput[]
+    disconnect?: ResidenceRequestWhereUniqueInput | ResidenceRequestWhereUniqueInput[]
+    delete?: ResidenceRequestWhereUniqueInput | ResidenceRequestWhereUniqueInput[]
+    connect?: ResidenceRequestWhereUniqueInput | ResidenceRequestWhereUniqueInput[]
+    update?: ResidenceRequestUpdateWithWhereUniqueWithoutEmployeeInput | ResidenceRequestUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: ResidenceRequestUpdateManyWithWhereWithoutEmployeeInput | ResidenceRequestUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: ResidenceRequestScalarWhereInput | ResidenceRequestScalarWhereInput[]
+  }
+
   export type EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput = {
     create?: XOR<EmployeeCertificationCreateWithoutEmployeeInput, EmployeeCertificationUncheckedCreateWithoutEmployeeInput> | EmployeeCertificationCreateWithoutEmployeeInput[] | EmployeeCertificationUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutEmployeeInput | EmployeeCertificationCreateOrConnectWithoutEmployeeInput[]
@@ -82486,6 +91574,20 @@ export namespace Prisma {
     update?: EmployeeRequestUpdateWithWhereUniqueWithoutEmployeeInput | EmployeeRequestUpdateWithWhereUniqueWithoutEmployeeInput[]
     updateMany?: EmployeeRequestUpdateManyWithWhereWithoutEmployeeInput | EmployeeRequestUpdateManyWithWhereWithoutEmployeeInput[]
     deleteMany?: EmployeeRequestScalarWhereInput | EmployeeRequestScalarWhereInput[]
+  }
+
+  export type CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<CommutingRequestCreateWithoutEmployeeInput, CommutingRequestUncheckedCreateWithoutEmployeeInput> | CommutingRequestCreateWithoutEmployeeInput[] | CommutingRequestUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: CommutingRequestCreateOrConnectWithoutEmployeeInput | CommutingRequestCreateOrConnectWithoutEmployeeInput[]
+    upsert?: CommutingRequestUpsertWithWhereUniqueWithoutEmployeeInput | CommutingRequestUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: CommutingRequestCreateManyEmployeeInputEnvelope
+    set?: CommutingRequestWhereUniqueInput | CommutingRequestWhereUniqueInput[]
+    disconnect?: CommutingRequestWhereUniqueInput | CommutingRequestWhereUniqueInput[]
+    delete?: CommutingRequestWhereUniqueInput | CommutingRequestWhereUniqueInput[]
+    connect?: CommutingRequestWhereUniqueInput | CommutingRequestWhereUniqueInput[]
+    update?: CommutingRequestUpdateWithWhereUniqueWithoutEmployeeInput | CommutingRequestUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: CommutingRequestUpdateManyWithWhereWithoutEmployeeInput | CommutingRequestUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: CommutingRequestScalarWhereInput | CommutingRequestScalarWhereInput[]
   }
 
   export type EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput = {
@@ -82732,6 +91834,20 @@ export namespace Prisma {
     update?: PersonalDocumentUpdateWithWhereUniqueWithoutEmployeeInput | PersonalDocumentUpdateWithWhereUniqueWithoutEmployeeInput[]
     updateMany?: PersonalDocumentUpdateManyWithWhereWithoutEmployeeInput | PersonalDocumentUpdateManyWithWhereWithoutEmployeeInput[]
     deleteMany?: PersonalDocumentScalarWhereInput | PersonalDocumentScalarWhereInput[]
+  }
+
+  export type ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<ResidenceRequestCreateWithoutEmployeeInput, ResidenceRequestUncheckedCreateWithoutEmployeeInput> | ResidenceRequestCreateWithoutEmployeeInput[] | ResidenceRequestUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: ResidenceRequestCreateOrConnectWithoutEmployeeInput | ResidenceRequestCreateOrConnectWithoutEmployeeInput[]
+    upsert?: ResidenceRequestUpsertWithWhereUniqueWithoutEmployeeInput | ResidenceRequestUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: ResidenceRequestCreateManyEmployeeInputEnvelope
+    set?: ResidenceRequestWhereUniqueInput | ResidenceRequestWhereUniqueInput[]
+    disconnect?: ResidenceRequestWhereUniqueInput | ResidenceRequestWhereUniqueInput[]
+    delete?: ResidenceRequestWhereUniqueInput | ResidenceRequestWhereUniqueInput[]
+    connect?: ResidenceRequestWhereUniqueInput | ResidenceRequestWhereUniqueInput[]
+    update?: ResidenceRequestUpdateWithWhereUniqueWithoutEmployeeInput | ResidenceRequestUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: ResidenceRequestUpdateManyWithWhereWithoutEmployeeInput | ResidenceRequestUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: ResidenceRequestScalarWhereInput | ResidenceRequestScalarWhereInput[]
   }
 
   export type EmployeeCreateNestedOneWithoutTransferHistoriesInput = {
@@ -83664,6 +92780,230 @@ export namespace Prisma {
     update?: XOR<XOR<DependentRequestUpdateToOneWithWhereWithoutAttachmentsInput, DependentRequestUpdateWithoutAttachmentsInput>, DependentRequestUncheckedUpdateWithoutAttachmentsInput>
   }
 
+  export type EmployeeCreateNestedOneWithoutResidenceRequestsInput = {
+    create?: XOR<EmployeeCreateWithoutResidenceRequestsInput, EmployeeUncheckedCreateWithoutResidenceRequestsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutResidenceRequestsInput
+    connect?: EmployeeWhereUniqueInput
+  }
+
+  export type ResidenceRequestAttachmentCreateNestedManyWithoutResidenceRequestInput = {
+    create?: XOR<ResidenceRequestAttachmentCreateWithoutResidenceRequestInput, ResidenceRequestAttachmentUncheckedCreateWithoutResidenceRequestInput> | ResidenceRequestAttachmentCreateWithoutResidenceRequestInput[] | ResidenceRequestAttachmentUncheckedCreateWithoutResidenceRequestInput[]
+    connectOrCreate?: ResidenceRequestAttachmentCreateOrConnectWithoutResidenceRequestInput | ResidenceRequestAttachmentCreateOrConnectWithoutResidenceRequestInput[]
+    createMany?: ResidenceRequestAttachmentCreateManyResidenceRequestInputEnvelope
+    connect?: ResidenceRequestAttachmentWhereUniqueInput | ResidenceRequestAttachmentWhereUniqueInput[]
+  }
+
+  export type ResidenceRequestAttachmentUncheckedCreateNestedManyWithoutResidenceRequestInput = {
+    create?: XOR<ResidenceRequestAttachmentCreateWithoutResidenceRequestInput, ResidenceRequestAttachmentUncheckedCreateWithoutResidenceRequestInput> | ResidenceRequestAttachmentCreateWithoutResidenceRequestInput[] | ResidenceRequestAttachmentUncheckedCreateWithoutResidenceRequestInput[]
+    connectOrCreate?: ResidenceRequestAttachmentCreateOrConnectWithoutResidenceRequestInput | ResidenceRequestAttachmentCreateOrConnectWithoutResidenceRequestInput[]
+    createMany?: ResidenceRequestAttachmentCreateManyResidenceRequestInputEnvelope
+    connect?: ResidenceRequestAttachmentWhereUniqueInput | ResidenceRequestAttachmentWhereUniqueInput[]
+  }
+
+  export type EnumResidenceTypeFieldUpdateOperationsInput = {
+    set?: $Enums.ResidenceType
+  }
+
+  export type EnumResidenceNotificationTypeFieldUpdateOperationsInput = {
+    set?: $Enums.ResidenceNotificationType
+  }
+
+  export type NullableEnumResidenceOwnershipTypeFieldUpdateOperationsInput = {
+    set?: $Enums.ResidenceOwnershipType | null
+  }
+
+  export type EmployeeUpdateOneRequiredWithoutResidenceRequestsNestedInput = {
+    create?: XOR<EmployeeCreateWithoutResidenceRequestsInput, EmployeeUncheckedCreateWithoutResidenceRequestsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutResidenceRequestsInput
+    upsert?: EmployeeUpsertWithoutResidenceRequestsInput
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutResidenceRequestsInput, EmployeeUpdateWithoutResidenceRequestsInput>, EmployeeUncheckedUpdateWithoutResidenceRequestsInput>
+  }
+
+  export type ResidenceRequestAttachmentUpdateManyWithoutResidenceRequestNestedInput = {
+    create?: XOR<ResidenceRequestAttachmentCreateWithoutResidenceRequestInput, ResidenceRequestAttachmentUncheckedCreateWithoutResidenceRequestInput> | ResidenceRequestAttachmentCreateWithoutResidenceRequestInput[] | ResidenceRequestAttachmentUncheckedCreateWithoutResidenceRequestInput[]
+    connectOrCreate?: ResidenceRequestAttachmentCreateOrConnectWithoutResidenceRequestInput | ResidenceRequestAttachmentCreateOrConnectWithoutResidenceRequestInput[]
+    upsert?: ResidenceRequestAttachmentUpsertWithWhereUniqueWithoutResidenceRequestInput | ResidenceRequestAttachmentUpsertWithWhereUniqueWithoutResidenceRequestInput[]
+    createMany?: ResidenceRequestAttachmentCreateManyResidenceRequestInputEnvelope
+    set?: ResidenceRequestAttachmentWhereUniqueInput | ResidenceRequestAttachmentWhereUniqueInput[]
+    disconnect?: ResidenceRequestAttachmentWhereUniqueInput | ResidenceRequestAttachmentWhereUniqueInput[]
+    delete?: ResidenceRequestAttachmentWhereUniqueInput | ResidenceRequestAttachmentWhereUniqueInput[]
+    connect?: ResidenceRequestAttachmentWhereUniqueInput | ResidenceRequestAttachmentWhereUniqueInput[]
+    update?: ResidenceRequestAttachmentUpdateWithWhereUniqueWithoutResidenceRequestInput | ResidenceRequestAttachmentUpdateWithWhereUniqueWithoutResidenceRequestInput[]
+    updateMany?: ResidenceRequestAttachmentUpdateManyWithWhereWithoutResidenceRequestInput | ResidenceRequestAttachmentUpdateManyWithWhereWithoutResidenceRequestInput[]
+    deleteMany?: ResidenceRequestAttachmentScalarWhereInput | ResidenceRequestAttachmentScalarWhereInput[]
+  }
+
+  export type ResidenceRequestAttachmentUncheckedUpdateManyWithoutResidenceRequestNestedInput = {
+    create?: XOR<ResidenceRequestAttachmentCreateWithoutResidenceRequestInput, ResidenceRequestAttachmentUncheckedCreateWithoutResidenceRequestInput> | ResidenceRequestAttachmentCreateWithoutResidenceRequestInput[] | ResidenceRequestAttachmentUncheckedCreateWithoutResidenceRequestInput[]
+    connectOrCreate?: ResidenceRequestAttachmentCreateOrConnectWithoutResidenceRequestInput | ResidenceRequestAttachmentCreateOrConnectWithoutResidenceRequestInput[]
+    upsert?: ResidenceRequestAttachmentUpsertWithWhereUniqueWithoutResidenceRequestInput | ResidenceRequestAttachmentUpsertWithWhereUniqueWithoutResidenceRequestInput[]
+    createMany?: ResidenceRequestAttachmentCreateManyResidenceRequestInputEnvelope
+    set?: ResidenceRequestAttachmentWhereUniqueInput | ResidenceRequestAttachmentWhereUniqueInput[]
+    disconnect?: ResidenceRequestAttachmentWhereUniqueInput | ResidenceRequestAttachmentWhereUniqueInput[]
+    delete?: ResidenceRequestAttachmentWhereUniqueInput | ResidenceRequestAttachmentWhereUniqueInput[]
+    connect?: ResidenceRequestAttachmentWhereUniqueInput | ResidenceRequestAttachmentWhereUniqueInput[]
+    update?: ResidenceRequestAttachmentUpdateWithWhereUniqueWithoutResidenceRequestInput | ResidenceRequestAttachmentUpdateWithWhereUniqueWithoutResidenceRequestInput[]
+    updateMany?: ResidenceRequestAttachmentUpdateManyWithWhereWithoutResidenceRequestInput | ResidenceRequestAttachmentUpdateManyWithWhereWithoutResidenceRequestInput[]
+    deleteMany?: ResidenceRequestAttachmentScalarWhereInput | ResidenceRequestAttachmentScalarWhereInput[]
+  }
+
+  export type ResidenceRequestCreateNestedOneWithoutAttachmentsInput = {
+    create?: XOR<ResidenceRequestCreateWithoutAttachmentsInput, ResidenceRequestUncheckedCreateWithoutAttachmentsInput>
+    connectOrCreate?: ResidenceRequestCreateOrConnectWithoutAttachmentsInput
+    connect?: ResidenceRequestWhereUniqueInput
+  }
+
+  export type EnumResidenceAttachmentTypeFieldUpdateOperationsInput = {
+    set?: $Enums.ResidenceAttachmentType
+  }
+
+  export type ResidenceRequestUpdateOneRequiredWithoutAttachmentsNestedInput = {
+    create?: XOR<ResidenceRequestCreateWithoutAttachmentsInput, ResidenceRequestUncheckedCreateWithoutAttachmentsInput>
+    connectOrCreate?: ResidenceRequestCreateOrConnectWithoutAttachmentsInput
+    upsert?: ResidenceRequestUpsertWithoutAttachmentsInput
+    connect?: ResidenceRequestWhereUniqueInput
+    update?: XOR<XOR<ResidenceRequestUpdateToOneWithWhereWithoutAttachmentsInput, ResidenceRequestUpdateWithoutAttachmentsInput>, ResidenceRequestUncheckedUpdateWithoutAttachmentsInput>
+  }
+
+  export type EmployeeCreateNestedOneWithoutCommutingRequestsInput = {
+    create?: XOR<EmployeeCreateWithoutCommutingRequestsInput, EmployeeUncheckedCreateWithoutCommutingRequestsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutCommutingRequestsInput
+    connect?: EmployeeWhereUniqueInput
+  }
+
+  export type CommutingRequestAttachmentCreateNestedManyWithoutCommutingRequestInput = {
+    create?: XOR<CommutingRequestAttachmentCreateWithoutCommutingRequestInput, CommutingRequestAttachmentUncheckedCreateWithoutCommutingRequestInput> | CommutingRequestAttachmentCreateWithoutCommutingRequestInput[] | CommutingRequestAttachmentUncheckedCreateWithoutCommutingRequestInput[]
+    connectOrCreate?: CommutingRequestAttachmentCreateOrConnectWithoutCommutingRequestInput | CommutingRequestAttachmentCreateOrConnectWithoutCommutingRequestInput[]
+    createMany?: CommutingRequestAttachmentCreateManyCommutingRequestInputEnvelope
+    connect?: CommutingRequestAttachmentWhereUniqueInput | CommutingRequestAttachmentWhereUniqueInput[]
+  }
+
+  export type CommutingRouteSegmentCreateNestedManyWithoutCommutingRequestInput = {
+    create?: XOR<CommutingRouteSegmentCreateWithoutCommutingRequestInput, CommutingRouteSegmentUncheckedCreateWithoutCommutingRequestInput> | CommutingRouteSegmentCreateWithoutCommutingRequestInput[] | CommutingRouteSegmentUncheckedCreateWithoutCommutingRequestInput[]
+    connectOrCreate?: CommutingRouteSegmentCreateOrConnectWithoutCommutingRequestInput | CommutingRouteSegmentCreateOrConnectWithoutCommutingRequestInput[]
+    createMany?: CommutingRouteSegmentCreateManyCommutingRequestInputEnvelope
+    connect?: CommutingRouteSegmentWhereUniqueInput | CommutingRouteSegmentWhereUniqueInput[]
+  }
+
+  export type CommutingRequestAttachmentUncheckedCreateNestedManyWithoutCommutingRequestInput = {
+    create?: XOR<CommutingRequestAttachmentCreateWithoutCommutingRequestInput, CommutingRequestAttachmentUncheckedCreateWithoutCommutingRequestInput> | CommutingRequestAttachmentCreateWithoutCommutingRequestInput[] | CommutingRequestAttachmentUncheckedCreateWithoutCommutingRequestInput[]
+    connectOrCreate?: CommutingRequestAttachmentCreateOrConnectWithoutCommutingRequestInput | CommutingRequestAttachmentCreateOrConnectWithoutCommutingRequestInput[]
+    createMany?: CommutingRequestAttachmentCreateManyCommutingRequestInputEnvelope
+    connect?: CommutingRequestAttachmentWhereUniqueInput | CommutingRequestAttachmentWhereUniqueInput[]
+  }
+
+  export type CommutingRouteSegmentUncheckedCreateNestedManyWithoutCommutingRequestInput = {
+    create?: XOR<CommutingRouteSegmentCreateWithoutCommutingRequestInput, CommutingRouteSegmentUncheckedCreateWithoutCommutingRequestInput> | CommutingRouteSegmentCreateWithoutCommutingRequestInput[] | CommutingRouteSegmentUncheckedCreateWithoutCommutingRequestInput[]
+    connectOrCreate?: CommutingRouteSegmentCreateOrConnectWithoutCommutingRequestInput | CommutingRouteSegmentCreateOrConnectWithoutCommutingRequestInput[]
+    createMany?: CommutingRouteSegmentCreateManyCommutingRequestInputEnvelope
+    connect?: CommutingRouteSegmentWhereUniqueInput | CommutingRouteSegmentWhereUniqueInput[]
+  }
+
+  export type EnumCommutingNotificationTypeFieldUpdateOperationsInput = {
+    set?: $Enums.CommutingNotificationType
+  }
+
+  export type EnumCommutingTypeFieldUpdateOperationsInput = {
+    set?: $Enums.CommutingType
+  }
+
+  export type EmployeeUpdateOneRequiredWithoutCommutingRequestsNestedInput = {
+    create?: XOR<EmployeeCreateWithoutCommutingRequestsInput, EmployeeUncheckedCreateWithoutCommutingRequestsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutCommutingRequestsInput
+    upsert?: EmployeeUpsertWithoutCommutingRequestsInput
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutCommutingRequestsInput, EmployeeUpdateWithoutCommutingRequestsInput>, EmployeeUncheckedUpdateWithoutCommutingRequestsInput>
+  }
+
+  export type CommutingRequestAttachmentUpdateManyWithoutCommutingRequestNestedInput = {
+    create?: XOR<CommutingRequestAttachmentCreateWithoutCommutingRequestInput, CommutingRequestAttachmentUncheckedCreateWithoutCommutingRequestInput> | CommutingRequestAttachmentCreateWithoutCommutingRequestInput[] | CommutingRequestAttachmentUncheckedCreateWithoutCommutingRequestInput[]
+    connectOrCreate?: CommutingRequestAttachmentCreateOrConnectWithoutCommutingRequestInput | CommutingRequestAttachmentCreateOrConnectWithoutCommutingRequestInput[]
+    upsert?: CommutingRequestAttachmentUpsertWithWhereUniqueWithoutCommutingRequestInput | CommutingRequestAttachmentUpsertWithWhereUniqueWithoutCommutingRequestInput[]
+    createMany?: CommutingRequestAttachmentCreateManyCommutingRequestInputEnvelope
+    set?: CommutingRequestAttachmentWhereUniqueInput | CommutingRequestAttachmentWhereUniqueInput[]
+    disconnect?: CommutingRequestAttachmentWhereUniqueInput | CommutingRequestAttachmentWhereUniqueInput[]
+    delete?: CommutingRequestAttachmentWhereUniqueInput | CommutingRequestAttachmentWhereUniqueInput[]
+    connect?: CommutingRequestAttachmentWhereUniqueInput | CommutingRequestAttachmentWhereUniqueInput[]
+    update?: CommutingRequestAttachmentUpdateWithWhereUniqueWithoutCommutingRequestInput | CommutingRequestAttachmentUpdateWithWhereUniqueWithoutCommutingRequestInput[]
+    updateMany?: CommutingRequestAttachmentUpdateManyWithWhereWithoutCommutingRequestInput | CommutingRequestAttachmentUpdateManyWithWhereWithoutCommutingRequestInput[]
+    deleteMany?: CommutingRequestAttachmentScalarWhereInput | CommutingRequestAttachmentScalarWhereInput[]
+  }
+
+  export type CommutingRouteSegmentUpdateManyWithoutCommutingRequestNestedInput = {
+    create?: XOR<CommutingRouteSegmentCreateWithoutCommutingRequestInput, CommutingRouteSegmentUncheckedCreateWithoutCommutingRequestInput> | CommutingRouteSegmentCreateWithoutCommutingRequestInput[] | CommutingRouteSegmentUncheckedCreateWithoutCommutingRequestInput[]
+    connectOrCreate?: CommutingRouteSegmentCreateOrConnectWithoutCommutingRequestInput | CommutingRouteSegmentCreateOrConnectWithoutCommutingRequestInput[]
+    upsert?: CommutingRouteSegmentUpsertWithWhereUniqueWithoutCommutingRequestInput | CommutingRouteSegmentUpsertWithWhereUniqueWithoutCommutingRequestInput[]
+    createMany?: CommutingRouteSegmentCreateManyCommutingRequestInputEnvelope
+    set?: CommutingRouteSegmentWhereUniqueInput | CommutingRouteSegmentWhereUniqueInput[]
+    disconnect?: CommutingRouteSegmentWhereUniqueInput | CommutingRouteSegmentWhereUniqueInput[]
+    delete?: CommutingRouteSegmentWhereUniqueInput | CommutingRouteSegmentWhereUniqueInput[]
+    connect?: CommutingRouteSegmentWhereUniqueInput | CommutingRouteSegmentWhereUniqueInput[]
+    update?: CommutingRouteSegmentUpdateWithWhereUniqueWithoutCommutingRequestInput | CommutingRouteSegmentUpdateWithWhereUniqueWithoutCommutingRequestInput[]
+    updateMany?: CommutingRouteSegmentUpdateManyWithWhereWithoutCommutingRequestInput | CommutingRouteSegmentUpdateManyWithWhereWithoutCommutingRequestInput[]
+    deleteMany?: CommutingRouteSegmentScalarWhereInput | CommutingRouteSegmentScalarWhereInput[]
+  }
+
+  export type CommutingRequestAttachmentUncheckedUpdateManyWithoutCommutingRequestNestedInput = {
+    create?: XOR<CommutingRequestAttachmentCreateWithoutCommutingRequestInput, CommutingRequestAttachmentUncheckedCreateWithoutCommutingRequestInput> | CommutingRequestAttachmentCreateWithoutCommutingRequestInput[] | CommutingRequestAttachmentUncheckedCreateWithoutCommutingRequestInput[]
+    connectOrCreate?: CommutingRequestAttachmentCreateOrConnectWithoutCommutingRequestInput | CommutingRequestAttachmentCreateOrConnectWithoutCommutingRequestInput[]
+    upsert?: CommutingRequestAttachmentUpsertWithWhereUniqueWithoutCommutingRequestInput | CommutingRequestAttachmentUpsertWithWhereUniqueWithoutCommutingRequestInput[]
+    createMany?: CommutingRequestAttachmentCreateManyCommutingRequestInputEnvelope
+    set?: CommutingRequestAttachmentWhereUniqueInput | CommutingRequestAttachmentWhereUniqueInput[]
+    disconnect?: CommutingRequestAttachmentWhereUniqueInput | CommutingRequestAttachmentWhereUniqueInput[]
+    delete?: CommutingRequestAttachmentWhereUniqueInput | CommutingRequestAttachmentWhereUniqueInput[]
+    connect?: CommutingRequestAttachmentWhereUniqueInput | CommutingRequestAttachmentWhereUniqueInput[]
+    update?: CommutingRequestAttachmentUpdateWithWhereUniqueWithoutCommutingRequestInput | CommutingRequestAttachmentUpdateWithWhereUniqueWithoutCommutingRequestInput[]
+    updateMany?: CommutingRequestAttachmentUpdateManyWithWhereWithoutCommutingRequestInput | CommutingRequestAttachmentUpdateManyWithWhereWithoutCommutingRequestInput[]
+    deleteMany?: CommutingRequestAttachmentScalarWhereInput | CommutingRequestAttachmentScalarWhereInput[]
+  }
+
+  export type CommutingRouteSegmentUncheckedUpdateManyWithoutCommutingRequestNestedInput = {
+    create?: XOR<CommutingRouteSegmentCreateWithoutCommutingRequestInput, CommutingRouteSegmentUncheckedCreateWithoutCommutingRequestInput> | CommutingRouteSegmentCreateWithoutCommutingRequestInput[] | CommutingRouteSegmentUncheckedCreateWithoutCommutingRequestInput[]
+    connectOrCreate?: CommutingRouteSegmentCreateOrConnectWithoutCommutingRequestInput | CommutingRouteSegmentCreateOrConnectWithoutCommutingRequestInput[]
+    upsert?: CommutingRouteSegmentUpsertWithWhereUniqueWithoutCommutingRequestInput | CommutingRouteSegmentUpsertWithWhereUniqueWithoutCommutingRequestInput[]
+    createMany?: CommutingRouteSegmentCreateManyCommutingRequestInputEnvelope
+    set?: CommutingRouteSegmentWhereUniqueInput | CommutingRouteSegmentWhereUniqueInput[]
+    disconnect?: CommutingRouteSegmentWhereUniqueInput | CommutingRouteSegmentWhereUniqueInput[]
+    delete?: CommutingRouteSegmentWhereUniqueInput | CommutingRouteSegmentWhereUniqueInput[]
+    connect?: CommutingRouteSegmentWhereUniqueInput | CommutingRouteSegmentWhereUniqueInput[]
+    update?: CommutingRouteSegmentUpdateWithWhereUniqueWithoutCommutingRequestInput | CommutingRouteSegmentUpdateWithWhereUniqueWithoutCommutingRequestInput[]
+    updateMany?: CommutingRouteSegmentUpdateManyWithWhereWithoutCommutingRequestInput | CommutingRouteSegmentUpdateManyWithWhereWithoutCommutingRequestInput[]
+    deleteMany?: CommutingRouteSegmentScalarWhereInput | CommutingRouteSegmentScalarWhereInput[]
+  }
+
+  export type CommutingRequestCreateNestedOneWithoutRouteSegmentsInput = {
+    create?: XOR<CommutingRequestCreateWithoutRouteSegmentsInput, CommutingRequestUncheckedCreateWithoutRouteSegmentsInput>
+    connectOrCreate?: CommutingRequestCreateOrConnectWithoutRouteSegmentsInput
+    connect?: CommutingRequestWhereUniqueInput
+  }
+
+  export type CommutingRequestUpdateOneRequiredWithoutRouteSegmentsNestedInput = {
+    create?: XOR<CommutingRequestCreateWithoutRouteSegmentsInput, CommutingRequestUncheckedCreateWithoutRouteSegmentsInput>
+    connectOrCreate?: CommutingRequestCreateOrConnectWithoutRouteSegmentsInput
+    upsert?: CommutingRequestUpsertWithoutRouteSegmentsInput
+    connect?: CommutingRequestWhereUniqueInput
+    update?: XOR<XOR<CommutingRequestUpdateToOneWithWhereWithoutRouteSegmentsInput, CommutingRequestUpdateWithoutRouteSegmentsInput>, CommutingRequestUncheckedUpdateWithoutRouteSegmentsInput>
+  }
+
+  export type CommutingRequestCreateNestedOneWithoutAttachmentsInput = {
+    create?: XOR<CommutingRequestCreateWithoutAttachmentsInput, CommutingRequestUncheckedCreateWithoutAttachmentsInput>
+    connectOrCreate?: CommutingRequestCreateOrConnectWithoutAttachmentsInput
+    connect?: CommutingRequestWhereUniqueInput
+  }
+
+  export type EnumCommutingAttachmentTypeFieldUpdateOperationsInput = {
+    set?: $Enums.CommutingAttachmentType
+  }
+
+  export type CommutingRequestUpdateOneRequiredWithoutAttachmentsNestedInput = {
+    create?: XOR<CommutingRequestCreateWithoutAttachmentsInput, CommutingRequestUncheckedCreateWithoutAttachmentsInput>
+    connectOrCreate?: CommutingRequestCreateOrConnectWithoutAttachmentsInput
+    upsert?: CommutingRequestUpsertWithoutAttachmentsInput
+    connect?: CommutingRequestWhereUniqueInput
+    update?: XOR<XOR<CommutingRequestUpdateToOneWithWhereWithoutAttachmentsInput, CommutingRequestUpdateWithoutAttachmentsInput>, CommutingRequestUncheckedUpdateWithoutAttachmentsInput>
+  }
+
   export type EmployeeCreateNestedOneWithoutProfileChangeRequestsInput = {
     create?: XOR<EmployeeCreateWithoutProfileChangeRequestsInput, EmployeeUncheckedCreateWithoutProfileChangeRequestsInput>
     connectOrCreate?: EmployeeCreateOrConnectWithoutProfileChangeRequestsInput
@@ -84557,6 +93897,125 @@ export namespace Prisma {
     _max?: NestedEnumDependentRequestTypeFilter<$PrismaModel>
   }
 
+  export type NestedEnumResidenceTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.ResidenceType | EnumResidenceTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ResidenceType[] | ListEnumResidenceTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ResidenceType[] | ListEnumResidenceTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumResidenceTypeFilter<$PrismaModel> | $Enums.ResidenceType
+  }
+
+  export type NestedEnumResidenceNotificationTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.ResidenceNotificationType | EnumResidenceNotificationTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ResidenceNotificationType[] | ListEnumResidenceNotificationTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ResidenceNotificationType[] | ListEnumResidenceNotificationTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumResidenceNotificationTypeFilter<$PrismaModel> | $Enums.ResidenceNotificationType
+  }
+
+  export type NestedEnumResidenceOwnershipTypeNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.ResidenceOwnershipType | EnumResidenceOwnershipTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ResidenceOwnershipType[] | ListEnumResidenceOwnershipTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.ResidenceOwnershipType[] | ListEnumResidenceOwnershipTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumResidenceOwnershipTypeNullableFilter<$PrismaModel> | $Enums.ResidenceOwnershipType | null
+  }
+
+  export type NestedEnumResidenceTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ResidenceType | EnumResidenceTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ResidenceType[] | ListEnumResidenceTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ResidenceType[] | ListEnumResidenceTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumResidenceTypeWithAggregatesFilter<$PrismaModel> | $Enums.ResidenceType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumResidenceTypeFilter<$PrismaModel>
+    _max?: NestedEnumResidenceTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumResidenceNotificationTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ResidenceNotificationType | EnumResidenceNotificationTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ResidenceNotificationType[] | ListEnumResidenceNotificationTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ResidenceNotificationType[] | ListEnumResidenceNotificationTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumResidenceNotificationTypeWithAggregatesFilter<$PrismaModel> | $Enums.ResidenceNotificationType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumResidenceNotificationTypeFilter<$PrismaModel>
+    _max?: NestedEnumResidenceNotificationTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumResidenceOwnershipTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ResidenceOwnershipType | EnumResidenceOwnershipTypeFieldRefInput<$PrismaModel> | null
+    in?: $Enums.ResidenceOwnershipType[] | ListEnumResidenceOwnershipTypeFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.ResidenceOwnershipType[] | ListEnumResidenceOwnershipTypeFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumResidenceOwnershipTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.ResidenceOwnershipType | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumResidenceOwnershipTypeNullableFilter<$PrismaModel>
+    _max?: NestedEnumResidenceOwnershipTypeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumResidenceAttachmentTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.ResidenceAttachmentType | EnumResidenceAttachmentTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ResidenceAttachmentType[] | ListEnumResidenceAttachmentTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ResidenceAttachmentType[] | ListEnumResidenceAttachmentTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumResidenceAttachmentTypeFilter<$PrismaModel> | $Enums.ResidenceAttachmentType
+  }
+
+  export type NestedEnumResidenceAttachmentTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.ResidenceAttachmentType | EnumResidenceAttachmentTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.ResidenceAttachmentType[] | ListEnumResidenceAttachmentTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.ResidenceAttachmentType[] | ListEnumResidenceAttachmentTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumResidenceAttachmentTypeWithAggregatesFilter<$PrismaModel> | $Enums.ResidenceAttachmentType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumResidenceAttachmentTypeFilter<$PrismaModel>
+    _max?: NestedEnumResidenceAttachmentTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumCommutingNotificationTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.CommutingNotificationType | EnumCommutingNotificationTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.CommutingNotificationType[] | ListEnumCommutingNotificationTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CommutingNotificationType[] | ListEnumCommutingNotificationTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCommutingNotificationTypeFilter<$PrismaModel> | $Enums.CommutingNotificationType
+  }
+
+  export type NestedEnumCommutingTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.CommutingType | EnumCommutingTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.CommutingType[] | ListEnumCommutingTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CommutingType[] | ListEnumCommutingTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCommutingTypeFilter<$PrismaModel> | $Enums.CommutingType
+  }
+
+  export type NestedEnumCommutingNotificationTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CommutingNotificationType | EnumCommutingNotificationTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.CommutingNotificationType[] | ListEnumCommutingNotificationTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CommutingNotificationType[] | ListEnumCommutingNotificationTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCommutingNotificationTypeWithAggregatesFilter<$PrismaModel> | $Enums.CommutingNotificationType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCommutingNotificationTypeFilter<$PrismaModel>
+    _max?: NestedEnumCommutingNotificationTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumCommutingTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CommutingType | EnumCommutingTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.CommutingType[] | ListEnumCommutingTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CommutingType[] | ListEnumCommutingTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCommutingTypeWithAggregatesFilter<$PrismaModel> | $Enums.CommutingType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCommutingTypeFilter<$PrismaModel>
+    _max?: NestedEnumCommutingTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumCommutingAttachmentTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.CommutingAttachmentType | EnumCommutingAttachmentTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.CommutingAttachmentType[] | ListEnumCommutingAttachmentTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CommutingAttachmentType[] | ListEnumCommutingAttachmentTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCommutingAttachmentTypeFilter<$PrismaModel> | $Enums.CommutingAttachmentType
+  }
+
+  export type NestedEnumCommutingAttachmentTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CommutingAttachmentType | EnumCommutingAttachmentTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.CommutingAttachmentType[] | ListEnumCommutingAttachmentTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.CommutingAttachmentType[] | ListEnumCommutingAttachmentTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumCommutingAttachmentTypeWithAggregatesFilter<$PrismaModel> | $Enums.CommutingAttachmentType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumCommutingAttachmentTypeFilter<$PrismaModel>
+    _max?: NestedEnumCommutingAttachmentTypeFilter<$PrismaModel>
+  }
+
   export type NestedEnumProfileChangeStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.ProfileChangeStatus | EnumProfileChangeStatusFieldRefInput<$PrismaModel>
     in?: $Enums.ProfileChangeStatus[] | ListEnumProfileChangeStatusFieldRefInput<$PrismaModel>
@@ -84624,6 +94083,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
@@ -84643,6 +94103,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutUserInput = {
@@ -84678,6 +94139,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
@@ -84697,6 +94159,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutUserInput = {
@@ -84812,6 +94275,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
@@ -84831,6 +94295,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutUserInput = {
@@ -84866,6 +94331,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -84885,6 +94351,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeRequestUpsertWithWhereUniqueWithoutUserInput = {
@@ -85027,6 +94494,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
@@ -85046,6 +94514,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutFacilityInput = {
@@ -85081,6 +94550,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
@@ -85100,6 +94570,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutFacilityInput = {
@@ -85370,6 +94841,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
@@ -85389,6 +94861,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDepartmentInput = {
@@ -85424,6 +94897,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
@@ -85443,6 +94917,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDepartmentInput = {
@@ -85812,6 +95287,70 @@ export namespace Prisma {
 
   export type EmployeeRequestCreateManyEmployeeInputEnvelope = {
     data: EmployeeRequestCreateManyEmployeeInput | EmployeeRequestCreateManyEmployeeInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CommutingRequestCreateWithoutEmployeeInput = {
+    id?: string
+    notificationType: $Enums.CommutingNotificationType
+    commutingType: $Enums.CommutingType
+    effectiveDate: Date | string
+    routeFrom?: string | null
+    routeTo?: string | null
+    routeDetails?: string | null
+    transportationName?: string | null
+    monthlyAmount?: number | null
+    oneWayDistanceKm?: number | null
+    oneWayFare?: number | null
+    vehicleRegistrationNumber?: string | null
+    vehicleName?: string | null
+    vehicleColor?: string | null
+    approvedAmount?: number | null
+    note?: string | null
+    status?: $Enums.RequestStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
+    reviewComment?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    attachments?: CommutingRequestAttachmentCreateNestedManyWithoutCommutingRequestInput
+    routeSegments?: CommutingRouteSegmentCreateNestedManyWithoutCommutingRequestInput
+  }
+
+  export type CommutingRequestUncheckedCreateWithoutEmployeeInput = {
+    id?: string
+    notificationType: $Enums.CommutingNotificationType
+    commutingType: $Enums.CommutingType
+    effectiveDate: Date | string
+    routeFrom?: string | null
+    routeTo?: string | null
+    routeDetails?: string | null
+    transportationName?: string | null
+    monthlyAmount?: number | null
+    oneWayDistanceKm?: number | null
+    oneWayFare?: number | null
+    vehicleRegistrationNumber?: string | null
+    vehicleName?: string | null
+    vehicleColor?: string | null
+    approvedAmount?: number | null
+    note?: string | null
+    status?: $Enums.RequestStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
+    reviewComment?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    attachments?: CommutingRequestAttachmentUncheckedCreateNestedManyWithoutCommutingRequestInput
+    routeSegments?: CommutingRouteSegmentUncheckedCreateNestedManyWithoutCommutingRequestInput
+  }
+
+  export type CommutingRequestCreateOrConnectWithoutEmployeeInput = {
+    where: CommutingRequestWhereUniqueInput
+    create: XOR<CommutingRequestCreateWithoutEmployeeInput, CommutingRequestUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type CommutingRequestCreateManyEmployeeInputEnvelope = {
+    data: CommutingRequestCreateManyEmployeeInput | CommutingRequestCreateManyEmployeeInput[]
     skipDuplicates?: boolean
   }
 
@@ -86532,6 +96071,76 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ResidenceRequestCreateWithoutEmployeeInput = {
+    id?: string
+    residenceType: $Enums.ResidenceType
+    notificationType: $Enums.ResidenceNotificationType
+    changeDate: Date | string
+    postalCode: string
+    address: string
+    phoneNumber?: string | null
+    note?: string | null
+    landlordName?: string | null
+    landlordAddress?: string | null
+    contractHolderName?: string | null
+    contractHolderRelationship?: string | null
+    monthlyRent?: number | null
+    commonServiceFee?: number | null
+    housingName?: string | null
+    roomNumber?: string | null
+    ownershipType?: $Enums.ResidenceOwnershipType | null
+    ownerName1?: string | null
+    ownerName2?: string | null
+    acquisitionDate?: Date | string | null
+    status?: $Enums.RequestStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
+    reviewComment?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    attachments?: ResidenceRequestAttachmentCreateNestedManyWithoutResidenceRequestInput
+  }
+
+  export type ResidenceRequestUncheckedCreateWithoutEmployeeInput = {
+    id?: string
+    residenceType: $Enums.ResidenceType
+    notificationType: $Enums.ResidenceNotificationType
+    changeDate: Date | string
+    postalCode: string
+    address: string
+    phoneNumber?: string | null
+    note?: string | null
+    landlordName?: string | null
+    landlordAddress?: string | null
+    contractHolderName?: string | null
+    contractHolderRelationship?: string | null
+    monthlyRent?: number | null
+    commonServiceFee?: number | null
+    housingName?: string | null
+    roomNumber?: string | null
+    ownershipType?: $Enums.ResidenceOwnershipType | null
+    ownerName1?: string | null
+    ownerName2?: string | null
+    acquisitionDate?: Date | string | null
+    status?: $Enums.RequestStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
+    reviewComment?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    attachments?: ResidenceRequestAttachmentUncheckedCreateNestedManyWithoutResidenceRequestInput
+  }
+
+  export type ResidenceRequestCreateOrConnectWithoutEmployeeInput = {
+    where: ResidenceRequestWhereUniqueInput
+    create: XOR<ResidenceRequestCreateWithoutEmployeeInput, ResidenceRequestUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type ResidenceRequestCreateManyEmployeeInputEnvelope = {
+    data: ResidenceRequestCreateManyEmployeeInput | ResidenceRequestCreateManyEmployeeInput[]
+    skipDuplicates?: boolean
+  }
+
   export type FacilityUpsertWithoutEmployeesInput = {
     update: XOR<FacilityUpdateWithoutEmployeesInput, FacilityUncheckedUpdateWithoutEmployeesInput>
     create: XOR<FacilityCreateWithoutEmployeesInput, FacilityUncheckedCreateWithoutEmployeesInput>
@@ -86703,6 +96312,51 @@ export namespace Prisma {
   export type EmployeeRequestUpdateManyWithWhereWithoutEmployeeInput = {
     where: EmployeeRequestScalarWhereInput
     data: XOR<EmployeeRequestUpdateManyMutationInput, EmployeeRequestUncheckedUpdateManyWithoutEmployeeInput>
+  }
+
+  export type CommutingRequestUpsertWithWhereUniqueWithoutEmployeeInput = {
+    where: CommutingRequestWhereUniqueInput
+    update: XOR<CommutingRequestUpdateWithoutEmployeeInput, CommutingRequestUncheckedUpdateWithoutEmployeeInput>
+    create: XOR<CommutingRequestCreateWithoutEmployeeInput, CommutingRequestUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type CommutingRequestUpdateWithWhereUniqueWithoutEmployeeInput = {
+    where: CommutingRequestWhereUniqueInput
+    data: XOR<CommutingRequestUpdateWithoutEmployeeInput, CommutingRequestUncheckedUpdateWithoutEmployeeInput>
+  }
+
+  export type CommutingRequestUpdateManyWithWhereWithoutEmployeeInput = {
+    where: CommutingRequestScalarWhereInput
+    data: XOR<CommutingRequestUpdateManyMutationInput, CommutingRequestUncheckedUpdateManyWithoutEmployeeInput>
+  }
+
+  export type CommutingRequestScalarWhereInput = {
+    AND?: CommutingRequestScalarWhereInput | CommutingRequestScalarWhereInput[]
+    OR?: CommutingRequestScalarWhereInput[]
+    NOT?: CommutingRequestScalarWhereInput | CommutingRequestScalarWhereInput[]
+    id?: StringFilter<"CommutingRequest"> | string
+    employeeId?: StringFilter<"CommutingRequest"> | string
+    notificationType?: EnumCommutingNotificationTypeFilter<"CommutingRequest"> | $Enums.CommutingNotificationType
+    commutingType?: EnumCommutingTypeFilter<"CommutingRequest"> | $Enums.CommutingType
+    effectiveDate?: DateTimeFilter<"CommutingRequest"> | Date | string
+    routeFrom?: StringNullableFilter<"CommutingRequest"> | string | null
+    routeTo?: StringNullableFilter<"CommutingRequest"> | string | null
+    routeDetails?: StringNullableFilter<"CommutingRequest"> | string | null
+    transportationName?: StringNullableFilter<"CommutingRequest"> | string | null
+    monthlyAmount?: IntNullableFilter<"CommutingRequest"> | number | null
+    oneWayDistanceKm?: FloatNullableFilter<"CommutingRequest"> | number | null
+    oneWayFare?: IntNullableFilter<"CommutingRequest"> | number | null
+    vehicleRegistrationNumber?: StringNullableFilter<"CommutingRequest"> | string | null
+    vehicleName?: StringNullableFilter<"CommutingRequest"> | string | null
+    vehicleColor?: StringNullableFilter<"CommutingRequest"> | string | null
+    approvedAmount?: IntNullableFilter<"CommutingRequest"> | number | null
+    note?: StringNullableFilter<"CommutingRequest"> | string | null
+    status?: EnumRequestStatusFilter<"CommutingRequest"> | $Enums.RequestStatus
+    reviewedAt?: DateTimeNullableFilter<"CommutingRequest"> | Date | string | null
+    reviewedBy?: StringNullableFilter<"CommutingRequest"> | string | null
+    reviewComment?: StringNullableFilter<"CommutingRequest"> | string | null
+    createdAt?: DateTimeFilter<"CommutingRequest"> | Date | string
+    updatedAt?: DateTimeFilter<"CommutingRequest"> | Date | string
   }
 
   export type EmployeeSalaryUpsertWithoutEmployeeInput = {
@@ -87367,6 +97021,55 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"PersonalDocument"> | Date | string
   }
 
+  export type ResidenceRequestUpsertWithWhereUniqueWithoutEmployeeInput = {
+    where: ResidenceRequestWhereUniqueInput
+    update: XOR<ResidenceRequestUpdateWithoutEmployeeInput, ResidenceRequestUncheckedUpdateWithoutEmployeeInput>
+    create: XOR<ResidenceRequestCreateWithoutEmployeeInput, ResidenceRequestUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type ResidenceRequestUpdateWithWhereUniqueWithoutEmployeeInput = {
+    where: ResidenceRequestWhereUniqueInput
+    data: XOR<ResidenceRequestUpdateWithoutEmployeeInput, ResidenceRequestUncheckedUpdateWithoutEmployeeInput>
+  }
+
+  export type ResidenceRequestUpdateManyWithWhereWithoutEmployeeInput = {
+    where: ResidenceRequestScalarWhereInput
+    data: XOR<ResidenceRequestUpdateManyMutationInput, ResidenceRequestUncheckedUpdateManyWithoutEmployeeInput>
+  }
+
+  export type ResidenceRequestScalarWhereInput = {
+    AND?: ResidenceRequestScalarWhereInput | ResidenceRequestScalarWhereInput[]
+    OR?: ResidenceRequestScalarWhereInput[]
+    NOT?: ResidenceRequestScalarWhereInput | ResidenceRequestScalarWhereInput[]
+    id?: StringFilter<"ResidenceRequest"> | string
+    employeeId?: StringFilter<"ResidenceRequest"> | string
+    residenceType?: EnumResidenceTypeFilter<"ResidenceRequest"> | $Enums.ResidenceType
+    notificationType?: EnumResidenceNotificationTypeFilter<"ResidenceRequest"> | $Enums.ResidenceNotificationType
+    changeDate?: DateTimeFilter<"ResidenceRequest"> | Date | string
+    postalCode?: StringFilter<"ResidenceRequest"> | string
+    address?: StringFilter<"ResidenceRequest"> | string
+    phoneNumber?: StringNullableFilter<"ResidenceRequest"> | string | null
+    note?: StringNullableFilter<"ResidenceRequest"> | string | null
+    landlordName?: StringNullableFilter<"ResidenceRequest"> | string | null
+    landlordAddress?: StringNullableFilter<"ResidenceRequest"> | string | null
+    contractHolderName?: StringNullableFilter<"ResidenceRequest"> | string | null
+    contractHolderRelationship?: StringNullableFilter<"ResidenceRequest"> | string | null
+    monthlyRent?: IntNullableFilter<"ResidenceRequest"> | number | null
+    commonServiceFee?: IntNullableFilter<"ResidenceRequest"> | number | null
+    housingName?: StringNullableFilter<"ResidenceRequest"> | string | null
+    roomNumber?: StringNullableFilter<"ResidenceRequest"> | string | null
+    ownershipType?: EnumResidenceOwnershipTypeNullableFilter<"ResidenceRequest"> | $Enums.ResidenceOwnershipType | null
+    ownerName1?: StringNullableFilter<"ResidenceRequest"> | string | null
+    ownerName2?: StringNullableFilter<"ResidenceRequest"> | string | null
+    acquisitionDate?: DateTimeNullableFilter<"ResidenceRequest"> | Date | string | null
+    status?: EnumRequestStatusFilter<"ResidenceRequest"> | $Enums.RequestStatus
+    reviewedAt?: DateTimeNullableFilter<"ResidenceRequest"> | Date | string | null
+    reviewedBy?: StringNullableFilter<"ResidenceRequest"> | string | null
+    reviewComment?: StringNullableFilter<"ResidenceRequest"> | string | null
+    createdAt?: DateTimeFilter<"ResidenceRequest"> | Date | string
+    updatedAt?: DateTimeFilter<"ResidenceRequest"> | Date | string
+  }
+
   export type EmployeeCreateWithoutTransferHistoriesInput = {
     id?: string
     employeeNo: string
@@ -87401,6 +97104,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
@@ -87419,6 +97123,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutTransferHistoriesInput = {
@@ -87455,6 +97160,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
@@ -87473,6 +97179,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutTransferHistoriesInput = {
@@ -87621,6 +97328,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
@@ -87639,6 +97347,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutTransferHistoriesInput = {
@@ -87675,6 +97384,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -87693,6 +97403,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type FacilityUpsertWithoutTransfersFromInput = {
@@ -87849,6 +97560,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
@@ -87867,6 +97579,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDependentsInput = {
@@ -87903,6 +97616,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
@@ -87921,6 +97635,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDependentsInput = {
@@ -88009,6 +97724,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
@@ -88027,6 +97743,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDependentsInput = {
@@ -88063,6 +97780,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -88081,6 +97799,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmploymentContractConsentUpsertWithWhereUniqueWithoutDependentInput = {
@@ -88150,6 +97869,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
     bankAccount?: EmployeeBankAccountCreateNestedOneWithoutEmployeeInput
@@ -88168,6 +97888,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmploymentHistoriesInput = {
@@ -88204,6 +97925,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
     bankAccount?: EmployeeBankAccountUncheckedCreateNestedOneWithoutEmployeeInput
@@ -88222,6 +97944,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmploymentHistoriesInput = {
@@ -88274,6 +97997,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
     bankAccount?: EmployeeBankAccountUpdateOneWithoutEmployeeNestedInput
@@ -88292,6 +98016,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmploymentHistoriesInput = {
@@ -88328,6 +98053,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
     bankAccount?: EmployeeBankAccountUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -88346,6 +98072,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmployeeMyNumberInput = {
@@ -88381,6 +98108,7 @@ export namespace Prisma {
     user?: UserCreateNestedOneWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
     requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
@@ -88400,6 +98128,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmployeeMyNumberInput = {
@@ -88435,6 +98164,7 @@ export namespace Prisma {
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
@@ -88454,6 +98184,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmployeeMyNumberInput = {
@@ -88505,6 +98236,7 @@ export namespace Prisma {
     user?: UserUpdateOneWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
@@ -88524,6 +98256,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmployeeMyNumberInput = {
@@ -88559,6 +98292,7 @@ export namespace Prisma {
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -88578,6 +98312,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmployeeSalaryInput = {
@@ -88614,6 +98349,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
     bankAccount?: EmployeeBankAccountCreateNestedOneWithoutEmployeeInput
@@ -88632,6 +98368,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmployeeSalaryInput = {
@@ -88668,6 +98405,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
     bankAccount?: EmployeeBankAccountUncheckedCreateNestedOneWithoutEmployeeInput
@@ -88686,6 +98424,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmployeeSalaryInput = {
@@ -88738,6 +98477,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
     bankAccount?: EmployeeBankAccountUpdateOneWithoutEmployeeNestedInput
@@ -88756,6 +98496,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmployeeSalaryInput = {
@@ -88792,6 +98533,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
     bankAccount?: EmployeeBankAccountUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -88810,6 +98552,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutSalaryHistoriesInput = {
@@ -88846,6 +98589,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
@@ -88864,6 +98608,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutSalaryHistoriesInput = {
@@ -88900,6 +98645,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
@@ -88918,6 +98664,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutSalaryHistoriesInput = {
@@ -88970,6 +98717,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
@@ -88988,6 +98736,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutSalaryHistoriesInput = {
@@ -89024,6 +98773,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -89042,6 +98792,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutLeaveGrantHistoriesInput = {
@@ -89078,6 +98829,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
@@ -89096,6 +98848,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLeaveGrantHistoriesInput = {
@@ -89132,6 +98885,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
@@ -89150,6 +98904,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLeaveGrantHistoriesInput = {
@@ -89251,6 +99006,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
@@ -89269,6 +99025,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLeaveGrantHistoriesInput = {
@@ -89305,6 +99062,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -89323,6 +99081,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type LeaveTypeUpsertWithoutLeaveGrantHistoriesInput = {
@@ -89414,6 +99173,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     bankAccount?: EmployeeBankAccountCreateNestedOneWithoutEmployeeInput
@@ -89432,6 +99192,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLeaveBalanceInput = {
@@ -89468,6 +99229,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     bankAccount?: EmployeeBankAccountUncheckedCreateNestedOneWithoutEmployeeInput
@@ -89486,6 +99248,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLeaveBalanceInput = {
@@ -89538,6 +99301,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     bankAccount?: EmployeeBankAccountUpdateOneWithoutEmployeeNestedInput
@@ -89556,6 +99320,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLeaveBalanceInput = {
@@ -89592,6 +99357,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     bankAccount?: EmployeeBankAccountUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -89610,6 +99376,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutRequestsInput = {
@@ -89645,6 +99412,7 @@ export namespace Prisma {
     user?: UserCreateNestedOneWithoutEmployeeInput
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
@@ -89664,6 +99432,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutRequestsInput = {
@@ -89699,6 +99468,7 @@ export namespace Prisma {
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
@@ -89718,6 +99488,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutRequestsInput = {
@@ -89931,6 +99702,7 @@ export namespace Prisma {
     user?: UserUpdateOneWithoutEmployeeNestedInput
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
@@ -89950,6 +99722,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutRequestsInput = {
@@ -89985,6 +99758,7 @@ export namespace Prisma {
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -90004,6 +99778,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type LeaveTypeUpsertWithoutEmployeeRequestsInput = {
@@ -90921,6 +100696,7 @@ export namespace Prisma {
     user?: UserCreateNestedOneWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
@@ -90940,6 +100716,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutCertificationsInput = {
@@ -90975,6 +100752,7 @@ export namespace Prisma {
     emergencyContact?: string | null
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
@@ -90994,6 +100772,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutCertificationsInput = {
@@ -91104,6 +100883,7 @@ export namespace Prisma {
     user?: UserUpdateOneWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
@@ -91123,6 +100903,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutCertificationsInput = {
@@ -91158,6 +100939,7 @@ export namespace Prisma {
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -91177,6 +100959,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCertificationAttachmentUpsertWithWhereUniqueWithoutEmployeeCertificationInput = {
@@ -91429,6 +101212,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
@@ -91447,6 +101231,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutBankAccountInput = {
@@ -91483,6 +101268,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
@@ -91501,6 +101287,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutBankAccountInput = {
@@ -91581,6 +101368,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
@@ -91599,6 +101387,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutBankAccountInput = {
@@ -91635,6 +101424,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -91653,6 +101443,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeBankAttachmentUpsertWithWhereUniqueWithoutBankAccountInput = {
@@ -91810,6 +101601,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
@@ -91828,6 +101620,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDependentRequestsInput = {
@@ -91864,6 +101657,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
@@ -91882,6 +101676,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDependentRequestsInput = {
@@ -91962,6 +101757,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
@@ -91980,6 +101776,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDependentRequestsInput = {
@@ -92016,6 +101813,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -92034,6 +101832,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type DependentRequestAttachmentUpsertWithWhereUniqueWithoutDependentRequestInput = {
@@ -92169,7 +101968,443 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type EmployeeCreateWithoutProfileChangeRequestsInput = {
+  export type EmployeeCreateWithoutResidenceRequestsInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
+    department?: DepartmentCreateNestedOneWithoutEmployeesInput
+    user?: UserCreateNestedOneWithoutEmployeeInput
+    certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeUncheckedCreateWithoutResidenceRequestsInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    departmentId?: string | null
+    facilityId?: string | null
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    userId?: string | null
+    emergencyContact?: string | null
+    certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeCreateOrConnectWithoutResidenceRequestsInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutResidenceRequestsInput, EmployeeUncheckedCreateWithoutResidenceRequestsInput>
+  }
+
+  export type ResidenceRequestAttachmentCreateWithoutResidenceRequestInput = {
+    id?: string
+    attachmentType: $Enums.ResidenceAttachmentType
+    fileName: string
+    filePath: string
+    fileType?: string | null
+    fileSize?: number | null
+    createdAt?: Date | string
+  }
+
+  export type ResidenceRequestAttachmentUncheckedCreateWithoutResidenceRequestInput = {
+    id?: string
+    attachmentType: $Enums.ResidenceAttachmentType
+    fileName: string
+    filePath: string
+    fileType?: string | null
+    fileSize?: number | null
+    createdAt?: Date | string
+  }
+
+  export type ResidenceRequestAttachmentCreateOrConnectWithoutResidenceRequestInput = {
+    where: ResidenceRequestAttachmentWhereUniqueInput
+    create: XOR<ResidenceRequestAttachmentCreateWithoutResidenceRequestInput, ResidenceRequestAttachmentUncheckedCreateWithoutResidenceRequestInput>
+  }
+
+  export type ResidenceRequestAttachmentCreateManyResidenceRequestInputEnvelope = {
+    data: ResidenceRequestAttachmentCreateManyResidenceRequestInput | ResidenceRequestAttachmentCreateManyResidenceRequestInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EmployeeUpsertWithoutResidenceRequestsInput = {
+    update: XOR<EmployeeUpdateWithoutResidenceRequestsInput, EmployeeUncheckedUpdateWithoutResidenceRequestsInput>
+    create: XOR<EmployeeCreateWithoutResidenceRequestsInput, EmployeeUncheckedCreateWithoutResidenceRequestsInput>
+    where?: EmployeeWhereInput
+  }
+
+  export type EmployeeUpdateToOneWithWhereWithoutResidenceRequestsInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutResidenceRequestsInput, EmployeeUncheckedUpdateWithoutResidenceRequestsInput>
+  }
+
+  export type EmployeeUpdateWithoutResidenceRequestsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
+    department?: DepartmentUpdateOneWithoutEmployeesNestedInput
+    user?: UserUpdateOneWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateWithoutResidenceRequestsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type ResidenceRequestAttachmentUpsertWithWhereUniqueWithoutResidenceRequestInput = {
+    where: ResidenceRequestAttachmentWhereUniqueInput
+    update: XOR<ResidenceRequestAttachmentUpdateWithoutResidenceRequestInput, ResidenceRequestAttachmentUncheckedUpdateWithoutResidenceRequestInput>
+    create: XOR<ResidenceRequestAttachmentCreateWithoutResidenceRequestInput, ResidenceRequestAttachmentUncheckedCreateWithoutResidenceRequestInput>
+  }
+
+  export type ResidenceRequestAttachmentUpdateWithWhereUniqueWithoutResidenceRequestInput = {
+    where: ResidenceRequestAttachmentWhereUniqueInput
+    data: XOR<ResidenceRequestAttachmentUpdateWithoutResidenceRequestInput, ResidenceRequestAttachmentUncheckedUpdateWithoutResidenceRequestInput>
+  }
+
+  export type ResidenceRequestAttachmentUpdateManyWithWhereWithoutResidenceRequestInput = {
+    where: ResidenceRequestAttachmentScalarWhereInput
+    data: XOR<ResidenceRequestAttachmentUpdateManyMutationInput, ResidenceRequestAttachmentUncheckedUpdateManyWithoutResidenceRequestInput>
+  }
+
+  export type ResidenceRequestAttachmentScalarWhereInput = {
+    AND?: ResidenceRequestAttachmentScalarWhereInput | ResidenceRequestAttachmentScalarWhereInput[]
+    OR?: ResidenceRequestAttachmentScalarWhereInput[]
+    NOT?: ResidenceRequestAttachmentScalarWhereInput | ResidenceRequestAttachmentScalarWhereInput[]
+    id?: StringFilter<"ResidenceRequestAttachment"> | string
+    residenceRequestId?: StringFilter<"ResidenceRequestAttachment"> | string
+    attachmentType?: EnumResidenceAttachmentTypeFilter<"ResidenceRequestAttachment"> | $Enums.ResidenceAttachmentType
+    fileName?: StringFilter<"ResidenceRequestAttachment"> | string
+    filePath?: StringFilter<"ResidenceRequestAttachment"> | string
+    fileType?: StringNullableFilter<"ResidenceRequestAttachment"> | string | null
+    fileSize?: IntNullableFilter<"ResidenceRequestAttachment"> | number | null
+    createdAt?: DateTimeFilter<"ResidenceRequestAttachment"> | Date | string
+  }
+
+  export type ResidenceRequestCreateWithoutAttachmentsInput = {
+    id?: string
+    residenceType: $Enums.ResidenceType
+    notificationType: $Enums.ResidenceNotificationType
+    changeDate: Date | string
+    postalCode: string
+    address: string
+    phoneNumber?: string | null
+    note?: string | null
+    landlordName?: string | null
+    landlordAddress?: string | null
+    contractHolderName?: string | null
+    contractHolderRelationship?: string | null
+    monthlyRent?: number | null
+    commonServiceFee?: number | null
+    housingName?: string | null
+    roomNumber?: string | null
+    ownershipType?: $Enums.ResidenceOwnershipType | null
+    ownerName1?: string | null
+    ownerName2?: string | null
+    acquisitionDate?: Date | string | null
+    status?: $Enums.RequestStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
+    reviewComment?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutResidenceRequestsInput
+  }
+
+  export type ResidenceRequestUncheckedCreateWithoutAttachmentsInput = {
+    id?: string
+    employeeId: string
+    residenceType: $Enums.ResidenceType
+    notificationType: $Enums.ResidenceNotificationType
+    changeDate: Date | string
+    postalCode: string
+    address: string
+    phoneNumber?: string | null
+    note?: string | null
+    landlordName?: string | null
+    landlordAddress?: string | null
+    contractHolderName?: string | null
+    contractHolderRelationship?: string | null
+    monthlyRent?: number | null
+    commonServiceFee?: number | null
+    housingName?: string | null
+    roomNumber?: string | null
+    ownershipType?: $Enums.ResidenceOwnershipType | null
+    ownerName1?: string | null
+    ownerName2?: string | null
+    acquisitionDate?: Date | string | null
+    status?: $Enums.RequestStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
+    reviewComment?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ResidenceRequestCreateOrConnectWithoutAttachmentsInput = {
+    where: ResidenceRequestWhereUniqueInput
+    create: XOR<ResidenceRequestCreateWithoutAttachmentsInput, ResidenceRequestUncheckedCreateWithoutAttachmentsInput>
+  }
+
+  export type ResidenceRequestUpsertWithoutAttachmentsInput = {
+    update: XOR<ResidenceRequestUpdateWithoutAttachmentsInput, ResidenceRequestUncheckedUpdateWithoutAttachmentsInput>
+    create: XOR<ResidenceRequestCreateWithoutAttachmentsInput, ResidenceRequestUncheckedCreateWithoutAttachmentsInput>
+    where?: ResidenceRequestWhereInput
+  }
+
+  export type ResidenceRequestUpdateToOneWithWhereWithoutAttachmentsInput = {
+    where?: ResidenceRequestWhereInput
+    data: XOR<ResidenceRequestUpdateWithoutAttachmentsInput, ResidenceRequestUncheckedUpdateWithoutAttachmentsInput>
+  }
+
+  export type ResidenceRequestUpdateWithoutAttachmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    residenceType?: EnumResidenceTypeFieldUpdateOperationsInput | $Enums.ResidenceType
+    notificationType?: EnumResidenceNotificationTypeFieldUpdateOperationsInput | $Enums.ResidenceNotificationType
+    changeDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    postalCode?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    landlordName?: NullableStringFieldUpdateOperationsInput | string | null
+    landlordAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    contractHolderName?: NullableStringFieldUpdateOperationsInput | string | null
+    contractHolderRelationship?: NullableStringFieldUpdateOperationsInput | string | null
+    monthlyRent?: NullableIntFieldUpdateOperationsInput | number | null
+    commonServiceFee?: NullableIntFieldUpdateOperationsInput | number | null
+    housingName?: NullableStringFieldUpdateOperationsInput | string | null
+    roomNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    ownershipType?: NullableEnumResidenceOwnershipTypeFieldUpdateOperationsInput | $Enums.ResidenceOwnershipType | null
+    ownerName1?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerName2?: NullableStringFieldUpdateOperationsInput | string | null
+    acquisitionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutResidenceRequestsNestedInput
+  }
+
+  export type ResidenceRequestUncheckedUpdateWithoutAttachmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    residenceType?: EnumResidenceTypeFieldUpdateOperationsInput | $Enums.ResidenceType
+    notificationType?: EnumResidenceNotificationTypeFieldUpdateOperationsInput | $Enums.ResidenceNotificationType
+    changeDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    postalCode?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    landlordName?: NullableStringFieldUpdateOperationsInput | string | null
+    landlordAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    contractHolderName?: NullableStringFieldUpdateOperationsInput | string | null
+    contractHolderRelationship?: NullableStringFieldUpdateOperationsInput | string | null
+    monthlyRent?: NullableIntFieldUpdateOperationsInput | number | null
+    commonServiceFee?: NullableIntFieldUpdateOperationsInput | number | null
+    housingName?: NullableStringFieldUpdateOperationsInput | string | null
+    roomNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    ownershipType?: NullableEnumResidenceOwnershipTypeFieldUpdateOperationsInput | $Enums.ResidenceOwnershipType | null
+    ownerName1?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerName2?: NullableStringFieldUpdateOperationsInput | string | null
+    acquisitionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type EmployeeCreateWithoutCommutingRequestsInput = {
     id?: string
     employeeNo: string
     firstName: string
@@ -92208,6 +102443,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
     bankAccount?: EmployeeBankAccountCreateNestedOneWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
     salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
     dependents?: DependentCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
@@ -92221,9 +102457,10 @@ export namespace Prisma {
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
   }
 
-  export type EmployeeUncheckedCreateWithoutProfileChangeRequestsInput = {
+  export type EmployeeUncheckedCreateWithoutCommutingRequestsInput = {
     id?: string
     employeeNo: string
     firstName: string
@@ -92262,6 +102499,7 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
     bankAccount?: EmployeeBankAccountUncheckedCreateNestedOneWithoutEmployeeInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
     salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
     dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
@@ -92275,6 +102513,636 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeCreateOrConnectWithoutCommutingRequestsInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutCommutingRequestsInput, EmployeeUncheckedCreateWithoutCommutingRequestsInput>
+  }
+
+  export type CommutingRequestAttachmentCreateWithoutCommutingRequestInput = {
+    id?: string
+    attachmentType: $Enums.CommutingAttachmentType
+    fileName: string
+    filePath: string
+    fileType?: string | null
+    fileSize?: number | null
+    createdAt?: Date | string
+  }
+
+  export type CommutingRequestAttachmentUncheckedCreateWithoutCommutingRequestInput = {
+    id?: string
+    attachmentType: $Enums.CommutingAttachmentType
+    fileName: string
+    filePath: string
+    fileType?: string | null
+    fileSize?: number | null
+    createdAt?: Date | string
+  }
+
+  export type CommutingRequestAttachmentCreateOrConnectWithoutCommutingRequestInput = {
+    where: CommutingRequestAttachmentWhereUniqueInput
+    create: XOR<CommutingRequestAttachmentCreateWithoutCommutingRequestInput, CommutingRequestAttachmentUncheckedCreateWithoutCommutingRequestInput>
+  }
+
+  export type CommutingRequestAttachmentCreateManyCommutingRequestInputEnvelope = {
+    data: CommutingRequestAttachmentCreateManyCommutingRequestInput | CommutingRequestAttachmentCreateManyCommutingRequestInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CommutingRouteSegmentCreateWithoutCommutingRequestInput = {
+    id?: string
+    operatorName: string
+    lineName?: string | null
+    boardingPoint?: string | null
+    alightingPoint?: string | null
+    oneWayFare?: number | null
+    roundTripFare?: number | null
+    monthlyPassAmount?: number | null
+    payableAmount?: number | null
+    fareSystem?: string | null
+    coveredBySegmentId?: string | null
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CommutingRouteSegmentUncheckedCreateWithoutCommutingRequestInput = {
+    id?: string
+    operatorName: string
+    lineName?: string | null
+    boardingPoint?: string | null
+    alightingPoint?: string | null
+    oneWayFare?: number | null
+    roundTripFare?: number | null
+    monthlyPassAmount?: number | null
+    payableAmount?: number | null
+    fareSystem?: string | null
+    coveredBySegmentId?: string | null
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CommutingRouteSegmentCreateOrConnectWithoutCommutingRequestInput = {
+    where: CommutingRouteSegmentWhereUniqueInput
+    create: XOR<CommutingRouteSegmentCreateWithoutCommutingRequestInput, CommutingRouteSegmentUncheckedCreateWithoutCommutingRequestInput>
+  }
+
+  export type CommutingRouteSegmentCreateManyCommutingRequestInputEnvelope = {
+    data: CommutingRouteSegmentCreateManyCommutingRequestInput | CommutingRouteSegmentCreateManyCommutingRequestInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type EmployeeUpsertWithoutCommutingRequestsInput = {
+    update: XOR<EmployeeUpdateWithoutCommutingRequestsInput, EmployeeUncheckedUpdateWithoutCommutingRequestsInput>
+    create: XOR<EmployeeCreateWithoutCommutingRequestsInput, EmployeeUncheckedCreateWithoutCommutingRequestsInput>
+    where?: EmployeeWhereInput
+  }
+
+  export type EmployeeUpdateToOneWithWhereWithoutCommutingRequestsInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutCommutingRequestsInput, EmployeeUncheckedUpdateWithoutCommutingRequestsInput>
+  }
+
+  export type EmployeeUpdateWithoutCommutingRequestsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
+    department?: DepartmentUpdateOneWithoutEmployeesNestedInput
+    user?: UserUpdateOneWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateWithoutCommutingRequestsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type CommutingRequestAttachmentUpsertWithWhereUniqueWithoutCommutingRequestInput = {
+    where: CommutingRequestAttachmentWhereUniqueInput
+    update: XOR<CommutingRequestAttachmentUpdateWithoutCommutingRequestInput, CommutingRequestAttachmentUncheckedUpdateWithoutCommutingRequestInput>
+    create: XOR<CommutingRequestAttachmentCreateWithoutCommutingRequestInput, CommutingRequestAttachmentUncheckedCreateWithoutCommutingRequestInput>
+  }
+
+  export type CommutingRequestAttachmentUpdateWithWhereUniqueWithoutCommutingRequestInput = {
+    where: CommutingRequestAttachmentWhereUniqueInput
+    data: XOR<CommutingRequestAttachmentUpdateWithoutCommutingRequestInput, CommutingRequestAttachmentUncheckedUpdateWithoutCommutingRequestInput>
+  }
+
+  export type CommutingRequestAttachmentUpdateManyWithWhereWithoutCommutingRequestInput = {
+    where: CommutingRequestAttachmentScalarWhereInput
+    data: XOR<CommutingRequestAttachmentUpdateManyMutationInput, CommutingRequestAttachmentUncheckedUpdateManyWithoutCommutingRequestInput>
+  }
+
+  export type CommutingRequestAttachmentScalarWhereInput = {
+    AND?: CommutingRequestAttachmentScalarWhereInput | CommutingRequestAttachmentScalarWhereInput[]
+    OR?: CommutingRequestAttachmentScalarWhereInput[]
+    NOT?: CommutingRequestAttachmentScalarWhereInput | CommutingRequestAttachmentScalarWhereInput[]
+    id?: StringFilter<"CommutingRequestAttachment"> | string
+    commutingRequestId?: StringFilter<"CommutingRequestAttachment"> | string
+    attachmentType?: EnumCommutingAttachmentTypeFilter<"CommutingRequestAttachment"> | $Enums.CommutingAttachmentType
+    fileName?: StringFilter<"CommutingRequestAttachment"> | string
+    filePath?: StringFilter<"CommutingRequestAttachment"> | string
+    fileType?: StringNullableFilter<"CommutingRequestAttachment"> | string | null
+    fileSize?: IntNullableFilter<"CommutingRequestAttachment"> | number | null
+    createdAt?: DateTimeFilter<"CommutingRequestAttachment"> | Date | string
+  }
+
+  export type CommutingRouteSegmentUpsertWithWhereUniqueWithoutCommutingRequestInput = {
+    where: CommutingRouteSegmentWhereUniqueInput
+    update: XOR<CommutingRouteSegmentUpdateWithoutCommutingRequestInput, CommutingRouteSegmentUncheckedUpdateWithoutCommutingRequestInput>
+    create: XOR<CommutingRouteSegmentCreateWithoutCommutingRequestInput, CommutingRouteSegmentUncheckedCreateWithoutCommutingRequestInput>
+  }
+
+  export type CommutingRouteSegmentUpdateWithWhereUniqueWithoutCommutingRequestInput = {
+    where: CommutingRouteSegmentWhereUniqueInput
+    data: XOR<CommutingRouteSegmentUpdateWithoutCommutingRequestInput, CommutingRouteSegmentUncheckedUpdateWithoutCommutingRequestInput>
+  }
+
+  export type CommutingRouteSegmentUpdateManyWithWhereWithoutCommutingRequestInput = {
+    where: CommutingRouteSegmentScalarWhereInput
+    data: XOR<CommutingRouteSegmentUpdateManyMutationInput, CommutingRouteSegmentUncheckedUpdateManyWithoutCommutingRequestInput>
+  }
+
+  export type CommutingRouteSegmentScalarWhereInput = {
+    AND?: CommutingRouteSegmentScalarWhereInput | CommutingRouteSegmentScalarWhereInput[]
+    OR?: CommutingRouteSegmentScalarWhereInput[]
+    NOT?: CommutingRouteSegmentScalarWhereInput | CommutingRouteSegmentScalarWhereInput[]
+    id?: StringFilter<"CommutingRouteSegment"> | string
+    commutingRequestId?: StringFilter<"CommutingRouteSegment"> | string
+    operatorName?: StringFilter<"CommutingRouteSegment"> | string
+    lineName?: StringNullableFilter<"CommutingRouteSegment"> | string | null
+    boardingPoint?: StringNullableFilter<"CommutingRouteSegment"> | string | null
+    alightingPoint?: StringNullableFilter<"CommutingRouteSegment"> | string | null
+    oneWayFare?: IntNullableFilter<"CommutingRouteSegment"> | number | null
+    roundTripFare?: IntNullableFilter<"CommutingRouteSegment"> | number | null
+    monthlyPassAmount?: IntNullableFilter<"CommutingRouteSegment"> | number | null
+    payableAmount?: IntNullableFilter<"CommutingRouteSegment"> | number | null
+    fareSystem?: StringNullableFilter<"CommutingRouteSegment"> | string | null
+    coveredBySegmentId?: StringNullableFilter<"CommutingRouteSegment"> | string | null
+    sortOrder?: IntFilter<"CommutingRouteSegment"> | number
+    createdAt?: DateTimeFilter<"CommutingRouteSegment"> | Date | string
+    updatedAt?: DateTimeFilter<"CommutingRouteSegment"> | Date | string
+  }
+
+  export type CommutingRequestCreateWithoutRouteSegmentsInput = {
+    id?: string
+    notificationType: $Enums.CommutingNotificationType
+    commutingType: $Enums.CommutingType
+    effectiveDate: Date | string
+    routeFrom?: string | null
+    routeTo?: string | null
+    routeDetails?: string | null
+    transportationName?: string | null
+    monthlyAmount?: number | null
+    oneWayDistanceKm?: number | null
+    oneWayFare?: number | null
+    vehicleRegistrationNumber?: string | null
+    vehicleName?: string | null
+    vehicleColor?: string | null
+    approvedAmount?: number | null
+    note?: string | null
+    status?: $Enums.RequestStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
+    reviewComment?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutCommutingRequestsInput
+    attachments?: CommutingRequestAttachmentCreateNestedManyWithoutCommutingRequestInput
+  }
+
+  export type CommutingRequestUncheckedCreateWithoutRouteSegmentsInput = {
+    id?: string
+    employeeId: string
+    notificationType: $Enums.CommutingNotificationType
+    commutingType: $Enums.CommutingType
+    effectiveDate: Date | string
+    routeFrom?: string | null
+    routeTo?: string | null
+    routeDetails?: string | null
+    transportationName?: string | null
+    monthlyAmount?: number | null
+    oneWayDistanceKm?: number | null
+    oneWayFare?: number | null
+    vehicleRegistrationNumber?: string | null
+    vehicleName?: string | null
+    vehicleColor?: string | null
+    approvedAmount?: number | null
+    note?: string | null
+    status?: $Enums.RequestStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
+    reviewComment?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    attachments?: CommutingRequestAttachmentUncheckedCreateNestedManyWithoutCommutingRequestInput
+  }
+
+  export type CommutingRequestCreateOrConnectWithoutRouteSegmentsInput = {
+    where: CommutingRequestWhereUniqueInput
+    create: XOR<CommutingRequestCreateWithoutRouteSegmentsInput, CommutingRequestUncheckedCreateWithoutRouteSegmentsInput>
+  }
+
+  export type CommutingRequestUpsertWithoutRouteSegmentsInput = {
+    update: XOR<CommutingRequestUpdateWithoutRouteSegmentsInput, CommutingRequestUncheckedUpdateWithoutRouteSegmentsInput>
+    create: XOR<CommutingRequestCreateWithoutRouteSegmentsInput, CommutingRequestUncheckedCreateWithoutRouteSegmentsInput>
+    where?: CommutingRequestWhereInput
+  }
+
+  export type CommutingRequestUpdateToOneWithWhereWithoutRouteSegmentsInput = {
+    where?: CommutingRequestWhereInput
+    data: XOR<CommutingRequestUpdateWithoutRouteSegmentsInput, CommutingRequestUncheckedUpdateWithoutRouteSegmentsInput>
+  }
+
+  export type CommutingRequestUpdateWithoutRouteSegmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    notificationType?: EnumCommutingNotificationTypeFieldUpdateOperationsInput | $Enums.CommutingNotificationType
+    commutingType?: EnumCommutingTypeFieldUpdateOperationsInput | $Enums.CommutingType
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    routeFrom?: NullableStringFieldUpdateOperationsInput | string | null
+    routeTo?: NullableStringFieldUpdateOperationsInput | string | null
+    routeDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    transportationName?: NullableStringFieldUpdateOperationsInput | string | null
+    monthlyAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    oneWayDistanceKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    oneWayFare?: NullableIntFieldUpdateOperationsInput | number | null
+    vehicleRegistrationNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleName?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleColor?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutCommutingRequestsNestedInput
+    attachments?: CommutingRequestAttachmentUpdateManyWithoutCommutingRequestNestedInput
+  }
+
+  export type CommutingRequestUncheckedUpdateWithoutRouteSegmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    notificationType?: EnumCommutingNotificationTypeFieldUpdateOperationsInput | $Enums.CommutingNotificationType
+    commutingType?: EnumCommutingTypeFieldUpdateOperationsInput | $Enums.CommutingType
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    routeFrom?: NullableStringFieldUpdateOperationsInput | string | null
+    routeTo?: NullableStringFieldUpdateOperationsInput | string | null
+    routeDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    transportationName?: NullableStringFieldUpdateOperationsInput | string | null
+    monthlyAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    oneWayDistanceKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    oneWayFare?: NullableIntFieldUpdateOperationsInput | number | null
+    vehicleRegistrationNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleName?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleColor?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attachments?: CommutingRequestAttachmentUncheckedUpdateManyWithoutCommutingRequestNestedInput
+  }
+
+  export type CommutingRequestCreateWithoutAttachmentsInput = {
+    id?: string
+    notificationType: $Enums.CommutingNotificationType
+    commutingType: $Enums.CommutingType
+    effectiveDate: Date | string
+    routeFrom?: string | null
+    routeTo?: string | null
+    routeDetails?: string | null
+    transportationName?: string | null
+    monthlyAmount?: number | null
+    oneWayDistanceKm?: number | null
+    oneWayFare?: number | null
+    vehicleRegistrationNumber?: string | null
+    vehicleName?: string | null
+    vehicleColor?: string | null
+    approvedAmount?: number | null
+    note?: string | null
+    status?: $Enums.RequestStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
+    reviewComment?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutCommutingRequestsInput
+    routeSegments?: CommutingRouteSegmentCreateNestedManyWithoutCommutingRequestInput
+  }
+
+  export type CommutingRequestUncheckedCreateWithoutAttachmentsInput = {
+    id?: string
+    employeeId: string
+    notificationType: $Enums.CommutingNotificationType
+    commutingType: $Enums.CommutingType
+    effectiveDate: Date | string
+    routeFrom?: string | null
+    routeTo?: string | null
+    routeDetails?: string | null
+    transportationName?: string | null
+    monthlyAmount?: number | null
+    oneWayDistanceKm?: number | null
+    oneWayFare?: number | null
+    vehicleRegistrationNumber?: string | null
+    vehicleName?: string | null
+    vehicleColor?: string | null
+    approvedAmount?: number | null
+    note?: string | null
+    status?: $Enums.RequestStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
+    reviewComment?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    routeSegments?: CommutingRouteSegmentUncheckedCreateNestedManyWithoutCommutingRequestInput
+  }
+
+  export type CommutingRequestCreateOrConnectWithoutAttachmentsInput = {
+    where: CommutingRequestWhereUniqueInput
+    create: XOR<CommutingRequestCreateWithoutAttachmentsInput, CommutingRequestUncheckedCreateWithoutAttachmentsInput>
+  }
+
+  export type CommutingRequestUpsertWithoutAttachmentsInput = {
+    update: XOR<CommutingRequestUpdateWithoutAttachmentsInput, CommutingRequestUncheckedUpdateWithoutAttachmentsInput>
+    create: XOR<CommutingRequestCreateWithoutAttachmentsInput, CommutingRequestUncheckedCreateWithoutAttachmentsInput>
+    where?: CommutingRequestWhereInput
+  }
+
+  export type CommutingRequestUpdateToOneWithWhereWithoutAttachmentsInput = {
+    where?: CommutingRequestWhereInput
+    data: XOR<CommutingRequestUpdateWithoutAttachmentsInput, CommutingRequestUncheckedUpdateWithoutAttachmentsInput>
+  }
+
+  export type CommutingRequestUpdateWithoutAttachmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    notificationType?: EnumCommutingNotificationTypeFieldUpdateOperationsInput | $Enums.CommutingNotificationType
+    commutingType?: EnumCommutingTypeFieldUpdateOperationsInput | $Enums.CommutingType
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    routeFrom?: NullableStringFieldUpdateOperationsInput | string | null
+    routeTo?: NullableStringFieldUpdateOperationsInput | string | null
+    routeDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    transportationName?: NullableStringFieldUpdateOperationsInput | string | null
+    monthlyAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    oneWayDistanceKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    oneWayFare?: NullableIntFieldUpdateOperationsInput | number | null
+    vehicleRegistrationNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleName?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleColor?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutCommutingRequestsNestedInput
+    routeSegments?: CommutingRouteSegmentUpdateManyWithoutCommutingRequestNestedInput
+  }
+
+  export type CommutingRequestUncheckedUpdateWithoutAttachmentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    notificationType?: EnumCommutingNotificationTypeFieldUpdateOperationsInput | $Enums.CommutingNotificationType
+    commutingType?: EnumCommutingTypeFieldUpdateOperationsInput | $Enums.CommutingType
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    routeFrom?: NullableStringFieldUpdateOperationsInput | string | null
+    routeTo?: NullableStringFieldUpdateOperationsInput | string | null
+    routeDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    transportationName?: NullableStringFieldUpdateOperationsInput | string | null
+    monthlyAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    oneWayDistanceKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    oneWayFare?: NullableIntFieldUpdateOperationsInput | number | null
+    vehicleRegistrationNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleName?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleColor?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    routeSegments?: CommutingRouteSegmentUncheckedUpdateManyWithoutCommutingRequestNestedInput
+  }
+
+  export type EmployeeCreateWithoutProfileChangeRequestsInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
+    department?: DepartmentCreateNestedOneWithoutEmployeesInput
+    user?: UserCreateNestedOneWithoutEmployeeInput
+    certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeUncheckedCreateWithoutProfileChangeRequestsInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    departmentId?: string | null
+    facilityId?: string | null
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    userId?: string | null
+    emergencyContact?: string | null
+    certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutProfileChangeRequestsInput = {
@@ -92327,6 +103195,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
@@ -92345,6 +103214,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutProfileChangeRequestsInput = {
@@ -92381,6 +103251,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -92399,6 +103270,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmploymentContractsInput = {
@@ -92435,6 +103307,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
@@ -92453,6 +103326,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmploymentContractsInput = {
@@ -92489,6 +103363,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
@@ -92507,6 +103382,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmploymentContractsInput = {
@@ -92627,6 +103503,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
@@ -92645,6 +103522,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmploymentContractsInput = {
@@ -92681,6 +103559,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -92699,6 +103578,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmploymentContractConsentUpsertWithWhereUniqueWithoutEmploymentContractInput = {
@@ -93262,6 +104142,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
@@ -93280,6 +104161,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLeaveTypeBalancesInput = {
@@ -93316,6 +104198,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
@@ -93334,6 +104217,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLeaveTypeBalancesInput = {
@@ -93435,6 +104319,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
@@ -93453,6 +104338,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLeaveTypeBalancesInput = {
@@ -93489,6 +104375,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -93507,6 +104394,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type LeaveTypeUpsertWithoutLeaveTypeBalancesInput = {
@@ -93770,6 +104658,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
@@ -93788,6 +104677,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutRetirementChecklistInput = {
@@ -93824,6 +104714,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
@@ -93842,6 +104733,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutRetirementChecklistInput = {
@@ -93894,6 +104786,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
@@ -93912,6 +104805,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutRetirementChecklistInput = {
@@ -93948,6 +104842,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -93966,6 +104861,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutLoanedAssetsInput = {
@@ -94002,6 +104898,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
@@ -94020,6 +104917,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLoanedAssetsInput = {
@@ -94056,6 +104954,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
@@ -94074,6 +104973,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLoanedAssetsInput = {
@@ -94126,6 +105026,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
@@ -94144,6 +105045,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLoanedAssetsInput = {
@@ -94180,6 +105082,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -94198,6 +105101,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutRetirementCertificateInput = {
@@ -94234,6 +105138,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
@@ -94252,6 +105157,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutRetirementCertificateInput = {
@@ -94288,6 +105194,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
@@ -94306,6 +105213,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutRetirementCertificateInput = {
@@ -94358,6 +105266,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
@@ -94376,6 +105285,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutRetirementCertificateInput = {
@@ -94412,6 +105322,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -94430,6 +105341,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutLateRecordsInput = {
@@ -94466,6 +105378,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
@@ -94484,6 +105397,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLateRecordsInput = {
@@ -94520,6 +105434,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
@@ -94538,6 +105453,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLateRecordsInput = {
@@ -94590,6 +105506,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
@@ -94608,6 +105525,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLateRecordsInput = {
@@ -94644,6 +105562,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -94662,6 +105581,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEarlyLeaveRecordsInput = {
@@ -94698,6 +105618,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
@@ -94716,6 +105637,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEarlyLeaveRecordsInput = {
@@ -94752,6 +105674,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
@@ -94770,6 +105693,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEarlyLeaveRecordsInput = {
@@ -94822,6 +105746,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
@@ -94840,6 +105765,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEarlyLeaveRecordsInput = {
@@ -94876,6 +105802,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -94894,6 +105821,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutOutingRecordsInput = {
@@ -94930,6 +105858,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
@@ -94948,6 +105877,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutOutingRecordsInput = {
@@ -94984,6 +105914,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
@@ -95002,6 +105933,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutOutingRecordsInput = {
@@ -95054,6 +105986,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
@@ -95072,6 +106005,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutOutingRecordsInput = {
@@ -95108,6 +106042,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -95126,6 +106061,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutPersonalDocumentsInput = {
@@ -95162,6 +106098,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
@@ -95180,6 +106117,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutPersonalDocumentsInput = {
@@ -95216,6 +106154,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
     requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
     employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
     employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
     leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
@@ -95234,6 +106173,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
     outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutPersonalDocumentsInput = {
@@ -95286,6 +106226,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
@@ -95304,6 +106245,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutPersonalDocumentsInput = {
@@ -95340,6 +106282,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -95358,6 +106301,7 @@ export namespace Prisma {
     earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeRequestCreateManyUserInput = {
@@ -95604,6 +106548,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
@@ -95623,6 +106568,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutFacilityInput = {
@@ -95658,6 +106604,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -95677,6 +106624,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateManyWithoutFacilityInput = {
@@ -95908,6 +106856,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
@@ -95927,6 +106876,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDepartmentInput = {
@@ -95962,6 +106912,7 @@ export namespace Prisma {
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
     requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
     employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -95981,6 +106932,7 @@ export namespace Prisma {
     outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateManyWithoutDepartmentInput = {
@@ -96147,6 +107099,31 @@ export namespace Prisma {
     startTime?: string | null
     endTime?: string | null
     hours?: number | null
+  }
+
+  export type CommutingRequestCreateManyEmployeeInput = {
+    id?: string
+    notificationType: $Enums.CommutingNotificationType
+    commutingType: $Enums.CommutingType
+    effectiveDate: Date | string
+    routeFrom?: string | null
+    routeTo?: string | null
+    routeDetails?: string | null
+    transportationName?: string | null
+    monthlyAmount?: number | null
+    oneWayDistanceKm?: number | null
+    oneWayFare?: number | null
+    vehicleRegistrationNumber?: string | null
+    vehicleName?: string | null
+    vehicleColor?: string | null
+    approvedAmount?: number | null
+    note?: string | null
+    status?: $Enums.RequestStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
+    reviewComment?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type EmploymentHistoryCreateManyEmployeeInput = {
@@ -96350,6 +107327,35 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type ResidenceRequestCreateManyEmployeeInput = {
+    id?: string
+    residenceType: $Enums.ResidenceType
+    notificationType: $Enums.ResidenceNotificationType
+    changeDate: Date | string
+    postalCode: string
+    address: string
+    phoneNumber?: string | null
+    note?: string | null
+    landlordName?: string | null
+    landlordAddress?: string | null
+    contractHolderName?: string | null
+    contractHolderRelationship?: string | null
+    monthlyRent?: number | null
+    commonServiceFee?: number | null
+    housingName?: string | null
+    roomNumber?: string | null
+    ownershipType?: $Enums.ResidenceOwnershipType | null
+    ownerName1?: string | null
+    ownerName2?: string | null
+    acquisitionDate?: Date | string | null
+    status?: $Enums.RequestStatus
+    reviewedAt?: Date | string | null
+    reviewedBy?: string | null
+    reviewComment?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type EmployeeCertificationUpdateWithoutEmployeeInput = {
     id?: StringFieldUpdateOperationsInput | string
     acquiredDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -96461,6 +107467,85 @@ export namespace Prisma {
     startTime?: NullableStringFieldUpdateOperationsInput | string | null
     endTime?: NullableStringFieldUpdateOperationsInput | string | null
     hours?: NullableFloatFieldUpdateOperationsInput | number | null
+  }
+
+  export type CommutingRequestUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    notificationType?: EnumCommutingNotificationTypeFieldUpdateOperationsInput | $Enums.CommutingNotificationType
+    commutingType?: EnumCommutingTypeFieldUpdateOperationsInput | $Enums.CommutingType
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    routeFrom?: NullableStringFieldUpdateOperationsInput | string | null
+    routeTo?: NullableStringFieldUpdateOperationsInput | string | null
+    routeDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    transportationName?: NullableStringFieldUpdateOperationsInput | string | null
+    monthlyAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    oneWayDistanceKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    oneWayFare?: NullableIntFieldUpdateOperationsInput | number | null
+    vehicleRegistrationNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleName?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleColor?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attachments?: CommutingRequestAttachmentUpdateManyWithoutCommutingRequestNestedInput
+    routeSegments?: CommutingRouteSegmentUpdateManyWithoutCommutingRequestNestedInput
+  }
+
+  export type CommutingRequestUncheckedUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    notificationType?: EnumCommutingNotificationTypeFieldUpdateOperationsInput | $Enums.CommutingNotificationType
+    commutingType?: EnumCommutingTypeFieldUpdateOperationsInput | $Enums.CommutingType
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    routeFrom?: NullableStringFieldUpdateOperationsInput | string | null
+    routeTo?: NullableStringFieldUpdateOperationsInput | string | null
+    routeDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    transportationName?: NullableStringFieldUpdateOperationsInput | string | null
+    monthlyAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    oneWayDistanceKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    oneWayFare?: NullableIntFieldUpdateOperationsInput | number | null
+    vehicleRegistrationNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleName?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleColor?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attachments?: CommutingRequestAttachmentUncheckedUpdateManyWithoutCommutingRequestNestedInput
+    routeSegments?: CommutingRouteSegmentUncheckedUpdateManyWithoutCommutingRequestNestedInput
+  }
+
+  export type CommutingRequestUncheckedUpdateManyWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    notificationType?: EnumCommutingNotificationTypeFieldUpdateOperationsInput | $Enums.CommutingNotificationType
+    commutingType?: EnumCommutingTypeFieldUpdateOperationsInput | $Enums.CommutingType
+    effectiveDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    routeFrom?: NullableStringFieldUpdateOperationsInput | string | null
+    routeTo?: NullableStringFieldUpdateOperationsInput | string | null
+    routeDetails?: NullableStringFieldUpdateOperationsInput | string | null
+    transportationName?: NullableStringFieldUpdateOperationsInput | string | null
+    monthlyAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    oneWayDistanceKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    oneWayFare?: NullableIntFieldUpdateOperationsInput | number | null
+    vehicleRegistrationNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleName?: NullableStringFieldUpdateOperationsInput | string | null
+    vehicleColor?: NullableStringFieldUpdateOperationsInput | string | null
+    approvedAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EmploymentHistoryUpdateWithoutEmployeeInput = {
@@ -97074,6 +108159,95 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ResidenceRequestUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    residenceType?: EnumResidenceTypeFieldUpdateOperationsInput | $Enums.ResidenceType
+    notificationType?: EnumResidenceNotificationTypeFieldUpdateOperationsInput | $Enums.ResidenceNotificationType
+    changeDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    postalCode?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    landlordName?: NullableStringFieldUpdateOperationsInput | string | null
+    landlordAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    contractHolderName?: NullableStringFieldUpdateOperationsInput | string | null
+    contractHolderRelationship?: NullableStringFieldUpdateOperationsInput | string | null
+    monthlyRent?: NullableIntFieldUpdateOperationsInput | number | null
+    commonServiceFee?: NullableIntFieldUpdateOperationsInput | number | null
+    housingName?: NullableStringFieldUpdateOperationsInput | string | null
+    roomNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    ownershipType?: NullableEnumResidenceOwnershipTypeFieldUpdateOperationsInput | $Enums.ResidenceOwnershipType | null
+    ownerName1?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerName2?: NullableStringFieldUpdateOperationsInput | string | null
+    acquisitionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attachments?: ResidenceRequestAttachmentUpdateManyWithoutResidenceRequestNestedInput
+  }
+
+  export type ResidenceRequestUncheckedUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    residenceType?: EnumResidenceTypeFieldUpdateOperationsInput | $Enums.ResidenceType
+    notificationType?: EnumResidenceNotificationTypeFieldUpdateOperationsInput | $Enums.ResidenceNotificationType
+    changeDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    postalCode?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    landlordName?: NullableStringFieldUpdateOperationsInput | string | null
+    landlordAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    contractHolderName?: NullableStringFieldUpdateOperationsInput | string | null
+    contractHolderRelationship?: NullableStringFieldUpdateOperationsInput | string | null
+    monthlyRent?: NullableIntFieldUpdateOperationsInput | number | null
+    commonServiceFee?: NullableIntFieldUpdateOperationsInput | number | null
+    housingName?: NullableStringFieldUpdateOperationsInput | string | null
+    roomNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    ownershipType?: NullableEnumResidenceOwnershipTypeFieldUpdateOperationsInput | $Enums.ResidenceOwnershipType | null
+    ownerName1?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerName2?: NullableStringFieldUpdateOperationsInput | string | null
+    acquisitionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    attachments?: ResidenceRequestAttachmentUncheckedUpdateManyWithoutResidenceRequestNestedInput
+  }
+
+  export type ResidenceRequestUncheckedUpdateManyWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    residenceType?: EnumResidenceTypeFieldUpdateOperationsInput | $Enums.ResidenceType
+    notificationType?: EnumResidenceNotificationTypeFieldUpdateOperationsInput | $Enums.ResidenceNotificationType
+    changeDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    postalCode?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    landlordName?: NullableStringFieldUpdateOperationsInput | string | null
+    landlordAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    contractHolderName?: NullableStringFieldUpdateOperationsInput | string | null
+    contractHolderRelationship?: NullableStringFieldUpdateOperationsInput | string | null
+    monthlyRent?: NullableIntFieldUpdateOperationsInput | number | null
+    commonServiceFee?: NullableIntFieldUpdateOperationsInput | number | null
+    housingName?: NullableStringFieldUpdateOperationsInput | string | null
+    roomNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    ownershipType?: NullableEnumResidenceOwnershipTypeFieldUpdateOperationsInput | $Enums.ResidenceOwnershipType | null
+    ownerName1?: NullableStringFieldUpdateOperationsInput | string | null
+    ownerName2?: NullableStringFieldUpdateOperationsInput | string | null
+    acquisitionDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: EnumRequestStatusFieldUpdateOperationsInput | $Enums.RequestStatus
+    reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type EmploymentContractConsentCreateManyDependentInput = {
     id?: string
     employmentContractId: string
@@ -97480,6 +108654,154 @@ export namespace Prisma {
     fileType?: NullableStringFieldUpdateOperationsInput | string | null
     fileSize?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResidenceRequestAttachmentCreateManyResidenceRequestInput = {
+    id?: string
+    attachmentType: $Enums.ResidenceAttachmentType
+    fileName: string
+    filePath: string
+    fileType?: string | null
+    fileSize?: number | null
+    createdAt?: Date | string
+  }
+
+  export type ResidenceRequestAttachmentUpdateWithoutResidenceRequestInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    attachmentType?: EnumResidenceAttachmentTypeFieldUpdateOperationsInput | $Enums.ResidenceAttachmentType
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResidenceRequestAttachmentUncheckedUpdateWithoutResidenceRequestInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    attachmentType?: EnumResidenceAttachmentTypeFieldUpdateOperationsInput | $Enums.ResidenceAttachmentType
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ResidenceRequestAttachmentUncheckedUpdateManyWithoutResidenceRequestInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    attachmentType?: EnumResidenceAttachmentTypeFieldUpdateOperationsInput | $Enums.ResidenceAttachmentType
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommutingRequestAttachmentCreateManyCommutingRequestInput = {
+    id?: string
+    attachmentType: $Enums.CommutingAttachmentType
+    fileName: string
+    filePath: string
+    fileType?: string | null
+    fileSize?: number | null
+    createdAt?: Date | string
+  }
+
+  export type CommutingRouteSegmentCreateManyCommutingRequestInput = {
+    id?: string
+    operatorName: string
+    lineName?: string | null
+    boardingPoint?: string | null
+    alightingPoint?: string | null
+    oneWayFare?: number | null
+    roundTripFare?: number | null
+    monthlyPassAmount?: number | null
+    payableAmount?: number | null
+    fareSystem?: string | null
+    coveredBySegmentId?: string | null
+    sortOrder?: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CommutingRequestAttachmentUpdateWithoutCommutingRequestInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    attachmentType?: EnumCommutingAttachmentTypeFieldUpdateOperationsInput | $Enums.CommutingAttachmentType
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommutingRequestAttachmentUncheckedUpdateWithoutCommutingRequestInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    attachmentType?: EnumCommutingAttachmentTypeFieldUpdateOperationsInput | $Enums.CommutingAttachmentType
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommutingRequestAttachmentUncheckedUpdateManyWithoutCommutingRequestInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    attachmentType?: EnumCommutingAttachmentTypeFieldUpdateOperationsInput | $Enums.CommutingAttachmentType
+    fileName?: StringFieldUpdateOperationsInput | string
+    filePath?: StringFieldUpdateOperationsInput | string
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommutingRouteSegmentUpdateWithoutCommutingRequestInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    operatorName?: StringFieldUpdateOperationsInput | string
+    lineName?: NullableStringFieldUpdateOperationsInput | string | null
+    boardingPoint?: NullableStringFieldUpdateOperationsInput | string | null
+    alightingPoint?: NullableStringFieldUpdateOperationsInput | string | null
+    oneWayFare?: NullableIntFieldUpdateOperationsInput | number | null
+    roundTripFare?: NullableIntFieldUpdateOperationsInput | number | null
+    monthlyPassAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    payableAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    fareSystem?: NullableStringFieldUpdateOperationsInput | string | null
+    coveredBySegmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommutingRouteSegmentUncheckedUpdateWithoutCommutingRequestInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    operatorName?: StringFieldUpdateOperationsInput | string
+    lineName?: NullableStringFieldUpdateOperationsInput | string | null
+    boardingPoint?: NullableStringFieldUpdateOperationsInput | string | null
+    alightingPoint?: NullableStringFieldUpdateOperationsInput | string | null
+    oneWayFare?: NullableIntFieldUpdateOperationsInput | number | null
+    roundTripFare?: NullableIntFieldUpdateOperationsInput | number | null
+    monthlyPassAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    payableAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    fareSystem?: NullableStringFieldUpdateOperationsInput | string | null
+    coveredBySegmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CommutingRouteSegmentUncheckedUpdateManyWithoutCommutingRequestInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    operatorName?: StringFieldUpdateOperationsInput | string
+    lineName?: NullableStringFieldUpdateOperationsInput | string | null
+    boardingPoint?: NullableStringFieldUpdateOperationsInput | string | null
+    alightingPoint?: NullableStringFieldUpdateOperationsInput | string | null
+    oneWayFare?: NullableIntFieldUpdateOperationsInput | number | null
+    roundTripFare?: NullableIntFieldUpdateOperationsInput | number | null
+    monthlyPassAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    payableAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    fareSystem?: NullableStringFieldUpdateOperationsInput | string | null
+    coveredBySegmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    sortOrder?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type EmploymentContractConsentCreateManyEmploymentContractInput = {
