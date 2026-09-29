@@ -225,6 +225,8 @@ export default async function DashboardPage() {
     myApprovedRequests,
     myRejectedRequests,
     pendingProfileChanges,
+    pendingResidenceRequests,
+    pendingCommutingRequests,
     pendingCertificationRequests,
     pendingBankAccounts,
     pendingMyNumbers,
@@ -311,6 +313,31 @@ export default async function DashboardPage() {
     prisma.profileChangeRequest.count({
       where: {
         status: "PENDING",
+      },
+    }),
+    prisma.residenceRequest.count({
+      where: {
+        status: "PENDING",
+        ...(facilityScope !== "ALL"
+          ? {
+              employee: {
+                facilityId: facilityScope,
+              },
+            }
+          : {}),
+      },
+    }),
+
+    prisma.commutingRequest.count({
+      where: {
+        status: "PENDING",
+        ...(facilityScope !== "ALL"
+          ? {
+              employee: {
+                facilityId: facilityScope,
+              },
+            }
+          : {}),
       },
     }),
     prisma.employeeCertification.count({
@@ -1291,7 +1318,7 @@ export default async function DashboardPage() {
               color="green"
             />
             <StatCard
-              title="プロフィール変更"
+              title="プロフィール"
               value={myPendingProfileChanges}
               description="承認待ち申請"
               color="yellow"
@@ -1313,7 +1340,7 @@ export default async function DashboardPage() {
 
       <section className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div className="rounded-lg border bg-white p-6 shadow-sm">
-          <h3 className="mb-3 text-lg font-semibold text-gray-800">申請管理</h3>
+          <h3 className="mb-3 text-lg font-semibold text-gray-800">申請手続き</h3>
           <p className="text-sm text-gray-600">
             各種申請の作成、確認、承認状況の確認を行います。
           </p>
@@ -1331,25 +1358,16 @@ export default async function DashboardPage() {
               className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
             >
               マイ申請
-            </Link>{isHRManager && (
-
-
-            <Link
-              href="/mypage/employment-contracts"
-              className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-            >
-              雇用条件書
             </Link>
-            )}
           </div>
         </div>
 
         <div className="rounded-lg border bg-white p-6 shadow-sm">
           <h3 className="mb-3 text-lg font-semibold text-gray-800">
-            職員ポータル
+            マイポータル
           </h3>
           <p className="text-sm text-gray-600">
-            給与明細、雇用条件書、資格情報、各種個人手続きを利用できます。
+            個人情報・現在登録情報・雇用情報を確認できます。
           </p>
 
           <div className="mt-4 flex flex-wrap gap-3">
@@ -1363,32 +1381,44 @@ export default async function DashboardPage() {
               href="/mypage/certifications"
               className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
             >
-              資格・免許管理
+              保有資格
             </Link>
             <Link
               href="/mypage/profile-change"
               className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
             >
-              プロフィール変更
+              プロフィール
             </Link>
             <Link
               href="/mypage/bank-account"
               className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
             >
-              口座情報管理
+              口座情報
             </Link>
 
             <Link
               href="/mypage/my-number"
               className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
             >
-              マイナンバー管理
+              マイナンバー
             </Link>
             <Link
-              href="/mypage/dependent-requests/new"
+              href="/portal/dependents"
               className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
             >
-              扶養家族申請
+              現在の扶養情報
+            </Link>
+            <Link
+              href="/portal/residence"
+              className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            >
+              現在の住居情報
+            </Link>
+            <Link
+              href="/portal/commuting"
+              className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            >
+              現在の通勤情報
             </Link>
 
             <Link
@@ -1437,7 +1467,7 @@ export default async function DashboardPage() {
             )}
 
             {myPendingProfileChanges > 0 && (
-              <li>・プロフィール変更申請が承認待ちです</li>
+              <li>・プロフィール申請が承認待ちです</li>
             )}
 
             {myNextLeaveExpiration && myNextLeaveExpiration.daysUntil <= 30 && (
@@ -1459,7 +1489,7 @@ export default async function DashboardPage() {
         {canApprove && (
           <div className="rounded-lg border bg-white p-6 shadow-sm">
             <h3 className="mb-3 text-lg font-semibold text-gray-800">
-              承認メニュー
+              承認管理
             </h3>
             <p className="text-sm text-gray-600">
               承認待ちの申請を確認し、承認・却下を行います。
@@ -1477,7 +1507,7 @@ export default async function DashboardPage() {
                 href="/profile-change-requests"
                 className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
               >
-                プロフィール変更申請 ({pendingProfileChanges})
+                プロフィール申請 ({pendingProfileChanges})
               </Link>
               <Link
                 href="/dependent-requests"
@@ -1491,6 +1521,13 @@ export default async function DashboardPage() {
                 className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
               >
                 資格承認 ({pendingCertificationRequests})
+              </Link>
+
+              <Link
+                href="/commuting-requests"
+                className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+              >
+                現在の通勤情報承認 ({pendingCommutingRequests})
               </Link>
 
               <Link
@@ -1524,7 +1561,7 @@ export default async function DashboardPage() {
         {isHRManager && (
           <div className="rounded-lg border bg-white p-6 shadow-sm">
             <h3 className="mb-3 text-lg font-semibold text-gray-800">
-              人事管理メニュー
+              人事管理
             </h3>
             <p className="text-sm text-gray-600">
               職員マスタ、部署マスタの管理を行います。
@@ -1537,7 +1574,13 @@ export default async function DashboardPage() {
 
               <ul className="mt-2 space-y-1 text-sm text-amber-800">
                 <li className={getAlertClass(pendingProfileChanges)}>
-                  プロフィール変更申請: {pendingProfileChanges}件
+                  プロフィール申請: {pendingProfileChanges}件
+                </li>
+                <li className={getAlertClass(pendingResidenceRequests)}>
+                  現在の住居情報: {pendingResidenceRequests}件
+                </li>
+                <li className={getAlertClass(pendingCommutingRequests)}>
+                  現在の通勤情報申請: {pendingCommutingRequests}件
                 </li>
                 <li className={getAlertClass(pendingCertificationRequests)}>
                   資格承認: {pendingCertificationRequests}件

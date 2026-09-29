@@ -1,0 +1,143 @@
+import Link from "next/link";
+import { redirect } from "next/navigation";
+
+import { auth } from "@/auth";
+import { prisma } from "@/lib/prisma";
+
+function formatDate(value: Date | null | undefined) {
+  return value
+    ? new Date(value).toLocaleDateString("ja-JP")
+    : "-";
+}
+
+export default async function CurrentDependentsPage() {
+  const session = await auth();
+
+  if (!session?.user?.id) {
+    redirect("/login");
+  }
+
+  const employee = await prisma.employee.findUnique({
+    where: {
+      userId: session.user.id,
+    },
+  });
+
+  if (!employee) {
+    redirect("/");
+  }
+
+  const dependents = await prisma.dependent.findMany({
+    where: {
+      employeeId: employee.id,
+      isActive: true,
+    },
+    orderBy: [
+      {
+        birthDate: "asc",
+      },
+      {
+        createdAt: "asc",
+      },
+    ],
+  });
+
+  return (
+    <main className="mx-auto max-w-5xl p-8">
+      <div className="flex flex-col justify-between gap-4 md:flex-row">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">
+            現在の扶養情報
+          </h1>
+
+          <p className="mt-2 text-sm text-gray-600">
+            現在登録されている有効な扶養家族を表示しています。
+          </p>
+        </div>
+
+        <Link
+          href="/"
+          className="rounded border bg-white px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+        >
+          ダッシュボードへ戻る
+        </Link>
+      </div>
+
+      {dependents.length === 0 ? (
+        <section className="mt-6 rounded-lg border bg-white p-8 text-center shadow-sm">
+          <p className="text-gray-600">
+            現在登録されている扶養家族はいません。
+          </p>
+        </section>
+      ) : (
+        <section className="mt-6 space-y-4">
+          {dependents.map((dependent) => (
+            <article
+              key={dependent.id}
+              className="rounded-lg border bg-white p-6 shadow-sm"
+            >
+              <div className="border-b pb-3">
+                <h2 className="text-lg font-semibold text-gray-900">
+                  {dependent.name}
+                </h2>
+
+                {dependent.nameKana && (
+                  <p className="mt-1 text-sm text-gray-500">
+                    {dependent.nameKana}
+                  </p>
+                )}
+              </div>
+
+              <dl className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+                <div>
+                  <dt className="text-sm text-gray-500">続柄</dt>
+                  <dd className="mt-1 text-gray-900">
+                    {dependent.relationship}
+                  </dd>
+                </div>
+
+                <div>
+                  <dt className="text-sm text-gray-500">生年月日</dt>
+                  <dd className="mt-1 text-gray-900">
+                    {formatDate(dependent.birthDate)}
+                  </dd>
+                </div>
+
+                <div>
+                  <dt className="text-sm text-gray-500">同居状況</dt>
+                  <dd className="mt-1 text-gray-900">
+                    {dependent.cohabiting ? "同居" : "別居"}
+                  </dd>
+                </div>
+
+                <div>
+                  <dt className="text-sm text-gray-500">
+                    健康保険扶養
+                  </dt>
+                  <dd className="mt-1 text-gray-900">
+                    {dependent.healthInsuranceDependent ? "対象" : "対象外"}
+                  </dd>
+                </div>
+
+              </dl>
+            </article>
+          ))}
+        </section>
+      )}
+
+      <div className="mt-6 flex flex-wrap gap-3">
+        <Link
+          href="/mypage/dependent-requests"
+          className="rounded border bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+          家族情報変更申請の履歴を見る
+        </Link>
+
+        <Link
+          href="/mypage/dependent-requests/new"
+          className="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700">
+          家族情報変更を申請する
+        </Link>
+      </div>
+    </main>
+  );
+}
