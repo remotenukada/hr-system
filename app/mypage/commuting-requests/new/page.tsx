@@ -1,0 +1,547 @@
+import Link from "next/link";
+import path from "path";
+import { randomUUID } from "crypto";
+import { mkdir, unlink, writeFile } from "fs/promises";
+import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
+
+import { auth } from "@/auth";
+import { prisma } from "@/lib/prisma";
+import { logAudit } from "@/lib/audit-log";
+import CommutingRouteSegmentFields from "@/components/CommutingRouteSegmentFields";
+import {
+  getHRNotificationRecipients,
+  sendSystemMailSafely,
+} from "@/lib/mail";
+
+const notificationTypes = [
+  "NEW",
+  "ROUTE_CHANGE",
+  "METHOD_CHANGE",
+  "AMOUNT_CHANGE",
+] as const;
+
+const commutingTypes = [
+  "PUBLIC_TRANSPORT",
+  "CAR",
+  "MOTORCYCLE",
+  "BICYCLE",
+  "WALK",
+  "OTHER",
+] as const;
+
+
+const notificationLabels: Record<string, string> = {
+  NEW: "新規",
+  ROUTE_CHANGE: "経路変更",
+  METHOD_CHANGE: "通勤手段変更",
+  AMOUNT_CHANGE: "金額変更",
+};
+
+const commutingLabels: Record<string, string> = {
+  PUBLIC_TRANSPORT: "公共交通機関",
+  CAR: "自家用車",
+  MOTORCYCLE: "バイク",
+  BICYCLE: "自転車",
+  WALK: "徒歩",
+  OTHER: "その他",
+};
+
+const attachmentTypes = [
+  "COMMUTER_PASS",
+  "ROUTE_MAP",
+  "VEHICLE_INSPECTION",
+  "VOLUNTARY_INSURANCE",
+  "DRIVERS_LICENSE",
+  "OTHER",
+] as const;
+
+const allowedMimeTypes = new Set([
+  "application/pdf",
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+]);
+
+const MAX_FILE_SIZE = 10 * 1024 * 1024;
+
+async function saveAttachment(file: File) {
+  if (file.size > MAX_FILE_SIZE) {
+    throw new Error("添付ファイルは10MB以下にしてください。");
+  }
+
+  if (!allowedMimeTypes.has(file.type)) {
+    throw new Error("対応していないファイル形式です。");
+  }
+
+  const uploadDir = path.join(
+    process.cwd(),
+    "storage",
+    "commuting-requests",
+  );
+
+  await mkdir(uploadDir, { recursive: true });
+
+  const extension = path.extname(file.name).toLowerCase();
+  const filePath = path.join(
+    uploadDir,
+    `${randomUUID()}${extension}`,
+  );
+
+  await writeFile(
+    filePath,
+    Buffer.from(await file.arrayBuffer()),
+  );
+
+  return {
+    fileName: file.name,
+    filePath,
+    fileType: file.type,
+    fileSize: file.size,
+  };
+}
+
+async function getCurrentEmployee() {
+  const session = await auth();
+
+  if (!session?.user?.id) {
+    redirect("/login");
+  }
+
+  const employee = await prisma.employee.findUnique({
+    where: {
+      userId: session.user.id,
+    },
+  });
+
+  if (!employee) {
+    redirect("/");
+  }
+
+  return { session, employee };
+}
+
+function optionalText(formData: FormData, name: string) {
+  const value = String(formData.get(name) ?? "").trim();
+  return value || null;
+}
+
+function optionalInteger(formData: FormData, name: string) {
+  const value = String(formData.get(name) ?? "").trim();
+
+  if (!value) return null;
+
+  const number = Number(value);
+
+  if (!Number.isInteger(number) || number < 0) {
+    throw new Error(`${name}は0以上の整数で入力してください。`);
+  }
+
+  return number;
+}
+
+function optionalFloat(formData: FormData, name: string) {
+  const value = String(formData.get(name) ?? "").trim();
+
+  if (!value) return null;
+
+  const number = Number(value);
+
+  if (!Number.isFinite(number) || number < 0) {
+    throw new Error(`${name}は0以上の数値で入力してください。`);
+  }
+
+  return number;
+}
+
+export default async function NewCommutingRequestPage() {
+  await getCurrentEmployee();
+
+  async function createCommutingRequest(formData: FormData) {
+    "use server";
+
+    const { session, employee } = await getCurrentEmployee();
+
+    const notificationType = String(
+      formData.get("notificationType") ?? "",
+    );
+
+    const commutingType = String(
+      formData.get("commutingType") ?? "",
+    );
+
+    const effectiveDateStr = String(
+      formData.get("effectiveDate") ?? "",
+    );
+
+    if (!notificationType || !commutingType || !effectiveDateStr) {
+      throw new Error("必須項目が入力されていません。");
+    }
+
+    const effectiveDate = new Date(effectiveDateStr);
+
+    const routeFrom = optionalText(formData, "routeFrom");
+    const routeTo = optionalText(formData, "routeTo");
+    const routeDetails = optionalText(formData, "routeDetails");
+    const transportationName = optionalText(formData, "transportationName");
+    const monthlyAmount = optionalInteger(formData, "monthlyAmount");
+    const oneWayDistanceKm = optionalFloat(formData, "oneWayDistanceKm");
+    const oneWayFare = optionalInteger(formData, "oneWayFare");
+    const vehicleRegistrationNumber = optionalText(
+      formData,
+      "vehicleRegistrationNumber",
+    );
+    const note = optionalText(formData, "note");
+
+    const operatorNames = formData
+      .getAll("segmentOperatorName")
+      .map((value) => String(value).trim());
+
+    const lineNames = formData.getAll("segmentLineName");
+    const boardingPoints =
+      formData.getAll("segmentBoardingPoint");
+    const alightingPoints =
+      formData.getAll("segmentAlightingPoint");
+    const oneWayFares =
+      formData.getAll("segmentOneWayFare");
+    const monthlyPassAmounts =
+      formData.getAll("segmentMonthlyPassAmount");
+    const fareSystems =
+      formData.getAll("segmentFareSystem");
+
+    const segmentInputs = operatorNames
+      .map((operatorName, index) => {
+        const oneWayFare =
+          Number(oneWayFares[index] ?? 0);
+        const monthlyPassAmount =
+          Number(monthlyPassAmounts[index] ?? 0);
+
+        if (
+          !Number.isInteger(oneWayFare) ||
+          oneWayFare < 0 ||
+          !Number.isInteger(monthlyPassAmount) ||
+          monthlyPassAmount < 0
+        ) {
+          throw new Error(
+            "運賃と定期代は0以上の整数で入力してください。",
+          );
+        }
+
+        return {
+          operatorName,
+          lineName:
+            String(lineNames[index] ?? "").trim() || null,
+          boardingPoint:
+            String(boardingPoints[index] ?? "").trim() ||
+            null,
+          alightingPoint:
+            String(alightingPoints[index] ?? "").trim() ||
+            null,
+          oneWayFare,
+          roundTripFare: oneWayFare * 2,
+          monthlyPassAmount,
+          fareSystem: String(
+            fareSystems[index] ?? "STANDARD",
+          ),
+          sortOrder: index,
+        };
+      })
+      .filter((segment) => segment.operatorName);
+
+    const keikyuMaximum = Math.max(
+      0,
+      ...segmentInputs
+        .filter(
+          (segment) =>
+            segment.fareSystem === "KEIKYU_AMOUNT_IC",
+        )
+        .map((segment) => segment.monthlyPassAmount),
+    );
+
+    let keikyuApplied = false;
+
+    const routeSegments = segmentInputs.map((segment) => {
+      let payableAmount = segment.monthlyPassAmount;
+
+      if (segment.fareSystem === "KEIKYU_AMOUNT_IC") {
+        payableAmount =
+          !keikyuApplied &&
+          segment.monthlyPassAmount === keikyuMaximum
+            ? segment.monthlyPassAmount
+            : 0;
+
+        if (payableAmount > 0) {
+          keikyuApplied = true;
+        }
+      }
+
+      return {
+        ...segment,
+        payableAmount,
+      };
+    });
+
+    const calculatedMonthlyAmount = routeSegments.reduce(
+      (total, segment) =>
+        total + segment.payableAmount,
+      0,
+    );
+
+    const newRequest = await prisma.commutingRequest.create({
+      data: {
+        employeeId: employee.id,
+        notificationType: notificationType as any,
+        commutingType: commutingType as any,
+        effectiveDate,
+        routeFrom,
+        routeTo,
+        routeDetails,
+        transportationName,
+        monthlyAmount:
+          routeSegments.length > 0
+            ? calculatedMonthlyAmount
+            : monthlyAmount,
+        oneWayDistanceKm,
+        oneWayFare,
+        vehicleRegistrationNumber,
+        note,
+        status: "PENDING",
+        routeSegments:
+          routeSegments.length > 0
+            ? {
+                create: routeSegments,
+              }
+            : undefined,
+      },
+    });
+
+    await logAudit({
+      userId: session.user.id,
+      userName: session.user.name,
+      action: "COMMUTING_REQUEST_CREATED",
+      targetType: "CommutingRequest",
+      targetId: newRequest.id,
+      description: `${employee.employeeNo} の通勤届を作成`,
+    });
+
+    const hrRecipients = await getHRNotificationRecipients();
+    if (hrRecipients.length > 0) {
+      await sendSystemMailSafely({
+        to: hrRecipients,
+        subject: "【人事システム】通勤届提出のお知らせ",
+        text: `${employee.lastName} ${employee.firstName} さんから新しい通勤届が提出されました。`,
+      });
+    }
+
+    revalidatePath("/mypage/commuting-requests");
+    redirect("/mypage/commuting-requests");
+  }
+
+  return (
+    <main className="mx-auto max-w-4xl p-8">
+      <div className="mb-4">
+        <Link
+          href="/mypage/commuting-requests"
+          className="text-sm text-blue-600 hover:underline"
+        >
+          ← 通勤届一覧へ戻る
+        </Link>
+      </div>
+
+      <h1 className="text-3xl font-bold">通勤届新規申請</h1>
+      <p className="mt-2 text-sm text-gray-600">
+        通勤方法や通勤経路の変更を申請します。
+      </p>
+
+      <form
+        action={createCommutingRequest}
+        className="mt-6 space-y-6 rounded border bg-white p-6 shadow-sm"
+      >
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700">
+              申請区分 <span className="text-red-500">*</span>
+            </label>
+            <select
+              name="notificationType"
+              className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+              defaultValue="NEW"
+              required
+            >
+              {notificationTypes.map((type) => (
+                <option key={type} value={type}>
+                  {notificationLabels[type]}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700">
+              通勤手段 <span className="text-red-500">*</span>
+            </label>
+            <select
+              name="commutingType"
+              className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+              defaultValue="PUBLIC_TRANSPORT"
+              required
+            >
+              {commutingTypes.map((type) => (
+                <option key={type} value={type}>
+                  {commutingLabels[type]}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium text-gray-700">
+            適用開始日 <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="date"
+            name="effectiveDate"
+            className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+            required
+          />
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700">
+              出発地
+            </label>
+            <input
+              type="text"
+              name="routeFrom"
+              placeholder="例: 新宿駅"
+              className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700">
+              到着地
+            </label>
+            <input
+              type="text"
+              name="routeTo"
+              placeholder="例: 東京駅"
+              className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium text-gray-700">
+            経路詳細
+          </label>
+          <input
+            type="text"
+            name="routeDetails"
+            placeholder="例: 新宿駅 -> 徒歩5分 -> オフィス"
+            className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+          />
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700">
+              利用交通機関名
+            </label>
+            <input
+              type="text"
+              name="transportationName"
+              placeholder="例: JR山手線"
+              className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700">
+              月額手当/定期代 (円)
+            </label>
+            <input
+              type="number"
+              name="monthlyAmount"
+              min="0"
+              placeholder="例: 15000"
+              className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700">
+              片道距離 (km)
+            </label>
+            <input
+              type="number"
+              name="oneWayDistanceKm"
+              step="0.1"
+              min="0"
+              placeholder="例: 12.5"
+              className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700">
+              片道運賃 (円)
+            </label>
+            <input
+              type="number"
+              name="oneWayFare"
+              min="0"
+              placeholder="例: 220"
+              className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium text-gray-700">
+            車両登録番号（マイカー・バイクの場合）
+          </label>
+          <input
+            type="text"
+            name="vehicleRegistrationNumber"
+            placeholder="例: 品川 300 あ 12-34"
+            className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium text-gray-700">
+            備考・申請理由
+          </label>
+          <textarea
+            name="note"
+            rows={3}
+            placeholder="転居に伴う変更など"
+            className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+          ></textarea>
+        </div>
+        <CommutingRouteSegmentFields />
+
+
+        <div className="flex justify-end space-x-4">
+          <Link
+            href="/mypage/commuting-requests"
+            className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+          >
+            キャンセル
+          </Link>
+          <button
+            type="submit"
+            className="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+          >
+            申請する
+          </button>
+        </div>
+      </form>
+    </main>
+  );
+}

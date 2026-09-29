@@ -1,0 +1,225 @@
+import BackLink from "@/components/BackLink";
+import { notFound, redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
+
+import { auth } from "@/auth";
+import { prisma } from "@/lib/prisma";
+import { logAudit } from "@/lib/audit-log";
+import {
+  getHRNotificationRecipients,
+  sendSystemMailSafely,
+} from "@/lib/mail";
+
+type Props = {
+  params: Promise<{
+    id: string;
+  }>;
+};
+
+export default async function ResidenceRequestCancelPage({
+  params,
+}: Props) {
+  const session = await auth();
+
+  if (!session?.user?.id) {
+    redirect("/login");
+  }
+
+  const employee = await prisma.employee.findUnique({
+    where: {
+      userId: session.user.id,
+    },
+  });
+
+  if (!employee) {
+    redirect("/");
+  }
+
+  const { id } = await params;
+
+  const request = await prisma.residenceRequest.findFirst({
+    where: {
+      id,
+      employeeId: employee.id,
+    },
+  });
+
+  if (!request) {
+    notFound();
+  }
+
+  if (request.status !== "PENDING") {
+    redirect("/mypage/residence-requests");
+  }
+
+  async function cancelResidenceRequest(formData: FormData) {
+    "use server";
+
+    const currentSession = await auth();
+
+    if (!currentSession?.user?.id) {
+      redirect("/login");
+    }
+
+    const currentEmployee = await prisma.employee.findUnique({
+      where: {
+        userId: currentSession.user.id,
+      },
+    });
+
+    if (!currentEmployee) {
+      redirect("/");
+    }
+
+    const requestId = String(
+      formData.get("requestId") ?? "",
+    ).trim();
+
+    const reason = String(
+      formData.get("reason") ?? "",
+    ).trim();
+
+    if (!requestId || !reason) {
+      redirect(
+        `/mypage/residence-requests/${id}/cancel?error=required`,
+      );
+    }
+
+    const target = await prisma.residenceRequest.findFirst({
+      where: {
+        id: requestId,
+        employeeId: currentEmployee.id,
+      },
+    });
+
+    if (!target || target.status !== "PENDING") {
+      redirect("/mypage/residence-requests");
+    }
+
+    const result = await prisma.residenceRequest.updateMany({
+      where: {
+        id: target.id,
+        employeeId: currentEmployee.id,
+        status: "PENDING",
+      },
+      data: {
+        status: "CANCELLED",
+        reviewedAt: new Date(),
+        reviewedBy:
+          currentSession.user.name ??
+          currentSession.user.email ??
+          currentSession.user.id,
+        reviewComment: reason,
+      },
+    });
+
+    if (result.count !== 1) {
+      redirect("/mypage/residence-requests");
+    }
+
+    await logAudit({
+      userId: currentSession.user.id,
+      userName: currentSession.user.name,
+      action: "RESIDENCE_REQUEST_CANCELLED",
+    targetType: "ResidenceRequest",
+      targetId: target.id,
+      description:
+        `${currentEmployee.employeeNo} の住居届を取消: ${reason}`,
+      beforeData: {
+        employeeId: currentEmployee.id,
+        status: target.status,
+      },
+      afterData: {
+        employeeId: currentEmployee.id,
+        status: "CANCELLED",
+        reason,
+      },
+    });
+
+        const recipients =
+      await getHRNotificationRecipients();
+
+    if (recipients.length > 0) {
+      const mailSent = await sendSystemMailSafely({
+        to: recipients,
+        subject:
+          "【FY Nexus One】住居届が取り消されました",
+        text: `住居届が取り消されました。
+
+職員番号：${currentEmployee.employeeNo}
+氏名：${currentEmployee.lastName} ${currentEmployee.firstName}
+住所：${target.address}
+取消理由：
+${reason}
+
+FY Nexus One`,
+      });
+
+      if (!mailSent) {
+        console.error(
+          `住居届取消メール送信失敗: ${target.id}`,
+        );
+      }
+    }
+
+    revalidatePath("/mypage/residence-requests");
+    revalidatePath("/residence-requests");
+    revalidatePath("/");
+
+    redirect("/mypage/residence-requests");
+  }
+
+  return (
+    <main className="mx-auto max-w-2xl p-6">
+      <BackLink
+        href="/mypage/residence-requests"
+        label="一覧に戻る"
+      />
+
+      <h1 className="mb-6 mt-4 text-2xl font-bold text-red-700">
+        住居届取消
+      </h1>
+
+      <div className="mb-6 space-y-2 rounded border bg-gray-50 p-4">
+        <div>
+          <span className="font-bold">申請ID:</span> {request.id}
+        </div>
+        <div>
+          <span className="font-bold">申請区分:</span> {request.notificationType}
+        </div>
+        <div>
+          <span className="font-bold">ステータス:</span> {request.status}
+        </div>
+      </div>
+
+      <form action={cancelResidenceRequest} className="space-y-4">
+        <input type="hidden" name="requestId" value={request.id} />
+        <div>
+          <label
+            htmlFor="reason"
+            className="block text-sm font-medium text-gray-700"
+          >
+            取消理由 <span className="text-red-500">*</span>
+          </label>
+          <textarea
+            id="reason"
+            name="reason"
+            rows={4}
+            required
+            className="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            placeholder="取消理由を入力してください"
+          />
+        </div>
+
+        <div className="flex gap-4">
+          <button
+            type="submit"
+            className="rounded bg-red-600 px-4 py-2 font-bold text-white hover:bg-red-700"
+          >
+            取消を確定する
+          </button>
+        </div>
+      </form>
+    </main>
+  );
+}
