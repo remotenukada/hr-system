@@ -1342,23 +1342,49 @@ export default async function DashboardPage() {
         <div className="rounded-lg border bg-white p-6 shadow-sm">
           <h3 className="mb-3 text-lg font-semibold text-gray-800">申請手続き</h3>
           <p className="text-sm text-gray-600">
-            各種申請の作成、確認、承認状況の確認を行います。
+            勤務・休暇申請や各種届出を提出し、申請履歴を確認できます。
           </p>
 
-          <div className="mt-4 flex flex-wrap gap-3">
-            <Link
-              href="/requests/new"
-              className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-            >
-              新規申請
-            </Link>
-
-            <Link
-              href="/requests/my"
-              className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-            >
-              マイ申請
-            </Link>
+          <div className="mt-4 space-y-5">
+            <div>
+              <h4 className="mb-2 text-sm font-semibold text-gray-600">
+                勤務関連
+              </h4>
+              <div className="flex flex-wrap gap-3">
+                <Link href="/requests/new" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                  勤務・休暇申請
+                </Link>
+                <Link href="/requests/my" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                  申請履歴
+                </Link>
+              </div>
+            </div>
+            <div>
+              <h4 className="mb-2 text-sm font-semibold text-gray-600">
+                各種届出
+              </h4>
+              <div className="flex flex-wrap gap-3">
+                <Link href="/mypage/residence-requests" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                  住居届
+                </Link>
+                <Link href="/mypage/commuting-requests" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                  通勤届
+                </Link>
+                <Link href="/mypage/dependent-requests" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                  扶養家族変更届
+                </Link>
+              </div>
+            </div>
+            <div>
+              <h4 className="mb-2 text-sm font-semibold text-gray-600">
+                免許・資格等
+              </h4>
+              <div className="flex flex-wrap gap-3">
+                <Link href="/mypage/certifications" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                  免許・資格等申請
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -1382,7 +1408,7 @@ export default async function DashboardPage() {
             <div>
               <h4 className="mb-2 text-sm font-semibold text-gray-600">現在登録情報</h4>
               <div className="flex flex-wrap gap-3">
-                <Link href="/mypage/certifications" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">保有資格</Link>
+                <Link href="/mypage/certifications" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">保有免許・資格等</Link>
                 <Link href="/portal/dependents" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">現在の扶養情報</Link>
                 <Link href="/portal/residence" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">現在の住居情報</Link>
                 <Link href="/portal/commuting" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">現在の通勤情報</Link>
