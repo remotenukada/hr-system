@@ -243,6 +243,7 @@ export default async function DashboardPage() {
     monthlyPositionChanges,
     monthlyLeaves,
     monthlyRetirements,
+    onboardingIncompleteCount,
   ] = await Promise.all([
     prisma.employee.count({
       where: employeeFacilityWhere,
@@ -495,6 +496,17 @@ export default async function DashboardPage() {
           gte: currentMonthStart,
           lte: currentMonthEnd,
         },
+      },
+    }),
+
+    prisma.employee.count({
+      where: {
+        onboardingCompletedAt: null,
+        ...(facilityScope !== "ALL"
+          ? {
+              facilityId: facilityScope,
+            }
+          : {}),
       },
     }),
   ]);
@@ -1591,6 +1603,12 @@ export default async function DashboardPage() {
                 </li>
                 <li className={getAlertClass(pendingMyNumbers ?? 0)}>
                   マイナンバー確認: {pendingMyNumbers ?? 0}件
+                </li>
+
+                <li className={getAlertClass(onboardingIncompleteCount)}>
+                  <Link href="/onboarding-management">
+                    初回登録未完了: {onboardingIncompleteCount}件
+                  </Link>
                 </li>
               </ul>
             </div>

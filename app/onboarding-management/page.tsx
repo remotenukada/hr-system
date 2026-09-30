@@ -1,0 +1,261 @@
+import Link from "next/link";
+import { cookies } from "next/headers";
+
+import { prisma } from "@/lib/prisma";
+import { requireHRManager } from "@/lib/auth-guard";
+
+const TOTAL_TASKS = 6;
+
+export default async function OnboardingManagementPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{
+    status?: string;
+  }>;
+}) {
+  await requireHRManager();
+
+  const params = await searchParams;
+  const filterStatus = params?.status ?? "all";
+
+  const cookieStore = await cookies();
+  const facilityScope =
+    cookieStore.get("facilityScope")?.value ?? "ALL";
+
+  const employees = await prisma.employee.findMany({
+    where:
+      facilityScope !== "ALL"
+        ? {
+            facilityId: facilityScope,
+          }
+        : undefined,
+    include: {
+      facility: true,
+      department: true,
+      residenceRequests: {
+        select: { id: true },
+      },
+      commutingRequests: {
+        select: { id: true },
+      },
+      dependentRequests: {
+        select: { id: true },
+      },
+      certifications: {
+        select: { id: true },
+      },
+      bankAccount: {
+        select: { id: true },
+      },
+      employeeMyNumber: {
+        select: { id: true },
+      },
+    },
+    orderBy: [
+      { facilityId: "asc" },
+      { departmentId: "asc" },
+      { employeeNo: "asc" },
+    ],
+  });
+
+  const rows = employees.map((employee) => {
+    const skipped = Array.isArray(
+      employee.onboardingSkippedItems,
+    )
+      ? employee.onboardingSkippedItems.length
+      : 0;
+
+    let completed = 0;
+
+    if (employee.residenceRequests.length > 0) completed++;
+    if (employee.commutingRequests.length > 0) completed++;
+    if (employee.dependentRequests.length > 0) completed++;
+    if (employee.certifications.length > 0) completed++;
+    if (employee.bankAccount) completed++;
+    if (employee.employeeMyNumber) completed++;
+
+    const progress = employee.onboardingCompletedAt
+      ? TOTAL_TASKS
+      : Math.min(TOTAL_TASKS, completed + skipped);
+
+    const status = employee.onboardingCompletedAt
+      ? "完了"
+      : progress === 0
+        ? "未着手"
+        : "進行中";
+
+    return {
+      employee,
+      progress,
+      status,
+    };
+  });
+
+  const completedCount = rows.filter(
+    (row) => row.status === "完了",
+  ).length;
+
+  const incompleteCount = rows.filter(
+    (row) => row.status !== "完了",
+  ).length;
+
+  const filteredRows = rows.filter((row) => {
+    if (filterStatus === "completed") {
+      return row.status === "完了";
+    }
+
+    if (filterStatus === "incomplete") {
+      return row.status !== "完了";
+    }
+
+    return true;
+  });
+
+  return (
+    <div className="space-y-6">
+      <div>
+        <h1 className="text-2xl font-bold">
+          初回登録進捗管理
+        </h1>
+
+        <p className="mt-2 text-sm text-gray-600">
+          初回登録の進捗状況を確認します。
+        </p>
+      </div>
+
+      <div className="flex flex-wrap gap-2">
+        <Link
+          href="/onboarding-management"
+          className={`rounded-md px-3 py-1.5 text-sm font-medium ${
+            filterStatus === "all"
+              ? "bg-blue-600 text-white"
+              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+          }`}
+        >
+          すべて ({rows.length})
+        </Link>
+        <Link
+          href="/onboarding-management?status=incomplete"
+          className={`rounded-md px-3 py-1.5 text-sm font-medium ${
+            filterStatus === "incomplete"
+              ? "bg-blue-600 text-white"
+              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+          }`}
+        >
+          未完了 ({incompleteCount})
+        </Link>
+        <Link
+          href="/onboarding-management?status=completed"
+          className={`rounded-md px-3 py-1.5 text-sm font-medium ${
+            filterStatus === "completed"
+              ? "bg-blue-600 text-white"
+              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+          }`}
+        >
+          完了 ({completedCount})
+        </Link>
+      </div>
+
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <div className="rounded-lg border bg-white p-5 shadow-sm">
+          <div className="text-sm text-gray-500">
+            対象者数
+          </div>
+          <div className="mt-2 text-2xl font-bold">
+            {rows.length}名
+          </div>
+        </div>
+
+        <div className="rounded-lg border bg-white p-5 shadow-sm">
+          <div className="text-sm text-gray-500">
+            完了者数
+          </div>
+          <div className="mt-2 text-2xl font-bold text-green-600">
+            {completedCount}名
+          </div>
+        </div>
+
+        <div className="rounded-lg border bg-white p-5 shadow-sm">
+          <div className="text-sm text-gray-500">
+            未完了者数
+          </div>
+          <div className="mt-2 text-2xl font-bold text-amber-600">
+            {incompleteCount}名
+          </div>
+        </div>
+      </div>
+
+      <div className="overflow-x-auto rounded-lg border bg-white shadow-sm">
+        <table className="min-w-full text-sm">
+          <thead className="bg-gray-50">
+            <tr>
+              <th className="p-3 text-left">職員番号</th>
+              <th className="p-3 text-left">氏名</th>
+              <th className="p-3 text-left">施設</th>
+              <th className="p-3 text-left">部署</th>
+              <th className="p-3 text-left">進捗</th>
+              <th className="p-3 text-left">状態</th>
+              <th className="p-3 text-left">完了日時</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {filteredRows.map((row) => (
+              <tr
+                key={row.employee.id}
+                className="border-t"
+              >
+                <td className="p-3">
+                  {row.employee.employeeNo}
+                </td>
+
+                <td className="p-3">
+                  <Link
+                    href={`/employees/${row.employee.id}`}
+                    className="text-blue-600 hover:underline"
+                  >
+                    {row.employee.lastName} {row.employee.firstName}
+                  </Link>
+                </td>
+
+                <td className="p-3">
+                  {row.employee.facility?.name ?? "-"}
+                </td>
+
+                <td className="p-3">
+                  {row.employee.department?.name ?? "-"}
+                </td>
+
+                <td className="p-3 font-medium">
+                  {row.progress}/{TOTAL_TASKS}
+                </td>
+
+                <td className="p-3">
+                  <span
+                    className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
+                      row.status === "完了"
+                        ? "bg-green-100 text-green-800"
+                        : row.status === "進行中"
+                          ? "bg-blue-100 text-blue-800"
+                          : "bg-gray-100 text-gray-800"
+                    }`}
+                  >
+                    {row.status}
+                  </span>
+                </td>
+
+                <td className="p-3 text-gray-500">
+                  {row.employee.onboardingCompletedAt
+                    ? new Date(
+                        row.employee.onboardingCompletedAt,
+                      ).toLocaleString("ja-JP")
+                    : "-"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}

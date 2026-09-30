@@ -1,0 +1,96 @@
+import Link from "next/link";
+import { cookies } from "next/headers";
+
+import { prisma } from "@/lib/prisma";
+import { requireHRManager } from "@/lib/auth-guard";
+
+export default async function OnboardingManagementPage() {
+  await requireHRManager();
+
+  const cookieStore = await cookies();
+  const facilityScope =
+    cookieStore.get("facilityScope")?.value ?? "ALL";
+
+  const employees = await prisma.employee.findMany({
+    where: {
+      onboardingCompletedAt: null,
+      ...(facilityScope !== "ALL"
+        ? {
+            facilityId: facilityScope,
+          }
+        : {}),
+    },
+    include: {
+      facility: true,
+      department: true,
+    },
+    orderBy: [
+      { facilityId: "asc" },
+      { departmentId: "asc" },
+      { employeeNo: "asc" },
+    ],
+  });
+
+  return (
+    <div className="space-y-6">
+      <div>
+        <h1 className="text-2xl font-bold">
+          初回登録進捗管理
+        </h1>
+
+        <p className="mt-2 text-sm text-gray-600">
+          初回登録未完了職員の確認を行います。
+        </p>
+      </div>
+
+      <div className="rounded-lg border bg-white p-6 shadow-sm">
+        <div className="text-lg font-semibold">
+          未完了者数: {employees.length}名
+        </div>
+      </div>
+
+      <div className="overflow-x-auto rounded-lg border bg-white shadow-sm">
+        <table className="min-w-full text-sm">
+          <thead className="bg-gray-50">
+            <tr>
+              <th className="p-3 text-left">職員番号</th>
+              <th className="p-3 text-left">氏名</th>
+              <th className="p-3 text-left">施設</th>
+              <th className="p-3 text-left">部署</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {employees.map((employee) => (
+              <tr
+                key={employee.id}
+                className="border-t"
+              >
+                <td className="p-3">
+                  {employee.employeeNo}
+                </td>
+
+                <td className="p-3">
+                  <Link
+                    href={`/employees/${employee.id}`}
+                    className="text-blue-600 hover:underline"
+                  >
+                    {employee.lastName} {employee.firstName}
+                  </Link>
+                </td>
+
+                <td className="p-3">
+                  {employee.facility?.name ?? "-"}
+                </td>
+
+                <td className="p-3">
+                  {employee.department?.name ?? "-"}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
