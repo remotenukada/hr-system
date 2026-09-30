@@ -166,12 +166,26 @@ export default async function OnboardingManagementPage({
       .filter((key) => itemStatus[key] === "pending")
       .map((key) => taskLabels[key]);
 
+    const daysSinceHire = employee.hireDate
+      ? Math.floor(
+          (Date.now() - new Date(employee.hireDate).getTime())
+          / (1000 * 60 * 60 * 24)
+        )
+      : null;
+
+    const needsFollowUp =
+      status !== "完了" &&
+      daysSinceHire !== null &&
+      daysSinceHire >= 30;
+
     return {
       employee,
       itemStatus,
       progress,
       status,
       missingItems,
+      daysSinceHire,
+      needsFollowUp,
     };
   });
 
@@ -290,6 +304,8 @@ export default async function OnboardingManagementPage({
               <th className="p-3 text-left">不足項目</th>
               <th className="p-3 text-center">進捗</th>
               <th className="p-3 text-center">状態</th>
+              <th className="p-3 text-center">入職後</th>
+              <th className="p-3 text-center">フォロー</th>
               <th className="p-3 text-center">操作</th>
             </tr>
           </thead>
@@ -353,6 +369,34 @@ export default async function OnboardingManagementPage({
                   >
                     {row.status}
                   </span>
+                </td>
+
+                <td className="p-3 text-center text-xs text-gray-600">
+                  {row.daysSinceHire !== null ? `${row.daysSinceHire}日` : "-"}
+                </td>
+
+                <td className="p-3 text-center">
+                  {row.needsFollowUp ? (
+                    <span className="inline-flex items-center rounded bg-red-100 px-2 py-0.5 text-xs font-medium text-red-800">
+                      要フォロー
+                    </span>
+                  ) : (
+                    <span className="text-xs text-gray-400">-</span>
+                  )}
+                </td>
+
+                <td className="p-3 text-center text-xs text-gray-600">
+                  {row.daysSinceHire !== null ? `${row.daysSinceHire}日` : "-"}
+                </td>
+
+                <td className="p-3 text-center">
+                  {row.needsFollowUp ? (
+                    <span className="inline-flex items-center rounded bg-red-100 px-2 py-0.5 text-xs font-medium text-red-800">
+                      要対応
+                    </span>
+                  ) : (
+                    <span className="text-xs text-gray-400">-</span>
+                  )}
                 </td>
 
                 <td className="p-3 text-center">
