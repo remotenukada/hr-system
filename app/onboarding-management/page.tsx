@@ -153,11 +153,25 @@ export default async function OnboardingManagementPage({
           ? "完了"
           : "進行中";
 
+    const taskLabels: Record<TaskKey, string> = {
+      RESIDENCE: "住居",
+      COMMUTING: "通勤",
+      DEPENDENTS: "扶養",
+      CERTIFICATIONS: "免許・資格等",
+      BANK_ACCOUNT: "口座",
+      MY_NUMBER: "マイナンバー",
+    };
+
+    const missingItems = TASK_KEYS
+      .filter((key) => itemStatus[key] === "pending")
+      .map((key) => taskLabels[key]);
+
     return {
       employee,
       itemStatus,
       progress,
       status,
+      missingItems,
     };
   });
 
@@ -273,8 +287,10 @@ export default async function OnboardingManagementPage({
               <th className="p-3 text-center">資格</th>
               <th className="p-3 text-center">口座</th>
               <th className="p-3 text-center">個人番号</th>
+              <th className="p-3 text-left">不足項目</th>
               <th className="p-3 text-center">進捗</th>
               <th className="p-3 text-center">状態</th>
+              <th className="p-3 text-center">操作</th>
             </tr>
           </thead>
           <tbody>
@@ -305,6 +321,23 @@ export default async function OnboardingManagementPage({
                     </td>
                   );
                 })}
+                <td className="p-3">
+                  {row.missingItems.length > 0 ? (
+                    <div className="flex flex-wrap gap-1">
+                      {row.missingItems.map((item) => (
+                        <span
+                          key={item}
+                          className="rounded bg-yellow-100 px-2 py-0.5 text-xs text-yellow-800 whitespace-nowrap"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  ) : (
+                    <span className="text-xs text-green-700 font-medium">なし</span>
+                  )}
+                </td>
+
                 <td className="p-3 text-center font-medium">
                   {row.progress}/{TASK_KEYS.length}
                 </td>
@@ -320,6 +353,15 @@ export default async function OnboardingManagementPage({
                   >
                     {row.status}
                   </span>
+                </td>
+
+                <td className="p-3 text-center">
+                  <Link
+                    href={`/employees/${row.employee.id}`}
+                    className="text-xs text-blue-600 hover:underline"
+                  >
+                    詳細
+                  </Link>
                 </td>
               </tr>
             ))}
