@@ -254,6 +254,68 @@ export default async function OnboardingManagementPage({
           (completedCount / rows.length) * 1000
         ) / 10;
 
+  const completedDays = rows
+    .filter(
+      (row) =>
+        row.employee.hireDate &&
+        row.employee.onboardingCompletedAt,
+    )
+    .map((row) =>
+      Math.floor(
+        (
+          new Date(row.employee.onboardingCompletedAt!).getTime() -
+          new Date(row.employee.hireDate!).getTime()
+        ) /
+          (1000 * 60 * 60 * 24),
+      ),
+    );
+
+  const averageCompletionDays =
+    completedDays.length === 0
+      ? 0
+      : Math.round(
+          (
+            completedDays.reduce((a, b) => a + b, 0) /
+            completedDays.length
+          ) * 10,
+        ) / 10;
+
+  const completedWithin7Days = rows.filter(
+    (row) =>
+      row.employee.hireDate &&
+      row.employee.onboardingCompletedAt &&
+      (
+        new Date(row.employee.onboardingCompletedAt).getTime() -
+        new Date(row.employee.hireDate).getTime()
+      ) /
+        (1000 * 60 * 60 * 24) <= 7,
+  ).length;
+
+  const completedEmployees = rows.filter(
+    (row) => row.status === "完了",
+  ).length;
+
+  const completedWithin7Rate =
+    completedEmployees === 0
+      ? 0
+      : Math.round(
+          (completedWithin7Days /
+            completedEmployees) *
+            1000,
+        ) / 10;
+
+  const overdueIncomplete = rows.filter(
+    (row) => row.needsFollowUp,
+  ).length;
+
+  const overdueIncompleteRate =
+    rows.length === 0
+      ? 0
+      : Math.round(
+          (overdueIncomplete / rows.length) *
+            1000,
+        ) / 10;
+
   const filteredRows = rows.filter((row) => {
     if (filterStatus === "completed") {
       return row.status === "完了";
@@ -361,6 +423,41 @@ export default async function OnboardingManagementPage({
           </div>
         </div>
       </div>
+
+      <section className="rounded-lg border bg-white p-5 shadow-sm">
+        <h2 className="text-lg font-semibold text-gray-900">
+          オンボーディング分析
+        </h2>
+
+        <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
+          <div className="rounded border p-4">
+            <div className="text-sm text-gray-500">
+              平均完了日数
+            </div>
+            <div className="mt-2 text-2xl font-bold text-blue-600">
+              {averageCompletionDays}日
+            </div>
+          </div>
+
+          <div className="rounded border p-4">
+            <div className="text-sm text-gray-500">
+              7日以内完了率
+            </div>
+            <div className="mt-2 text-2xl font-bold text-green-600">
+              {completedWithin7Rate}%
+            </div>
+          </div>
+
+          <div className="rounded border p-4">
+            <div className="text-sm text-gray-500">
+              30日超未完了率
+            </div>
+            <div className="mt-2 text-2xl font-bold text-red-600">
+              {overdueIncompleteRate}%
+            </div>
+          </div>
+        </div>
+      </section>
 
       <div className="flex flex-wrap gap-4 text-xs">
         <span className="rounded bg-green-100 px-2 py-1 text-green-800">
