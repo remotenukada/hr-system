@@ -4,48 +4,14 @@ import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { requireHRManager } from "@/lib/auth-guard";
 
-const TASK_KEYS = [
-  "RESIDENCE",
-  "COMMUTING",
-  "DEPENDENTS",
-  "CERTIFICATIONS",
-  "BANK_ACCOUNT",
-  "MY_NUMBER",
-] as const;
-
-type TaskKey = (typeof TASK_KEYS)[number];
-type ItemStatus = "completed" | "skipped" | "pending";
-
-function getSkippedItems(value: unknown): string[] {
-  if (!Array.isArray(value)) return [];
-
-  return value.filter(
-    (item): item is string => typeof item === "string",
-  );
-}
-
-function getStatusLabel(status: ItemStatus) {
-  if (status === "completed") return "完了";
-  if (status === "skipped") return "該当なし";
-  return "未対応";
-}
-
-function getStatusClass(status: ItemStatus) {
-  if (status === "completed") {
-    return "bg-green-100 text-green-800";
-  }
-
-  if (status === "skipped") {
-    return "bg-gray-100 text-gray-700";
-  }
-
-  return "bg-yellow-100 text-yellow-800";
-}
+const TOTAL_TASKS = 6;
 
 export default async function OnboardingManagementPage({
   searchParams,
 }: {
-  searchParams?: Promise<{ status?: string }>;
+  searchParams?: Promise<{
+    status?: string;
+  }>;
 }) {
   await requireHRManager();
 
@@ -59,7 +25,9 @@ export default async function OnboardingManagementPage({
   const employees = await prisma.employee.findMany({
     where:
       facilityScope !== "ALL"
-        ? { facilityId: facilityScope }
+        ? {
+            facilityId: facilityScope,
+          }
         : undefined,
     include: {
       facility: true,
@@ -91,71 +59,33 @@ export default async function OnboardingManagementPage({
   });
 
   const rows = employees.map((employee) => {
-    const skipped = getSkippedItems(
+    const skipped = Array.isArray(
       employee.onboardingSkippedItems,
-    );
+    )
+      ? employee.onboardingSkippedItems.length
+      : 0;
 
-    const legacyCompleted =
-      employee.onboardingCompletedAt !== null;
+    let completed = 0;
 
-    const itemStatus: Record<TaskKey, ItemStatus> = {
-      RESIDENCE:
-        legacyCompleted || employee.residenceRequests.length > 0
-          ? "completed"
-          : skipped.includes("RESIDENCE")
-            ? "skipped"
-            : "pending",
+    if (employee.residenceRequests.length > 0) completed++;
+    if (employee.commutingRequests.length > 0) completed++;
+    if (employee.dependentRequests.length > 0) completed++;
+    if (employee.certifications.length > 0) completed++;
+    if (employee.bankAccount) completed++;
+    if (employee.employeeMyNumber) completed++;
 
-      COMMUTING:
-        legacyCompleted || employee.commutingRequests.length > 0
-          ? "completed"
-          : skipped.includes("COMMUTING")
-            ? "skipped"
-            : "pending",
+    const progress = employee.onboardingCompletedAt
+      ? TOTAL_TASKS
+      : Math.min(TOTAL_TASKS, completed + skipped);
 
-      DEPENDENTS:
-        legacyCompleted || employee.dependentRequests.length > 0
-          ? "completed"
-          : skipped.includes("DEPENDENTS")
-            ? "skipped"
-            : "pending",
-
-      CERTIFICATIONS:
-        legacyCompleted || employee.certifications.length > 0
-          ? "completed"
-          : skipped.includes("CERTIFICATIONS")
-            ? "skipped"
-            : "pending",
-
-      BANK_ACCOUNT:
-        legacyCompleted || Boolean(employee.bankAccount)
-          ? "completed"
-          : skipped.includes("BANK_ACCOUNT")
-            ? "skipped"
-            : "pending",
-
-      MY_NUMBER:
-        legacyCompleted || Boolean(employee.employeeMyNumber)
-          ? "completed"
-          : skipped.includes("MY_NUMBER")
-            ? "skipped"
-            : "pending",
-    };
-
-    const progress = TASK_KEYS.filter(
-      (key) => itemStatus[key] !== "pending",
-    ).length;
-
-    const status =
-      progress === 0
+    const status = employee.onboardingCompletedAt
+      ? "完了"
+      : progress === 0
         ? "未着手"
-        : progress === TASK_KEYS.length
-          ? "完了"
-          : "進行中";
+        : "進行中";
 
     return {
       employee,
-      itemStatus,
       progress,
       status,
     };
@@ -165,7 +95,9 @@ export default async function OnboardingManagementPage({
     (row) => row.status === "完了",
   ).length;
 
-  const incompleteCount = rows.length - completedCount;
+  const incompleteCount = rows.filter(
+    (row) => row.status !== "完了",
+  ).length;
 
   const filteredRows = rows.filter((row) => {
     if (filterStatus === "completed") {
@@ -180,14 +112,14 @@ export default async function OnboardingManagementPage({
   });
 
   return (
-    <main className="space-y-6">
+    <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold">
           初回登録進捗管理
         </h1>
 
         <p className="mt-2 text-sm text-gray-600">
-          職員ごとの初回登録状況を確認します。
+          初回登録の進捗状況を確認します。
         </p>
       </div>
 
@@ -200,7 +132,7 @@ export default async function OnboardingManagementPage({
               : "bg-gray-100 text-gray-700 hover:bg-gray-200"
           }`}
         >
-          全員 ({rows.length})
+          すべて ({rows.length})
         </Link>
         <Link
           href="/onboarding-management?status=incomplete"
@@ -210,7 +142,7 @@ export default async function OnboardingManagementPage({
               : "bg-gray-100 text-gray-700 hover:bg-gray-200"
           }`}
         >
-          未完了のみ ({incompleteCount})
+          未完了 ({incompleteCount})
         </Link>
         <Link
           href="/onboarding-management?status=completed"
@@ -220,67 +152,63 @@ export default async function OnboardingManagementPage({
               : "bg-gray-100 text-gray-700 hover:bg-gray-200"
           }`}
         >
-          完了のみ ({completedCount})
+          完了 ({completedCount})
         </Link>
       </div>
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
         <div className="rounded-lg border bg-white p-5 shadow-sm">
-          <div className="text-sm text-gray-500">対象者数</div>
+          <div className="text-sm text-gray-500">
+            対象者数
+          </div>
           <div className="mt-2 text-2xl font-bold">
             {rows.length}名
           </div>
         </div>
 
         <div className="rounded-lg border bg-white p-5 shadow-sm">
-          <div className="text-sm text-gray-500">完了者数</div>
+          <div className="text-sm text-gray-500">
+            完了者数
+          </div>
           <div className="mt-2 text-2xl font-bold text-green-600">
             {completedCount}名
           </div>
         </div>
 
         <div className="rounded-lg border bg-white p-5 shadow-sm">
-          <div className="text-sm text-gray-500">未完了者数</div>
+          <div className="text-sm text-gray-500">
+            未完了者数
+          </div>
           <div className="mt-2 text-2xl font-bold text-amber-600">
             {incompleteCount}名
           </div>
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-4 text-xs">
-        <span className="rounded bg-green-100 px-2 py-1 text-green-800">
-          完了
-        </span>
-        <span className="rounded bg-gray-100 px-2 py-1 text-gray-700">
-          該当なし
-        </span>
-        <span className="rounded bg-yellow-100 px-2 py-1 text-yellow-800">
-          未対応
-        </span>
-      </div>
-
       <div className="overflow-x-auto rounded-lg border bg-white shadow-sm">
-        <table className="min-w-[1250px] text-sm">
+        <table className="min-w-full text-sm">
           <thead className="bg-gray-50">
             <tr>
               <th className="p-3 text-left">職員番号</th>
               <th className="p-3 text-left">氏名</th>
               <th className="p-3 text-left">施設</th>
               <th className="p-3 text-left">部署</th>
-              <th className="p-3 text-center">住所</th>
-              <th className="p-3 text-center">通勤</th>
-              <th className="p-3 text-center">扶養</th>
-              <th className="p-3 text-center">資格</th>
-              <th className="p-3 text-center">口座</th>
-              <th className="p-3 text-center">個人番号</th>
-              <th className="p-3 text-center">進捗</th>
-              <th className="p-3 text-center">状態</th>
+              <th className="p-3 text-left">進捗</th>
+              <th className="p-3 text-left">状態</th>
+              <th className="p-3 text-left">完了日時</th>
             </tr>
           </thead>
+
           <tbody>
             {filteredRows.map((row) => (
-              <tr key={row.employee.id} className="border-t">
-                <td className="p-3">{row.employee.employeeNo}</td>
+              <tr
+                key={row.employee.id}
+                className="border-t"
+              >
+                <td className="p-3">
+                  {row.employee.employeeNo}
+                </td>
+
                 <td className="p-3">
                   <Link
                     href={`/employees/${row.employee.id}`}
@@ -289,26 +217,20 @@ export default async function OnboardingManagementPage({
                     {row.employee.lastName} {row.employee.firstName}
                   </Link>
                 </td>
-                <td className="p-3">{row.employee.facility?.name ?? "-"}</td>
-                <td className="p-3">{row.employee.department?.name ?? "-"}</td>
-                {TASK_KEYS.map((key) => {
-                  const itemSt = row.itemStatus[key];
-                  return (
-                    <td key={key} className="p-3 text-center">
-                      <span
-                        className={`inline-block rounded px-2 py-0.5 text-xs font-medium ${getStatusClass(
-                          itemSt,
-                        )}`}
-                      >
-                        {getStatusLabel(itemSt)}
-                      </span>
-                    </td>
-                  );
-                })}
-                <td className="p-3 text-center font-medium">
-                  {row.progress}/{TASK_KEYS.length}
+
+                <td className="p-3">
+                  {row.employee.facility?.name ?? "-"}
                 </td>
-                <td className="p-3 text-center">
+
+                <td className="p-3">
+                  {row.employee.department?.name ?? "-"}
+                </td>
+
+                <td className="p-3 font-medium">
+                  {row.progress}/{TOTAL_TASKS}
+                </td>
+
+                <td className="p-3">
                   <span
                     className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
                       row.status === "完了"
@@ -321,11 +243,19 @@ export default async function OnboardingManagementPage({
                     {row.status}
                   </span>
                 </td>
+
+                <td className="p-3 text-gray-500">
+                  {row.employee.onboardingCompletedAt
+                    ? new Date(
+                        row.employee.onboardingCompletedAt,
+                      ).toLocaleString("ja-JP")
+                    : "-"}
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-    </main>
+    </div>
   );
 }
