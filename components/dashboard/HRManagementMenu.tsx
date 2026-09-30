@@ -12,7 +12,7 @@ export default function HRManagementMenu({
   userRole,
 }: Props) {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 [&_a]:text-gray-900 [&_a]:no-underline [&_a:hover]:text-blue-700">
       <section className="rounded-lg border bg-gray-50 p-4">
         <h4 className="mb-2 font-semibold">職員管理</h4>
         <div className="flex flex-wrap gap-3">
@@ -63,17 +63,43 @@ export default function HRManagementMenu({
         </div>
       </section>
 
-      <section className="rounded-lg border bg-gray-50 p-4">
+                        <section className="rounded-lg border bg-gray-50 p-4">
         <h4 className="mb-2 font-semibold">申請・本人確認</h4>
         <div className="flex flex-wrap gap-3">
-          <Link href="/bank-accounts">
+          <Link
+            href="/bank-accounts"
+            className="text-base text-blue-600 hover:underline"
+          >
             口座情報確認 ({pendingBankAccounts})
           </Link>
-          <Link href="/my-numbers">マイナンバー確認 ({pendingMyNumbers})</Link>
+          <Link
+            href="/my-numbers"
+            className="text-base text-blue-600 hover:underline"
+          >
+            マイナンバー確認 ({pendingMyNumbers})
+          </Link>
+          <Link
+            href="/pledges"
+            className="text-base text-blue-600 hover:underline"
+          >
+            誓約書確認
+          </Link>
         </div>
       </section>
 
       <section className="rounded-lg border bg-gray-50 p-4">
+        <h4 className="mb-2 font-semibold">オンボーディング管理</h4>
+        <div className="flex flex-wrap gap-3">
+          <Link
+            href="/onboarding-management"
+            className="text-base text-blue-600 hover:underline"
+          >
+            初回登録進捗管理
+          </Link>
+        </div>
+      </section>
+
+<section className="rounded-lg border bg-gray-50 p-4">
         <h4 className="mb-2 font-semibold">システム管理</h4>
         <div className="flex flex-wrap gap-3">
           <Link href="/audit-logs">監査ログ一覧</Link>

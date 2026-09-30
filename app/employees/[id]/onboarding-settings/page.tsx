@@ -6,6 +6,7 @@ import { prisma } from "@/lib/prisma";
 import { requireHRManager } from "@/lib/auth-guard";
 
 const TASKS = [
+  { key: "PLEDGE", label: "誓約書（後日、紙で提出）" },
   { key: "RESIDENCE", label: "住居届" },
   { key: "COMMUTING", label: "通勤届" },
   { key: "DEPENDENTS", label: "扶養家族情報" },
@@ -143,7 +144,7 @@ export default async function OnboardingSettingsPage({
 
       <section className="mt-6 rounded-lg border bg-white p-6 shadow-sm">
         <p className="text-sm text-gray-600">
-          初回登録時に該当しないことが確認できている項目を選択してください。
+          初回登録時に省略する項目を選択してください。誓約書は後日、紙で提出する場合に選択します。
         </p>
 
         <form action={saveOnboardingSettings} className="mt-6 space-y-6">

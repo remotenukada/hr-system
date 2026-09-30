@@ -1,4 +1,5 @@
 import BackLink from "@/components/BackLink";
+import DeleteInvitationButton from "@/components/DeleteInvitationButton";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/auth-guard";
@@ -96,6 +97,7 @@ export default async function UserInvitationsPage() {
               <th className="p-3 text-left">印刷</th>
               <th className="p-3 text-left">再発行</th>
               <th className="p-3 text-left">取消</th>
+              <th className="p-3 text-left">削除</th>
             </tr>
           </thead>
 
@@ -103,7 +105,7 @@ export default async function UserInvitationsPage() {
             {invitations.length === 0 ? (
               <tr>
                 <td
-                  colSpan={11}
+                  colSpan={12}
                   className="p-8 text-center text-gray-500"
                 >
                   招待はまだありません。
@@ -198,6 +200,16 @@ export default async function UserInvitationsPage() {
                           取消
                         </button>
                       </form>
+                    ) : (
+                      "-"
+                    )}
+                  </td>
+
+                  <td className="p-3">
+                    {!invitation.acceptedAt ? (
+                      <DeleteInvitationButton
+                        invitationId={invitation.id}
+                      />
                     ) : (
                       "-"
                     )}

@@ -6,6 +6,8 @@ import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 
 const TASK_KEYS = [
+  "PROFILE",
+  "PLEDGE",
   "RESIDENCE",
   "COMMUTING",
   "DEPENDENTS",
@@ -13,6 +15,16 @@ const TASK_KEYS = [
   "BANK_ACCOUNT",
   "MY_NUMBER",
 ] as const;
+
+const SKIPPABLE_TASK_KEYS: TaskKey[] = [
+  "PLEDGE",
+  "RESIDENCE",
+  "COMMUTING",
+  "DEPENDENTS",
+  "CERTIFICATIONS",
+  "BANK_ACCOUNT",
+  "MY_NUMBER",
+];
 
 type TaskKey = (typeof TASK_KEYS)[number];
 
@@ -87,6 +99,7 @@ async function completeOnboarding() {
   const employee = await getCurrentEmployee();
 
   const [
+    pledgeCount,
     residenceCount,
     commutingCount,
     dependentCount,
@@ -94,6 +107,19 @@ async function completeOnboarding() {
     bankAccountCount,
     myNumberCount,
   ] = await Promise.all([
+    prisma.employeePledge.count({
+      where: {
+        employeeId: employee.id,
+        status: {
+          in: [
+            "GUARANTOR_PENDING",
+            "GUARANTOR_CONFIRMED",
+            "PAPER_UPLOADED",
+            "COMPLETED",
+          ],
+        },
+      },
+    }),
     prisma.residenceRequest.count({
       where: { employeeId: employee.id },
     }),
@@ -119,6 +145,9 @@ async function completeOnboarding() {
   );
 
   const completedKeys: TaskKey[] = [];
+
+  completedKeys.push("PROFILE");
+  if (pledgeCount > 0) completedKeys.push("PLEDGE");
 
   if (residenceCount > 0) completedKeys.push("RESIDENCE");
   if (commutingCount > 0) completedKeys.push("COMMUTING");
@@ -165,6 +194,7 @@ export default async function OnboardingPage({
   }
 
   const [
+    pledgeCount,
     residenceCount,
     commutingCount,
     dependentCount,
@@ -172,6 +202,19 @@ export default async function OnboardingPage({
     bankAccountCount,
     myNumberCount,
   ] = await Promise.all([
+    prisma.employeePledge.count({
+      where: {
+        employeeId: employee.id,
+        status: {
+          in: [
+            "GUARANTOR_PENDING",
+            "GUARANTOR_CONFIRMED",
+            "PAPER_UPLOADED",
+            "COMPLETED",
+          ],
+        },
+      },
+    }),
     prisma.residenceRequest.count({
       where: { employeeId: employee.id },
     }),
@@ -197,6 +240,18 @@ export default async function OnboardingPage({
   );
 
   const tasks = [
+    {
+      key: "PROFILE" as const,
+      label: "プロフィール",
+      href: "/mypage/profile-change",
+      completed: true,
+    },
+    {
+      key: "PLEDGE" as const,
+      label: "誓約書",
+      href: "/mypage/pledge",
+      completed: pledgeCount > 0,
+    },
     {
       key: "RESIDENCE" as const,
       label: "住居届",
@@ -296,7 +351,9 @@ export default async function OnboardingPage({
                   {task.completed
                     ? "登録・申請済み"
                     : task.skipped
-                      ? "該当なしに設定中"
+                      ? (task.key === "PLEDGE"
+                          ? "紙提出予定"
+                          : "該当なしに設定中")
                       : "未対応"}
                 </p>
               </div>
@@ -309,7 +366,7 @@ export default async function OnboardingPage({
                   {done ? "確認する" : "登録する"}
                 </Link>
 
-                {!task.completed && (
+                {!task.completed && SKIPPABLE_TASK_KEYS.includes(task.key) && (
                   <form action={updateSkippedItem}>
                     <input type="hidden" name="key" value={task.key} />
                     <input
@@ -321,7 +378,13 @@ export default async function OnboardingPage({
                       type="submit"
                       className="rounded px-3 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
                     >
-                      {task.skipped ? "該当なしを解除" : "該当なしにする"}
+                      {task.key === "PLEDGE"
+  ? (task.skipped
+      ? "後日提出を解除"
+      : "後日、紙で提出")
+  : (task.skipped
+      ? "該当なしを解除"
+      : "該当なしにする")}
                     </button>
                   </form>
                 )}

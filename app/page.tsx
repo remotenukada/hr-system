@@ -615,6 +615,14 @@ export default async function DashboardPage() {
     },
   });
 
+  console.log("SESSION_USER_ID", user.id);
+  console.log("MY_EMPLOYEE_ID", myEmployee?.id);
+  console.log(
+    "ONBOARDING_COMPLETED",
+    myEmployee?.onboardingCompletedAt,
+  );
+
+
   if (
     myEmployee &&
     !myEmployee.onboardingCompletedAt
@@ -1392,6 +1400,24 @@ export default async function DashboardPage() {
                 <Link href="/mypage/dependent-requests" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
                   扶養家族変更届
                 </Link>
+                <Link
+                  href="/mypage/bank-account"
+                  className="rounded border border-gray-300 bg-white p-3 text-center text-sm font-medium text-gray-700 hover:bg-gray-50"
+                >
+                  口座情報変更
+                </Link>
+                <Link
+                  href="/mypage/my-number"
+                  className="rounded border border-gray-300 bg-white p-3 text-center text-sm font-medium text-gray-700 hover:bg-gray-50"
+                >
+                  マイナンバー提出・変更
+                </Link>
+                <Link
+                  href="/portal/certifications"
+                  className="rounded border border-gray-300 bg-white p-3 text-center text-sm font-medium text-gray-700 hover:bg-gray-50"
+                >
+                  免許・資格等申請
+                </Link>
               </div>
             </div>
             <div>
@@ -1399,7 +1425,7 @@ export default async function DashboardPage() {
                 免許・資格等
               </h4>
               <div className="flex flex-wrap gap-3">
-                <Link href="/mypage/certifications" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                <Link href="/portal/certifications" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
                   免許・資格等申請
                 </Link>
               </div>
@@ -1419,18 +1445,24 @@ export default async function DashboardPage() {
             <div>
               <h4 className="mb-2 text-sm font-semibold text-gray-600">個人情報</h4>
               <div className="flex flex-wrap gap-3">
-                <Link href="/mypage/profile-change" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">プロフィール</Link>
-                <Link href="/mypage/bank-account" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">口座情報</Link>
-                <Link href="/mypage/my-number" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">マイナンバー</Link>
+                <Link href="/portal/profile" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">プロフィール</Link>
+                <Link
+                  href="/mypage/pledge"
+                  className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                >
+                  誓約書
+                </Link>
+                <Link href="/portal/bank-account" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">口座情報</Link>
+                <Link href="/portal/my-number" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">マイナンバー</Link>
               </div>
             </div>
             <div>
               <h4 className="mb-2 text-sm font-semibold text-gray-600">現在登録情報</h4>
               <div className="flex flex-wrap gap-3">
-                <Link href="/mypage/certifications" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">保有免許・資格等</Link>
-                <Link href="/portal/dependents" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">現在の扶養情報</Link>
-                <Link href="/portal/residence" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">現在の住居情報</Link>
-                <Link href="/portal/commuting" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">現在の通勤情報</Link>
+                <Link href="/portal/certifications" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">資格・免許情報</Link>
+                <Link href="/portal/dependents" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">扶養情報</Link>
+                <Link href="/portal/residence" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">住居情報</Link>
+                <Link href="/portal/commuting" className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">通勤情報</Link>
               </div>
             </div>
             <div>
@@ -1540,7 +1572,7 @@ export default async function DashboardPage() {
                 href="/commuting-requests"
                 className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
               >
-                現在の通勤情報承認 ({pendingCommutingRequests})
+                通勤情報承認 ({pendingCommutingRequests})
               </Link>
 
               <Link
@@ -1590,10 +1622,10 @@ export default async function DashboardPage() {
                   プロフィール申請: {pendingProfileChanges}件
                 </li>
                 <li className={getAlertClass(pendingResidenceRequests)}>
-                  現在の住居情報: {pendingResidenceRequests}件
+                  住居情報: {pendingResidenceRequests}件
                 </li>
                 <li className={getAlertClass(pendingCommutingRequests)}>
-                  現在の通勤情報申請: {pendingCommutingRequests}件
+                  通勤情報申請: {pendingCommutingRequests}件
                 </li>
                 <li className={getAlertClass(pendingCertificationRequests)}>
                   資格承認: {pendingCertificationRequests}件

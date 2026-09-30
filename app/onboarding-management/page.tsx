@@ -53,6 +53,8 @@ async function sendOnboardingReminder(formData: FormData) {
 }
 
 const TASK_KEYS = [
+  "PROFILE",
+  "PLEDGE",
   "RESIDENCE",
   "COMMUTING",
   "DEPENDENTS",
@@ -63,6 +65,17 @@ const TASK_KEYS = [
 
 type TaskKey = (typeof TASK_KEYS)[number];
 type ItemStatus = "completed" | "skipped" | "pending";
+
+const taskLabels: Record<string, string> = {
+  PROFILE: "プロフィール",
+  PLEDGE: "誓約書",
+  RESIDENCE: "住居届",
+  COMMUTING: "通勤届",
+  DEPENDENTS: "扶養家族",
+  CERTIFICATIONS: "免許・資格等",
+  BANK_ACCOUNT: "口座情報",
+  MY_NUMBER: "マイナンバー",
+};
 
 function getSkippedItems(value: unknown): string[] {
   if (!Array.isArray(value)) return [];
@@ -112,6 +125,17 @@ export default async function OnboardingManagementPage({
     include: {
       facility: true,
       department: true,
+      pledges: {
+        select: {
+          id: true,
+          status: true,
+          submissionMethod: true,
+          filePath: true,
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
       residenceRequests: {
         select: { id: true },
       },
@@ -146,7 +170,15 @@ export default async function OnboardingManagementPage({
     const legacyCompleted =
       employee.onboardingCompletedAt !== null;
 
+    const latestPledge = employee.pledges?.[0] ?? null;
+
     const itemStatus: Record<TaskKey, ItemStatus> = {
+      PROFILE: "completed",
+      PLEDGE:
+        employee.pledges?.some((p: any) => p.status === "COMPLETED") ||
+        latestPledge?.status === "COMPLETED"
+          ? "completed"
+          : "pending",
       RESIDENCE:
         legacyCompleted || employee.residenceRequests.length > 0
           ? "completed"
@@ -201,14 +233,7 @@ export default async function OnboardingManagementPage({
           ? "完了"
           : "進行中";
 
-    const taskLabels: Record<TaskKey, string> = {
-      RESIDENCE: "住居",
-      COMMUTING: "通勤",
-      DEPENDENTS: "扶養",
-      CERTIFICATIONS: "免許・資格等",
-      BANK_ACCOUNT: "口座",
-      MY_NUMBER: "マイナンバー",
-    };
+    
 
     const missingItems = TASK_KEYS
       .filter((key) => itemStatus[key] === "pending")
@@ -228,6 +253,7 @@ export default async function OnboardingManagementPage({
 
     return {
       employee,
+      latestPledge,
       itemStatus,
       progress,
       status,
@@ -333,7 +359,15 @@ export default async function OnboardingManagementPage({
   });
 
   return (
-    <main className="space-y-6">
+    <main className="mx-auto max-w-7xl space-y-6 px-4 py-8 sm:px-6 lg:px-8">
+      <div>
+        <Link
+          href="/"
+          className="inline-flex items-center text-sm text-blue-600 hover:text-blue-800"
+        >
+          ← ダッシュボードへ戻る
+        </Link>
+      </div>
       <div>
         <h1 className="text-2xl font-bold">
           初回登録進捗管理
@@ -471,155 +505,140 @@ export default async function OnboardingManagementPage({
         </span>
       </div>
 
-      <div className="overflow-x-auto rounded-lg border bg-white shadow-sm">
-        <table className="min-w-[1250px] text-sm">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="p-3 text-left">職員番号</th>
-              <th className="p-3 text-left">氏名</th>
-              <th className="p-3 text-left">施設</th>
-              <th className="p-3 text-left">部署</th>
-              <th className="p-3 text-center">住所</th>
-              <th className="p-3 text-center">通勤</th>
-              <th className="p-3 text-center">扶養</th>
-              <th className="p-3 text-center">資格</th>
-              <th className="p-3 text-center">口座</th>
-              <th className="p-3 text-center">個人番号</th>
-              <th className="p-3 text-left">不足項目</th>
-              <th className="p-3 text-center">進捗</th>
-              <th className="p-3 text-center">状態</th>
-              <th className="p-3 text-center">入職後</th>
-              <th className="p-3 text-center">フォロー</th>
-              <th className="p-3 text-center">操作</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredRows.map((row) => (
-              <tr key={row.employee.id} className="border-t">
-                <td className="p-3">{row.employee.employeeNo}</td>
-                <td className="p-3">
-                  <Link
-                    href={`/employees/${row.employee.id}`}
-                    className="text-blue-600 hover:underline"
+      <section className="rounded-lg border bg-white shadow-sm">
+        <div className="border-b px-5 py-4">
+          <h2 className="text-lg font-semibold text-gray-900">
+            対象職員一覧
+          </h2>
+          <p className="mt-1 text-sm text-gray-600">
+            不足している初回登録項目を確認できます。
+          </p>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="min-w-[1050px] w-full text-sm">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="p-3 text-left">職員番号</th>
+                <th className="p-3 text-left">氏名</th>
+                <th className="p-3 text-left">施設</th>
+                <th className="p-3 text-left">部署</th>
+                <th className="p-3 text-center">進捗</th>
+                <th className="p-3 text-left">不足項目</th>
+                <th className="p-3 text-left">状態</th>
+                <th className="p-3 text-center">入職後</th>
+                <th className="p-3 text-center">フォロー</th>
+                <th className="p-3 text-center">操作</th>
+              </tr>
+            </thead>
+
+            <tbody className="divide-y divide-gray-200">
+              {filteredRows.length === 0 ? (
+                <tr>
+                  <td colSpan={10} className="p-8 text-center text-gray-500">
+                    該当する職員データはありません。
+                  </td>
+                </tr>
+              ) : (
+                filteredRows.map((row) => (
+                  <tr
+                    key={row.employee.id}
+                    className="align-top hover:bg-gray-50 transition-colors"
                   >
-                    {row.employee.lastName} {row.employee.firstName}
-                  </Link>
-                    <Link
-                      href={`/employees/${row.employee.id}/onboarding-settings`}
-                      className="text-blue-600 hover:underline ml-3"
-                    >
-                      初回登録設定
-                    </Link>
-                </td>
-                <td className="p-3">{row.employee.facility?.name ?? "-"}</td>
-                <td className="p-3">{row.employee.department?.name ?? "-"}</td>
-                {TASK_KEYS.map((key) => {
-                  const itemSt = row.itemStatus[key];
-                  return (
-                    <td key={key} className="p-3 text-center">
-                      <span
-                        className={`inline-block rounded px-2 py-0.5 text-xs font-medium ${getStatusClass(
-                          itemSt,
-                        )}`}
+                    <td className="p-3 text-gray-700">
+                      {row.employee.employeeNo}
+                    </td>
+
+                    <td className="p-3 font-medium">
+                      <Link
+                        href={`/employees/${row.employee.id}`}
+                        className="text-blue-600 hover:underline"
                       >
-                        {getStatusLabel(itemSt)}
+                        {row.employee.lastName} {row.employee.firstName}
+                      </Link>
+                    </td>
+
+                    <td className="p-3 text-gray-600">
+                      {row.employee.facility?.name ?? "-"}
+                    </td>
+
+                    <td className="p-3 text-gray-600">
+                      {row.employee.department?.name ?? "-"}
+                    </td>
+
+                    <td className="p-3 text-center font-medium">
+                      {row.progress}/{TASK_KEYS.length}
+                    </td>
+
+                    <td className="p-3">
+                      <div className="flex flex-wrap gap-1">
+                        {row.missingItems.length === 0 ? (
+                          <span className="text-xs text-gray-400">なし</span>
+                        ) : (
+                          row.missingItems.map((item) => (
+                            <span
+                              key={item}
+                              className="inline-block rounded bg-red-50 px-2 py-0.5 text-xs text-red-600 border border-red-100"
+                            >
+                              {taskLabels[item] ?? item}
+                            </span>
+                          ))
+                        )}
+                      </div>
+                    </td>
+
+                    <td className="p-3">
+                      <span className="inline-flex min-w-[110px] justify-center items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800">
+                        {row.status}
                       </span>
                     </td>
-                  );
-                })}
-                <td className="p-3">
-                  {row.missingItems.length > 0 ? (
-                    <div className="flex flex-wrap gap-1">
-                      {row.missingItems.map((item) => (
-                        <span
-                          key={item}
-                          className="rounded bg-yellow-100 px-2 py-0.5 text-xs text-yellow-800 whitespace-nowrap"
-                        >
-                          {item}
+
+                    <td className="p-3 text-center text-gray-600">
+                      {row.daysSinceHire}日
+                    </td>
+
+                    <td className="p-3 text-center">
+                      {row.needsFollowUp ? (
+                        <span className="inline-flex min-w-[110px] justify-center items-center rounded-full bg-amber-100 px-2.5 py-0.5 text-xs font-medium text-amber-800">
+                          要対応
                         </span>
-                      ))}
-                    </div>
-                  ) : (
-                    <span className="text-xs text-green-700 font-medium">なし</span>
-                  )}
-                </td>
+                      ) : (
+                        <span className="text-xs text-gray-400">-</span>
+                      )}
+                    </td>
 
-                <td className="p-3 text-center font-medium">
-                  {row.progress}/{TASK_KEYS.length}
-                </td>
-                <td className="p-3 text-center">
-                  <span
-                    className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                      row.status === "完了"
-                        ? "bg-green-100 text-green-800"
-                        : row.status === "進行中"
-                          ? "bg-blue-100 text-blue-800"
-                          : "bg-gray-100 text-gray-800"
-                    }`}
-                  >
-                    {row.status}
-                  </span>
-                </td>
-
-                <td className="p-3 text-center text-xs text-gray-600">
-                  {row.daysSinceHire !== null ? `${row.daysSinceHire}日` : "-"}
-                </td>
-
-                <td className="p-3 text-center">
-                  {row.needsFollowUp ? (
-                    <span className="inline-flex items-center rounded bg-red-100 px-2 py-0.5 text-xs font-medium text-red-800">
-                      要フォロー
-                    </span>
-                  ) : (
-                    <span className="text-xs text-gray-400">-</span>
-                  )}
-                </td>
-
-                <td className="p-3 text-center text-xs text-gray-600">
-                  {row.daysSinceHire !== null ? `${row.daysSinceHire}日` : "-"}
-                </td>
-
-                <td className="p-3 text-center">
-                  {row.needsFollowUp ? (
-                    <span className="inline-flex items-center rounded bg-red-100 px-2 py-0.5 text-xs font-medium text-red-800">
-                      要対応
-                    </span>
-                  ) : (
-                    <span className="text-xs text-gray-400">-</span>
-                  )}
-                </td>
-
-                <td className="p-3 text-center">
-                  <div className="flex items-center justify-center gap-2">
-                    <Link
-                      href={`/employees/${row.employee.id}`}
-                      className="text-xs text-blue-600 hover:underline whitespace-nowrap"
-                    >
-                      詳細
-                    </Link>
-
-                    {row.needsFollowUp && (
-                      <form action={sendOnboardingReminder}>
-                        <input
-                          type="hidden"
-                          name="employeeId"
-                          value={row.employee.id}
-                        />
-                        <button
-                          type="submit"
-                          className="whitespace-nowrap rounded border border-red-300 bg-white px-2 py-0.5 text-xs font-medium text-red-700 hover:bg-red-50"
+                                        <td className="p-3">
+                      <div className="flex flex-wrap items-center justify-center gap-2">
+                        <Link
+                          href={`/employees/${row.employee.id}`}
+                          className="inline-flex min-w-[110px] justify-center items-center rounded border border-gray-300 bg-white px-2.5 py-1 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50"
                         >
-                          リマインド送信
-                        </button>
-                      </form>
-                    )}
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </main>
+                          職員詳細
+                        </Link>
+
+                        <Link
+                          href={`/employees/${row.employee.id}/onboarding-settings`}
+                          className="inline-flex min-w-[110px] justify-center items-center rounded border border-gray-300 bg-white px-2.5 py-1 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50"
+                        >
+                          初回登録設定
+                        </Link>
+
+                        <Link
+                          href="/pledges"
+                          className="inline-flex min-w-[110px] justify-center items-center rounded border border-gray-300 bg-white px-2.5 py-1 text-xs font-medium text-gray-700 shadow-sm hover:bg-gray-50"
+                        >
+                          誓約書確認
+                        </Link>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+  </main>
   );
 }

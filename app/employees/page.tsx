@@ -231,6 +231,12 @@ export default async function EmployeesPage({ searchParams }: Props) {
 
         <div className="flex gap-3">
           <Link
+            href="/employee-number-assignments"
+            className="rounded border border-gray-300 bg-white px-4 py-2 font-medium text-gray-700 hover:bg-gray-50"
+          >
+            職員番号採番
+          </Link>
+          <Link
             href="/employees/new"
             className="rounded bg-blue-600 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-700"
           >

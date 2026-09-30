@@ -143,7 +143,8 @@ exports.Prisma.UserInvitationScalarFieldEnum = {
   createdUserId: 'createdUserId',
   createdEmployeeId: 'createdEmployeeId',
   createdAt: 'createdAt',
-  cancelledAt: 'cancelledAt'
+  cancelledAt: 'cancelledAt',
+  onboardingPresetItems: 'onboardingPresetItems'
 };
 
 exports.Prisma.FacilityScalarFieldEnum = {
@@ -491,6 +492,8 @@ exports.Prisma.ResidenceRequestScalarFieldEnum = {
   ownerName1: 'ownerName1',
   ownerName2: 'ownerName2',
   acquisitionDate: 'acquisitionDate',
+  submissionMethod: 'submissionMethod',
+  paperSubmittedAt: 'paperSubmittedAt',
   status: 'status',
   reviewedAt: 'reviewedAt',
   reviewedBy: 'reviewedBy',
@@ -528,6 +531,8 @@ exports.Prisma.CommutingRequestScalarFieldEnum = {
   vehicleColor: 'vehicleColor',
   approvedAmount: 'approvedAmount',
   note: 'note',
+  submissionMethod: 'submissionMethod',
+  paperSubmittedAt: 'paperSubmittedAt',
   status: 'status',
   reviewedAt: 'reviewedAt',
   reviewedBy: 'reviewedBy',
@@ -579,6 +584,32 @@ exports.Prisma.ProfileChangeRequestScalarFieldEnum = {
   status: 'status',
   reviewedAt: 'reviewedAt',
   reviewedBy: 'reviewedBy',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.EmployeePledgeScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  submissionMethod: 'submissionMethod',
+  status: 'status',
+  templateVersion: 'templateVersion',
+  documentHash: 'documentHash',
+  employeeSignerName: 'employeeSignerName',
+  employeeSignedAt: 'employeeSignedAt',
+  employeeSignedIp: 'employeeSignedIp',
+  guarantorName: 'guarantorName',
+  guarantorEmail: 'guarantorEmail',
+  guarantorConfirmedAt: 'guarantorConfirmedAt',
+  guarantorToken: 'guarantorToken',
+  guarantorTokenExpiresAt: 'guarantorTokenExpiresAt',
+  fileName: 'fileName',
+  filePath: 'filePath',
+  fileType: 'fileType',
+  fileSize: 'fileSize',
+  verifiedAt: 'verifiedAt',
+  verifiedBy: 'verifiedBy',
+  reviewComment: 'reviewComment',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -960,15 +991,15 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
-};
-
 exports.Prisma.JsonNullValueFilter = {
   DbNull: Prisma.DbNull,
   JsonNull: Prisma.JsonNull,
   AnyNull: Prisma.AnyNull
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
 };
 exports.UserRole = exports.$Enums.UserRole = {
   ADMIN: 'ADMIN',
@@ -1084,7 +1115,13 @@ exports.ResidenceOwnershipType = exports.$Enums.ResidenceOwnershipType = {
   FAMILY: 'FAMILY'
 };
 
+exports.SubmissionMethod = exports.$Enums.SubmissionMethod = {
+  ELECTRONIC: 'ELECTRONIC',
+  PAPER: 'PAPER'
+};
+
 exports.ResidenceAttachmentType = exports.$Enums.ResidenceAttachmentType = {
+  PAPER_APPLICATION: 'PAPER_APPLICATION',
   LEASE_CONTRACT: 'LEASE_CONTRACT',
   SALES_CONTRACT: 'SALES_CONTRACT',
   REGISTRY: 'REGISTRY',
@@ -1109,6 +1146,7 @@ exports.CommutingType = exports.$Enums.CommutingType = {
 };
 
 exports.CommutingAttachmentType = exports.$Enums.CommutingAttachmentType = {
+  PAPER_APPLICATION: 'PAPER_APPLICATION',
   COMMUTER_PASS: 'COMMUTER_PASS',
   ROUTE_MAP: 'ROUTE_MAP',
   VEHICLE_INSPECTION: 'VEHICLE_INSPECTION',
@@ -1120,6 +1158,16 @@ exports.CommutingAttachmentType = exports.$Enums.CommutingAttachmentType = {
 exports.ProfileChangeStatus = exports.$Enums.ProfileChangeStatus = {
   PENDING: 'PENDING',
   APPROVED: 'APPROVED',
+  REJECTED: 'REJECTED'
+};
+
+exports.PledgeStatus = exports.$Enums.PledgeStatus = {
+  PENDING: 'PENDING',
+  EMPLOYEE_SIGNED: 'EMPLOYEE_SIGNED',
+  GUARANTOR_PENDING: 'GUARANTOR_PENDING',
+  GUARANTOR_CONFIRMED: 'GUARANTOR_CONFIRMED',
+  PAPER_UPLOADED: 'PAPER_UPLOADED',
+  COMPLETED: 'COMPLETED',
   REJECTED: 'REJECTED'
 };
 
@@ -1162,6 +1210,7 @@ exports.Prisma.ModelName = {
   CommutingRouteSegment: 'CommutingRouteSegment',
   CommutingRequestAttachment: 'CommutingRequestAttachment',
   ProfileChangeRequest: 'ProfileChangeRequest',
+  EmployeePledge: 'EmployeePledge',
   EmploymentContract: 'EmploymentContract',
   CompanySetting: 'CompanySetting',
   EmploymentContractTemplate: 'EmploymentContractTemplate',

@@ -1,4 +1,5 @@
 import bcrypt from "bcrypt";
+import { randomUUID } from "crypto";
 import { notFound, redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { UserRole } from "@/generated/prisma";
@@ -30,6 +31,7 @@ async function completeRegistration(formData: FormData) {
   const phoneNumber = String(formData.get("phoneNumber") ?? "").trim();
   const address = String(formData.get("address") ?? "").trim();
   const birthDateRaw = String(formData.get("birthDate") ?? "");
+  const gender = String(formData.get("gender") ?? "").trim();
   const password = String(formData.get("password") ?? "");
   const passwordConfirm = String(formData.get("passwordConfirm") ?? "");
 
@@ -111,6 +113,25 @@ async function completeRegistration(formData: FormData) {
     );
   }
 
+  const datePart = new Date()
+    .toISOString()
+    .slice(0, 10)
+    .replaceAll("-", "");
+
+  const assignedEmployeeNo =
+    invitation.employeeNo ||
+    `TMP-${datePart}-${randomUUID()
+      .slice(0, 8)
+      .toUpperCase()}`;
+
+  const onboardingPresetItems = Array.isArray(
+    invitation.onboardingPresetItems,
+  )
+    ? invitation.onboardingPresetItems.filter(
+        (item): item is string => typeof item === "string",
+      )
+    : [];
+
   const hashedPassword = await bcrypt.hash(password, 10);
 
   const result = await prisma.$transaction(async (tx) => {
@@ -126,7 +147,7 @@ async function completeRegistration(formData: FormData) {
 
     const employee = await tx.employee.create({
       data: {
-        employeeNo: invitation.employeeNo,
+        employeeNo: assignedEmployeeNo,
         lastName,
         firstName,
         lastNameKana: lastNameKana || null,
@@ -137,9 +158,16 @@ async function completeRegistration(formData: FormData) {
         birthDate: birthDateRaw
           ? new Date(`${birthDateRaw}T00:00:00`)
           : null,
+        gender:
+          gender === "MALE" ||
+          gender === "FEMALE" ||
+          gender === "OTHER"
+            ? gender
+            : null,
         hireDate: invitation.expectedHireDate ?? null,
         status: "ACTIVE",
         userId: user.id,
+        onboardingSkippedItems: onboardingPresetItems,
       },
     });
 
@@ -148,6 +176,7 @@ async function completeRegistration(formData: FormData) {
         id: invitation.id,
       },
       data: {
+        employeeNo: assignedEmployeeNo,
         acceptedAt: new Date(),
         createdUserId: user.id,
         createdEmployeeId: employee.id,
@@ -295,6 +324,30 @@ export default async function RegisterPage({
               name="birthDate"
               className="w-full rounded border p-2"
             />
+          </div>
+
+          <div>
+            <label className="mb-1 block text-sm font-medium">
+              性別
+            </label>
+
+            <select
+              name="gender"
+              className="w-full rounded border p-2"
+            >
+              <option value="">
+                選択してください
+              </option>
+              <option value="MALE">
+                男性
+              </option>
+              <option value="FEMALE">
+                女性
+              </option>
+              <option value="OTHER">
+                その他
+              </option>
+            </select>
           </div>
 
           <div>

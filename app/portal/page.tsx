@@ -33,6 +33,16 @@ export default function PortalPage() {
           <h2 className="text-lg font-semibold text-gray-800">家族の扶養情報</h2>
           <p className="mt-1 text-sm text-gray-500">扶養家族の登録状況および申請確認</p>
         </Link>
+
+        <Link
+          href="/mypage/pledge"
+          className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm transition hover:shadow-md"
+        >
+          <h2 className="text-lg font-bold text-gray-800">誓約書</h2>
+          <p className="mt-1 text-sm text-gray-500">
+            誓約書の閲覧・電子署名・PDF出力
+          </p>
+        </Link>
       </div>
     </main>
   );

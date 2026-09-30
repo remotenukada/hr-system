@@ -20,20 +20,21 @@ model User {
 }
 
 model UserInvitation {
-  id                String                            @id @default(uuid())
-  employeeNo        String
-  lastName          String
-  firstName         String
-  email             String
-  token             String                            @unique
-  expectedHireDate  DateTime?
-  expiresAt         DateTime
-  acceptedAt        DateTime?
-  createdUserId     String?
-  createdEmployeeId String?
-  createdAt         DateTime                          @default(now())
-  cancelledAt       DateTime?
-  attachments       EmployeeCertificationAttachment[]
+  id                    String                            @id @default(uuid())
+  employeeNo            String
+  lastName              String
+  firstName             String
+  email                 String
+  token                 String                            @unique
+  expectedHireDate      DateTime?
+  expiresAt             DateTime
+  acceptedAt            DateTime?
+  createdUserId         String?
+  createdEmployeeId     String?
+  createdAt             DateTime                          @default(now())
+  cancelledAt           DateTime?
+  onboardingPresetItems Json?
+  attachments           EmployeeCertificationAttachment[]
 
   @@index([email])
   @@index([token])
@@ -90,13 +91,13 @@ model Employee {
   annualScheduledDays  Int?
   dailyScheduledHours  Float?
 
-  status                EmployeeStatus          @default(ACTIVE)
+  status                EmployeeStatus @default(ACTIVE)
   employmentInsuranceNo String?
   healthInsuranceNo     String?
   retirementDate        DateTime?
   photoPath             String?
 
-  onboardingCompletedAt DateTime?
+  onboardingCompletedAt  DateTime?
   onboardingSkippedItems Json?
 
   userId                String?                 @unique
@@ -130,6 +131,7 @@ model Employee {
 
   personalDocuments PersonalDocument[]
   residenceRequests ResidenceRequest[]
+  pledges           EmployeePledge[]
 }
 
 model EmployeeTransfer {
@@ -581,6 +583,7 @@ enum ResidenceNotificationType {
 }
 
 enum ResidenceAttachmentType {
+  PAPER_APPLICATION
   LEASE_CONTRACT
   SALES_CONTRACT
   REGISTRY
@@ -615,6 +618,9 @@ model ResidenceRequest {
   ownerName1      String?
   ownerName2      String?
   acquisitionDate DateTime?
+
+  submissionMethod SubmissionMethod @default(ELECTRONIC)
+  paperSubmittedAt DateTime?
 
   status RequestStatus @default(PENDING)
 
@@ -676,6 +682,9 @@ model CommutingRequest {
   approvedAmount            Int?
   note                      String?
 
+  submissionMethod SubmissionMethod @default(ELECTRONIC)
+  paperSubmittedAt DateTime?
+
   status RequestStatus @default(PENDING)
 
   reviewedAt    DateTime?
@@ -712,7 +721,7 @@ model CommutingRouteSegment {
 
   fareSystem         String?
   coveredBySegmentId String?
-  sortOrder          Int @default(0)
+  sortOrder          Int     @default(0)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -759,6 +768,7 @@ enum CommutingType {
 }
 
 enum CommutingAttachmentType {
+  PAPER_APPLICATION
   COMMUTER_PASS
   ROUTE_MAP
   VEHICLE_INSPECTION
@@ -787,6 +797,55 @@ model ProfileChangeRequest {
 
   @@index([employeeId])
   @@index([status])
+}
+
+enum SubmissionMethod {
+  ELECTRONIC
+  PAPER
+}
+
+enum PledgeStatus {
+  PENDING
+  EMPLOYEE_SIGNED
+  GUARANTOR_PENDING
+  GUARANTOR_CONFIRMED
+  PAPER_UPLOADED
+  COMPLETED
+  REJECTED
+}
+
+model EmployeePledge {
+  id               String           @id @default(uuid())
+  employeeId       String
+  submissionMethod SubmissionMethod
+  status           PledgeStatus     @default(PENDING)
+
+  templateVersion String?
+  documentHash    String?
+
+  employeeSignerName String?
+  employeeSignedAt   DateTime?
+  employeeSignedIp   String?
+
+  guarantorName           String?
+  guarantorEmail          String?
+  guarantorConfirmedAt    DateTime?
+  guarantorToken          String?   @unique
+  guarantorTokenExpiresAt DateTime?
+
+  fileName String?
+  filePath String?
+  fileType String?
+  fileSize Int?
+
+  verifiedAt    DateTime?
+  verifiedBy    String?
+  reviewComment String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
 }
 
 enum UserRole {

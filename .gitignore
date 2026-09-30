@@ -59,3 +59,12 @@ uploads-backup.tar.gz
 storage/
 # 個人文書・給与明細
 /storage/
+
+# Local implementation backups
+*.before-*
+*.bak
+backups/
+
+# Local backups
+*.before-*
+backups/
