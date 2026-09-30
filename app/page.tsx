@@ -603,6 +603,13 @@ export default async function DashboardPage() {
     },
   });
 
+  if (
+    myEmployee &&
+    !myEmployee.onboardingCompletedAt
+  ) {
+    redirect("/onboarding");
+  }
+
   const leaveBalances = await prisma.leaveBalance.findMany({
     where:
       facilityScope === "ALL"

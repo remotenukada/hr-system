@@ -95,6 +95,10 @@ model Employee {
   healthInsuranceNo     String?
   retirementDate        DateTime?
   photoPath             String?
+
+  onboardingCompletedAt DateTime?
+  onboardingSkippedItems Json?
+
   userId                String?                 @unique
   emergencyContact      String?
   facility              Facility?               @relation(fields: [facilityId], references: [id])
