@@ -504,6 +504,12 @@ export default async function OnboardingManagementPage({
                   >
                     {row.employee.lastName} {row.employee.firstName}
                   </Link>
+                    <Link
+                      href={`/employees/${row.employee.id}/onboarding-settings`}
+                      className="text-blue-600 hover:underline ml-3"
+                    >
+                      初回登録設定
+                    </Link>
                 </td>
                 <td className="p-3">{row.employee.facility?.name ?? "-"}</td>
                 <td className="p-3">{row.employee.department?.name ?? "-"}</td>
