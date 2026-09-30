@@ -1606,7 +1606,7 @@ export default async function DashboardPage() {
                 </li>
 
                 <li className={getAlertClass(onboardingIncompleteCount)}>
-                  <Link href="/onboarding-management">
+                  <Link href="/onboarding-management?status=incomplete">
                     初回登録未完了: {onboardingIncompleteCount}件
                   </Link>
                 </li>
