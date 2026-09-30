@@ -1,0 +1,70 @@
+import BackLink from "@/components/BackLink";
+import { prisma } from "@/lib/prisma";
+
+type Props = {
+  params: Promise<{ id: string }>;
+};
+
+const DEFAULT_ASSETS = [
+  "ノートPC",
+  "社用スマホ",
+  "ICカード",
+  "ロッカー鍵",
+  "制服",
+  "名札",
+];
+
+export default async function LoanedAssetsPage({
+  params,
+}: Props) {
+  const { id } = await params;
+
+  let assets = await prisma.loanedAsset.findMany({
+    where: { employeeId: id },
+    orderBy: { createdAt: "asc" },
+  });
+
+  if (assets.length === 0) {
+    await prisma.loanedAsset.createMany({
+      data: DEFAULT_ASSETS.map((assetName) => ({
+        employeeId: id,
+        assetName,
+      })),
+    });
+
+    assets = await prisma.loanedAsset.findMany({
+      where: { employeeId: id },
+      orderBy: { createdAt: "asc" },
+    });
+  }
+
+  return (
+    <main className="mx-auto max-w-4xl p-6">
+      <BackLink
+        href={`/retirement-management/${id}`}
+        label="退職手続チェックリストに戻る"
+      />
+
+      <h1 className="mb-6 text-2xl font-bold">
+        貸与物返却管理
+      </h1>
+
+      <div className="rounded-lg border bg-white p-6">
+        <div className="space-y-4">
+          {assets.map((asset) => (
+            <div
+              key={asset.id}
+              className="flex items-center justify-between border-b pb-2"
+            >
+              <div>
+                <div className="font-medium">
+                  {asset.assetName}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </main>
+  );
+}

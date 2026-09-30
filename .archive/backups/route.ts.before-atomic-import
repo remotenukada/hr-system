@@ -1,0 +1,278 @@
+import { requireHRManager } from "@/lib/auth-guard";
+import { logAudit } from "@/lib/audit-log";
+import { prisma } from "@/lib/prisma";
+
+function parseCsvLine(line: string) {
+  const values: string[] = [];
+  let value = "";
+  let quoted = false;
+
+  for (let index = 0; index < line.length; index += 1) {
+    const character = line[index];
+
+    if (character === '"') {
+      if (quoted && line[index + 1] === '"') {
+        value += '"';
+        index += 1;
+      } else {
+        quoted = !quoted;
+      }
+
+      continue;
+    }
+
+    if (character === "," && !quoted) {
+      values.push(value.trim());
+      value = "";
+      continue;
+    }
+
+    value += character;
+  }
+
+  values.push(value.trim());
+
+  return values;
+}
+
+function parseEffectiveDate(value: string) {
+  if (!value) {
+    return new Date();
+  }
+
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    return null;
+  }
+
+  const date = new Date(`${value}T00:00:00`);
+
+  if (Number.isNaN(date.getTime())) {
+    return null;
+  }
+
+  const normalized = [
+    date.getFullYear(),
+    String(date.getMonth() + 1).padStart(2, "0"),
+    String(date.getDate()).padStart(2, "0"),
+  ].join("-");
+
+  return normalized === value ? date : null;
+}
+
+export async function POST(request: Request) {
+  const session = await requireHRManager();
+
+  const formData = await request.formData();
+  const file = formData.get("file");
+
+  if (!(file instanceof File) || file.size === 0) {
+    return Response.json(
+      {
+        error: "CSVファイルが選択されていません。",
+      },
+      {
+        status: 400,
+      },
+    );
+  }
+
+  const text = (await file.text()).replace(/^\uFEFF/, "");
+
+  const lines = text
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+
+  if (lines.length < 2) {
+    return Response.json(
+      {
+        error: "異動データがありません。",
+      },
+      {
+        status: 400,
+      },
+    );
+  }
+
+  const headers = parseCsvLine(lines[0]);
+
+  const requiredHeaders = [
+    "employeeNo",
+    "toFacilityCode",
+    "toDepartmentName",
+    "effectiveDate",
+    "reason",
+  ];
+
+  if (
+    headers.length !== requiredHeaders.length ||
+    requiredHeaders.some(
+      (requiredHeader, index) => headers[index] !== requiredHeader,
+    )
+  ) {
+    return Response.json(
+      {
+        error: "CSVの列名が正しくありません。" + requiredHeaders.join(","),
+      },
+      {
+        status: 400,
+      },
+    );
+  }
+
+  let success = 0;
+  let skipped = 0;
+  let failed = 0;
+
+  for (let index = 1; index < lines.length; index += 1) {
+    const rowNumber = index + 1;
+    const columns = parseCsvLine(lines[index]);
+
+    const employeeNo = columns[0]?.trim() ?? "";
+    const toFacilityCode = columns[1]?.trim() ?? "";
+    const toDepartmentName = columns[2]?.trim() ?? "";
+    const effectiveDateValue = columns[3]?.trim() ?? "";
+    const reason = columns[4]?.trim() ?? "";
+
+    try {
+      if (!employeeNo || !toFacilityCode) {
+        throw new Error("社員番号または異動先施設コードが未入力です。");
+      }
+
+      const effectiveDate = parseEffectiveDate(effectiveDateValue);
+
+      if (!effectiveDate) {
+        throw new Error("異動日はYYYY-MM-DD形式で入力してください。");
+      }
+
+      const [employee, facility, department] = await Promise.all([
+        prisma.employee.findUnique({
+          where: {
+            employeeNo,
+          },
+          include: {
+            facility: true,
+            department: true,
+          },
+        }),
+        prisma.facility.findUnique({
+          where: {
+            code: toFacilityCode,
+          },
+        }),
+        toDepartmentName
+          ? prisma.department.findUnique({
+              where: {
+                name: toDepartmentName,
+              },
+            })
+          : Promise.resolve(null),
+      ]);
+
+      if (!employee) {
+        throw new Error(`社員番号 ${employeeNo} が見つかりません。`);
+      }
+
+      if (!facility) {
+        throw new Error(`施設コード ${toFacilityCode} が見つかりません。`);
+      }
+
+      if (toDepartmentName && !department) {
+        throw new Error(`部署 ${toDepartmentName} が見つかりません。`);
+      }
+
+      const facilityChanged = employee.facilityId !== facility.id;
+
+      const departmentChanged =
+        employee.departmentId !== (department?.id ?? null);
+
+      if (!facilityChanged && !departmentChanged) {
+        skipped += 1;
+        continue;
+      }
+
+      const transferReason =
+        reason ||
+        `所属変更: ` +
+          `${employee.facility?.name ?? "未設定"} / ` +
+          `${employee.department?.name ?? "未所属"}` +
+          ` → ${facility.name} / ` +
+          `${department?.name ?? "未所属"}`;
+
+      await prisma.$transaction(async (tx) => {
+        await tx.employee.update({
+          where: {
+            id: employee.id,
+          },
+          data: {
+            facilityId: facility.id,
+            departmentId: department?.id ?? null,
+          },
+        });
+
+        await tx.employeeTransfer.create({
+          data: {
+            employeeId: employee.id,
+            fromFacilityId: employee.facilityId,
+            toFacilityId: facility.id,
+            fromDepartmentId: employee.departmentId,
+            toDepartmentId: department?.id ?? null,
+            effectiveDate,
+            reason: transferReason,
+            createdBy:
+              session.user.name ?? session.user.email ?? session.user.id,
+          },
+        });
+
+        await tx.employmentHistory.create({
+          data: {
+            employeeId: employee.id,
+            action: "TRANSFER",
+            effectiveDate,
+            reason: transferReason,
+          },
+        });
+      });
+
+      await logAudit({
+        userId: session.user.id,
+        userName: session.user.name ?? session.user.email ?? "管理者",
+        action: "EMPLOYEE_TRANSFER_IMPORTED",
+        targetType: "Employee",
+        targetId: employee.id,
+        description: `${employee.employeeNo} の異動をCSV取込`,
+        beforeData: {
+          facilityId: employee.facilityId,
+          facilityName: employee.facility?.name ?? null,
+          departmentId: employee.departmentId,
+          departmentName: employee.department?.name ?? null,
+        },
+        afterData: {
+          facilityId: facility.id,
+          facilityName: facility.name,
+          departmentId: department?.id ?? null,
+          departmentName: department?.name ?? null,
+          effectiveDate: effectiveDate.toISOString(),
+          reason: transferReason,
+        },
+      });
+
+      success += 1;
+    } catch (error) {
+      failed += 1;
+
+      console.error(
+        `異動CSV ${rowNumber}行目:`,
+        error instanceof Error ? error.message : "不明なエラー",
+      );
+    }
+  }
+
+  const redirectUrl = new URL("/employee-transfers/import", request.url);
+
+  redirectUrl.searchParams.set("success", String(success));
+  redirectUrl.searchParams.set("skipped", String(skipped));
+  redirectUrl.searchParams.set("failed", String(failed));
+
+  return Response.redirect(redirectUrl, 303);
+}

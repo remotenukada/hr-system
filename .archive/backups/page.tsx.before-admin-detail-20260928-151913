@@ -1,0 +1,437 @@
+import BackLink from "@/components/BackLink";
+import { cookies } from "next/headers";
+import { revalidatePath } from "next/cache";
+
+import { prisma } from "@/lib/prisma";
+import { requireHRManager } from "@/lib/auth-guard";
+import { logAudit } from "@/lib/audit-log";
+
+const attachmentTypeLabels: Record<string, string> = {
+  LEASE_CONTRACT: "賃貸借契約書",
+  SALES_CONTRACT: "売買契約書",
+  REGISTRY: "登記簿",
+  RESIDENCE_CERTIFICATE: "住民票",
+  OTHER: "その他",
+};
+
+const residenceTypeLabels: Record<string, string> = {
+  RENTAL: "賃貸",
+  CORPORATE_HOUSING: "法人契約住宅",
+  OWNED: "持家",
+};
+
+const notificationTypeLabels: Record<string, string> = {
+  NEW: "新規",
+  ADDRESS_CHANGE: "住所変更",
+  CONTENT_CHANGE: "内容変更",
+};
+
+function getStatusLabel(status: string) {
+  if (status === "APPROVED") return "承認済み";
+  if (status === "REJECTED") return "差戻し";
+  if (status === "CANCELLED") return "取消済み";
+  return "承認待ち";
+}
+
+function getStatusClass(status: string) {
+  if (status === "APPROVED") return "bg-green-100 text-green-800";
+  if (status === "REJECTED") return "bg-red-100 text-red-800";
+  if (status === "CANCELLED") return "bg-gray-100 text-gray-700";
+  return "bg-yellow-100 text-yellow-800";
+}
+
+function formatDate(date: Date | null | undefined) {
+  if (!date) return "-";
+  return new Date(date).toLocaleDateString("ja-JP");
+}
+
+async function getFacilityScope() {
+  const cookieStore = await cookies();
+  return cookieStore.get("facilityScope")?.value ?? "ALL";
+}
+
+async function getScopedRequest(requestId: string) {
+  const facilityScope = await getFacilityScope();
+
+  const request = await prisma.residenceRequest.findUnique({
+    where: { id: requestId },
+    include: {
+      employee: {
+        include: {
+          facility: true,
+          department: true,
+        },
+      },
+    },
+  });
+
+  if (!request) return null;
+
+  if (
+    facilityScope !== "ALL" &&
+    request.employee.facilityId !== facilityScope
+  ) {
+    return null;
+  }
+
+  return request;
+}
+
+export default async function ResidenceRequestsPage() {
+  await requireHRManager();
+
+  const facilityScope = await getFacilityScope();
+
+  const scopedFacility =
+    facilityScope !== "ALL"
+      ? await prisma.facility.findUnique({
+          where: { id: facilityScope },
+        })
+      : null;
+
+  async function approveRequest(formData: FormData) {
+    "use server";
+
+    const session = await requireHRManager();
+    const requestId = String(formData.get("requestId") ?? "").trim();
+
+    if (!requestId) return;
+
+    const request = await getScopedRequest(requestId);
+
+    if (!request || request.status !== "PENDING") return;
+
+    const reviewer =
+      session.user.name ??
+      session.user.email ??
+      session.user.id;
+
+    const approved = await prisma.$transaction(async (tx) => {
+      const result = await tx.residenceRequest.updateMany({
+        where: {
+          id: request.id,
+          status: "PENDING",
+        },
+        data: {
+          status: "APPROVED",
+          reviewedAt: new Date(),
+          reviewedBy: reviewer,
+          reviewComment: null,
+        },
+      });
+
+      if (result.count !== 1) {
+        return false;
+      }
+
+      await tx.employee.update({
+        where: {
+          id: request.employeeId,
+        },
+        data: {
+          address: request.address,
+          phoneNumber:
+            request.phoneNumber ??
+            request.employee.phoneNumber,
+        },
+      });
+
+      return true;
+    });
+
+    if (!approved) {
+      return;
+    }
+
+    await logAudit({
+      userId: session.user.id,
+      userName: session.user.name,
+      action: "RESIDENCE_REQUEST_APPROVED",
+      targetType: "ResidenceRequest",
+      targetId: request.id,
+      description:
+        `${request.employee.employeeNo} の住居届を承認`,
+      beforeData: {
+        employeeId: request.employeeId,
+        address: request.employee.address,
+        phoneNumber: request.employee.phoneNumber,
+        residenceRequestStatus: request.status,
+      },
+      afterData: {
+        employeeId: request.employeeId,
+        address: request.address,
+        phoneNumber:
+          request.phoneNumber ??
+          request.employee.phoneNumber,
+        residenceType: request.residenceType,
+        notificationType: request.notificationType,
+        residenceRequestStatus: "APPROVED",
+        reviewedBy: reviewer,
+      },
+    });
+
+    revalidatePath("/residence-requests");
+    revalidatePath("/mypage/residence-requests");
+    revalidatePath("/employees");
+    revalidatePath("/");
+  }
+
+  async function rejectRequest(formData: FormData) {
+    "use server";
+
+    const session = await requireHRManager();
+    const requestId = String(formData.get("requestId") ?? "").trim();
+    const reviewComment = String(
+      formData.get("reviewComment") ?? "",
+    ).trim();
+
+    if (!requestId || !reviewComment) return;
+
+    const request = await getScopedRequest(requestId);
+
+    if (!request || request.status !== "PENDING") return;
+
+    await prisma.residenceRequest.update({
+      where: { id: request.id },
+      data: {
+        status: "REJECTED",
+        reviewedAt: new Date(),
+        reviewedBy:
+          session.user.name ??
+          session.user.email ??
+          session.user.id,
+        reviewComment,
+      },
+    });
+
+    await logAudit({
+      userId: session.user.id,
+      userName: session.user.name,
+      action: "RESIDENCE_REQUEST_REJECTED",
+      targetType: "ResidenceRequest",
+      targetId: request.id,
+      description:
+        `${request.employee.employeeNo} の住居届を差戻し: ${reviewComment}`,
+      afterData: {
+        employeeId: request.employeeId,
+        status: "REJECTED",
+        reviewComment,
+      },
+    });
+
+    revalidatePath("/residence-requests");
+    revalidatePath("/mypage/residence-requests");
+    revalidatePath("/");
+  }
+
+  const requests = await prisma.residenceRequest.findMany({
+    where:
+      facilityScope === "ALL"
+        ? undefined
+        : {
+            employee: {
+              facilityId: facilityScope,
+            },
+          },
+    include: {
+      employee: {
+        include: {
+          facility: true,
+          department: true,
+        },
+      },
+      attachments: {
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  return (
+    <main className="mx-auto max-w-7xl p-8">
+      <BackLink href="/" label="ダッシュボードへ戻る" />
+
+      <div className="mb-6 mt-2 flex flex-col justify-between gap-4 md:flex-row md:items-center">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">
+            住居届 承認管理
+          </h1>
+          <p className="mt-2 text-sm text-gray-600">
+            従業員から提出された住居届の確認および承認・差戻し処理を行えます。
+            {scopedFacility && (
+              <span className="ml-2 rounded bg-blue-50 px-2 py-1 text-xs font-semibold text-blue-700">
+                絞り込み中: {scopedFacility.name}
+              </span>
+            )}
+          </p>
+        </div>
+      </div>
+
+      <div className="overflow-x-auto rounded-lg border bg-white shadow-sm">
+        <table className="w-full min-w-[1000px] text-sm">
+          <thead>
+            <tr className="bg-gray-50 text-left">
+              <th className="border-b p-3">状態</th>
+              <th className="border-b p-3">社員番号 / 氏名</th>
+              <th className="border-b p-3">所属 / 拠点</th>
+              <th className="border-b p-3">届出 / 住居区分</th>
+              <th className="border-b p-3">変更日</th>
+              <th className="border-b p-3">住所</th>
+              <th className="border-b p-3">申請日</th>
+              <th className="border-b p-3">添付書類</th>
+              <th className="border-b p-3 min-w-[220px]">操作 / コメント</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {requests.map((request) => (
+              <tr
+                key={request.id}
+                className="align-top border-b hover:bg-gray-50"
+              >
+                <td className="p-3">
+                  <span
+                    className={`whitespace-nowrap rounded px-2 py-1 text-xs font-medium ${getStatusClass(
+                      request.status,
+                    )}`}
+                  >
+                    {getStatusLabel(request.status)}
+                  </span>
+                </td>
+
+                <td className="p-3">
+                  <div className="font-medium text-gray-900">
+                    {request.employee.lastName} {request.employee.firstName}
+                  </div>
+                  <div className="text-xs text-gray-500">
+                    {request.employee.employeeNo}
+                  </div>
+                </td>
+
+                <td className="p-3 text-gray-700">
+                  <div>{request.employee.facility?.name ?? "-"}</div>
+                  <div className="text-xs text-gray-500">
+                    {request.employee.department?.name ?? "-"}
+                  </div>
+                </td>
+
+                <td className="p-3 text-gray-700">
+                  <div>
+                    {notificationTypeLabels[request.notificationType] ??
+                      request.notificationType}
+                  </div>
+                  <div className="text-xs text-gray-500">
+                    {residenceTypeLabels[request.residenceType] ??
+                      request.residenceType}
+                  </div>
+                </td>
+
+                <td className="p-3 whitespace-nowrap text-gray-700">
+                  {formatDate(request.changeDate)}
+                </td>
+
+                <td className="p-3 text-gray-700">
+                  <div className="text-xs text-gray-500">
+                    〒{request.postalCode}
+                  </div>
+                  <div>{request.address}</div>
+                </td>
+
+                <td className="p-3 whitespace-nowrap text-gray-700">
+                  {formatDate(request.createdAt)}
+                </td>
+
+                <td className="p-3">
+                  {request.attachments.length === 0 ? (
+                    "-"
+                  ) : (
+                    <div className="space-y-1">
+                      {request.attachments.map((attachment) => (
+                        <a
+                          key={attachment.id}
+                          href={`/api/residence-request-attachments/${attachment.id}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-600 hover:underline text-xs block"
+                        >
+                          📎 {attachmentTypeLabels[attachment.attachmentType] ??
+                            attachment.attachmentType}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </td>
+
+                <td className="p-3">
+                  {request.status === "PENDING" ? (
+                    <div className="space-y-2">
+                      <form action={approveRequest}>
+                        <input
+                          type="hidden"
+                          name="requestId"
+                          value={request.id}
+                        />
+                        <button
+                          type="submit"
+                          className="w-full rounded bg-green-600 px-3 py-1 text-xs font-medium text-white hover:bg-green-700"
+                        >
+                          承認する
+                        </button>
+                      </form>
+
+                      <form action={rejectRequest} className="space-y-1">
+                        <input
+                          type="hidden"
+                          name="requestId"
+                          value={request.id}
+                        />
+                        <input
+                          type="text"
+                          name="reviewComment"
+                          placeholder="差戻し理由を入力"
+                          required
+                          className="w-full rounded border p-1 text-xs"
+                        />
+                        <button
+                          type="submit"
+                          className="w-full rounded bg-red-600 px-3 py-1 text-xs font-medium text-white hover:bg-red-700"
+                        >
+                          差戻す
+                        </button>
+                      </form>
+                    </div>
+                  ) : (
+                    <div className="text-xs text-gray-500">
+                      <div>確認者: {request.reviewedBy ?? "-"}</div>
+                      <div>日時: {formatDate(request.reviewedAt)}</div>
+                      {request.reviewComment && (
+                        <div className="mt-1 text-red-600">
+                          理由: {request.reviewComment}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </td>
+              </tr>
+            ))}
+
+            {requests.length === 0 && (
+              <tr>
+                <td
+                  colSpan={8}
+                  className="p-8 text-center text-gray-500"
+                >
+                  対象となる住居届申請はありません。
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </main>
+  );
+}

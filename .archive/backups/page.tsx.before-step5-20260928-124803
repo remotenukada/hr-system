@@ -1,0 +1,22 @@
+import Link from "next/link";
+
+export default function ResidenceRequestsPage() {
+  return (
+    <main className="mx-auto max-w-4xl p-8">
+      <Link href="/" className="text-sm text-blue-600 hover:underline">
+        ← ダッシュボードへ戻る
+      </Link>
+
+      <h1 className="mt-2 text-3xl font-bold">住居届</h1>
+
+      <div className="mt-6">
+        <Link
+          href="/mypage/residence-requests/new"
+          className="inline-block rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+        >
+          新しい住居届を申請
+        </Link>
+      </div>
+    </main>
+  );
+}

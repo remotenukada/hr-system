@@ -1,0 +1,182 @@
+import BackLink from "@/components/BackLink";
+import { auth } from "@/auth";
+import { prisma } from "@/lib/prisma";
+import Link from "next/link";
+import { redirect } from "next/navigation";
+
+const categoryLabels: Record<string, string> = {
+  LEAVE: "休暇申請",
+  LATE: "遅刻申請",
+  EARLY: "早退申請",
+  OUTING: "外出申請",
+  CHILD_CARE: "子の看護休暇",
+  FAMILY_CARE: "介護休暇",
+};
+
+const unitLabels: Record<string, string> = {
+  DAY: "日",
+  HALF_DAY: "半日",
+  AM_HALF: "午前休",
+  PM_HALF: "午後休",
+  HOUR: "時間",
+};
+
+const statusDetails: Record<string, { label: string; className: string }> = {
+  PENDING: {
+    label: "申請中",
+    className: "bg-amber-100 text-amber-800",
+  },
+  APPROVED: {
+    label: "承認済み",
+    className: "bg-green-100 text-green-800",
+  },
+  REJECTED: {
+    label: "却下",
+    className: "bg-red-100 text-red-800",
+  },
+  CANCELLED: {
+    label: "取消済み",
+    className: "bg-gray-100 text-gray-700",
+  },
+};
+
+function formatDate(date: Date | null) {
+  return date ? new Intl.DateTimeFormat("ja-JP").format(date) : "－";
+}
+
+export default async function MyRequestsPage() {
+  const session = await auth();
+
+  if (!session?.user) {
+    redirect("/login");
+  }
+
+  const requests = await prisma.employeeRequest.findMany({
+    where: {
+      userId: session.user.id,
+    },
+    include: {
+      leaveType: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  return (
+    <main className="mx-auto max-w-6xl space-y-6 p-4 sm:p-8">
+      <BackLink href="/" label="ダッシュボードへ戻る" />
+
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold text-gray-900">マイ申請履歴</h1>
+          <p className="mt-1 text-sm text-gray-600">
+            あなたが提出した申請の一覧です。
+          </p>
+        </div>
+
+        <Link
+          href="/requests/new"
+          className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+        >
+          新しい申請
+        </Link>
+      </div>
+
+      {requests.length === 0 ? (
+        <div className="rounded-xl border bg-white p-8 text-center text-gray-500">
+          提出済みの申請はありません。
+        </div>
+      ) : (
+        <div className="overflow-x-auto rounded-xl border bg-white shadow-sm">
+          <table className="min-w-full text-sm">
+            <thead className="bg-gray-50 text-left text-gray-700">
+              <tr>
+                <th className="whitespace-nowrap p-3">申請区分</th>
+                <th className="whitespace-nowrap p-3">休暇種別</th>
+                <th className="whitespace-nowrap p-3">対象日</th>
+                <th className="whitespace-nowrap p-3">取得単位</th>
+                <th className="whitespace-nowrap p-3">状態</th>
+                <th className="whitespace-nowrap p-3">申請日</th>
+                <th className="p-3"></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {requests.map((request) => {
+                const category =
+                  request.requestCategory !== null
+                    ? categoryLabels[request.requestCategory]
+                    : request.title;
+
+                const targetDate =
+                  request.requestCategory === "LEAVE"
+                    ? request.leaveStartDate
+                    : request.targetDate;
+
+                let unit = "－";
+
+                if (request.unitType) {
+                  unit = unitLabels[request.unitType] ?? request.unitType;
+
+                  if (request.unitType === "HOUR" && request.hours) {
+                    unit = `${request.hours}時間`;
+                  }
+                } else if (
+                  request.requestCategory === "LEAVE" &&
+                  request.leaveDays
+                ) {
+                  unit = `${request.leaveDays}日`;
+                }
+
+                const status = statusDetails[request.status] ?? {
+                  label: request.status,
+                  className: "bg-gray-100 text-gray-700",
+                };
+
+                return (
+                  <tr key={request.id} className="border-t hover:bg-gray-50">
+                    <td className="whitespace-nowrap p-3 font-medium">
+                      {category}
+                    </td>
+
+                    <td className="whitespace-nowrap p-3">
+                      {request.leaveType?.name ?? "－"}
+                    </td>
+
+                    <td className="whitespace-nowrap p-3">
+                      {formatDate(targetDate)}
+                    </td>
+
+                    <td className="whitespace-nowrap p-3">{unit}</td>
+
+                    <td className="whitespace-nowrap p-3">
+                      <span
+                        className={`rounded-full px-2.5 py-1 text-xs font-medium ${status.className}`}
+                      >
+                        {status.label}
+                      </span>
+                    </td>
+
+                    <td className="whitespace-nowrap p-3 text-gray-600">
+                      {formatDate(request.createdAt)}
+                    </td>
+
+                    <td className="whitespace-nowrap p-3 text-right">
+                      <Link
+                        href={`/requests/${request.id}`}
+                        className="font-medium text-blue-600 hover:underline"
+                      >
+                        詳細
+                      </Link>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </main>
+  );
+}

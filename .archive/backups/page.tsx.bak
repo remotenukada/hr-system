@@ -1,0 +1,117 @@
+import { saveRetirementCertificate } from "@/app/actions/retirement-certificate";
+import BackLink from "@/components/BackLink";
+import { requireHRManager } from "@/lib/auth-guard";
+import { prisma } from "@/lib/prisma";
+import { notFound } from "next/navigation";
+
+type Props = {
+  params: Promise<{ id: string }>;
+};
+
+function dateValue(date?: Date | null) {
+  return date?.toISOString().slice(0, 10) ?? "";
+}
+
+export default async function RetirementCertificatePage({
+  params,
+}: Props) {
+  await requireHRManager();
+
+  const { id } = await params;
+
+  const employee = await prisma.employee.findUnique({
+    where: { id },
+    include: {
+      retirementCertificate: true,
+    },
+  });
+
+  if (!employee) {
+    notFound();
+  }
+
+  const certificate = employee.retirementCertificate;
+  const today = new Date().toISOString().slice(0, 10);
+
+  return (
+    <main className="mx-auto max-w-3xl p-6">
+      <BackLink href={`/retirement-management/${id}`} label="退職管理へ戻る" />
+
+      <h1 className="mb-2 text-2xl font-bold">
+        退職証明書
+      </h1>
+
+      <p className="mb-6 text-sm text-gray-600">
+        {employee.employeeNo} {employee.lastName}{" "}
+        {employee.firstName}
+      </p>
+
+      <form action={saveRetirementCertificate} className="space-y-6">
+        <input
+          type="hidden"
+          name="employeeId"
+          value={employee.id}
+        />
+
+        <div className="grid gap-4 md:grid-cols-2">
+          <label className="text-sm font-medium">
+            証明書発行日
+            <input
+              name="certificateDate"
+              type="date"
+              required
+              defaultValue={
+                dateValue(certificate?.certificateDate) ||
+                today
+              }
+              className="mt-1 w-full rounded border p-2"
+            />
+          </label>
+
+          <label className="text-sm font-medium">
+            退職日
+            <input
+              name="retirementDate"
+              type="date"
+              required
+              defaultValue={
+                dateValue(certificate?.retirementDate) ||
+                dateValue(employee.retirementDate)
+              }
+              className="mt-1 w-full rounded border p-2"
+            />
+          </label>
+        </div>
+
+        <div className="space-y-2">
+          <label className="block text-sm font-medium">
+            退職理由
+          </label>
+          <textarea
+            name="reason"
+            rows={3}
+            defaultValue={certificate?.reason ?? ""}
+            className="w-full rounded border p-2"
+          />
+        </div>
+
+        <div className="flex gap-4">
+          <button
+            type="submit"
+            className="rounded bg-blue-600 px-5 py-2 text-white hover:bg-blue-700"
+          >
+            保存する
+          </button>
+          <a
+            href={`/retirement-management/${id}/certificate/pdf`}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded border border-gray-300 px-5 py-2 hover:bg-gray-50"
+          >
+            PDF表示
+          </a>
+        </div>
+      </form>
+    </main>
+  );
+}

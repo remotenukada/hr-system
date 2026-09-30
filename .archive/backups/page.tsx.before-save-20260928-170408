@@ -1,0 +1,150 @@
+import Link from "next/link";
+
+export default function NewCommutingRequestPage() {
+  return (
+    <main className="mx-auto max-w-4xl p-8">
+      <div className="mb-4">
+        <Link
+          href="/mypage/commuting-requests"
+          className="text-sm text-blue-600 hover:underline"
+        >
+          ← 通勤届一覧へ戻る
+        </Link>
+      </div>
+
+      <h1 className="text-3xl font-bold">通勤届新規申請</h1>
+      <p className="mt-2 text-sm text-gray-600">
+        通勤方法や通勤経路の変更を申請します。
+      </p>
+
+      <form className="mt-6 space-y-6 rounded border bg-white p-6 shadow-sm">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700">
+              申請区分
+            </label>
+            <select
+              name="notificationType"
+              className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+              defaultValue="NEW"
+            >
+              <option value="NEW">新規</option>
+              <option value="ROUTE_CHANGE">経路変更</option>
+              <option value="METHOD_CHANGE">通勤方法変更</option>
+              <option value="AMOUNT_CHANGE">手当変更</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700">
+              通勤手段
+            </label>
+            <select
+              name="commutingType"
+              className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+              defaultValue="PUBLIC_TRANSPORT"
+            >
+              <option value="PUBLIC_TRANSPORT">公共交通機関</option>
+              <option value="CAR">自動車</option>
+              <option value="MOTORCYCLE">バイク</option>
+              <option value="BICYCLE">自転車</option>
+              <option value="WALK">徒歩</option>
+              <option value="OTHER">その他</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium text-gray-700">
+            適用開始日
+          </label>
+          <input
+            type="date"
+            name="effectiveDate"
+            className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+            required
+          />
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700">
+              出発地（自宅最寄駅・自宅等）
+            </label>
+            <input
+              type="text"
+              name="routeFrom"
+              placeholder="例: 新宿駅"
+              className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700">
+              到着地（勤務地等）
+            </label>
+            <input
+              type="text"
+              name="routeTo"
+              placeholder="例: 東京駅"
+              className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700">
+              利用路線・交通機関名
+            </label>
+            <input
+              type="text"
+              name="transportationName"
+              placeholder="例: JR山手線"
+              className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="mb-1 block text-sm font-medium text-gray-700">
+              1ヶ月定期代 / 手当申請額 (円)
+            </label>
+            <input
+              type="number"
+              name="monthlyAmount"
+              placeholder="例: 15000"
+              className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium text-gray-700">
+            備考・申請理由
+          </label>
+          <textarea
+            name="note"
+            rows={3}
+            placeholder="転居に伴う変更など"
+            className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+          ></textarea>
+        </div>
+
+        <div className="flex justify-end space-x-4">
+          <Link
+            href="/mypage/commuting-requests"
+            className="rounded border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+          >
+            キャンセル
+          </Link>
+          <button
+            type="submit"
+            className="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+          >
+            申請する
+          </button>
+        </div>
+      </form>
+    </main>
+  );
+}

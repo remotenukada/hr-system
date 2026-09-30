@@ -1,0 +1,346 @@
+import BackLink from "@/components/BackLink";
+import { auth } from "@/auth";
+import { prisma } from "@/lib/prisma";
+import { mkdir, writeFile } from "fs/promises";
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
+import path from "path";
+import { randomUUID } from "crypto";
+import RequestForm from "./RequestForm";
+
+const MAX_FILE_SIZE = 10 * 1024 * 1024;
+
+const ALLOWED_MIME_TYPES = new Set([
+  "application/pdf",
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+  "image/gif",
+  "application/vnd.ms-excel",
+  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+]);
+
+const TITLE_MAP: Record<string, string> = {
+  LEAVE: "休暇申請",
+  LATE: "遅刻申請",
+  EARLY: "早退申請",
+  OUTING: "外出申請",
+  CHILD_CARE: "子の看護休暇申請",
+  FAMILY_CARE: "介護休暇申請",
+};
+
+const VALID_CATEGORIES = new Set(Object.keys(TITLE_MAP));
+
+function getString(formData: FormData, name: string) {
+  return String(formData.get(name) ?? "").trim();
+}
+
+function parseDate(value: string) {
+  return value ? new Date(`${value}T00:00:00`) : null;
+}
+
+function calculateHours(startTime: string, endTime: string) {
+  const [startHour, startMinute] = startTime.split(":").map(Number);
+  const [endHour, endMinute] = endTime.split(":").map(Number);
+
+  const minutes = endHour * 60 + endMinute - (startHour * 60 + startMinute);
+
+  return minutes / 60;
+}
+
+function fail(message: string): never {
+  redirect(`/requests/new?error=${encodeURIComponent(message)}`);
+}
+
+async function saveAttachmentFile(file: File) {
+  if (file.size > MAX_FILE_SIZE) {
+    throw new Error("ファイルサイズは10MB以下にしてください。");
+  }
+
+  if (!ALLOWED_MIME_TYPES.has(file.type)) {
+    throw new Error("対応していないファイル形式です。");
+  }
+
+  const uploadDir = path.join(process.cwd(), "public", "uploads", "requests");
+
+  await mkdir(uploadDir, { recursive: true });
+
+  const extension = path.extname(file.name).toLowerCase();
+  const storedFileName = `${randomUUID()}${extension}`;
+  const fullPath = path.join(uploadDir, storedFileName);
+
+  await writeFile(fullPath, Buffer.from(await file.arrayBuffer()));
+
+  return {
+    fileName: file.name,
+    filePath: `/uploads/requests/${storedFileName}`,
+    fileSize: file.size,
+    mimeType: file.type,
+  };
+}
+
+async function createRequest(formData: FormData) {
+  "use server";
+
+  const session = await auth();
+
+  if (!session?.user) {
+    redirect("/login");
+  }
+
+  const requestCategory = getString(formData, "requestCategory");
+
+  if (!VALID_CATEGORIES.has(requestCategory)) {
+    fail("申請区分が正しくありません。");
+  }
+
+  const currentUser = session.user.email
+    ? await prisma.user.findUnique({
+        where: { email: session.user.email },
+      })
+    : null;
+
+  if (!currentUser) {
+    fail("ユーザー情報が見つかりません。");
+  }
+
+  const employee = await prisma.employee.findUnique({
+    where: { userId: currentUser.id },
+  });
+
+  if (!employee) {
+    fail("職員情報が見つかりません。");
+  }
+
+  const leaveTypeId = getString(formData, "leaveTypeId") || null;
+
+  const leaveStartDateValue = getString(formData, "leaveStartDate");
+
+  const leaveEndDateValue = getString(formData, "leaveEndDate");
+
+  const leaveDaysValue = getString(formData, "leaveDays");
+
+  const targetDateValue = getString(formData, "targetDate");
+  const unitType = getString(formData, "unitType") || null;
+  const startTime = getString(formData, "startTime") || null;
+  const endTime = getString(formData, "endTime") || null;
+  const comment = getString(formData, "comment") || null;
+
+  let leaveDays: number | null = null;
+  let calculatedHours: number | null = null;
+
+  if (requestCategory === "LEAVE") {
+    if (
+      !leaveTypeId ||
+      !leaveStartDateValue ||
+      !leaveEndDateValue ||
+      !leaveDaysValue
+    ) {
+      fail("休暇種別、開始日、終了日、取得日数は必須です。");
+    }
+
+    leaveDays = Number(leaveDaysValue);
+
+    if (!Number.isFinite(leaveDays) || leaveDays <= 0) {
+      fail("取得日数を正しく入力してください。");
+    }
+
+    if (leaveEndDateValue < leaveStartDateValue) {
+      fail("終了日は開始日以降を指定してください。");
+    }
+
+    const leaveType = await prisma.leaveType.findUnique({
+      where: { id: leaveTypeId },
+    });
+
+    if (!leaveType || !leaveType.isActive || !leaveType.allowRequest) {
+      fail("選択した休暇種別は利用できません。");
+    }
+
+    if (leaveType.manageBalance) {
+      const balance = await prisma.leaveTypeBalance.findUnique({
+        where: {
+          employeeId_leaveTypeId: {
+            employeeId: employee.id,
+            leaveTypeId,
+          },
+        },
+      });
+
+      const remainingDays =
+        (balance?.grantedDays ?? 0) - (balance?.usedDays ?? 0);
+
+      if (remainingDays < leaveDays) {
+        fail(
+          `${leaveType.name}の残数が不足しています（残数: ${remainingDays}日）`,
+        );
+      }
+    }
+  }
+
+  if (["LATE", "EARLY", "OUTING"].includes(requestCategory)) {
+    if (!targetDateValue || !startTime || !endTime) {
+      fail("対象日と時刻を入力してください。");
+    }
+
+    calculatedHours = Math.abs(calculateHours(startTime, endTime));
+
+    if (calculatedHours <= 0) {
+      fail("開始時刻と終了時刻を正しく入力してください。");
+    }
+
+    if (requestCategory === "LATE" && endTime <= startTime) {
+      fail("出勤時刻は始業予定時刻より後にしてください。");
+    }
+
+    if (requestCategory === "EARLY" && endTime >= startTime) {
+      fail("退勤時刻は終業予定時刻より前にしてください。");
+    }
+
+    if (requestCategory === "OUTING" && endTime <= startTime) {
+      fail("終了時刻は開始時刻より後にしてください。");
+    }
+  }
+
+  if (["CHILD_CARE", "FAMILY_CARE"].includes(requestCategory)) {
+    if (!targetDateValue || !unitType) {
+      fail("対象日と取得単位を入力してください。");
+    }
+
+    if (!["DAY", "HALF_DAY", "HOUR"].includes(unitType)) {
+      fail("取得単位が正しくありません。");
+    }
+
+    if (unitType === "DAY") {
+      leaveDays = 1;
+    }
+
+    if (unitType === "HALF_DAY") {
+      leaveDays = 0.5;
+    }
+
+    if (unitType === "HOUR") {
+      if (!startTime || !endTime) {
+        fail("時間単位の場合は開始時刻と終了時刻が必須です。");
+      }
+
+      calculatedHours = calculateHours(startTime, endTime);
+
+      if (calculatedHours <= 0) {
+        fail("終了時刻は開始時刻より後にしてください。");
+      }
+    }
+  }
+
+  const files = formData
+    .getAll("attachments")
+    .filter((file): file is File => file instanceof File && file.size > 0);
+
+  const attachments = [];
+
+  try {
+    for (const file of files) {
+      attachments.push(await saveAttachmentFile(file));
+    }
+  } catch (error) {
+    fail(
+      error instanceof Error
+        ? error.message
+        : "添付ファイルの保存に失敗しました。",
+    );
+  }
+
+  await prisma.employeeRequest.create({
+    data: {
+      title: TITLE_MAP[requestCategory],
+      comment,
+      type: requestCategory === "LEAVE" ? "PAID_LEAVE" : "OTHER",
+      userId: currentUser.id,
+      employeeId: employee.id,
+      requestCategory: requestCategory as
+        "LEAVE" | "LATE" | "EARLY" | "OUTING" | "CHILD_CARE" | "FAMILY_CARE",
+      leaveTypeId: requestCategory === "LEAVE" ? leaveTypeId : null,
+      leaveStartDate:
+        requestCategory === "LEAVE" ? parseDate(leaveStartDateValue) : null,
+      leaveEndDate:
+        requestCategory === "LEAVE" ? parseDate(leaveEndDateValue) : null,
+      leaveDays,
+      targetDate: parseDate(targetDateValue),
+      unitType: unitType as "DAY" | "HALF_DAY" | "HOUR" | null,
+      startTime,
+      endTime,
+      hours: calculatedHours,
+      attachments: attachments.length > 0 ? { create: attachments } : undefined,
+      histories: {
+        create: {
+          action: "CREATED",
+          actor: session.user.name || session.user.email || "unknown",
+          comment:
+            attachments.length > 0
+              ? `申請を作成しました。添付ファイル: ${attachments.length}件`
+              : "申請を作成しました",
+        },
+      },
+    },
+  });
+
+  revalidatePath("/requests");
+  revalidatePath("/requests/my");
+
+  redirect("/requests/my");
+}
+
+type NewRequestPageProps = {
+  searchParams: Promise<{
+    error?: string;
+  }>;
+};
+
+export default async function NewRequestPage({
+  searchParams,
+}: NewRequestPageProps) {
+  const session = await auth();
+
+  if (!session?.user) {
+    redirect("/login");
+  }
+
+  const { error } = await searchParams;
+
+  const leaveTypes = await prisma.leaveType.findMany({
+    where: {
+      isActive: true,
+      allowRequest: true,
+    },
+    orderBy: [{ sortOrder: "asc" }, { name: "asc" }],
+    select: {
+      id: true,
+      name: true,
+    },
+  });
+
+  return (
+    <main className="mx-auto max-w-3xl space-y-6 p-4 sm:p-6">
+      <BackLink href="/requests/my" label="申請一覧へ戻る" />
+
+      <div>
+        <h1 className="text-2xl font-bold text-gray-900">各種申請</h1>
+        <p className="mt-1 text-sm text-gray-600">
+          申請区分を選択して必要事項を入力してください。
+        </p>
+      </div>
+
+      {error && (
+        <div className="rounded-lg border border-red-300 bg-red-50 p-4 text-red-700">
+          {error}
+        </div>
+      )}
+
+      <div className="rounded-xl border bg-white p-4 shadow-sm sm:p-6">
+        <RequestForm leaveTypes={leaveTypes} action={createRequest} />
+      </div>
+    </main>
+  );
+}

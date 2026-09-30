@@ -1,0 +1,218 @@
+import Link from "next/link";
+import { redirect } from "next/navigation";
+
+import { auth } from "@/auth";
+import { prisma } from "@/lib/prisma";
+
+const attachmentTypeLabels: Record<string, string> = {
+  LEASE_CONTRACT: "賃貸借契約書",
+  SALES_CONTRACT: "売買契約書",
+  REGISTRY: "登記簿",
+  RESIDENCE_CERTIFICATE: "住民票",
+  OTHER: "その他",
+};
+
+const residenceTypeLabels: Record<string, string> = {
+  RENTAL: "賃貸",
+  CORPORATE_HOUSING: "法人契約住宅",
+  OWNED: "持家",
+};
+
+const notificationTypeLabels: Record<string, string> = {
+  NEW: "新規",
+  ADDRESS_CHANGE: "住所変更",
+  CONTENT_CHANGE: "内容変更",
+};
+
+function getStatusLabel(status: string) {
+  if (status === "APPROVED") return "承認済み";
+  if (status === "REJECTED") return "差戻し";
+  if (status === "CANCELLED") return "取消済み";
+  return "承認待ち";
+}
+
+function getStatusClass(status: string) {
+  if (status === "APPROVED") {
+    return "bg-green-100 text-green-800";
+  }
+
+  if (status === "REJECTED") {
+    return "bg-red-100 text-red-800";
+  }
+
+  if (status === "CANCELLED") {
+    return "bg-gray-100 text-gray-700";
+  }
+
+  return "bg-yellow-100 text-yellow-800";
+}
+
+function formatDate(date: Date | null | undefined) {
+  if (!date) return "-";
+  return new Date(date).toLocaleDateString("ja-JP");
+}
+
+export default async function ResidenceRequestsPage() {
+  const session = await auth();
+
+  if (!session?.user?.id) {
+    redirect("/login");
+  }
+
+  const employee = await prisma.employee.findUnique({
+    where: {
+      userId: session.user.id,
+    },
+  });
+
+  if (!employee) {
+    redirect("/");
+  }
+
+  const requests = await prisma.residenceRequest.findMany({
+    where: {
+      employeeId: employee.id,
+    },
+    include: {
+      attachments: {
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  return (
+    <main className="mx-auto max-w-6xl p-8">
+      <div className="mb-6 flex flex-col justify-between gap-4 md:flex-row md:items-center">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">
+            住居届申請履歴
+          </h1>
+
+          <p className="mt-2 text-sm text-gray-600">
+            自分が提出した住居届の内容と承認状況を確認できます。
+          </p>
+        </div>
+
+        <div className="flex gap-2">
+          <Link
+            href="/mypage/residence-requests/new"
+            className="rounded bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700"
+          >
+            新規申請
+          </Link>
+
+          <Link
+            href="/"
+            className="rounded border bg-white px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+          >
+            ダッシュボードへ戻る
+          </Link>
+        </div>
+      </div>
+
+      <div className="overflow-x-auto rounded-lg border bg-white shadow-sm">
+        <table className="w-full min-w-[900px] text-sm">
+          <thead>
+            <tr className="bg-gray-50 text-left">
+              <th className="border-b p-3">状態</th>
+              <th className="border-b p-3">届出区分</th>
+              <th className="border-b p-3">住居区分</th>
+              <th className="border-b p-3">変更日</th>
+              <th className="border-b p-3">郵便番号</th>
+              <th className="border-b p-3">住所</th>
+              <th className="border-b p-3">申請日</th>
+              <th className="border-b p-3">添付書類</th>
+              <th className="border-b p-3">確認コメント</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {requests.map((request) => (
+              <tr
+                key={request.id}
+                className="align-top border-b hover:bg-gray-50"
+              >
+                <td className="p-3">
+                  <span
+                    className={`whitespace-nowrap rounded px-2 py-1 text-xs font-medium ${getStatusClass(
+                      request.status,
+                    )}`}
+                  >
+                    {getStatusLabel(request.status)}
+                  </span>
+                </td>
+
+                <td className="p-3 text-gray-700">
+                  {notificationTypeLabels[request.notificationType] ??
+                    request.notificationType}
+                </td>
+
+                <td className="p-3 text-gray-700">
+                  {residenceTypeLabels[request.residenceType] ??
+                    request.residenceType}
+                </td>
+
+                <td className="p-3 whitespace-nowrap text-gray-700">
+                  {formatDate(request.changeDate)}
+                </td>
+
+                <td className="p-3 whitespace-nowrap text-gray-700">
+                  {request.postalCode}
+                </td>
+
+                <td className="p-3 text-gray-700">
+                  {request.address}
+                </td>
+
+                <td className="p-3 whitespace-nowrap text-gray-700">
+                  {formatDate(request.createdAt)}
+                </td>
+
+                <td className="p-3">
+                  {request.attachments.length === 0 ? (
+                    "-"
+                  ) : (
+                    <div className="space-y-1">
+                      {request.attachments.map((attachment) => (
+                        <a
+                          key={attachment.id}
+                          href={`/api/residence-request-attachments/${attachment.id}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-600 hover:underline text-xs block"
+                        >
+                          📎 {attachmentTypeLabels[attachment.attachmentType] ??
+                            attachment.attachmentType}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </td>
+
+                <td className="p-3 text-gray-500">
+                  {request.reviewComment ?? "-"}
+                </td>
+              </tr>
+            ))}
+
+            {requests.length === 0 && (
+              <tr>
+                <td
+                  colSpan={9}
+                  className="p-8 text-center text-gray-500"
+                >
+                  申請履歴はありません。
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </main>
+  );
+}

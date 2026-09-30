@@ -11590,6 +11590,7 @@ export namespace Prisma {
     healthInsuranceNo: string | null
     retirementDate: Date | null
     photoPath: string | null
+    onboardingCompletedAt: Date | null
     userId: string | null
     emergencyContact: string | null
   }
@@ -11623,6 +11624,7 @@ export namespace Prisma {
     healthInsuranceNo: string | null
     retirementDate: Date | null
     photoPath: string | null
+    onboardingCompletedAt: Date | null
     userId: string | null
     emergencyContact: string | null
   }
@@ -11656,6 +11658,8 @@ export namespace Prisma {
     healthInsuranceNo: number
     retirementDate: number
     photoPath: number
+    onboardingCompletedAt: number
+    onboardingSkippedItems: number
     userId: number
     emergencyContact: number
     _all: number
@@ -11705,6 +11709,7 @@ export namespace Prisma {
     healthInsuranceNo?: true
     retirementDate?: true
     photoPath?: true
+    onboardingCompletedAt?: true
     userId?: true
     emergencyContact?: true
   }
@@ -11738,6 +11743,7 @@ export namespace Prisma {
     healthInsuranceNo?: true
     retirementDate?: true
     photoPath?: true
+    onboardingCompletedAt?: true
     userId?: true
     emergencyContact?: true
   }
@@ -11771,6 +11777,8 @@ export namespace Prisma {
     healthInsuranceNo?: true
     retirementDate?: true
     photoPath?: true
+    onboardingCompletedAt?: true
+    onboardingSkippedItems?: true
     userId?: true
     emergencyContact?: true
     _all?: true
@@ -11891,6 +11899,8 @@ export namespace Prisma {
     healthInsuranceNo: string | null
     retirementDate: Date | null
     photoPath: string | null
+    onboardingCompletedAt: Date | null
+    onboardingSkippedItems: JsonValue | null
     userId: string | null
     emergencyContact: string | null
     _count: EmployeeCountAggregateOutputType | null
@@ -11943,6 +11953,8 @@ export namespace Prisma {
     healthInsuranceNo?: boolean
     retirementDate?: boolean
     photoPath?: boolean
+    onboardingCompletedAt?: boolean
+    onboardingSkippedItems?: boolean
     userId?: boolean
     emergencyContact?: boolean
     facility?: boolean | Employee$facilityArgs<ExtArgs>
@@ -12004,6 +12016,8 @@ export namespace Prisma {
     healthInsuranceNo?: boolean
     retirementDate?: boolean
     photoPath?: boolean
+    onboardingCompletedAt?: boolean
+    onboardingSkippedItems?: boolean
     userId?: boolean
     emergencyContact?: boolean
     facility?: boolean | Employee$facilityArgs<ExtArgs>
@@ -12040,6 +12054,8 @@ export namespace Prisma {
     healthInsuranceNo?: boolean
     retirementDate?: boolean
     photoPath?: boolean
+    onboardingCompletedAt?: boolean
+    onboardingSkippedItems?: boolean
     userId?: boolean
     emergencyContact?: boolean
     facility?: boolean | Employee$facilityArgs<ExtArgs>
@@ -12076,11 +12092,13 @@ export namespace Prisma {
     healthInsuranceNo?: boolean
     retirementDate?: boolean
     photoPath?: boolean
+    onboardingCompletedAt?: boolean
+    onboardingSkippedItems?: boolean
     userId?: boolean
     emergencyContact?: boolean
   }
 
-  export type EmployeeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeNo" | "firstName" | "lastName" | "email" | "createdAt" | "departmentId" | "facilityId" | "address" | "birthDate" | "firstNameKana" | "gender" | "hireDate" | "lastNameKana" | "occupation" | "phoneNumber" | "position" | "commutingType" | "employmentType" | "weeklyScheduledDays" | "weeklyScheduledHours" | "annualScheduledDays" | "dailyScheduledHours" | "status" | "employmentInsuranceNo" | "healthInsuranceNo" | "retirementDate" | "photoPath" | "userId" | "emergencyContact", ExtArgs["result"]["employee"]>
+  export type EmployeeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeNo" | "firstName" | "lastName" | "email" | "createdAt" | "departmentId" | "facilityId" | "address" | "birthDate" | "firstNameKana" | "gender" | "hireDate" | "lastNameKana" | "occupation" | "phoneNumber" | "position" | "commutingType" | "employmentType" | "weeklyScheduledDays" | "weeklyScheduledHours" | "annualScheduledDays" | "dailyScheduledHours" | "status" | "employmentInsuranceNo" | "healthInsuranceNo" | "retirementDate" | "photoPath" | "onboardingCompletedAt" | "onboardingSkippedItems" | "userId" | "emergencyContact", ExtArgs["result"]["employee"]>
   export type EmployeeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     facility?: boolean | Employee$facilityArgs<ExtArgs>
     department?: boolean | Employee$departmentArgs<ExtArgs>
@@ -12182,6 +12200,8 @@ export namespace Prisma {
       healthInsuranceNo: string | null
       retirementDate: Date | null
       photoPath: string | null
+      onboardingCompletedAt: Date | null
+      onboardingSkippedItems: Prisma.JsonValue | null
       userId: string | null
       emergencyContact: string | null
     }, ExtArgs["result"]["employee"]>
@@ -12662,6 +12682,8 @@ export namespace Prisma {
     readonly healthInsuranceNo: FieldRef<"Employee", 'String'>
     readonly retirementDate: FieldRef<"Employee", 'DateTime'>
     readonly photoPath: FieldRef<"Employee", 'String'>
+    readonly onboardingCompletedAt: FieldRef<"Employee", 'DateTime'>
+    readonly onboardingSkippedItems: FieldRef<"Employee", 'Json'>
     readonly userId: FieldRef<"Employee", 'String'>
     readonly emergencyContact: FieldRef<"Employee", 'String'>
   }
@@ -73915,6 +73937,8 @@ export namespace Prisma {
     healthInsuranceNo: 'healthInsuranceNo',
     retirementDate: 'retirementDate',
     photoPath: 'photoPath',
+    onboardingCompletedAt: 'onboardingCompletedAt',
+    onboardingSkippedItems: 'onboardingSkippedItems',
     userId: 'userId',
     emergencyContact: 'emergencyContact'
   };
@@ -74992,6 +75016,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+    
+
+
+  /**
    * Reference to a field of type 'EmploymentAction'
    */
   export type EnumEmploymentActionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EmploymentAction'>
@@ -75086,20 +75124,6 @@ export namespace Prisma {
    * Reference to a field of type 'RequestHistoryAction[]'
    */
   export type ListEnumRequestHistoryActionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RequestHistoryAction[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Json'
-   */
-  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
-    
-
-
-  /**
-   * Reference to a field of type 'QueryMode'
-   */
-  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -75568,6 +75592,8 @@ export namespace Prisma {
     healthInsuranceNo?: StringNullableFilter<"Employee"> | string | null
     retirementDate?: DateTimeNullableFilter<"Employee"> | Date | string | null
     photoPath?: StringNullableFilter<"Employee"> | string | null
+    onboardingCompletedAt?: DateTimeNullableFilter<"Employee"> | Date | string | null
+    onboardingSkippedItems?: JsonNullableFilter<"Employee">
     userId?: StringNullableFilter<"Employee"> | string | null
     emergencyContact?: StringNullableFilter<"Employee"> | string | null
     facility?: XOR<FacilityNullableScalarRelationFilter, FacilityWhereInput> | null
@@ -75628,6 +75654,8 @@ export namespace Prisma {
     healthInsuranceNo?: SortOrderInput | SortOrder
     retirementDate?: SortOrderInput | SortOrder
     photoPath?: SortOrderInput | SortOrder
+    onboardingCompletedAt?: SortOrderInput | SortOrder
+    onboardingSkippedItems?: SortOrderInput | SortOrder
     userId?: SortOrderInput | SortOrder
     emergencyContact?: SortOrderInput | SortOrder
     facility?: FacilityOrderByWithRelationInput
@@ -75692,6 +75720,8 @@ export namespace Prisma {
     healthInsuranceNo?: StringNullableFilter<"Employee"> | string | null
     retirementDate?: DateTimeNullableFilter<"Employee"> | Date | string | null
     photoPath?: StringNullableFilter<"Employee"> | string | null
+    onboardingCompletedAt?: DateTimeNullableFilter<"Employee"> | Date | string | null
+    onboardingSkippedItems?: JsonNullableFilter<"Employee">
     emergencyContact?: StringNullableFilter<"Employee"> | string | null
     facility?: XOR<FacilityNullableScalarRelationFilter, FacilityWhereInput> | null
     department?: XOR<DepartmentNullableScalarRelationFilter, DepartmentWhereInput> | null
@@ -75751,6 +75781,8 @@ export namespace Prisma {
     healthInsuranceNo?: SortOrderInput | SortOrder
     retirementDate?: SortOrderInput | SortOrder
     photoPath?: SortOrderInput | SortOrder
+    onboardingCompletedAt?: SortOrderInput | SortOrder
+    onboardingSkippedItems?: SortOrderInput | SortOrder
     userId?: SortOrderInput | SortOrder
     emergencyContact?: SortOrderInput | SortOrder
     _count?: EmployeeCountOrderByAggregateInput
@@ -75792,6 +75824,8 @@ export namespace Prisma {
     healthInsuranceNo?: StringNullableWithAggregatesFilter<"Employee"> | string | null
     retirementDate?: DateTimeNullableWithAggregatesFilter<"Employee"> | Date | string | null
     photoPath?: StringNullableWithAggregatesFilter<"Employee"> | string | null
+    onboardingCompletedAt?: DateTimeNullableWithAggregatesFilter<"Employee"> | Date | string | null
+    onboardingSkippedItems?: JsonNullableWithAggregatesFilter<"Employee">
     userId?: StringNullableWithAggregatesFilter<"Employee"> | string | null
     emergencyContact?: StringNullableWithAggregatesFilter<"Employee"> | string | null
   }
@@ -80786,6 +80820,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
@@ -80845,6 +80881,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
@@ -80900,6 +80938,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
@@ -80959,6 +80999,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -81016,6 +81058,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
   }
@@ -81047,6 +81091,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
@@ -81079,6 +81125,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -86727,6 +86775,29 @@ export namespace Prisma {
     notIn?: $Enums.EmployeeStatus[] | ListEnumEmployeeStatusFieldRefInput<$PrismaModel>
     not?: NestedEnumEmployeeStatusFilter<$PrismaModel> | $Enums.EmployeeStatus
   }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
 
   export type FacilityNullableScalarRelationFilter = {
     is?: FacilityWhereInput | null
@@ -86962,6 +87033,8 @@ export namespace Prisma {
     healthInsuranceNo?: SortOrder
     retirementDate?: SortOrder
     photoPath?: SortOrder
+    onboardingCompletedAt?: SortOrder
+    onboardingSkippedItems?: SortOrder
     userId?: SortOrder
     emergencyContact?: SortOrder
   }
@@ -87002,6 +87075,7 @@ export namespace Prisma {
     healthInsuranceNo?: SortOrder
     retirementDate?: SortOrder
     photoPath?: SortOrder
+    onboardingCompletedAt?: SortOrder
     userId?: SortOrder
     emergencyContact?: SortOrder
   }
@@ -87035,6 +87109,7 @@ export namespace Prisma {
     healthInsuranceNo?: SortOrder
     retirementDate?: SortOrder
     photoPath?: SortOrder
+    onboardingCompletedAt?: SortOrder
     userId?: SortOrder
     emergencyContact?: SortOrder
   }
@@ -87106,6 +87181,32 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumEmployeeStatusFilter<$PrismaModel>
     _max?: NestedEnumEmployeeStatusFilter<$PrismaModel>
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
   export type EmployeeScalarRelationFilter = {
@@ -87906,29 +88007,6 @@ export namespace Prisma {
   export type ApprovalRouteSumOrderByAggregateInput = {
     stepNo?: SortOrder
   }
-  export type JsonNullableFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonNullableFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonNullableFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-  }
 
   export type AuditLogCountOrderByAggregateInput = {
     id?: SortOrder
@@ -87963,32 +88041,6 @@ export namespace Prisma {
     targetId?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
-  }
-  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
-
-  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedJsonNullableFilter<$PrismaModel>
-    _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
   export type CertificationDocumentRuleListRelationFilter = {
@@ -93677,6 +93729,29 @@ export namespace Prisma {
     _min?: NestedEnumEmployeeStatusFilter<$PrismaModel>
     _max?: NestedEnumEmployeeStatusFilter<$PrismaModel>
   }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
 
   export type NestedEnumEmploymentActionFilter<$PrismaModel = never> = {
     equals?: $Enums.EmploymentAction | EnumEmploymentActionFieldRefInput<$PrismaModel>
@@ -93838,29 +93913,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumRequestHistoryActionFilter<$PrismaModel>
     _max?: NestedEnumRequestHistoryActionFilter<$PrismaModel>
-  }
-  export type NestedJsonNullableFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
-        Required<NestedJsonNullableFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
-
-  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
   export type NestedEnumCertificationStatusFilter<$PrismaModel = never> = {
@@ -94077,6 +94129,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
@@ -94135,6 +94189,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
@@ -94269,6 +94325,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
@@ -94327,6 +94385,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -94488,6 +94548,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
     user?: UserCreateNestedOneWithoutEmployeeInput
@@ -94545,6 +94607,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
@@ -94727,6 +94791,8 @@ export namespace Prisma {
     healthInsuranceNo?: StringNullableFilter<"Employee"> | string | null
     retirementDate?: DateTimeNullableFilter<"Employee"> | Date | string | null
     photoPath?: StringNullableFilter<"Employee"> | string | null
+    onboardingCompletedAt?: DateTimeNullableFilter<"Employee"> | Date | string | null
+    onboardingSkippedItems?: JsonNullableFilter<"Employee">
     userId?: StringNullableFilter<"Employee"> | string | null
     emergencyContact?: StringNullableFilter<"Employee"> | string | null
   }
@@ -94835,6 +94901,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     user?: UserCreateNestedOneWithoutEmployeeInput
@@ -94892,6 +94960,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
@@ -97097,6 +97167,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
@@ -97155,6 +97227,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
@@ -97321,6 +97395,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
@@ -97379,6 +97455,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -97553,6 +97631,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
@@ -97611,6 +97691,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
@@ -97717,6 +97799,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
@@ -97775,6 +97859,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -97862,6 +97948,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
@@ -97920,6 +98008,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
@@ -97990,6 +98080,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
@@ -98048,6 +98140,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -98102,6 +98196,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
@@ -98160,6 +98256,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
@@ -98230,6 +98328,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
@@ -98288,6 +98388,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -98342,6 +98444,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
@@ -98400,6 +98504,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
@@ -98470,6 +98576,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
@@ -98528,6 +98636,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -98582,6 +98692,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
@@ -98640,6 +98752,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
@@ -98710,6 +98824,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
@@ -98768,6 +98884,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -98822,6 +98940,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
@@ -98880,6 +99000,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
@@ -98999,6 +99121,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
@@ -99057,6 +99181,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -99166,6 +99292,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
@@ -99224,6 +99352,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
@@ -99294,6 +99424,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
@@ -99352,6 +99484,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -99406,6 +99540,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
@@ -99464,6 +99600,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
@@ -99696,6 +99834,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
@@ -99754,6 +99894,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -100690,6 +100832,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
@@ -100748,6 +100892,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
@@ -100877,6 +101023,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
@@ -100935,6 +101083,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
@@ -101205,6 +101355,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
@@ -101263,6 +101415,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
@@ -101361,6 +101515,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
@@ -101419,6 +101575,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -101594,6 +101752,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
@@ -101652,6 +101812,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
@@ -101750,6 +101912,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
@@ -101808,6 +101972,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -101995,6 +102161,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
@@ -102053,6 +102221,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
@@ -102153,6 +102323,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
@@ -102211,6 +102383,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -102431,6 +102605,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
@@ -102489,6 +102665,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
@@ -102633,6 +102811,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
@@ -102691,6 +102871,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -103060,6 +103242,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
@@ -103118,6 +103302,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
@@ -103188,6 +103374,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
@@ -103246,6 +103434,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -103300,6 +103490,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
@@ -103358,6 +103550,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
@@ -103496,6 +103690,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
@@ -103554,6 +103750,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -104135,6 +104333,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
@@ -104193,6 +104393,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
@@ -104312,6 +104514,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
@@ -104370,6 +104574,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -104651,6 +104857,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
@@ -104709,6 +104917,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
@@ -104779,6 +104989,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
@@ -104837,6 +105049,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -104891,6 +105105,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
@@ -104949,6 +105165,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
@@ -105019,6 +105237,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
@@ -105077,6 +105297,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -105131,6 +105353,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
@@ -105189,6 +105413,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
@@ -105259,6 +105485,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
@@ -105317,6 +105545,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -105371,6 +105601,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
@@ -105429,6 +105661,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
@@ -105499,6 +105733,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
@@ -105557,6 +105793,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -105611,6 +105849,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
@@ -105669,6 +105909,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
@@ -105739,6 +105981,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
@@ -105797,6 +106041,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -105851,6 +106097,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
@@ -105909,6 +106157,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
@@ -105979,6 +106229,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
@@ -106037,6 +106289,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -106091,6 +106345,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: string | null
     facility?: FacilityCreateNestedOneWithoutEmployeesInput
     department?: DepartmentCreateNestedOneWithoutEmployeesInput
@@ -106149,6 +106405,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
     certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
@@ -106219,6 +106477,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
@@ -106277,6 +106537,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -106478,6 +106740,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
   }
@@ -106542,6 +106806,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     department?: DepartmentUpdateOneWithoutEmployeesNestedInput
     user?: UserUpdateOneWithoutEmployeeNestedInput
@@ -106599,6 +106865,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -106655,6 +106923,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
   }
@@ -106786,6 +107056,8 @@ export namespace Prisma {
     healthInsuranceNo?: string | null
     retirementDate?: Date | string | null
     photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: string | null
     emergencyContact?: string | null
   }
@@ -106850,6 +107122,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     facility?: FacilityUpdateOneWithoutEmployeesNestedInput
     user?: UserUpdateOneWithoutEmployeeNestedInput
@@ -106907,6 +107181,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
     certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -106963,6 +107239,8 @@ export namespace Prisma {
     healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
     retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
   }

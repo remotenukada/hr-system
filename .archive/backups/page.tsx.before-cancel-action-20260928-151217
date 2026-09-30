@@ -1,0 +1,73 @@
+import BackLink from "@/components/BackLink";
+import { notFound, redirect } from "next/navigation";
+
+import { auth } from "@/auth";
+import { prisma } from "@/lib/prisma";
+
+type Props = {
+  params: Promise<{
+    id: string;
+  }>;
+};
+
+export default async function ResidenceRequestCancelPage({
+  params,
+}: Props) {
+  const session = await auth();
+
+  if (!session?.user?.id) {
+    redirect("/login");
+  }
+
+  const employee = await prisma.employee.findUnique({
+    where: {
+      userId: session.user.id,
+    },
+  });
+
+  if (!employee) {
+    redirect("/");
+  }
+
+  const { id } = await params;
+
+  const request = await prisma.residenceRequest.findFirst({
+    where: {
+      id,
+      employeeId: employee.id,
+    },
+  });
+
+  if (!request) {
+    notFound();
+  }
+
+  return (
+    <main className="mx-auto max-w-2xl p-6">
+      <BackLink
+        href="/mypage/residence-requests"
+        label="一覧に戻る"
+      />
+
+      <h1 className="mb-6 text-2xl font-bold text-red-700">
+        住居届取消
+      </h1>
+
+      <div className="rounded border bg-gray-50 p-4">
+        <div>
+          <span className="font-semibold">申請日:</span>{" "}
+          {new Date(request.createdAt).toLocaleDateString("ja-JP")}
+        </div>
+
+        <div>
+          <span className="font-semibold">住所:</span>{" "}
+          {request.address}
+        </div>
+      </div>
+
+      <p className="mt-4 text-sm text-red-700">
+        次のステップで取消理由入力と取消実行を追加します。
+      </p>
+    </main>
+  );
+}

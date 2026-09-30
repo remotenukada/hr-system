@@ -1,0 +1,161 @@
+import fs from "fs";
+import fontkit from "@pdf-lib/fontkit";
+import { PDFDocument, rgb } from "pdf-lib";
+import { cookies } from "next/headers";
+
+import { prisma } from "@/lib/prisma";
+import { requireHRManager } from "@/lib/auth-guard";
+import { logAudit } from "@/lib/audit-log";
+
+export const runtime = "nodejs";
+
+const FONT_PATH =
+  "/usr/share/fonts/opentype/ipafont-mincho/ipam.ttf";
+
+type RouteContext = {
+  params: Promise<{ id: string }>;
+};
+
+const residenceTypeLabels: Record<string, string> = {
+  RENTAL: "賃貸",
+  CORPORATE_HOUSING: "法人契約住宅",
+  OWNED: "持家",
+};
+
+const notificationTypeLabels: Record<string, string> = {
+  NEW: "新規",
+  ADDRESS_CHANGE: "住所変更",
+  CONTENT_CHANGE: "内容変更",
+};
+
+const ownershipTypeLabels: Record<string, string> = {
+  SELF: "本人名義",
+  JOINT: "共同名義",
+  FAMILY: "家族名義",
+};
+
+const statusLabels: Record<string, string> = {
+  PENDING: "承認待ち",
+  APPROVED: "承認済み",
+  REJECTED: "差戻し",
+  CANCELLED: "取消済み",
+};
+
+function formatDate(value: Date | null | undefined) {
+  return value
+    ? new Intl.DateTimeFormat("ja-JP", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }).format(value)
+    : "-";
+}
+
+function formatMoney(value: number | null | undefined) {
+  return value != null
+    ? `${value.toLocaleString("ja-JP")}円`
+    : "-";
+}
+
+export async function GET(
+  _request: Request,
+  { params }: RouteContext,
+) {
+  const session = await requireHRManager();
+  const { id } = await params;
+
+  const cookieStore = await cookies();
+  const facilityScope =
+    cookieStore.get("facilityScope")?.value ?? "ALL";
+
+  const request = await prisma.residenceRequest.findFirst({
+    where: {
+      id,
+      ...(facilityScope === "ALL"
+        ? {}
+        : {
+            employee: {
+              facilityId: facilityScope,
+            },
+          }),
+    },
+    include: {
+      employee: {
+        include: {
+          facility: true,
+          department: true,
+        },
+      },
+      attachments: {
+        orderBy: {
+          createdAt: "desc",
+        },
+      },
+    },
+  });
+
+  if (!request) {
+    return new Response("Not Found", { status: 404 });
+  }
+
+  const pdfDoc = await PDFDocument.create();
+  pdfDoc.registerFontkit(fontkit);
+
+  const fontBytes = fs.readFileSync(FONT_PATH);
+  const customFont = await pdfDoc.embedFont(fontBytes);
+
+  const page = pdfDoc.addPage([595.28, 841.89]); // A4 portrait
+  const { height } = page.getSize();
+
+  let y = height - 50;
+
+  // タイトル
+  page.drawText("住 居 届", {
+    x: 240,
+    y,
+    size: 20,
+    font: customFont,
+    color: rgb(0, 0, 0),
+  });
+
+  y -= 40;
+
+  // 基本情報テーブル描画ヘッダー
+  const drawRow = (label: string, value: string) => {
+    page.drawText(label, { x: 50, y, size: 10, font: customFont });
+    page.drawText(value, { x: 180, y, size: 10, font: customFont });
+    y -= 22;
+  };
+
+  drawRow("申請ID:", request.id);
+  drawRow("申請日:", formatDate(request.createdAt));
+  drawRow("ステータス:", statusLabels[request.status] ?? request.status);
+  drawRow("職員番号:", request.employee.employeeNo);
+  drawRow("氏名:", `${request.employee.lastName} ${request.employee.firstName}`);
+  drawRow("所属施設:", request.employee.facility?.name ?? "-");
+  drawRow("部署:", request.employee.department?.name ?? "-");
+  drawRow("届出区分:", notificationTypeLabels[request.notificationType] ?? request.notificationType);
+  drawRow("住宅種別:", residenceTypeLabels[request.residenceType] ?? request.residenceType);
+  drawRow("所有・契約区分:", request.ownershipType ? (ownershipTypeLabels[request.ownershipType] ?? request.ownershipType) : "-");
+  drawRow("新住所:", request.address ?? "-");
+  drawRow("居住開始日:", formatDate(request.changeDate));
+  drawRow("家賃月額:", formatMoney(request.monthlyRent));
+
+  await logAudit({
+    userId: session.user.id,
+    userName: session.user.name,
+    action: "RESIDENCE_REQUEST_PDF_DOWNLOADED",
+    targetType: "ResidenceRequest",
+    targetId: request.id,
+    description: `${request.employee.employeeNo} の住居届PDFを出力`,
+  });
+
+  const pdfBytes = await pdfDoc.save();
+
+  return new Response(pdfBytes.buffer as ArrayBuffer, {
+    headers: {
+      "Content-Type": "application/pdf",
+      "Content-Disposition": `attachment; filename="residence_request_${request.id}.pdf"`,
+    },
+  });
+}
