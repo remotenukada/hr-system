@@ -1,8 +1,56 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 import { prisma } from "@/lib/prisma";
 import { requireHRManager } from "@/lib/auth-guard";
+import { sendSystemMailSafely } from "@/lib/mail";
+
+async function sendOnboardingReminder(formData: FormData) {
+  "use server";
+
+  await requireHRManager();
+
+  const employeeId = String(formData.get("employeeId") ?? "");
+
+  const employee = await prisma.employee.findUnique({
+    where: { id: employeeId },
+    select: {
+      email: true,
+      firstName: true,
+      lastName: true,
+      hireDate: true,
+      onboardingCompletedAt: true,
+    },
+  });
+
+  if (!employee || employee.onboardingCompletedAt || !employee.email) {
+    redirect("/onboarding-management?status=followup&mail=invalid");
+  }
+
+  const daysSinceHire = employee.hireDate
+    ? Math.floor(
+        (Date.now() - new Date(employee.hireDate).getTime()) /
+          (1000 * 60 * 60 * 24),
+      )
+    : null;
+
+  if (daysSinceHire === null || daysSinceHire < 30) {
+    redirect("/onboarding-management?status=followup&mail=invalid");
+  }
+
+  const sent = await sendSystemMailSafely({
+    to: employee.email,
+    subject: "【FY Nexus One】初回登録のご確認",
+    text: `${employee.lastName} ${employee.firstName} さん\n\nFY Nexus Oneの初回登録に未完了の項目があります。\n\nログイン後、「初回登録」画面から登録を完了してください。\n該当しない項目は「該当なし」を選択できます。\n\nFY Nexus One\n人事担当`,
+  });
+
+  redirect(
+    `/onboarding-management?status=followup&mail=${
+      sent ? "sent" : "failed"
+    }`,
+  );
+}
 
 const TASK_KEYS = [
   "RESIDENCE",
@@ -45,7 +93,7 @@ function getStatusClass(status: ItemStatus) {
 export default async function OnboardingManagementPage({
   searchParams,
 }: {
-  searchParams?: Promise<{ status?: string }>;
+  searchParams?: Promise<{ status?: string; mail?: string }>;
 }) {
   await requireHRManager();
 
@@ -425,12 +473,30 @@ export default async function OnboardingManagementPage({
                 </td>
 
                 <td className="p-3 text-center">
-                  <Link
-                    href={`/employees/${row.employee.id}`}
-                    className="text-xs text-blue-600 hover:underline"
-                  >
-                    詳細
-                  </Link>
+                  <div className="flex items-center justify-center gap-2">
+                    <Link
+                      href={`/employees/${row.employee.id}`}
+                      className="text-xs text-blue-600 hover:underline whitespace-nowrap"
+                    >
+                      詳細
+                    </Link>
+
+                    {row.needsFollowUp && (
+                      <form action={sendOnboardingReminder}>
+                        <input
+                          type="hidden"
+                          name="employeeId"
+                          value={row.employee.id}
+                        />
+                        <button
+                          type="submit"
+                          className="whitespace-nowrap rounded border border-red-300 bg-white px-2 py-0.5 text-xs font-medium text-red-700 hover:bg-red-50"
+                        >
+                          リマインド送信
+                        </button>
+                      </form>
+                    )}
+                  </div>
                 </td>
               </tr>
             ))}
