@@ -247,6 +247,13 @@ export default async function OnboardingManagementPage({
     (row) => row.needsFollowUp,
   ).length;
 
+  const completionRate =
+    rows.length === 0
+      ? 0
+      : Math.round(
+          (completedCount / rows.length) * 1000
+        ) / 10;
+
   const filteredRows = rows.filter((row) => {
     if (filterStatus === "completed") {
       return row.status === "完了";
@@ -344,6 +351,13 @@ export default async function OnboardingManagementPage({
           <div className="text-sm text-gray-500">要フォロー</div>
           <div className="mt-2 text-2xl font-bold text-red-600">
             {followUpCount}名
+          </div>
+        </div>
+
+        <div className="rounded-lg border bg-white p-5 shadow-sm">
+          <div className="text-sm text-gray-500">完了率</div>
+          <div className="mt-2 text-2xl font-bold text-blue-600">
+            {completionRate}%
           </div>
         </div>
       </div>
