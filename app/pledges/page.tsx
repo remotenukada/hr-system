@@ -189,7 +189,7 @@ export default async function PledgesPage({
 
   const query = await searchParams;
 
-  const pledges = await prisma.employeePledge.findMany({
+  const allPledges = await prisma.employeePledge.findMany({
     include: {
       employee: {
         include: {
@@ -202,6 +202,25 @@ export default async function PledgesPage({
       createdAt: "desc",
     },
   });
+
+  // createdAtの新しい順から、職員ごとの最新提出だけを一覧表示
+  const latestByEmployee = new Map<
+    string,
+    (typeof allPledges)[number]
+  >();
+
+  for (const pledge of allPledges) {
+    if (!latestByEmployee.has(pledge.employeeId)) {
+      latestByEmployee.set(
+        pledge.employeeId,
+        pledge,
+      );
+    }
+  }
+
+  const pledges = Array.from(
+    latestByEmployee.values(),
+  );
 
   return (
     <main className="mx-auto max-w-7xl p-8">
