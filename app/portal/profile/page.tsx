@@ -4,10 +4,21 @@ import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
 
-function formatDate(date: Date | null | undefined) {
-  return date
-    ? new Date(date).toLocaleDateString("ja-JP")
-    : "-";
+function formatDate(
+  date: Date | null | undefined,
+) {
+  if (!date) return "-";
+
+  const value = new Date(date);
+  const year = value.getUTCFullYear();
+  const month = String(
+    value.getUTCMonth() + 1,
+  ).padStart(2, "0");
+  const day = String(
+    value.getUTCDate(),
+  ).padStart(2, "0");
+
+  return `${year}/${month}/${day}`;
 }
 
 function InfoItem({

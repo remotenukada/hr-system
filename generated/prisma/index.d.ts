@@ -48466,6 +48466,9 @@ export namespace Prisma {
     employeeSignedAt: Date | null
     employeeSignedIp: string | null
     guarantorName: string | null
+    guarantorRelation: string | null
+    guarantorAddress: string | null
+    guarantorPhone: string | null
     guarantorEmail: string | null
     guarantorConfirmedAt: Date | null
     guarantorToken: string | null
@@ -48492,6 +48495,9 @@ export namespace Prisma {
     employeeSignedAt: Date | null
     employeeSignedIp: string | null
     guarantorName: string | null
+    guarantorRelation: string | null
+    guarantorAddress: string | null
+    guarantorPhone: string | null
     guarantorEmail: string | null
     guarantorConfirmedAt: Date | null
     guarantorToken: string | null
@@ -48518,6 +48524,9 @@ export namespace Prisma {
     employeeSignedAt: number
     employeeSignedIp: number
     guarantorName: number
+    guarantorRelation: number
+    guarantorAddress: number
+    guarantorPhone: number
     guarantorEmail: number
     guarantorConfirmedAt: number
     guarantorToken: number
@@ -48554,6 +48563,9 @@ export namespace Prisma {
     employeeSignedAt?: true
     employeeSignedIp?: true
     guarantorName?: true
+    guarantorRelation?: true
+    guarantorAddress?: true
+    guarantorPhone?: true
     guarantorEmail?: true
     guarantorConfirmedAt?: true
     guarantorToken?: true
@@ -48580,6 +48592,9 @@ export namespace Prisma {
     employeeSignedAt?: true
     employeeSignedIp?: true
     guarantorName?: true
+    guarantorRelation?: true
+    guarantorAddress?: true
+    guarantorPhone?: true
     guarantorEmail?: true
     guarantorConfirmedAt?: true
     guarantorToken?: true
@@ -48606,6 +48621,9 @@ export namespace Prisma {
     employeeSignedAt?: true
     employeeSignedIp?: true
     guarantorName?: true
+    guarantorRelation?: true
+    guarantorAddress?: true
+    guarantorPhone?: true
     guarantorEmail?: true
     guarantorConfirmedAt?: true
     guarantorToken?: true
@@ -48719,6 +48737,9 @@ export namespace Prisma {
     employeeSignedAt: Date | null
     employeeSignedIp: string | null
     guarantorName: string | null
+    guarantorRelation: string | null
+    guarantorAddress: string | null
+    guarantorPhone: string | null
     guarantorEmail: string | null
     guarantorConfirmedAt: Date | null
     guarantorToken: string | null
@@ -48764,6 +48785,9 @@ export namespace Prisma {
     employeeSignedAt?: boolean
     employeeSignedIp?: boolean
     guarantorName?: boolean
+    guarantorRelation?: boolean
+    guarantorAddress?: boolean
+    guarantorPhone?: boolean
     guarantorEmail?: boolean
     guarantorConfirmedAt?: boolean
     guarantorToken?: boolean
@@ -48791,6 +48815,9 @@ export namespace Prisma {
     employeeSignedAt?: boolean
     employeeSignedIp?: boolean
     guarantorName?: boolean
+    guarantorRelation?: boolean
+    guarantorAddress?: boolean
+    guarantorPhone?: boolean
     guarantorEmail?: boolean
     guarantorConfirmedAt?: boolean
     guarantorToken?: boolean
@@ -48818,6 +48845,9 @@ export namespace Prisma {
     employeeSignedAt?: boolean
     employeeSignedIp?: boolean
     guarantorName?: boolean
+    guarantorRelation?: boolean
+    guarantorAddress?: boolean
+    guarantorPhone?: boolean
     guarantorEmail?: boolean
     guarantorConfirmedAt?: boolean
     guarantorToken?: boolean
@@ -48845,6 +48875,9 @@ export namespace Prisma {
     employeeSignedAt?: boolean
     employeeSignedIp?: boolean
     guarantorName?: boolean
+    guarantorRelation?: boolean
+    guarantorAddress?: boolean
+    guarantorPhone?: boolean
     guarantorEmail?: boolean
     guarantorConfirmedAt?: boolean
     guarantorToken?: boolean
@@ -48860,7 +48893,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type EmployeePledgeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "submissionMethod" | "status" | "templateVersion" | "documentHash" | "employeeSignerName" | "employeeSignedAt" | "employeeSignedIp" | "guarantorName" | "guarantorEmail" | "guarantorConfirmedAt" | "guarantorToken" | "guarantorTokenExpiresAt" | "fileName" | "filePath" | "fileType" | "fileSize" | "verifiedAt" | "verifiedBy" | "reviewComment" | "createdAt" | "updatedAt", ExtArgs["result"]["employeePledge"]>
+  export type EmployeePledgeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "submissionMethod" | "status" | "templateVersion" | "documentHash" | "employeeSignerName" | "employeeSignedAt" | "employeeSignedIp" | "guarantorName" | "guarantorRelation" | "guarantorAddress" | "guarantorPhone" | "guarantorEmail" | "guarantorConfirmedAt" | "guarantorToken" | "guarantorTokenExpiresAt" | "fileName" | "filePath" | "fileType" | "fileSize" | "verifiedAt" | "verifiedBy" | "reviewComment" | "createdAt" | "updatedAt", ExtArgs["result"]["employeePledge"]>
   export type EmployeePledgeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     employee?: boolean | EmployeeDefaultArgs<ExtArgs>
   }
@@ -48887,6 +48920,9 @@ export namespace Prisma {
       employeeSignedAt: Date | null
       employeeSignedIp: string | null
       guarantorName: string | null
+      guarantorRelation: string | null
+      guarantorAddress: string | null
+      guarantorPhone: string | null
       guarantorEmail: string | null
       guarantorConfirmedAt: Date | null
       guarantorToken: string | null
@@ -49334,6 +49370,9 @@ export namespace Prisma {
     readonly employeeSignedAt: FieldRef<"EmployeePledge", 'DateTime'>
     readonly employeeSignedIp: FieldRef<"EmployeePledge", 'String'>
     readonly guarantorName: FieldRef<"EmployeePledge", 'String'>
+    readonly guarantorRelation: FieldRef<"EmployeePledge", 'String'>
+    readonly guarantorAddress: FieldRef<"EmployeePledge", 'String'>
+    readonly guarantorPhone: FieldRef<"EmployeePledge", 'String'>
     readonly guarantorEmail: FieldRef<"EmployeePledge", 'String'>
     readonly guarantorConfirmedAt: FieldRef<"EmployeePledge", 'DateTime'>
     readonly guarantorToken: FieldRef<"EmployeePledge", 'String'>
@@ -51423,6 +51462,7 @@ export namespace Prisma {
     postalCode: string | null
     address: string | null
     phoneNumber: string | null
+    representativeTitle: string | null
     representativeName: string | null
     mailFrom: string | null
     smtpHost: string | null
@@ -51443,6 +51483,7 @@ export namespace Prisma {
     postalCode: string | null
     address: string | null
     phoneNumber: string | null
+    representativeTitle: string | null
     representativeName: string | null
     mailFrom: string | null
     smtpHost: string | null
@@ -51463,6 +51504,7 @@ export namespace Prisma {
     postalCode: number
     address: number
     phoneNumber: number
+    representativeTitle: number
     representativeName: number
     mailFrom: number
     smtpHost: number
@@ -51493,6 +51535,7 @@ export namespace Prisma {
     postalCode?: true
     address?: true
     phoneNumber?: true
+    representativeTitle?: true
     representativeName?: true
     mailFrom?: true
     smtpHost?: true
@@ -51513,6 +51556,7 @@ export namespace Prisma {
     postalCode?: true
     address?: true
     phoneNumber?: true
+    representativeTitle?: true
     representativeName?: true
     mailFrom?: true
     smtpHost?: true
@@ -51533,6 +51577,7 @@ export namespace Prisma {
     postalCode?: true
     address?: true
     phoneNumber?: true
+    representativeTitle?: true
     representativeName?: true
     mailFrom?: true
     smtpHost?: true
@@ -51640,6 +51685,7 @@ export namespace Prisma {
     postalCode: string | null
     address: string | null
     phoneNumber: string | null
+    representativeTitle: string | null
     representativeName: string | null
     mailFrom: string | null
     smtpHost: string | null
@@ -51679,6 +51725,7 @@ export namespace Prisma {
     postalCode?: boolean
     address?: boolean
     phoneNumber?: boolean
+    representativeTitle?: boolean
     representativeName?: boolean
     mailFrom?: boolean
     smtpHost?: boolean
@@ -51699,6 +51746,7 @@ export namespace Prisma {
     postalCode?: boolean
     address?: boolean
     phoneNumber?: boolean
+    representativeTitle?: boolean
     representativeName?: boolean
     mailFrom?: boolean
     smtpHost?: boolean
@@ -51719,6 +51767,7 @@ export namespace Prisma {
     postalCode?: boolean
     address?: boolean
     phoneNumber?: boolean
+    representativeTitle?: boolean
     representativeName?: boolean
     mailFrom?: boolean
     smtpHost?: boolean
@@ -51739,6 +51788,7 @@ export namespace Prisma {
     postalCode?: boolean
     address?: boolean
     phoneNumber?: boolean
+    representativeTitle?: boolean
     representativeName?: boolean
     mailFrom?: boolean
     smtpHost?: boolean
@@ -51753,7 +51803,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type CompanySettingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "companyName" | "postalCode" | "address" | "phoneNumber" | "representativeName" | "mailFrom" | "smtpHost" | "smtpPort" | "smtpUser" | "smtpPassword" | "smtpSecure" | "sealImagePath" | "consultationDesk" | "workRuleLocation" | "createdAt" | "updatedAt", ExtArgs["result"]["companySetting"]>
+  export type CompanySettingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "companyName" | "postalCode" | "address" | "phoneNumber" | "representativeTitle" | "representativeName" | "mailFrom" | "smtpHost" | "smtpPort" | "smtpUser" | "smtpPassword" | "smtpSecure" | "sealImagePath" | "consultationDesk" | "workRuleLocation" | "createdAt" | "updatedAt", ExtArgs["result"]["companySetting"]>
 
   export type $CompanySettingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "CompanySetting"
@@ -51764,6 +51814,7 @@ export namespace Prisma {
       postalCode: string | null
       address: string | null
       phoneNumber: string | null
+      representativeTitle: string | null
       representativeName: string | null
       mailFrom: string | null
       smtpHost: string | null
@@ -52204,6 +52255,7 @@ export namespace Prisma {
     readonly postalCode: FieldRef<"CompanySetting", 'String'>
     readonly address: FieldRef<"CompanySetting", 'String'>
     readonly phoneNumber: FieldRef<"CompanySetting", 'String'>
+    readonly representativeTitle: FieldRef<"CompanySetting", 'String'>
     readonly representativeName: FieldRef<"CompanySetting", 'String'>
     readonly mailFrom: FieldRef<"CompanySetting", 'String'>
     readonly smtpHost: FieldRef<"CompanySetting", 'String'>
@@ -77285,6 +77337,9 @@ export namespace Prisma {
     employeeSignedAt: 'employeeSignedAt',
     employeeSignedIp: 'employeeSignedIp',
     guarantorName: 'guarantorName',
+    guarantorRelation: 'guarantorRelation',
+    guarantorAddress: 'guarantorAddress',
+    guarantorPhone: 'guarantorPhone',
     guarantorEmail: 'guarantorEmail',
     guarantorConfirmedAt: 'guarantorConfirmedAt',
     guarantorToken: 'guarantorToken',
@@ -77356,6 +77411,7 @@ export namespace Prisma {
     postalCode: 'postalCode',
     address: 'address',
     phoneNumber: 'phoneNumber',
+    representativeTitle: 'representativeTitle',
     representativeName: 'representativeName',
     mailFrom: 'mailFrom',
     smtpHost: 'smtpHost',
@@ -81368,6 +81424,9 @@ export namespace Prisma {
     employeeSignedAt?: DateTimeNullableFilter<"EmployeePledge"> | Date | string | null
     employeeSignedIp?: StringNullableFilter<"EmployeePledge"> | string | null
     guarantorName?: StringNullableFilter<"EmployeePledge"> | string | null
+    guarantorRelation?: StringNullableFilter<"EmployeePledge"> | string | null
+    guarantorAddress?: StringNullableFilter<"EmployeePledge"> | string | null
+    guarantorPhone?: StringNullableFilter<"EmployeePledge"> | string | null
     guarantorEmail?: StringNullableFilter<"EmployeePledge"> | string | null
     guarantorConfirmedAt?: DateTimeNullableFilter<"EmployeePledge"> | Date | string | null
     guarantorToken?: StringNullableFilter<"EmployeePledge"> | string | null
@@ -81395,6 +81454,9 @@ export namespace Prisma {
     employeeSignedAt?: SortOrderInput | SortOrder
     employeeSignedIp?: SortOrderInput | SortOrder
     guarantorName?: SortOrderInput | SortOrder
+    guarantorRelation?: SortOrderInput | SortOrder
+    guarantorAddress?: SortOrderInput | SortOrder
+    guarantorPhone?: SortOrderInput | SortOrder
     guarantorEmail?: SortOrderInput | SortOrder
     guarantorConfirmedAt?: SortOrderInput | SortOrder
     guarantorToken?: SortOrderInput | SortOrder
@@ -81426,6 +81488,9 @@ export namespace Prisma {
     employeeSignedAt?: DateTimeNullableFilter<"EmployeePledge"> | Date | string | null
     employeeSignedIp?: StringNullableFilter<"EmployeePledge"> | string | null
     guarantorName?: StringNullableFilter<"EmployeePledge"> | string | null
+    guarantorRelation?: StringNullableFilter<"EmployeePledge"> | string | null
+    guarantorAddress?: StringNullableFilter<"EmployeePledge"> | string | null
+    guarantorPhone?: StringNullableFilter<"EmployeePledge"> | string | null
     guarantorEmail?: StringNullableFilter<"EmployeePledge"> | string | null
     guarantorConfirmedAt?: DateTimeNullableFilter<"EmployeePledge"> | Date | string | null
     guarantorTokenExpiresAt?: DateTimeNullableFilter<"EmployeePledge"> | Date | string | null
@@ -81452,6 +81517,9 @@ export namespace Prisma {
     employeeSignedAt?: SortOrderInput | SortOrder
     employeeSignedIp?: SortOrderInput | SortOrder
     guarantorName?: SortOrderInput | SortOrder
+    guarantorRelation?: SortOrderInput | SortOrder
+    guarantorAddress?: SortOrderInput | SortOrder
+    guarantorPhone?: SortOrderInput | SortOrder
     guarantorEmail?: SortOrderInput | SortOrder
     guarantorConfirmedAt?: SortOrderInput | SortOrder
     guarantorToken?: SortOrderInput | SortOrder
@@ -81486,6 +81554,9 @@ export namespace Prisma {
     employeeSignedAt?: DateTimeNullableWithAggregatesFilter<"EmployeePledge"> | Date | string | null
     employeeSignedIp?: StringNullableWithAggregatesFilter<"EmployeePledge"> | string | null
     guarantorName?: StringNullableWithAggregatesFilter<"EmployeePledge"> | string | null
+    guarantorRelation?: StringNullableWithAggregatesFilter<"EmployeePledge"> | string | null
+    guarantorAddress?: StringNullableWithAggregatesFilter<"EmployeePledge"> | string | null
+    guarantorPhone?: StringNullableWithAggregatesFilter<"EmployeePledge"> | string | null
     guarantorEmail?: StringNullableWithAggregatesFilter<"EmployeePledge"> | string | null
     guarantorConfirmedAt?: DateTimeNullableWithAggregatesFilter<"EmployeePledge"> | Date | string | null
     guarantorToken?: StringNullableWithAggregatesFilter<"EmployeePledge"> | string | null
@@ -81753,6 +81824,7 @@ export namespace Prisma {
     postalCode?: StringNullableFilter<"CompanySetting"> | string | null
     address?: StringNullableFilter<"CompanySetting"> | string | null
     phoneNumber?: StringNullableFilter<"CompanySetting"> | string | null
+    representativeTitle?: StringNullableFilter<"CompanySetting"> | string | null
     representativeName?: StringNullableFilter<"CompanySetting"> | string | null
     mailFrom?: StringNullableFilter<"CompanySetting"> | string | null
     smtpHost?: StringNullableFilter<"CompanySetting"> | string | null
@@ -81773,6 +81845,7 @@ export namespace Prisma {
     postalCode?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
     phoneNumber?: SortOrderInput | SortOrder
+    representativeTitle?: SortOrderInput | SortOrder
     representativeName?: SortOrderInput | SortOrder
     mailFrom?: SortOrderInput | SortOrder
     smtpHost?: SortOrderInput | SortOrder
@@ -81796,6 +81869,7 @@ export namespace Prisma {
     postalCode?: StringNullableFilter<"CompanySetting"> | string | null
     address?: StringNullableFilter<"CompanySetting"> | string | null
     phoneNumber?: StringNullableFilter<"CompanySetting"> | string | null
+    representativeTitle?: StringNullableFilter<"CompanySetting"> | string | null
     representativeName?: StringNullableFilter<"CompanySetting"> | string | null
     mailFrom?: StringNullableFilter<"CompanySetting"> | string | null
     smtpHost?: StringNullableFilter<"CompanySetting"> | string | null
@@ -81816,6 +81890,7 @@ export namespace Prisma {
     postalCode?: SortOrderInput | SortOrder
     address?: SortOrderInput | SortOrder
     phoneNumber?: SortOrderInput | SortOrder
+    representativeTitle?: SortOrderInput | SortOrder
     representativeName?: SortOrderInput | SortOrder
     mailFrom?: SortOrderInput | SortOrder
     smtpHost?: SortOrderInput | SortOrder
@@ -81844,6 +81919,7 @@ export namespace Prisma {
     postalCode?: StringNullableWithAggregatesFilter<"CompanySetting"> | string | null
     address?: StringNullableWithAggregatesFilter<"CompanySetting"> | string | null
     phoneNumber?: StringNullableWithAggregatesFilter<"CompanySetting"> | string | null
+    representativeTitle?: StringNullableWithAggregatesFilter<"CompanySetting"> | string | null
     representativeName?: StringNullableWithAggregatesFilter<"CompanySetting"> | string | null
     mailFrom?: StringNullableWithAggregatesFilter<"CompanySetting"> | string | null
     smtpHost?: StringNullableWithAggregatesFilter<"CompanySetting"> | string | null
@@ -87211,6 +87287,9 @@ export namespace Prisma {
     employeeSignedAt?: Date | string | null
     employeeSignedIp?: string | null
     guarantorName?: string | null
+    guarantorRelation?: string | null
+    guarantorAddress?: string | null
+    guarantorPhone?: string | null
     guarantorEmail?: string | null
     guarantorConfirmedAt?: Date | string | null
     guarantorToken?: string | null
@@ -87238,6 +87317,9 @@ export namespace Prisma {
     employeeSignedAt?: Date | string | null
     employeeSignedIp?: string | null
     guarantorName?: string | null
+    guarantorRelation?: string | null
+    guarantorAddress?: string | null
+    guarantorPhone?: string | null
     guarantorEmail?: string | null
     guarantorConfirmedAt?: Date | string | null
     guarantorToken?: string | null
@@ -87263,6 +87345,9 @@ export namespace Prisma {
     employeeSignedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     employeeSignedIp?: NullableStringFieldUpdateOperationsInput | string | null
     guarantorName?: NullableStringFieldUpdateOperationsInput | string | null
+    guarantorRelation?: NullableStringFieldUpdateOperationsInput | string | null
+    guarantorAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    guarantorPhone?: NullableStringFieldUpdateOperationsInput | string | null
     guarantorEmail?: NullableStringFieldUpdateOperationsInput | string | null
     guarantorConfirmedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     guarantorToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -87290,6 +87375,9 @@ export namespace Prisma {
     employeeSignedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     employeeSignedIp?: NullableStringFieldUpdateOperationsInput | string | null
     guarantorName?: NullableStringFieldUpdateOperationsInput | string | null
+    guarantorRelation?: NullableStringFieldUpdateOperationsInput | string | null
+    guarantorAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    guarantorPhone?: NullableStringFieldUpdateOperationsInput | string | null
     guarantorEmail?: NullableStringFieldUpdateOperationsInput | string | null
     guarantorConfirmedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     guarantorToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -87316,6 +87404,9 @@ export namespace Prisma {
     employeeSignedAt?: Date | string | null
     employeeSignedIp?: string | null
     guarantorName?: string | null
+    guarantorRelation?: string | null
+    guarantorAddress?: string | null
+    guarantorPhone?: string | null
     guarantorEmail?: string | null
     guarantorConfirmedAt?: Date | string | null
     guarantorToken?: string | null
@@ -87341,6 +87432,9 @@ export namespace Prisma {
     employeeSignedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     employeeSignedIp?: NullableStringFieldUpdateOperationsInput | string | null
     guarantorName?: NullableStringFieldUpdateOperationsInput | string | null
+    guarantorRelation?: NullableStringFieldUpdateOperationsInput | string | null
+    guarantorAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    guarantorPhone?: NullableStringFieldUpdateOperationsInput | string | null
     guarantorEmail?: NullableStringFieldUpdateOperationsInput | string | null
     guarantorConfirmedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     guarantorToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -87367,6 +87461,9 @@ export namespace Prisma {
     employeeSignedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     employeeSignedIp?: NullableStringFieldUpdateOperationsInput | string | null
     guarantorName?: NullableStringFieldUpdateOperationsInput | string | null
+    guarantorRelation?: NullableStringFieldUpdateOperationsInput | string | null
+    guarantorAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    guarantorPhone?: NullableStringFieldUpdateOperationsInput | string | null
     guarantorEmail?: NullableStringFieldUpdateOperationsInput | string | null
     guarantorConfirmedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     guarantorToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -87703,6 +87800,7 @@ export namespace Prisma {
     postalCode?: string | null
     address?: string | null
     phoneNumber?: string | null
+    representativeTitle?: string | null
     representativeName?: string | null
     mailFrom?: string | null
     smtpHost?: string | null
@@ -87723,6 +87821,7 @@ export namespace Prisma {
     postalCode?: string | null
     address?: string | null
     phoneNumber?: string | null
+    representativeTitle?: string | null
     representativeName?: string | null
     mailFrom?: string | null
     smtpHost?: string | null
@@ -87743,6 +87842,7 @@ export namespace Prisma {
     postalCode?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    representativeTitle?: NullableStringFieldUpdateOperationsInput | string | null
     representativeName?: NullableStringFieldUpdateOperationsInput | string | null
     mailFrom?: NullableStringFieldUpdateOperationsInput | string | null
     smtpHost?: NullableStringFieldUpdateOperationsInput | string | null
@@ -87763,6 +87863,7 @@ export namespace Prisma {
     postalCode?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    representativeTitle?: NullableStringFieldUpdateOperationsInput | string | null
     representativeName?: NullableStringFieldUpdateOperationsInput | string | null
     mailFrom?: NullableStringFieldUpdateOperationsInput | string | null
     smtpHost?: NullableStringFieldUpdateOperationsInput | string | null
@@ -87783,6 +87884,7 @@ export namespace Prisma {
     postalCode?: string | null
     address?: string | null
     phoneNumber?: string | null
+    representativeTitle?: string | null
     representativeName?: string | null
     mailFrom?: string | null
     smtpHost?: string | null
@@ -87803,6 +87905,7 @@ export namespace Prisma {
     postalCode?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    representativeTitle?: NullableStringFieldUpdateOperationsInput | string | null
     representativeName?: NullableStringFieldUpdateOperationsInput | string | null
     mailFrom?: NullableStringFieldUpdateOperationsInput | string | null
     smtpHost?: NullableStringFieldUpdateOperationsInput | string | null
@@ -87823,6 +87926,7 @@ export namespace Prisma {
     postalCode?: NullableStringFieldUpdateOperationsInput | string | null
     address?: NullableStringFieldUpdateOperationsInput | string | null
     phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    representativeTitle?: NullableStringFieldUpdateOperationsInput | string | null
     representativeName?: NullableStringFieldUpdateOperationsInput | string | null
     mailFrom?: NullableStringFieldUpdateOperationsInput | string | null
     smtpHost?: NullableStringFieldUpdateOperationsInput | string | null
@@ -92726,6 +92830,9 @@ export namespace Prisma {
     employeeSignedAt?: SortOrder
     employeeSignedIp?: SortOrder
     guarantorName?: SortOrder
+    guarantorRelation?: SortOrder
+    guarantorAddress?: SortOrder
+    guarantorPhone?: SortOrder
     guarantorEmail?: SortOrder
     guarantorConfirmedAt?: SortOrder
     guarantorToken?: SortOrder
@@ -92756,6 +92863,9 @@ export namespace Prisma {
     employeeSignedAt?: SortOrder
     employeeSignedIp?: SortOrder
     guarantorName?: SortOrder
+    guarantorRelation?: SortOrder
+    guarantorAddress?: SortOrder
+    guarantorPhone?: SortOrder
     guarantorEmail?: SortOrder
     guarantorConfirmedAt?: SortOrder
     guarantorToken?: SortOrder
@@ -92782,6 +92892,9 @@ export namespace Prisma {
     employeeSignedAt?: SortOrder
     employeeSignedIp?: SortOrder
     guarantorName?: SortOrder
+    guarantorRelation?: SortOrder
+    guarantorAddress?: SortOrder
+    guarantorPhone?: SortOrder
     guarantorEmail?: SortOrder
     guarantorConfirmedAt?: SortOrder
     guarantorToken?: SortOrder
@@ -92971,6 +93084,7 @@ export namespace Prisma {
     postalCode?: SortOrder
     address?: SortOrder
     phoneNumber?: SortOrder
+    representativeTitle?: SortOrder
     representativeName?: SortOrder
     mailFrom?: SortOrder
     smtpHost?: SortOrder
@@ -92995,6 +93109,7 @@ export namespace Prisma {
     postalCode?: SortOrder
     address?: SortOrder
     phoneNumber?: SortOrder
+    representativeTitle?: SortOrder
     representativeName?: SortOrder
     mailFrom?: SortOrder
     smtpHost?: SortOrder
@@ -93015,6 +93130,7 @@ export namespace Prisma {
     postalCode?: SortOrder
     address?: SortOrder
     phoneNumber?: SortOrder
+    representativeTitle?: SortOrder
     representativeName?: SortOrder
     mailFrom?: SortOrder
     smtpHost?: SortOrder
@@ -100185,6 +100301,9 @@ export namespace Prisma {
     employeeSignedAt?: Date | string | null
     employeeSignedIp?: string | null
     guarantorName?: string | null
+    guarantorRelation?: string | null
+    guarantorAddress?: string | null
+    guarantorPhone?: string | null
     guarantorEmail?: string | null
     guarantorConfirmedAt?: Date | string | null
     guarantorToken?: string | null
@@ -100210,6 +100329,9 @@ export namespace Prisma {
     employeeSignedAt?: Date | string | null
     employeeSignedIp?: string | null
     guarantorName?: string | null
+    guarantorRelation?: string | null
+    guarantorAddress?: string | null
+    guarantorPhone?: string | null
     guarantorEmail?: string | null
     guarantorConfirmedAt?: Date | string | null
     guarantorToken?: string | null
@@ -101232,6 +101354,9 @@ export namespace Prisma {
     employeeSignedAt?: DateTimeNullableFilter<"EmployeePledge"> | Date | string | null
     employeeSignedIp?: StringNullableFilter<"EmployeePledge"> | string | null
     guarantorName?: StringNullableFilter<"EmployeePledge"> | string | null
+    guarantorRelation?: StringNullableFilter<"EmployeePledge"> | string | null
+    guarantorAddress?: StringNullableFilter<"EmployeePledge"> | string | null
+    guarantorPhone?: StringNullableFilter<"EmployeePledge"> | string | null
     guarantorEmail?: StringNullableFilter<"EmployeePledge"> | string | null
     guarantorConfirmedAt?: DateTimeNullableFilter<"EmployeePledge"> | Date | string | null
     guarantorToken?: StringNullableFilter<"EmployeePledge"> | string | null
@@ -112527,6 +112652,9 @@ export namespace Prisma {
     employeeSignedAt?: Date | string | null
     employeeSignedIp?: string | null
     guarantorName?: string | null
+    guarantorRelation?: string | null
+    guarantorAddress?: string | null
+    guarantorPhone?: string | null
     guarantorEmail?: string | null
     guarantorConfirmedAt?: Date | string | null
     guarantorToken?: string | null
@@ -113468,6 +113596,9 @@ export namespace Prisma {
     employeeSignedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     employeeSignedIp?: NullableStringFieldUpdateOperationsInput | string | null
     guarantorName?: NullableStringFieldUpdateOperationsInput | string | null
+    guarantorRelation?: NullableStringFieldUpdateOperationsInput | string | null
+    guarantorAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    guarantorPhone?: NullableStringFieldUpdateOperationsInput | string | null
     guarantorEmail?: NullableStringFieldUpdateOperationsInput | string | null
     guarantorConfirmedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     guarantorToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -113493,6 +113624,9 @@ export namespace Prisma {
     employeeSignedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     employeeSignedIp?: NullableStringFieldUpdateOperationsInput | string | null
     guarantorName?: NullableStringFieldUpdateOperationsInput | string | null
+    guarantorRelation?: NullableStringFieldUpdateOperationsInput | string | null
+    guarantorAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    guarantorPhone?: NullableStringFieldUpdateOperationsInput | string | null
     guarantorEmail?: NullableStringFieldUpdateOperationsInput | string | null
     guarantorConfirmedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     guarantorToken?: NullableStringFieldUpdateOperationsInput | string | null
@@ -113518,6 +113652,9 @@ export namespace Prisma {
     employeeSignedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     employeeSignedIp?: NullableStringFieldUpdateOperationsInput | string | null
     guarantorName?: NullableStringFieldUpdateOperationsInput | string | null
+    guarantorRelation?: NullableStringFieldUpdateOperationsInput | string | null
+    guarantorAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    guarantorPhone?: NullableStringFieldUpdateOperationsInput | string | null
     guarantorEmail?: NullableStringFieldUpdateOperationsInput | string | null
     guarantorConfirmedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     guarantorToken?: NullableStringFieldUpdateOperationsInput | string | null

@@ -4,6 +4,7 @@ import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
+import DateInput from "@/components/ui/date-input";
 import { requireHRManager } from "@/lib/auth-guard";
 import { logAudit } from "@/lib/audit-log";
 import {
@@ -423,11 +424,9 @@ export default async function EmployeeEditPage({ params }: Props) {
                 <label className="mb-1 block text-xs font-medium text-slate-700">
                   生年月日
                 </label>
-                <input
-                  type="date"
+                <DateInput
                   name="birthDate"
                   defaultValue={toDateInputValue(employee.birthDate)}
-                  className="w-full rounded border p-2 focus:outline-indigo-500"
                 />
               </div>
             </div>
@@ -616,11 +615,9 @@ export default async function EmployeeEditPage({ params }: Props) {
                 <label className="mb-1 block text-xs font-medium text-slate-700">
                   入職日
                 </label>
-                <input
-                  type="date"
+                <DateInput
                   name="hireDate"
                   defaultValue={toDateInputValue(employee.hireDate)}
-                  className="w-full rounded border p-2 focus:outline-indigo-500"
                 />
               </div>
 
@@ -628,11 +625,9 @@ export default async function EmployeeEditPage({ params }: Props) {
                 <label className="mb-1 block text-xs font-medium text-slate-700">
                   退職日
                 </label>
-                <input
-                  type="date"
+                <DateInput
                   name="retirementDate"
                   defaultValue={toDateInputValue(employee.retirementDate)}
-                  className="w-full rounded border p-2 focus:outline-indigo-500"
                 />
               </div>
 

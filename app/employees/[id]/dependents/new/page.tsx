@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
 import { prisma } from "@/lib/prisma";
+import DateInput from "@/components/ui/date-input";
 import { requireHRManager } from "@/lib/auth-guard";
 import { logAudit } from "@/lib/audit-log";
 import { encryptMyNumber } from "@/lib/mynumber";
@@ -184,8 +185,7 @@ export default async function NewDependentPage({ params }: Props) {
               <label className="mb-1 block text-sm font-medium text-gray-700">
                 生年月日
               </label>
-              <input
-                type="date"
+              <DateInput
                 name="birthDate"
                 className="w-full rounded border p-2"
               />

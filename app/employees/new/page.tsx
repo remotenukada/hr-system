@@ -3,6 +3,7 @@ import { requireHRManager } from "@/lib/auth-guard";
 import Link from "next/link";
 import { createEmployee } from "@/app/actions/employee";
 import { prisma } from "@/lib/prisma";
+import DateInput from "@/components/ui/date-input";
 
 export default async function NewEmployeePage() {
   await requireHRManager();
@@ -119,10 +120,8 @@ export default async function NewEmployeePage() {
               <label className="block text-xs font-medium text-slate-700 mb-1">
                 生年月日
               </label>
-              <input
-                type="date"
+              <DateInput
                 name="birthDate"
-                className="border p-2 w-full rounded focus:outline-indigo-500"
               />
             </div>
           </div>
@@ -302,10 +301,8 @@ export default async function NewEmployeePage() {
               <label className="block text-xs font-medium text-slate-700 mb-1">
                 入職日
               </label>
-              <input
-                type="date"
+              <DateInput
                 name="hireDate"
-                className="border p-2 w-full rounded focus:outline-indigo-500"
               />
             </div>
 
@@ -313,10 +310,8 @@ export default async function NewEmployeePage() {
               <label className="block text-xs font-medium text-slate-700 mb-1">
                 退職日
               </label>
-              <input
-                type="date"
+              <DateInput
                 name="retirementDate"
-                className="border p-2 w-full rounded focus:outline-indigo-500"
               />
             </div>
 

@@ -232,6 +232,15 @@ export default async function PledgesPage({
         電子署名および紙署名済み誓約書を確認します。
       </p>
 
+      <div className="mt-4">
+        <Link
+          href="/"
+          className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
+        >
+          ダッシュボードへ戻る
+        </Link>
+      </div>
+
       {query.mail === "sent" && (
         <div className="mt-4 rounded border border-green-200 bg-green-50 p-3 text-sm text-green-700">
           保証人確認メールを再送しました。

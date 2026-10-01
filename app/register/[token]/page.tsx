@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import { randomUUID } from "crypto";
 import { notFound, redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import DateInput from "@/components/ui/date-input";
 import { UserRole } from "@/generated/prisma";
 import { logAudit } from "@/lib/audit-log";
 
@@ -339,10 +340,8 @@ export default async function RegisterPage({
             <label className="mb-1 block text-sm font-medium">
               生年月日
             </label>
-            <input
-              type="date"
+            <DateInput
               name="birthDate"
-              className="w-full rounded border p-2"
             />
           </div>
 

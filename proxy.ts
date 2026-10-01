@@ -11,7 +11,8 @@ export default auth((req) => {
 
   const isPublicPage =
     pathname === "/fy-nexus-one-logo.svg" ||
-    pathname.startsWith("/register/");
+    pathname.startsWith("/register/") ||
+    pathname.startsWith("/guarantor-confirm/");
 
   if (isLoginPage && isLoggedIn) {
     return Response.redirect(new URL("/", req.nextUrl));
