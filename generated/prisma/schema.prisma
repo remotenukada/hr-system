@@ -132,6 +132,7 @@ model Employee {
   personalDocuments PersonalDocument[]
   residenceRequests ResidenceRequest[]
   pledges           EmployeePledge[]
+  paperSubmissions  PaperSubmission[]
 }
 
 model EmployeeTransfer {
@@ -797,6 +798,40 @@ model ProfileChangeRequest {
 
   @@index([employeeId])
   @@index([status])
+}
+
+enum PaperSubmissionType {
+  PLEDGE
+  BANK_ACCOUNT
+  MY_NUMBER
+}
+
+enum PaperSubmissionStatus {
+  PLANNED
+  RECEIVED
+  VERIFIED
+  DEFICIENT
+}
+
+model PaperSubmission {
+  id         String                @id @default(uuid())
+  employeeId String
+  type       PaperSubmissionType
+  status     PaperSubmissionStatus @default(PLANNED)
+
+  receivedAt DateTime?
+  verifiedAt DateTime?
+  verifiedBy String?
+  note       String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@unique([employeeId, type])
+  @@index([status])
+  @@index([type])
 }
 
 enum SubmissionMethod {

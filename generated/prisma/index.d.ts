@@ -179,6 +179,11 @@ export type CommutingRequestAttachment = $Result.DefaultSelection<Prisma.$Commut
  */
 export type ProfileChangeRequest = $Result.DefaultSelection<Prisma.$ProfileChangeRequestPayload>
 /**
+ * Model PaperSubmission
+ * 
+ */
+export type PaperSubmission = $Result.DefaultSelection<Prisma.$PaperSubmissionPayload>
+/**
  * Model EmployeePledge
  * 
  */
@@ -375,6 +380,25 @@ export const CommutingAttachmentType: {
 };
 
 export type CommutingAttachmentType = (typeof CommutingAttachmentType)[keyof typeof CommutingAttachmentType]
+
+
+export const PaperSubmissionType: {
+  PLEDGE: 'PLEDGE',
+  BANK_ACCOUNT: 'BANK_ACCOUNT',
+  MY_NUMBER: 'MY_NUMBER'
+};
+
+export type PaperSubmissionType = (typeof PaperSubmissionType)[keyof typeof PaperSubmissionType]
+
+
+export const PaperSubmissionStatus: {
+  PLANNED: 'PLANNED',
+  RECEIVED: 'RECEIVED',
+  VERIFIED: 'VERIFIED',
+  DEFICIENT: 'DEFICIENT'
+};
+
+export type PaperSubmissionStatus = (typeof PaperSubmissionStatus)[keyof typeof PaperSubmissionStatus]
 
 
 export const SubmissionMethod: {
@@ -578,6 +602,14 @@ export const CommutingType: typeof $Enums.CommutingType
 export type CommutingAttachmentType = $Enums.CommutingAttachmentType
 
 export const CommutingAttachmentType: typeof $Enums.CommutingAttachmentType
+
+export type PaperSubmissionType = $Enums.PaperSubmissionType
+
+export const PaperSubmissionType: typeof $Enums.PaperSubmissionType
+
+export type PaperSubmissionStatus = $Enums.PaperSubmissionStatus
+
+export const PaperSubmissionStatus: typeof $Enums.PaperSubmissionStatus
 
 export type SubmissionMethod = $Enums.SubmissionMethod
 
@@ -1097,6 +1129,16 @@ export class PrismaClient<
     * ```
     */
   get profileChangeRequest(): Prisma.ProfileChangeRequestDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.paperSubmission`: Exposes CRUD operations for the **PaperSubmission** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PaperSubmissions
+    * const paperSubmissions = await prisma.paperSubmission.findMany()
+    * ```
+    */
+  get paperSubmission(): Prisma.PaperSubmissionDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.employeePledge`: Exposes CRUD operations for the **EmployeePledge** model.
@@ -1804,6 +1846,7 @@ export namespace Prisma {
     CommutingRouteSegment: 'CommutingRouteSegment',
     CommutingRequestAttachment: 'CommutingRequestAttachment',
     ProfileChangeRequest: 'ProfileChangeRequest',
+    PaperSubmission: 'PaperSubmission',
     EmployeePledge: 'EmployeePledge',
     EmploymentContract: 'EmploymentContract',
     CompanySetting: 'CompanySetting',
@@ -1843,7 +1886,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "userInvitation" | "facility" | "department" | "employee" | "employeeTransfer" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestApproval" | "requestAttachment" | "requestHistory" | "approvalRoute" | "auditLog" | "certification" | "certificationDocumentRule" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "residenceRequest" | "residenceRequestAttachment" | "commutingRequest" | "commutingRouteSegment" | "commutingRequestAttachment" | "profileChangeRequest" | "employeePledge" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster" | "contractTypeMaster" | "jobTitleMaster" | "positionMaster" | "leaveTypeBalance" | "leaveType" | "retirementChecklist" | "loanedAsset" | "retirementCertificate" | "annualLeaveServiceRule" | "annualLeaveEntryRule" | "partTimeAnnualLeaveRule" | "lateRecord" | "earlyLeaveRecord" | "outingRecord" | "personalDocument"
+      modelProps: "user" | "userInvitation" | "facility" | "department" | "employee" | "employeeTransfer" | "dependent" | "employmentHistory" | "employeeMyNumber" | "employeeSalary" | "salaryHistory" | "leaveGrantHistory" | "leaveBalance" | "employeeRequest" | "requestApproval" | "requestAttachment" | "requestHistory" | "approvalRoute" | "auditLog" | "certification" | "certificationDocumentRule" | "employeeCertification" | "employeeCertificationAttachment" | "employeeBankAccount" | "employeeBankAttachment" | "dependentRequest" | "dependentRequestAttachment" | "residenceRequest" | "residenceRequestAttachment" | "commutingRequest" | "commutingRouteSegment" | "commutingRequestAttachment" | "profileChangeRequest" | "paperSubmission" | "employeePledge" | "employmentContract" | "companySetting" | "employmentContractTemplate" | "employmentContractConsent" | "employmentContractWorkSchedule" | "workScheduleMaster" | "allowanceMaster" | "employmentCategoryMaster" | "contractTypeMaster" | "jobTitleMaster" | "positionMaster" | "leaveTypeBalance" | "leaveType" | "retirementChecklist" | "loanedAsset" | "retirementCertificate" | "annualLeaveServiceRule" | "annualLeaveEntryRule" | "partTimeAnnualLeaveRule" | "lateRecord" | "earlyLeaveRecord" | "outingRecord" | "personalDocument"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -4289,6 +4332,80 @@ export namespace Prisma {
           }
         }
       }
+      PaperSubmission: {
+        payload: Prisma.$PaperSubmissionPayload<ExtArgs>
+        fields: Prisma.PaperSubmissionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PaperSubmissionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaperSubmissionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PaperSubmissionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaperSubmissionPayload>
+          }
+          findFirst: {
+            args: Prisma.PaperSubmissionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaperSubmissionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PaperSubmissionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaperSubmissionPayload>
+          }
+          findMany: {
+            args: Prisma.PaperSubmissionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaperSubmissionPayload>[]
+          }
+          create: {
+            args: Prisma.PaperSubmissionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaperSubmissionPayload>
+          }
+          createMany: {
+            args: Prisma.PaperSubmissionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.PaperSubmissionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaperSubmissionPayload>[]
+          }
+          delete: {
+            args: Prisma.PaperSubmissionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaperSubmissionPayload>
+          }
+          update: {
+            args: Prisma.PaperSubmissionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaperSubmissionPayload>
+          }
+          deleteMany: {
+            args: Prisma.PaperSubmissionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PaperSubmissionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PaperSubmissionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaperSubmissionPayload>[]
+          }
+          upsert: {
+            args: Prisma.PaperSubmissionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaperSubmissionPayload>
+          }
+          aggregate: {
+            args: Prisma.PaperSubmissionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePaperSubmission>
+          }
+          groupBy: {
+            args: Prisma.PaperSubmissionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PaperSubmissionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PaperSubmissionCountArgs<ExtArgs>
+            result: $Utils.Optional<PaperSubmissionCountAggregateOutputType> | number
+          }
+        }
+      }
       EmployeePledge: {
         payload: Prisma.$EmployeePledgePayload<ExtArgs>
         fields: Prisma.EmployeePledgeFieldRefs
@@ -6206,6 +6323,7 @@ export namespace Prisma {
     commutingRouteSegment?: CommutingRouteSegmentOmit
     commutingRequestAttachment?: CommutingRequestAttachmentOmit
     profileChangeRequest?: ProfileChangeRequestOmit
+    paperSubmission?: PaperSubmissionOmit
     employeePledge?: EmployeePledgeOmit
     employmentContract?: EmploymentContractOmit
     companySetting?: CompanySettingOmit
@@ -6507,6 +6625,7 @@ export namespace Prisma {
     personalDocuments: number
     residenceRequests: number
     pledges: number
+    paperSubmissions: number
   }
 
   export type EmployeeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6529,6 +6648,7 @@ export namespace Prisma {
     personalDocuments?: boolean | EmployeeCountOutputTypeCountPersonalDocumentsArgs
     residenceRequests?: boolean | EmployeeCountOutputTypeCountResidenceRequestsArgs
     pledges?: boolean | EmployeeCountOutputTypeCountPledgesArgs
+    paperSubmissions?: boolean | EmployeeCountOutputTypeCountPaperSubmissionsArgs
   }
 
   // Custom InputTypes
@@ -6673,6 +6793,13 @@ export namespace Prisma {
    */
   export type EmployeeCountOutputTypeCountPledgesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: EmployeePledgeWhereInput
+  }
+
+  /**
+   * EmployeeCountOutputType without action
+   */
+  export type EmployeeCountOutputTypeCountPaperSubmissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PaperSubmissionWhereInput
   }
 
 
@@ -12125,6 +12252,7 @@ export namespace Prisma {
     personalDocuments?: boolean | Employee$personalDocumentsArgs<ExtArgs>
     residenceRequests?: boolean | Employee$residenceRequestsArgs<ExtArgs>
     pledges?: boolean | Employee$pledgesArgs<ExtArgs>
+    paperSubmissions?: boolean | Employee$paperSubmissionsArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["employee"]>
 
@@ -12269,6 +12397,7 @@ export namespace Prisma {
     personalDocuments?: boolean | Employee$personalDocumentsArgs<ExtArgs>
     residenceRequests?: boolean | Employee$residenceRequestsArgs<ExtArgs>
     pledges?: boolean | Employee$pledgesArgs<ExtArgs>
+    paperSubmissions?: boolean | Employee$paperSubmissionsArgs<ExtArgs>
     _count?: boolean | EmployeeCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type EmployeeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -12313,6 +12442,7 @@ export namespace Prisma {
       personalDocuments: Prisma.$PersonalDocumentPayload<ExtArgs>[]
       residenceRequests: Prisma.$ResidenceRequestPayload<ExtArgs>[]
       pledges: Prisma.$EmployeePledgePayload<ExtArgs>[]
+      paperSubmissions: Prisma.$PaperSubmissionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -12769,6 +12899,7 @@ export namespace Prisma {
     personalDocuments<T extends Employee$personalDocumentsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$personalDocumentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PersonalDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     residenceRequests<T extends Employee$residenceRequestsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$residenceRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ResidenceRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     pledges<T extends Employee$pledgesArgs<ExtArgs> = {}>(args?: Subset<T, Employee$pledgesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$EmployeePledgePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    paperSubmissions<T extends Employee$paperSubmissionsArgs<ExtArgs> = {}>(args?: Subset<T, Employee$paperSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaperSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -13855,6 +13986,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: EmployeePledgeScalarFieldEnum | EmployeePledgeScalarFieldEnum[]
+  }
+
+  /**
+   * Employee.paperSubmissions
+   */
+  export type Employee$paperSubmissionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaperSubmission
+     */
+    select?: PaperSubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaperSubmission
+     */
+    omit?: PaperSubmissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaperSubmissionInclude<ExtArgs> | null
+    where?: PaperSubmissionWhereInput
+    orderBy?: PaperSubmissionOrderByWithRelationInput | PaperSubmissionOrderByWithRelationInput[]
+    cursor?: PaperSubmissionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PaperSubmissionScalarFieldEnum | PaperSubmissionScalarFieldEnum[]
   }
 
   /**
@@ -47153,6 +47308,1134 @@ export namespace Prisma {
 
 
   /**
+   * Model PaperSubmission
+   */
+
+  export type AggregatePaperSubmission = {
+    _count: PaperSubmissionCountAggregateOutputType | null
+    _min: PaperSubmissionMinAggregateOutputType | null
+    _max: PaperSubmissionMaxAggregateOutputType | null
+  }
+
+  export type PaperSubmissionMinAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    type: $Enums.PaperSubmissionType | null
+    status: $Enums.PaperSubmissionStatus | null
+    receivedAt: Date | null
+    verifiedAt: Date | null
+    verifiedBy: string | null
+    note: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PaperSubmissionMaxAggregateOutputType = {
+    id: string | null
+    employeeId: string | null
+    type: $Enums.PaperSubmissionType | null
+    status: $Enums.PaperSubmissionStatus | null
+    receivedAt: Date | null
+    verifiedAt: Date | null
+    verifiedBy: string | null
+    note: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type PaperSubmissionCountAggregateOutputType = {
+    id: number
+    employeeId: number
+    type: number
+    status: number
+    receivedAt: number
+    verifiedAt: number
+    verifiedBy: number
+    note: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type PaperSubmissionMinAggregateInputType = {
+    id?: true
+    employeeId?: true
+    type?: true
+    status?: true
+    receivedAt?: true
+    verifiedAt?: true
+    verifiedBy?: true
+    note?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PaperSubmissionMaxAggregateInputType = {
+    id?: true
+    employeeId?: true
+    type?: true
+    status?: true
+    receivedAt?: true
+    verifiedAt?: true
+    verifiedBy?: true
+    note?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type PaperSubmissionCountAggregateInputType = {
+    id?: true
+    employeeId?: true
+    type?: true
+    status?: true
+    receivedAt?: true
+    verifiedAt?: true
+    verifiedBy?: true
+    note?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type PaperSubmissionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PaperSubmission to aggregate.
+     */
+    where?: PaperSubmissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PaperSubmissions to fetch.
+     */
+    orderBy?: PaperSubmissionOrderByWithRelationInput | PaperSubmissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PaperSubmissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PaperSubmissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PaperSubmissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PaperSubmissions
+    **/
+    _count?: true | PaperSubmissionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PaperSubmissionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PaperSubmissionMaxAggregateInputType
+  }
+
+  export type GetPaperSubmissionAggregateType<T extends PaperSubmissionAggregateArgs> = {
+        [P in keyof T & keyof AggregatePaperSubmission]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePaperSubmission[P]>
+      : GetScalarType<T[P], AggregatePaperSubmission[P]>
+  }
+
+
+
+
+  export type PaperSubmissionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PaperSubmissionWhereInput
+    orderBy?: PaperSubmissionOrderByWithAggregationInput | PaperSubmissionOrderByWithAggregationInput[]
+    by: PaperSubmissionScalarFieldEnum[] | PaperSubmissionScalarFieldEnum
+    having?: PaperSubmissionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PaperSubmissionCountAggregateInputType | true
+    _min?: PaperSubmissionMinAggregateInputType
+    _max?: PaperSubmissionMaxAggregateInputType
+  }
+
+  export type PaperSubmissionGroupByOutputType = {
+    id: string
+    employeeId: string
+    type: $Enums.PaperSubmissionType
+    status: $Enums.PaperSubmissionStatus
+    receivedAt: Date | null
+    verifiedAt: Date | null
+    verifiedBy: string | null
+    note: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: PaperSubmissionCountAggregateOutputType | null
+    _min: PaperSubmissionMinAggregateOutputType | null
+    _max: PaperSubmissionMaxAggregateOutputType | null
+  }
+
+  type GetPaperSubmissionGroupByPayload<T extends PaperSubmissionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PaperSubmissionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PaperSubmissionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PaperSubmissionGroupByOutputType[P]>
+            : GetScalarType<T[P], PaperSubmissionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PaperSubmissionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    type?: boolean
+    status?: boolean
+    receivedAt?: boolean
+    verifiedAt?: boolean
+    verifiedBy?: boolean
+    note?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["paperSubmission"]>
+
+  export type PaperSubmissionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    type?: boolean
+    status?: boolean
+    receivedAt?: boolean
+    verifiedAt?: boolean
+    verifiedBy?: boolean
+    note?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["paperSubmission"]>
+
+  export type PaperSubmissionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    employeeId?: boolean
+    type?: boolean
+    status?: boolean
+    receivedAt?: boolean
+    verifiedAt?: boolean
+    verifiedBy?: boolean
+    note?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["paperSubmission"]>
+
+  export type PaperSubmissionSelectScalar = {
+    id?: boolean
+    employeeId?: boolean
+    type?: boolean
+    status?: boolean
+    receivedAt?: boolean
+    verifiedAt?: boolean
+    verifiedBy?: boolean
+    note?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type PaperSubmissionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "employeeId" | "type" | "status" | "receivedAt" | "verifiedAt" | "verifiedBy" | "note" | "createdAt" | "updatedAt", ExtArgs["result"]["paperSubmission"]>
+  export type PaperSubmissionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+  export type PaperSubmissionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+  export type PaperSubmissionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    employee?: boolean | EmployeeDefaultArgs<ExtArgs>
+  }
+
+  export type $PaperSubmissionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PaperSubmission"
+    objects: {
+      employee: Prisma.$EmployeePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      employeeId: string
+      type: $Enums.PaperSubmissionType
+      status: $Enums.PaperSubmissionStatus
+      receivedAt: Date | null
+      verifiedAt: Date | null
+      verifiedBy: string | null
+      note: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["paperSubmission"]>
+    composites: {}
+  }
+
+  type PaperSubmissionGetPayload<S extends boolean | null | undefined | PaperSubmissionDefaultArgs> = $Result.GetResult<Prisma.$PaperSubmissionPayload, S>
+
+  type PaperSubmissionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PaperSubmissionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PaperSubmissionCountAggregateInputType | true
+    }
+
+  export interface PaperSubmissionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PaperSubmission'], meta: { name: 'PaperSubmission' } }
+    /**
+     * Find zero or one PaperSubmission that matches the filter.
+     * @param {PaperSubmissionFindUniqueArgs} args - Arguments to find a PaperSubmission
+     * @example
+     * // Get one PaperSubmission
+     * const paperSubmission = await prisma.paperSubmission.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PaperSubmissionFindUniqueArgs>(args: SelectSubset<T, PaperSubmissionFindUniqueArgs<ExtArgs>>): Prisma__PaperSubmissionClient<$Result.GetResult<Prisma.$PaperSubmissionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PaperSubmission that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PaperSubmissionFindUniqueOrThrowArgs} args - Arguments to find a PaperSubmission
+     * @example
+     * // Get one PaperSubmission
+     * const paperSubmission = await prisma.paperSubmission.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PaperSubmissionFindUniqueOrThrowArgs>(args: SelectSubset<T, PaperSubmissionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PaperSubmissionClient<$Result.GetResult<Prisma.$PaperSubmissionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PaperSubmission that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaperSubmissionFindFirstArgs} args - Arguments to find a PaperSubmission
+     * @example
+     * // Get one PaperSubmission
+     * const paperSubmission = await prisma.paperSubmission.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PaperSubmissionFindFirstArgs>(args?: SelectSubset<T, PaperSubmissionFindFirstArgs<ExtArgs>>): Prisma__PaperSubmissionClient<$Result.GetResult<Prisma.$PaperSubmissionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PaperSubmission that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaperSubmissionFindFirstOrThrowArgs} args - Arguments to find a PaperSubmission
+     * @example
+     * // Get one PaperSubmission
+     * const paperSubmission = await prisma.paperSubmission.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PaperSubmissionFindFirstOrThrowArgs>(args?: SelectSubset<T, PaperSubmissionFindFirstOrThrowArgs<ExtArgs>>): Prisma__PaperSubmissionClient<$Result.GetResult<Prisma.$PaperSubmissionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PaperSubmissions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaperSubmissionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PaperSubmissions
+     * const paperSubmissions = await prisma.paperSubmission.findMany()
+     * 
+     * // Get first 10 PaperSubmissions
+     * const paperSubmissions = await prisma.paperSubmission.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const paperSubmissionWithIdOnly = await prisma.paperSubmission.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PaperSubmissionFindManyArgs>(args?: SelectSubset<T, PaperSubmissionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaperSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a PaperSubmission.
+     * @param {PaperSubmissionCreateArgs} args - Arguments to create a PaperSubmission.
+     * @example
+     * // Create one PaperSubmission
+     * const PaperSubmission = await prisma.paperSubmission.create({
+     *   data: {
+     *     // ... data to create a PaperSubmission
+     *   }
+     * })
+     * 
+     */
+    create<T extends PaperSubmissionCreateArgs>(args: SelectSubset<T, PaperSubmissionCreateArgs<ExtArgs>>): Prisma__PaperSubmissionClient<$Result.GetResult<Prisma.$PaperSubmissionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many PaperSubmissions.
+     * @param {PaperSubmissionCreateManyArgs} args - Arguments to create many PaperSubmissions.
+     * @example
+     * // Create many PaperSubmissions
+     * const paperSubmission = await prisma.paperSubmission.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PaperSubmissionCreateManyArgs>(args?: SelectSubset<T, PaperSubmissionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many PaperSubmissions and returns the data saved in the database.
+     * @param {PaperSubmissionCreateManyAndReturnArgs} args - Arguments to create many PaperSubmissions.
+     * @example
+     * // Create many PaperSubmissions
+     * const paperSubmission = await prisma.paperSubmission.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many PaperSubmissions and only return the `id`
+     * const paperSubmissionWithIdOnly = await prisma.paperSubmission.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends PaperSubmissionCreateManyAndReturnArgs>(args?: SelectSubset<T, PaperSubmissionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaperSubmissionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a PaperSubmission.
+     * @param {PaperSubmissionDeleteArgs} args - Arguments to delete one PaperSubmission.
+     * @example
+     * // Delete one PaperSubmission
+     * const PaperSubmission = await prisma.paperSubmission.delete({
+     *   where: {
+     *     // ... filter to delete one PaperSubmission
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PaperSubmissionDeleteArgs>(args: SelectSubset<T, PaperSubmissionDeleteArgs<ExtArgs>>): Prisma__PaperSubmissionClient<$Result.GetResult<Prisma.$PaperSubmissionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PaperSubmission.
+     * @param {PaperSubmissionUpdateArgs} args - Arguments to update one PaperSubmission.
+     * @example
+     * // Update one PaperSubmission
+     * const paperSubmission = await prisma.paperSubmission.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PaperSubmissionUpdateArgs>(args: SelectSubset<T, PaperSubmissionUpdateArgs<ExtArgs>>): Prisma__PaperSubmissionClient<$Result.GetResult<Prisma.$PaperSubmissionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PaperSubmissions.
+     * @param {PaperSubmissionDeleteManyArgs} args - Arguments to filter PaperSubmissions to delete.
+     * @example
+     * // Delete a few PaperSubmissions
+     * const { count } = await prisma.paperSubmission.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PaperSubmissionDeleteManyArgs>(args?: SelectSubset<T, PaperSubmissionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PaperSubmissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaperSubmissionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PaperSubmissions
+     * const paperSubmission = await prisma.paperSubmission.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PaperSubmissionUpdateManyArgs>(args: SelectSubset<T, PaperSubmissionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PaperSubmissions and returns the data updated in the database.
+     * @param {PaperSubmissionUpdateManyAndReturnArgs} args - Arguments to update many PaperSubmissions.
+     * @example
+     * // Update many PaperSubmissions
+     * const paperSubmission = await prisma.paperSubmission.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PaperSubmissions and only return the `id`
+     * const paperSubmissionWithIdOnly = await prisma.paperSubmission.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PaperSubmissionUpdateManyAndReturnArgs>(args: SelectSubset<T, PaperSubmissionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaperSubmissionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one PaperSubmission.
+     * @param {PaperSubmissionUpsertArgs} args - Arguments to update or create a PaperSubmission.
+     * @example
+     * // Update or create a PaperSubmission
+     * const paperSubmission = await prisma.paperSubmission.upsert({
+     *   create: {
+     *     // ... data to create a PaperSubmission
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PaperSubmission we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PaperSubmissionUpsertArgs>(args: SelectSubset<T, PaperSubmissionUpsertArgs<ExtArgs>>): Prisma__PaperSubmissionClient<$Result.GetResult<Prisma.$PaperSubmissionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of PaperSubmissions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaperSubmissionCountArgs} args - Arguments to filter PaperSubmissions to count.
+     * @example
+     * // Count the number of PaperSubmissions
+     * const count = await prisma.paperSubmission.count({
+     *   where: {
+     *     // ... the filter for the PaperSubmissions we want to count
+     *   }
+     * })
+    **/
+    count<T extends PaperSubmissionCountArgs>(
+      args?: Subset<T, PaperSubmissionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PaperSubmissionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PaperSubmission.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaperSubmissionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PaperSubmissionAggregateArgs>(args: Subset<T, PaperSubmissionAggregateArgs>): Prisma.PrismaPromise<GetPaperSubmissionAggregateType<T>>
+
+    /**
+     * Group by PaperSubmission.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaperSubmissionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PaperSubmissionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PaperSubmissionGroupByArgs['orderBy'] }
+        : { orderBy?: PaperSubmissionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PaperSubmissionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPaperSubmissionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PaperSubmission model
+   */
+  readonly fields: PaperSubmissionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PaperSubmission.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PaperSubmissionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    employee<T extends EmployeeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, EmployeeDefaultArgs<ExtArgs>>): Prisma__EmployeeClient<$Result.GetResult<Prisma.$EmployeePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PaperSubmission model
+   */
+  interface PaperSubmissionFieldRefs {
+    readonly id: FieldRef<"PaperSubmission", 'String'>
+    readonly employeeId: FieldRef<"PaperSubmission", 'String'>
+    readonly type: FieldRef<"PaperSubmission", 'PaperSubmissionType'>
+    readonly status: FieldRef<"PaperSubmission", 'PaperSubmissionStatus'>
+    readonly receivedAt: FieldRef<"PaperSubmission", 'DateTime'>
+    readonly verifiedAt: FieldRef<"PaperSubmission", 'DateTime'>
+    readonly verifiedBy: FieldRef<"PaperSubmission", 'String'>
+    readonly note: FieldRef<"PaperSubmission", 'String'>
+    readonly createdAt: FieldRef<"PaperSubmission", 'DateTime'>
+    readonly updatedAt: FieldRef<"PaperSubmission", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PaperSubmission findUnique
+   */
+  export type PaperSubmissionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaperSubmission
+     */
+    select?: PaperSubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaperSubmission
+     */
+    omit?: PaperSubmissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaperSubmissionInclude<ExtArgs> | null
+    /**
+     * Filter, which PaperSubmission to fetch.
+     */
+    where: PaperSubmissionWhereUniqueInput
+  }
+
+  /**
+   * PaperSubmission findUniqueOrThrow
+   */
+  export type PaperSubmissionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaperSubmission
+     */
+    select?: PaperSubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaperSubmission
+     */
+    omit?: PaperSubmissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaperSubmissionInclude<ExtArgs> | null
+    /**
+     * Filter, which PaperSubmission to fetch.
+     */
+    where: PaperSubmissionWhereUniqueInput
+  }
+
+  /**
+   * PaperSubmission findFirst
+   */
+  export type PaperSubmissionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaperSubmission
+     */
+    select?: PaperSubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaperSubmission
+     */
+    omit?: PaperSubmissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaperSubmissionInclude<ExtArgs> | null
+    /**
+     * Filter, which PaperSubmission to fetch.
+     */
+    where?: PaperSubmissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PaperSubmissions to fetch.
+     */
+    orderBy?: PaperSubmissionOrderByWithRelationInput | PaperSubmissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PaperSubmissions.
+     */
+    cursor?: PaperSubmissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PaperSubmissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PaperSubmissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PaperSubmissions.
+     */
+    distinct?: PaperSubmissionScalarFieldEnum | PaperSubmissionScalarFieldEnum[]
+  }
+
+  /**
+   * PaperSubmission findFirstOrThrow
+   */
+  export type PaperSubmissionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaperSubmission
+     */
+    select?: PaperSubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaperSubmission
+     */
+    omit?: PaperSubmissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaperSubmissionInclude<ExtArgs> | null
+    /**
+     * Filter, which PaperSubmission to fetch.
+     */
+    where?: PaperSubmissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PaperSubmissions to fetch.
+     */
+    orderBy?: PaperSubmissionOrderByWithRelationInput | PaperSubmissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PaperSubmissions.
+     */
+    cursor?: PaperSubmissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PaperSubmissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PaperSubmissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PaperSubmissions.
+     */
+    distinct?: PaperSubmissionScalarFieldEnum | PaperSubmissionScalarFieldEnum[]
+  }
+
+  /**
+   * PaperSubmission findMany
+   */
+  export type PaperSubmissionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaperSubmission
+     */
+    select?: PaperSubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaperSubmission
+     */
+    omit?: PaperSubmissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaperSubmissionInclude<ExtArgs> | null
+    /**
+     * Filter, which PaperSubmissions to fetch.
+     */
+    where?: PaperSubmissionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PaperSubmissions to fetch.
+     */
+    orderBy?: PaperSubmissionOrderByWithRelationInput | PaperSubmissionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PaperSubmissions.
+     */
+    cursor?: PaperSubmissionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PaperSubmissions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PaperSubmissions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PaperSubmissions.
+     */
+    distinct?: PaperSubmissionScalarFieldEnum | PaperSubmissionScalarFieldEnum[]
+  }
+
+  /**
+   * PaperSubmission create
+   */
+  export type PaperSubmissionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaperSubmission
+     */
+    select?: PaperSubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaperSubmission
+     */
+    omit?: PaperSubmissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaperSubmissionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PaperSubmission.
+     */
+    data: XOR<PaperSubmissionCreateInput, PaperSubmissionUncheckedCreateInput>
+  }
+
+  /**
+   * PaperSubmission createMany
+   */
+  export type PaperSubmissionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PaperSubmissions.
+     */
+    data: PaperSubmissionCreateManyInput | PaperSubmissionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * PaperSubmission createManyAndReturn
+   */
+  export type PaperSubmissionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaperSubmission
+     */
+    select?: PaperSubmissionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaperSubmission
+     */
+    omit?: PaperSubmissionOmit<ExtArgs> | null
+    /**
+     * The data used to create many PaperSubmissions.
+     */
+    data: PaperSubmissionCreateManyInput | PaperSubmissionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaperSubmissionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PaperSubmission update
+   */
+  export type PaperSubmissionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaperSubmission
+     */
+    select?: PaperSubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaperSubmission
+     */
+    omit?: PaperSubmissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaperSubmissionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PaperSubmission.
+     */
+    data: XOR<PaperSubmissionUpdateInput, PaperSubmissionUncheckedUpdateInput>
+    /**
+     * Choose, which PaperSubmission to update.
+     */
+    where: PaperSubmissionWhereUniqueInput
+  }
+
+  /**
+   * PaperSubmission updateMany
+   */
+  export type PaperSubmissionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PaperSubmissions.
+     */
+    data: XOR<PaperSubmissionUpdateManyMutationInput, PaperSubmissionUncheckedUpdateManyInput>
+    /**
+     * Filter which PaperSubmissions to update
+     */
+    where?: PaperSubmissionWhereInput
+    /**
+     * Limit how many PaperSubmissions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PaperSubmission updateManyAndReturn
+   */
+  export type PaperSubmissionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaperSubmission
+     */
+    select?: PaperSubmissionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaperSubmission
+     */
+    omit?: PaperSubmissionOmit<ExtArgs> | null
+    /**
+     * The data used to update PaperSubmissions.
+     */
+    data: XOR<PaperSubmissionUpdateManyMutationInput, PaperSubmissionUncheckedUpdateManyInput>
+    /**
+     * Filter which PaperSubmissions to update
+     */
+    where?: PaperSubmissionWhereInput
+    /**
+     * Limit how many PaperSubmissions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaperSubmissionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PaperSubmission upsert
+   */
+  export type PaperSubmissionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaperSubmission
+     */
+    select?: PaperSubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaperSubmission
+     */
+    omit?: PaperSubmissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaperSubmissionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PaperSubmission to update in case it exists.
+     */
+    where: PaperSubmissionWhereUniqueInput
+    /**
+     * In case the PaperSubmission found by the `where` argument doesn't exist, create a new PaperSubmission with this data.
+     */
+    create: XOR<PaperSubmissionCreateInput, PaperSubmissionUncheckedCreateInput>
+    /**
+     * In case the PaperSubmission was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PaperSubmissionUpdateInput, PaperSubmissionUncheckedUpdateInput>
+  }
+
+  /**
+   * PaperSubmission delete
+   */
+  export type PaperSubmissionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaperSubmission
+     */
+    select?: PaperSubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaperSubmission
+     */
+    omit?: PaperSubmissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaperSubmissionInclude<ExtArgs> | null
+    /**
+     * Filter which PaperSubmission to delete.
+     */
+    where: PaperSubmissionWhereUniqueInput
+  }
+
+  /**
+   * PaperSubmission deleteMany
+   */
+  export type PaperSubmissionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PaperSubmissions to delete
+     */
+    where?: PaperSubmissionWhereInput
+    /**
+     * Limit how many PaperSubmissions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PaperSubmission without action
+   */
+  export type PaperSubmissionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaperSubmission
+     */
+    select?: PaperSubmissionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PaperSubmission
+     */
+    omit?: PaperSubmissionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PaperSubmissionInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model EmployeePledge
    */
 
@@ -75975,6 +77258,22 @@ export namespace Prisma {
   export type ProfileChangeRequestScalarFieldEnum = (typeof ProfileChangeRequestScalarFieldEnum)[keyof typeof ProfileChangeRequestScalarFieldEnum]
 
 
+  export const PaperSubmissionScalarFieldEnum: {
+    id: 'id',
+    employeeId: 'employeeId',
+    type: 'type',
+    status: 'status',
+    receivedAt: 'receivedAt',
+    verifiedAt: 'verifiedAt',
+    verifiedBy: 'verifiedBy',
+    note: 'note',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type PaperSubmissionScalarFieldEnum = (typeof PaperSubmissionScalarFieldEnum)[keyof typeof PaperSubmissionScalarFieldEnum]
+
+
   export const EmployeePledgeScalarFieldEnum: {
     id: 'id',
     employeeId: 'employeeId',
@@ -76867,6 +78166,34 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'PaperSubmissionType'
+   */
+  export type EnumPaperSubmissionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaperSubmissionType'>
+    
+
+
+  /**
+   * Reference to a field of type 'PaperSubmissionType[]'
+   */
+  export type ListEnumPaperSubmissionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaperSubmissionType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'PaperSubmissionStatus'
+   */
+  export type EnumPaperSubmissionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaperSubmissionStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'PaperSubmissionStatus[]'
+   */
+  export type ListEnumPaperSubmissionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaperSubmissionStatus[]'>
+    
+
+
+  /**
    * Reference to a field of type 'PledgeStatus'
    */
   export type EnumPledgeStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PledgeStatus'>
@@ -77242,6 +78569,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentListRelationFilter
     residenceRequests?: ResidenceRequestListRelationFilter
     pledges?: EmployeePledgeListRelationFilter
+    paperSubmissions?: PaperSubmissionListRelationFilter
   }
 
   export type EmployeeOrderByWithRelationInput = {
@@ -77305,6 +78633,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentOrderByRelationAggregateInput
     residenceRequests?: ResidenceRequestOrderByRelationAggregateInput
     pledges?: EmployeePledgeOrderByRelationAggregateInput
+    paperSubmissions?: PaperSubmissionOrderByRelationAggregateInput
   }
 
   export type EmployeeWhereUniqueInput = Prisma.AtLeast<{
@@ -77371,6 +78700,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentListRelationFilter
     residenceRequests?: ResidenceRequestListRelationFilter
     pledges?: EmployeePledgeListRelationFilter
+    paperSubmissions?: PaperSubmissionListRelationFilter
   }, "id" | "employeeNo" | "email" | "userId">
 
   export type EmployeeOrderByWithAggregationInput = {
@@ -79941,6 +81271,87 @@ export namespace Prisma {
     reviewedBy?: StringNullableWithAggregatesFilter<"ProfileChangeRequest"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"ProfileChangeRequest"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"ProfileChangeRequest"> | Date | string
+  }
+
+  export type PaperSubmissionWhereInput = {
+    AND?: PaperSubmissionWhereInput | PaperSubmissionWhereInput[]
+    OR?: PaperSubmissionWhereInput[]
+    NOT?: PaperSubmissionWhereInput | PaperSubmissionWhereInput[]
+    id?: StringFilter<"PaperSubmission"> | string
+    employeeId?: StringFilter<"PaperSubmission"> | string
+    type?: EnumPaperSubmissionTypeFilter<"PaperSubmission"> | $Enums.PaperSubmissionType
+    status?: EnumPaperSubmissionStatusFilter<"PaperSubmission"> | $Enums.PaperSubmissionStatus
+    receivedAt?: DateTimeNullableFilter<"PaperSubmission"> | Date | string | null
+    verifiedAt?: DateTimeNullableFilter<"PaperSubmission"> | Date | string | null
+    verifiedBy?: StringNullableFilter<"PaperSubmission"> | string | null
+    note?: StringNullableFilter<"PaperSubmission"> | string | null
+    createdAt?: DateTimeFilter<"PaperSubmission"> | Date | string
+    updatedAt?: DateTimeFilter<"PaperSubmission"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+  }
+
+  export type PaperSubmissionOrderByWithRelationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    type?: SortOrder
+    status?: SortOrder
+    receivedAt?: SortOrderInput | SortOrder
+    verifiedAt?: SortOrderInput | SortOrder
+    verifiedBy?: SortOrderInput | SortOrder
+    note?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    employee?: EmployeeOrderByWithRelationInput
+  }
+
+  export type PaperSubmissionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    employeeId_type?: PaperSubmissionEmployeeIdTypeCompoundUniqueInput
+    AND?: PaperSubmissionWhereInput | PaperSubmissionWhereInput[]
+    OR?: PaperSubmissionWhereInput[]
+    NOT?: PaperSubmissionWhereInput | PaperSubmissionWhereInput[]
+    employeeId?: StringFilter<"PaperSubmission"> | string
+    type?: EnumPaperSubmissionTypeFilter<"PaperSubmission"> | $Enums.PaperSubmissionType
+    status?: EnumPaperSubmissionStatusFilter<"PaperSubmission"> | $Enums.PaperSubmissionStatus
+    receivedAt?: DateTimeNullableFilter<"PaperSubmission"> | Date | string | null
+    verifiedAt?: DateTimeNullableFilter<"PaperSubmission"> | Date | string | null
+    verifiedBy?: StringNullableFilter<"PaperSubmission"> | string | null
+    note?: StringNullableFilter<"PaperSubmission"> | string | null
+    createdAt?: DateTimeFilter<"PaperSubmission"> | Date | string
+    updatedAt?: DateTimeFilter<"PaperSubmission"> | Date | string
+    employee?: XOR<EmployeeScalarRelationFilter, EmployeeWhereInput>
+  }, "id" | "employeeId_type">
+
+  export type PaperSubmissionOrderByWithAggregationInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    type?: SortOrder
+    status?: SortOrder
+    receivedAt?: SortOrderInput | SortOrder
+    verifiedAt?: SortOrderInput | SortOrder
+    verifiedBy?: SortOrderInput | SortOrder
+    note?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: PaperSubmissionCountOrderByAggregateInput
+    _max?: PaperSubmissionMaxOrderByAggregateInput
+    _min?: PaperSubmissionMinOrderByAggregateInput
+  }
+
+  export type PaperSubmissionScalarWhereWithAggregatesInput = {
+    AND?: PaperSubmissionScalarWhereWithAggregatesInput | PaperSubmissionScalarWhereWithAggregatesInput[]
+    OR?: PaperSubmissionScalarWhereWithAggregatesInput[]
+    NOT?: PaperSubmissionScalarWhereWithAggregatesInput | PaperSubmissionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"PaperSubmission"> | string
+    employeeId?: StringWithAggregatesFilter<"PaperSubmission"> | string
+    type?: EnumPaperSubmissionTypeWithAggregatesFilter<"PaperSubmission"> | $Enums.PaperSubmissionType
+    status?: EnumPaperSubmissionStatusWithAggregatesFilter<"PaperSubmission"> | $Enums.PaperSubmissionStatus
+    receivedAt?: DateTimeNullableWithAggregatesFilter<"PaperSubmission"> | Date | string | null
+    verifiedAt?: DateTimeNullableWithAggregatesFilter<"PaperSubmission"> | Date | string | null
+    verifiedBy?: StringNullableWithAggregatesFilter<"PaperSubmission"> | string | null
+    note?: StringNullableWithAggregatesFilter<"PaperSubmission"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"PaperSubmission"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"PaperSubmission"> | Date | string
   }
 
   export type EmployeePledgeWhereInput = {
@@ -82646,6 +84057,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateInput = {
@@ -82706,6 +84118,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUpdateInput = {
@@ -82766,6 +84179,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateInput = {
@@ -82826,6 +84240,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateManyInput = {
@@ -85692,6 +87107,96 @@ export namespace Prisma {
     status?: EnumProfileChangeStatusFieldUpdateOperationsInput | $Enums.ProfileChangeStatus
     reviewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reviewedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PaperSubmissionCreateInput = {
+    id?: string
+    type: $Enums.PaperSubmissionType
+    status?: $Enums.PaperSubmissionStatus
+    receivedAt?: Date | string | null
+    verifiedAt?: Date | string | null
+    verifiedBy?: string | null
+    note?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    employee: EmployeeCreateNestedOneWithoutPaperSubmissionsInput
+  }
+
+  export type PaperSubmissionUncheckedCreateInput = {
+    id?: string
+    employeeId: string
+    type: $Enums.PaperSubmissionType
+    status?: $Enums.PaperSubmissionStatus
+    receivedAt?: Date | string | null
+    verifiedAt?: Date | string | null
+    verifiedBy?: string | null
+    note?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PaperSubmissionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumPaperSubmissionTypeFieldUpdateOperationsInput | $Enums.PaperSubmissionType
+    status?: EnumPaperSubmissionStatusFieldUpdateOperationsInput | $Enums.PaperSubmissionStatus
+    receivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verifiedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    employee?: EmployeeUpdateOneRequiredWithoutPaperSubmissionsNestedInput
+  }
+
+  export type PaperSubmissionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    type?: EnumPaperSubmissionTypeFieldUpdateOperationsInput | $Enums.PaperSubmissionType
+    status?: EnumPaperSubmissionStatusFieldUpdateOperationsInput | $Enums.PaperSubmissionStatus
+    receivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verifiedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PaperSubmissionCreateManyInput = {
+    id?: string
+    employeeId: string
+    type: $Enums.PaperSubmissionType
+    status?: $Enums.PaperSubmissionStatus
+    receivedAt?: Date | string | null
+    verifiedAt?: Date | string | null
+    verifiedBy?: string | null
+    note?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PaperSubmissionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumPaperSubmissionTypeFieldUpdateOperationsInput | $Enums.PaperSubmissionType
+    status?: EnumPaperSubmissionStatusFieldUpdateOperationsInput | $Enums.PaperSubmissionStatus
+    receivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verifiedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PaperSubmissionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeId?: StringFieldUpdateOperationsInput | string
+    type?: EnumPaperSubmissionTypeFieldUpdateOperationsInput | $Enums.PaperSubmissionType
+    status?: EnumPaperSubmissionStatusFieldUpdateOperationsInput | $Enums.PaperSubmissionStatus
+    receivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verifiedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -88981,6 +90486,12 @@ export namespace Prisma {
     none?: EmployeePledgeWhereInput
   }
 
+  export type PaperSubmissionListRelationFilter = {
+    every?: PaperSubmissionWhereInput
+    some?: PaperSubmissionWhereInput
+    none?: PaperSubmissionWhereInput
+  }
+
   export type EmployeeCertificationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -89046,6 +90557,10 @@ export namespace Prisma {
   }
 
   export type EmployeePledgeOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PaperSubmissionOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -91113,6 +92628,84 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumProfileChangeStatusFilter<$PrismaModel>
     _max?: NestedEnumProfileChangeStatusFilter<$PrismaModel>
+  }
+
+  export type EnumPaperSubmissionTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.PaperSubmissionType | EnumPaperSubmissionTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.PaperSubmissionType[] | ListEnumPaperSubmissionTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PaperSubmissionType[] | ListEnumPaperSubmissionTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumPaperSubmissionTypeFilter<$PrismaModel> | $Enums.PaperSubmissionType
+  }
+
+  export type EnumPaperSubmissionStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.PaperSubmissionStatus | EnumPaperSubmissionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.PaperSubmissionStatus[] | ListEnumPaperSubmissionStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PaperSubmissionStatus[] | ListEnumPaperSubmissionStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumPaperSubmissionStatusFilter<$PrismaModel> | $Enums.PaperSubmissionStatus
+  }
+
+  export type PaperSubmissionEmployeeIdTypeCompoundUniqueInput = {
+    employeeId: string
+    type: $Enums.PaperSubmissionType
+  }
+
+  export type PaperSubmissionCountOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    type?: SortOrder
+    status?: SortOrder
+    receivedAt?: SortOrder
+    verifiedAt?: SortOrder
+    verifiedBy?: SortOrder
+    note?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PaperSubmissionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    type?: SortOrder
+    status?: SortOrder
+    receivedAt?: SortOrder
+    verifiedAt?: SortOrder
+    verifiedBy?: SortOrder
+    note?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type PaperSubmissionMinOrderByAggregateInput = {
+    id?: SortOrder
+    employeeId?: SortOrder
+    type?: SortOrder
+    status?: SortOrder
+    receivedAt?: SortOrder
+    verifiedAt?: SortOrder
+    verifiedBy?: SortOrder
+    note?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumPaperSubmissionTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PaperSubmissionType | EnumPaperSubmissionTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.PaperSubmissionType[] | ListEnumPaperSubmissionTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PaperSubmissionType[] | ListEnumPaperSubmissionTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumPaperSubmissionTypeWithAggregatesFilter<$PrismaModel> | $Enums.PaperSubmissionType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPaperSubmissionTypeFilter<$PrismaModel>
+    _max?: NestedEnumPaperSubmissionTypeFilter<$PrismaModel>
+  }
+
+  export type EnumPaperSubmissionStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PaperSubmissionStatus | EnumPaperSubmissionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.PaperSubmissionStatus[] | ListEnumPaperSubmissionStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PaperSubmissionStatus[] | ListEnumPaperSubmissionStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumPaperSubmissionStatusWithAggregatesFilter<$PrismaModel> | $Enums.PaperSubmissionStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPaperSubmissionStatusFilter<$PrismaModel>
+    _max?: NestedEnumPaperSubmissionStatusFilter<$PrismaModel>
   }
 
   export type EnumPledgeStatusFilter<$PrismaModel = never> = {
@@ -93216,6 +94809,13 @@ export namespace Prisma {
     connect?: EmployeePledgeWhereUniqueInput | EmployeePledgeWhereUniqueInput[]
   }
 
+  export type PaperSubmissionCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<PaperSubmissionCreateWithoutEmployeeInput, PaperSubmissionUncheckedCreateWithoutEmployeeInput> | PaperSubmissionCreateWithoutEmployeeInput[] | PaperSubmissionUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: PaperSubmissionCreateOrConnectWithoutEmployeeInput | PaperSubmissionCreateOrConnectWithoutEmployeeInput[]
+    createMany?: PaperSubmissionCreateManyEmployeeInputEnvelope
+    connect?: PaperSubmissionWhereUniqueInput | PaperSubmissionWhereUniqueInput[]
+  }
+
   export type EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput = {
     create?: XOR<EmployeeCertificationCreateWithoutEmployeeInput, EmployeeCertificationUncheckedCreateWithoutEmployeeInput> | EmployeeCertificationCreateWithoutEmployeeInput[] | EmployeeCertificationUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutEmployeeInput | EmployeeCertificationCreateOrConnectWithoutEmployeeInput[]
@@ -93383,6 +94983,13 @@ export namespace Prisma {
     connectOrCreate?: EmployeePledgeCreateOrConnectWithoutEmployeeInput | EmployeePledgeCreateOrConnectWithoutEmployeeInput[]
     createMany?: EmployeePledgeCreateManyEmployeeInputEnvelope
     connect?: EmployeePledgeWhereUniqueInput | EmployeePledgeWhereUniqueInput[]
+  }
+
+  export type PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput = {
+    create?: XOR<PaperSubmissionCreateWithoutEmployeeInput, PaperSubmissionUncheckedCreateWithoutEmployeeInput> | PaperSubmissionCreateWithoutEmployeeInput[] | PaperSubmissionUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: PaperSubmissionCreateOrConnectWithoutEmployeeInput | PaperSubmissionCreateOrConnectWithoutEmployeeInput[]
+    createMany?: PaperSubmissionCreateManyEmployeeInputEnvelope
+    connect?: PaperSubmissionWhereUniqueInput | PaperSubmissionWhereUniqueInput[]
   }
 
   export type NullableEnumGenderFieldUpdateOperationsInput = {
@@ -93769,6 +95376,20 @@ export namespace Prisma {
     deleteMany?: EmployeePledgeScalarWhereInput | EmployeePledgeScalarWhereInput[]
   }
 
+  export type PaperSubmissionUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<PaperSubmissionCreateWithoutEmployeeInput, PaperSubmissionUncheckedCreateWithoutEmployeeInput> | PaperSubmissionCreateWithoutEmployeeInput[] | PaperSubmissionUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: PaperSubmissionCreateOrConnectWithoutEmployeeInput | PaperSubmissionCreateOrConnectWithoutEmployeeInput[]
+    upsert?: PaperSubmissionUpsertWithWhereUniqueWithoutEmployeeInput | PaperSubmissionUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: PaperSubmissionCreateManyEmployeeInputEnvelope
+    set?: PaperSubmissionWhereUniqueInput | PaperSubmissionWhereUniqueInput[]
+    disconnect?: PaperSubmissionWhereUniqueInput | PaperSubmissionWhereUniqueInput[]
+    delete?: PaperSubmissionWhereUniqueInput | PaperSubmissionWhereUniqueInput[]
+    connect?: PaperSubmissionWhereUniqueInput | PaperSubmissionWhereUniqueInput[]
+    update?: PaperSubmissionUpdateWithWhereUniqueWithoutEmployeeInput | PaperSubmissionUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: PaperSubmissionUpdateManyWithWhereWithoutEmployeeInput | PaperSubmissionUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: PaperSubmissionScalarWhereInput | PaperSubmissionScalarWhereInput[]
+  }
+
   export type EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput = {
     create?: XOR<EmployeeCertificationCreateWithoutEmployeeInput, EmployeeCertificationUncheckedCreateWithoutEmployeeInput> | EmployeeCertificationCreateWithoutEmployeeInput[] | EmployeeCertificationUncheckedCreateWithoutEmployeeInput[]
     connectOrCreate?: EmployeeCertificationCreateOrConnectWithoutEmployeeInput | EmployeeCertificationCreateOrConnectWithoutEmployeeInput[]
@@ -94093,6 +95714,20 @@ export namespace Prisma {
     update?: EmployeePledgeUpdateWithWhereUniqueWithoutEmployeeInput | EmployeePledgeUpdateWithWhereUniqueWithoutEmployeeInput[]
     updateMany?: EmployeePledgeUpdateManyWithWhereWithoutEmployeeInput | EmployeePledgeUpdateManyWithWhereWithoutEmployeeInput[]
     deleteMany?: EmployeePledgeScalarWhereInput | EmployeePledgeScalarWhereInput[]
+  }
+
+  export type PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput = {
+    create?: XOR<PaperSubmissionCreateWithoutEmployeeInput, PaperSubmissionUncheckedCreateWithoutEmployeeInput> | PaperSubmissionCreateWithoutEmployeeInput[] | PaperSubmissionUncheckedCreateWithoutEmployeeInput[]
+    connectOrCreate?: PaperSubmissionCreateOrConnectWithoutEmployeeInput | PaperSubmissionCreateOrConnectWithoutEmployeeInput[]
+    upsert?: PaperSubmissionUpsertWithWhereUniqueWithoutEmployeeInput | PaperSubmissionUpsertWithWhereUniqueWithoutEmployeeInput[]
+    createMany?: PaperSubmissionCreateManyEmployeeInputEnvelope
+    set?: PaperSubmissionWhereUniqueInput | PaperSubmissionWhereUniqueInput[]
+    disconnect?: PaperSubmissionWhereUniqueInput | PaperSubmissionWhereUniqueInput[]
+    delete?: PaperSubmissionWhereUniqueInput | PaperSubmissionWhereUniqueInput[]
+    connect?: PaperSubmissionWhereUniqueInput | PaperSubmissionWhereUniqueInput[]
+    update?: PaperSubmissionUpdateWithWhereUniqueWithoutEmployeeInput | PaperSubmissionUpdateWithWhereUniqueWithoutEmployeeInput[]
+    updateMany?: PaperSubmissionUpdateManyWithWhereWithoutEmployeeInput | PaperSubmissionUpdateManyWithWhereWithoutEmployeeInput[]
+    deleteMany?: PaperSubmissionScalarWhereInput | PaperSubmissionScalarWhereInput[]
   }
 
   export type EmployeeCreateNestedOneWithoutTransferHistoriesInput = {
@@ -95271,6 +96906,28 @@ export namespace Prisma {
     update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutProfileChangeRequestsInput, EmployeeUpdateWithoutProfileChangeRequestsInput>, EmployeeUncheckedUpdateWithoutProfileChangeRequestsInput>
   }
 
+  export type EmployeeCreateNestedOneWithoutPaperSubmissionsInput = {
+    create?: XOR<EmployeeCreateWithoutPaperSubmissionsInput, EmployeeUncheckedCreateWithoutPaperSubmissionsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutPaperSubmissionsInput
+    connect?: EmployeeWhereUniqueInput
+  }
+
+  export type EnumPaperSubmissionTypeFieldUpdateOperationsInput = {
+    set?: $Enums.PaperSubmissionType
+  }
+
+  export type EnumPaperSubmissionStatusFieldUpdateOperationsInput = {
+    set?: $Enums.PaperSubmissionStatus
+  }
+
+  export type EmployeeUpdateOneRequiredWithoutPaperSubmissionsNestedInput = {
+    create?: XOR<EmployeeCreateWithoutPaperSubmissionsInput, EmployeeUncheckedCreateWithoutPaperSubmissionsInput>
+    connectOrCreate?: EmployeeCreateOrConnectWithoutPaperSubmissionsInput
+    upsert?: EmployeeUpsertWithoutPaperSubmissionsInput
+    connect?: EmployeeWhereUniqueInput
+    update?: XOR<XOR<EmployeeUpdateToOneWithWhereWithoutPaperSubmissionsInput, EmployeeUpdateWithoutPaperSubmissionsInput>, EmployeeUncheckedUpdateWithoutPaperSubmissionsInput>
+  }
+
   export type EmployeeCreateNestedOneWithoutPledgesInput = {
     create?: XOR<EmployeeCreateWithoutPledgesInput, EmployeeUncheckedCreateWithoutPledgesInput>
     connectOrCreate?: EmployeeCreateOrConnectWithoutPledgesInput
@@ -96317,6 +97974,40 @@ export namespace Prisma {
     _max?: NestedEnumProfileChangeStatusFilter<$PrismaModel>
   }
 
+  export type NestedEnumPaperSubmissionTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.PaperSubmissionType | EnumPaperSubmissionTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.PaperSubmissionType[] | ListEnumPaperSubmissionTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PaperSubmissionType[] | ListEnumPaperSubmissionTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumPaperSubmissionTypeFilter<$PrismaModel> | $Enums.PaperSubmissionType
+  }
+
+  export type NestedEnumPaperSubmissionStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.PaperSubmissionStatus | EnumPaperSubmissionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.PaperSubmissionStatus[] | ListEnumPaperSubmissionStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PaperSubmissionStatus[] | ListEnumPaperSubmissionStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumPaperSubmissionStatusFilter<$PrismaModel> | $Enums.PaperSubmissionStatus
+  }
+
+  export type NestedEnumPaperSubmissionTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PaperSubmissionType | EnumPaperSubmissionTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.PaperSubmissionType[] | ListEnumPaperSubmissionTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PaperSubmissionType[] | ListEnumPaperSubmissionTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumPaperSubmissionTypeWithAggregatesFilter<$PrismaModel> | $Enums.PaperSubmissionType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPaperSubmissionTypeFilter<$PrismaModel>
+    _max?: NestedEnumPaperSubmissionTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumPaperSubmissionStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PaperSubmissionStatus | EnumPaperSubmissionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.PaperSubmissionStatus[] | ListEnumPaperSubmissionStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PaperSubmissionStatus[] | ListEnumPaperSubmissionStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumPaperSubmissionStatusWithAggregatesFilter<$PrismaModel> | $Enums.PaperSubmissionStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPaperSubmissionStatusFilter<$PrismaModel>
+    _max?: NestedEnumPaperSubmissionStatusFilter<$PrismaModel>
+  }
+
   export type NestedEnumPledgeStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.PledgeStatus | EnumPledgeStatusFieldRefInput<$PrismaModel>
     in?: $Enums.PledgeStatus[] | ListEnumPledgeStatusFieldRefInput<$PrismaModel>
@@ -96408,6 +98099,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutUserInput = {
@@ -96467,6 +98159,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutUserInput = {
@@ -96606,6 +98299,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutUserInput = {
@@ -96665,6 +98359,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeRequestUpsertWithWhereUniqueWithoutUserInput = {
@@ -96831,6 +98526,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutFacilityInput = {
@@ -96890,6 +98586,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutFacilityInput = {
@@ -97186,6 +98883,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDepartmentInput = {
@@ -97245,6 +98943,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDepartmentInput = {
@@ -98536,6 +100235,40 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type PaperSubmissionCreateWithoutEmployeeInput = {
+    id?: string
+    type: $Enums.PaperSubmissionType
+    status?: $Enums.PaperSubmissionStatus
+    receivedAt?: Date | string | null
+    verifiedAt?: Date | string | null
+    verifiedBy?: string | null
+    note?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PaperSubmissionUncheckedCreateWithoutEmployeeInput = {
+    id?: string
+    type: $Enums.PaperSubmissionType
+    status?: $Enums.PaperSubmissionStatus
+    receivedAt?: Date | string | null
+    verifiedAt?: Date | string | null
+    verifiedBy?: string | null
+    note?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PaperSubmissionCreateOrConnectWithoutEmployeeInput = {
+    where: PaperSubmissionWhereUniqueInput
+    create: XOR<PaperSubmissionCreateWithoutEmployeeInput, PaperSubmissionUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type PaperSubmissionCreateManyEmployeeInputEnvelope = {
+    data: PaperSubmissionCreateManyEmployeeInput | PaperSubmissionCreateManyEmployeeInput[]
+    skipDuplicates?: boolean
+  }
+
   export type FacilityUpsertWithoutEmployeesInput = {
     update: XOR<FacilityUpdateWithoutEmployeesInput, FacilityUncheckedUpdateWithoutEmployeesInput>
     create: XOR<FacilityCreateWithoutEmployeesInput, FacilityUncheckedCreateWithoutEmployeesInput>
@@ -99514,6 +101247,38 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"EmployeePledge"> | Date | string
   }
 
+  export type PaperSubmissionUpsertWithWhereUniqueWithoutEmployeeInput = {
+    where: PaperSubmissionWhereUniqueInput
+    update: XOR<PaperSubmissionUpdateWithoutEmployeeInput, PaperSubmissionUncheckedUpdateWithoutEmployeeInput>
+    create: XOR<PaperSubmissionCreateWithoutEmployeeInput, PaperSubmissionUncheckedCreateWithoutEmployeeInput>
+  }
+
+  export type PaperSubmissionUpdateWithWhereUniqueWithoutEmployeeInput = {
+    where: PaperSubmissionWhereUniqueInput
+    data: XOR<PaperSubmissionUpdateWithoutEmployeeInput, PaperSubmissionUncheckedUpdateWithoutEmployeeInput>
+  }
+
+  export type PaperSubmissionUpdateManyWithWhereWithoutEmployeeInput = {
+    where: PaperSubmissionScalarWhereInput
+    data: XOR<PaperSubmissionUpdateManyMutationInput, PaperSubmissionUncheckedUpdateManyWithoutEmployeeInput>
+  }
+
+  export type PaperSubmissionScalarWhereInput = {
+    AND?: PaperSubmissionScalarWhereInput | PaperSubmissionScalarWhereInput[]
+    OR?: PaperSubmissionScalarWhereInput[]
+    NOT?: PaperSubmissionScalarWhereInput | PaperSubmissionScalarWhereInput[]
+    id?: StringFilter<"PaperSubmission"> | string
+    employeeId?: StringFilter<"PaperSubmission"> | string
+    type?: EnumPaperSubmissionTypeFilter<"PaperSubmission"> | $Enums.PaperSubmissionType
+    status?: EnumPaperSubmissionStatusFilter<"PaperSubmission"> | $Enums.PaperSubmissionStatus
+    receivedAt?: DateTimeNullableFilter<"PaperSubmission"> | Date | string | null
+    verifiedAt?: DateTimeNullableFilter<"PaperSubmission"> | Date | string | null
+    verifiedBy?: StringNullableFilter<"PaperSubmission"> | string | null
+    note?: StringNullableFilter<"PaperSubmission"> | string | null
+    createdAt?: DateTimeFilter<"PaperSubmission"> | Date | string
+    updatedAt?: DateTimeFilter<"PaperSubmission"> | Date | string
+  }
+
   export type EmployeeCreateWithoutTransferHistoriesInput = {
     id?: string
     employeeNo: string
@@ -99571,6 +101336,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutTransferHistoriesInput = {
@@ -99630,6 +101396,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutTransferHistoriesInput = {
@@ -99801,6 +101568,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutTransferHistoriesInput = {
@@ -99860,6 +101628,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type FacilityUpsertWithoutTransfersFromInput = {
@@ -100039,6 +101808,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDependentsInput = {
@@ -100098,6 +101868,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDependentsInput = {
@@ -100209,6 +101980,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDependentsInput = {
@@ -100268,6 +102040,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmploymentContractConsentUpsertWithWhereUniqueWithoutDependentInput = {
@@ -100360,6 +102133,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmploymentHistoriesInput = {
@@ -100419,6 +102193,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmploymentHistoriesInput = {
@@ -100494,6 +102269,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmploymentHistoriesInput = {
@@ -100553,6 +102329,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmployeeMyNumberInput = {
@@ -100612,6 +102389,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmployeeMyNumberInput = {
@@ -100671,6 +102449,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmployeeMyNumberInput = {
@@ -100746,6 +102525,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmployeeMyNumberInput = {
@@ -100805,6 +102585,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmployeeSalaryInput = {
@@ -100864,6 +102645,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmployeeSalaryInput = {
@@ -100923,6 +102705,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmployeeSalaryInput = {
@@ -100998,6 +102781,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmployeeSalaryInput = {
@@ -101057,6 +102841,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutSalaryHistoriesInput = {
@@ -101116,6 +102901,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutSalaryHistoriesInput = {
@@ -101175,6 +102961,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutSalaryHistoriesInput = {
@@ -101250,6 +103037,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutSalaryHistoriesInput = {
@@ -101309,6 +103097,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutLeaveGrantHistoriesInput = {
@@ -101368,6 +103157,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLeaveGrantHistoriesInput = {
@@ -101427,6 +103217,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLeaveGrantHistoriesInput = {
@@ -101551,6 +103342,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLeaveGrantHistoriesInput = {
@@ -101610,6 +103402,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type LeaveTypeUpsertWithoutLeaveGrantHistoriesInput = {
@@ -101724,6 +103517,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLeaveBalanceInput = {
@@ -101783,6 +103577,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLeaveBalanceInput = {
@@ -101858,6 +103653,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLeaveBalanceInput = {
@@ -101917,6 +103713,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutRequestsInput = {
@@ -101976,6 +103773,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutRequestsInput = {
@@ -102035,6 +103833,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutRequestsInput = {
@@ -102272,6 +104071,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutRequestsInput = {
@@ -102331,6 +104131,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type LeaveTypeUpsertWithoutEmployeeRequestsInput = {
@@ -103272,6 +105073,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutCertificationsInput = {
@@ -103331,6 +105133,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutCertificationsInput = {
@@ -103465,6 +105268,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutCertificationsInput = {
@@ -103524,6 +105328,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCertificationAttachmentUpsertWithWhereUniqueWithoutEmployeeCertificationInput = {
@@ -103803,6 +105608,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutBankAccountInput = {
@@ -103862,6 +105668,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutBankAccountInput = {
@@ -103965,6 +105772,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutBankAccountInput = {
@@ -104024,6 +105832,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeBankAttachmentUpsertWithWhereUniqueWithoutBankAccountInput = {
@@ -104204,6 +106013,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutDependentRequestsInput = {
@@ -104263,6 +106073,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutDependentRequestsInput = {
@@ -104366,6 +106177,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDependentRequestsInput = {
@@ -104425,6 +106237,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type DependentRequestAttachmentUpsertWithWhereUniqueWithoutDependentRequestInput = {
@@ -104617,6 +106430,7 @@ export namespace Prisma {
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutResidenceRequestsInput = {
@@ -104676,6 +106490,7 @@ export namespace Prisma {
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutResidenceRequestsInput = {
@@ -104781,6 +106596,7 @@ export namespace Prisma {
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutResidenceRequestsInput = {
@@ -104840,6 +106656,7 @@ export namespace Prisma {
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type ResidenceRequestAttachmentUpsertWithWhereUniqueWithoutResidenceRequestInput = {
@@ -105073,6 +106890,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutCommutingRequestsInput = {
@@ -105132,6 +106950,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutCommutingRequestsInput = {
@@ -105281,6 +107100,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutCommutingRequestsInput = {
@@ -105340,6 +107160,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type CommutingRequestAttachmentUpsertWithWhereUniqueWithoutCommutingRequestInput = {
@@ -105730,6 +107551,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutProfileChangeRequestsInput = {
@@ -105789,6 +107611,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutProfileChangeRequestsInput = {
@@ -105864,6 +107687,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutProfileChangeRequestsInput = {
@@ -105908,6 +107732,263 @@ export namespace Prisma {
     leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
     bankAccount?: EmployeeBankAccountUncheckedUpdateOneWithoutEmployeeNestedInput
     leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUncheckedUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUncheckedUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUncheckedUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeCreateWithoutPaperSubmissionsInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
+    emergencyContact?: string | null
+    facility?: FacilityCreateNestedOneWithoutEmployeesInput
+    department?: DepartmentCreateNestedOneWithoutEmployeesInput
+    user?: UserCreateNestedOneWithoutEmployeeInput
+    certifications?: EmployeeCertificationCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
+    pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeUncheckedCreateWithoutPaperSubmissionsInput = {
+    id?: string
+    employeeNo: string
+    firstName: string
+    lastName: string
+    email: string
+    createdAt?: Date | string
+    departmentId?: string | null
+    facilityId?: string | null
+    address?: string | null
+    birthDate?: Date | string | null
+    firstNameKana?: string | null
+    gender?: $Enums.Gender | null
+    hireDate?: Date | string | null
+    lastNameKana?: string | null
+    occupation?: string | null
+    phoneNumber?: string | null
+    position?: string | null
+    commutingType?: string | null
+    employmentType?: $Enums.EmploymentType | null
+    weeklyScheduledDays?: number | null
+    weeklyScheduledHours?: number | null
+    annualScheduledDays?: number | null
+    dailyScheduledHours?: number | null
+    status?: $Enums.EmployeeStatus
+    employmentInsuranceNo?: string | null
+    healthInsuranceNo?: string | null
+    retirementDate?: Date | string | null
+    photoPath?: string | null
+    onboardingCompletedAt?: Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
+    userId?: string | null
+    emergencyContact?: string | null
+    certifications?: EmployeeCertificationUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedCreateNestedOneWithoutEmployeeInput
+    requests?: EmployeeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    commutingRequests?: CommutingRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employeeSalary?: EmployeeSalaryUncheckedCreateNestedOneWithoutEmployeeInput
+    employmentHistories?: EmploymentHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    leaveBalance?: LeaveBalanceUncheckedCreateNestedOneWithoutEmployeeInput
+    bankAccount?: EmployeeBankAccountUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    salaryHistories?: SalaryHistoryUncheckedCreateNestedManyWithoutEmployeeInput
+    dependents?: DependentUncheckedCreateNestedManyWithoutEmployeeInput
+    dependentRequests?: DependentRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    employmentContracts?: EmploymentContractUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementChecklist?: RetirementChecklistUncheckedCreateNestedOneWithoutEmployeeInput
+    loanedAssets?: LoanedAssetUncheckedCreateNestedManyWithoutEmployeeInput
+    retirementCertificate?: RetirementCertificateUncheckedCreateNestedOneWithoutEmployeeInput
+    leaveTypeBalances?: LeaveTypeBalanceUncheckedCreateNestedManyWithoutEmployeeInput
+    lateRecords?: LateRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    earlyLeaveRecords?: EarlyLeaveRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    outingRecords?: OutingRecordUncheckedCreateNestedManyWithoutEmployeeInput
+    transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
+    personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
+    residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+  }
+
+  export type EmployeeCreateOrConnectWithoutPaperSubmissionsInput = {
+    where: EmployeeWhereUniqueInput
+    create: XOR<EmployeeCreateWithoutPaperSubmissionsInput, EmployeeUncheckedCreateWithoutPaperSubmissionsInput>
+  }
+
+  export type EmployeeUpsertWithoutPaperSubmissionsInput = {
+    update: XOR<EmployeeUpdateWithoutPaperSubmissionsInput, EmployeeUncheckedUpdateWithoutPaperSubmissionsInput>
+    create: XOR<EmployeeCreateWithoutPaperSubmissionsInput, EmployeeUncheckedCreateWithoutPaperSubmissionsInput>
+    where?: EmployeeWhereInput
+  }
+
+  export type EmployeeUpdateToOneWithWhereWithoutPaperSubmissionsInput = {
+    where?: EmployeeWhereInput
+    data: XOR<EmployeeUpdateWithoutPaperSubmissionsInput, EmployeeUncheckedUpdateWithoutPaperSubmissionsInput>
+  }
+
+  export type EmployeeUpdateWithoutPaperSubmissionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    facility?: FacilityUpdateOneWithoutEmployeesNestedInput
+    department?: DepartmentUpdateOneWithoutEmployeesNestedInput
+    user?: UserUpdateOneWithoutEmployeeNestedInput
+    certifications?: EmployeeCertificationUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUpdateManyWithoutEmployeeNestedInput
+    salaryHistories?: SalaryHistoryUpdateManyWithoutEmployeeNestedInput
+    dependents?: DependentUpdateManyWithoutEmployeeNestedInput
+    dependentRequests?: DependentRequestUpdateManyWithoutEmployeeNestedInput
+    employmentContracts?: EmploymentContractUpdateManyWithoutEmployeeNestedInput
+    retirementChecklist?: RetirementChecklistUpdateOneWithoutEmployeeNestedInput
+    loanedAssets?: LoanedAssetUpdateManyWithoutEmployeeNestedInput
+    retirementCertificate?: RetirementCertificateUpdateOneWithoutEmployeeNestedInput
+    leaveTypeBalances?: LeaveTypeBalanceUpdateManyWithoutEmployeeNestedInput
+    lateRecords?: LateRecordUpdateManyWithoutEmployeeNestedInput
+    earlyLeaveRecords?: EarlyLeaveRecordUpdateManyWithoutEmployeeNestedInput
+    outingRecords?: OutingRecordUpdateManyWithoutEmployeeNestedInput
+    transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
+    personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
+    residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
+    pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+  }
+
+  export type EmployeeUncheckedUpdateWithoutPaperSubmissionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    employeeNo?: StringFieldUpdateOperationsInput | string
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    departmentId?: NullableStringFieldUpdateOperationsInput | string | null
+    facilityId?: NullableStringFieldUpdateOperationsInput | string | null
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    birthDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    firstNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    gender?: NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
+    hireDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastNameKana?: NullableStringFieldUpdateOperationsInput | string | null
+    occupation?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    position?: NullableStringFieldUpdateOperationsInput | string | null
+    commutingType?: NullableStringFieldUpdateOperationsInput | string | null
+    employmentType?: NullableEnumEmploymentTypeFieldUpdateOperationsInput | $Enums.EmploymentType | null
+    weeklyScheduledDays?: NullableFloatFieldUpdateOperationsInput | number | null
+    weeklyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    annualScheduledDays?: NullableIntFieldUpdateOperationsInput | number | null
+    dailyScheduledHours?: NullableFloatFieldUpdateOperationsInput | number | null
+    status?: EnumEmployeeStatusFieldUpdateOperationsInput | $Enums.EmployeeStatus
+    employmentInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    healthInsuranceNo?: NullableStringFieldUpdateOperationsInput | string | null
+    retirementDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    photoPath?: NullableStringFieldUpdateOperationsInput | string | null
+    onboardingCompletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    onboardingSkippedItems?: NullableJsonNullValueInput | InputJsonValue
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    emergencyContact?: NullableStringFieldUpdateOperationsInput | string | null
+    certifications?: EmployeeCertificationUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeMyNumber?: EmployeeMyNumberUncheckedUpdateOneWithoutEmployeeNestedInput
+    requests?: EmployeeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    commutingRequests?: CommutingRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    employeeSalary?: EmployeeSalaryUncheckedUpdateOneWithoutEmployeeNestedInput
+    employmentHistories?: EmploymentHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    leaveBalance?: LeaveBalanceUncheckedUpdateOneWithoutEmployeeNestedInput
+    bankAccount?: EmployeeBankAccountUncheckedUpdateOneWithoutEmployeeNestedInput
+    leaveGrantHistories?: LeaveGrantHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
+    profileChangeRequests?: ProfileChangeRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     salaryHistories?: SalaryHistoryUncheckedUpdateManyWithoutEmployeeNestedInput
     dependents?: DependentUncheckedUpdateManyWithoutEmployeeNestedInput
     dependentRequests?: DependentRequestUncheckedUpdateManyWithoutEmployeeNestedInput
@@ -105982,6 +108063,7 @@ export namespace Prisma {
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutPledgesInput = {
@@ -106041,6 +108123,7 @@ export namespace Prisma {
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutPledgesInput = {
@@ -106116,6 +108199,7 @@ export namespace Prisma {
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutPledgesInput = {
@@ -106175,6 +108259,7 @@ export namespace Prisma {
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEmploymentContractsInput = {
@@ -106234,6 +108319,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEmploymentContractsInput = {
@@ -106293,6 +108379,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEmploymentContractsInput = {
@@ -106436,6 +108523,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEmploymentContractsInput = {
@@ -106495,6 +108583,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmploymentContractConsentUpsertWithWhereUniqueWithoutEmploymentContractInput = {
@@ -107081,6 +109170,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLeaveTypeBalancesInput = {
@@ -107140,6 +109230,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLeaveTypeBalancesInput = {
@@ -107264,6 +109355,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLeaveTypeBalancesInput = {
@@ -107323,6 +109415,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type LeaveTypeUpsertWithoutLeaveTypeBalancesInput = {
@@ -107609,6 +109702,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutRetirementChecklistInput = {
@@ -107668,6 +109762,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutRetirementChecklistInput = {
@@ -107743,6 +109838,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutRetirementChecklistInput = {
@@ -107802,6 +109898,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutLoanedAssetsInput = {
@@ -107861,6 +109958,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLoanedAssetsInput = {
@@ -107920,6 +110018,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLoanedAssetsInput = {
@@ -107995,6 +110094,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLoanedAssetsInput = {
@@ -108054,6 +110154,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutRetirementCertificateInput = {
@@ -108113,6 +110214,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutRetirementCertificateInput = {
@@ -108172,6 +110274,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutRetirementCertificateInput = {
@@ -108247,6 +110350,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutRetirementCertificateInput = {
@@ -108306,6 +110410,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutLateRecordsInput = {
@@ -108365,6 +110470,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutLateRecordsInput = {
@@ -108424,6 +110530,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutLateRecordsInput = {
@@ -108499,6 +110606,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutLateRecordsInput = {
@@ -108558,6 +110666,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutEarlyLeaveRecordsInput = {
@@ -108617,6 +110726,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutEarlyLeaveRecordsInput = {
@@ -108676,6 +110786,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutEarlyLeaveRecordsInput = {
@@ -108751,6 +110862,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutEarlyLeaveRecordsInput = {
@@ -108810,6 +110922,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutOutingRecordsInput = {
@@ -108869,6 +110982,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutOutingRecordsInput = {
@@ -108928,6 +111042,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutOutingRecordsInput = {
@@ -109003,6 +111118,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutOutingRecordsInput = {
@@ -109062,6 +111178,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeCreateWithoutPersonalDocumentsInput = {
@@ -109121,6 +111238,7 @@ export namespace Prisma {
     transferHistories?: EmployeeTransferCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeUncheckedCreateWithoutPersonalDocumentsInput = {
@@ -109180,6 +111298,7 @@ export namespace Prisma {
     transferHistories?: EmployeeTransferUncheckedCreateNestedManyWithoutEmployeeInput
     residenceRequests?: ResidenceRequestUncheckedCreateNestedManyWithoutEmployeeInput
     pledges?: EmployeePledgeUncheckedCreateNestedManyWithoutEmployeeInput
+    paperSubmissions?: PaperSubmissionUncheckedCreateNestedManyWithoutEmployeeInput
   }
 
   export type EmployeeCreateOrConnectWithoutPersonalDocumentsInput = {
@@ -109255,6 +111374,7 @@ export namespace Prisma {
     transferHistories?: EmployeeTransferUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutPersonalDocumentsInput = {
@@ -109314,6 +111434,7 @@ export namespace Prisma {
     transferHistories?: EmployeeTransferUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeRequestCreateManyUserInput = {
@@ -109586,6 +111707,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutFacilityInput = {
@@ -109645,6 +111767,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateManyWithoutFacilityInput = {
@@ -109904,6 +112027,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateWithoutDepartmentInput = {
@@ -109963,6 +112087,7 @@ export namespace Prisma {
     personalDocuments?: PersonalDocumentUncheckedUpdateManyWithoutEmployeeNestedInput
     residenceRequests?: ResidenceRequestUncheckedUpdateManyWithoutEmployeeNestedInput
     pledges?: EmployeePledgeUncheckedUpdateManyWithoutEmployeeNestedInput
+    paperSubmissions?: PaperSubmissionUncheckedUpdateManyWithoutEmployeeNestedInput
   }
 
   export type EmployeeUncheckedUpdateManyWithoutDepartmentInput = {
@@ -110413,6 +112538,18 @@ export namespace Prisma {
     verifiedAt?: Date | string | null
     verifiedBy?: string | null
     reviewComment?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type PaperSubmissionCreateManyEmployeeInput = {
+    id?: string
+    type: $Enums.PaperSubmissionType
+    status?: $Enums.PaperSubmissionStatus
+    receivedAt?: Date | string | null
+    verifiedAt?: Date | string | null
+    verifiedBy?: string | null
+    note?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -111392,6 +113529,42 @@ export namespace Prisma {
     verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     verifiedBy?: NullableStringFieldUpdateOperationsInput | string | null
     reviewComment?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PaperSubmissionUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumPaperSubmissionTypeFieldUpdateOperationsInput | $Enums.PaperSubmissionType
+    status?: EnumPaperSubmissionStatusFieldUpdateOperationsInput | $Enums.PaperSubmissionStatus
+    receivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verifiedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PaperSubmissionUncheckedUpdateWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumPaperSubmissionTypeFieldUpdateOperationsInput | $Enums.PaperSubmissionType
+    status?: EnumPaperSubmissionStatusFieldUpdateOperationsInput | $Enums.PaperSubmissionStatus
+    receivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verifiedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PaperSubmissionUncheckedUpdateManyWithoutEmployeeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    type?: EnumPaperSubmissionTypeFieldUpdateOperationsInput | $Enums.PaperSubmissionType
+    status?: EnumPaperSubmissionStatusFieldUpdateOperationsInput | $Enums.PaperSubmissionStatus
+    receivedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    verifiedBy?: NullableStringFieldUpdateOperationsInput | string | null
+    note?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

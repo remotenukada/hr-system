@@ -84,6 +84,12 @@ export default function HRManagementMenu({
           >
             誓約書確認
           </Link>
+          <Link
+            href="/paper-submissions"
+            className="text-base text-blue-600 hover:underline"
+          >
+            紙提出物管理
+          </Link>
         </div>
       </section>
 

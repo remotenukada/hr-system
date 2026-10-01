@@ -588,6 +588,19 @@ exports.Prisma.ProfileChangeRequestScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.PaperSubmissionScalarFieldEnum = {
+  id: 'id',
+  employeeId: 'employeeId',
+  type: 'type',
+  status: 'status',
+  receivedAt: 'receivedAt',
+  verifiedAt: 'verifiedAt',
+  verifiedBy: 'verifiedBy',
+  note: 'note',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.EmployeePledgeScalarFieldEnum = {
   id: 'id',
   employeeId: 'employeeId',
@@ -1161,6 +1174,19 @@ exports.ProfileChangeStatus = exports.$Enums.ProfileChangeStatus = {
   REJECTED: 'REJECTED'
 };
 
+exports.PaperSubmissionType = exports.$Enums.PaperSubmissionType = {
+  PLEDGE: 'PLEDGE',
+  BANK_ACCOUNT: 'BANK_ACCOUNT',
+  MY_NUMBER: 'MY_NUMBER'
+};
+
+exports.PaperSubmissionStatus = exports.$Enums.PaperSubmissionStatus = {
+  PLANNED: 'PLANNED',
+  RECEIVED: 'RECEIVED',
+  VERIFIED: 'VERIFIED',
+  DEFICIENT: 'DEFICIENT'
+};
+
 exports.PledgeStatus = exports.$Enums.PledgeStatus = {
   PENDING: 'PENDING',
   EMPLOYEE_SIGNED: 'EMPLOYEE_SIGNED',
@@ -1210,6 +1236,7 @@ exports.Prisma.ModelName = {
   CommutingRouteSegment: 'CommutingRouteSegment',
   CommutingRequestAttachment: 'CommutingRequestAttachment',
   ProfileChangeRequest: 'ProfileChangeRequest',
+  PaperSubmission: 'PaperSubmission',
   EmployeePledge: 'EmployeePledge',
   EmploymentContract: 'EmploymentContract',
   CompanySetting: 'CompanySetting',

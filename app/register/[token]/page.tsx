@@ -171,6 +171,26 @@ async function completeRegistration(formData: FormData) {
       },
     });
 
+    const paperSubmissionTypes = onboardingPresetItems.filter(
+      (
+        item,
+      ): item is "PLEDGE" | "BANK_ACCOUNT" | "MY_NUMBER" =>
+        item === "PLEDGE" ||
+        item === "BANK_ACCOUNT" ||
+        item === "MY_NUMBER",
+    );
+
+    if (paperSubmissionTypes.length > 0) {
+      await tx.paperSubmission.createMany({
+        data: paperSubmissionTypes.map((type) => ({
+          employeeId: employee.id,
+          type,
+          status: "PLANNED",
+        })),
+        skipDuplicates: true,
+      });
+    }
+
     const updatedInvitation = await tx.userInvitation.update({
       where: {
         id: invitation.id,
