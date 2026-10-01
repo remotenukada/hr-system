@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
 import { prisma } from "@/lib/prisma";
+import { parseDateOnly } from "@/lib/date-utils";
 import DateInput from "@/components/ui/date-input";
 import { requireHRManager } from "@/lib/auth-guard";
 import { logAudit } from "@/lib/audit-log";
@@ -127,7 +128,7 @@ export default async function EditDependentPage({ params }: Props) {
         name,
         nameKana: nameKana || null,
         relationship,
-        birthDate: birthDate ? new Date(birthDate) : null,
+        birthDate: parseDateOnly(birthDate),
         cohabiting,
         healthInsuranceDependent,
         annualIncome: annualIncomeRaw ? parseInt(annualIncomeRaw, 10) : null,

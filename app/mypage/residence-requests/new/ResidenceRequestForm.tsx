@@ -1,5 +1,7 @@
 "use client";
 
+import DateInput from "@/components/ui/date-input";
+
 import { useState } from "react";
 
 type Props = {
@@ -69,8 +71,7 @@ export default function ResidenceRequestForm({
             <span className="mb-1 block text-sm font-medium">
               変更日
             </span>
-            <input
-              type="date"
+            <DateInput
               name="changeDate"
               required
               className="w-full rounded border p-2"
@@ -161,7 +162,7 @@ export default function ResidenceRequestForm({
               <input name="ownerName2" placeholder="名義人2" className="rounded border p-2" />
               <label>
                 <span className="mb-1 block text-sm font-medium">取得年月日</span>
-                <input type="date" name="acquisitionDate" className="w-full rounded border p-2" />
+                <DateInput name="acquisitionDate" className="w-full rounded border p-2" />
               </label>
             </div>
           </div>

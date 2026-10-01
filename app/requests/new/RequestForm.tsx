@@ -1,5 +1,7 @@
 "use client";
 
+import UnifiedDateInput from "@/components/ui/date-input";
+
 import { useState } from "react";
 
 type LeaveType = {
@@ -111,8 +113,7 @@ export default function RequestForm({ leaveTypes, action }: Props) {
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
                 <label className={labelClass}>開始日</label>
-                <input
-                  type="date"
+                <UnifiedDateInput
                   name="leaveStartDate"
                   className={inputClass}
                   required
@@ -121,8 +122,7 @@ export default function RequestForm({ leaveTypes, action }: Props) {
 
               <div>
                 <label className={labelClass}>終了日</label>
-                <input
-                  type="date"
+                <UnifiedDateInput
                   name="leaveEndDate"
                   className={inputClass}
                   required
@@ -285,7 +285,7 @@ function DateInput({
   return (
     <div>
       <label className={labelClass}>対象日</label>
-      <input type="date" name="targetDate" className={className} required />
+      <UnifiedDateInput name="targetDate" className={className} required />
     </div>
   );
 }

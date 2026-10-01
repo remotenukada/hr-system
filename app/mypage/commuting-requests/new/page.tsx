@@ -7,6 +7,7 @@ import { revalidatePath } from "next/cache";
 
 import { auth } from "@/auth";
 import { prisma } from "@/lib/prisma";
+import DateInput from "@/components/ui/date-input";
 import { logAudit } from "@/lib/audit-log";
 import CommutingRouteSegmentFields from "@/components/CommutingRouteSegmentFields";
 import {
@@ -399,8 +400,7 @@ export default async function NewCommutingRequestPage() {
           <label className="mb-1 block text-sm font-medium text-gray-700">
             適用開始日 <span className="text-red-500">*</span>
           </label>
-          <input
-            type="date"
+          <DateInput
             name="effectiveDate"
             className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
             required

@@ -4,6 +4,7 @@ import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
+import { parseDateOnly } from "@/lib/date-utils";
 import DateInput from "@/components/ui/date-input";
 import { requireHRManager } from "@/lib/auth-guard";
 import { logAudit } from "@/lib/audit-log";
@@ -114,7 +115,7 @@ export default async function EmployeeEditPage({ params }: Props) {
         firstNameKana: firstNameKana || null,
 
         gender: genderRaw ? (genderRaw as Gender) : null,
-        birthDate: birthDate ? new Date(birthDate) : null,
+        birthDate: parseDateOnly(birthDate),
 
         phoneNumber: phoneNumber || null,
         address: address || null,
@@ -124,8 +125,8 @@ export default async function EmployeeEditPage({ params }: Props) {
         occupation: occupation || null,
         position: position || null,
 
-        hireDate: hireDate ? new Date(hireDate) : null,
-        retirementDate: retirementDate ? new Date(retirementDate) : null,
+        hireDate: parseDateOnly(hireDate),
+        retirementDate: parseDateOnly(retirementDate),
 
         employmentType: employmentTypeRaw
           ? (employmentTypeRaw as EmploymentType)
