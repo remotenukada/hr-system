@@ -31,6 +31,19 @@ async function confirmGuarantor(formData: FormData) {
   const confirmerName = String(
     formData.get("confirmerName") ?? "",
   ).trim();
+
+  const guarantorRelation = String(
+    formData.get("guarantorRelation") ?? "",
+  ).trim();
+
+  const guarantorAddress = String(
+    formData.get("guarantorAddress") ?? "",
+  ).trim();
+
+  const guarantorPhone = String(
+    formData.get("guarantorPhone") ?? "",
+  ).trim();
+
   const agreed = formData.get("agreed") === "on";
 
   const pledge = await prisma.employeePledge.findUnique({
@@ -60,7 +73,14 @@ async function confirmGuarantor(formData: FormData) {
 
   const actualName = confirmerName.replace(/[  ]/g, "");
 
-  if (!agreed || !actualName || actualName !== expectedName) {
+  if (
+    !agreed ||
+    !actualName ||
+    actualName !== expectedName ||
+    !guarantorRelation ||
+    !guarantorAddress ||
+    !guarantorPhone
+  ) {
     redirect(`/guarantor-confirm/${token}?error=confirmation`);
   }
 
@@ -70,6 +90,9 @@ async function confirmGuarantor(formData: FormData) {
     },
     data: {
       status: "GUARANTOR_CONFIRMED",
+      guarantorRelation,
+      guarantorAddress,
+      guarantorPhone,
       guarantorConfirmedAt: new Date(),
       guarantorToken: null,
       guarantorTokenExpiresAt: null,
@@ -147,7 +170,7 @@ export default async function GuarantorConfirmPage({
 
       {query.error === "confirmation" && (
         <div className="mt-6 rounded border border-red-200 bg-red-50 p-4 text-red-700">
-          氏名と同意内容を確認してください。
+          氏名、続柄、住所、電話番号および同意内容を確認してください。
         </div>
       )}
 
@@ -193,9 +216,58 @@ export default async function GuarantorConfirmPage({
             <input
               name="confirmerName"
               required
+              readOnly
               defaultValue={pledge.guarantorName ?? ""}
+              className="w-full rounded border bg-gray-50 px-3 py-2 text-gray-700"
+            />
+            <p className="mt-1 text-xs text-gray-500">
+              氏名に誤りがある場合は、本人または人事担当へご連絡ください。
+            </p>
+          </div>
+
+          <div>
+            <label className="mb-1 block text-sm font-medium">
+              本人との続柄
+            </label>
+            <input
+              name="guarantorRelation"
+              required
+              defaultValue={pledge.guarantorRelation ?? ""}
+              placeholder="例：父、母、配偶者"
               className="w-full rounded border px-3 py-2"
             />
+          </div>
+
+          <div>
+            <label className="mb-1 block text-sm font-medium">
+              住所
+            </label>
+            <textarea
+              name="guarantorAddress"
+              required
+              rows={3}
+              defaultValue={pledge.guarantorAddress ?? ""}
+              className="w-full rounded border px-3 py-2"
+            />
+          </div>
+
+          <div>
+            <label className="mb-1 block text-sm font-medium">
+              電話番号
+            </label>
+            <input
+              type="tel"
+              name="guarantorPhone"
+              required
+              defaultValue={pledge.guarantorPhone ?? ""}
+              placeholder="例：090-1234-5678"
+              className="w-full rounded border px-3 py-2"
+            />
+          </div>
+
+          <div className="rounded border border-blue-100 bg-blue-50 p-3 text-xs text-blue-800">
+            入力した氏名、続柄、住所、電話番号は誓約書へ記録されます。
+            メールアドレスは帳票には表示されません。
           </div>
 
           <label className="flex items-start gap-2 text-sm">

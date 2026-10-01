@@ -66,25 +66,13 @@ async function signElectronically(formData: FormData) {
     formData.get("guarantorName") ?? "",
   ).trim();
 
-  const guarantorRelation = String(
-    formData.get("guarantorRelation") ?? "",
-  ).trim();
-
-  const guarantorAddress = String(
-    formData.get("guarantorAddress") ?? "",
-  ).trim();
-
-  const guarantorPhone = String(
-    formData.get("guarantorPhone") ?? "",
-  ).trim();
-
   const guarantorEmail = String(
     formData.get("guarantorEmail") ?? "",
   ).trim();
 
   const agreed = formData.get("agreed") === "on";
 
-  if (!guarantorName || !guarantorRelation || !guarantorAddress || !guarantorPhone || !guarantorEmail) {
+  if (!guarantorName || !guarantorEmail) {
     redirect("/mypage/pledge?error=guarantor");
   }
 
@@ -143,9 +131,6 @@ async function signElectronically(formData: FormData) {
       employeeSignedAt: signedAt,
       employeeSignedIp: ipAddress,
       guarantorName,
-      guarantorRelation,
-      guarantorAddress,
-      guarantorPhone,
       guarantorEmail,
       guarantorToken,
       guarantorTokenExpiresAt,
@@ -240,6 +225,86 @@ async function uploadPaperPledge(formData: FormData) {
 
   revalidatePath("/mypage/pledge");
   redirect("/mypage/pledge?saved=paper");
+}
+
+async function updateGuarantorInfo(
+  formData: FormData,
+) {
+  "use server";
+
+  const employee = await getEmployee();
+
+  const guarantorName = String(
+    formData.get("guarantorName") ?? "",
+  ).trim();
+
+  const guarantorEmail = String(
+    formData.get("guarantorEmail") ?? "",
+  ).trim();
+
+  if (!guarantorName || !guarantorEmail) {
+    redirect("/mypage/pledge?error=guarantor");
+  }
+
+  const pledge =
+    await prisma.employeePledge.findFirst({
+      where: {
+        employeeId: employee.id,
+        status: "GUARANTOR_PENDING",
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+  if (!pledge) {
+    redirect("/mypage/pledge");
+  }
+
+  const guarantorToken = randomUUID();
+
+  const guarantorTokenExpiresAt =
+    new Date();
+
+  guarantorTokenExpiresAt.setDate(
+    guarantorTokenExpiresAt.getDate() + 14,
+  );
+
+  await prisma.employeePledge.update({
+    where: { id: pledge.id },
+    data: {
+      guarantorName,
+      guarantorEmail,
+      guarantorToken,
+      guarantorTokenExpiresAt,
+    },
+  });
+
+  const appUrl = (
+    process.env.NEXT_PUBLIC_APP_URL ??
+    "http://localhost:3000"
+  ).replace(/\/$/, "");
+
+  const confirmationUrl =
+    `${appUrl}/guarantor-confirm/${guarantorToken}`;
+
+  await sendSystemMailSafely({
+    to: guarantorEmail,
+    subject: "【FY Nexus One】身元保証人確認のお願い",
+    text: `${guarantorName} 様
+
+保証人確認情報が更新されました。
+
+${confirmationUrl}
+
+有効期限は14日間です。`,
+  });
+
+  revalidatePath("/mypage/pledge");
+
+  redirect(
+    "/mypage/pledge?saved=guarantor"
+  );
 }
 
 
@@ -344,6 +409,57 @@ export default async function PledgePage({
         </section>
       )}
 
+      {latest?.status === "GUARANTOR_PENDING" && (
+        <section className="mt-6 rounded-lg border border-blue-200 bg-blue-50 p-5 shadow-sm">
+          <h2 className="font-semibold text-gray-900">
+            身元保証人情報の修正・メール再送
+          </h2>
+
+          <p className="mt-2 text-sm text-gray-600">
+            身元保証人の氏名またはメールアドレスに誤りがある場合、
+            修正して確認メールを再送できます。
+          </p>
+
+          <form action={updateGuarantorInfo} className="mt-4 space-y-4">
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                身元保証人 氏名
+              </label>
+              <input
+                type="text"
+                name="guarantorName"
+                required
+                defaultValue={latest.guarantorName ?? ""}
+                className="w-full rounded border border-gray-300 bg-white px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label className="mb-1 block text-sm font-medium text-gray-700">
+                身元保証人 メールアドレス
+              </label>
+              <input
+                type="email"
+                name="guarantorEmail"
+                required
+                defaultValue={latest.guarantorEmail ?? ""}
+                className="w-full rounded border border-gray-300 bg-white px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+              />
+              <p className="mt-1 text-xs text-gray-500">
+                更新すると、現在の確認URLは無効になり、新しいURLを送信します。
+              </p>
+            </div>
+
+            <button
+              type="submit"
+              className="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+            >
+              保証人情報を更新して確認メールを再送
+            </button>
+          </form>
+        </section>
+      )}
+
       <section className="mt-8 rounded-lg border bg-white p-6 shadow-sm">
         <h2 className="text-lg font-bold text-gray-900">誓約内容</h2>
         <div className="mt-4 whitespace-pre-line rounded bg-gray-50 p-4 text-sm text-gray-700 leading-relaxed border">
@@ -380,43 +496,6 @@ export default async function PledgePage({
               <input
                 type="text"
                 name="guarantorName"
-                className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                身元保証人 続柄
-              </label>
-              <input
-                type="text"
-                name="guarantorRelation"
-                required
-                placeholder="例：父、母、配偶者"
-                className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                身元保証人 住所
-              </label>
-              <textarea
-                name="guarantorAddress"
-                required
-                rows={2}
-                className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                身元保証人 電話番号
-              </label>
-              <input
-                type="tel"
-                name="guarantorPhone"
-                required
                 className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
               />
             </div>
