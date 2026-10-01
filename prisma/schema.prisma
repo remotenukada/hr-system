@@ -863,6 +863,9 @@ model EmployeePledge {
   employeeSignedIp   String?
 
   guarantorName           String?
+  guarantorRelation       String?
+  guarantorAddress        String?
+  guarantorPhone          String?
   guarantorEmail          String?
   guarantorConfirmedAt    DateTime?
   guarantorToken          String?   @unique
@@ -1067,14 +1070,15 @@ model CompanySetting {
 
   phoneNumber String?
 
-  representativeName String?
-  mailFrom           String?
-  smtpHost           String?
-  smtpPort           Int?
-  smtpUser           String?
-  smtpPassword       String?
-  smtpSecure         Boolean @default(false)
-  sealImagePath      String?
+  representativeTitle String?
+  representativeName  String?
+  mailFrom            String?
+  smtpHost            String?
+  smtpPort            Int?
+  smtpUser            String?
+  smtpPassword        String?
+  smtpSecure          Boolean @default(false)
+  sealImagePath       String?
 
   consultationDesk String?
 

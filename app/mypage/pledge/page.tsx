@@ -66,13 +66,25 @@ async function signElectronically(formData: FormData) {
     formData.get("guarantorName") ?? "",
   ).trim();
 
+  const guarantorRelation = String(
+    formData.get("guarantorRelation") ?? "",
+  ).trim();
+
+  const guarantorAddress = String(
+    formData.get("guarantorAddress") ?? "",
+  ).trim();
+
+  const guarantorPhone = String(
+    formData.get("guarantorPhone") ?? "",
+  ).trim();
+
   const guarantorEmail = String(
     formData.get("guarantorEmail") ?? "",
   ).trim();
 
   const agreed = formData.get("agreed") === "on";
 
-  if (!guarantorName || !guarantorEmail) {
+  if (!guarantorName || !guarantorRelation || !guarantorAddress || !guarantorPhone || !guarantorEmail) {
     redirect("/mypage/pledge?error=guarantor");
   }
 
@@ -131,6 +143,9 @@ async function signElectronically(formData: FormData) {
       employeeSignedAt: signedAt,
       employeeSignedIp: ipAddress,
       guarantorName,
+      guarantorRelation,
+      guarantorAddress,
+      guarantorPhone,
       guarantorEmail,
       guarantorToken,
       guarantorTokenExpiresAt,
@@ -371,8 +386,48 @@ export default async function PledgePage({
 
             <div>
               <label className="block text-sm font-medium text-gray-700">
+                身元保証人 続柄
+              </label>
+              <input
+                type="text"
+                name="guarantorRelation"
+                required
+                placeholder="例：父、母、配偶者"
+                className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                身元保証人 住所
+              </label>
+              <textarea
+                name="guarantorAddress"
+                required
+                rows={2}
+                className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                身元保証人 電話番号
+              </label>
+              <input
+                type="tel"
+                name="guarantorPhone"
+                required
+                className="w-full rounded border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
                 身元保証人 メールアドレス
               </label>
+              <p className="mb-1 text-xs text-gray-500">
+                保証人確認メールの送信にのみ使用し、帳票には表示しません。
+              </p>
               <input
                 type="email"
                 name="guarantorEmail"
